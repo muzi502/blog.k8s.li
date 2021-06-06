@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/homelab.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/registry-gc.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/about.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -37,20 +58,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/homelab.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/mount-bind.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -58,35 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/registry-gc.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/My-brick-lifting-tools.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/merge-bilibili-flv-video.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/telegram-tips.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -142,7 +121,28 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/merge-bilibili-flv-video.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/telegram-tips.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -289,6 +289,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/install-k8s-ubuntu18-04.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/life-sciences.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -310,6 +317,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -318,6 +332,13 @@
   
   <url>
     <loc>https://blog.k8s.li/wndr3700v4-openwrt.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -352,13 +373,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/install-k8s-ubuntu18-04.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/kernel-note-book.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -373,13 +387,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/play-with-docker.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -388,13 +395,6 @@
   
   <url>
     <loc>https://blog.k8s.li/python-cnni.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
