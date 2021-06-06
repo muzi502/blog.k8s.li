@@ -30,6 +30,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -58,14 +65,28 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
+    <loc>https://blog.k8s.li/My-brick-lifting-tools.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/My-brick-lifting-tools.html</loc>
+    <loc>https://blog.k8s.li/merge-bilibili-flv-video.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/telegram-tips.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -121,13 +142,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/merge-bilibili-flv-video.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -135,14 +149,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/telegram-tips.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
+    <loc>https://blog.k8s.li/8964.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -150,6 +157,20 @@
   
   <url>
     <loc>https://blog.k8s.li/A-History-of-Protecting-Freedom-Where-Law-and-Technology-Collide.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -185,6 +206,13 @@
   
   <url>
     <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/dashboard.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -247,6 +275,20 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/fuch-rush-app-dir.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/get-someone-info.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/life-sciences.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -261,6 +303,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/oh-my-pink.html</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -269,27 +318,6 @@
   
   <url>
     <loc>https://blog.k8s.li/wndr3700v4-openwrt.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/8964.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -324,27 +352,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/dashboard.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/fuch-rush-app-dir.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/get-someone-info.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/install-k8s-ubuntu18-04.html</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -360,13 +367,6 @@
   
   <url>
     <loc>https://blog.k8s.li/networktools.html</loc>
-    
-    <lastmod>2021-06-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/oh-my-pink.html</loc>
     
     <lastmod>2021-06-06</lastmod>
     
@@ -403,7 +403,7 @@
   <url>
     <loc>https://blog.k8s.li/booklist.html</loc>
     
-    <lastmod>2021-05-30</lastmod>
+    <lastmod>2021-06-05</lastmod>
     
   </url>
   
