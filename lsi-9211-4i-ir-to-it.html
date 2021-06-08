@@ -51,7 +51,7 @@
 <meta property="og:description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&#x2F;SATA C">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.k8s.li/20200830_9211-4i-01.jpg">
-<meta property="og:image" content="https://p.k8s.li/20200830_9211-4i-02.png">
+<meta property="og:image" content="https://p.k8s.li/20200830_9211-4i-02.jpg">
 <meta property="og:image" content="https://p.k8s.li/20200828_9211-4i-03.jpg">
 <meta property="og:image" content="https://p.k8s.li/20200828_9211-4i-04.jpg">
 <meta property="og:image" content="https://p.k8s.li/20200828_9211-4i-05.jpg">
@@ -209,7 +209,7 @@
 <p><img src="https://p.k8s.li/20200830_9211-4i-01.jpg" alt=""></p>
 <p>买的这块阵列卡型号是 <a href="https://lenovopress.com/tips0831-serveraid-h1110" target="_blank" rel="noopener">ServeRAID H1110 SAS/SATA Controller for IBM System x </a> ，卖家说是 <code>IBM H1110</code> ，其实都差不多啦。由于是第一次玩儿阵列卡，对这种型号也不是很熟悉，之后刷了新的固件又变成了 <code>LSI 9211-4i</code> 。</p>
 <h2 id="翻车？"><a href="#翻车？" class="headerlink" title="翻车？"></a>翻车？</h2><p>收到货后，迫不及待地将存满老婆的硬盘接到阵列卡上，开机的时候，一直卡在阵列卡 BIOS 初始化页面很久很久。顿时觉着，完蛋翻车了，正准备去怼一波卖家，阵列卡启动等了五六分钟后进入了久违的  ESXi 的启动页面。这尼玛，坑我啊，你一个巴掌大的阵列卡启动竟然需要五分钟？内心一万匹草泥马奔腾而过。</p>
-<p><img src="https://p.k8s.li/20200830_9211-4i-02.png" alt=""></p>
+<p><img src="https://p.k8s.li/20200830_9211-4i-02.jpg" alt=""></p>
 <h2 id="IR-模式？"><a href="#IR-模式？" class="headerlink" title="IR 模式？"></a>IR 模式？</h2><p>在网上看来一下大佬们的评论，说阵列卡 IR 模式的启动速度要慢一些？然后又找到了 <a href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware" target="_blank" rel="noopener">IBM H1110卡刷为LSI 9211-4i IT固件</a> ，里面提到的可以将 IR 模式刷为 IT 直通模式。至于 IR 模式和 IT 模式，自己太菜没找到确切的资料。大概可以理解为 IR 模式适用于使用阵列卡组 RAID 阵列，而 IT 模式就是所谓的直通模式，不适用 RAID ，只使用阵列卡的磁盘控制器？相当于主板上的 SATA 接口。何况我这个是小主机，里面也塞不下那么多的磁盘，所以阵列卡使用 IT 直通模式无疑是最好的选择。</p>
 <p><img src="https://p.k8s.li/20200828_9211-4i-03.jpg" alt=""></p>
 <h2 id="万物皆可刷？"><a href="#万物皆可刷？" class="headerlink" title="万物皆可刷？"></a>万物皆可刷？</h2><p>参照大佬们的博客，咱也要体验一把刷<del>机</del>卡的痛快了，毕竟折腾这些没用的玩意儿也是咱的一大乐趣。</p>
