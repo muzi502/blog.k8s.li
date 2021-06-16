@@ -2,20 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
-    
-    <lastmod>2021-06-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/about.html</loc>
-    
-    <lastmod>2021-06-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/categories/index.html</loc>
     
     <lastmod>2021-06-16</lastmod>
@@ -37,7 +23,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
+    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
     
     <lastmod>2021-06-16</lastmod>
     
@@ -51,14 +37,28 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/mount-bind.html</loc>
+    <loc>https://blog.k8s.li/registry-gc.html</loc>
     
     <lastmod>2021-06-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/registry-gc.html</loc>
+    <loc>https://blog.k8s.li/about.html</loc>
+    
+    <lastmod>2021-06-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
+    
+    <lastmod>2021-06-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/mount-bind.html</loc>
     
     <lastmod>2021-06-16</lastmod>
     
@@ -121,6 +121,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html</loc>
+    
+    <lastmod>2021-06-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/telegram-tips.html</loc>
     
     <lastmod>2021-06-16</lastmod>
@@ -136,13 +143,6 @@
   
   <url>
     <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
-    
-    <lastmod>2021-06-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html</loc>
     
     <lastmod>2021-06-16</lastmod>
     

@@ -51,7 +51,7 @@
 <meta property="og:description" content="0.踩坑部署完 kubernets dashborad 后，官方给出的四种访问模式，都很坑😫。 1.kubectl proxy只能通过本机访问，部署在 VPS 上的是无法登录的。 2.NodePort12In case you are trying to expose Dashboard using NodePort on a multi-node cluster, then you have">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-16T00:51:19.198Z">
+<meta property="article:modified_time" content="2021-06-16T00:55:19.048Z">
 <meta property="article:author" content="木子">
 <meta property="article:tag" content="kubernetes">
 <meta property="article:tag" content="k8s">
@@ -119,7 +119,7 @@
     <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
   </li>
         <li class="menu-item menu-item-kindle">
-    <a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
   </li>
         <li class="menu-item menu-item-friend">
     <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
@@ -164,7 +164,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-16 2021-06-16T08:51:19+08:00" itemprop="dateModified" datetime="2021-06-16T08:51:19+08:00">2021-06-16</time>
+                <time title="修改时间：2021-06-16 2021-06-16T08:55:19+08:00" itemprop="dateModified" datetime="2021-06-16T08:55:19+08:00">2021-06-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,7 +211,7 @@
 <h3 id="4-Ingress"><a href="#4-Ingress" class="headerlink" title="4.Ingress"></a>4.Ingress</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dashboard can be also exposed using Ingress resource. For more information check: https:&#x2F;&#x2F;kubernetes.io&#x2F;docs&#x2F;concepts&#x2F;services-networking&#x2F;ingress.</span><br></pre></td></tr></table></figure>
 <h2 id="2-使用acme-sh脚本制作证书"><a href="#2-使用acme-sh脚本制作证书" class="headerlink" title="2.使用acme.sh脚本制作证书"></a>2.使用acme.sh脚本制作证书</h2><p>acme.sh脚本从 letsencrypt 可以生成免费的证书<br><a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="noopener">acme</a><br><a href="https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E" target="_blank" rel="noopener">wiki</a></p>
 <p>1.安装脚本</p>
-<figure class="highlight plain"><figcaption><span>~ && curl</span><a href="https://get.acme.sh" target="_blank" rel="noopener">| sh && alias acme.sh</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2.配置好 nginx</span><br><span class="line">我的 nginx 在另一台机器上，需要在域名解析那里添加A记录解析到 nginx 服务器上。添加子域名为 k8s，并在 nginx 那里配置好。</span><br><span class="line">这一步一定要做，不然的话无法通过http验证该域名所属。当然也可以选用 dns 的方式来验证，在这里就不赘述了。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;conf</span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        listen [::]:80;</span><br><span class="line">        server_name k8s.502.li;</span><br><span class="line">        set $base &#x2F;var&#x2F;www&#x2F;k8s;</span><br><span class="line">        root $base&#x2F;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>~ && curl</span><a href="https://get.acme.sh" target="_blank" rel="noopener">| sh && alias acme.sh</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2.配置好 nginx</span><br><span class="line">我的 nginx 在另一台机器上，需要在域名解析那里添加A记录解析到 nginx 服务器上。添加子域名为 k8s，并在 nginx 那里配置好。</span><br><span class="line">这一步一定要做，不然的话无法通过http验证该域名所属。当然也可以选用 dns 的方式来验证，在这里就不赘述了。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;conf</span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        listen [::]:80;</span><br><span class="line">        server_name k8s.k8s.li;</span><br><span class="line">        set $base &#x2F;var&#x2F;www&#x2F;k8s;</span><br><span class="line">        root $base&#x2F;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3.生成证书，默认会保存在~/.acme.sh/mydomain.com<br>acme.sh –issue  -d mydomain.com   –nginx</p>
 <p>4.上传证书到 k8s-master 节点<br>只需要 mydomain.com.cer 和 mydomain.com.key 这两个文件，其中把 mydomain.com.cer 命名为 dashboard.crt ，mydomain.com.key 命名为 dashboard.key 。然后你想办法把这两个文件传到 k8s-master 机器 ~/certs 目录下。</p>
 <h2 id="3-部署kubernetes-dashboard"><a href="#3-部署kubernetes-dashboard" class="headerlink" title="3.部署kubernetes-dashboard"></a>3.部署kubernetes-dashboard</h2><p>1.引用官方的文档😂<br>Custom certificates have to be stored in a secret named kubernetes-dashboard-certs in kube-system namespace. Assuming that you have dashboard.crt and dashboard.key files stored under $HOME/certs directory, you should create secret with contents of these files:</p>
@@ -333,7 +333,7 @@
         <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://kindle.502.li/" title="Kindle → https:&#x2F;&#x2F;kindle.502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
       </span>
       <span class="links-of-author-item">
         <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
