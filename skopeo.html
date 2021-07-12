@@ -50,7 +50,7 @@
 <meta property="og:site_name" content="木子">
 <meta property="og:description" content="搬砖工具作为公司内部 PaaS toB 产品的打包发布人员，容器镜像对我们打工人而言就像是工地上的砖头 🧱，而我的一部分工作就是将这些砖头在各个仓库之间搬来搬去，最终将这些砖头打包放在产品的安装包中，形成一个完整的 PaaS 产品安装包。 而选择一个好的搬砖工具能节省我们大量的人力和 CPU 算力，在日常开发工作中我们也常常会使用 docker push 和 docker pull 来推拉镜像，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.k8s.li/img/(null)">
+<meta property="og:image" content="https://p.k8s.li/skopeo-github-action-build.png">
 <meta property="article:published_time" content="2021-07-10T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-07-10T16:00:00.000Z">
 <meta property="article:author" content="木子">
@@ -58,7 +58,7 @@
 <meta property="article:tag" content="镜像">
 <meta property="article:tag" content="skopeo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.k8s.li/img/(null)">
+<meta name="twitter:image" content="https://p.k8s.li/skopeo-github-action-build.png">
 <link rel="canonical" href="https://blog.k8s.li/skopeo.html">
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
@@ -216,7 +216,7 @@
 <ul>
 <li>使用 <code>nixos/nix:2.3.12</code> 来构建静态链接的 skopeo 二进制文件需要完整构建 skopeo 所有的依赖，比如 glibc、systemd、golang 等，所以构建十分耗时。在一台 4c8G 的机器上构建用了将近半个小时，在 GitHub Action 的 runner 机器上构建需要将近<a href="https://github.com/k8sli/skopeo/actions/runs/1010266302" target="_blank" rel="noopener">一个小时</a>。</li>
 </ul>
-<p><img src="img/(null)" alt="img"></p>
+<p><img src="https://p.k8s.li/skopeo-github-action-build.png" alt="img"></p>
 <ul>
 <li>使用 GitHub Action 构建</li>
 </ul>
