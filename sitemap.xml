@@ -2,20 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/about.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/categories/index.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/link/index.html</loc>
     
     <lastmod>2021-07-20</lastmod>
@@ -44,7 +30,14 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/registry-gc.html</loc>
+    <loc>https://blog.k8s.li/about.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/categories/index.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -65,6 +58,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/registry-gc.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/My-brick-lifting-tools.html</loc>
     
     <lastmod>2021-07-20</lastmod>
@@ -73,13 +73,6 @@
   
   <url>
     <loc>https://blog.k8s.li/2019-review.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -149,6 +142,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/A-History-of-Protecting-Freedom-Where-Law-and-Technology-Collide.html</loc>
     
     <lastmod>2021-07-20</lastmod>
@@ -163,13 +163,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
     
     <lastmod>2021-07-20</lastmod>
@@ -178,20 +171,6 @@
   
   <url>
     <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -220,13 +199,6 @@
   
   <url>
     <loc>https://blog.k8s.li/life-sciences.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -275,6 +247,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/amd-yes.html</loc>
     
     <lastmod>2021-07-20</lastmod>
@@ -311,6 +290,20 @@
   
   <url>
     <loc>https://blog.k8s.li/debian-gateway.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -374,6 +367,13 @@
   
   <url>
     <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -1593,13 +1593,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6/</loc>
-    <lastmod>2021-07-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/K8s/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
@@ -1608,6 +1601,13 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E8%B0%83%E7%A0%94/</loc>
+    <lastmod>2021-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
