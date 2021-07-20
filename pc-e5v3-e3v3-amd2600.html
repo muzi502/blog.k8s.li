@@ -1,1 +1,1071 @@
-<!DOCTYPE html> <html lang="zh-CN"> <head>   <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"> <meta name="theme-color" content="#222"> <meta name="generator" content="Hexo 4.2.1">   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">   <link rel="mask-icon" href="/favicon.ico" color="#222">   <meta http-equiv="Cache-Control" content="no-transform">   <meta http-equiv="Cache-Control" content="no-siteapp">  <link rel="stylesheet" href="/css/main.css">  <link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"> <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">   <script id="hexo-configurations">   var NexT = window.NexT || {};   var CONFIG = {     hostname: new URL('https://blog.k8s.li').hostname,     root: '/',     scheme: 'Gemini',     version: '7.7.0',     exturl: false,     sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},     copycode: {"enable":true,"show_result":true,"style":"mac"},     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},     bookmark: {"enable":false,"color":"#222","save":"auto"},     fancybox: false,     mediumzoom: false,     lazyload: false,     pangu: false,     comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},     algolia: {       appID: '',       apiKey: '',       indexName: '',       hits: {"per_page":10},       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}     },     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},     path: 'search.xml',     motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}   }; </script>    <meta name="description" content="TL 分享一个装机方案：CPU: E5 2670V3 ×2主板: Dell T7810 准系统内存: 三星 DDR4 2133 16G×4显卡: Quador K2000 2GB硬盘: 西数 HC310 7K 4TB固态: 三星 PM 981 256GB价格: 550×2+1700+260×4+400+760+290&#x3D;5290￥你就能拥有一台 24C&#x2F;48T CPU、64GB RAM 、256GB"> <meta property="og:type" content="article"> <meta property="og:title" content="台式机装机方案"> <meta property="og:url" content="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html"> <meta property="og:site_name" content="木子"> <meta property="og:description" content="TL 分享一个装机方案：CPU: E5 2670V3 ×2主板: Dell T7810 准系统内存: 三星 DDR4 2133 16G×4显卡: Quador K2000 2GB硬盘: 西数 HC310 7K 4TB固态: 三星 PM 981 256GB价格: 550×2+1700+260×4+400+760+290&#x3D;5290￥你就能拥有一台 24C&#x2F;48T CPU、64GB RAM 、256GB"> <meta property="og:locale" content="zh_CN"> <meta property="article:published_time" content="2019-12-25T16:00:00.000Z"> <meta property="article:modified_time" content="2021-07-20T07:30:32.174Z"> <meta property="article:author" content="木子"> <meta property="article:tag" content="捡垃圾"> <meta property="article:tag" content="PC"> <meta name="twitter:card" content="summary">  <link rel="canonical" href="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html">   <script id="page-configurations">   // https://hexo.io/docs/variables.html   CONFIG.page = {     sidebar: "",     isHome: false,     isPost: true   }; </script>    <title>台式机装机方案 | 木子</title>            <noscript>   <style>   .use-motion .brand,   .use-motion .menu-item,   .sidebar-inner,   .use-motion .post-block,   .use-motion .pagination,   .use-motion .comments,   .use-motion .post-header,   .use-motion .post-body,   .use-motion .collection-header { opacity: initial; }    .use-motion .site-title,   .use-motion .site-subtitle {     opacity: initial;     top: initial;   }    .use-motion .logo-line-before i { left: initial; }   .use-motion .logo-line-after i { right: initial; }   </style> </noscript>  <link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml"> </head>  <body itemscope itemtype="http://schema.org/WebPage">   <div class="container">     <div class="headband"></div>      <header class="header" itemscope itemtype="http://schema.org/WPHeader">       <div class="header-inner"><div class="site-brand-container">   <div class="site-meta">      <div>       <a href="/" class="brand" rel="start">         <span class="logo-line-before"><i></i></span>         <span class="site-title">木子</span>         <span class="logo-line-after"><i></i></span>       </a>     </div>   </div>    <div class="site-nav-toggle">     <div class="toggle" aria-label="切换导航栏">       <span class="toggle-line toggle-line-first"></span>       <span class="toggle-line toggle-line-middle"></span>       <span class="toggle-line toggle-line-last"></span>     </div>   </div> </div>   <nav class="site-nav">      <ul id="menu" class="menu">         <li class="menu-item menu-item-home">      <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>    </li>         <li class="menu-item menu-item-books">      <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>    </li>         <li class="menu-item menu-item-kindle">      <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>    </li>         <li class="menu-item menu-item-friend">      <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>    </li>         <li class="menu-item menu-item-about">      <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>    </li>   </ul>  </nav> </div>     </header>         <div class="reading-progress-bar"></div>       <main class="main">       <div class="main-inner">         <div class="content-wrap">                       <div class="content">                 <div class="posts-expand">                <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html">      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">       <meta itemprop="image" content="https://blog.k8s.li/avatar.png">       <meta itemprop="name" content="木子">       <meta itemprop="description" content="">     </span>      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">       <meta itemprop="name" content="木子">     </span>       <header class="post-header">         <h2 class="post-title" itemprop="name headline">           台式机装机方案         </h2>          <div class="post-meta">             <span class="post-meta-item">               <span class="post-meta-item-icon">                 <i class="fa fa-calendar-o"></i>               </span>               <span class="post-meta-item-text">发表于</span>                <time title="创建时间：2019-12-26 2019-12-26T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-12-26T00:00:00+08:00">2019-12-26</time>             </span>               <span class="post-meta-item">                 <span class="post-meta-item-icon">                   <i class="fa fa-calendar-check-o"></i>                 </span>                 <span class="post-meta-item-text">更新于</span>                 <time title="修改时间：2021-07-20 2021-07-20T15:30:32+08:00" itemprop="dateModified" datetime="2021-07-20T15:30:32+08:00">2021-07-20</time>               </span>             <span class="post-meta-item">               <span class="post-meta-item-icon">                 <i class="fa fa-folder-o"></i>               </span>               <span class="post-meta-item-text">分类于</span>                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">                   <a href="/categories/%E6%90%9E%E6%9C%BA/" itemprop="url" rel="index">                     <span itemprop="name">搞机</span>                   </a>                 </span>             </span>                  <span class="post-meta-item">            <span class="post-meta-item-icon">         <i class="fa fa-comment-o"></i>       </span>       <span class="post-meta-item-text">Disqus：</span>          <a title="disqus" href="/pc-e5v3-e3v3-amd2600.html#comments" itemprop="discussionUrl">       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="pc-e5v3-e3v3-amd2600.html" itemprop="commentCount"></span>     </a>   </span>      <br>             <span class="post-meta-item" title="本文字数">               <span class="post-meta-item-icon">                 <i class="fa fa-file-word-o"></i>               </span>                 <span class="post-meta-item-text">本文字数：</span>               <span>4.3k</span>             </span>             <span class="post-meta-item" title="阅读时长">               <span class="post-meta-item-icon">                 <i class="fa fa-clock-o"></i>               </span>                 <span class="post-meta-item-text">阅读时长 &asymp;</span>               <span>7 分钟</span>             </span>          </div>       </header>                     <div class="post-body" itemprop="articleBody">                 <h2 id="TL"><a href="#TL" class="headerlink" title="TL"></a>TL</h2> <blockquote class="twitter-tweet"><p lang="zh" dir="ltr">分享一个装机方案：<br>CPU: E5 2670V3 ×2<br>主板: Dell T7810 准系统<br>内存: 三星 DDR4 2133 16G×4<br>显卡: Quador K2000 2GB<br>硬盘: 西数 HC310 7K 4TB<br>固态: 三星 PM 981 256GB<br><br>价格: 550×2+1700+260×4+400+760+290=5290￥<br><br>你就能拥有一台 24C/48T CPU、64GB RAM 、256GB SDD/4TB HDD 配置的高性能工作站 <a href="https://t.co/NIkegB1Vck" target="_blank" rel="noopener">pic.twitter.com/NIkegB1Vck</a></p>&mdash; 502 (@muzi_ii) <a href="https://twitter.com/muzi_ii/status/1209832133092528129?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">December 25, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>   <h2 id="E3-V3"><a href="#E3-V3" class="headerlink" title="E3 V3"></a>E3 V3</h2><table> <thead> <tr> <th align="center">硬件</th> <th>配置</th> <th align="center">价格</th> <th align="center">备注</th> </tr> </thead> <tbody><tr> <td align="center">CPU</td> <td>E3-1270 V3 4C/8T 3.50 GHz~3.90 GHz</td> <td align="center">520</td> <td align="center"></td> </tr> <tr> <td align="center">主板</td> <td>T1700 准系统：Intel ®C2261</td> <td align="center">400</td> <td align="center"></td> </tr> <tr> <td align="center">内存</td> <td>三星 DDR3 ECC 16GB 1600 Mhz ×2</td> <td align="center">260×2</td> <td align="center"></td> </tr> <tr> <td align="center">显卡</td> <td>GTX 950 2GB</td> <td align="center">300</td> <td align="center"></td> </tr> <tr> <td align="center">固态</td> <td>三星 850 PRO SATA III 256GB</td> <td align="center">210</td> <td align="center"></td> </tr> <tr> <td align="center">机箱</td> <td>T1700 准系统：</td> <td align="center">0</td> <td align="center"></td> </tr> <tr> <td align="center">电源</td> <td>T1700 准系统：290W 开关电源</td> <td align="center">0</td> <td align="center"></td> </tr> <tr> <td align="center">总价</td> <td></td> <td align="center">1950</td> <td align="center"></td> </tr> </tbody></table> <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul> <li>如今的 E3 V3 价格已经跌破 500 左右了，但 AMD Ryzen R5 的价格散片也就 650 左右，加上 150 块钱就能提升 30% 的单核性能，外加 2 个核心和 4 个框框😂，总之 E3 V3 目前来讲性价比不如 AMD Ryzen R5。</li> <li>E3 V3 是 Intel 第四代  CPU 1150 芯片组无法从 M.2 启动，速度只能达到 SATA III 也就是顶多 600 MB/s 的读写速度，而目前随便一块支持  PCI-e M.2 的主板普遍都能达到 3000MB/s 了。所以这一点来讲 E3 V3 已经不值得捡了。</li> </ul> <h2 id="AMD-Ryzen"><a href="#AMD-Ryzen" class="headerlink" title="AMD Ryzen"></a>AMD Ryzen</h2><table> <thead> <tr> <th align="center">硬件</th> <th>配置</th> <th align="center">价格</th> <th>备注</th> </tr> </thead> <tbody><tr> <td align="center">CPU</td> <td>AMD Ryzen R5 2400G</td> <td align="center">720</td> <td></td> </tr> <tr> <td align="center">主板</td> <td>MSI B350M</td> <td align="center">320</td> <td></td> </tr> <tr> <td align="center">内存</td> <td>镁光 DDR4 16GB 2400 Mhz ×2</td> <td align="center">300 ×2</td> <td></td> </tr> <tr> <td align="center">显卡</td> <td>GTX 950 2GB</td> <td align="center">300</td> <td></td> </tr> <tr> <td align="center">固态</td> <td>三星 PM 981 256GB</td> <td align="center">290</td> <td></td> </tr> <tr> <td align="center">机箱</td> <td>Dell 3010 机箱</td> <td align="center">170</td> <td></td> </tr> <tr> <td align="center">电源</td> <td>Dell 3010 电源： 230W 光宝开关电源</td> <td align="center">0</td> <td></td> </tr> <tr> <td align="center">总价</td> <td></td> <td align="center">2400</td> <td></td> </tr> </tbody></table> <h3 id="天梯图"><a href="#天梯图" class="headerlink" title="天梯图"></a><a href="http://itianti.sinaapp.com/index.php/cpu" target="_blank" rel="noopener">天梯图</a></h3><ul> <li>仅供娱乐，实际性能还要做对比测试，只是让您心里有点 B 数</li> <li>AMD Ryzen 5 2400G 的性能和 E3-1270 V3 性能相近，AMD Ryzen 5 2600 性能要比两者高大概 30% 的性能（个人瞎猜）。</li> <li>AMD Ryzen 5 2400G 的散片价格，目前（2019-12-26）淘宝 720￥，而 AMD Ryzen 5 2600 的价格在 640￥ 左右。</li> <li>AMD Ryzen 5 2400G 核显性能相当于 GTX 1030 2GB ，而 GTX 1030 价格在 300￥ 左右，所以说牺牲两个核心和四个框框外加 80 块钱买个 300 块的 GTX 1030 。性价比是相当高滴。如果是日常用不打游戏，买 AMD Ryzen 5 2400G 是最佳选择。</li> <li>AMD Ryzen 5 3400G 的价格在 820￥ 左右</li> </ul> <table> <thead> <tr> <th>165</th> <th>AMD Ryzen 5 2600X</th> <th>14377</th> </tr> </thead> <tbody><tr> <td>101</td> <td>AMD Ryzen 7 2700X</td> <td>16971</td> </tr> <tr> <td>165</td> <td>AMD Ryzen 5 2600X</td> <td>14377</td> </tr> <tr> <td>166</td> <td>Intel Core i7-6850K @ 3.60GHz</td> <td>14372</td> </tr> <tr> <td>169</td> <td>Intel Core i9-8950HK @ 2.90GHz</td> <td>14259</td> </tr> <tr> <td>170</td> <td>AMD Ryzen 5 PRO 2600</td> <td>14221</td> </tr> <tr> <td>195</td> <td>Intel Core i7-6800K @ 3.40GHz</td> <td>13570</td> </tr> <tr> <td>197</td> <td>Intel Core i5-9600K @ 3.70GHz</td> <td>13527</td> </tr> <tr> <td>199</td> <td><strong>AMD Ryzen 5 2600</strong></td> <td>13507</td> </tr> <tr> <td>202</td> <td>AMD Ryzen 5 1600X</td> <td>13203</td> </tr> <tr> <td>203</td> <td>Intel Xeon E5-2660 v2 @ 2.20GHz</td> <td>13186</td> </tr> <tr> <td>207</td> <td>Intel Core i7-4930K @ 3.40GHz</td> <td>13007</td> </tr> <tr> <td>326</td> <td>Intel Core i7-7920HQ @ 3.10GHz</td> <td>9986</td> </tr> <tr> <td>327</td> <td>Intel Xeon E3-1285L v3 @ 3.10GHz</td> <td>9981</td> </tr> <tr> <td>328</td> <td>AMD Ryzen 5 PRO 2400G</td> <td>9963</td> </tr> <tr> <td>329</td> <td>Intel Core i7-7820HK @ 2.90GHz</td> <td>9963</td> </tr> <tr> <td>330</td> <td><strong>AMD Ryzen 5 3400G</strong></td> <td>9957</td> </tr> <tr> <td>333</td> <td><strong>Intel Xeon E3-1270 v3 @ 3.50GHz</strong></td> <td>9919</td> </tr> <tr> <td>387</td> <td>Intel Xeon E3-1230 v3 @ 3.30GHz</td> <td>9327</td> </tr> <tr> <td>388</td> <td><strong>AMD Ryzen 5 2400G</strong></td> <td>9234</td> </tr> <tr> <td>395</td> <td>Intel Core i3-8350K @ 4.00GHz</td> <td>9221</td> </tr> </tbody></table> <h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><p>这也是我目前的装机方案。我是在 7 月分的时组装的，那时候第三代 Ryzen 刚刚发布，而那时候的价格要比第二代 Ryzen 高出 500 多块钱，所以就没有使用第三代  Ryzen 。不过我当时买的是 U 板套装，加起来价格才 1180￥ ，那时候价格是相当便宜了，主板是华硕 B350M-K 丐板 的，理论上是支持第三代 Ryzen 的。虽然现在很后悔，但当时心切想买😂</p> <h2 id="双路-E5-V3"><a href="#双路-E5-V3" class="headerlink" title="双路 E5 V3"></a>双路 E5 V3</h2><table> <thead> <tr> <th align="center">硬件</th> <th>配置</th> <th align="center">价格</th> <th>备注</th> </tr> </thead> <tbody><tr> <td align="center">CPU</td> <td>Intel Xeon E5-2660 v3 @ 2.60GHz ×2</td> <td align="center">600 ×2</td> <td></td> </tr> <tr> <td align="center">主板</td> <td>Dell T7810 准系统 或者 Dell R630 准系统</td> <td align="center">1700</td> <td></td> </tr> <tr> <td align="center">内存</td> <td>三星 DDR4 2133 Mhz 16GB ×4</td> <td align="center">260×4</td> <td></td> </tr> <tr> <td align="center">显卡</td> <td>GTX 950 2GB</td> <td align="center">300</td> <td></td> </tr> <tr> <td align="center">固态</td> <td>三星 PM 981 256GB</td> <td align="center">290</td> <td></td> </tr> <tr> <td align="center">机箱</td> <td>Dell T7810 准系统</td> <td align="center">0</td> <td></td> </tr> <tr> <td align="center">电源</td> <td>Dell T7810 准系统</td> <td align="center">0</td> <td></td> </tr> <tr> <td align="center">总价</td> <td></td> <td align="center">4530</td> <td></td> </tr> </tbody></table> <h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ul> <li><p>目前来讲 E5 V3 平台装机最令人头疼的就是主板死贵，主板价格都比两个 U 加起来的价格还要高。之所以选择 Dell T7810 准系统 准系统是因为相比来讲 Dell 塔式服务器的稳定性要比捡垃圾搞来的工包主板稳定性强很多，翻车概率要小一些。如果单独买主板的话还要和机箱象匹配，电源功率也要够。而 Dell T7810 准系统完美地解决了这些困扰，不用再考虑买合适的机箱和电源。一整套配合起来完美运行。</p> </li> <li><p>开箱博客 <a href="https://blog.silversky.moe/works/evaluation-of-out-of-the-box-dell-precision-t7910" target="_blank" rel="noopener">开箱测评——DELL PRECISION T7910</a></p> </li> <li><p>Dell T7810 有一些毛病，可以参考如下：</p> </li> <li><blockquote> <ul> <li>并不建议使用DELL T7910，非常伤 因为阵列卡的原因，系统速度会非常慢（肉眼可见的，比如说打开Windows Image Viewer，会等1-2秒才会显示（不管大小） 目测应该是什么硬件冲突，禁用板载阵列卡就好了（已经在国外论坛上看到很多案例了，很多公司/个人因为这个不去买DELL这个账</li> <li>那是不是禁用阵列卡不用他不就好了呢 然而T7910的阵列卡和“背板”是12G的，接口使用的MiniSAS HD（SFF-8643）不管是再买阵列卡还是通道卡，都要有一笔不小的花费 还有K2000太烂了。</li> <li>当然，我指的是这一代DELL Precision，不光是T7910</li> <li>继续吐槽，T7910正面是三个风扇的，通过橡胶的减震钉固定在风扇架上。这些橡胶的减震钉，时间长了会老化，然后就会变得很恶心（最后被我拆掉用螺丝+螺帽代替）（我印象中我摸过其他的Lenovo的机器，甚至时间更长的都没有DELL这个老化之后的恶心 而且风扇的异响会变得比较讨厌（购入后1年内</li> <li>顺便，应该是批次问题，如果你不幸买到了我这批的 你的电源会出现电弧的声音（没错，就是那个电弧 但是看不到任何东西，客服跟我讲可能我这边潮湿（你逗我，北方潮湿？？</li> <li>电源，不管是T7910这样的模块化电源还是普通的电源，OEM机型你都会遇到一个问题，扩展电源接口不够 T7910只有一个SATA供电接口，本身设计是给光驱使用的 其他的电源接口是直接给硬盘笼供电的 如果你比较扭曲，像我这样可以直接剪掉重新焊接，或者你愿意多花钱买扩展线，那无所谓</li> <li>以及前面提到的硬盘问题，别想着直接不用板载的SAS3008用板子上的SATA就完了 板子上就两个SATA。</li> <li>这一代的Precision有巨多的问题（设计和硬件上的） 我是不可能推荐Precision的（至少是这代，因为我用了，用的还是旗舰） 相比之下，如果是OEM准系统组装的话，我更愿意推荐PowerEdge T630或者HPE的Z系列 T630有更好的电源配置，散热系统，扩展性，以及易于维护 HPE Z系列的模块化设计也是甩DELL10条街</li> <li>btw, 我在6月把这台机器扔给我妈办公用之前，DELL的新固件我都会刷，然而并没有任何卵用</li> </ul> <p>引用自 <a href="https://twitter.com/AkatsukiRyuu/status/1210157947906490368" target="_blank" rel="noopener">暁龍之介的推文</a></p> </blockquote> </li> </ul> <h3 id="天梯图-1"><a href="#天梯图-1" class="headerlink" title="天梯图"></a><a href="http://itianti.sinaapp.com/index.php/cpu" target="_blank" rel="noopener">天梯图</a></h3><ul> <li><p>仅供娱乐，具体实际性能还要看是实际的测试</p> </li> <li><p>可见  E5-2660 v3 的单核性能和 i7-8700K、Ryzen 7 2700x 相近</p> </li> </ul> <table> <thead> <tr> <th>排名</th> <th>型号</th> <th>得分</th> </tr> </thead> <tbody><tr> <td>101</td> <td>AMD Ryzen 7 2700X</td> <td>16971</td> </tr> <tr> <td>104</td> <td>Intel Core i7-8086K @ 4.00GHz</td> <td>16688</td> </tr> <tr> <td>115</td> <td>Intel Xeon Gold 5120 @ 2.20GHz</td> <td>16308</td> </tr> <tr> <td>120</td> <td><strong>Intel Xeon E5-2660 v3 @ 2.60GHz</strong></td> <td>16184</td> </tr> <tr> <td>123</td> <td>AMD Ryzen Threadripper 1900X</td> <td>16089</td> </tr> <tr> <td>124</td> <td>Intel Xeon E-2186G @ 3.80GHz</td> <td>16057</td> </tr> <tr> <td>127</td> <td>Intel Core i7-8700K @ 3.70GHz</td> <td>15960</td> </tr> <tr> <td>128</td> <td>Intel Core i7-5960X @ 3.00GHz</td> <td>15944</td> </tr> <tr> <td>129</td> <td>Intel Core i7-9700 @ 3.00GHz</td> <td>15923</td> </tr> <tr> <td>136</td> <td>AMD Ryzen 7 PRO 2700</td> <td>15714</td> </tr> <tr> <td>138</td> <td>Intel Core i7-9700F @ 3.00GHz</td> <td>15566</td> </tr> <tr> <td>141</td> <td>AMD Ryzen 7 1800X</td> <td>15420</td> </tr> <tr> <td>143</td> <td>Intel Xeon E5-2640 v4 @ 2.40GHz</td> <td>15380</td> </tr> <tr> <td>144</td> <td>AMD Ryzen 7 PRO 1700X</td> <td>15367</td> </tr> </tbody></table> <h4 id="双路"><a href="#双路" class="headerlink" title="双路"></a>双路</h4><table> <thead> <tr> <th>43</th> <th>[双路] AMD EPYC 7501</th> <th>23727</th> </tr> </thead> <tbody><tr> <td>44</td> <td>[双路] Intel Xeon E5-2687W v2 @ 3.40GHz</td> <td>23727</td> </tr> <tr> <td>45</td> <td>[双路] Intel Xeon E5-2697 v2 @ 2.70GHz</td> <td>23574</td> </tr> <tr> <td>46</td> <td>[双路] AMD EPYC 7401</td> <td>23518</td> </tr> <tr> <td>47</td> <td>[双路] Intel Xeon Gold 6128 @ 3.40GHz</td> <td>23396</td> </tr> <tr> <td>51</td> <td>[双路] Intel Xeon E5-2660 v4 @ 2.00GHz</td> <td>23117</td> </tr> <tr> <td>54</td> <td>[双路] Intel Xeon E5-2673 v3 @ 2.40GHz</td> <td>22959</td> </tr> <tr> <td>55</td> <td><strong>[双路] Intel Xeon E5-2660 v3 @ 2.60GHz</strong></td> <td>22733</td> </tr> <tr> <td>56</td> <td>[双路] Intel Xeon E5-4660 v3 @ 2.10GHz</td> <td>22461</td> </tr> <tr> <td>57</td> <td>[双路] Intel Xeon E7-4890 v2 @ 2.80GHz</td> <td>22412</td> </tr> <tr> <td>58</td> <td>[双路] Intel Xeon E5-2670 v3 @ 2.30GHz</td> <td>22383</td> </tr> </tbody></table> <h2 id="单路-E5-V3"><a href="#单路-E5-V3" class="headerlink" title="单路 E5 V3"></a>单路 E5 V3</h2><table> <thead> <tr> <th align="center">硬件</th> <th>配置</th> <th align="center">价格</th> <th>备注</th> </tr> </thead> <tbody><tr> <td align="center">CPU</td> <td>Intel Xeon E5-2660 v3 @ 2.60GHz</td> <td align="center">600</td> <td></td> </tr> <tr> <td align="center">主板</td> <td>Dell T5810 准系统</td> <td align="center">1200</td> <td></td> </tr> <tr> <td align="center">内存</td> <td>三星 DDR4 2133 Mhz 16GB ×4</td> <td align="center">260×4</td> <td></td> </tr> <tr> <td align="center">显卡</td> <td>GTX 950 2GB</td> <td align="center">300</td> <td></td> </tr> <tr> <td align="center">固态</td> <td>三星 PM 981 256GB M.2</td> <td align="center">290</td> <td></td> </tr> <tr> <td align="center">机箱</td> <td>Dell T7810 准系统</td> <td align="center">0</td> <td></td> </tr> <tr> <td align="center">电源</td> <td>Dell T7810 准系统</td> <td align="center">0</td> <td></td> </tr> <tr> <td align="center">总价</td> <td></td> <td align="center">3430</td> <td></td> </tr> </tbody></table> <p>不过我倒是 jio 着，既然垃圾佬都上 E5 了，不玩玩双路对得起自己嘛，所以多花 1000 块相当于多一个 U ，多 12C/24T ，双路要比单路多 24 个框框啊，数起可好玩喽😂</p>      </div>                        <footer class="post-footer">                      <div class="post-tags">               <a href="/tags/%E6%8D%A1%E5%9E%83%E5%9C%BE/" rel="tag"><i class="fa fa-tag"></i> 捡垃圾</a>               <a href="/tags/PC/" rel="tag"><i class="fa fa-tag"></i> PC</a>           </div>                          <div class="post-nav">       <div class="post-nav-item">     <a href="/Kubernetes-Introduction-for-VMware-Users-zh.html" rel="prev" title="【翻译】给 VMware vSphere 用户的 Kubernetes 简介">       <i class="fa fa-chevron-left"></i> 【翻译】给 VMware vSphere 用户的 Kubernetes 简介     </a></div>       <div class="post-nav-item">     <a href="/2019-reading-notes.html" rel="next" title="2019 年读书笔记和思考">       2019 年读书笔记和思考 <i class="fa fa-chevron-right"></i>     </a></div>     </div>       </footer>        </article>             </div>             </div>                   <div class="comments">     <div id="disqus_thread">       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>     </div>   </div>     <script>   window.addEventListener('tabs:register', () => {     let activeClass = CONFIG.comments.activeClass;     if (CONFIG.comments.storage) {       activeClass = localStorage.getItem('comments_active') || activeClass;     }     if (activeClass) {       let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);       if (activeTab) {         activeTab.click();       }     }   });   if (CONFIG.comments.storage) {     window.addEventListener('tabs:click', event => {       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;       let commentClass = event.target.classList[1];       localStorage.setItem('comments_active', commentClass);     });   } </script>          </div>                 <div class="toggle sidebar-toggle">     <span class="toggle-line toggle-line-first"></span>     <span class="toggle-line toggle-line-middle"></span>     <span class="toggle-line toggle-line-last"></span>   </div>    <aside class="sidebar">     <div class="sidebar-inner">        <ul class="sidebar-nav motion-element">         <li class="sidebar-nav-toc">           文章目录         </li>         <li class="sidebar-nav-overview">           站点概览         </li>       </ul>        <!--noindex-->       <div class="post-toc-wrap sidebar-panel">           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TL"><span class="nav-number">1.</span> <span class="nav-text">TL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E3-V3"><span class="nav-number">2.</span> <span class="nav-text">E3 V3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">2.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD-Ryzen"><span class="nav-number">3.</span> <span class="nav-text">AMD Ryzen</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#天梯图"><span class="nav-number">3.1.</span> <span class="nav-text">天梯图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项-1"><span class="nav-number">3.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双路-E5-V3"><span class="nav-number">4.</span> <span class="nav-text">双路 E5 V3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项-2"><span class="nav-number">4.1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天梯图-1"><span class="nav-number">4.2.</span> <span class="nav-text">天梯图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单路-E5-V3"><span class="nav-number">5.</span> <span class="nav-text">单路 E5 V3</span></a></li></ol></div>       </div>       <!--/noindex-->        <div class="site-overview-wrap sidebar-panel">         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">     <img class="site-author-image" itemprop="image" alt="木子"       src="https://blog.k8s.li/avatar.png">   <p class="site-author-name" itemprop="name">木子</p>   <div class="site-description" itemprop="description"></div> </div> <div class="site-state-wrap motion-element">   <nav class="site-state">       <div class="site-state-item site-state-posts">           <a href="/archives">           <span class="site-state-item-count">101</span>           <span class="site-state-item-name">日志</span>         </a>       </div>       <div class="site-state-item site-state-categories">             <a href="/categories/">         <span class="site-state-item-count">9</span>         <span class="site-state-item-name">分类</span></a>       </div>       <div class="site-state-item site-state-tags">             <a href="/tags/">         <span class="site-state-item-count">124</span>         <span class="site-state-item-name">标签</span></a>       </div>   </nav> </div>   <div class="links-of-author motion-element">       <span class="links-of-author-item">         <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>       </span>       <span class="links-of-author-item">         <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>       </span>       <span class="links-of-author-item">         <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>       </span>       <span class="links-of-author-item">         <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>       </span>       <span class="links-of-author-item">         <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>       </span>       <span class="links-of-author-item">         <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>       </span>       <span class="links-of-author-item">         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>       </span>   </div>          </div>         <div class="back-to-top motion-element">           <i class="fa fa-arrow-up"></i>           <span>0%</span>         </div>      </div>   </aside>   <div id="sidebar-dimmer"></div>         </div>     </main>      <footer class="footer">       <div class="footer-inner">           <div class="copyright">      &copy; 2018 –    <span itemprop="copyrightYear">2021</span>   <span class="with-love">     <i class="fa fa-heart"></i>   </span>   <span class="author" itemprop="copyrightHolder">木子</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-area-chart"></i>     </span>       <span class="post-meta-item-text">站点总字数：</span>     <span title="站点总字数">1.5m</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-coffee"></i>     </span>       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>     <span title="站点阅读时长">41:25</span> </div>   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动   </div>   <span class="post-meta-divider">|</span>   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>   </div>                         </div>     </footer>   </div>       <script src="/lib/anime.min.js"></script>  <script src="/js/utils.js"></script>   <script src="/js/schemes/pisces.js"></script>   <script src="/js/next-boot.js"></script>                               <script>   function loadCount() {     var d = document, s = d.createElement('script');     s.src = 'https://muzi.disqus.com/count.js';     s.id = 'dsq-count-scr';     (d.head || d.body).appendChild(s);   }   // defer loading until the whole page loading is completed   window.addEventListener('load', loadCount, false); </script> <script>   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {     if (window.DISQUS) {       DISQUS.reset({         reload: true,         config: {page: {             url: "https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html",             identifier: "pc-e5v3-e3v3-amd2600.html",             title: "台式机装机方案"           }         }       });     } else {       var d = document, s = d.createElement('script');       s.src = 'https://muzi.disqus.com/embed.js';       s.setAttribute('data-timestamp', '' + +new Date());       (d.head || d.body).appendChild(s);     }   }); </script>  </body> </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="TL 分享一个装机方案：CPU: E5 2670V3 ×2主板: Dell T7810 准系统内存: 三星 DDR4 2133 16G×4显卡: Quador K2000 2GB硬盘: 西数 HC310 7K 4TB固态: 三星 PM 981 256GB价格: 550×2+1700+260×4+400+760+290&#x3D;5290￥你就能拥有一台 24C&#x2F;48T CPU、64GB RAM 、256GB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="台式机装机方案">
+<meta property="og:url" content="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html">
+<meta property="og:site_name" content="木子">
+<meta property="og:description" content="TL 分享一个装机方案：CPU: E5 2670V3 ×2主板: Dell T7810 准系统内存: 三星 DDR4 2133 16G×4显卡: Quador K2000 2GB硬盘: 西数 HC310 7K 4TB固态: 三星 PM 981 256GB价格: 550×2+1700+260×4+400+760+290&#x3D;5290￥你就能拥有一台 24C&#x2F;48T CPU、64GB RAM 、256GB">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-20T08:55:54.893Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="捡垃圾">
+<meta property="article:tag" content="PC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>台式机装机方案 | 木子</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木子">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          台式机装机方案
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-26 2019-12-26T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-12-26T00:00:00+08:00">2019-12-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-20 2021-07-20T16:55:54+08:00" itemprop="dateModified" datetime="2021-07-20T16:55:54+08:00">2021-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9E%E6%9C%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">搞机</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/pc-e5v3-e3v3-amd2600.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="pc-e5v3-e3v3-amd2600.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="TL"><a href="#TL" class="headerlink" title="TL"></a>TL</h2>
+<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">分享一个装机方案：<br>CPU: E5 2670V3 ×2<br>主板: Dell T7810 准系统<br>内存: 三星 DDR4 2133 16G×4<br>显卡: Quador K2000 2GB<br>硬盘: 西数 HC310 7K 4TB<br>固态: 三星 PM 981 256GB<br><br>价格: 550×2+1700+260×4+400+760+290=5290￥<br><br>你就能拥有一台 24C/48T CPU、64GB RAM 、256GB SDD/4TB HDD 配置的高性能工作站 <a href="https://t.co/NIkegB1Vck" target="_blank" rel="noopener">pic.twitter.com/NIkegB1Vck</a></p>&mdash; 502 (@muzi_ii) <a href="https://twitter.com/muzi_ii/status/1209832133092528129?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">December 25, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<h2 id="E3-V3"><a href="#E3-V3" class="headerlink" title="E3 V3"></a>E3 V3</h2><table>
+<thead>
+<tr>
+<th align="center">硬件</th>
+<th>配置</th>
+<th align="center">价格</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CPU</td>
+<td>E3-1270 V3 4C/8T 3.50 GHz~3.90 GHz</td>
+<td align="center">520</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">主板</td>
+<td>T1700 准系统：Intel ®C2261</td>
+<td align="center">400</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">内存</td>
+<td>三星 DDR3 ECC 16GB 1600 Mhz ×2</td>
+<td align="center">260×2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">显卡</td>
+<td>GTX 950 2GB</td>
+<td align="center">300</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">固态</td>
+<td>三星 850 PRO SATA III 256GB</td>
+<td align="center">210</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">机箱</td>
+<td>T1700 准系统：</td>
+<td align="center">0</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">电源</td>
+<td>T1700 准系统：290W 开关电源</td>
+<td align="center">0</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">总价</td>
+<td></td>
+<td align="center">1950</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>如今的 E3 V3 价格已经跌破 500 左右了，但 AMD Ryzen R5 的价格散片也就 650 左右，加上 150 块钱就能提升 30% 的单核性能，外加 2 个核心和 4 个框框😂，总之 E3 V3 目前来讲性价比不如 AMD Ryzen R5。</li>
+<li>E3 V3 是 Intel 第四代  CPU 1150 芯片组无法从 M.2 启动，速度只能达到 SATA III 也就是顶多 600 MB/s 的读写速度，而目前随便一块支持  PCI-e M.2 的主板普遍都能达到 3000MB/s 了。所以这一点来讲 E3 V3 已经不值得捡了。</li>
+</ul>
+<h2 id="AMD-Ryzen"><a href="#AMD-Ryzen" class="headerlink" title="AMD Ryzen"></a>AMD Ryzen</h2><table>
+<thead>
+<tr>
+<th align="center">硬件</th>
+<th>配置</th>
+<th align="center">价格</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CPU</td>
+<td>AMD Ryzen R5 2400G</td>
+<td align="center">720</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">主板</td>
+<td>MSI B350M</td>
+<td align="center">320</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">内存</td>
+<td>镁光 DDR4 16GB 2400 Mhz ×2</td>
+<td align="center">300 ×2</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">显卡</td>
+<td>GTX 950 2GB</td>
+<td align="center">300</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">固态</td>
+<td>三星 PM 981 256GB</td>
+<td align="center">290</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">机箱</td>
+<td>Dell 3010 机箱</td>
+<td align="center">170</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">电源</td>
+<td>Dell 3010 电源： 230W 光宝开关电源</td>
+<td align="center">0</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">总价</td>
+<td></td>
+<td align="center">2400</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="天梯图"><a href="#天梯图" class="headerlink" title="天梯图"></a><a href="http://itianti.sinaapp.com/index.php/cpu" target="_blank" rel="noopener">天梯图</a></h3><ul>
+<li>仅供娱乐，实际性能还要做对比测试，只是让您心里有点 B 数</li>
+<li>AMD Ryzen 5 2400G 的性能和 E3-1270 V3 性能相近，AMD Ryzen 5 2600 性能要比两者高大概 30% 的性能（个人瞎猜）。</li>
+<li>AMD Ryzen 5 2400G 的散片价格，目前（2019-12-26）淘宝 720￥，而 AMD Ryzen 5 2600 的价格在 640￥ 左右。</li>
+<li>AMD Ryzen 5 2400G 核显性能相当于 GTX 1030 2GB ，而 GTX 1030 价格在 300￥ 左右，所以说牺牲两个核心和四个框框外加 80 块钱买个 300 块的 GTX 1030 。性价比是相当高滴。如果是日常用不打游戏，买 AMD Ryzen 5 2400G 是最佳选择。</li>
+<li>AMD Ryzen 5 3400G 的价格在 820￥ 左右</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>165</th>
+<th>AMD Ryzen 5 2600X</th>
+<th>14377</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>AMD Ryzen 7 2700X</td>
+<td>16971</td>
+</tr>
+<tr>
+<td>165</td>
+<td>AMD Ryzen 5 2600X</td>
+<td>14377</td>
+</tr>
+<tr>
+<td>166</td>
+<td>Intel Core i7-6850K @ 3.60GHz</td>
+<td>14372</td>
+</tr>
+<tr>
+<td>169</td>
+<td>Intel Core i9-8950HK @ 2.90GHz</td>
+<td>14259</td>
+</tr>
+<tr>
+<td>170</td>
+<td>AMD Ryzen 5 PRO 2600</td>
+<td>14221</td>
+</tr>
+<tr>
+<td>195</td>
+<td>Intel Core i7-6800K @ 3.40GHz</td>
+<td>13570</td>
+</tr>
+<tr>
+<td>197</td>
+<td>Intel Core i5-9600K @ 3.70GHz</td>
+<td>13527</td>
+</tr>
+<tr>
+<td>199</td>
+<td><strong>AMD Ryzen 5 2600</strong></td>
+<td>13507</td>
+</tr>
+<tr>
+<td>202</td>
+<td>AMD Ryzen 5 1600X</td>
+<td>13203</td>
+</tr>
+<tr>
+<td>203</td>
+<td>Intel Xeon E5-2660 v2 @ 2.20GHz</td>
+<td>13186</td>
+</tr>
+<tr>
+<td>207</td>
+<td>Intel Core i7-4930K @ 3.40GHz</td>
+<td>13007</td>
+</tr>
+<tr>
+<td>326</td>
+<td>Intel Core i7-7920HQ @ 3.10GHz</td>
+<td>9986</td>
+</tr>
+<tr>
+<td>327</td>
+<td>Intel Xeon E3-1285L v3 @ 3.10GHz</td>
+<td>9981</td>
+</tr>
+<tr>
+<td>328</td>
+<td>AMD Ryzen 5 PRO 2400G</td>
+<td>9963</td>
+</tr>
+<tr>
+<td>329</td>
+<td>Intel Core i7-7820HK @ 2.90GHz</td>
+<td>9963</td>
+</tr>
+<tr>
+<td>330</td>
+<td><strong>AMD Ryzen 5 3400G</strong></td>
+<td>9957</td>
+</tr>
+<tr>
+<td>333</td>
+<td><strong>Intel Xeon E3-1270 v3 @ 3.50GHz</strong></td>
+<td>9919</td>
+</tr>
+<tr>
+<td>387</td>
+<td>Intel Xeon E3-1230 v3 @ 3.30GHz</td>
+<td>9327</td>
+</tr>
+<tr>
+<td>388</td>
+<td><strong>AMD Ryzen 5 2400G</strong></td>
+<td>9234</td>
+</tr>
+<tr>
+<td>395</td>
+<td>Intel Core i3-8350K @ 4.00GHz</td>
+<td>9221</td>
+</tr>
+</tbody></table>
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><p>这也是我目前的装机方案。我是在 7 月分的时组装的，那时候第三代 Ryzen 刚刚发布，而那时候的价格要比第二代 Ryzen 高出 500 多块钱，所以就没有使用第三代  Ryzen 。不过我当时买的是 U 板套装，加起来价格才 1180￥ ，那时候价格是相当便宜了，主板是华硕 B350M-K 丐板 的，理论上是支持第三代 Ryzen 的。虽然现在很后悔，但当时心切想买😂</p>
+<h2 id="双路-E5-V3"><a href="#双路-E5-V3" class="headerlink" title="双路 E5 V3"></a>双路 E5 V3</h2><table>
+<thead>
+<tr>
+<th align="center">硬件</th>
+<th>配置</th>
+<th align="center">价格</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CPU</td>
+<td>Intel Xeon E5-2660 v3 @ 2.60GHz ×2</td>
+<td align="center">600 ×2</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">主板</td>
+<td>Dell T7810 准系统 或者 Dell R630 准系统</td>
+<td align="center">1700</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">内存</td>
+<td>三星 DDR4 2133 Mhz 16GB ×4</td>
+<td align="center">260×4</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">显卡</td>
+<td>GTX 950 2GB</td>
+<td align="center">300</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">固态</td>
+<td>三星 PM 981 256GB</td>
+<td align="center">290</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">机箱</td>
+<td>Dell T7810 准系统</td>
+<td align="center">0</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">电源</td>
+<td>Dell T7810 准系统</td>
+<td align="center">0</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">总价</td>
+<td></td>
+<td align="center">4530</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><p>目前来讲 E5 V3 平台装机最令人头疼的就是主板死贵，主板价格都比两个 U 加起来的价格还要高。之所以选择 Dell T7810 准系统 准系统是因为相比来讲 Dell 塔式服务器的稳定性要比捡垃圾搞来的工包主板稳定性强很多，翻车概率要小一些。如果单独买主板的话还要和机箱象匹配，电源功率也要够。而 Dell T7810 准系统完美地解决了这些困扰，不用再考虑买合适的机箱和电源。一整套配合起来完美运行。</p>
+</li>
+<li><p>开箱博客 <a href="https://blog.silversky.moe/works/evaluation-of-out-of-the-box-dell-precision-t7910" target="_blank" rel="noopener">开箱测评——DELL PRECISION T7910</a></p>
+</li>
+<li><p>Dell T7810 有一些毛病，可以参考如下：</p>
+</li>
+<li><blockquote>
+<ul>
+<li>并不建议使用DELL T7910，非常伤 因为阵列卡的原因，系统速度会非常慢（肉眼可见的，比如说打开Windows Image Viewer，会等1-2秒才会显示（不管大小） 目测应该是什么硬件冲突，禁用板载阵列卡就好了（已经在国外论坛上看到很多案例了，很多公司/个人因为这个不去买DELL这个账</li>
+<li>那是不是禁用阵列卡不用他不就好了呢 然而T7910的阵列卡和“背板”是12G的，接口使用的MiniSAS HD（SFF-8643）不管是再买阵列卡还是通道卡，都要有一笔不小的花费 还有K2000太烂了。</li>
+<li>当然，我指的是这一代DELL Precision，不光是T7910</li>
+<li>继续吐槽，T7910正面是三个风扇的，通过橡胶的减震钉固定在风扇架上。这些橡胶的减震钉，时间长了会老化，然后就会变得很恶心（最后被我拆掉用螺丝+螺帽代替）（我印象中我摸过其他的Lenovo的机器，甚至时间更长的都没有DELL这个老化之后的恶心 而且风扇的异响会变得比较讨厌（购入后1年内</li>
+<li>顺便，应该是批次问题，如果你不幸买到了我这批的 你的电源会出现电弧的声音（没错，就是那个电弧 但是看不到任何东西，客服跟我讲可能我这边潮湿（你逗我，北方潮湿？？</li>
+<li>电源，不管是T7910这样的模块化电源还是普通的电源，OEM机型你都会遇到一个问题，扩展电源接口不够 T7910只有一个SATA供电接口，本身设计是给光驱使用的 其他的电源接口是直接给硬盘笼供电的 如果你比较扭曲，像我这样可以直接剪掉重新焊接，或者你愿意多花钱买扩展线，那无所谓</li>
+<li>以及前面提到的硬盘问题，别想着直接不用板载的SAS3008用板子上的SATA就完了 板子上就两个SATA。</li>
+<li>这一代的Precision有巨多的问题（设计和硬件上的） 我是不可能推荐Precision的（至少是这代，因为我用了，用的还是旗舰） 相比之下，如果是OEM准系统组装的话，我更愿意推荐PowerEdge T630或者HPE的Z系列 T630有更好的电源配置，散热系统，扩展性，以及易于维护 HPE Z系列的模块化设计也是甩DELL10条街</li>
+<li>btw, 我在6月把这台机器扔给我妈办公用之前，DELL的新固件我都会刷，然而并没有任何卵用</li>
+</ul>
+<p>引用自 <a href="https://twitter.com/AkatsukiRyuu/status/1210157947906490368" target="_blank" rel="noopener">暁龍之介的推文</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="天梯图-1"><a href="#天梯图-1" class="headerlink" title="天梯图"></a><a href="http://itianti.sinaapp.com/index.php/cpu" target="_blank" rel="noopener">天梯图</a></h3><ul>
+<li><p>仅供娱乐，具体实际性能还要看是实际的测试</p>
+</li>
+<li><p>可见  E5-2660 v3 的单核性能和 i7-8700K、Ryzen 7 2700x 相近</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>型号</th>
+<th>得分</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>AMD Ryzen 7 2700X</td>
+<td>16971</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Intel Core i7-8086K @ 4.00GHz</td>
+<td>16688</td>
+</tr>
+<tr>
+<td>115</td>
+<td>Intel Xeon Gold 5120 @ 2.20GHz</td>
+<td>16308</td>
+</tr>
+<tr>
+<td>120</td>
+<td><strong>Intel Xeon E5-2660 v3 @ 2.60GHz</strong></td>
+<td>16184</td>
+</tr>
+<tr>
+<td>123</td>
+<td>AMD Ryzen Threadripper 1900X</td>
+<td>16089</td>
+</tr>
+<tr>
+<td>124</td>
+<td>Intel Xeon E-2186G @ 3.80GHz</td>
+<td>16057</td>
+</tr>
+<tr>
+<td>127</td>
+<td>Intel Core i7-8700K @ 3.70GHz</td>
+<td>15960</td>
+</tr>
+<tr>
+<td>128</td>
+<td>Intel Core i7-5960X @ 3.00GHz</td>
+<td>15944</td>
+</tr>
+<tr>
+<td>129</td>
+<td>Intel Core i7-9700 @ 3.00GHz</td>
+<td>15923</td>
+</tr>
+<tr>
+<td>136</td>
+<td>AMD Ryzen 7 PRO 2700</td>
+<td>15714</td>
+</tr>
+<tr>
+<td>138</td>
+<td>Intel Core i7-9700F @ 3.00GHz</td>
+<td>15566</td>
+</tr>
+<tr>
+<td>141</td>
+<td>AMD Ryzen 7 1800X</td>
+<td>15420</td>
+</tr>
+<tr>
+<td>143</td>
+<td>Intel Xeon E5-2640 v4 @ 2.40GHz</td>
+<td>15380</td>
+</tr>
+<tr>
+<td>144</td>
+<td>AMD Ryzen 7 PRO 1700X</td>
+<td>15367</td>
+</tr>
+</tbody></table>
+<h4 id="双路"><a href="#双路" class="headerlink" title="双路"></a>双路</h4><table>
+<thead>
+<tr>
+<th>43</th>
+<th>[双路] AMD EPYC 7501</th>
+<th>23727</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>44</td>
+<td>[双路] Intel Xeon E5-2687W v2 @ 3.40GHz</td>
+<td>23727</td>
+</tr>
+<tr>
+<td>45</td>
+<td>[双路] Intel Xeon E5-2697 v2 @ 2.70GHz</td>
+<td>23574</td>
+</tr>
+<tr>
+<td>46</td>
+<td>[双路] AMD EPYC 7401</td>
+<td>23518</td>
+</tr>
+<tr>
+<td>47</td>
+<td>[双路] Intel Xeon Gold 6128 @ 3.40GHz</td>
+<td>23396</td>
+</tr>
+<tr>
+<td>51</td>
+<td>[双路] Intel Xeon E5-2660 v4 @ 2.00GHz</td>
+<td>23117</td>
+</tr>
+<tr>
+<td>54</td>
+<td>[双路] Intel Xeon E5-2673 v3 @ 2.40GHz</td>
+<td>22959</td>
+</tr>
+<tr>
+<td>55</td>
+<td><strong>[双路] Intel Xeon E5-2660 v3 @ 2.60GHz</strong></td>
+<td>22733</td>
+</tr>
+<tr>
+<td>56</td>
+<td>[双路] Intel Xeon E5-4660 v3 @ 2.10GHz</td>
+<td>22461</td>
+</tr>
+<tr>
+<td>57</td>
+<td>[双路] Intel Xeon E7-4890 v2 @ 2.80GHz</td>
+<td>22412</td>
+</tr>
+<tr>
+<td>58</td>
+<td>[双路] Intel Xeon E5-2670 v3 @ 2.30GHz</td>
+<td>22383</td>
+</tr>
+</tbody></table>
+<h2 id="单路-E5-V3"><a href="#单路-E5-V3" class="headerlink" title="单路 E5 V3"></a>单路 E5 V3</h2><table>
+<thead>
+<tr>
+<th align="center">硬件</th>
+<th>配置</th>
+<th align="center">价格</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CPU</td>
+<td>Intel Xeon E5-2660 v3 @ 2.60GHz</td>
+<td align="center">600</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">主板</td>
+<td>Dell T5810 准系统</td>
+<td align="center">1200</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">内存</td>
+<td>三星 DDR4 2133 Mhz 16GB ×4</td>
+<td align="center">260×4</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">显卡</td>
+<td>GTX 950 2GB</td>
+<td align="center">300</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">固态</td>
+<td>三星 PM 981 256GB M.2</td>
+<td align="center">290</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">机箱</td>
+<td>Dell T7810 准系统</td>
+<td align="center">0</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">电源</td>
+<td>Dell T7810 准系统</td>
+<td align="center">0</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">总价</td>
+<td></td>
+<td align="center">3430</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>不过我倒是 jio 着，既然垃圾佬都上 E5 了，不玩玩双路对得起自己嘛，所以多花 1000 块相当于多一个 U ，多 12C/24T ，双路要比单路多 24 个框框啊，数起可好玩喽😂</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%8D%A1%E5%9E%83%E5%9C%BE/" rel="tag"><i class="fa fa-tag"></i> 捡垃圾</a>
+              <a href="/tags/PC/" rel="tag"><i class="fa fa-tag"></i> PC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Kubernetes-Introduction-for-VMware-Users-zh.html" rel="prev" title="【翻译】给 VMware vSphere 用户的 Kubernetes 简介">
+      <i class="fa fa-chevron-left"></i> 【翻译】给 VMware vSphere 用户的 Kubernetes 简介
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019-reading-notes.html" rel="next" title="2019 年读书笔记和思考">
+      2019 年读书笔记和思考 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TL"><span class="nav-number">1.</span> <span class="nav-text">TL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E3-V3"><span class="nav-number">2.</span> <span class="nav-text">E3 V3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">2.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD-Ryzen"><span class="nav-number">3.</span> <span class="nav-text">AMD Ryzen</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#天梯图"><span class="nav-number">3.1.</span> <span class="nav-text">天梯图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项-1"><span class="nav-number">3.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双路-E5-V3"><span class="nav-number">4.</span> <span class="nav-text">双路 E5 V3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项-2"><span class="nav-number">4.1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天梯图-1"><span class="nav-number">4.2.</span> <span class="nav-text">天梯图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单路-E5-V3"><span class="nav-number">5.</span> <span class="nav-text">单路 E5 V3</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">41:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html",
+            identifier: "pc-e5v3-e3v3-amd2600.html",
+            title: "台式机装机方案"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

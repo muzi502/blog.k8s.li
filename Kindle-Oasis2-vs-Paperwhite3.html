@@ -1,1 +1,624 @@
-<!DOCTYPE html> <html lang="zh-CN"> <head>   <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"> <meta name="theme-color" content="#222"> <meta name="generator" content="Hexo 4.2.1">   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">   <link rel="mask-icon" href="/favicon.ico" color="#222">   <meta http-equiv="Cache-Control" content="no-transform">   <meta http-equiv="Cache-Control" content="no-siteapp">  <link rel="stylesheet" href="/css/main.css">  <link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"> <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">   <script id="hexo-configurations">   var NexT = window.NexT || {};   var CONFIG = {     hostname: new URL('https://blog.k8s.li').hostname,     root: '/',     scheme: 'Gemini',     version: '7.7.0',     exturl: false,     sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},     copycode: {"enable":true,"show_result":true,"style":"mac"},     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},     bookmark: {"enable":false,"color":"#222","save":"auto"},     fancybox: false,     mediumzoom: false,     lazyload: false,     pangu: false,     comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},     algolia: {       appID: '',       apiKey: '',       indexName: '',       hits: {"per_page":10},       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}     },     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},     path: 'search.xml',     motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}   }; </script>    <meta name="description" content="kindle.k8s.li 2020-03-01 更新：kindle.k8s.li   历史原因nook2我第一个电纸书是巴诺的 nook2 ，是我高三的时候买的。那时候折腾这个电纸书可费了不少劲。 当时还是 nook2 能刷成 Android  2.1 ，之后还能安装 QQ ，浏览器，冷阅 coolreader 。对，当时在 nook2 上最好用的阅读器就是 coolreader 冷阅。系统默默"> <meta property="og:type" content="article"> <meta property="og:title" content="Kindle Oasis 和 Kindle Paperwhite3 使用体验"> <meta property="og:url" content="https://blog.k8s.li/Kindle-Oasis2-vs-Paperwhite3.html"> <meta property="og:site_name" content="木子"> <meta property="og:description" content="kindle.k8s.li 2020-03-01 更新：kindle.k8s.li   历史原因nook2我第一个电纸书是巴诺的 nook2 ，是我高三的时候买的。那时候折腾这个电纸书可费了不少劲。 当时还是 nook2 能刷成 Android  2.1 ，之后还能安装 QQ ，浏览器，冷阅 coolreader 。对，当时在 nook2 上最好用的阅读器就是 coolreader 冷阅。系统默默"> <meta property="og:locale" content="zh_CN"> <meta property="og:image" content="https://p.k8s.li/20200229223949589.png"> <meta property="og:image" content="https://p.k8s.li/001968968.jpg"> <meta property="og:image" content="https://p.k8s.li/001968966.jpg"> <meta property="og:image" content="https://p.k8s.li/001968967.jpg"> <meta property="og:image" content="https://p.k8s.li/20191202171108883.png"> <meta property="og:image" content="https://p.k8s.li/20191202171129184.png"> <meta property="og:image" content="https://p.k8s.li/20191202171510337.png"> <meta property="og:image" content="https://p.k8s.li/20191202172046660.png"> <meta property="og:image" content="https://p.k8s.li/20191202172104805.png"> <meta property="og:image" content="https://p.k8s.li/20191202172141495.png"> <meta property="og:image" content="https://p.k8s.li/20191202172159248.png"> <meta property="og:image" content="https://p.k8s.li/20191202172208956.png"> <meta property="og:image" content="https://p.k8s.li/20191202172216921.png"> <meta property="og:image" content="https://p.k8s.li/20191202172231655.png"> <meta property="og:image" content="https://p.k8s.li/20191203100634998.png"> <meta property="og:image" content="https://p.k8s.li/20191203100645837.png"> <meta property="og:image" content="https://p.k8s.li/20191203100655418.png"> <meta property="og:image" content="https://p.k8s.li/20191203100706964.png"> <meta property="og:image" content="https://p.k8s.li/20191202172126512.png"> <meta property="article:published_time" content="2019-11-30T16:00:00.000Z"> <meta property="article:modified_time" content="2020-02-29T16:00:00.000Z"> <meta property="article:author" content="木子"> <meta property="article:tag" content="life"> <meta property="article:tag" content="阅读"> <meta property="article:tag" content="Kindle"> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="https://p.k8s.li/20200229223949589.png">  <link rel="canonical" href="https://blog.k8s.li/Kindle-Oasis2-vs-Paperwhite3.html">   <script id="page-configurations">   // https://hexo.io/docs/variables.html   CONFIG.page = {     sidebar: "",     isHome: false,     isPost: true   }; </script>    <title>Kindle Oasis 和 Kindle Paperwhite3 使用体验 | 木子</title>            <noscript>   <style>   .use-motion .brand,   .use-motion .menu-item,   .sidebar-inner,   .use-motion .post-block,   .use-motion .pagination,   .use-motion .comments,   .use-motion .post-header,   .use-motion .post-body,   .use-motion .collection-header { opacity: initial; }    .use-motion .site-title,   .use-motion .site-subtitle {     opacity: initial;     top: initial;   }    .use-motion .logo-line-before i { left: initial; }   .use-motion .logo-line-after i { right: initial; }   </style> </noscript>  <link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml"> </head>  <body itemscope itemtype="http://schema.org/WebPage">   <div class="container">     <div class="headband"></div>      <header class="header" itemscope itemtype="http://schema.org/WPHeader">       <div class="header-inner"><div class="site-brand-container">   <div class="site-meta">      <div>       <a href="/" class="brand" rel="start">         <span class="logo-line-before"><i></i></span>         <span class="site-title">木子</span>         <span class="logo-line-after"><i></i></span>       </a>     </div>   </div>    <div class="site-nav-toggle">     <div class="toggle" aria-label="切换导航栏">       <span class="toggle-line toggle-line-first"></span>       <span class="toggle-line toggle-line-middle"></span>       <span class="toggle-line toggle-line-last"></span>     </div>   </div> </div>   <nav class="site-nav">      <ul id="menu" class="menu">         <li class="menu-item menu-item-home">      <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>    </li>         <li class="menu-item menu-item-books">      <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>    </li>         <li class="menu-item menu-item-kindle">      <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>    </li>         <li class="menu-item menu-item-friend">      <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>    </li>         <li class="menu-item menu-item-about">      <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>    </li>   </ul>  </nav> </div>     </header>         <div class="reading-progress-bar"></div>       <main class="main">       <div class="main-inner">         <div class="content-wrap">                       <div class="content">                 <div class="posts-expand">                <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/Kindle-Oasis2-vs-Paperwhite3.html">      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">       <meta itemprop="image" content="https://blog.k8s.li/avatar.png">       <meta itemprop="name" content="木子">       <meta itemprop="description" content="">     </span>      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">       <meta itemprop="name" content="木子">     </span>       <header class="post-header">         <h2 class="post-title" itemprop="name headline">           Kindle Oasis 和 Kindle Paperwhite3 使用体验         </h2>          <div class="post-meta">             <span class="post-meta-item">               <span class="post-meta-item-icon">                 <i class="fa fa-calendar-o"></i>               </span>               <span class="post-meta-item-text">发表于</span>                <time title="创建时间：2019-12-01 2019-12-01T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>             </span>               <span class="post-meta-item">                 <span class="post-meta-item-icon">                   <i class="fa fa-calendar-check-o"></i>                 </span>                 <span class="post-meta-item-text">更新于</span>                 <time title="修改时间：2020-03-01 2020-03-01T00:00:00+08:00" itemprop="dateModified" datetime="2020-03-01T00:00:00+08:00">2020-03-01</time>               </span>             <span class="post-meta-item">               <span class="post-meta-item-icon">                 <i class="fa fa-folder-o"></i>               </span>               <span class="post-meta-item-text">分类于</span>                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">                   <a href="/categories/%E9%98%85%E8%AF%BB/" itemprop="url" rel="index">                     <span itemprop="name">阅读</span>                   </a>                 </span>             </span>                  <span class="post-meta-item">            <span class="post-meta-item-icon">         <i class="fa fa-comment-o"></i>       </span>       <span class="post-meta-item-text">Disqus：</span>          <a title="disqus" href="/Kindle-Oasis2-vs-Paperwhite3.html#comments" itemprop="discussionUrl">       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Kindle-Oasis2-vs-Paperwhite3.html" itemprop="commentCount"></span>     </a>   </span>      <br>             <span class="post-meta-item" title="本文字数">               <span class="post-meta-item-icon">                 <i class="fa fa-file-word-o"></i>               </span>                 <span class="post-meta-item-text">本文字数：</span>               <span>3.5k</span>             </span>             <span class="post-meta-item" title="阅读时长">               <span class="post-meta-item-icon">                 <i class="fa fa-clock-o"></i>               </span>                 <span class="post-meta-item-text">阅读时长 &asymp;</span>               <span>6 分钟</span>             </span>          </div>       </header>                     <div class="post-body" itemprop="articleBody">                 <h2 id="kindle-k8s-li"><a href="#kindle-k8s-li" class="headerlink" title="kindle.k8s.li"></a>kindle.k8s.li</h2><ul> <li>2020-03-01 更新：<a href="https://kindle.k8s.li" target="_blank" rel="noopener">kindle.k8s.li</a></li> </ul> <p><img src="https://p.k8s.li/20200229223949589.png" alt=""></p> <h2 id="历史原因"><a href="#历史原因" class="headerlink" title="历史原因"></a>历史原因</h2><h3 id="nook2"><a href="#nook2" class="headerlink" title="nook2"></a>nook2</h3><p>我第一个电纸书是巴诺的 nook2 ，是我高三的时候买的。那时候折腾这个电纸书可费了不少劲。</p> <p>当时还是 nook2 能刷成 Android  2.1 ，之后还能安装 QQ ，浏览器，冷阅 coolreader 。对，当时在 nook2 上最好用的阅读器就是 coolreader 冷阅。系统默默改制后还支持全局刷新和局部刷新。总之折腾起来很爽，虽然当时还是 Android 2.1 但运行个 QQ ，浏览器什么的都不在话下。达不到流畅但能用😂。之后 nook2 送给了我姐。后来直到 2017 年才再一次买电纸书。期间都是买纸质书或者找 PDF 资源看。</p> <p><img src="https://p.k8s.li/001968968.jpg" alt=""></p> <p><img src="https://p.k8s.li/001968966.jpg" alt=""></p> <p><img src="https://p.k8s.li/001968967.jpg" alt=""></p> <h4 id="使用感受"><a href="#使用感受" class="headerlink" title="使用感受"></a>使用感受</h4><p>我觉着但是</p> <h3 id="Kindle-入门版"><a href="#Kindle-入门版" class="headerlink" title="Kindle 入门版"></a>Kindle 入门版</h3><p>自从上大学以来一直想买个 Kindle 来看，但学生时代嘛，自己赚的钱还不够生活费，所以只好在心里种草。直到 2018 年 5 月份的时候，我在读书月的时候参加的第二次校园十佳读者活动，被评为了十佳读者之一。那一年我在我们学校的借阅量排在全校前十，进馆次数全校第二😂。所以就很轻轻松松地获奖了。奖品是新华书店的代金券 400 元。正好我市的新华书店也卖 Kindle ，想了想 400 块钱的代金券自己再加两百块钱就能买到 Kindle 了，巨爽，所以就下狠心买了 Kindle 入门版。第一次拿到 Kindle 的那一刻，心情激动死了。</p> <p>kindle 入门的使用体验就是能用，对、仅仅是能用而已。没有背光知识和白天或者光线下看，到了夜间就成瞎子了。</p> <h3 id="Kindle-Paperwhite3"><a href="#Kindle-Paperwhite3" class="headerlink" title="Kindle Paperwhite3"></a>Kindle Paperwhite3</h3><p>Kindle 入门版使用了大概一个多月的时间，在此期间看完了《数学女孩》三部以及《数学史》等几本书。因为姐姐要去欧洲教学一年，在那里买书不方便，所以就把 kindle 入门版给了我姐。kindle 入门版送给我姐以后我就接着和以前一样在图书馆里看纸质书。因为图书月活动我推荐给图书馆 100 多本书如今都已经买到并入馆了。所以这段时间一直在图书馆里看纸质书。没有 kindle 的那段时间里总感觉缺少点什么，到九月份开学的时候想了想要不要再买个  kindle ？用花呗分期 12 期免息买 Kindle Paperwhite3 每个月才 80 多块钱 ，感觉还可以啊。所以在九月份开学的时候又下决定买了 Kindle Paperwhite3 。</p> <p>Kindle Paperwhite3 使用体验就是已经达到够用的水准了，看书和看漫画都不在话下😂。</p> <ul> <li>2020 年 2 月 29 日转手给了同学(￣▽￣)”</li> </ul> <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>工作之后，开始有了微薄的收入，开始渐渐有了一些积蓄，还了一半的助学贷款，都二十好几的人了，实在没脸让家人帮我还贷款了。加上上个月”加班“多挣了点，准备买点东西提升一下自己的幸福感。对于现在的我来说，买房？首付的十之一都还没攒到，别说厕所，连块地板砖大小的面积都买不起。</p> <p>我是小有成就，我是有点小积蓄，但是这有什么用？在一线城市，一座房子至少 100万+ 才能买的下吧。生于穷人家的孩子总是在体验同龄人都在毕业游而我却要为生活而奔波的落差感。与其这么辛苦，不如早日享受。无论我再怎么勤俭节约，努力工作赚外快，我知道我这辈子注定也买不起 100万+ 的房子。</p> <p>贷款买房？想想以后一个月的工资要有一半来还房贷，我实在无法接受。最起码我现在虽然住在一间小破房了，但我的工资 18 倍于我的房租。我不想牺牲快乐和自由去换一套房。原本生活中的必需品，此时却变成奢侈品。反正既然也买不起房，那就不如享受，人生就是这样，在自己的承受范围内，买一些自己喜欢的东西。</p> <p>我不是圣人君子，我也是有物欲的人，甚至我更加贪婪，占有欲更强。对于目前的我来讲现在最需要升级的设备就是 Kindle Paperwhite3 了。虽然使用 Kindle Paperwhite3 已经一年多了，但它用来看书的体验仅仅够用，还没达到我满意的程度。尤其是拿来看漫画的时候，更是捉襟见肘，所以有必要升级一下啦。Kindle Paperwhite3 没有物理翻页键，翻页起来有时回失灵。就是你想翻回上一页的时候死活翻不回去，很僵硬的问题。其次就是屏幕尺寸有点小，看漫画的时候需要仔细盯着眼看一些比较小的字体。</p> <p>其他没啥想要的，三月份的时候给姐借了点钱买了个二手的 ThinkPad Yoga 12 笔记本，因工作需要。六月份的用第一份工资加上在在校时勤工俭学赚的 1200 块钱凑一起组装了台 AMD R5 2600 😂 台式机。暑假的时候老姐把她用了好几年的 iPhone 6s 给了我，在我手里接着续命。目前来看没啥要买的，就缺个 kindle Oasis 了。</p> <h2 id="怎么买"><a href="#怎么买" class="headerlink" title="怎么买"></a>怎么买</h2><p>在购买之前我做足了调查，甚至有表格来分析性价比😂。当时决定要在淘宝上买个美版 Kindle Oasis2 2017。虽然 2019 年已经推出了 Kindle Oasis3 2019。我觉着升级的性价比极低，Kindle Oasis3 2019 比 Kindle Oasis2 2017 硬件上只多了几个 LED 灯而已。尺寸、内存、处理器、存储等等都几乎无差别。所以说 Kindle Oasis2 性价是不错滴。</p> <h3 id="美亚"><a href="#美亚" class="headerlink" title="美亚"></a>美亚</h3><p>在黑五当天美亚上<a href="https://amzn.to/2R02n88" target="_blank" rel="noopener">Kindle Oasis 3</a>  的价格是174.99美元（人民幣約1230元），相当诱人滴。但美亚上没无法直邮，只能转运。而转运的话更为麻烦，费时费心费力。到手破损损坏的话处理起来更为麻烦。所以我就放弃了在美亚上购买。况且我也实在等不了十几天😂。而且自己买从美亚上买和在淘宝上买美版的区别不大的，都无法在国内享受保修。收到后出现坏点的话退换货成本极大，几乎无法退换货。淘宝上还能多加 20 块钱买个坏点险，如果出现四个以上的坏点的话免费换新，四个以内的话赔偿 40 块钱。</p>  <blockquote class="twitter-tweet"><p lang="zh" dir="ltr">穷人的世界捡个垃圾都要做个表格分析一下性价比。<br>目前当务之急是把手头的 Kindle Paperwhite3 换到 Kindle Oasis 2，因为自从拿来看漫画就觉着 Kindle Paperwhite3 不够用了😂。<br>至于手机？等过几年再说吧，手头的 6s 还能续命接着用几年滴。毕竟每天 kindle 的使用时间(4h)三倍于手机。 <a href="https://t.co/EUGhXBZC7A" target="_blank" rel="noopener">pic.twitter.com/EUGhXBZC7A</a></p>&mdash; 502 (@muzi_ii) <a href="https://twitter.com/muzi_ii/status/1199731167697756161?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">November 27, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>   <h3 id="为什么买二手而不买未拆封美版？"><a href="#为什么买二手而不买未拆封美版？" class="headerlink" title="为什么买二手而不买未拆封美版？"></a>为什么买二手而不买未拆封美版？</h3><p>如果买国行的话，正品价格最低是 2399 ，而且依照 kindle 千年不降价的作风，对于咱来说买国行实在是买不起。如果你想买国行的话推荐淘宝上的梅先生的 kindle 店买。我上一个 Kindle Paperwhite3 就是在那里买的。</p> <p>其实刚开始我是想买美版 Kindle Oasis2 的，淘宝上 1500 左右就能买到，如果自己在美亚上买的话加上转运费和税费价格也少不那里去。无论是在淘宝上还是美亚上买美版的 Kindle 都有一个共同点，退换货成本极大。淘宝上未拆封的 kindle ，买来拆封后是无法退货的，即便是有问题的机器那也算你倒霉无法退货。而在美亚上买，你邮寄回美国的运费又负担不起。</p> <h3 id="闲鱼捡垃圾"><a href="#闲鱼捡垃圾" class="headerlink" title="闲鱼捡垃圾"></a>闲鱼捡垃圾</h3><p>综上决定在闲鱼上买，在咸鱼上搜了一下同城，正好找到一个卖家 。国行 Kindle Oasis2  8 GB 带官方 199￥ 的皮套，总价格 1280￥。和卖家沟通好第二天下午面交。😂第二天很顺利地完成了 PY 交易，卖家给便宜了 30￥，最终以 1250￥ 的价格买到手了 Kindle Oasis2。</p> <h3 id="关于容量"><a href="#关于容量" class="headerlink" title="关于容量"></a>关于容量</h3><p>建议买 8 GB，你看书的话根本不需要 32 GB。两者价格相差 200 块钱，而仅仅多了 20 GB 的容量，性价比实在太低。 kindle 适合用来看书而不是用来存书，32 GB 的书你看十年都看不完😂，即便是 8GB 的容量也很难看完。所以没必要贪多，买 8 GB 足够。省出来那两百块钱订阅两年的 Kindle Unlimited 会员都要比多出那 20GB 的存储空间性价比高的多。</p> <h2 id="开箱"><a href="#开箱" class="headerlink" title="开箱"></a>开箱</h2><p>在公交车上拍照<del>开箱</del>😂</p> <p><img src="https://p.k8s.li/20191202171108883.png" alt=""></p> <p><img src="https://p.k8s.li/20191202171129184.png" alt=""></p> <p><img src="https://p.k8s.li/20191202171510337.png" alt=""></p> <p><img src="https://p.k8s.li/20191202172046660.png" alt=""></p> <p><img src="https://p.k8s.li/20191202172104805.png" alt=""></p> <p><img src="https://p.k8s.li/20191202172141495.png" alt=""></p> <p><img src="https://p.k8s.li/20191202172159248.png" alt=""></p> <p><img src="https://p.k8s.li/20191202172208956.png" alt=""></p> <p><img src="https://p.k8s.li/20191202172216921.png" alt=""></p> <p><img src="https://p.k8s.li/20191202172231655.png" alt=""></p> <h3 id="看漫画"><a href="#看漫画" class="headerlink" title="看漫画"></a>看漫画</h3><p><img src="https://p.k8s.li/20191203100634998.png" alt=""></p> <p><img src="https://p.k8s.li/20191203100645837.png" alt=""></p> <p><img src="https://p.k8s.li/20191203100655418.png" alt=""></p> <p><img src="https://p.k8s.li/20191203100706964.png" alt=""></p> <h2 id="总体感受"><a href="#总体感受" class="headerlink" title="总体感受"></a>总体感受</h2><p>Kindle Oasis2 无论在尺寸还是在速度上已经满足我了，物理翻页键取代触屏翻页也方便多了。以前使用 Kindle Paperwhite3 看书的时候经常误触，按回退不知怎么地就翻到下一页。物理键取代触摸屏幕翻页效率和准确度上那是一天地上跑的和一个天上飞的区别😂。如果 Kindle Paperwhite3 能有个物理翻页键就完美无缺了。</p> <p>但美中不足也有一些瑕疵，其中最大的问题就是 Kindle Oasis2 的电池太不耐用了，现在基本上是三天一充，而 Kindle Paperwhite3 一周一充。😥</p> <p>另一个问题就是由于 KO2 是金属机身，冬天躲被窝里看书的时候手汗会留在上面🙃。但瑕不掩瑜，瑕不掩瑜😂</p> <p><img src="https://p.k8s.li/20191202172126512.png" alt=""></p> <p>事后留下了一些不明液体🙃？其实是手汗😂</p> <ul> <li>2020-03-01 更新，后来发现 kindle 截屏可以使用按住屏幕对角线来截屏。</li> </ul> <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.bennythink.com/first-mbp.html" target="_blank" rel="noopener">还是早日享乐吧——年轻人的第一台 MacBook</a></p>      </div>                        <footer class="post-footer">                      <div class="post-tags">               <a href="/tags/life/" rel="tag"><i class="fa fa-tag"></i> life</a>               <a href="/tags/%E9%98%85%E8%AF%BB/" rel="tag"><i class="fa fa-tag"></i> 阅读</a>               <a href="/tags/Kindle/" rel="tag"><i class="fa fa-tag"></i> Kindle</a>           </div>                          <div class="post-nav">       <div class="post-nav-item">     <a href="/blog-typecho-to-hexo.html" rel="prev" title="博客从 typecho 迁移到 hexo">       <i class="fa fa-chevron-left"></i> 博客从 typecho 迁移到 hexo     </a></div>       <div class="post-nav-item">     <a href="/K8s-QA.html" rel="next" title="(2000+) kubernetes 社群分享 QA 汇总">       (2000+) kubernetes 社群分享 QA 汇总 <i class="fa fa-chevron-right"></i>     </a></div>     </div>       </footer>        </article>             </div>             </div>                   <div class="comments">     <div id="disqus_thread">       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>     </div>   </div>     <script>   window.addEventListener('tabs:register', () => {     let activeClass = CONFIG.comments.activeClass;     if (CONFIG.comments.storage) {       activeClass = localStorage.getItem('comments_active') || activeClass;     }     if (activeClass) {       let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);       if (activeTab) {         activeTab.click();       }     }   });   if (CONFIG.comments.storage) {     window.addEventListener('tabs:click', event => {       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;       let commentClass = event.target.classList[1];       localStorage.setItem('comments_active', commentClass);     });   } </script>          </div>                 <div class="toggle sidebar-toggle">     <span class="toggle-line toggle-line-first"></span>     <span class="toggle-line toggle-line-middle"></span>     <span class="toggle-line toggle-line-last"></span>   </div>    <aside class="sidebar">     <div class="sidebar-inner">        <ul class="sidebar-nav motion-element">         <li class="sidebar-nav-toc">           文章目录         </li>         <li class="sidebar-nav-overview">           站点概览         </li>       </ul>        <!--noindex-->       <div class="post-toc-wrap sidebar-panel">           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kindle-k8s-li"><span class="nav-number">1.</span> <span class="nav-text">kindle.k8s.li</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史原因"><span class="nav-number">2.</span> <span class="nav-text">历史原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nook2"><span class="nav-number">2.1.</span> <span class="nav-text">nook2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kindle-入门版"><span class="nav-number">2.2.</span> <span class="nav-text">Kindle 入门版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kindle-Paperwhite3"><span class="nav-number">2.3.</span> <span class="nav-text">Kindle Paperwhite3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">3.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求"><span class="nav-number">3.1.</span> <span class="nav-text">需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么买"><span class="nav-number">4.</span> <span class="nav-text">怎么买</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#美亚"><span class="nav-number">4.1.</span> <span class="nav-text">美亚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么买二手而不买未拆封美版？"><span class="nav-number">4.2.</span> <span class="nav-text">为什么买二手而不买未拆封美版？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闲鱼捡垃圾"><span class="nav-number">4.3.</span> <span class="nav-text">闲鱼捡垃圾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于容量"><span class="nav-number">4.4.</span> <span class="nav-text">关于容量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开箱"><span class="nav-number">5.</span> <span class="nav-text">开箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#看漫画"><span class="nav-number">5.1.</span> <span class="nav-text">看漫画</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体感受"><span class="nav-number">6.</span> <span class="nav-text">总体感受</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>       </div>       <!--/noindex-->        <div class="site-overview-wrap sidebar-panel">         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">     <img class="site-author-image" itemprop="image" alt="木子"       src="https://blog.k8s.li/avatar.png">   <p class="site-author-name" itemprop="name">木子</p>   <div class="site-description" itemprop="description"></div> </div> <div class="site-state-wrap motion-element">   <nav class="site-state">       <div class="site-state-item site-state-posts">           <a href="/archives">           <span class="site-state-item-count">101</span>           <span class="site-state-item-name">日志</span>         </a>       </div>       <div class="site-state-item site-state-categories">             <a href="/categories/">         <span class="site-state-item-count">9</span>         <span class="site-state-item-name">分类</span></a>       </div>       <div class="site-state-item site-state-tags">             <a href="/tags/">         <span class="site-state-item-count">124</span>         <span class="site-state-item-name">标签</span></a>       </div>   </nav> </div>   <div class="links-of-author motion-element">       <span class="links-of-author-item">         <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>       </span>       <span class="links-of-author-item">         <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>       </span>       <span class="links-of-author-item">         <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>       </span>       <span class="links-of-author-item">         <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>       </span>       <span class="links-of-author-item">         <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>       </span>       <span class="links-of-author-item">         <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>       </span>       <span class="links-of-author-item">         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>       </span>   </div>          </div>         <div class="back-to-top motion-element">           <i class="fa fa-arrow-up"></i>           <span>0%</span>         </div>      </div>   </aside>   <div id="sidebar-dimmer"></div>         </div>     </main>      <footer class="footer">       <div class="footer-inner">           <div class="copyright">      &copy; 2018 –    <span itemprop="copyrightYear">2021</span>   <span class="with-love">     <i class="fa fa-heart"></i>   </span>   <span class="author" itemprop="copyrightHolder">木子</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-area-chart"></i>     </span>       <span class="post-meta-item-text">站点总字数：</span>     <span title="站点总字数">1.5m</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-coffee"></i>     </span>       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>     <span title="站点阅读时长">41:25</span> </div>   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动   </div>   <span class="post-meta-divider">|</span>   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>   </div>                         </div>     </footer>   </div>       <script src="/lib/anime.min.js"></script>  <script src="/js/utils.js"></script>   <script src="/js/schemes/pisces.js"></script>   <script src="/js/next-boot.js"></script>                               <script>   function loadCount() {     var d = document, s = d.createElement('script');     s.src = 'https://muzi.disqus.com/count.js';     s.id = 'dsq-count-scr';     (d.head || d.body).appendChild(s);   }   // defer loading until the whole page loading is completed   window.addEventListener('load', loadCount, false); </script> <script>   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {     if (window.DISQUS) {       DISQUS.reset({         reload: true,         config: {page: {             url: "https://blog.k8s.li/Kindle-Oasis2-vs-Paperwhite3.html",             identifier: "Kindle-Oasis2-vs-Paperwhite3.html",             title: "Kindle Oasis 和 Kindle Paperwhite3 使用体验"           }         }       });     } else {       var d = document, s = d.createElement('script');       s.src = 'https://muzi.disqus.com/embed.js';       s.setAttribute('data-timestamp', '' + +new Date());       (d.head || d.body).appendChild(s);     }   }); </script>  </body> </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="kindle.k8s.li 2020-03-01 更新：kindle.k8s.li   历史原因nook2我第一个电纸书是巴诺的 nook2 ，是我高三的时候买的。那时候折腾这个电纸书可费了不少劲。 当时还是 nook2 能刷成 Android  2.1 ，之后还能安装 QQ ，浏览器，冷阅 coolreader 。对，当时在 nook2 上最好用的阅读器就是 coolreader 冷阅。系统默默">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kindle Oasis 和 Kindle Paperwhite3 使用体验">
+<meta property="og:url" content="https://blog.k8s.li/Kindle-Oasis2-vs-Paperwhite3.html">
+<meta property="og:site_name" content="木子">
+<meta property="og:description" content="kindle.k8s.li 2020-03-01 更新：kindle.k8s.li   历史原因nook2我第一个电纸书是巴诺的 nook2 ，是我高三的时候买的。那时候折腾这个电纸书可费了不少劲。 当时还是 nook2 能刷成 Android  2.1 ，之后还能安装 QQ ，浏览器，冷阅 coolreader 。对，当时在 nook2 上最好用的阅读器就是 coolreader 冷阅。系统默默">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p.k8s.li/20200229223949589.png">
+<meta property="og:image" content="https://p.k8s.li/001968968.jpg">
+<meta property="og:image" content="https://p.k8s.li/001968966.jpg">
+<meta property="og:image" content="https://p.k8s.li/001968967.jpg">
+<meta property="og:image" content="https://p.k8s.li/20191202171108883.png">
+<meta property="og:image" content="https://p.k8s.li/20191202171129184.png">
+<meta property="og:image" content="https://p.k8s.li/20191202171510337.png">
+<meta property="og:image" content="https://p.k8s.li/20191202172046660.png">
+<meta property="og:image" content="https://p.k8s.li/20191202172104805.png">
+<meta property="og:image" content="https://p.k8s.li/20191202172141495.png">
+<meta property="og:image" content="https://p.k8s.li/20191202172159248.png">
+<meta property="og:image" content="https://p.k8s.li/20191202172208956.png">
+<meta property="og:image" content="https://p.k8s.li/20191202172216921.png">
+<meta property="og:image" content="https://p.k8s.li/20191202172231655.png">
+<meta property="og:image" content="https://p.k8s.li/20191203100634998.png">
+<meta property="og:image" content="https://p.k8s.li/20191203100645837.png">
+<meta property="og:image" content="https://p.k8s.li/20191203100655418.png">
+<meta property="og:image" content="https://p.k8s.li/20191203100706964.png">
+<meta property="og:image" content="https://p.k8s.li/20191202172126512.png">
+<meta property="article:published_time" content="2019-11-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-29T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="life">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="Kindle">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p.k8s.li/20200229223949589.png">
+
+<link rel="canonical" href="https://blog.k8s.li/Kindle-Oasis2-vs-Paperwhite3.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Kindle Oasis 和 Kindle Paperwhite3 使用体验 | 木子</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/Kindle-Oasis2-vs-Paperwhite3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木子">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Kindle Oasis 和 Kindle Paperwhite3 使用体验
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-01 2019-12-01T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-01 2020-03-01T00:00:00+08:00" itemprop="dateModified" datetime="2020-03-01T00:00:00+08:00">2020-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%85%E8%AF%BB/" itemprop="url" rel="index">
+                    <span itemprop="name">阅读</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/Kindle-Oasis2-vs-Paperwhite3.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Kindle-Oasis2-vs-Paperwhite3.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="kindle-k8s-li"><a href="#kindle-k8s-li" class="headerlink" title="kindle.k8s.li"></a>kindle.k8s.li</h2><ul>
+<li>2020-03-01 更新：<a href="https://kindle.k8s.li" target="_blank" rel="noopener">kindle.k8s.li</a></li>
+</ul>
+<p><img src="https://p.k8s.li/20200229223949589.png" alt=""></p>
+<h2 id="历史原因"><a href="#历史原因" class="headerlink" title="历史原因"></a>历史原因</h2><h3 id="nook2"><a href="#nook2" class="headerlink" title="nook2"></a>nook2</h3><p>我第一个电纸书是巴诺的 nook2 ，是我高三的时候买的。那时候折腾这个电纸书可费了不少劲。</p>
+<p>当时还是 nook2 能刷成 Android  2.1 ，之后还能安装 QQ ，浏览器，冷阅 coolreader 。对，当时在 nook2 上最好用的阅读器就是 coolreader 冷阅。系统默默改制后还支持全局刷新和局部刷新。总之折腾起来很爽，虽然当时还是 Android 2.1 但运行个 QQ ，浏览器什么的都不在话下。达不到流畅但能用😂。之后 nook2 送给了我姐。后来直到 2017 年才再一次买电纸书。期间都是买纸质书或者找 PDF 资源看。</p>
+<p><img src="https://p.k8s.li/001968968.jpg" alt=""></p>
+<p><img src="https://p.k8s.li/001968966.jpg" alt=""></p>
+<p><img src="https://p.k8s.li/001968967.jpg" alt=""></p>
+<h4 id="使用感受"><a href="#使用感受" class="headerlink" title="使用感受"></a>使用感受</h4><p>我觉着但是</p>
+<h3 id="Kindle-入门版"><a href="#Kindle-入门版" class="headerlink" title="Kindle 入门版"></a>Kindle 入门版</h3><p>自从上大学以来一直想买个 Kindle 来看，但学生时代嘛，自己赚的钱还不够生活费，所以只好在心里种草。直到 2018 年 5 月份的时候，我在读书月的时候参加的第二次校园十佳读者活动，被评为了十佳读者之一。那一年我在我们学校的借阅量排在全校前十，进馆次数全校第二😂。所以就很轻轻松松地获奖了。奖品是新华书店的代金券 400 元。正好我市的新华书店也卖 Kindle ，想了想 400 块钱的代金券自己再加两百块钱就能买到 Kindle 了，巨爽，所以就下狠心买了 Kindle 入门版。第一次拿到 Kindle 的那一刻，心情激动死了。</p>
+<p>kindle 入门的使用体验就是能用，对、仅仅是能用而已。没有背光知识和白天或者光线下看，到了夜间就成瞎子了。</p>
+<h3 id="Kindle-Paperwhite3"><a href="#Kindle-Paperwhite3" class="headerlink" title="Kindle Paperwhite3"></a>Kindle Paperwhite3</h3><p>Kindle 入门版使用了大概一个多月的时间，在此期间看完了《数学女孩》三部以及《数学史》等几本书。因为姐姐要去欧洲教学一年，在那里买书不方便，所以就把 kindle 入门版给了我姐。kindle 入门版送给我姐以后我就接着和以前一样在图书馆里看纸质书。因为图书月活动我推荐给图书馆 100 多本书如今都已经买到并入馆了。所以这段时间一直在图书馆里看纸质书。没有 kindle 的那段时间里总感觉缺少点什么，到九月份开学的时候想了想要不要再买个  kindle ？用花呗分期 12 期免息买 Kindle Paperwhite3 每个月才 80 多块钱 ，感觉还可以啊。所以在九月份开学的时候又下决定买了 Kindle Paperwhite3 。</p>
+<p>Kindle Paperwhite3 使用体验就是已经达到够用的水准了，看书和看漫画都不在话下😂。</p>
+<ul>
+<li>2020 年 2 月 29 日转手给了同学(￣▽￣)”</li>
+</ul>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>工作之后，开始有了微薄的收入，开始渐渐有了一些积蓄，还了一半的助学贷款，都二十好几的人了，实在没脸让家人帮我还贷款了。加上上个月”加班“多挣了点，准备买点东西提升一下自己的幸福感。对于现在的我来说，买房？首付的十之一都还没攒到，别说厕所，连块地板砖大小的面积都买不起。</p>
+<p>我是小有成就，我是有点小积蓄，但是这有什么用？在一线城市，一座房子至少 100万+ 才能买的下吧。生于穷人家的孩子总是在体验同龄人都在毕业游而我却要为生活而奔波的落差感。与其这么辛苦，不如早日享受。无论我再怎么勤俭节约，努力工作赚外快，我知道我这辈子注定也买不起 100万+ 的房子。</p>
+<p>贷款买房？想想以后一个月的工资要有一半来还房贷，我实在无法接受。最起码我现在虽然住在一间小破房了，但我的工资 18 倍于我的房租。我不想牺牲快乐和自由去换一套房。原本生活中的必需品，此时却变成奢侈品。反正既然也买不起房，那就不如享受，人生就是这样，在自己的承受范围内，买一些自己喜欢的东西。</p>
+<p>我不是圣人君子，我也是有物欲的人，甚至我更加贪婪，占有欲更强。对于目前的我来讲现在最需要升级的设备就是 Kindle Paperwhite3 了。虽然使用 Kindle Paperwhite3 已经一年多了，但它用来看书的体验仅仅够用，还没达到我满意的程度。尤其是拿来看漫画的时候，更是捉襟见肘，所以有必要升级一下啦。Kindle Paperwhite3 没有物理翻页键，翻页起来有时回失灵。就是你想翻回上一页的时候死活翻不回去，很僵硬的问题。其次就是屏幕尺寸有点小，看漫画的时候需要仔细盯着眼看一些比较小的字体。</p>
+<p>其他没啥想要的，三月份的时候给姐借了点钱买了个二手的 ThinkPad Yoga 12 笔记本，因工作需要。六月份的用第一份工资加上在在校时勤工俭学赚的 1200 块钱凑一起组装了台 AMD R5 2600 😂 台式机。暑假的时候老姐把她用了好几年的 iPhone 6s 给了我，在我手里接着续命。目前来看没啥要买的，就缺个 kindle Oasis 了。</p>
+<h2 id="怎么买"><a href="#怎么买" class="headerlink" title="怎么买"></a>怎么买</h2><p>在购买之前我做足了调查，甚至有表格来分析性价比😂。当时决定要在淘宝上买个美版 Kindle Oasis2 2017。虽然 2019 年已经推出了 Kindle Oasis3 2019。我觉着升级的性价比极低，Kindle Oasis3 2019 比 Kindle Oasis2 2017 硬件上只多了几个 LED 灯而已。尺寸、内存、处理器、存储等等都几乎无差别。所以说 Kindle Oasis2 性价是不错滴。</p>
+<h3 id="美亚"><a href="#美亚" class="headerlink" title="美亚"></a>美亚</h3><p>在黑五当天美亚上<a href="https://amzn.to/2R02n88" target="_blank" rel="noopener">Kindle Oasis 3</a>  的价格是174.99美元（人民幣約1230元），相当诱人滴。但美亚上没无法直邮，只能转运。而转运的话更为麻烦，费时费心费力。到手破损损坏的话处理起来更为麻烦。所以我就放弃了在美亚上购买。况且我也实在等不了十几天😂。而且自己买从美亚上买和在淘宝上买美版的区别不大的，都无法在国内享受保修。收到后出现坏点的话退换货成本极大，几乎无法退换货。淘宝上还能多加 20 块钱买个坏点险，如果出现四个以上的坏点的话免费换新，四个以内的话赔偿 40 块钱。</p>
+
+<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">穷人的世界捡个垃圾都要做个表格分析一下性价比。<br>目前当务之急是把手头的 Kindle Paperwhite3 换到 Kindle Oasis 2，因为自从拿来看漫画就觉着 Kindle Paperwhite3 不够用了😂。<br>至于手机？等过几年再说吧，手头的 6s 还能续命接着用几年滴。毕竟每天 kindle 的使用时间(4h)三倍于手机。 <a href="https://t.co/EUGhXBZC7A" target="_blank" rel="noopener">pic.twitter.com/EUGhXBZC7A</a></p>&mdash; 502 (@muzi_ii) <a href="https://twitter.com/muzi_ii/status/1199731167697756161?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">November 27, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<h3 id="为什么买二手而不买未拆封美版？"><a href="#为什么买二手而不买未拆封美版？" class="headerlink" title="为什么买二手而不买未拆封美版？"></a>为什么买二手而不买未拆封美版？</h3><p>如果买国行的话，正品价格最低是 2399 ，而且依照 kindle 千年不降价的作风，对于咱来说买国行实在是买不起。如果你想买国行的话推荐淘宝上的梅先生的 kindle 店买。我上一个 Kindle Paperwhite3 就是在那里买的。</p>
+<p>其实刚开始我是想买美版 Kindle Oasis2 的，淘宝上 1500 左右就能买到，如果自己在美亚上买的话加上转运费和税费价格也少不那里去。无论是在淘宝上还是美亚上买美版的 Kindle 都有一个共同点，退换货成本极大。淘宝上未拆封的 kindle ，买来拆封后是无法退货的，即便是有问题的机器那也算你倒霉无法退货。而在美亚上买，你邮寄回美国的运费又负担不起。</p>
+<h3 id="闲鱼捡垃圾"><a href="#闲鱼捡垃圾" class="headerlink" title="闲鱼捡垃圾"></a>闲鱼捡垃圾</h3><p>综上决定在闲鱼上买，在咸鱼上搜了一下同城，正好找到一个卖家 。国行 Kindle Oasis2  8 GB 带官方 199￥ 的皮套，总价格 1280￥。和卖家沟通好第二天下午面交。😂第二天很顺利地完成了 PY 交易，卖家给便宜了 30￥，最终以 1250￥ 的价格买到手了 Kindle Oasis2。</p>
+<h3 id="关于容量"><a href="#关于容量" class="headerlink" title="关于容量"></a>关于容量</h3><p>建议买 8 GB，你看书的话根本不需要 32 GB。两者价格相差 200 块钱，而仅仅多了 20 GB 的容量，性价比实在太低。 kindle 适合用来看书而不是用来存书，32 GB 的书你看十年都看不完😂，即便是 8GB 的容量也很难看完。所以没必要贪多，买 8 GB 足够。省出来那两百块钱订阅两年的 Kindle Unlimited 会员都要比多出那 20GB 的存储空间性价比高的多。</p>
+<h2 id="开箱"><a href="#开箱" class="headerlink" title="开箱"></a>开箱</h2><p>在公交车上拍照<del>开箱</del>😂</p>
+<p><img src="https://p.k8s.li/20191202171108883.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202171129184.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202171510337.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202172046660.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202172104805.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202172141495.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202172159248.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202172208956.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202172216921.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191202172231655.png" alt=""></p>
+<h3 id="看漫画"><a href="#看漫画" class="headerlink" title="看漫画"></a>看漫画</h3><p><img src="https://p.k8s.li/20191203100634998.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191203100645837.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191203100655418.png" alt=""></p>
+<p><img src="https://p.k8s.li/20191203100706964.png" alt=""></p>
+<h2 id="总体感受"><a href="#总体感受" class="headerlink" title="总体感受"></a>总体感受</h2><p>Kindle Oasis2 无论在尺寸还是在速度上已经满足我了，物理翻页键取代触屏翻页也方便多了。以前使用 Kindle Paperwhite3 看书的时候经常误触，按回退不知怎么地就翻到下一页。物理键取代触摸屏幕翻页效率和准确度上那是一天地上跑的和一个天上飞的区别😂。如果 Kindle Paperwhite3 能有个物理翻页键就完美无缺了。</p>
+<p>但美中不足也有一些瑕疵，其中最大的问题就是 Kindle Oasis2 的电池太不耐用了，现在基本上是三天一充，而 Kindle Paperwhite3 一周一充。😥</p>
+<p>另一个问题就是由于 KO2 是金属机身，冬天躲被窝里看书的时候手汗会留在上面🙃。但瑕不掩瑜，瑕不掩瑜😂</p>
+<p><img src="https://p.k8s.li/20191202172126512.png" alt=""></p>
+<p>事后留下了一些不明液体🙃？其实是手汗😂</p>
+<ul>
+<li>2020-03-01 更新，后来发现 kindle 截屏可以使用按住屏幕对角线来截屏。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.bennythink.com/first-mbp.html" target="_blank" rel="noopener">还是早日享乐吧——年轻人的第一台 MacBook</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/life/" rel="tag"><i class="fa fa-tag"></i> life</a>
+              <a href="/tags/%E9%98%85%E8%AF%BB/" rel="tag"><i class="fa fa-tag"></i> 阅读</a>
+              <a href="/tags/Kindle/" rel="tag"><i class="fa fa-tag"></i> Kindle</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog-typecho-to-hexo.html" rel="prev" title="博客从 typecho 迁移到 hexo">
+      <i class="fa fa-chevron-left"></i> 博客从 typecho 迁移到 hexo
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/K8s-QA.html" rel="next" title="(2000+) kubernetes 社群分享 QA 汇总">
+      (2000+) kubernetes 社群分享 QA 汇总 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kindle-k8s-li"><span class="nav-number">1.</span> <span class="nav-text">kindle.k8s.li</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史原因"><span class="nav-number">2.</span> <span class="nav-text">历史原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nook2"><span class="nav-number">2.1.</span> <span class="nav-text">nook2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kindle-入门版"><span class="nav-number">2.2.</span> <span class="nav-text">Kindle 入门版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kindle-Paperwhite3"><span class="nav-number">2.3.</span> <span class="nav-text">Kindle Paperwhite3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">3.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求"><span class="nav-number">3.1.</span> <span class="nav-text">需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么买"><span class="nav-number">4.</span> <span class="nav-text">怎么买</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#美亚"><span class="nav-number">4.1.</span> <span class="nav-text">美亚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么买二手而不买未拆封美版？"><span class="nav-number">4.2.</span> <span class="nav-text">为什么买二手而不买未拆封美版？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闲鱼捡垃圾"><span class="nav-number">4.3.</span> <span class="nav-text">闲鱼捡垃圾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于容量"><span class="nav-number">4.4.</span> <span class="nav-text">关于容量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开箱"><span class="nav-number">5.</span> <span class="nav-text">开箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#看漫画"><span class="nav-number">5.1.</span> <span class="nav-text">看漫画</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体感受"><span class="nav-number">6.</span> <span class="nav-text">总体感受</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">41:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/Kindle-Oasis2-vs-Paperwhite3.html",
+            identifier: "Kindle-Oasis2-vs-Paperwhite3.html",
+            title: "Kindle Oasis 和 Kindle Paperwhite3 使用体验"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

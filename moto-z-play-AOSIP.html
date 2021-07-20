@@ -1,1 +1,581 @@
-<!DOCTYPE html> <html lang="zh-CN"> <head>   <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"> <meta name="theme-color" content="#222"> <meta name="generator" content="Hexo 4.2.1">   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">   <link rel="mask-icon" href="/favicon.ico" color="#222">   <meta http-equiv="Cache-Control" content="no-transform">   <meta http-equiv="Cache-Control" content="no-siteapp">  <link rel="stylesheet" href="/css/main.css">  <link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"> <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">   <script id="hexo-configurations">   var NexT = window.NexT || {};   var CONFIG = {     hostname: new URL('https://blog.k8s.li').hostname,     root: '/',     scheme: 'Gemini',     version: '7.7.0',     exturl: false,     sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},     copycode: {"enable":true,"show_result":true,"style":"mac"},     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},     bookmark: {"enable":false,"color":"#222","save":"auto"},     fancybox: false,     mediumzoom: false,     lazyload: false,     pangu: false,     comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},     algolia: {       appID: '',       apiKey: '',       indexName: '',       hits: {"per_page":10},       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}     },     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},     path: 'search.xml',     motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}   }; </script>    <meta name="description" content="0.备份数据刷机千万条，备份第一条，刷机不规范，机主两行泪😂  1.解锁bootloader下载Android SDK Platform Tools,解压后将platform-tools所在的绝对路径添加到环境变量。安装moto驱动程序，下载地址win解锁官网,需要注册账户开机键 + 音量减进入bootloaderfastboot oem get_unlock_data 获取设备ID,粘贴复制到"> <meta property="og:type" content="article"> <meta property="og:title" content="moto z play addsion xt1635-02 刷机指南"> <meta property="og:url" content="https://blog.k8s.li/moto-z-play-AOSIP.html"> <meta property="og:site_name" content="木子"> <meta property="og:description" content="0.备份数据刷机千万条，备份第一条，刷机不规范，机主两行泪😂  1.解锁bootloader下载Android SDK Platform Tools,解压后将platform-tools所在的绝对路径添加到环境变量。安装moto驱动程序，下载地址win解锁官网,需要注册账户开机键 + 音量减进入bootloaderfastboot oem get_unlock_data 获取设备ID,粘贴复制到"> <meta property="og:locale" content="zh_CN"> <meta property="article:published_time" content="2019-04-11T16:00:00.000Z"> <meta property="article:modified_time" content="2020-02-29T16:00:00.000Z"> <meta property="article:author" content="木子"> <meta property="article:tag" content="android"> <meta property="article:tag" content="moto"> <meta property="article:tag" content="ROM"> <meta name="twitter:card" content="summary">  <link rel="canonical" href="https://blog.k8s.li/moto-z-play-AOSIP.html">   <script id="page-configurations">   // https://hexo.io/docs/variables.html   CONFIG.page = {     sidebar: "",     isHome: false,     isPost: true   }; </script>    <title>moto z play addsion xt1635-02 刷机指南 | 木子</title>            <noscript>   <style>   .use-motion .brand,   .use-motion .menu-item,   .sidebar-inner,   .use-motion .post-block,   .use-motion .pagination,   .use-motion .comments,   .use-motion .post-header,   .use-motion .post-body,   .use-motion .collection-header { opacity: initial; }    .use-motion .site-title,   .use-motion .site-subtitle {     opacity: initial;     top: initial;   }    .use-motion .logo-line-before i { left: initial; }   .use-motion .logo-line-after i { right: initial; }   </style> </noscript>  <link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml"> </head>  <body itemscope itemtype="http://schema.org/WebPage">   <div class="container">     <div class="headband"></div>      <header class="header" itemscope itemtype="http://schema.org/WPHeader">       <div class="header-inner"><div class="site-brand-container">   <div class="site-meta">      <div>       <a href="/" class="brand" rel="start">         <span class="logo-line-before"><i></i></span>         <span class="site-title">木子</span>         <span class="logo-line-after"><i></i></span>       </a>     </div>   </div>    <div class="site-nav-toggle">     <div class="toggle" aria-label="切换导航栏">       <span class="toggle-line toggle-line-first"></span>       <span class="toggle-line toggle-line-middle"></span>       <span class="toggle-line toggle-line-last"></span>     </div>   </div> </div>   <nav class="site-nav">      <ul id="menu" class="menu">         <li class="menu-item menu-item-home">      <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>    </li>         <li class="menu-item menu-item-books">      <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>    </li>         <li class="menu-item menu-item-kindle">      <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>    </li>         <li class="menu-item menu-item-friend">      <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>    </li>         <li class="menu-item menu-item-about">      <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>    </li>   </ul>  </nav> </div>     </header>         <div class="reading-progress-bar"></div>       <main class="main">       <div class="main-inner">         <div class="content-wrap">                       <div class="content">                 <div class="posts-expand">                <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/moto-z-play-AOSIP.html">      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">       <meta itemprop="image" content="https://blog.k8s.li/avatar.png">       <meta itemprop="name" content="木子">       <meta itemprop="description" content="">     </span>      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">       <meta itemprop="name" content="木子">     </span>       <header class="post-header">         <h2 class="post-title" itemprop="name headline">           moto z play addsion xt1635-02 刷机指南         </h2>          <div class="post-meta">             <span class="post-meta-item">               <span class="post-meta-item-icon">                 <i class="fa fa-calendar-o"></i>               </span>               <span class="post-meta-item-text">发表于</span>                <time title="创建时间：2019-04-12 2019-04-12T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-04-12T00:00:00+08:00">2019-04-12</time>             </span>               <span class="post-meta-item">                 <span class="post-meta-item-icon">                   <i class="fa fa-calendar-check-o"></i>                 </span>                 <span class="post-meta-item-text">更新于</span>                 <time title="修改时间：2020-03-01 2020-03-01T00:00:00+08:00" itemprop="dateModified" datetime="2020-03-01T00:00:00+08:00">2020-03-01</time>               </span>             <span class="post-meta-item">               <span class="post-meta-item-icon">                 <i class="fa fa-folder-o"></i>               </span>               <span class="post-meta-item-text">分类于</span>                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">                   <a href="/categories/%E6%90%9E%E6%9C%BA/" itemprop="url" rel="index">                     <span itemprop="name">搞机</span>                   </a>                 </span>             </span>                  <span class="post-meta-item">            <span class="post-meta-item-icon">         <i class="fa fa-comment-o"></i>       </span>       <span class="post-meta-item-text">Disqus：</span>          <a title="disqus" href="/moto-z-play-AOSIP.html#comments" itemprop="discussionUrl">       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="moto-z-play-AOSIP.html" itemprop="commentCount"></span>     </a>   </span>      <br>             <span class="post-meta-item" title="本文字数">               <span class="post-meta-item-icon">                 <i class="fa fa-file-word-o"></i>               </span>                 <span class="post-meta-item-text">本文字数：</span>               <span>4.7k</span>             </span>             <span class="post-meta-item" title="阅读时长">               <span class="post-meta-item-icon">                 <i class="fa fa-clock-o"></i>               </span>                 <span class="post-meta-item-text">阅读时长 &asymp;</span>               <span>8 分钟</span>             </span>          </div>       </header>                     <div class="post-body" itemprop="articleBody">                 <h2 id="0-备份数据"><a href="#0-备份数据" class="headerlink" title="0.备份数据"></a>0.备份数据</h2><p>刷机千万条，备份第一条，刷机不规范，机主两行泪😂</p> <hr> <h2 id="1-解锁bootloader"><a href="#1-解锁bootloader" class="headerlink" title="1.解锁bootloader"></a>1.解锁bootloader</h2><p>下载<a href="https://developer.android.com/studio/releases/platform-tools.html" target="_blank" rel="noopener">Android SDK Platform Tools</a>,解压后将platform-tools所在的绝对路径添加到环境变量。<br>安装moto驱动程序，下载地址<a href="http://www.motorola.com/getmdmwin" target="_blank" rel="noopener">win</a><br>解锁<a href="http://motorola.com/unlockbootloader" target="_blank" rel="noopener">官网</a>,需要注册账户<br>开机键 + 音量减进入bootloader<br>fastboot oem get_unlock_data 获取设备ID,粘贴复制到下面<br><a href="https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-b" target="_blank" rel="noopener">解锁网页</a><br>申请后获取解锁码<br>fastboot oem unlock 【解锁码】<br>下载magisk zip包和magisk manager apk方便以后使用</p> <hr> <h2 id="2-刷recovery-twrp-升级bootloader"><a href="#2-刷recovery-twrp-升级bootloader" class="headerlink" title="2.刷recovery  twrp /升级bootloader"></a>2.刷recovery  twrp /升级bootloader</h2><p><a href="https://twrp.me/Devices/" target="_blank" rel="noopener">TWRP官网</a><br>我的moto z play 刷 Android9.0 的 ROM 要求的 bootloader 必须为 Oreo 的0xC180 or 0xC182，下载 moto 官方固件刷入 bootloader.img 即可，官方固件 1.7GB，好大。总不能为了刷个几MB的 bootloader 下载整个固件包啊,还浪费我流量,于是保存firmware到Google Drive(还好固件分享是通过Google Drive),在挂载了 Google Drive 的 vps 上解压出来需要刷的那几个文件刷入即可.刷完 bootloader 后发现仅仅升级 bootloader 分区手机无法上网，还需要刷入基带。<br>最后在 XDA 社区找到了升级到 Oreo bootloader 的<a href="https://forum.xda-developers.com/showpost.php?p=78379116&postcount=3" target="_blank" rel="noopener">帖子</a>，大佬已经帮忙准备好了要刷入的文件。</p> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash partition gpt.bin</span><br><span class="line">fastboot flash bootloader bootloader.img</span><br><span class="line">fastboot flash modem NON-HLOS.bin</span><br><span class="line">fastboot flash fsg fsg.mbn</span><br><span class="line">fastboot flash dsp adspso.bin</span><br><span class="line">fastboot flash oem oem.img</span><br></pre></td></tr></table></figure>  <p>刷上下载的 Twrp<br><code>fastboot flash recovery twrp-addison.img</code><br>reboot 到 recovery 就行</p> <hr> <h2 id="3-刷ROM"><a href="#3-刷ROM" class="headerlink" title="3.刷ROM"></a>3.刷ROM</h2><p>把 ROM 的 zip 包以及 magisk 放到手机内部存储目录即可,在 INSTALL 那里选择 ROM 刷入<br>接着刷入 magisk 的zip包<br>reboot system</p> <hr> <h2 id="4-刷magisk"><a href="#4-刷magisk" class="headerlink" title="4.刷magisk"></a>4.刷magisk</h2><p>安装 magisk manager，有些精简的 ROM 没有文件管理器，可以在设置里-&gt;存储或下载管理器里找到apk 文件安装。<br>输入经常使用的 magisk 模块主要有</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.Magisk Manager for Recovery Mode(mm)</span><br><span class="line">2.DNSCrypt-Proxy</span><br><span class="line">3.Enable doze for GMS Magisk Module</span><br><span class="line">4.GPU Turbo Boost</span><br><span class="line">5.Google Sans MOD Font</span><br><span class="line">6.Pix3lify</span><br><span class="line">7.ViPER4 Android FX Materialized</span><br></pre></td></tr></table></figure>  <hr> <h2 id="5-安装常用工具"><a href="#5-安装常用工具" class="headerlink" title="5.安装常用工具"></a>5.安装常用工具</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">0.钛备份，每次刷完 ROM 接着 root 完后第一个装的就是钛备份，使用它来恢复下面的应用和数据</span><br><span class="line">1.绿色守护，导入处方</span><br><span class="line">2.RE 管理器，卸载删除不必要的应用，方便减少备份包大小</span><br><span class="line">3.SD Maid，配合 RE 使用，卸载删除应用，分析分区占用大小</span><br><span class="line">4.shadowsocks + obfs，你懂的</span><br><span class="line">5.Tasker，高效率神器，用过的人都说好😂!</span><br><span class="line">6.Solid Explorer，MD 风格的文件管理器，用了之后放弃RE了🙃</span><br><span class="line">7.Telegram X 跨平台，16 年开始使用到现在，已经放弃用qq了</span><br><span class="line">8.juiceSSH，用来执行 shell，同步硬件时钟用，免得 TWRP 时间回到 1970.</span><br><span class="line">9.炼妖壶 发现能在这个 ROM 上使用，好好折腾一下</span><br><span class="line">10.Lawnchair 替换掉原来的桌面，这个自从 2017 年使用后就从未更换过。精简！！！！特别适合我这种精简主义者。</span><br><span class="line">11.My Android tools，同 IFW，用来镇压毒瘤 app</span><br><span class="line">12.App Ops，用来驯服一些国内毒瘤 app，不给权限不让运行的毒瘤行为</span><br><span class="line">13.IFW，意图防火墙，用来镇压一些国内的臃肿毒瘤 app</span><br><span class="line">14.Pixel Icon Pack，图包，美化一下图标</span><br><span class="line">15.moto 相机，感觉没有 aosp 的好用</span><br><span class="line">16.快图相册，从Android4.4 开始一直使用，精简好用，速度极快</span><br><span class="line">17.谷歌拼音输入法,精简</span><br><span class="line">18.国内那些臃肿的毒瘤 app，最后再装😡！</span><br><span class="line">19.MX player 看片儿用的</span><br><span class="line">20.简洁·日历 就像名字那样，十分简洁，没有杂七杂八的功能，就是农历可能不准，记得去年的冬至吗😂</span><br></pre></td></tr></table></figure>  <hr> <h2 id="6-刷入-opengapps"><a href="#6-刷入-opengapps" class="headerlink" title="6.刷入 opengapps"></a>6.刷入 opengapps</h2><p>推荐 pico 包，虽然足够小了，但还是可以精简很多不必要的 apk 的。需要注意的是，仅仅刷入 opengapps 包是无法登录 Google 账户的，还需要下载最新版的 Google play service APK 来更新 Google play service 。这样才能登录到 Google 账户。选择最后装 opengapps 的原因是，之前需要卸载删除一些系统 app，删除一些 app 后有可能会卡机无法启动，所以每次删除之前都需要备份一下，而 opengapps 刷入后备份的大小将会增加很多。于是最后等到删除完不必要的系统 app 后再刷入 opengapps。刷完之后再卸载掉 opengapps 里没用的 app。<br>登录 Google 账户，同步 chrome 书签。使用 opengapps 我唯一的需求就是 chrome，能同步 chrome 书签和密码就足够了。</p> <hr> <h2 id="7-个性化定义"><a href="#7-个性化定义" class="headerlink" title="7.个性化定义"></a>7.个性化定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.恢复导航栏布局</span><br><span class="line">2.缩小导航栏高度</span><br><span class="line">3.导航栏透明</span><br><span class="line">4.全局沉浸模式</span><br><span class="line">5.复制铃声到&#x2F;system&#x2F;media&#x2F;ringtones,删除其他media文件</span><br><span class="line">6.设置密码，指纹解锁</span><br><span class="line">7.把一些不需要更新的app移动到&#x2F;system&#x2F;app</span><br><span class="line">8.个性化状态栏，扩展状态栏</span><br><span class="line">9.导航栏设定了四个虚拟按键</span><br><span class="line">9.1.单击任务栏</span><br><span class="line">9.2.单击home 长按休眠</span><br><span class="line">9.3.单击返回 长按杀死应用</span><br><span class="line">9.4。单击返回上一个应用 长按截屏</span><br></pre></td></tr></table></figure>  <hr> <h2 id="8-恢复Tasker里的任务"><a href="#8-恢复Tasker里的任务" class="headerlink" title="8.恢复Tasker里的任务"></a>8.恢复Tasker里的任务</h2><hr> <h2 id="9-TWRP备份还原"><a href="#9-TWRP备份还原" class="headerlink" title="9.TWRP备份还原"></a>9.TWRP备份还原</h2><p>把之前的在 twrp 做的备份复制到 PC，使用 tar 解压出备份文件。如果使用 7Z 或其他 GUI 的解压缩程序会提示错误，因为在 /system 分区里有一些硬链接文件，是无法解压出来的。使用 tar 就可以解压出来。解压出来后把 /etc/hosts 文件复制到新的ROM system 分区下，里面有一些自己屏蔽的一些域名，大部分是百度等一些毒瘤 app SDK 的域名，直接屏蔽掉。<br>复制 /data/system/ifw 下的 ifw.xml 是自己自定义的一些 IFW 规则，主要对付一些国内毒瘤 app。<br>复制 /system/media/ 下的开机动画，还是喜欢原来的开机动画。<br>使用钛备份还原 Solid Explorer 的数据，使用 smba 共享传输这些文件。</p> <hr> <h2 id="10-bug"><a href="#10-bug" class="headerlink" title="10.bug"></a>10.bug</h2><p>1.重启可能卡在开机动画那里，需要长按电源键强制关机，再开机才能正常启动<br>2.<del>开机启动后，Lawnchair 会随机性地挂掉😥，最后发现不是 Lawnchair 挂掉了，是 AOSIP 自带的 Quickstep</del><br>3.不能原生支持 xposed 框架，需要刷入其他包魔改一下，不清真，所以就没用<br>4.以前 xposed 我仅仅使用三个模块，绿色守护，应用管理，XinternalSD 。现在不需要也能满足日常使用了。<br>5.刷入 opengapps 包后,所有的 app 权限授权记录都消失了,需要重新授权,不知道是 bug 还是 feature 😂<br>6.安装微信后,6.7.3版本不能登录,必须7.0.3以上,fuck尼玛的微信😡.无奈装7.0.3再降回6.7.3.尼玛去死吧,毒瘤app.<br>7.开热点随机性地断流<br>8.twrp 里的硬件时钟经常会重设为 1970– 谜之 bug<br>9.最后设置密码的原因是，使用twrp备份还原后密码错误，也是 twrp 的 bug</p> <hr> <h2 id="吐槽Android版微信"><a href="#吐槽Android版微信" class="headerlink" title="吐槽Android版微信"></a>吐槽Android版微信</h2><p>1.微信限制低版本登录，可以使用最新版本登录，保留原数据卸载微信高版本，重启后再装低版本就能登录<br>2.Google play 最新版微信7.0.3已经很臃肿了,世界上activity数目超过1000的Android 应用也就你们这些国产毒瘤吧,也就你们微信,美团了吧.毒瘤,臃肿的体验真让人恶心到家,还不让人家用低版本的,PC端登录还要扫码登录,我扫你🐎币.<br>3.微信会产生日志文件,在/data/data/com.tencent.mm/files/xlog目录里.删除这个目录,建立一个xlog的文件,修改000权限,就可以阻止微信产生垃圾日志文件.但也会在内部存储产生xlog日志,同理删除xlog目录,建立xlog文件就行.<br>4.平时很少使用微信,因为微信真的越来越臃肿,加一些我不想用的东西,还限制低版本的登录,我用低版本日你🐎了吗?用新版本的微信你就像闻到屎一样恶心人!<br>5.微信在我眼里是一坨一坨屎堆砌的app,臃肿,毒瘤,恶心,难用,还自带墙,言论审查,删帖封号,去死吧微信!<br>6.国内互联网公司带动了一些很差的使用体验风潮,各大公司都相互模仿,比如强制扫码🐎登录;下载APP查看完整内容(比如知乎,豆瓣,CSDN等等),还有菜鸟驿站必须拿身份证拍照取件,卑鄙无耻强制收集用户隐私;为了账户安全实名认证(微信支付宝淘宝);手机端访问为安装app强制跳转到应用商店(淘宝);不给权限不让运行(国内毒瘤app一贯特色);权限滥用;音乐软件里弄个商城(QQ音乐,网易云);浏览器弄个新闻推送;浏览器自带黑名单进行言论审查(屏蔽996.icu);杀毒软件弄个金融投资(360)<del>~</del>等等,国内互联网都被这些毒瘤厂商带坏了.哎,悲哀啊.<br>7.我是个极简主义者,也是日常重度使用debian的Linux用户,遵循unix理念.一个程序只做一件事,把它做好就行.国内的这些毒瘤app完全向unix理念相反方向发展.整天用着一堆自己极其讨厌的app,真是很让人烦心!!因为家人朋友用微信,自己只能强制绑架着使用微信.没办法,像telegram这样甩微信十条街的应用国内被屏蔽了.</p> <hr> <h3 id="体验-amp-收获"><a href="#体验-amp-收获" class="headerlink" title="体验&amp;收获"></a>体验&amp;收获</h3><p>1.经过精简后的 AOSIP 9.0 P 的ROM，系统 app 的数量 75 个，其中包括了 opengapps 。相当精简了，比起国内那些魔改的ROM，要精简很多很多，这也是我为什么喜欢用原生ROM的原因，可以自己定制，精简，精简，精简再精简。以前刷 moto g 2nd 的时候，刷的 AOSP Android 5.1 最后精简到系统 app 仅仅 45 个，system 分区大小不足 400MB，流畅的一批，MSM8226 的 Soc 用的流畅的一批,精简到能够保障系统正常运行，清除 data 分区后，开机后可以正常初始化使用，打电话，发短信，安装应用等正常。但是无论精简再流畅,面对国内这些毒瘤 app,还是招架不了.<br>2.现在插上 USB 线可以默认选择为 MTP 了,不像以前那样需要打开开发者工具-&gt;USB设置那里选择 MTP ,比以前方便很多<br>3.MAT 还原的时候速度快了很多很多,几乎不到 3 秒完成还原<br>4.感觉基带信号不稳定,开热点会经常性地断流.估计是这个ROM的通病,或者是我基带的问题.<br>5.安装应用的时候速度比以前快了很多<br>6.在探索炼妖壶的使用,微信无法登录<br>7.Google TTS 可以正常使用了,以前没修好,现在配合tasker能实现手机丢失后报警,朗读警告信息的功能了,改天写一个使用taker处理的文章,好好探索折腾一下,估计这个月没时间写了,时间够忙的.</p> <hr> <h2 id="参考-推荐阅读"><a href="#参考-推荐阅读" class="headerlink" title="参考/推荐阅读"></a>参考/推荐阅读</h2><p>1.<a href="https://bbs.letitfly.me/" target="_blank" rel="noopener">LetITFly BBS</a>，里面介绍了IFW和MAT，刷机搞<del>基</del>机常去的地方。<br>2.<a href="https://cn.apkjam.com/greenify-prescription.html" target="_blank" rel="noopener">「绿色守护」处方推荐</a></p>      </div>                        <footer class="post-footer">                      <div class="post-tags">               <a href="/tags/android/" rel="tag"><i class="fa fa-tag"></i> android</a>               <a href="/tags/moto/" rel="tag"><i class="fa fa-tag"></i> moto</a>               <a href="/tags/ROM/" rel="tag"><i class="fa fa-tag"></i> ROM</a>           </div>                          <div class="post-nav">       <div class="post-nav-item">     <a href="/networktools.html" rel="prev" title="every linux networking tool i know">       <i class="fa fa-chevron-left"></i> every linux networking tool i know     </a></div>       <div class="post-nav-item">     <a href="/privacy-protections.html" rel="next" title="浅谈保护隐私的几种方法">       浅谈保护隐私的几种方法 <i class="fa fa-chevron-right"></i>     </a></div>     </div>       </footer>        </article>             </div>             </div>                   <div class="comments">     <div id="disqus_thread">       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>     </div>   </div>     <script>   window.addEventListener('tabs:register', () => {     let activeClass = CONFIG.comments.activeClass;     if (CONFIG.comments.storage) {       activeClass = localStorage.getItem('comments_active') || activeClass;     }     if (activeClass) {       let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);       if (activeTab) {         activeTab.click();       }     }   });   if (CONFIG.comments.storage) {     window.addEventListener('tabs:click', event => {       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;       let commentClass = event.target.classList[1];       localStorage.setItem('comments_active', commentClass);     });   } </script>          </div>                 <div class="toggle sidebar-toggle">     <span class="toggle-line toggle-line-first"></span>     <span class="toggle-line toggle-line-middle"></span>     <span class="toggle-line toggle-line-last"></span>   </div>    <aside class="sidebar">     <div class="sidebar-inner">        <ul class="sidebar-nav motion-element">         <li class="sidebar-nav-toc">           文章目录         </li>         <li class="sidebar-nav-overview">           站点概览         </li>       </ul>        <!--noindex-->       <div class="post-toc-wrap sidebar-panel">           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-备份数据"><span class="nav-number">1.</span> <span class="nav-text">0.备份数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-解锁bootloader"><span class="nav-number">2.</span> <span class="nav-text">1.解锁bootloader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-刷recovery-twrp-升级bootloader"><span class="nav-number">3.</span> <span class="nav-text">2.刷recovery  twrp &#x2F;升级bootloader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-刷ROM"><span class="nav-number">4.</span> <span class="nav-text">3.刷ROM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-刷magisk"><span class="nav-number">5.</span> <span class="nav-text">4.刷magisk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-安装常用工具"><span class="nav-number">6.</span> <span class="nav-text">5.安装常用工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-刷入-opengapps"><span class="nav-number">7.</span> <span class="nav-text">6.刷入 opengapps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-个性化定义"><span class="nav-number">8.</span> <span class="nav-text">7.个性化定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-恢复Tasker里的任务"><span class="nav-number">9.</span> <span class="nav-text">8.恢复Tasker里的任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-TWRP备份还原"><span class="nav-number">10.</span> <span class="nav-text">9.TWRP备份还原</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-bug"><span class="nav-number">11.</span> <span class="nav-text">10.bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#吐槽Android版微信"><span class="nav-number">12.</span> <span class="nav-text">吐槽Android版微信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#体验-amp-收获"><span class="nav-number">12.1.</span> <span class="nav-text">体验&amp;收获</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考-推荐阅读"><span class="nav-number">13.</span> <span class="nav-text">参考&#x2F;推荐阅读</span></a></li></ol></div>       </div>       <!--/noindex-->        <div class="site-overview-wrap sidebar-panel">         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">     <img class="site-author-image" itemprop="image" alt="木子"       src="https://blog.k8s.li/avatar.png">   <p class="site-author-name" itemprop="name">木子</p>   <div class="site-description" itemprop="description"></div> </div> <div class="site-state-wrap motion-element">   <nav class="site-state">       <div class="site-state-item site-state-posts">           <a href="/archives">           <span class="site-state-item-count">101</span>           <span class="site-state-item-name">日志</span>         </a>       </div>       <div class="site-state-item site-state-categories">             <a href="/categories/">         <span class="site-state-item-count">9</span>         <span class="site-state-item-name">分类</span></a>       </div>       <div class="site-state-item site-state-tags">             <a href="/tags/">         <span class="site-state-item-count">124</span>         <span class="site-state-item-name">标签</span></a>       </div>   </nav> </div>   <div class="links-of-author motion-element">       <span class="links-of-author-item">         <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>       </span>       <span class="links-of-author-item">         <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>       </span>       <span class="links-of-author-item">         <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>       </span>       <span class="links-of-author-item">         <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>       </span>       <span class="links-of-author-item">         <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>       </span>       <span class="links-of-author-item">         <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>       </span>       <span class="links-of-author-item">         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>       </span>   </div>          </div>         <div class="back-to-top motion-element">           <i class="fa fa-arrow-up"></i>           <span>0%</span>         </div>      </div>   </aside>   <div id="sidebar-dimmer"></div>         </div>     </main>      <footer class="footer">       <div class="footer-inner">           <div class="copyright">      &copy; 2018 –    <span itemprop="copyrightYear">2021</span>   <span class="with-love">     <i class="fa fa-heart"></i>   </span>   <span class="author" itemprop="copyrightHolder">木子</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-area-chart"></i>     </span>       <span class="post-meta-item-text">站点总字数：</span>     <span title="站点总字数">1.5m</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-coffee"></i>     </span>       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>     <span title="站点阅读时长">41:25</span> </div>   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动   </div>   <span class="post-meta-divider">|</span>   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>   </div>                         </div>     </footer>   </div>       <script src="/lib/anime.min.js"></script>  <script src="/js/utils.js"></script>   <script src="/js/schemes/pisces.js"></script>   <script src="/js/next-boot.js"></script>                               <script>   function loadCount() {     var d = document, s = d.createElement('script');     s.src = 'https://muzi.disqus.com/count.js';     s.id = 'dsq-count-scr';     (d.head || d.body).appendChild(s);   }   // defer loading until the whole page loading is completed   window.addEventListener('load', loadCount, false); </script> <script>   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {     if (window.DISQUS) {       DISQUS.reset({         reload: true,         config: {page: {             url: "https://blog.k8s.li/moto-z-play-AOSIP.html",             identifier: "moto-z-play-AOSIP.html",             title: "moto z play addsion xt1635-02 刷机指南"           }         }       });     } else {       var d = document, s = d.createElement('script');       s.src = 'https://muzi.disqus.com/embed.js';       s.setAttribute('data-timestamp', '' + +new Date());       (d.head || d.body).appendChild(s);     }   }); </script>  </body> </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="0.备份数据刷机千万条，备份第一条，刷机不规范，机主两行泪😂  1.解锁bootloader下载Android SDK Platform Tools,解压后将platform-tools所在的绝对路径添加到环境变量。安装moto驱动程序，下载地址win解锁官网,需要注册账户开机键 + 音量减进入bootloaderfastboot oem get_unlock_data 获取设备ID,粘贴复制到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="moto z play addsion xt1635-02 刷机指南">
+<meta property="og:url" content="https://blog.k8s.li/moto-z-play-AOSIP.html">
+<meta property="og:site_name" content="木子">
+<meta property="og:description" content="0.备份数据刷机千万条，备份第一条，刷机不规范，机主两行泪😂  1.解锁bootloader下载Android SDK Platform Tools,解压后将platform-tools所在的绝对路径添加到环境变量。安装moto驱动程序，下载地址win解锁官网,需要注册账户开机键 + 音量减进入bootloaderfastboot oem get_unlock_data 获取设备ID,粘贴复制到">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-29T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="moto">
+<meta property="article:tag" content="ROM">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.k8s.li/moto-z-play-AOSIP.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>moto z play addsion xt1635-02 刷机指南 | 木子</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/moto-z-play-AOSIP.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木子">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          moto z play addsion xt1635-02 刷机指南
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-12 2019-04-12T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-04-12T00:00:00+08:00">2019-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-01 2020-03-01T00:00:00+08:00" itemprop="dateModified" datetime="2020-03-01T00:00:00+08:00">2020-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9E%E6%9C%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">搞机</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/moto-z-play-AOSIP.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="moto-z-play-AOSIP.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="0-备份数据"><a href="#0-备份数据" class="headerlink" title="0.备份数据"></a>0.备份数据</h2><p>刷机千万条，备份第一条，刷机不规范，机主两行泪😂</p>
+<hr>
+<h2 id="1-解锁bootloader"><a href="#1-解锁bootloader" class="headerlink" title="1.解锁bootloader"></a>1.解锁bootloader</h2><p>下载<a href="https://developer.android.com/studio/releases/platform-tools.html" target="_blank" rel="noopener">Android SDK Platform Tools</a>,解压后将platform-tools所在的绝对路径添加到环境变量。<br>安装moto驱动程序，下载地址<a href="http://www.motorola.com/getmdmwin" target="_blank" rel="noopener">win</a><br>解锁<a href="http://motorola.com/unlockbootloader" target="_blank" rel="noopener">官网</a>,需要注册账户<br>开机键 + 音量减进入bootloader<br>fastboot oem get_unlock_data 获取设备ID,粘贴复制到下面<br><a href="https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-b" target="_blank" rel="noopener">解锁网页</a><br>申请后获取解锁码<br>fastboot oem unlock 【解锁码】<br>下载magisk zip包和magisk manager apk方便以后使用</p>
+<hr>
+<h2 id="2-刷recovery-twrp-升级bootloader"><a href="#2-刷recovery-twrp-升级bootloader" class="headerlink" title="2.刷recovery  twrp /升级bootloader"></a>2.刷recovery  twrp /升级bootloader</h2><p><a href="https://twrp.me/Devices/" target="_blank" rel="noopener">TWRP官网</a><br>我的moto z play 刷 Android9.0 的 ROM 要求的 bootloader 必须为 Oreo 的0xC180 or 0xC182，下载 moto 官方固件刷入 bootloader.img 即可，官方固件 1.7GB，好大。总不能为了刷个几MB的 bootloader 下载整个固件包啊,还浪费我流量,于是保存firmware到Google Drive(还好固件分享是通过Google Drive),在挂载了 Google Drive 的 vps 上解压出来需要刷的那几个文件刷入即可.刷完 bootloader 后发现仅仅升级 bootloader 分区手机无法上网，还需要刷入基带。<br>最后在 XDA 社区找到了升级到 Oreo bootloader 的<a href="https://forum.xda-developers.com/showpost.php?p=78379116&postcount=3" target="_blank" rel="noopener">帖子</a>，大佬已经帮忙准备好了要刷入的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash partition gpt.bin</span><br><span class="line">fastboot flash bootloader bootloader.img</span><br><span class="line">fastboot flash modem NON-HLOS.bin</span><br><span class="line">fastboot flash fsg fsg.mbn</span><br><span class="line">fastboot flash dsp adspso.bin</span><br><span class="line">fastboot flash oem oem.img</span><br></pre></td></tr></table></figure>
+
+<p>刷上下载的 Twrp<br><code>fastboot flash recovery twrp-addison.img</code><br>reboot 到 recovery 就行</p>
+<hr>
+<h2 id="3-刷ROM"><a href="#3-刷ROM" class="headerlink" title="3.刷ROM"></a>3.刷ROM</h2><p>把 ROM 的 zip 包以及 magisk 放到手机内部存储目录即可,在 INSTALL 那里选择 ROM 刷入<br>接着刷入 magisk 的zip包<br>reboot system</p>
+<hr>
+<h2 id="4-刷magisk"><a href="#4-刷magisk" class="headerlink" title="4.刷magisk"></a>4.刷magisk</h2><p>安装 magisk manager，有些精简的 ROM 没有文件管理器，可以在设置里-&gt;存储或下载管理器里找到apk 文件安装。<br>输入经常使用的 magisk 模块主要有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.Magisk Manager for Recovery Mode(mm)</span><br><span class="line">2.DNSCrypt-Proxy</span><br><span class="line">3.Enable doze for GMS Magisk Module</span><br><span class="line">4.GPU Turbo Boost</span><br><span class="line">5.Google Sans MOD Font</span><br><span class="line">6.Pix3lify</span><br><span class="line">7.ViPER4 Android FX Materialized</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-安装常用工具"><a href="#5-安装常用工具" class="headerlink" title="5.安装常用工具"></a>5.安装常用工具</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">0.钛备份，每次刷完 ROM 接着 root 完后第一个装的就是钛备份，使用它来恢复下面的应用和数据</span><br><span class="line">1.绿色守护，导入处方</span><br><span class="line">2.RE 管理器，卸载删除不必要的应用，方便减少备份包大小</span><br><span class="line">3.SD Maid，配合 RE 使用，卸载删除应用，分析分区占用大小</span><br><span class="line">4.shadowsocks + obfs，你懂的</span><br><span class="line">5.Tasker，高效率神器，用过的人都说好😂!</span><br><span class="line">6.Solid Explorer，MD 风格的文件管理器，用了之后放弃RE了🙃</span><br><span class="line">7.Telegram X 跨平台，16 年开始使用到现在，已经放弃用qq了</span><br><span class="line">8.juiceSSH，用来执行 shell，同步硬件时钟用，免得 TWRP 时间回到 1970.</span><br><span class="line">9.炼妖壶 发现能在这个 ROM 上使用，好好折腾一下</span><br><span class="line">10.Lawnchair 替换掉原来的桌面，这个自从 2017 年使用后就从未更换过。精简！！！！特别适合我这种精简主义者。</span><br><span class="line">11.My Android tools，同 IFW，用来镇压毒瘤 app</span><br><span class="line">12.App Ops，用来驯服一些国内毒瘤 app，不给权限不让运行的毒瘤行为</span><br><span class="line">13.IFW，意图防火墙，用来镇压一些国内的臃肿毒瘤 app</span><br><span class="line">14.Pixel Icon Pack，图包，美化一下图标</span><br><span class="line">15.moto 相机，感觉没有 aosp 的好用</span><br><span class="line">16.快图相册，从Android4.4 开始一直使用，精简好用，速度极快</span><br><span class="line">17.谷歌拼音输入法,精简</span><br><span class="line">18.国内那些臃肿的毒瘤 app，最后再装😡！</span><br><span class="line">19.MX player 看片儿用的</span><br><span class="line">20.简洁·日历 就像名字那样，十分简洁，没有杂七杂八的功能，就是农历可能不准，记得去年的冬至吗😂</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-刷入-opengapps"><a href="#6-刷入-opengapps" class="headerlink" title="6.刷入 opengapps"></a>6.刷入 opengapps</h2><p>推荐 pico 包，虽然足够小了，但还是可以精简很多不必要的 apk 的。需要注意的是，仅仅刷入 opengapps 包是无法登录 Google 账户的，还需要下载最新版的 Google play service APK 来更新 Google play service 。这样才能登录到 Google 账户。选择最后装 opengapps 的原因是，之前需要卸载删除一些系统 app，删除一些 app 后有可能会卡机无法启动，所以每次删除之前都需要备份一下，而 opengapps 刷入后备份的大小将会增加很多。于是最后等到删除完不必要的系统 app 后再刷入 opengapps。刷完之后再卸载掉 opengapps 里没用的 app。<br>登录 Google 账户，同步 chrome 书签。使用 opengapps 我唯一的需求就是 chrome，能同步 chrome 书签和密码就足够了。</p>
+<hr>
+<h2 id="7-个性化定义"><a href="#7-个性化定义" class="headerlink" title="7.个性化定义"></a>7.个性化定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.恢复导航栏布局</span><br><span class="line">2.缩小导航栏高度</span><br><span class="line">3.导航栏透明</span><br><span class="line">4.全局沉浸模式</span><br><span class="line">5.复制铃声到&#x2F;system&#x2F;media&#x2F;ringtones,删除其他media文件</span><br><span class="line">6.设置密码，指纹解锁</span><br><span class="line">7.把一些不需要更新的app移动到&#x2F;system&#x2F;app</span><br><span class="line">8.个性化状态栏，扩展状态栏</span><br><span class="line">9.导航栏设定了四个虚拟按键</span><br><span class="line">9.1.单击任务栏</span><br><span class="line">9.2.单击home 长按休眠</span><br><span class="line">9.3.单击返回 长按杀死应用</span><br><span class="line">9.4。单击返回上一个应用 长按截屏</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-恢复Tasker里的任务"><a href="#8-恢复Tasker里的任务" class="headerlink" title="8.恢复Tasker里的任务"></a>8.恢复Tasker里的任务</h2><hr>
+<h2 id="9-TWRP备份还原"><a href="#9-TWRP备份还原" class="headerlink" title="9.TWRP备份还原"></a>9.TWRP备份还原</h2><p>把之前的在 twrp 做的备份复制到 PC，使用 tar 解压出备份文件。如果使用 7Z 或其他 GUI 的解压缩程序会提示错误，因为在 /system 分区里有一些硬链接文件，是无法解压出来的。使用 tar 就可以解压出来。解压出来后把 /etc/hosts 文件复制到新的ROM system 分区下，里面有一些自己屏蔽的一些域名，大部分是百度等一些毒瘤 app SDK 的域名，直接屏蔽掉。<br>复制 /data/system/ifw 下的 ifw.xml 是自己自定义的一些 IFW 规则，主要对付一些国内毒瘤 app。<br>复制 /system/media/ 下的开机动画，还是喜欢原来的开机动画。<br>使用钛备份还原 Solid Explorer 的数据，使用 smba 共享传输这些文件。</p>
+<hr>
+<h2 id="10-bug"><a href="#10-bug" class="headerlink" title="10.bug"></a>10.bug</h2><p>1.重启可能卡在开机动画那里，需要长按电源键强制关机，再开机才能正常启动<br>2.<del>开机启动后，Lawnchair 会随机性地挂掉😥，最后发现不是 Lawnchair 挂掉了，是 AOSIP 自带的 Quickstep</del><br>3.不能原生支持 xposed 框架，需要刷入其他包魔改一下，不清真，所以就没用<br>4.以前 xposed 我仅仅使用三个模块，绿色守护，应用管理，XinternalSD 。现在不需要也能满足日常使用了。<br>5.刷入 opengapps 包后,所有的 app 权限授权记录都消失了,需要重新授权,不知道是 bug 还是 feature 😂<br>6.安装微信后,6.7.3版本不能登录,必须7.0.3以上,fuck尼玛的微信😡.无奈装7.0.3再降回6.7.3.尼玛去死吧,毒瘤app.<br>7.开热点随机性地断流<br>8.twrp 里的硬件时钟经常会重设为 1970– 谜之 bug<br>9.最后设置密码的原因是，使用twrp备份还原后密码错误，也是 twrp 的 bug</p>
+<hr>
+<h2 id="吐槽Android版微信"><a href="#吐槽Android版微信" class="headerlink" title="吐槽Android版微信"></a>吐槽Android版微信</h2><p>1.微信限制低版本登录，可以使用最新版本登录，保留原数据卸载微信高版本，重启后再装低版本就能登录<br>2.Google play 最新版微信7.0.3已经很臃肿了,世界上activity数目超过1000的Android 应用也就你们这些国产毒瘤吧,也就你们微信,美团了吧.毒瘤,臃肿的体验真让人恶心到家,还不让人家用低版本的,PC端登录还要扫码登录,我扫你🐎币.<br>3.微信会产生日志文件,在/data/data/com.tencent.mm/files/xlog目录里.删除这个目录,建立一个xlog的文件,修改000权限,就可以阻止微信产生垃圾日志文件.但也会在内部存储产生xlog日志,同理删除xlog目录,建立xlog文件就行.<br>4.平时很少使用微信,因为微信真的越来越臃肿,加一些我不想用的东西,还限制低版本的登录,我用低版本日你🐎了吗?用新版本的微信你就像闻到屎一样恶心人!<br>5.微信在我眼里是一坨一坨屎堆砌的app,臃肿,毒瘤,恶心,难用,还自带墙,言论审查,删帖封号,去死吧微信!<br>6.国内互联网公司带动了一些很差的使用体验风潮,各大公司都相互模仿,比如强制扫码🐎登录;下载APP查看完整内容(比如知乎,豆瓣,CSDN等等),还有菜鸟驿站必须拿身份证拍照取件,卑鄙无耻强制收集用户隐私;为了账户安全实名认证(微信支付宝淘宝);手机端访问为安装app强制跳转到应用商店(淘宝);不给权限不让运行(国内毒瘤app一贯特色);权限滥用;音乐软件里弄个商城(QQ音乐,网易云);浏览器弄个新闻推送;浏览器自带黑名单进行言论审查(屏蔽996.icu);杀毒软件弄个金融投资(360)<del>~</del>等等,国内互联网都被这些毒瘤厂商带坏了.哎,悲哀啊.<br>7.我是个极简主义者,也是日常重度使用debian的Linux用户,遵循unix理念.一个程序只做一件事,把它做好就行.国内的这些毒瘤app完全向unix理念相反方向发展.整天用着一堆自己极其讨厌的app,真是很让人烦心!!因为家人朋友用微信,自己只能强制绑架着使用微信.没办法,像telegram这样甩微信十条街的应用国内被屏蔽了.</p>
+<hr>
+<h3 id="体验-amp-收获"><a href="#体验-amp-收获" class="headerlink" title="体验&amp;收获"></a>体验&amp;收获</h3><p>1.经过精简后的 AOSIP 9.0 P 的ROM，系统 app 的数量 75 个，其中包括了 opengapps 。相当精简了，比起国内那些魔改的ROM，要精简很多很多，这也是我为什么喜欢用原生ROM的原因，可以自己定制，精简，精简，精简再精简。以前刷 moto g 2nd 的时候，刷的 AOSP Android 5.1 最后精简到系统 app 仅仅 45 个，system 分区大小不足 400MB，流畅的一批，MSM8226 的 Soc 用的流畅的一批,精简到能够保障系统正常运行，清除 data 分区后，开机后可以正常初始化使用，打电话，发短信，安装应用等正常。但是无论精简再流畅,面对国内这些毒瘤 app,还是招架不了.<br>2.现在插上 USB 线可以默认选择为 MTP 了,不像以前那样需要打开开发者工具-&gt;USB设置那里选择 MTP ,比以前方便很多<br>3.MAT 还原的时候速度快了很多很多,几乎不到 3 秒完成还原<br>4.感觉基带信号不稳定,开热点会经常性地断流.估计是这个ROM的通病,或者是我基带的问题.<br>5.安装应用的时候速度比以前快了很多<br>6.在探索炼妖壶的使用,微信无法登录<br>7.Google TTS 可以正常使用了,以前没修好,现在配合tasker能实现手机丢失后报警,朗读警告信息的功能了,改天写一个使用taker处理的文章,好好探索折腾一下,估计这个月没时间写了,时间够忙的.</p>
+<hr>
+<h2 id="参考-推荐阅读"><a href="#参考-推荐阅读" class="headerlink" title="参考/推荐阅读"></a>参考/推荐阅读</h2><p>1.<a href="https://bbs.letitfly.me/" target="_blank" rel="noopener">LetITFly BBS</a>，里面介绍了IFW和MAT，刷机搞<del>基</del>机常去的地方。<br>2.<a href="https://cn.apkjam.com/greenify-prescription.html" target="_blank" rel="noopener">「绿色守护」处方推荐</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/android/" rel="tag"><i class="fa fa-tag"></i> android</a>
+              <a href="/tags/moto/" rel="tag"><i class="fa fa-tag"></i> moto</a>
+              <a href="/tags/ROM/" rel="tag"><i class="fa fa-tag"></i> ROM</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/networktools.html" rel="prev" title="every linux networking tool i know">
+      <i class="fa fa-chevron-left"></i> every linux networking tool i know
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/privacy-protections.html" rel="next" title="浅谈保护隐私的几种方法">
+      浅谈保护隐私的几种方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-备份数据"><span class="nav-number">1.</span> <span class="nav-text">0.备份数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-解锁bootloader"><span class="nav-number">2.</span> <span class="nav-text">1.解锁bootloader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-刷recovery-twrp-升级bootloader"><span class="nav-number">3.</span> <span class="nav-text">2.刷recovery  twrp &#x2F;升级bootloader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-刷ROM"><span class="nav-number">4.</span> <span class="nav-text">3.刷ROM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-刷magisk"><span class="nav-number">5.</span> <span class="nav-text">4.刷magisk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-安装常用工具"><span class="nav-number">6.</span> <span class="nav-text">5.安装常用工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-刷入-opengapps"><span class="nav-number">7.</span> <span class="nav-text">6.刷入 opengapps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-个性化定义"><span class="nav-number">8.</span> <span class="nav-text">7.个性化定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-恢复Tasker里的任务"><span class="nav-number">9.</span> <span class="nav-text">8.恢复Tasker里的任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-TWRP备份还原"><span class="nav-number">10.</span> <span class="nav-text">9.TWRP备份还原</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-bug"><span class="nav-number">11.</span> <span class="nav-text">10.bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#吐槽Android版微信"><span class="nav-number">12.</span> <span class="nav-text">吐槽Android版微信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#体验-amp-收获"><span class="nav-number">12.1.</span> <span class="nav-text">体验&amp;收获</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考-推荐阅读"><span class="nav-number">13.</span> <span class="nav-text">参考&#x2F;推荐阅读</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">41:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/moto-z-play-AOSIP.html",
+            identifier: "moto-z-play-AOSIP.html",
+            title: "moto z play addsion xt1635-02 刷机指南"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

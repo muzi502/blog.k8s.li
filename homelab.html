@@ -1,1 +1,797 @@
-<!DOCTYPE html> <html lang="zh-CN"> <head>   <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"> <meta name="theme-color" content="#222"> <meta name="generator" content="Hexo 4.2.1">   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">   <link rel="mask-icon" href="/favicon.ico" color="#222">   <meta http-equiv="Cache-Control" content="no-transform">   <meta http-equiv="Cache-Control" content="no-siteapp">  <link rel="stylesheet" href="/css/main.css">  <link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"> <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">   <script id="hexo-configurations">   var NexT = window.NexT || {};   var CONFIG = {     hostname: new URL('https://blog.k8s.li').hostname,     root: '/',     scheme: 'Gemini',     version: '7.7.0',     exturl: false,     sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},     copycode: {"enable":true,"show_result":true,"style":"mac"},     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},     bookmark: {"enable":false,"color":"#222","save":"auto"},     fancybox: false,     mediumzoom: false,     lazyload: false,     pangu: false,     comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},     algolia: {       appID: '',       apiKey: '',       indexName: '',       hits: {"per_page":10},       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}     },     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},     path: 'search.xml',     motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}   }; </script>    <meta name="description" content="捡垃圾来自 @awpak78 的图👇  作为一名运维工程师，白天在工地上搬砖养家糊口，晚上下班回家后就开始折腾一堆破铜烂铁自娱自乐😂。最近东拼西凑花了 2000 来块钱捡垃圾整了台 HomeLab 玩玩，折腾一些没用的东西🙃 其实很早之前就想搞一台低功耗的 HomeLab 主机玩儿了，最早开始选择的是 Dell T1700 SFF + E3-1271V3 +32GB DDR3，但是呢，E3"> <meta property="og:type" content="article"> <meta property="og:title" content="垃圾佬的 Homelab 折腾记录"> <meta property="og:url" content="https://blog.k8s.li/homelab.html"> <meta property="og:site_name" content="木子"> <meta property="og:description" content="捡垃圾来自 @awpak78 的图👇  作为一名运维工程师，白天在工地上搬砖养家糊口，晚上下班回家后就开始折腾一堆破铜烂铁自娱自乐😂。最近东拼西凑花了 2000 来块钱捡垃圾整了台 HomeLab 玩玩，折腾一些没用的东西🙃 其实很早之前就想搞一台低功耗的 HomeLab 主机玩儿了，最早开始选择的是 Dell T1700 SFF + E3-1271V3 +32GB DDR3，但是呢，E3"> <meta property="og:locale" content="zh_CN"> <meta property="og:image" content="https://p.k8s.li/20200801_150112.jpg"> <meta property="og:image" content="https://p.k8s.li/HomeLab-1.jpg"> <meta property="og:image" content="https://p.k8s.li/OptiPlex_5040SFF_motherboard.jpg"> <meta property="og:image" content="https://p.k8s.li/HomeLab-5.jpg"> <meta property="og:image" content="https://p.k8s.li/HomeLab-3.jpg"> <meta property="og:image" content="https://p.k8s.li/HomeLab-4.jpg"> <meta property="og:image" content="https://p.k8s.li/HomeLab-6.jpg"> <meta property="og:image" content="https://p.k8s.li/20200822195450798.png"> <meta property="og:image" content="https://p.k8s.li/2021-06-21-09.jpg"> <meta property="og:image" content="https://p.k8s.li/2021-06-21-04.jpg"> <meta property="og:image" content="https://p.k8s.li/2021-06-21-06.jpg"> <meta property="og:image" content="https://p.k8s.li/2021-06-21-05.jpg"> <meta property="og:image" content="https://p.k8s.li/2021-06-21-02.jpg"> <meta property="article:published_time" content="2020-08-20T16:00:00.000Z"> <meta property="article:modified_time" content="2021-07-20T07:30:32.186Z"> <meta property="article:author" content="木子"> <meta property="article:tag" content="捡垃圾"> <meta property="article:tag" content="NAS"> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="https://p.k8s.li/20200801_150112.jpg">  <link rel="canonical" href="https://blog.k8s.li/homelab.html">   <script id="page-configurations">   // https://hexo.io/docs/variables.html   CONFIG.page = {     sidebar: "",     isHome: false,     isPost: true   }; </script>    <title>垃圾佬的 Homelab 折腾记录 | 木子</title>            <noscript>   <style>   .use-motion .brand,   .use-motion .menu-item,   .sidebar-inner,   .use-motion .post-block,   .use-motion .pagination,   .use-motion .comments,   .use-motion .post-header,   .use-motion .post-body,   .use-motion .collection-header { opacity: initial; }    .use-motion .site-title,   .use-motion .site-subtitle {     opacity: initial;     top: initial;   }    .use-motion .logo-line-before i { left: initial; }   .use-motion .logo-line-after i { right: initial; }   </style> </noscript>  <link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml"> </head>  <body itemscope itemtype="http://schema.org/WebPage">   <div class="container">     <div class="headband"></div>      <header class="header" itemscope itemtype="http://schema.org/WPHeader">       <div class="header-inner"><div class="site-brand-container">   <div class="site-meta">      <div>       <a href="/" class="brand" rel="start">         <span class="logo-line-before"><i></i></span>         <span class="site-title">木子</span>         <span class="logo-line-after"><i></i></span>       </a>     </div>   </div>    <div class="site-nav-toggle">     <div class="toggle" aria-label="切换导航栏">       <span class="toggle-line toggle-line-first"></span>       <span class="toggle-line toggle-line-middle"></span>       <span class="toggle-line toggle-line-last"></span>     </div>   </div> </div>   <nav class="site-nav">      <ul id="menu" class="menu">         <li class="menu-item menu-item-home">      <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>    </li>         <li class="menu-item menu-item-books">      <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>    </li>         <li class="menu-item menu-item-kindle">      <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>    </li>         <li class="menu-item menu-item-friend">      <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>    </li>         <li class="menu-item menu-item-about">      <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>    </li>   </ul>  </nav> </div>     </header>         <div class="reading-progress-bar"></div>       <main class="main">       <div class="main-inner">         <div class="content-wrap">                       <div class="content">                 <div class="posts-expand">                <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/homelab.html">      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">       <meta itemprop="image" content="https://blog.k8s.li/avatar.png">       <meta itemprop="name" content="木子">       <meta itemprop="description" content="">     </span>      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">       <meta itemprop="name" content="木子">     </span>       <header class="post-header">         <h2 class="post-title" itemprop="name headline">           垃圾佬的 Homelab 折腾记录         </h2>          <div class="post-meta">             <span class="post-meta-item">               <span class="post-meta-item-icon">                 <i class="fa fa-calendar-o"></i>               </span>               <span class="post-meta-item-text">发表于</span>                <time title="创建时间：2020-08-21 2020-08-21T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2020-08-21T00:00:00+08:00">2020-08-21</time>             </span>               <span class="post-meta-item">                 <span class="post-meta-item-icon">                   <i class="fa fa-calendar-check-o"></i>                 </span>                 <span class="post-meta-item-text">更新于</span>                 <time title="修改时间：2021-07-20 2021-07-20T15:30:32+08:00" itemprop="dateModified" datetime="2021-07-20T15:30:32+08:00">2021-07-20</time>               </span>             <span class="post-meta-item">               <span class="post-meta-item-icon">                 <i class="fa fa-folder-o"></i>               </span>               <span class="post-meta-item-text">分类于</span>                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">                   <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">                     <span itemprop="name">技术</span>                   </a>                 </span>             </span>                  <span class="post-meta-item">            <span class="post-meta-item-icon">         <i class="fa fa-comment-o"></i>       </span>       <span class="post-meta-item-text">Disqus：</span>          <a title="disqus" href="/homelab.html#comments" itemprop="discussionUrl">       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="homelab.html" itemprop="commentCount"></span>     </a>   </span>      <br>             <span class="post-meta-item" title="本文字数">               <span class="post-meta-item-icon">                 <i class="fa fa-file-word-o"></i>               </span>                 <span class="post-meta-item-text">本文字数：</span>               <span>9.2k</span>             </span>             <span class="post-meta-item" title="阅读时长">               <span class="post-meta-item-icon">                 <i class="fa fa-clock-o"></i>               </span>                 <span class="post-meta-item-text">阅读时长 &asymp;</span>               <span>15 分钟</span>             </span>          </div>       </header>                     <div class="post-body" itemprop="articleBody">                 <h2 id="捡垃圾"><a href="#捡垃圾" class="headerlink" title="捡垃圾"></a>捡垃圾</h2><p>来自 <a href="https://space.bilibili.com/1292029" target="_blank" rel="noopener">@awpak78 </a>的图👇</p> <p><img src="https://p.k8s.li/20200801_150112.jpg" alt=""></p> <p>作为一名运维工程师，白天在工地上搬砖养家糊口，晚上下班回家后就开始折腾一堆破铜烂铁自娱自乐😂。最近东拼西凑花了 2000 来块钱捡垃圾整了台 HomeLab 玩玩，折腾一些没用的东西🙃</p> <p>其实很早之前就想搞一台低功耗的 HomeLab 主机玩儿了，最早开始选择的是 Dell T1700 SFF + E3-1271V3 +32GB DDR3，但是呢，E3 V3 系列是 Intel 第四代  CPU ，1150 芯片组无法从 M.2 启动，磁盘速度只能达到 SATA III 也就是顶多 600 MB/s 的读写速度，而目前随便一块支持  PCI-e M.2 NVMe 的主板普遍都能达到 3000MB/s 了。所以这一点来讲 E3 V3 已经不值得捡了。而且我想把我台式机上 SN750 500GB 换到这台机器上，所以还是要选择一个支持 PCI-e M.2 NVMe 的主板。</p> <table> <thead> <tr> <th align="center">硬件</th> <th>配置</th> <th align="center">价格</th> </tr> </thead> <tbody><tr> <td align="center">CPU</td> <td>Intel(R) Core(TM) i5-6600T CPU @ 2.70GHz 35w</td> <td align="center">480</td> </tr> <tr> <td align="center">主板</td> <td>Dell OptiPlex 7040 准系统：Intel ®Q170</td> <td align="center">400</td> </tr> <tr> <td align="center">内存</td> <td>镁光 DDR4 16GB 2666MHz</td> <td align="center">310</td> </tr> <tr> <td align="center">显卡</td> <td>英特尔® 核芯显卡 530</td> <td align="center">0</td> </tr> <tr> <td align="center">机箱</td> <td>Dell OptiPlex 7040 准系统</td> <td align="center">0</td> </tr> <tr> <td align="center">电源</td> <td>Dell OptiPlex 7040 准系统：290W 开关电源</td> <td align="center">0</td> </tr> <tr> <td align="center">UPS</td> <td>某杂牌 UPS 650VA360W</td> <td align="center">160</td> </tr> <tr> <td align="center">固态</td> <td>三星 970PRO 512GB</td> <td align="center">820</td> </tr> <tr> <td align="center">总价</td> <td></td> <td align="center">2170</td> </tr> </tbody></table> <h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p>至于 6600T 的性能，在 500 块钱的价位内 35W低功耗的 6600T 还算可以能接受，为什么不买 7200U 这种低压 U 呢？，一是低压 U 的装机成本太高，而且性价比很低，我还要在上面跑一堆虚拟机，低压 U 恐怕扛不住，所以一开始就放弃了低压 U 的装机方案。</p> <p><img src="https://p.k8s.li/HomeLab-1.jpg" alt=""></p> <h3 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h3><p>由于 Dell SFF 系列的机箱是定制的，和普通的主板不太一样，也只有这样才能塞进这么小的空间，对于 MFF 系列的则更小一点。对于这种小机箱而言，拥有 2个 PCI-e*4 和一个 PIC-e*16 是相当不错了，PCI-e*4可以装一个阵列卡个一个四网口的网卡，PIC-e*16又可以装一个低功耗的刀卡显卡。等到以后台式机升级的硬件的时候再把台式机上的 GT1030 亮机卡放上去。三个 SATA 一个 M.2 有点捉襟见肘，机箱空间就那么点，口子多了硬盘也塞不下呀😂。</p> <table> <thead> <tr> <th>Model:</th> <th><a href="https://www.dell.com/support/manuals/us/en/04/optiplex-7040-desktop/opti7040_sff_om/specifications?guid=guid-f058d593-d332-479e-9d55-6c6031fa6cba&lang=en-us" target="_blank" rel="noopener"><em>Dell OptiPlex 7040 SFF</em></a></th> </tr> </thead> <tbody><tr> <td>Form factor:</td> <td>Small Form Factor</td> </tr> <tr> <td>CPU options:</td> <td>Intel Gen6 i3/i5/i7</td> </tr> <tr> <td>Chipset:</td> <td><a href="https://ark.intel.com/content/www/us/en/ark/products/90587/intel-q170-chipset.html" target="_blank" rel="noopener">Intel Q170</a></td> </tr> <tr> <td>RAM slots:</td> <td>(4x) DIMM DDR4-2133</td> </tr> <tr> <td>Max RAM:</td> <td>64 GB</td> </tr> <tr> <td>USB Ports:</td> <td>(6x) USB3.0; (4x) USB2.0;</td> </tr> <tr> <td>Video Ports:</td> <td>(2x) Display Port 1.2; HDMI 1.4;</td> </tr> <tr> <td>Other Ports:</td> <td>Serial; (2x) PS2; RJ45; Headset; Line-Out;</td> </tr> <tr> <td>Optional Ports:</td> <td>VGA; Media Card Reader;</td> </tr> <tr> <td>SATA:</td> <td>(3x) SATA 3.0*</td> </tr> <tr> <td>PCIe:</td> <td>PCIe 3.0 x16 (low profile); PCIe 3.0 x4 (low profile);</td> </tr> <tr> <td>M.2 slots:</td> <td>M.2 2280 M-key (PCIe 3.0 x4, SATA 3.0)</td> </tr> <tr> <td>Drive bays:</td> <td>3.5-inch/(2x)2.5-inch; 5.25-inch (slim);</td> </tr> <tr> <td>Hard Drive:</td> <td>max 2TB; RAID 0 &amp; 1;</td> </tr> <tr> <td>PSU:</td> <td>180 W</td> </tr> <tr> <td>Weight:</td> <td>6.00 kg (13.22 lb)</td> </tr> </tbody></table> <ul> <li>从 <a href="https://www.hardware-corner.net/guides/difference-optiplex-3040-vs-5040-vs-7040/" target="_blank" rel="noopener">The difference between Dell OptiPlex 3040 vs. 5040 vs. 7040</a> 偷来的一张图片👇</li> </ul> <p><img src="https://p.k8s.li/OptiPlex_5040SFF_motherboard.jpg" alt=""></p> <h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>两条 8GB DDR4 内从从我台式机上拆下来的，又花了 300 块钱买了个镁光的 16GB DDR4 装了上去，迫于 我的台式机 B350M-K 的缩水板只有两个内存插槽而且支持到 32GB，暂时装一个 16GB 的吧，能以后再装一个上去。</p> <h3 id="固态"><a href="#固态" class="headerlink" title="固态"></a>固态</h3><p>其实本来的预算三星 970PRO 512GB没打算买，是我在找 Dell OptiPlex 7040 时意外碰到的一个老哥，而且这块固态是德亚的，还算靠谱一些，于是剁手买了这个块固态。970PRO 系列的都是 MLC 的颗粒的固态硬盘，通 SM961 一样是属于传家宝系列😂，但是 SM961 淘宝上水太深，清零盘占据多数，所以不建议买。</p> <p>正好把这块 970PRO 换到我的台式机上，把台式机上的 SN750 512GB 换到 HomeLab 机器上，给 ESXi 上的虚拟机用。在玩儿虚拟化的时候深有感触，宿主机的磁盘是机械硬盘的话，上面的虚拟机达到一定数量时，虚拟机会很卡，所以玩 ESXi 虚拟化，有块固态的体验是非常爽滴😋。</p> <h2 id="装机"><a href="#装机" class="headerlink" title="装机"></a>装机</h2><p>其实装机很快，由于是买的 Dell OptiPlex 7040 准系统，所以只需要把 CPU 、内存、硬盘装上去就完事儿了。</p> <p>收到准系统后发现没有带 M.2 螺丝，只能临时拿胶带粘糊上去，勉强撑了两天，后来买了个螺丝和散热片完美地解决了。</p> <p><img src="https://p.k8s.li/HomeLab-5.jpg" alt=""></p> <p>从以前旧笔记本淘汰下来的 2TB 5400RPM 的石头盘，已经出现坏道了，临时当个下载盘吧，在它还没彻底崩盘之前再压榨一下它吧😂。后面打算再添加一块12TB的氦气盘当仓库盘和备份数据使用，有了 UPS 和这台主机 7*24 小时开机也没啥问题了。</p> <p><img src="https://p.k8s.li/HomeLab-3.jpg" alt=""></p> <p>后面那台是我的台式机，也是去年这时候买的，两者比较起来 SFF 的型号确实小很多。Dell 的这种主机还有一种 MFF 型号的，那种更小一些，差不多比路由器大一些而已，不过扩展性不好，而且还需要外置电源，也就没考虑，不过现在想想有点后悔了，当初应该多加点钱买 SFF 的，不过还好也能接受，只不过体积大了些，搬家的时候不太方便。</p> <p><img src="https://p.k8s.li/HomeLab-4.jpg" alt=""></p> <h2 id="ESXi"><a href="#ESXi" class="headerlink" title="ESXi"></a>ESXi</h2><p>装完机器之后就开始装 ESXi ，对于虚拟化，ESXi 算是比较熟悉的了，听说 Proxmox VE 也不错🤔，等到后面硬盘到了再折腾一下 Proxmox VE。看到隔壁 <a href="https://wzyboy.im/post/1293.html" target="_blank" rel="noopener">Proxmox VE：优秀的自建虚拟化方案</a> 愈发想玩玩了。</p> <blockquote> <p>  贯彻「不重复造轮子」的原则，当前版本的 PVE 基于成熟稳定的 Debian 9 “Stretch” 构建。在熟悉和使用 PVE 的过程中，我越发喜欢它「不重复造轮子」的特性。相较之前用过的其他虚拟化方案，PVE 的内部构造和工作原理对我来说不再是一个黑盒，我可以清晰地观测到它在干什么——比如要迁移一台虚拟机到另一个节点，我就可以通过 <code>ps</code> 观察到它启动了一个 <code>dd</code> 进程，对接 <code>ssh</code> 管道，将磁盘数据通过网络复制到目标机器——这种仿佛透明手表一样能看到内部工作原理的感觉真是太棒了！</p> </blockquote> <p>从 VMware 家下载好 <code>VMware-VMvisor-Installer-7.0.0-15843807.x86_64.iso</code> 镜像，找了两个 U 盘，一个用于 ESXi 的安装盘，一个用于 ESXi 的系统盘，其中一个 U 盘还是我用读卡器+16GB内存卡拼凑而成的，目的是为了把 ESXi 装到 U 盘里方便迁移数据之类的，之后在网上找一个神 KEY 激活一下（🤫小声</p> <p><img src="https://p.k8s.li/HomeLab-6.jpg" alt=""></p> <h3 id="Ubuntu-20-04"><a href="#Ubuntu-20-04" class="headerlink" title="Ubuntu 20.04"></a>Ubuntu 20.04</h3><p>当作网关机使用，和我所有的 云主机打通网络，使用 WireGuard 组成一个小内网，关于 WireGuard 的使用建议阅读大佬写得博客 <a href="https://fuckcloudnative.io/posts/wireguard-docs-practice/" target="_blank" rel="noopener">WireGuard 教程：WireGuard 的搭建使用与配置详解</a> 以及 <a href="https://fuckcloudnative.io/posts/wireguard-docs-theory/" target="_blank" rel="noopener">WireGuard 教程：WireGuard 的工作原理</a>。</p> <p>顺带用 <a href="https://github.com/Aniverse/ZBench" target="_blank" rel="noopener">ZBench</a> 测了一下虚拟机的磁盘性能，还算勉强说的过去，实际上 SN750 512GB 只有 2GB 左右的缓存，写满换粗之后，写入的性能会直线下降到 800MB/s，读的性能倒是可以达到 3200MB/s 以上，或许是主板的限制，没能达到理想的读写性能。</p> <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">--------------------------------------------------------------------------</span><br><span class="line">CPU model            : Intel(R) Core(TM) i5-6600T CPU @ 2.70GHz</span><br><span class="line">Number of cores      : 4</span><br><span class="line">CPU frequency        : 2712.000 MHz</span><br><span class="line">Total size of Disk   : 33.3 GB (7.7 GB Used)</span><br><span class="line">Total amount of Mem  : 3935 MB (306 MB Used)</span><br><span class="line">Total amount of Swap : 3934 MB (0 MB Used)</span><br><span class="line">System uptime        : 4 days, 19 hour 47 min</span><br><span class="line">Load average         : 0.13, 0.08, 0.03</span><br><span class="line">OS                   : Ubuntu 20.04 LTS</span><br><span class="line">Arch                 : x86_64 (64 Bit)</span><br><span class="line">Kernel               : 5.4.0-42-generic</span><br><span class="line">Virt                 : vmware</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line">I/O speed(1st run)   :1.3 GB/s</span><br><span class="line">I/O speed(2nd run)   :1.3 GB/s</span><br><span class="line">I/O speed(3rd run)   :1.3 GB/s</span><br></pre></td></tr></table></figure>  <h3 id="PhotonOS"><a href="#PhotonOS" class="headerlink" title="PhotonOS"></a>PhotonOS</h3><p>这个是系统在我另一篇博客 <a href="https://blog.k8s.li/container-linux-os.html">Container Linux OS 从入坑到爬出来</a> 里提到过，Photon OS™ 是针对 VMware vSphere® 虚拟化平台进行内核优化的容器专用操作系统，就和 CoreOS 一样。十分适合专门用来运行容器，当作 Kubernetes 集群中的工作负载来使用。</p> <ul> <li>系统初始化启动之后内存仅仅使用了 45Mi</li> </ul> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# free -h</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          2.0Gi        45Mi       1.8Gi       0.0Ki        93Mi       1.8Gi</span><br><span class="line">Swap:            0B          0B          0B</span><br></pre></td></tr></table></figure>  <ul> <li>启动 docker 进程之后的占用情况，也仅仅 109Mi</li> </ul> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# free -h</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          2.0Gi       109Mi       1.6Gi       0.0Ki       238Mi       1.8Gi</span><br><span class="line">Swap:            0B          0B          0B</span><br></pre></td></tr></table></figure>  <ul> <li>使用 OVA 虚拟机模板启动后的虚拟机，磁盘仅仅占用了 515MB ，确实是相当轻量化，这还是包含了 docker。</li> </ul> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/root        16G  515M   15G   4% /</span><br><span class="line">devtmpfs        998M     0  998M   0% /dev</span><br><span class="line">tmpfs          1000M     0 1000M   0% /dev/shm</span><br><span class="line">tmpfs          1000M  532K  999M   1% /run</span><br><span class="line">tmpfs          1000M     0 1000M   0% /sys/fs/cgroup</span><br><span class="line">tmpfs          1000M     0 1000M   0% /tmp</span><br><span class="line">/dev/sda2        10M  2.2M  7.9M  22% /boot/efi</span><br><span class="line">tmpfs           200M     0  200M   0% /run/user/0</span><br></pre></td></tr></table></figure>  <p>总之，PhotonOS 是个很轻量的 OS ，适合专门用来运行一些容器化的服务，这正好符合我的需求。别问我为什么不用 CoreOS ，CoreOS 已经凉了。</p> <h3 id="Alpine-NFS"><a href="#Alpine-NFS" class="headerlink" title="Alpine NFS"></a>Alpine NFS</h3><p>把我一块磁盘直通给这个虚拟机，主要用来给 k8s 集群中的 Pod 挂载 PVC 持久化存储使用。</p> <h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><p>主要是用来运行 K8s 集群，目前只有一个  master 和一个 node 玩玩儿，跑了一些自用的服务。</p> <h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>当下载机使用，外加运行一些不得不使用的国产毒瘤软件😡</p> <h2 id="额外硬件"><a href="#额外硬件" class="headerlink" title="额外硬件"></a>额外硬件</h2><p>捡垃圾的乐趣就在于越折腾越好玩，于是又开始打算折腾一些</p> <h3 id="UPS"><a href="#UPS" class="headerlink" title="UPS"></a>UPS</h3><p>由于最近房东家里经常断电，有时一天断电八九次，每次断电我都担心着硬盘里的老婆们会不会挂掉，索性还是买了 UPS ，在马云家看了看，带给 NAS 自动断电的 UPS 普遍在 400块钱以上，而且我这个还是个假的 NAS ，UPS 上的 USB 口不一定支持我的主机。最后为了节省一下预算花儿 160 块钱买了个不支持 USB 的 UPS ，但是又不能没有这个功能，因为家里的 220V 市电断电之后，UPS 的电量只能给主机续命 10~20min 左右，UPS 的电量用完之后就嗝屁了，照阳还是断电。所以在 UPS 用尽电量还是没有来电之前，一定要想办法把主机通过 poweroff 的方式安全优雅滴关机。</p> <p>首先要考虑的是怎么知道 220V 市电断电了，起初想有没有个 220V 的传感器，我去，有点难度还是算了吧。最后一想，可以通过 ping 房东家光猫的方式。我的路由器和主机等设备连接 UPS ，房东家的光猫并没有连接 UPS ，我在路由器上设置一个定时任务，每分钟去 ping 房东家的光猫，没有 ping 通说明就是断电了，也有可能是网线被拔掉了，但概率很小。<code>! ping -c 8 A &amp;&amp; ssh B &quot;poweroff&quot;</code> 一行简单的命令就满足了我的需求，</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">echo "start" &gt;&gt; /tmp/power_status</span><br><span class="line">if ! ping -c 32 192.168.1.1</span><br><span class="line">then</span><br><span class="line">    sleep 300</span><br><span class="line">    ping -c 32 192.168.1.1 &amp;&amp; exit 0</span><br><span class="line">    sshpass -p "pwd" ssh root@192.168.0.210 "net rpc shutdown -I 192.168.0.240 -U admin%poweroff"</span><br><span class="line">    sshpass -p "pwd" ssh root@192.168.0.200 "sh -c /suspend_vm.sh"</span><br><span class="line">    echo "220v poweroff" &gt;&gt; /tmp/power_status</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>  <p>对于 ESXi 上的虚拟机，还是采用了挂起的方式，将虚拟机的内存状态保存在数据存储的磁盘里，这样重新开启虚拟机后就能恢复到之前的状态，这一点有点像 Windows 的休眠。</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">for vm in $(/sbin/vmdumper -l | grep -v Alpine |  awk '&#123;print $1&#125;' | sed 's/wid=//g')</span><br><span class="line">do</span><br><span class="line">     /sbin/vmdumper $&#123;vm&#125; suspend_vm</span><br><span class="line">done</span><br></pre></td></tr></table></figure>  <h3 id="网管交换机"><a href="#网管交换机" class="headerlink" title="网管交换机"></a>网管交换机</h3><p>当我从台式机向 ESXI 里的虚拟机传输文件的时候，发现网络速度最快只能达到 700Mbits/sec ，看来应该是路由器的性能瓶颈，于是想着升级一下网络设备，把 R6300V2 路由器当作 AP 来用，将流量都汇聚到网管交换机上。</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[  4] local 192.168.0.240 port 50718 connected to 192.168.0.123 port 5201</span><br><span class="line">[ ID] Interval           Transfer     Bandwidth</span><br><span class="line">[  4]   0.00-1.00   sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]   1.00-2.00   sec  83.4 MBytes   700 Mbits/sec</span><br><span class="line">[  4]   2.00-3.00   sec  83.6 MBytes   701 Mbits/sec</span><br><span class="line">[  4]   3.00-4.00   sec  82.9 MBytes   695 Mbits/sec</span><br><span class="line">[  4]   4.00-5.00   sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]   5.00-6.00   sec  83.6 MBytes   701 Mbits/sec</span><br><span class="line">[  4]   6.00-7.00   sec  83.5 MBytes   701 Mbits/sec</span><br><span class="line">[  4]   7.00-8.00   sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]   8.00-9.00   sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]   9.00-10.00  sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]  10.00-11.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  11.00-12.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  12.00-13.00  sec  83.9 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  13.00-14.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  14.00-15.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  15.00-16.00  sec  83.9 MBytes   704 Mbits/sec</span><br><span class="line">[  4]  16.00-17.00  sec  83.4 MBytes   699 Mbits/sec</span><br><span class="line">[  4]  17.00-18.00  sec  83.9 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  18.00-19.00  sec  83.6 MBytes   702 Mbits/sec</span><br><span class="line">[  4]  19.00-20.00  sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]  20.00-21.00  sec  83.9 MBytes   704 Mbits/sec</span><br><span class="line">[  4]  21.00-22.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  22.00-23.00  sec  83.9 MBytes   704 Mbits/sec</span><br><span class="line">[  4]  23.00-24.00  sec  83.9 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  24.00-25.00  sec  83.9 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  25.00-25.20  sec  16.6 MBytes   698 Mbits/sec</span><br></pre></td></tr></table></figure>  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">╭─debian@debian ~</span><br><span class="line">╰─$ qperf 192.168.0.123 -t 30 -vvu tcp_lat udp_lat tcp_bw udp_bw conf</span><br><span class="line">tcp_lat:</span><br><span class="line">    latency   =  98.7 us</span><br><span class="line">    msg_size  =     1 bytes</span><br><span class="line">    time      =    30 sec</span><br><span class="line">    timeout   =     5 sec</span><br><span class="line">udp_lat:</span><br><span class="line">    latency   =  98 us</span><br><span class="line">    msg_size  =   1 bytes</span><br><span class="line">    time      =  30 sec</span><br><span class="line">    timeout   =   5 sec</span><br><span class="line">tcp_bw:</span><br><span class="line">    bw        =  87.9 MB/sec</span><br><span class="line">    msg_size  =    64 KiB (65,536)</span><br><span class="line">    time      =    30 sec</span><br><span class="line">    timeout   =     5 sec</span><br><span class="line">udp_bw:</span><br><span class="line">    send_bw   =  56.7 MB/sec</span><br><span class="line">    recv_bw   =  56.7 MB/sec</span><br><span class="line">    msg_size  =    32 KiB (32,768)</span><br><span class="line">    time      =    30 sec</span><br><span class="line">    timeout   =     5 sec</span><br><span class="line">conf:</span><br><span class="line">    loc_node   =  debian</span><br><span class="line">    loc_cpu    =  16 Cores: AMD Ryzen 7 1700 Eight-Core   3.0GHz</span><br><span class="line">    loc_os     =  Linux 4.4.0-18362</span><br><span class="line">    loc_qperf  =  0.4.11</span><br><span class="line">    rem_node   =  gateway</span><br><span class="line">    rem_cpu    =  4 Cores: Intel Core i5-6600T @ 2.70GHz</span><br><span class="line">    rem_os     =  Linux 5.4.0-42-generic</span><br><span class="line">    rem_qperf  =  0.4.11</span><br></pre></td></tr></table></figure>  <p>准备买 GS108E V2 或者 GS105E V2，</p> <h3 id="四网口网卡"><a href="#四网口网卡" class="headerlink" title="四网口网卡"></a>四网口网卡</h3><p>为了折腾一下网卡直通、端口汇聚、overlay 网络卸载等特性，后面还要添加一块 <a href="https://www.intel.cn/content/www/cn/zh/products/docs/network-io/ethernet/10-25-40-gigabit-adapters/ethernet-i350-server-adapter-brief.html" target="_blank" rel="noopener">intel I350 T4 V2</a> ，闲鱼上的价格也不是很贵。</p> <p><img src="https://p.k8s.li/20200822195450798.png" alt=""></p> <h3 id="阵列卡"><a href="#阵列卡" class="headerlink" title="阵列卡"></a>阵列卡</h3><p>由于主板的 SATA 接口最大只支持到 2TB ，为了扩展一下存储，只能额外添加一块阵列卡了，由于主板的 PCIe 有限，而且这么大点的机箱最多也就能塞下 1 块 3.5 寸硬盘和 3 块 2.5 寸硬盘，所以找一块入门级的阵列卡就够了，最终花了 50 块钱捡了一块 <a href="https://lenovopress.com/tips0831-serveraid-h1110" target="_blank" rel="noopener">ServeRAID H1110 SAS/SATA Controller</a> 阵列卡，看来一下手册里的参数，大概也能暂时满足我的需求。</p> <blockquote> <ul> <li>Four internal 6 Gbps SAS/SATA ports</li> <li>One x4 mini-SAS internal connector (SFF-8087)</li> <li>6 Gbps throughput per port</li> <li>Based on LSI SAS2004 6 Gbps RAID on Chip (ROC) controller</li> <li>x4 PCI Express 2.0 host interface</li> <li>Supports RAID 0, 1, 1E, and 10</li> <li>Connects to up to four SAS or SATA drives</li> <li>SAS and SATA drives are supported, but the mixing of SAS and SATA in the same integrated volume is not supported</li> <li>Supports simple-swap SATA and hot-swap SAS and SATA drives</li> <li>Supports up to two integrated volumes</li> <li>Supports up to two global hot-spare drives</li> <li>Supports drive sizes greater than 2 TB for RAID 0, 1E, and 10 (not RAID 1)</li> <li>Fixed stripe size of 64 KB</li> <li>Compliant with Disk Data Format (DDF)</li> <li>S.M.A.R.T. support</li> </ul> </blockquote> <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>2021 年 五一放假后入手了 M1 MacBook Pro ，使用了一段时间后感觉很满意，于是就准备当作主力机来使用。这样一来家里的一台 Ryzen 5 3600 台式机和一台 6600T 的 NAS 小主机就显得多余了。两个台式夹搬家的时候也不方便携带，于是干脆就把 NAS 小主机卖掉了。</p> <p>然后又发现 M1 的 GPU 好强，众多评测的解决也展示了 M1 的 GPU 性能要比肩 GTX 1050 Ti。Ryzen 5 3600 台式机上的 GTX 1650 平时也不怎么使用，现在也没有太大的兴趣玩游戏，平时只用来看 4K 电影用。既然有了 M1，那 GTX 1650 不如也拆下来卖掉算了，现在显卡涨了很少，多少还能赚点钱😂。</p> <ul> <li>GTX 1050 vs GTX 1050Ti vs GTX 1650</li> </ul> <p><img src="https://p.k8s.li/2021-06-21-09.jpg" alt=""></p> <p>就这样最终把 NAS 小主机准系统 + 6600T CPU 以及 GTX 1650 显卡拆下来卖掉了，由于今年的显卡价格和 CPU 价格比之前都普遍涨了很多，卖出去这些捡来的洋垃圾之后出去之后稳赚 600¥。然后发现微星 B550M 主板在没有显卡和插显示器的情况下无法完成 BIOS 开机自检启动，导致无法进入 bootloader 启动 ESXi 😭。所以必须要一张亮机卡，于是又在闲鱼上花了 150¥ 买了一张 AMD R5 340x 的亮机卡。光有亮机卡还不行，还需要插上显示器（掀桌儿，无奈又花了十几块钱买了一个显卡欺骗器，用于模拟出一台显示器。</p> <p>既然把 M1 当作主力机使用了，那么之前的 Ryzen 3600 就改装成 Homelab 机器使用，将之前 NAS 小主机上的一些服务和虚拟机迁移过来，顺带再开几台额外的虚拟机使用。将之前 NAS 小主机上的内存插到台式机上，这样就凑够了 32GB 的内存。当时感觉 32GB 还不够，于是又在闲鱼上花了 320¥ 买了一根 16GB 的 DDR4 内存，不料收到货后就翻车了，插上内存条之后主板 BIOS 里无法识别出内存的型号和序列号，并且进入 ESXi 之后就一直卡住了。尝试拔下该内存条后又恢复了，无奈只能联系卖家退货了。常年捡垃圾为数不多的一次翻车事故🤣。</p> <ul> <li>虚拟机列表</li> </ul> <p><img src="https://p.k8s.li/2021-06-21-04.jpg" alt=""></p> <ul> <li>虚拟机磁盘性能测试</li> </ul> <p><img src="https://p.k8s.li/2021-06-21-06.jpg" alt=""></p> <ul> <li>Windows 直通用显卡</li> </ul> <p><img src="https://p.k8s.li/2021-06-21-05.jpg" alt=""></p> <ul> <li>直通成功之后，使用工具查看显卡状态</li> </ul> <p><img src="https://p.k8s.li/2021-06-21-02.jpg" alt=""></p>      </div>                        <footer class="post-footer">                      <div class="post-tags">               <a href="/tags/%E6%8D%A1%E5%9E%83%E5%9C%BE/" rel="tag"><i class="fa fa-tag"></i> 捡垃圾</a>               <a href="/tags/NAS/" rel="tag"><i class="fa fa-tag"></i> NAS</a>           </div>                          <div class="post-nav">       <div class="post-nav-item">     <a href="/registry-gc.html" rel="prev" title="docker registry GC 原理分析">       <i class="fa fa-chevron-left"></i> docker registry GC 原理分析     </a></div>       <div class="post-nav-item">     <a href="/lsi-9211-4i-ir-to-it.html" rel="next" title="给阵列卡刷个机，IR 模式转 IT 模式">       给阵列卡刷个机，IR 模式转 IT 模式 <i class="fa fa-chevron-right"></i>     </a></div>     </div>       </footer>        </article>             </div>             </div>                   <div class="comments">     <div id="disqus_thread">       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>     </div>   </div>     <script>   window.addEventListener('tabs:register', () => {     let activeClass = CONFIG.comments.activeClass;     if (CONFIG.comments.storage) {       activeClass = localStorage.getItem('comments_active') || activeClass;     }     if (activeClass) {       let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);       if (activeTab) {         activeTab.click();       }     }   });   if (CONFIG.comments.storage) {     window.addEventListener('tabs:click', event => {       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;       let commentClass = event.target.classList[1];       localStorage.setItem('comments_active', commentClass);     });   } </script>          </div>                 <div class="toggle sidebar-toggle">     <span class="toggle-line toggle-line-first"></span>     <span class="toggle-line toggle-line-middle"></span>     <span class="toggle-line toggle-line-last"></span>   </div>    <aside class="sidebar">     <div class="sidebar-inner">        <ul class="sidebar-nav motion-element">         <li class="sidebar-nav-toc">           文章目录         </li>         <li class="sidebar-nav-overview">           站点概览         </li>       </ul>        <!--noindex-->       <div class="post-toc-wrap sidebar-panel">           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#捡垃圾"><span class="nav-number">1.</span> <span class="nav-text">捡垃圾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">1.1.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主板"><span class="nav-number">1.2.</span> <span class="nav-text">主板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存"><span class="nav-number">1.3.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固态"><span class="nav-number">1.4.</span> <span class="nav-text">固态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装机"><span class="nav-number">2.</span> <span class="nav-text">装机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESXi"><span class="nav-number">3.</span> <span class="nav-text">ESXi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu-20-04"><span class="nav-number">3.1.</span> <span class="nav-text">Ubuntu 20.04</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PhotonOS"><span class="nav-number">3.2.</span> <span class="nav-text">PhotonOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alpine-NFS"><span class="nav-number">3.3.</span> <span class="nav-text">Alpine NFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debian"><span class="nav-number">3.4.</span> <span class="nav-text">Debian</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">3.5.</span> <span class="nav-text">Windows</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#额外硬件"><span class="nav-number">4.</span> <span class="nav-text">额外硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UPS"><span class="nav-number">4.1.</span> <span class="nav-text">UPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网管交换机"><span class="nav-number">4.2.</span> <span class="nav-text">网管交换机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四网口网卡"><span class="nav-number">4.3.</span> <span class="nav-text">四网口网卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阵列卡"><span class="nav-number">4.4.</span> <span class="nav-text">阵列卡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>       </div>       <!--/noindex-->        <div class="site-overview-wrap sidebar-panel">         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">     <img class="site-author-image" itemprop="image" alt="木子"       src="https://blog.k8s.li/avatar.png">   <p class="site-author-name" itemprop="name">木子</p>   <div class="site-description" itemprop="description"></div> </div> <div class="site-state-wrap motion-element">   <nav class="site-state">       <div class="site-state-item site-state-posts">           <a href="/archives">           <span class="site-state-item-count">101</span>           <span class="site-state-item-name">日志</span>         </a>       </div>       <div class="site-state-item site-state-categories">             <a href="/categories/">         <span class="site-state-item-count">9</span>         <span class="site-state-item-name">分类</span></a>       </div>       <div class="site-state-item site-state-tags">             <a href="/tags/">         <span class="site-state-item-count">124</span>         <span class="site-state-item-name">标签</span></a>       </div>   </nav> </div>   <div class="links-of-author motion-element">       <span class="links-of-author-item">         <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>       </span>       <span class="links-of-author-item">         <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>       </span>       <span class="links-of-author-item">         <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>       </span>       <span class="links-of-author-item">         <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>       </span>       <span class="links-of-author-item">         <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>       </span>       <span class="links-of-author-item">         <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>       </span>       <span class="links-of-author-item">         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>       </span>   </div>          </div>         <div class="back-to-top motion-element">           <i class="fa fa-arrow-up"></i>           <span>0%</span>         </div>      </div>   </aside>   <div id="sidebar-dimmer"></div>         </div>     </main>      <footer class="footer">       <div class="footer-inner">           <div class="copyright">      &copy; 2018 –    <span itemprop="copyrightYear">2021</span>   <span class="with-love">     <i class="fa fa-heart"></i>   </span>   <span class="author" itemprop="copyrightHolder">木子</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-area-chart"></i>     </span>       <span class="post-meta-item-text">站点总字数：</span>     <span title="站点总字数">1.5m</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-coffee"></i>     </span>       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>     <span title="站点阅读时长">41:25</span> </div>   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动   </div>   <span class="post-meta-divider">|</span>   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>   </div>                         </div>     </footer>   </div>       <script src="/lib/anime.min.js"></script>  <script src="/js/utils.js"></script>   <script src="/js/schemes/pisces.js"></script>   <script src="/js/next-boot.js"></script>                               <script>   function loadCount() {     var d = document, s = d.createElement('script');     s.src = 'https://muzi.disqus.com/count.js';     s.id = 'dsq-count-scr';     (d.head || d.body).appendChild(s);   }   // defer loading until the whole page loading is completed   window.addEventListener('load', loadCount, false); </script> <script>   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {     if (window.DISQUS) {       DISQUS.reset({         reload: true,         config: {page: {             url: "https://blog.k8s.li/homelab.html",             identifier: "homelab.html",             title: "垃圾佬的 Homelab 折腾记录"           }         }       });     } else {       var d = document, s = d.createElement('script');       s.src = 'https://muzi.disqus.com/embed.js';       s.setAttribute('data-timestamp', '' + +new Date());       (d.head || d.body).appendChild(s);     }   }); </script>  </body> </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="捡垃圾来自 @awpak78 的图👇  作为一名运维工程师，白天在工地上搬砖养家糊口，晚上下班回家后就开始折腾一堆破铜烂铁自娱自乐😂。最近东拼西凑花了 2000 来块钱捡垃圾整了台 HomeLab 玩玩，折腾一些没用的东西🙃 其实很早之前就想搞一台低功耗的 HomeLab 主机玩儿了，最早开始选择的是 Dell T1700 SFF + E3-1271V3 +32GB DDR3，但是呢，E3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="垃圾佬的 Homelab 折腾记录">
+<meta property="og:url" content="https://blog.k8s.li/homelab.html">
+<meta property="og:site_name" content="木子">
+<meta property="og:description" content="捡垃圾来自 @awpak78 的图👇  作为一名运维工程师，白天在工地上搬砖养家糊口，晚上下班回家后就开始折腾一堆破铜烂铁自娱自乐😂。最近东拼西凑花了 2000 来块钱捡垃圾整了台 HomeLab 玩玩，折腾一些没用的东西🙃 其实很早之前就想搞一台低功耗的 HomeLab 主机玩儿了，最早开始选择的是 Dell T1700 SFF + E3-1271V3 +32GB DDR3，但是呢，E3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p.k8s.li/20200801_150112.jpg">
+<meta property="og:image" content="https://p.k8s.li/HomeLab-1.jpg">
+<meta property="og:image" content="https://p.k8s.li/OptiPlex_5040SFF_motherboard.jpg">
+<meta property="og:image" content="https://p.k8s.li/HomeLab-5.jpg">
+<meta property="og:image" content="https://p.k8s.li/HomeLab-3.jpg">
+<meta property="og:image" content="https://p.k8s.li/HomeLab-4.jpg">
+<meta property="og:image" content="https://p.k8s.li/HomeLab-6.jpg">
+<meta property="og:image" content="https://p.k8s.li/20200822195450798.png">
+<meta property="og:image" content="https://p.k8s.li/2021-06-21-09.jpg">
+<meta property="og:image" content="https://p.k8s.li/2021-06-21-04.jpg">
+<meta property="og:image" content="https://p.k8s.li/2021-06-21-06.jpg">
+<meta property="og:image" content="https://p.k8s.li/2021-06-21-05.jpg">
+<meta property="og:image" content="https://p.k8s.li/2021-06-21-02.jpg">
+<meta property="article:published_time" content="2020-08-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-20T08:55:54.905Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="捡垃圾">
+<meta property="article:tag" content="NAS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p.k8s.li/20200801_150112.jpg">
+
+<link rel="canonical" href="https://blog.k8s.li/homelab.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>垃圾佬的 Homelab 折腾记录 | 木子</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/homelab.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木子">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          垃圾佬的 Homelab 折腾记录
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-21 2020-08-21T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2020-08-21T00:00:00+08:00">2020-08-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-20 2021-07-20T16:55:54+08:00" itemprop="dateModified" datetime="2021-07-20T16:55:54+08:00">2021-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/homelab.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="homelab.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="捡垃圾"><a href="#捡垃圾" class="headerlink" title="捡垃圾"></a>捡垃圾</h2><p>来自 <a href="https://space.bilibili.com/1292029" target="_blank" rel="noopener">@awpak78 </a>的图👇</p>
+<p><img src="https://p.k8s.li/20200801_150112.jpg" alt=""></p>
+<p>作为一名运维工程师，白天在工地上搬砖养家糊口，晚上下班回家后就开始折腾一堆破铜烂铁自娱自乐😂。最近东拼西凑花了 2000 来块钱捡垃圾整了台 HomeLab 玩玩，折腾一些没用的东西🙃</p>
+<p>其实很早之前就想搞一台低功耗的 HomeLab 主机玩儿了，最早开始选择的是 Dell T1700 SFF + E3-1271V3 +32GB DDR3，但是呢，E3 V3 系列是 Intel 第四代  CPU ，1150 芯片组无法从 M.2 启动，磁盘速度只能达到 SATA III 也就是顶多 600 MB/s 的读写速度，而目前随便一块支持  PCI-e M.2 NVMe 的主板普遍都能达到 3000MB/s 了。所以这一点来讲 E3 V3 已经不值得捡了。而且我想把我台式机上 SN750 500GB 换到这台机器上，所以还是要选择一个支持 PCI-e M.2 NVMe 的主板。</p>
+<table>
+<thead>
+<tr>
+<th align="center">硬件</th>
+<th>配置</th>
+<th align="center">价格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CPU</td>
+<td>Intel(R) Core(TM) i5-6600T CPU @ 2.70GHz 35w</td>
+<td align="center">480</td>
+</tr>
+<tr>
+<td align="center">主板</td>
+<td>Dell OptiPlex 7040 准系统：Intel ®Q170</td>
+<td align="center">400</td>
+</tr>
+<tr>
+<td align="center">内存</td>
+<td>镁光 DDR4 16GB 2666MHz</td>
+<td align="center">310</td>
+</tr>
+<tr>
+<td align="center">显卡</td>
+<td>英特尔® 核芯显卡 530</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">机箱</td>
+<td>Dell OptiPlex 7040 准系统</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">电源</td>
+<td>Dell OptiPlex 7040 准系统：290W 开关电源</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">UPS</td>
+<td>某杂牌 UPS 650VA360W</td>
+<td align="center">160</td>
+</tr>
+<tr>
+<td align="center">固态</td>
+<td>三星 970PRO 512GB</td>
+<td align="center">820</td>
+</tr>
+<tr>
+<td align="center">总价</td>
+<td></td>
+<td align="center">2170</td>
+</tr>
+</tbody></table>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p>至于 6600T 的性能，在 500 块钱的价位内 35W低功耗的 6600T 还算可以能接受，为什么不买 7200U 这种低压 U 呢？，一是低压 U 的装机成本太高，而且性价比很低，我还要在上面跑一堆虚拟机，低压 U 恐怕扛不住，所以一开始就放弃了低压 U 的装机方案。</p>
+<p><img src="https://p.k8s.li/HomeLab-1.jpg" alt=""></p>
+<h3 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h3><p>由于 Dell SFF 系列的机箱是定制的，和普通的主板不太一样，也只有这样才能塞进这么小的空间，对于 MFF 系列的则更小一点。对于这种小机箱而言，拥有 2个 PCI-e*4 和一个 PIC-e*16 是相当不错了，PCI-e*4可以装一个阵列卡个一个四网口的网卡，PIC-e*16又可以装一个低功耗的刀卡显卡。等到以后台式机升级的硬件的时候再把台式机上的 GT1030 亮机卡放上去。三个 SATA 一个 M.2 有点捉襟见肘，机箱空间就那么点，口子多了硬盘也塞不下呀😂。</p>
+<table>
+<thead>
+<tr>
+<th>Model:</th>
+<th><a href="https://www.dell.com/support/manuals/us/en/04/optiplex-7040-desktop/opti7040_sff_om/specifications?guid=guid-f058d593-d332-479e-9d55-6c6031fa6cba&lang=en-us" target="_blank" rel="noopener"><em>Dell OptiPlex 7040 SFF</em></a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Form factor:</td>
+<td>Small Form Factor</td>
+</tr>
+<tr>
+<td>CPU options:</td>
+<td>Intel Gen6 i3/i5/i7</td>
+</tr>
+<tr>
+<td>Chipset:</td>
+<td><a href="https://ark.intel.com/content/www/us/en/ark/products/90587/intel-q170-chipset.html" target="_blank" rel="noopener">Intel Q170</a></td>
+</tr>
+<tr>
+<td>RAM slots:</td>
+<td>(4x) DIMM DDR4-2133</td>
+</tr>
+<tr>
+<td>Max RAM:</td>
+<td>64 GB</td>
+</tr>
+<tr>
+<td>USB Ports:</td>
+<td>(6x) USB3.0; (4x) USB2.0;</td>
+</tr>
+<tr>
+<td>Video Ports:</td>
+<td>(2x) Display Port 1.2; HDMI 1.4;</td>
+</tr>
+<tr>
+<td>Other Ports:</td>
+<td>Serial; (2x) PS2; RJ45; Headset; Line-Out;</td>
+</tr>
+<tr>
+<td>Optional Ports:</td>
+<td>VGA; Media Card Reader;</td>
+</tr>
+<tr>
+<td>SATA:</td>
+<td>(3x) SATA 3.0*</td>
+</tr>
+<tr>
+<td>PCIe:</td>
+<td>PCIe 3.0 x16 (low profile); PCIe 3.0 x4 (low profile);</td>
+</tr>
+<tr>
+<td>M.2 slots:</td>
+<td>M.2 2280 M-key (PCIe 3.0 x4, SATA 3.0)</td>
+</tr>
+<tr>
+<td>Drive bays:</td>
+<td>3.5-inch/(2x)2.5-inch; 5.25-inch (slim);</td>
+</tr>
+<tr>
+<td>Hard Drive:</td>
+<td>max 2TB; RAID 0 &amp; 1;</td>
+</tr>
+<tr>
+<td>PSU:</td>
+<td>180 W</td>
+</tr>
+<tr>
+<td>Weight:</td>
+<td>6.00 kg (13.22 lb)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>从 <a href="https://www.hardware-corner.net/guides/difference-optiplex-3040-vs-5040-vs-7040/" target="_blank" rel="noopener">The difference between Dell OptiPlex 3040 vs. 5040 vs. 7040</a> 偷来的一张图片👇</li>
+</ul>
+<p><img src="https://p.k8s.li/OptiPlex_5040SFF_motherboard.jpg" alt=""></p>
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>两条 8GB DDR4 内从从我台式机上拆下来的，又花了 300 块钱买了个镁光的 16GB DDR4 装了上去，迫于 我的台式机 B350M-K 的缩水板只有两个内存插槽而且支持到 32GB，暂时装一个 16GB 的吧，能以后再装一个上去。</p>
+<h3 id="固态"><a href="#固态" class="headerlink" title="固态"></a>固态</h3><p>其实本来的预算三星 970PRO 512GB没打算买，是我在找 Dell OptiPlex 7040 时意外碰到的一个老哥，而且这块固态是德亚的，还算靠谱一些，于是剁手买了这个块固态。970PRO 系列的都是 MLC 的颗粒的固态硬盘，通 SM961 一样是属于传家宝系列😂，但是 SM961 淘宝上水太深，清零盘占据多数，所以不建议买。</p>
+<p>正好把这块 970PRO 换到我的台式机上，把台式机上的 SN750 512GB 换到 HomeLab 机器上，给 ESXi 上的虚拟机用。在玩儿虚拟化的时候深有感触，宿主机的磁盘是机械硬盘的话，上面的虚拟机达到一定数量时，虚拟机会很卡，所以玩 ESXi 虚拟化，有块固态的体验是非常爽滴😋。</p>
+<h2 id="装机"><a href="#装机" class="headerlink" title="装机"></a>装机</h2><p>其实装机很快，由于是买的 Dell OptiPlex 7040 准系统，所以只需要把 CPU 、内存、硬盘装上去就完事儿了。</p>
+<p>收到准系统后发现没有带 M.2 螺丝，只能临时拿胶带粘糊上去，勉强撑了两天，后来买了个螺丝和散热片完美地解决了。</p>
+<p><img src="https://p.k8s.li/HomeLab-5.jpg" alt=""></p>
+<p>从以前旧笔记本淘汰下来的 2TB 5400RPM 的石头盘，已经出现坏道了，临时当个下载盘吧，在它还没彻底崩盘之前再压榨一下它吧😂。后面打算再添加一块12TB的氦气盘当仓库盘和备份数据使用，有了 UPS 和这台主机 7*24 小时开机也没啥问题了。</p>
+<p><img src="https://p.k8s.li/HomeLab-3.jpg" alt=""></p>
+<p>后面那台是我的台式机，也是去年这时候买的，两者比较起来 SFF 的型号确实小很多。Dell 的这种主机还有一种 MFF 型号的，那种更小一些，差不多比路由器大一些而已，不过扩展性不好，而且还需要外置电源，也就没考虑，不过现在想想有点后悔了，当初应该多加点钱买 SFF 的，不过还好也能接受，只不过体积大了些，搬家的时候不太方便。</p>
+<p><img src="https://p.k8s.li/HomeLab-4.jpg" alt=""></p>
+<h2 id="ESXi"><a href="#ESXi" class="headerlink" title="ESXi"></a>ESXi</h2><p>装完机器之后就开始装 ESXi ，对于虚拟化，ESXi 算是比较熟悉的了，听说 Proxmox VE 也不错🤔，等到后面硬盘到了再折腾一下 Proxmox VE。看到隔壁 <a href="https://wzyboy.im/post/1293.html" target="_blank" rel="noopener">Proxmox VE：优秀的自建虚拟化方案</a> 愈发想玩玩了。</p>
+<blockquote>
+<p>  贯彻「不重复造轮子」的原则，当前版本的 PVE 基于成熟稳定的 Debian 9 “Stretch” 构建。在熟悉和使用 PVE 的过程中，我越发喜欢它「不重复造轮子」的特性。相较之前用过的其他虚拟化方案，PVE 的内部构造和工作原理对我来说不再是一个黑盒，我可以清晰地观测到它在干什么——比如要迁移一台虚拟机到另一个节点，我就可以通过 <code>ps</code> 观察到它启动了一个 <code>dd</code> 进程，对接 <code>ssh</code> 管道，将磁盘数据通过网络复制到目标机器——这种仿佛透明手表一样能看到内部工作原理的感觉真是太棒了！</p>
+</blockquote>
+<p>从 VMware 家下载好 <code>VMware-VMvisor-Installer-7.0.0-15843807.x86_64.iso</code> 镜像，找了两个 U 盘，一个用于 ESXi 的安装盘，一个用于 ESXi 的系统盘，其中一个 U 盘还是我用读卡器+16GB内存卡拼凑而成的，目的是为了把 ESXi 装到 U 盘里方便迁移数据之类的，之后在网上找一个神 KEY 激活一下（🤫小声</p>
+<p><img src="https://p.k8s.li/HomeLab-6.jpg" alt=""></p>
+<h3 id="Ubuntu-20-04"><a href="#Ubuntu-20-04" class="headerlink" title="Ubuntu 20.04"></a>Ubuntu 20.04</h3><p>当作网关机使用，和我所有的 云主机打通网络，使用 WireGuard 组成一个小内网，关于 WireGuard 的使用建议阅读大佬写得博客 <a href="https://fuckcloudnative.io/posts/wireguard-docs-practice/" target="_blank" rel="noopener">WireGuard 教程：WireGuard 的搭建使用与配置详解</a> 以及 <a href="https://fuckcloudnative.io/posts/wireguard-docs-theory/" target="_blank" rel="noopener">WireGuard 教程：WireGuard 的工作原理</a>。</p>
+<p>顺带用 <a href="https://github.com/Aniverse/ZBench" target="_blank" rel="noopener">ZBench</a> 测了一下虚拟机的磁盘性能，还算勉强说的过去，实际上 SN750 512GB 只有 2GB 左右的缓存，写满换粗之后，写入的性能会直线下降到 800MB/s，读的性能倒是可以达到 3200MB/s 以上，或许是主板的限制，没能达到理想的读写性能。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">--------------------------------------------------------------------------</span><br><span class="line">CPU model            : Intel(R) Core(TM) i5-6600T CPU @ 2.70GHz</span><br><span class="line">Number of cores      : 4</span><br><span class="line">CPU frequency        : 2712.000 MHz</span><br><span class="line">Total size of Disk   : 33.3 GB (7.7 GB Used)</span><br><span class="line">Total amount of Mem  : 3935 MB (306 MB Used)</span><br><span class="line">Total amount of Swap : 3934 MB (0 MB Used)</span><br><span class="line">System uptime        : 4 days, 19 hour 47 min</span><br><span class="line">Load average         : 0.13, 0.08, 0.03</span><br><span class="line">OS                   : Ubuntu 20.04 LTS</span><br><span class="line">Arch                 : x86_64 (64 Bit)</span><br><span class="line">Kernel               : 5.4.0-42-generic</span><br><span class="line">Virt                 : vmware</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line">I/O speed(1st run)   :1.3 GB/s</span><br><span class="line">I/O speed(2nd run)   :1.3 GB/s</span><br><span class="line">I/O speed(3rd run)   :1.3 GB/s</span><br></pre></td></tr></table></figure>
+
+<h3 id="PhotonOS"><a href="#PhotonOS" class="headerlink" title="PhotonOS"></a>PhotonOS</h3><p>这个是系统在我另一篇博客 <a href="https://blog.k8s.li/container-linux-os.html">Container Linux OS 从入坑到爬出来</a> 里提到过，Photon OS™ 是针对 VMware vSphere® 虚拟化平台进行内核优化的容器专用操作系统，就和 CoreOS 一样。十分适合专门用来运行容器，当作 Kubernetes 集群中的工作负载来使用。</p>
+<ul>
+<li>系统初始化启动之后内存仅仅使用了 45Mi</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# free -h</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          2.0Gi        45Mi       1.8Gi       0.0Ki        93Mi       1.8Gi</span><br><span class="line">Swap:            0B          0B          0B</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动 docker 进程之后的占用情况，也仅仅 109Mi</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# free -h</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          2.0Gi       109Mi       1.6Gi       0.0Ki       238Mi       1.8Gi</span><br><span class="line">Swap:            0B          0B          0B</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 OVA 虚拟机模板启动后的虚拟机，磁盘仅仅占用了 515MB ，确实是相当轻量化，这还是包含了 docker。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/root        16G  515M   15G   4% /</span><br><span class="line">devtmpfs        998M     0  998M   0% /dev</span><br><span class="line">tmpfs          1000M     0 1000M   0% /dev/shm</span><br><span class="line">tmpfs          1000M  532K  999M   1% /run</span><br><span class="line">tmpfs          1000M     0 1000M   0% /sys/fs/cgroup</span><br><span class="line">tmpfs          1000M     0 1000M   0% /tmp</span><br><span class="line">/dev/sda2        10M  2.2M  7.9M  22% /boot/efi</span><br><span class="line">tmpfs           200M     0  200M   0% /run/user/0</span><br></pre></td></tr></table></figure>
+
+<p>总之，PhotonOS 是个很轻量的 OS ，适合专门用来运行一些容器化的服务，这正好符合我的需求。别问我为什么不用 CoreOS ，CoreOS 已经凉了。</p>
+<h3 id="Alpine-NFS"><a href="#Alpine-NFS" class="headerlink" title="Alpine NFS"></a>Alpine NFS</h3><p>把我一块磁盘直通给这个虚拟机，主要用来给 k8s 集群中的 Pod 挂载 PVC 持久化存储使用。</p>
+<h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><p>主要是用来运行 K8s 集群，目前只有一个  master 和一个 node 玩玩儿，跑了一些自用的服务。</p>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>当下载机使用，外加运行一些不得不使用的国产毒瘤软件😡</p>
+<h2 id="额外硬件"><a href="#额外硬件" class="headerlink" title="额外硬件"></a>额外硬件</h2><p>捡垃圾的乐趣就在于越折腾越好玩，于是又开始打算折腾一些</p>
+<h3 id="UPS"><a href="#UPS" class="headerlink" title="UPS"></a>UPS</h3><p>由于最近房东家里经常断电，有时一天断电八九次，每次断电我都担心着硬盘里的老婆们会不会挂掉，索性还是买了 UPS ，在马云家看了看，带给 NAS 自动断电的 UPS 普遍在 400块钱以上，而且我这个还是个假的 NAS ，UPS 上的 USB 口不一定支持我的主机。最后为了节省一下预算花儿 160 块钱买了个不支持 USB 的 UPS ，但是又不能没有这个功能，因为家里的 220V 市电断电之后，UPS 的电量只能给主机续命 10~20min 左右，UPS 的电量用完之后就嗝屁了，照阳还是断电。所以在 UPS 用尽电量还是没有来电之前，一定要想办法把主机通过 poweroff 的方式安全优雅滴关机。</p>
+<p>首先要考虑的是怎么知道 220V 市电断电了，起初想有没有个 220V 的传感器，我去，有点难度还是算了吧。最后一想，可以通过 ping 房东家光猫的方式。我的路由器和主机等设备连接 UPS ，房东家的光猫并没有连接 UPS ，我在路由器上设置一个定时任务，每分钟去 ping 房东家的光猫，没有 ping 通说明就是断电了，也有可能是网线被拔掉了，但概率很小。<code>! ping -c 8 A &amp;&amp; ssh B &quot;poweroff&quot;</code> 一行简单的命令就满足了我的需求，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">echo "start" &gt;&gt; /tmp/power_status</span><br><span class="line">if ! ping -c 32 192.168.1.1</span><br><span class="line">then</span><br><span class="line">    sleep 300</span><br><span class="line">    ping -c 32 192.168.1.1 &amp;&amp; exit 0</span><br><span class="line">    sshpass -p "pwd" ssh root@192.168.0.210 "net rpc shutdown -I 192.168.0.240 -U admin%poweroff"</span><br><span class="line">    sshpass -p "pwd" ssh root@192.168.0.200 "sh -c /suspend_vm.sh"</span><br><span class="line">    echo "220v poweroff" &gt;&gt; /tmp/power_status</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>对于 ESXi 上的虚拟机，还是采用了挂起的方式，将虚拟机的内存状态保存在数据存储的磁盘里，这样重新开启虚拟机后就能恢复到之前的状态，这一点有点像 Windows 的休眠。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">for vm in $(/sbin/vmdumper -l | grep -v Alpine |  awk '&#123;print $1&#125;' | sed 's/wid=//g')</span><br><span class="line">do</span><br><span class="line">     /sbin/vmdumper $&#123;vm&#125; suspend_vm</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<h3 id="网管交换机"><a href="#网管交换机" class="headerlink" title="网管交换机"></a>网管交换机</h3><p>当我从台式机向 ESXI 里的虚拟机传输文件的时候，发现网络速度最快只能达到 700Mbits/sec ，看来应该是路由器的性能瓶颈，于是想着升级一下网络设备，把 R6300V2 路由器当作 AP 来用，将流量都汇聚到网管交换机上。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[  4] local 192.168.0.240 port 50718 connected to 192.168.0.123 port 5201</span><br><span class="line">[ ID] Interval           Transfer     Bandwidth</span><br><span class="line">[  4]   0.00-1.00   sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]   1.00-2.00   sec  83.4 MBytes   700 Mbits/sec</span><br><span class="line">[  4]   2.00-3.00   sec  83.6 MBytes   701 Mbits/sec</span><br><span class="line">[  4]   3.00-4.00   sec  82.9 MBytes   695 Mbits/sec</span><br><span class="line">[  4]   4.00-5.00   sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]   5.00-6.00   sec  83.6 MBytes   701 Mbits/sec</span><br><span class="line">[  4]   6.00-7.00   sec  83.5 MBytes   701 Mbits/sec</span><br><span class="line">[  4]   7.00-8.00   sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]   8.00-9.00   sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]   9.00-10.00  sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]  10.00-11.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  11.00-12.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  12.00-13.00  sec  83.9 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  13.00-14.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  14.00-15.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  15.00-16.00  sec  83.9 MBytes   704 Mbits/sec</span><br><span class="line">[  4]  16.00-17.00  sec  83.4 MBytes   699 Mbits/sec</span><br><span class="line">[  4]  17.00-18.00  sec  83.9 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  18.00-19.00  sec  83.6 MBytes   702 Mbits/sec</span><br><span class="line">[  4]  19.00-20.00  sec  83.8 MBytes   702 Mbits/sec</span><br><span class="line">[  4]  20.00-21.00  sec  83.9 MBytes   704 Mbits/sec</span><br><span class="line">[  4]  21.00-22.00  sec  83.8 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  22.00-23.00  sec  83.9 MBytes   704 Mbits/sec</span><br><span class="line">[  4]  23.00-24.00  sec  83.9 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  24.00-25.00  sec  83.9 MBytes   703 Mbits/sec</span><br><span class="line">[  4]  25.00-25.20  sec  16.6 MBytes   698 Mbits/sec</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">╭─debian@debian ~</span><br><span class="line">╰─$ qperf 192.168.0.123 -t 30 -vvu tcp_lat udp_lat tcp_bw udp_bw conf</span><br><span class="line">tcp_lat:</span><br><span class="line">    latency   =  98.7 us</span><br><span class="line">    msg_size  =     1 bytes</span><br><span class="line">    time      =    30 sec</span><br><span class="line">    timeout   =     5 sec</span><br><span class="line">udp_lat:</span><br><span class="line">    latency   =  98 us</span><br><span class="line">    msg_size  =   1 bytes</span><br><span class="line">    time      =  30 sec</span><br><span class="line">    timeout   =   5 sec</span><br><span class="line">tcp_bw:</span><br><span class="line">    bw        =  87.9 MB/sec</span><br><span class="line">    msg_size  =    64 KiB (65,536)</span><br><span class="line">    time      =    30 sec</span><br><span class="line">    timeout   =     5 sec</span><br><span class="line">udp_bw:</span><br><span class="line">    send_bw   =  56.7 MB/sec</span><br><span class="line">    recv_bw   =  56.7 MB/sec</span><br><span class="line">    msg_size  =    32 KiB (32,768)</span><br><span class="line">    time      =    30 sec</span><br><span class="line">    timeout   =     5 sec</span><br><span class="line">conf:</span><br><span class="line">    loc_node   =  debian</span><br><span class="line">    loc_cpu    =  16 Cores: AMD Ryzen 7 1700 Eight-Core   3.0GHz</span><br><span class="line">    loc_os     =  Linux 4.4.0-18362</span><br><span class="line">    loc_qperf  =  0.4.11</span><br><span class="line">    rem_node   =  gateway</span><br><span class="line">    rem_cpu    =  4 Cores: Intel Core i5-6600T @ 2.70GHz</span><br><span class="line">    rem_os     =  Linux 5.4.0-42-generic</span><br><span class="line">    rem_qperf  =  0.4.11</span><br></pre></td></tr></table></figure>
+
+<p>准备买 GS108E V2 或者 GS105E V2，</p>
+<h3 id="四网口网卡"><a href="#四网口网卡" class="headerlink" title="四网口网卡"></a>四网口网卡</h3><p>为了折腾一下网卡直通、端口汇聚、overlay 网络卸载等特性，后面还要添加一块 <a href="https://www.intel.cn/content/www/cn/zh/products/docs/network-io/ethernet/10-25-40-gigabit-adapters/ethernet-i350-server-adapter-brief.html" target="_blank" rel="noopener">intel I350 T4 V2</a> ，闲鱼上的价格也不是很贵。</p>
+<p><img src="https://p.k8s.li/20200822195450798.png" alt=""></p>
+<h3 id="阵列卡"><a href="#阵列卡" class="headerlink" title="阵列卡"></a>阵列卡</h3><p>由于主板的 SATA 接口最大只支持到 2TB ，为了扩展一下存储，只能额外添加一块阵列卡了，由于主板的 PCIe 有限，而且这么大点的机箱最多也就能塞下 1 块 3.5 寸硬盘和 3 块 2.5 寸硬盘，所以找一块入门级的阵列卡就够了，最终花了 50 块钱捡了一块 <a href="https://lenovopress.com/tips0831-serveraid-h1110" target="_blank" rel="noopener">ServeRAID H1110 SAS/SATA Controller</a> 阵列卡，看来一下手册里的参数，大概也能暂时满足我的需求。</p>
+<blockquote>
+<ul>
+<li>Four internal 6 Gbps SAS/SATA ports</li>
+<li>One x4 mini-SAS internal connector (SFF-8087)</li>
+<li>6 Gbps throughput per port</li>
+<li>Based on LSI SAS2004 6 Gbps RAID on Chip (ROC) controller</li>
+<li>x4 PCI Express 2.0 host interface</li>
+<li>Supports RAID 0, 1, 1E, and 10</li>
+<li>Connects to up to four SAS or SATA drives</li>
+<li>SAS and SATA drives are supported, but the mixing of SAS and SATA in the same integrated volume is not supported</li>
+<li>Supports simple-swap SATA and hot-swap SAS and SATA drives</li>
+<li>Supports up to two integrated volumes</li>
+<li>Supports up to two global hot-spare drives</li>
+<li>Supports drive sizes greater than 2 TB for RAID 0, 1E, and 10 (not RAID 1)</li>
+<li>Fixed stripe size of 64 KB</li>
+<li>Compliant with Disk Data Format (DDF)</li>
+<li>S.M.A.R.T. support</li>
+</ul>
+</blockquote>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>2021 年 五一放假后入手了 M1 MacBook Pro ，使用了一段时间后感觉很满意，于是就准备当作主力机来使用。这样一来家里的一台 Ryzen 5 3600 台式机和一台 6600T 的 NAS 小主机就显得多余了。两个台式夹搬家的时候也不方便携带，于是干脆就把 NAS 小主机卖掉了。</p>
+<p>然后又发现 M1 的 GPU 好强，众多评测的解决也展示了 M1 的 GPU 性能要比肩 GTX 1050 Ti。Ryzen 5 3600 台式机上的 GTX 1650 平时也不怎么使用，现在也没有太大的兴趣玩游戏，平时只用来看 4K 电影用。既然有了 M1，那 GTX 1650 不如也拆下来卖掉算了，现在显卡涨了很少，多少还能赚点钱😂。</p>
+<ul>
+<li>GTX 1050 vs GTX 1050Ti vs GTX 1650</li>
+</ul>
+<p><img src="https://p.k8s.li/2021-06-21-09.jpg" alt=""></p>
+<p>就这样最终把 NAS 小主机准系统 + 6600T CPU 以及 GTX 1650 显卡拆下来卖掉了，由于今年的显卡价格和 CPU 价格比之前都普遍涨了很多，卖出去这些捡来的洋垃圾之后出去之后稳赚 600¥。然后发现微星 B550M 主板在没有显卡和插显示器的情况下无法完成 BIOS 开机自检启动，导致无法进入 bootloader 启动 ESXi 😭。所以必须要一张亮机卡，于是又在闲鱼上花了 150¥ 买了一张 AMD R5 340x 的亮机卡。光有亮机卡还不行，还需要插上显示器（掀桌儿，无奈又花了十几块钱买了一个显卡欺骗器，用于模拟出一台显示器。</p>
+<p>既然把 M1 当作主力机使用了，那么之前的 Ryzen 3600 就改装成 Homelab 机器使用，将之前 NAS 小主机上的一些服务和虚拟机迁移过来，顺带再开几台额外的虚拟机使用。将之前 NAS 小主机上的内存插到台式机上，这样就凑够了 32GB 的内存。当时感觉 32GB 还不够，于是又在闲鱼上花了 320¥ 买了一根 16GB 的 DDR4 内存，不料收到货后就翻车了，插上内存条之后主板 BIOS 里无法识别出内存的型号和序列号，并且进入 ESXi 之后就一直卡住了。尝试拔下该内存条后又恢复了，无奈只能联系卖家退货了。常年捡垃圾为数不多的一次翻车事故🤣。</p>
+<ul>
+<li>虚拟机列表</li>
+</ul>
+<p><img src="https://p.k8s.li/2021-06-21-04.jpg" alt=""></p>
+<ul>
+<li>虚拟机磁盘性能测试</li>
+</ul>
+<p><img src="https://p.k8s.li/2021-06-21-06.jpg" alt=""></p>
+<ul>
+<li>Windows 直通用显卡</li>
+</ul>
+<p><img src="https://p.k8s.li/2021-06-21-05.jpg" alt=""></p>
+<ul>
+<li>直通成功之后，使用工具查看显卡状态</li>
+</ul>
+<p><img src="https://p.k8s.li/2021-06-21-02.jpg" alt=""></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%8D%A1%E5%9E%83%E5%9C%BE/" rel="tag"><i class="fa fa-tag"></i> 捡垃圾</a>
+              <a href="/tags/NAS/" rel="tag"><i class="fa fa-tag"></i> NAS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/registry-gc.html" rel="prev" title="docker registry GC 原理分析">
+      <i class="fa fa-chevron-left"></i> docker registry GC 原理分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/lsi-9211-4i-ir-to-it.html" rel="next" title="给阵列卡刷个机，IR 模式转 IT 模式">
+      给阵列卡刷个机，IR 模式转 IT 模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#捡垃圾"><span class="nav-number">1.</span> <span class="nav-text">捡垃圾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">1.1.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主板"><span class="nav-number">1.2.</span> <span class="nav-text">主板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存"><span class="nav-number">1.3.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固态"><span class="nav-number">1.4.</span> <span class="nav-text">固态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装机"><span class="nav-number">2.</span> <span class="nav-text">装机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESXi"><span class="nav-number">3.</span> <span class="nav-text">ESXi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu-20-04"><span class="nav-number">3.1.</span> <span class="nav-text">Ubuntu 20.04</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PhotonOS"><span class="nav-number">3.2.</span> <span class="nav-text">PhotonOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alpine-NFS"><span class="nav-number">3.3.</span> <span class="nav-text">Alpine NFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debian"><span class="nav-number">3.4.</span> <span class="nav-text">Debian</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">3.5.</span> <span class="nav-text">Windows</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#额外硬件"><span class="nav-number">4.</span> <span class="nav-text">额外硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UPS"><span class="nav-number">4.1.</span> <span class="nav-text">UPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网管交换机"><span class="nav-number">4.2.</span> <span class="nav-text">网管交换机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四网口网卡"><span class="nav-number">4.3.</span> <span class="nav-text">四网口网卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阵列卡"><span class="nav-number">4.4.</span> <span class="nav-text">阵列卡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">41:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/homelab.html",
+            identifier: "homelab.html",
+            title: "垃圾佬的 Homelab 折腾记录"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

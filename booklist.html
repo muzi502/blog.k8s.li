@@ -1,1 +1,2228 @@
-<!DOCTYPE html> <html lang="zh-CN"> <head>   <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"> <meta name="theme-color" content="#222"> <meta name="generator" content="Hexo 4.2.1">   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">   <link rel="mask-icon" href="/favicon.ico" color="#222">   <meta http-equiv="Cache-Control" content="no-transform">   <meta http-equiv="Cache-Control" content="no-siteapp">  <link rel="stylesheet" href="/css/main.css">  <link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"> <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">   <script id="hexo-configurations">   var NexT = window.NexT || {};   var CONFIG = {     hostname: new URL('https://blog.k8s.li').hostname,     root: '/',     scheme: 'Gemini',     version: '7.7.0',     exturl: false,     sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},     copycode: {"enable":true,"show_result":true,"style":"mac"},     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},     bookmark: {"enable":false,"color":"#222","save":"auto"},     fancybox: false,     mediumzoom: false,     lazyload: false,     pangu: false,     comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},     algolia: {       appID: '',       apiKey: '',       indexName: '',       hits: {"per_page":10},       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}     },     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},     path: 'search.xml',     motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}   }; </script>    <meta name="description" content="读书笔记 2020 年读书笔记和思考 2019 年读书笔记和思考  2021 在读     书名 作者 start end 时长    刘晓波文集 刘晓波 04-04 - 10h   旧制度与大革命 【法】亚历西斯·德·托克维尔 07-01 -     已读     书名 作者 start end 时长    生命是什么 【奥地利】埃尔温·薛定谔 01-01 01-02 4h   时间的秩序 【意"> <meta property="og:type" content="website"> <meta property="og:title" content="阅读记录"> <meta property="og:url" content="https://blog.k8s.li/booklist.html"> <meta property="og:site_name" content="木子"> <meta property="og:description" content="读书笔记 2020 年读书笔记和思考 2019 年读书笔记和思考  2021 在读     书名 作者 start end 时长    刘晓波文集 刘晓波 04-04 - 10h   旧制度与大革命 【法】亚历西斯·德·托克维尔 07-01 -     已读     书名 作者 start end 时长    生命是什么 【奥地利】埃尔温·薛定谔 01-01 01-02 4h   时间的秩序 【意"> <meta property="og:locale" content="zh_CN"> <meta property="og:image" content="https://p.k8s.li/kindle_cover8.png"> <meta property="article:published_time" content="2019-03-23T16:00:00.000Z"> <meta property="article:modified_time" content="2021-07-07T16:00:00.000Z"> <meta property="article:author" content="木子"> <meta property="article:tag" content="运维"> <meta property="article:tag" content="kubernetes"> <meta property="article:tag" content="docker"> <meta property="article:tag" content="linux"> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="https://p.k8s.li/kindle_cover8.png">  <link rel="canonical" href="https://blog.k8s.li/booklist.html">   <script id="page-configurations">   // https://hexo.io/docs/variables.html   CONFIG.page = {     sidebar: "",     isHome: false,     isPost: false   }; </script>    <title>阅读记录 | 木子   </title>            <noscript>   <style>   .use-motion .brand,   .use-motion .menu-item,   .sidebar-inner,   .use-motion .post-block,   .use-motion .pagination,   .use-motion .comments,   .use-motion .post-header,   .use-motion .post-body,   .use-motion .collection-header { opacity: initial; }    .use-motion .site-title,   .use-motion .site-subtitle {     opacity: initial;     top: initial;   }    .use-motion .logo-line-before i { left: initial; }   .use-motion .logo-line-after i { right: initial; }   </style> </noscript>  <link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml"> </head>  <body itemscope itemtype="http://schema.org/WebPage">   <div class="container">     <div class="headband"></div>      <header class="header" itemscope itemtype="http://schema.org/WPHeader">       <div class="header-inner"><div class="site-brand-container">   <div class="site-meta">      <div>       <a href="/" class="brand" rel="start">         <span class="logo-line-before"><i></i></span>         <span class="site-title">木子</span>         <span class="logo-line-after"><i></i></span>       </a>     </div>   </div>    <div class="site-nav-toggle">     <div class="toggle" aria-label="切换导航栏">       <span class="toggle-line toggle-line-first"></span>       <span class="toggle-line toggle-line-middle"></span>       <span class="toggle-line toggle-line-last"></span>     </div>   </div> </div>   <nav class="site-nav">      <ul id="menu" class="menu">         <li class="menu-item menu-item-home">      <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>    </li>         <li class="menu-item menu-item-books">      <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>    </li>         <li class="menu-item menu-item-kindle">      <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>    </li>         <li class="menu-item menu-item-friend">      <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>    </li>         <li class="menu-item menu-item-about">      <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>    </li>   </ul>  </nav> </div>     </header>         <div class="reading-progress-bar"></div>       <main class="main">       <div class="main-inner">         <div class="content-wrap">                             <div class="content">                 <div class="posts-expand">                    <div class="post-block" lang="zh-CN">       <header class="post-header">  <h2 class="post-title" itemprop="name headline">阅读记录 </h2>  <div class="post-meta">     </div>  </header>                             <div class="post-body">           <h2 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h2><ul> <li><a href="https://blog.k8s.li/2020-booklist.html">2020 年读书笔记和思考</a></li> <li><a href="https://blog.k8s.li/2019-reading-notes.html">2019 年读书笔记和思考</a></li> </ul> <h2 id="2021"><a href="#2021" class="headerlink" title="2021"></a>2021</h2><ul> <li>在读</li> </ul> <table> <thead> <tr> <th align="center">书名</th> <th align="center">作者</th> <th align="center">start</th> <th align="center">end</th> <th align="center">时长</th> </tr> </thead> <tbody><tr> <td align="center">刘晓波文集</td> <td align="center">刘晓波</td> <td align="center">04-04</td> <td align="center">-</td> <td align="center">10h</td> </tr> <tr> <td align="center">旧制度与大革命</td> <td align="center">【法】亚历西斯·德·托克维尔</td> <td align="center">07-01</td> <td align="center">-</td> <td align="center"></td> </tr> </tbody></table> <ul> <li>已读</li> </ul> <table> <thead> <tr> <th align="center">书名</th> <th align="center">作者</th> <th align="center">start</th> <th align="center">end</th> <th align="center">时长</th> </tr> </thead> <tbody><tr> <td align="center">生命是什么</td> <td align="center">【奥地利】埃尔温·薛定谔</td> <td align="center">01-01</td> <td align="center">01-02</td> <td align="center">4h</td> </tr> <tr> <td align="center">时间的秩序</td> <td align="center">【意】卡洛·罗韦利</td> <td align="center">01-03</td> <td align="center">01-03</td> <td align="center">4h</td> </tr> <tr> <td align="center">生命之源：能量、演化與複雜生命的起源</td> <td align="center">【英】 尼克·莱恩</td> <td align="center">01-03</td> <td align="center">01-12</td> <td align="center">12h</td> </tr> <tr> <td align="center">生命的未来</td> <td align="center">【美]】爱德华·威尔逊</td> <td align="center">01-04</td> <td align="center">01-18</td> <td align="center">10h</td> </tr> <tr> <td align="center">切尔诺贝利的祭祷</td> <td align="center">【白俄】S·A· 阿列克谢耶维奇</td> <td align="center">01-15</td> <td align="center">01-20</td> <td align="center">8h</td> </tr> <tr> <td align="center">反对完美：科技与人性的正义之战</td> <td align="center">【美】迈克尔·桑德尔</td> <td align="center">01-20</td> <td align="center">01-29</td> <td align="center">6h</td> </tr> <tr> <td align="center">艾希曼在耶路撒冷：一份关于平庸的恶的报告</td> <td align="center">【美】汉娜·阿伦特</td> <td align="center">02-01</td> <td align="center">02-20</td> <td align="center">10h</td> </tr> <tr> <td align="center">我包罗万象</td> <td align="center">【英】埃德·扬</td> <td align="center">02-01</td> <td align="center">02-07</td> <td align="center">4h</td> </tr> <tr> <td align="center">维稳的政治逻辑</td> <td align="center">谢岳</td> <td align="center">02-01</td> <td align="center">02-07</td> <td align="center">8h</td> </tr> <tr> <td align="center">里世界郊游 1-5</td> <td align="center">【日】宮澤伊織</td> <td align="center">02-10</td> <td align="center">02-20</td> <td align="center">15h</td> </tr> <tr> <td align="center">我包罗万象</td> <td align="center">【英】埃德·扬</td> <td align="center">02-21</td> <td align="center">03-25</td> <td align="center">12h</td> </tr> <tr> <td align="center">路西法效应</td> <td align="center">【美】菲利普·津巴多</td> <td align="center">03-26</td> <td align="center">03-30</td> <td align="center">6h</td> </tr> <tr> <td align="center">大图景：论生命的起源、意义和宇宙本身</td> <td align="center">【美】肖恩·卡罗尔</td> <td align="center">04-01</td> <td align="center">04-17</td> <td align="center">10h</td> </tr> <tr> <td align="center">叫魂：1768 年中国妖术大恐慌</td> <td align="center">【美】孔飞力</td> <td align="center">04-05</td> <td align="center">04-24</td> <td align="center">10h</td> </tr> <tr> <td align="center">时间的形状</td> <td align="center">汪洁</td> <td align="center">04-03</td> <td align="center">04-06</td> <td align="center">6h</td> </tr> <tr> <td align="center">星空的琴弦</td> <td align="center">汪洁</td> <td align="center">04-06</td> <td align="center">04-10</td> <td align="center">6h</td> </tr> <tr> <td align="center">无中生有的世界</td> <td align="center">吴京平</td> <td align="center">04-22</td> <td align="center">04-24</td> <td align="center">6h</td> </tr> <tr> <td align="center">风之谷</td> <td align="center">【日】宫崎骏</td> <td align="center">04-10</td> <td align="center">04-17</td> <td align="center">8h</td> </tr> <tr> <td align="center">citrus 柑橘味香氣</td> <td align="center">【日】サブロウタ</td> <td align="center">04-14</td> <td align="center">04-15</td> <td align="center">3h</td> </tr> <tr> <td align="center">亿万年的孤独</td> <td align="center">汪洁</td> <td align="center">04-20</td> <td align="center">04-22</td> <td align="center">2h</td> </tr> <tr> <td align="center">柔软的宇宙</td> <td align="center">吴京平</td> <td align="center">04-10</td> <td align="center">04-13</td> <td align="center">4h</td> </tr> <tr> <td align="center">细胞生命的礼赞</td> <td align="center">【英】 刘易斯·托马斯</td> <td align="center">04-28</td> <td align="center">04-30</td> <td align="center">4h</td> </tr> <tr> <td align="center">非暴力沟通</td> <td align="center">马歇尔·卢森堡</td> <td align="center">04-30</td> <td align="center">05-04</td> <td align="center">4h</td> </tr> <tr> <td align="center">86-不存在的戰區 1-8</td> <td align="center">【日】安里朝戶</td> <td align="center">04-25</td> <td align="center">05-10</td> <td align="center">20h</td> </tr> <tr> <td align="center">中国近代史</td> <td align="center">徐中约</td> <td align="center">05-10</td> <td align="center">06-04</td> <td align="center">32h</td> </tr> <tr> <td align="center">kubernetes 网络权威指南</td> <td align="center">杜军</td> <td align="center">05-20</td> <td align="center">05-30</td> <td align="center">6h</td> </tr> <tr> <td align="center">局外人</td> <td align="center">【法】 阿尔贝·加缪</td> <td align="center">06-01</td> <td align="center">06-03</td> <td align="center">4h</td> </tr> <tr> <td align="center">深入解析 kubernetes</td> <td align="center">张磊</td> <td align="center">06-01</td> <td align="center">07-07</td> <td align="center">10h</td> </tr> <tr> <td align="center">改革历程</td> <td align="center">赵紫阳</td> <td align="center">06-04</td> <td align="center">06-12</td> <td align="center">10h</td> </tr> <tr> <td align="center">常识</td> <td align="center">【美】托马斯·潘恩</td> <td align="center">06-05</td> <td align="center">06-08</td> <td align="center">3h</td> </tr> <tr> <td align="center">断舍离</td> <td align="center">【日】山下英子</td> <td align="center">06-05</td> <td align="center">06-08</td> <td align="center">4h</td> </tr> <tr> <td align="center">弯曲的脊梁：纳粹德国与民主德国时期的宣传活动</td> <td align="center">【美】兰德尔·彼特沃克</td> <td align="center">06-12</td> <td align="center">06-15</td> <td align="center">4h</td> </tr> <tr> <td align="center">逼近宇宙的秘密</td> <td align="center">【英】马库斯•乔恩</td> <td align="center">06-13</td> <td align="center">06-16</td> <td align="center">6h</td> </tr> <tr> <td align="center">别逗了，费曼先生</td> <td align="center">【美】R•P•费曼 / R•莱顿</td> <td align="center">06-16</td> <td align="center">06-20</td> <td align="center">8h</td> </tr> <tr> <td align="center">祖先的故事：生命起源的朝圣之旅</td> <td align="center">【英】理查德·道金斯</td> <td align="center">06-20</td> <td align="center">06-28</td> <td align="center">14h</td> </tr> <tr> <td align="center">你的名字</td> <td align="center">【日】新海诚</td> <td align="center">06-28</td> <td align="center">06-29</td> <td align="center">1h</td> </tr> <tr> <td align="center">好想告诉你</td> <td align="center">【日】椎名轻穗</td> <td align="center">07-01</td> <td align="center">07-04</td> <td align="center">8h</td> </tr> <tr> <td align="center">能量、性、死亡：<br/>粒線體與我們的生命</td> <td align="center">【英】尼克·莱恩</td> <td align="center">07-01</td> <td align="center">07-17</td> <td align="center">20h</td> </tr> <tr> <td align="center">女友成双</td> <td align="center">【日】弘幸</td> <td align="center">07-03</td> <td align="center">07-04</td> <td align="center">2h</td> </tr> <tr> <td align="center">我们星球上的生命：我一生的目击证词与未来憧憬</td> <td align="center">【英】大卫·爱登堡</td> <td align="center">07-03</td> <td align="center">07-05</td> <td align="center">3h</td> </tr> <tr> <td align="center">思慕雪的熱帶魚</td> <td align="center">【日】萩埜まこと</td> <td align="center">07-05</td> <td align="center">07-05</td> <td align="center">3h</td> </tr> <tr> <td align="center">春與綠</td> <td align="center">【日】深海紺</td> <td align="center">07-06</td> <td align="center">07-06</td> <td align="center">1h</td> </tr> <tr> <td align="center">恬淡晴天</td> <td align="center">【日】土室圭</td> <td align="center">07-08</td> <td align="center">07-08</td> <td align="center">1h</td> </tr> <tr> <td align="center">历史的先声：<br/>半个世纪前的承诺</td> <td align="center">笑蜀</td> <td align="center">07-10</td> <td align="center">07-15</td> <td align="center">10h</td> </tr> </tbody></table> <ul> <li>待读</li> </ul> <table> <thead> <tr> <th align="center">书名</th> <th align="center">作者</th> <th align="center">start</th> <th align="center">end</th> </tr> </thead> <tbody><tr> <td align="center">地球上最伟大的表演：<br/>进化的证据</td> <td align="center">【英】理查德·道金斯</td> <td align="center">-</td> <td align="center">-</td> </tr> <tr> <td align="center">有所不为的反叛者：<br/>批判、怀疑与想象力</td> <td align="center">罗新</td> <td align="center">07-03</td> <td align="center">-</td> </tr> <tr> <td align="center">自私的基因</td> <td align="center">【英】理查德·道金斯</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">永不停歇的时钟：机器、生命动能与现代科学的形成</td> <td align="center">【美】杰西卡·里斯金</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">古拉格之恋：一个爱情与求生的真实故事</td> <td align="center">【英】奥兰多·费吉斯</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">数学女孩4：随机算法</td> <td align="center">【日】结城浩</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">数学女孩5：伽罗瓦理论</td> <td align="center">【日】结城浩</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">极权主义的起源</td> <td align="center">【德】汉娜·阿伦特</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">康德政治哲学讲稿</td> <td align="center">【德】 汉娜·阿伦特</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">人的境况</td> <td align="center">【德】 汉娜·阿伦特</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">暗杀教室</td> <td align="center">【日】松井优征</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">人类衰退之后</td> <td align="center">【日】田中罗密欧</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">国家建设与政府行为</td> <td align="center">周雪光</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">J</td> <td align="center">【英】霍华德·雅各布森</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">人类简史</td> <td align="center">【以]】尤瓦尔·赫拉利</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">从一到无穷大</td> <td align="center">【美】乔治·伽莫夫</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">论国家的作用</td> <td align="center">【德】亚历山大·冯·洪堡</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">大国崛起</td> <td align="center">唐晋</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">鼠疫</td> <td align="center">【法】阿尔贝·加缪</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">华氏 451</td> <td align="center">【美】雷·布拉德伯里</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">个人主义与经济秩序</td> <td align="center">【奥】弗里德里希·哈耶克</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">自由秩序原理</td> <td align="center">【奥】弗里德里希·哈耶克</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">论法的精神</td> <td align="center">【法】孟德斯鸠</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">第三帝国语言</td> <td align="center">【英】理查德·J. 埃文斯</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">法律、立法与自由</td> <td align="center">【奥】弗里德里希·哈耶克</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">大国的崩溃：苏联解体的台前幕后</td> <td align="center">【美】沙希利·浦洛基</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">绝望者笔记：纳粹德国时期的政治与社会生活</td> <td align="center">【德】弗里德里希·莱克</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">46亿年的地球物语</td> <td align="center">【美】约翰<em>·</em>H<em>·</em>布瑞德雷</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">理解媒介：论人的延申</td> <td align="center">【加拿大】马歇尔·麦克卢汉</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">Age of Ambition</td> <td align="center">Evan Osnos</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">天才在左，疯子在右</td> <td align="center">高铭</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">你一定爱读的极简欧洲史</td> <td align="center">【澳】约翰·赫斯特</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">轴心时代</td> <td align="center">【英】凯伦·阿姆斯特朗</td> <td align="center"></td> <td align="center"></td> </tr> <tr> <td align="center">基因组：人类自传</td> <td align="center">【英】马特·里德利</td> <td align="center"></td> <td align="center"></td> </tr> </tbody></table> <h2 id="2020"><a href="#2020" class="headerlink" title="2020"></a>2020</h2><table> <thead> <tr> <th align="center">书名</th> <th align="center">作者</th> <th align="center">start</th> <th align="center">end</th> <th align="center">时长</th> </tr> </thead> <tbody><tr> <td align="center">论人类不平等的起源和基础</td> <td align="center">【法】让-雅克·卢梭</td> <td align="center">01-01</td> <td align="center">01-05</td> <td align="center">6h</td> </tr> <tr> <td align="center">社会主义：经济学与社会学的分析</td> <td align="center">【奥】 路德维希·冯·米瑟斯</td> <td align="center">01-01</td> <td align="center">01-10</td> <td align="center">10h</td> </tr> <tr> <td align="center">心理测量者</td> <td align="center">【日】深真见</td> <td align="center">01-03</td> <td align="center">01-05</td> <td align="center">6h</td> </tr> <tr> <td align="center">论革命</td> <td align="center">【德】汉娜·阿伦特</td> <td align="center">01-05</td> <td align="center">01-20</td> <td align="center">12h</td> </tr> <tr> <td align="center">新常识：一党专政的性质和后果</td> <td align="center">张雪忠</td> <td align="center">01-15</td> <td align="center">01-20</td> <td align="center">4h</td> </tr> <tr> <td align="center">论科学与艺术</td> <td align="center">【法】让-雅克·卢梭</td> <td align="center">01-21</td> <td align="center">01-25</td> <td align="center">4h</td> </tr> <tr> <td align="center">地球脉动：前所未见的自然之美</td> <td align="center">【英】阿拉斯泰尔·福瑟吉尔</td> <td align="center">01-22</td> <td align="center">01-25</td> <td align="center">2h</td> </tr> <tr> <td align="center">社会契约论 (译林人文精选)</td> <td align="center">【法】让-雅克·卢梭</td> <td align="center">01-23</td> <td align="center">01-25</td> <td align="center">4h</td> </tr> <tr> <td align="center">中国国家治理的制度逻辑：一个组织学研究</td> <td align="center">周雪光</td> <td align="center">01-28</td> <td align="center">02-07</td> <td align="center">8h</td> </tr> <tr> <td align="center">病毒星球</td> <td align="center">【美]】尔·齐默</td> <td align="center">01-28</td> <td align="center">01-30</td> <td align="center">4h</td> </tr> <tr> <td align="center">病毒来袭</td> <td align="center">【美】内森•沃尔夫</td> <td align="center">01-29</td> <td align="center">01-31</td> <td align="center">2h</td> </tr> <tr> <td align="center">血疫：埃博拉的故事</td> <td align="center">【美】理查德·普雷斯顿</td> <td align="center">02-01</td> <td align="center">02-08</td> <td align="center">8h</td> </tr> <tr> <td align="center">远古的葱茏：古植物王国</td> <td align="center">周志炎</td> <td align="center">02-05</td> <td align="center">05-08</td> <td align="center">4h</td> </tr> <tr> <td align="center">古生物学简明教程</td> <td align="center">朱才伐</td> <td align="center">02-06</td> <td align="center">02-10</td> <td align="center">3h</td> </tr> <tr> <td align="center">上帝造人有多难：生命的密钥</td> <td align="center">朱钦士</td> <td align="center">02-07</td> <td align="center">02-12</td> <td align="center">6h</td> </tr> <tr> <td align="center">朱钦士的个人博客</td> <td align="center">朱钦士</td> <td align="center">02-08</td> <td align="center">03-30</td> <td align="center">8h</td> </tr> <tr> <td align="center">远古的辉煌：生物大幅射</td> <td align="center">戎嘉余</td> <td align="center">02-13</td> <td align="center">05-15</td> <td align="center">6h</td> </tr> <tr> <td align="center">牛津通识读本：地球</td> <td align="center">【英】马丁·雷德芬</td> <td align="center">02-13</td> <td align="center">02-15</td> <td align="center">6h</td> </tr> <tr> <td align="center">生命活动的摇篮：细胞</td> <td align="center">王耀发</td> <td align="center">02-16</td> <td align="center">02-18</td> <td align="center">4h</td> </tr> <tr> <td align="center">地球脉动2：奇迹世界</td> <td align="center">【英】胡·科里</td> <td align="center">02-24</td> <td align="center">02-27</td> <td align="center">3h</td> </tr> <tr> <td align="center">一想到还有95<em>%的</em>问题留给人类，我就放心了</td> <td align="center">【巴拿马】豪尔赫•陈</td> <td align="center">03-07</td> <td align="center">03-15</td> <td align="center">4h</td> </tr> <tr> <td align="center">历史的终结及最后之人</td> <td align="center">【美】弗朗西斯·福山</td> <td align="center">03-03</td> <td align="center">03-10</td> <td align="center">10h</td> </tr> <tr> <td align="center">我無罪：劉曉波傳</td> <td align="center">余杰</td> <td align="center">03-13</td> <td align="center">03-20</td> <td align="center">8h</td> </tr> <tr> <td align="center">神奇的生物化学</td> <td align="center">神奇的生物化学</td> <td align="center">03-23</td> <td align="center">03-25</td> <td align="center">4h</td> </tr> <tr> <td align="center">费马最终定理</td> <td align="center">【日】日冲樱皮</td> <td align="center">03-26</td> <td align="center">03-28</td> <td align="center">3h</td> </tr> <tr> <td align="center">被讨厌的勇气</td> <td align="center">【日】岸見一郎</td> <td align="center">03-28</td> <td align="center">03-30</td> <td align="center">4h</td> </tr> <tr> <td align="center">鸟瞰古文明</td> <td align="center">【法】 让-克劳德·戈尔万</td> <td align="center">04-03</td> <td align="center">04-10</td> <td align="center">8h</td> </tr> <tr> <td align="center">自由宪章</td> <td align="center">【奥】弗里德里希·哈耶克</td> <td align="center">04-01</td> <td align="center">04-20</td> <td align="center">16h</td> </tr> <tr> <td align="center">盗火者：中国教育革命静悄悄</td> <td align="center">邓康延 梁罗兴</td> <td align="center">04-11</td> <td align="center">04-20</td> <td align="center">6h</td> </tr> <tr> <td align="center">我们最幸福：北韩人民的真实生活</td> <td align="center">【美】芭芭拉·德米克</td> <td align="center">04-23</td> <td align="center">04-26</td> <td align="center">6h</td> </tr> <tr> <td align="center">哈维尔文集</td> <td align="center">【捷克】哈维尔</td> <td align="center">04-24</td> <td align="center">04-30</td> <td align="center">8h</td> </tr> <tr> <td align="center">布达佩斯往事：冷战时期一个东欧家庭的秘密档案</td> <td align="center">【美】卡蒂·马顿</td> <td align="center">04-26</td> <td align="center">04-30</td> <td align="center">6h</td> </tr> <tr> <td align="center">致命的自负：社会主义的谬误</td> <td align="center">【奥】弗里德里希·哈耶克</td> <td align="center">05-01</td> <td align="center">05-30</td> <td align="center">10h</td> </tr> <tr> <td align="center">地球的演变故事</td> <td align="center">姚建明</td> <td align="center">05-02</td> <td align="center">05-05</td> <td align="center">4h</td> </tr> <tr> <td align="center">图解科技译丛：漫画元素118</td> <td align="center">【日】斋腾胜裕</td> <td align="center">05-02</td> <td align="center">05-03</td> <td align="center">2h</td> </tr> <tr> <td align="center">颓废与沉默：透视犬儒文化</td> <td align="center">徐贲</td> <td align="center">05-02</td> <td align="center">05-10</td> <td align="center">4h</td> </tr> <tr> <td align="center">统治与教育：从国民到公民</td> <td align="center">徐贲</td> <td align="center">05-03</td> <td align="center">05-25</td> <td align="center">8h</td> </tr> <tr> <td align="center">三角距离无限为零1-4</td> <td align="center">【日】岬鹭宫</td> <td align="center">05-05</td> <td align="center">05-25</td> <td align="center">10h</td> </tr> <tr> <td align="center">被禁锢的头脑</td> <td align="center">【立】切斯瓦夫·米沃什</td> <td align="center">05-05</td> <td align="center">05-10</td> <td align="center">6h</td> </tr> <tr> <td align="center">人以什么理由来记忆</td> <td align="center">徐贲</td> <td align="center">05-02</td> <td align="center">05-10</td> <td align="center">10h</td> </tr> <tr> <td align="center">宇宙从一粒尘埃开始：9堂极简宇宙课</td> <td align="center">【英】布莱恩•考克斯</td> <td align="center">05-25</td> <td align="center">05-30</td> <td align="center">5h</td> </tr> <tr> <td align="center">通往尊严的公共生活</td> <td align="center">徐贲</td> <td align="center">05-25</td> <td align="center">05-30</td> <td align="center">10h</td> </tr> <tr> <td align="center">宇宙从起源到未来</td> <td align="center">【美】约翰·布罗克曼</td> <td align="center">06-18</td> <td align="center">06-25</td> <td align="center">5h</td> </tr> <tr> <td align="center">kubernetes 网络权威指南</td> <td align="center">杜军</td> <td align="center">06-20</td> <td align="center">06-27</td> <td align="center">6h</td> </tr> <tr> <td align="center">Linux开源网络全栈详解：从DPDK到OpenFlow</td> <td align="center">英特尔亚太研发有限公司</td> <td align="center">06-20</td> <td align="center">06-23</td> <td align="center">3h</td> </tr> <tr> <td align="center">大话处理器</td> <td align="center">万木杨</td> <td align="center">06-21</td> <td align="center">06-21</td> <td align="center">2h</td> </tr> <tr> <td align="center">三角的距离无限为零5</td> <td align="center">【日】岬鹭宫</td> <td align="center">06-24</td> <td align="center">06-25</td> <td align="center">2.5h</td> </tr> <tr> <td align="center">大话存储</td> <td align="center">张冬</td> <td align="center">06-27</td> <td align="center">07-21</td> <td align="center">18h</td> </tr> <tr> <td align="center">布拉格精神</td> <td align="center">【捷】伊凡·克里玛</td> <td align="center">07-01</td> <td align="center">07-10</td> <td align="center">6h</td> </tr> <tr> <td align="center">徐贲文集</td> <td align="center">徐贲</td> <td align="center">07-10</td> <td align="center">07-30</td> <td align="center">30h</td> </tr> <tr> <td align="center">生命通史</td> <td align="center">朱钦士</td> <td align="center">04-10</td> <td align="center">08-20</td> <td align="center">60h</td> </tr> <tr> <td align="center">Kubernetes 源码剖析</td> <td align="center">郑东旭</td> <td align="center">08-01</td> <td align="center">08-10</td> <td align="center">10h</td> </tr> <tr> <td align="center">Kubernetes 指南第四版</td> <td align="center">龚正，吴治辉，崔秀龙</td> <td align="center">08-10</td> <td align="center">08-30</td> <td align="center">8h</td> </tr> <tr> <td align="center">媒介批判三部曲</td> <td align="center">【美】尼尔·波兹曼</td> <td align="center">09-01</td> <td align="center">09-30</td> <td align="center">20h</td> </tr> <tr> <td align="center">时光沙漏</td> <td align="center">【日】さと(</td> <td align="center">09-13</td> <td align="center">09-13</td> <td align="center">1h</td> </tr> <tr> <td align="center">Just Because!</td> <td align="center">【日】鸭志田一</td> <td align="center">09-13</td> <td align="center">09-14</td> <td align="center">4h</td> </tr> <tr> <td align="center">我的青春戀愛物語果然有問題</td> <td align="center">【日】渡航</td> <td align="center">09-15</td> <td align="center">09-30</td> <td align="center">30h</td> </tr> <tr> <td align="center">kubernetes 源码分析</td> <td align="center">郑东旭</td> <td align="center">10-01</td> <td align="center">10-07</td> <td align="center">15h</td> </tr> <tr> <td align="center">安达与岛村 1-8</td> <td align="center">【日】入间人间</td> <td align="center">11-15</td> <td align="center">11-20</td> <td align="center">20h</td> </tr> <tr> <td align="center">复杂生命的起源</td> <td align="center">【英】 尼克·莱恩</td> <td align="center">11-30</td> <td align="center">12-07</td> <td align="center">15h</td> </tr> <tr> <td align="center">来自新世界</td> <td align="center">【日】贵志祐介</td> <td align="center">11-30</td> <td align="center">12-10</td> <td align="center">20h</td> </tr> <tr> <td align="center">政宗君的復仇</td> <td align="center">【日】竹冈叶月</td> <td align="center">12-05</td> <td align="center">12-07</td> <td align="center">6h</td> </tr> <tr> <td align="center">星际穿越</td> <td align="center">【美】基普·索恩</td> <td align="center">12-10</td> <td align="center">12-12</td> <td align="center">4h</td> </tr> <tr> <td align="center">Life 生命</td> <td align="center">【美】约翰·布罗克曼</td> <td align="center">12-12</td> <td align="center">12-23</td> <td align="center">8h</td> </tr> <tr> <td align="center">美丽新世界</td> <td align="center">【英】阿道司·赫胥黎</td> <td align="center">12-14</td> <td align="center">12-18</td> <td align="center">8h</td> </tr> <tr> <td align="center">樱花庄的宠物女孩</td> <td align="center">【日】鸭志田一</td> <td align="center">12-13</td> <td align="center">12-21</td> <td align="center">36h</td> </tr> <tr> <td align="center">生命的跃升</td> <td align="center">【英】尼克·莱恩</td> <td align="center">12-22</td> <td align="center">12-26</td> <td align="center">8h</td> </tr> <tr> <td align="center">消失的微生物：滥用抗生素引发的危机</td> <td align="center">【美】马丁•布莱泽</td> <td align="center">12-28</td> <td align="center">01-02</td> <td align="center">8h</td> </tr> </tbody></table> <h2 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h2><table> <thead> <tr> <th align="center">书名</th> <th align="center">作者</th> <th align="center">start</th> <th align="center">end</th> <th align="center">时长</th> </tr> </thead> <tbody><tr> <td align="center">1984</td> <td align="center">【英】乔治·奥威尔</td> <td align="center">03-02</td> <td align="center">03-10</td> <td align="center">8h</td> </tr> <tr> <td align="center">通往奴役之路</td> <td align="center">【奥】弗里德利希·哈耶克</td> <td align="center">10-10</td> <td align="center">10-30</td> <td align="center">18h</td> </tr> <tr> <td align="center">一百个人的十年</td> <td align="center">冯骥才</td> <td align="center">10-25</td> <td align="center">10-30</td> <td align="center">10h</td> </tr> <tr> <td align="center">切尔诺贝利的悲鸣</td> <td align="center">【白俄】S·A·阿列克谢耶维奇</td> <td align="center">11-01</td> <td align="center">11-07</td> <td align="center">8h</td> </tr> <tr> <td align="center">公正：该如何做是好?</td> <td align="center">【美】迈克尔·桑德尔</td> <td align="center">11-27</td> <td align="center">12-23</td> <td align="center">10h</td> </tr> <tr> <td align="center">如果没有今天，明天会不会有昨天？</td> <td align="center">【瑞士】伊夫·博萨尔特</td> <td align="center">11-10</td> <td align="center">11-20</td> <td align="center">10h</td> </tr> <tr> <td align="center">上帝笑了 99 次：哲学悖论里的大思考</td> <td align="center">【英】彼得·凯弗</td> <td align="center">10-01</td> <td align="center">10-06</td> <td align="center">8h</td> </tr> <tr> <td align="center">学会提问：批判性思维指南</td> <td align="center">【美】M. Neil Browne【美】Stuart M. Keeley</td> <td align="center">01-10</td> <td align="center">01-20</td> <td align="center">8h</td> </tr> <tr> <td align="center">独裁者手册</td> <td align="center">【美】布鲁诺·德·梅斯奎塔  【美】阿拉斯泰尔·史密斯</td> <td align="center">09-02</td> <td align="center">09-10</td> <td align="center">10h</td> </tr> <tr> <td align="center">历史决定论的贫困</td> <td align="center">【英】卡尔·波普尔</td> <td align="center">12-01</td> <td align="center">12-10</td> <td align="center">10h</td> </tr> <tr> <td align="center">疯狂的投资：跨越大西洋电缆的商业传奇</td> <td align="center">【美】约翰.S.戈登</td> <td align="center">01-20</td> <td align="center">02-25</td> <td align="center">6h</td> </tr> <tr> <td align="center">乌合之众</td> <td align="center">【法】古斯塔夫·勒庞</td> <td align="center">06-21</td> <td align="center">06-30</td> <td align="center">6h</td> </tr> <tr> <td align="center">肠子的小心思</td> <td align="center">【德】朱莉娅·恩德斯</td> <td align="center">01-11</td> <td align="center">01-21</td> <td align="center">8h</td> </tr> <tr> <td align="center">娱乐至死</td> <td align="center">【美】尼尔·波兹曼</td> <td align="center">10-15</td> <td align="center">10-26</td> <td align="center">8h</td> </tr> <tr> <td align="center">童年的消逝</td> <td align="center">【美】尼尔·波兹曼</td> <td align="center">10-21</td> <td align="center">10-26</td> <td align="center">8h</td> </tr> <tr> <td align="center">民主的奇迹： 美国宪法制定的127天</td> <td align="center">【美】凯瑟琳·德林克·鲍恩</td> <td align="center">09-06</td> <td align="center">09-12</td> <td align="center">6h</td> </tr> <tr> <td align="center">Kubernetes 指南第四版</td> <td align="center">龚正 / 吴治辉 / 崔秀龙 / 闫健勇</td> <td align="center">05-20</td> <td align="center">05-30</td> <td align="center">10h</td> </tr> <tr> <td align="center">程序员的自我修养： 链接、装载与库</td> <td align="center">俞甲子 / 石凡 / 潘爱民</td> <td align="center">04-20</td> <td align="center">04-30</td> <td align="center">10h</td> </tr> <tr> <td align="center">程序员的英语</td> <td align="center">【日】结城浩</td> <td align="center">05-01</td> <td align="center">06-30</td> <td align="center">10h</td> </tr> <tr> <td align="center">永久记录</td> <td align="center">【美】爱德华·斯诺登</td> <td align="center">12-20</td> <td align="center">12-30</td> <td align="center">6h</td> </tr> <tr> <td align="center">少有人走的路</td> <td align="center">【美】M·斯科特·派克</td> <td align="center">03-02</td> <td align="center">04-30</td> <td align="center">20h</td> </tr> <tr> <td align="center">末日时在做什么？有没有空？可以来拯救吗？</td> <td align="center">【日】枯野瑛</td> <td align="center">06-01</td> <td align="center">06-12</td> <td align="center">10h</td> </tr> <tr> <td align="center">流浪神差</td> <td align="center">【日】安達渡嘉</td> <td align="center">08-01</td> <td align="center">08-10</td> <td align="center">10h</td> </tr> <tr> <td align="center">终将成为你</td> <td align="center">【日】仲谷鳰</td> <td align="center">11-01</td> <td align="center">12-01</td> <td align="center">8h</td> </tr> <tr> <td align="center">Happy Sugar Life ～</td> <td align="center">【日】键空富烧</td> <td align="center">11-06</td> <td align="center">11-11</td> <td align="center">8h</td> </tr> <tr> <td align="center">citrus</td> <td align="center">【日】サブロウタ</td> <td align="center">11-10</td> <td align="center">11-12</td> <td align="center">6h</td> </tr> </tbody></table> <h2 id="2015-2018"><a href="#2015-2018" class="headerlink" title="2015 ~ 2018"></a>2015 ~ 2018</h2><table> <thead> <tr> <th align="center">书名</th> <th align="center">作者</th> <th align="center">开始</th> <th align="center">结束</th> </tr> </thead> <tbody><tr> <td align="center">数学简史</td> <td align="center">蔡天新</td> <td align="center">-</td> <td align="center">2017-04</td> </tr> <tr> <td align="center">只是为了好玩儿</td> <td align="center">【美】林纳斯·托瓦兹</td> <td align="center">-</td> <td align="center">2016-04</td> </tr> <tr> <td align="center">动物庄园 [Animal Farm]</td> <td align="center">【英】乔治·奥威尔</td> <td align="center">-</td> <td align="center">2017-04</td> </tr> <tr> <td align="center">数学女孩 1</td> <td align="center">【日】结城浩</td> <td align="center">-</td> <td align="center">2017-02</td> </tr> <tr> <td align="center">数学女孩2：费马大定理</td> <td align="center">【日】结城浩</td> <td align="center">-</td> <td align="center">2017-02</td> </tr> <tr> <td align="center">数学女孩3：德尔不完备定理</td> <td align="center">【日】结城浩</td> <td align="center">-</td> <td align="center">2017-02</td> </tr> <tr> <td align="center">费马最终定理</td> <td align="center">【日】日冲樱皮</td> <td align="center">-</td> <td align="center">2016-12</td> </tr> <tr> <td align="center">你的灯亮着吗：发现问题的真正所在</td> <td align="center">【美]】杰拉尔德·温伯格</td> <td align="center">-</td> <td align="center">2016-10</td> </tr> <tr> <td align="center">苏菲的世界</td> <td align="center">【挪】 乔斯坦·贾德</td> <td align="center">-</td> <td align="center">2017-08</td> </tr> <tr> <td align="center">小王子</td> <td align="center">【法】圣埃克苏佩里</td> <td align="center">-</td> <td align="center">2017-12</td> </tr> <tr> <td align="center">小王子（英文版）</td> <td align="center">【法】安东·德·圣艾修伯里</td> <td align="center">-</td> <td align="center">2017-12</td> </tr> <tr> <td align="center">黑客与画家</td> <td align="center">【美】保罗·格雷厄姆</td> <td align="center">-</td> <td align="center">2016-11</td> </tr> <tr> <td align="center">人月神话</td> <td align="center">佛瑞德·布鲁克斯</td> <td align="center">-</td> <td align="center">2018-05</td> </tr> <tr> <td align="center">若为自由故：由软件之父理查德 斯托曼传</td> <td align="center">【美】<em>理查德</em>·马修·斯托曼</td> <td align="center">-</td> <td align="center">2016-04</td> </tr> <tr> <td align="center">一个定理的诞生：我与菲尔茨奖的一千个日夜</td> <td align="center">【法】塞德里克·维拉尼</td> <td align="center">-</td> <td align="center">2016-10</td> </tr> <tr> <td align="center">热的解析理论</td> <td align="center">【法】约瑟夫·傅立叶</td> <td align="center">-</td> <td align="center">2018-03</td> </tr> <tr> <td align="center">我心爱的雷龙：一本写给大人的恐龙书</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-10</td> </tr> <tr> <td align="center">领导艺术（英文权威版）绿</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-11</td> </tr> <tr> <td align="center">大教堂与集市</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-05</td> </tr> <tr> <td align="center">植物知道生命的答案</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-10</td> </tr> <tr> <td align="center">数学史（修订版）（套装上下册）</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-06</td> </tr> <tr> <td align="center">素数之恋：黎曼和数学中最大的未解之谜</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-10</td> </tr> <tr> <td align="center">揭示宇宙奥秘的13个常数</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-12</td> </tr> <tr> <td align="center">庞加莱猜想 追寻宇宙的形状</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-10</td> </tr> <tr> <td align="center">代码的未来</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-08</td> </tr> <tr> <td align="center">数学之旅</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-10</td> </tr> <tr> <td align="center">费马大定理：一个困惑了世间智者358年的谜</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-10</td> </tr> <tr> <td align="center">数学巨匠：从欧拉到冯·诺伊曼</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-06</td> </tr> <tr> <td align="center">数学悖论与三次数学危机</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-06</td> </tr> <tr> <td align="center">黎曼猜想漫谈：一场攀登数学高峰的天才盛宴</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-06</td> </tr> <tr> <td align="center">数学大师：从芝诺到庞加莱</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-06</td> </tr> <tr> <td align="center">软件随想录 卷2</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-08</td> </tr> <tr> <td align="center">软件随想录 卷1</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-08</td> </tr> <tr> <td align="center">系统之美</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-08</td> </tr> <tr> <td align="center">《浅薄》：互联网如何毒化了我们的大脑？</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-04</td> </tr> <tr> <td align="center">欺骗的艺术</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-08</td> </tr> <tr> <td align="center">黑客</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-08</td> </tr> <tr> <td align="center">走出帝制：从晚清到民国的历史回望</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-12</td> </tr> <tr> <td align="center">如何阅读一本书</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-04</td> </tr> <tr> <td align="center">疯狂的投资：跨越大西洋电缆的商业传奇</td> <td align="center"></td> <td align="center">-</td> <td align="center">2015-10</td> </tr> <tr> <td align="center">浪潮之巅</td> <td align="center"></td> <td align="center">-</td> <td align="center">2015-10</td> </tr> <tr> <td align="center">藏地密码</td> <td align="center"></td> <td align="center">-</td> <td align="center">2015-10</td> </tr> <tr> <td align="center">天路之魂</td> <td align="center"></td> <td align="center">-</td> <td align="center">2015-07</td> </tr> <tr> <td align="center">民主与教育</td> <td align="center"></td> <td align="center">-</td> <td align="center">2015-12</td> </tr> <tr> <td align="center">数学之美</td> <td align="center"></td> <td align="center">-</td> <td align="center">2015-12</td> </tr> <tr> <td align="center">信息简史</td> <td align="center"></td> <td align="center">-</td> <td align="center">2015-12</td> </tr> <tr> <td align="center">图灵和ACM图灵奖</td> <td align="center"></td> <td align="center">-</td> <td align="center">2015-12</td> </tr> <tr> <td align="center">数学之书</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-10</td> </tr> <tr> <td align="center">普林斯顿微积分读本</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-10</td> </tr> <tr> <td align="center">深网 Google 搜不到的世界</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-10</td> </tr> <tr> <td align="center">庞加莱猜想 追寻宇宙的形状</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-10</td> </tr> <tr> <td align="center">微积分的历程：从牛顿到勒贝格</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-10</td> </tr> <tr> <td align="center">深入Linux内核架构</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-10</td> </tr> <tr> <td align="center">鸟哥的 Linux 私房菜</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-01</td> </tr> <tr> <td align="center">程序设计抽象思想：C语言描述</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-01</td> </tr> <tr> <td align="center">深入理解计算机系统</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-08</td> </tr> <tr> <td align="center">程序员的数学：概率统计</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-08</td> </tr> <tr> <td align="center">程序员的数学：线性代数</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-08</td> </tr> <tr> <td align="center">大嘴巴漫谈数据挖掘</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-08</td> </tr> <tr> <td align="center">Google SRE 运维解密</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-09</td> </tr> <tr> <td align="center">计算机程序设计艺术：基本算法</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-11</td> </tr> <tr> <td align="center">Linux 内核设计与实现</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-11</td> </tr> <tr> <td align="center">Kubernetes 权威指南第二版</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-11</td> </tr> <tr> <td align="center">docker 容器与容器云</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-11</td> </tr> <tr> <td align="center">第一本 docker 书</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-10</td> </tr> <tr> <td align="center">docker 源码分析</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-10</td> </tr> <tr> <td align="center">重新定义公司 Google是如何运营的</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-09</td> </tr> <tr> <td align="center">凤凰项目：一个IT运维的传奇故事</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-03</td> </tr> <tr> <td align="center">理解 Unix 进程</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-09</td> </tr> <tr> <td align="center">网络是怎样连接的</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-12</td> </tr> <tr> <td align="center">图解 HTTP</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-12</td> </tr> <tr> <td align="center">深入理解 Linux 内核</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-12</td> </tr> <tr> <td align="center">计算机体系结构量化研究方法</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-10</td> </tr> <tr> <td align="center">计算系统的形式语义</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-04</td> </tr> <tr> <td align="center">现代操作系统</td> <td align="center"></td> <td align="center">-</td> <td align="center">2016-08</td> </tr> <tr> <td align="center">具体数学</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-12</td> </tr> <tr> <td align="center">图解网络硬件</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-12</td> </tr> <tr> <td align="center">编译原理</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-04</td> </tr> <tr> <td align="center">半导体制作基础</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-03</td> </tr> <tr> <td align="center">程序员的自我修养</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-04</td> </tr> <tr> <td align="center">Linux 系统架构与应用技巧</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-12</td> </tr> <tr> <td align="center">图解服务器端网络架构</td> <td align="center"></td> <td align="center">-</td> <td align="center">2017-12</td> </tr> <tr> <td align="center">Linux 技术内幕</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-04</td> </tr> <tr> <td align="center">计算进化史 改变数学的命运</td> <td align="center"></td> <td align="center">-</td> <td align="center">2018-05</td> </tr> </tbody></table> <p><img src="https://p.k8s.li/kindle_cover8.png" alt=""></p>        </div>                          </div>                        </div>             </div>                   <div class="comments">     <div id="disqus_thread">       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>     </div>   </div>     <script>   window.addEventListener('tabs:register', () => {     let activeClass = CONFIG.comments.activeClass;     if (CONFIG.comments.storage) {       activeClass = localStorage.getItem('comments_active') || activeClass;     }     if (activeClass) {       let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);       if (activeTab) {         activeTab.click();       }     }   });   if (CONFIG.comments.storage) {     window.addEventListener('tabs:click', event => {       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;       let commentClass = event.target.classList[1];       localStorage.setItem('comments_active', commentClass);     });   } </script>          </div>                 <div class="toggle sidebar-toggle">     <span class="toggle-line toggle-line-first"></span>     <span class="toggle-line toggle-line-middle"></span>     <span class="toggle-line toggle-line-last"></span>   </div>    <aside class="sidebar">     <div class="sidebar-inner">        <ul class="sidebar-nav motion-element">         <li class="sidebar-nav-toc">           文章目录         </li>         <li class="sidebar-nav-overview">           站点概览         </li>       </ul>        <!--noindex-->       <div class="post-toc-wrap sidebar-panel">           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#读书笔记"><span class="nav-number">1.</span> <span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2021"><span class="nav-number">2.</span> <span class="nav-text">2021</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020"><span class="nav-number">3.</span> <span class="nav-text">2020</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019"><span class="nav-number">4.</span> <span class="nav-text">2019</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2015-2018"><span class="nav-number">5.</span> <span class="nav-text">2015 ~ 2018</span></a></li></ol></div>       </div>       <!--/noindex-->        <div class="site-overview-wrap sidebar-panel">         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">     <img class="site-author-image" itemprop="image" alt="木子"       src="https://blog.k8s.li/avatar.png">   <p class="site-author-name" itemprop="name">木子</p>   <div class="site-description" itemprop="description"></div> </div> <div class="site-state-wrap motion-element">   <nav class="site-state">       <div class="site-state-item site-state-posts">           <a href="/archives">           <span class="site-state-item-count">101</span>           <span class="site-state-item-name">日志</span>         </a>       </div>       <div class="site-state-item site-state-categories">             <a href="/categories/">         <span class="site-state-item-count">9</span>         <span class="site-state-item-name">分类</span></a>       </div>       <div class="site-state-item site-state-tags">             <a href="/tags/">         <span class="site-state-item-count">124</span>         <span class="site-state-item-name">标签</span></a>       </div>   </nav> </div>   <div class="links-of-author motion-element">       <span class="links-of-author-item">         <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>       </span>       <span class="links-of-author-item">         <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>       </span>       <span class="links-of-author-item">         <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>       </span>       <span class="links-of-author-item">         <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>       </span>       <span class="links-of-author-item">         <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>       </span>       <span class="links-of-author-item">         <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>       </span>       <span class="links-of-author-item">         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>       </span>   </div>          </div>         <div class="back-to-top motion-element">           <i class="fa fa-arrow-up"></i>           <span>0%</span>         </div>      </div>   </aside>   <div id="sidebar-dimmer"></div>         </div>     </main>      <footer class="footer">       <div class="footer-inner">           <div class="copyright">      &copy; 2018 –    <span itemprop="copyrightYear">2021</span>   <span class="with-love">     <i class="fa fa-heart"></i>   </span>   <span class="author" itemprop="copyrightHolder">木子</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-area-chart"></i>     </span>       <span class="post-meta-item-text">站点总字数：</span>     <span title="站点总字数">1.5m</span>     <span class="post-meta-divider">|</span>     <span class="post-meta-item-icon">       <i class="fa fa-coffee"></i>     </span>       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>     <span title="站点阅读时长">41:25</span> </div>   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动   </div>   <span class="post-meta-divider">|</span>   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>   </div>                         </div>     </footer>   </div>       <script src="/lib/anime.min.js"></script>  <script src="/js/utils.js"></script>   <script src="/js/schemes/pisces.js"></script>   <script src="/js/next-boot.js"></script>                               <script>   function loadCount() {     var d = document, s = d.createElement('script');     s.src = 'https://muzi.disqus.com/count.js';     s.id = 'dsq-count-scr';     (d.head || d.body).appendChild(s);   }   // defer loading until the whole page loading is completed   window.addEventListener('load', loadCount, false); </script> <script>   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {     if (window.DISQUS) {       DISQUS.reset({         reload: true,         config: {page: {             url: "https://blog.k8s.li/booklist.html",             identifier: "booklist.html",             title: "阅读记录"           }         }       });     } else {       var d = document, s = d.createElement('script');       s.src = 'https://muzi.disqus.com/embed.js';       s.setAttribute('data-timestamp', '' + +new Date());       (d.head || d.body).appendChild(s);     }   }); </script>  </body> </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="读书笔记 2020 年读书笔记和思考 2019 年读书笔记和思考  2021 在读     书名 作者 start end 时长    刘晓波文集 刘晓波 04-04 - 10h   旧制度与大革命 【法】亚历西斯·德·托克维尔 07-01 -     已读     书名 作者 start end 时长    生命是什么 【奥地利】埃尔温·薛定谔 01-01 01-02 4h   时间的秩序 【意">
+<meta property="og:type" content="website">
+<meta property="og:title" content="阅读记录">
+<meta property="og:url" content="https://blog.k8s.li/booklist.html">
+<meta property="og:site_name" content="木子">
+<meta property="og:description" content="读书笔记 2020 年读书笔记和思考 2019 年读书笔记和思考  2021 在读     书名 作者 start end 时长    刘晓波文集 刘晓波 04-04 - 10h   旧制度与大革命 【法】亚历西斯·德·托克维尔 07-01 -     已读     书名 作者 start end 时长    生命是什么 【奥地利】埃尔温·薛定谔 01-01 01-02 4h   时间的秩序 【意">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p.k8s.li/kindle_cover8.png">
+<meta property="article:published_time" content="2019-03-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-07T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="运维">
+<meta property="article:tag" content="kubernetes">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p.k8s.li/kindle_cover8.png">
+
+<link rel="canonical" href="https://blog.k8s.li/booklist.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: false
+  };
+</script>
+
+  <title>阅读记录 | 木子
+  </title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h2 class="post-title" itemprop="name headline">阅读记录
+</h2>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h2 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h2><ul>
+<li><a href="https://blog.k8s.li/2020-booklist.html">2020 年读书笔记和思考</a></li>
+<li><a href="https://blog.k8s.li/2019-reading-notes.html">2019 年读书笔记和思考</a></li>
+</ul>
+<h2 id="2021"><a href="#2021" class="headerlink" title="2021"></a>2021</h2><ul>
+<li>在读</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">书名</th>
+<th align="center">作者</th>
+<th align="center">start</th>
+<th align="center">end</th>
+<th align="center">时长</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">刘晓波文集</td>
+<td align="center">刘晓波</td>
+<td align="center">04-04</td>
+<td align="center">-</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">旧制度与大革命</td>
+<td align="center">【法】亚历西斯·德·托克维尔</td>
+<td align="center">07-01</td>
+<td align="center">-</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>已读</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">书名</th>
+<th align="center">作者</th>
+<th align="center">start</th>
+<th align="center">end</th>
+<th align="center">时长</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">生命是什么</td>
+<td align="center">【奥地利】埃尔温·薛定谔</td>
+<td align="center">01-01</td>
+<td align="center">01-02</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">时间的秩序</td>
+<td align="center">【意】卡洛·罗韦利</td>
+<td align="center">01-03</td>
+<td align="center">01-03</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">生命之源：能量、演化與複雜生命的起源</td>
+<td align="center">【英】 尼克·莱恩</td>
+<td align="center">01-03</td>
+<td align="center">01-12</td>
+<td align="center">12h</td>
+</tr>
+<tr>
+<td align="center">生命的未来</td>
+<td align="center">【美]】爱德华·威尔逊</td>
+<td align="center">01-04</td>
+<td align="center">01-18</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">切尔诺贝利的祭祷</td>
+<td align="center">【白俄】S·A· 阿列克谢耶维奇</td>
+<td align="center">01-15</td>
+<td align="center">01-20</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">反对完美：科技与人性的正义之战</td>
+<td align="center">【美】迈克尔·桑德尔</td>
+<td align="center">01-20</td>
+<td align="center">01-29</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">艾希曼在耶路撒冷：一份关于平庸的恶的报告</td>
+<td align="center">【美】汉娜·阿伦特</td>
+<td align="center">02-01</td>
+<td align="center">02-20</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">我包罗万象</td>
+<td align="center">【英】埃德·扬</td>
+<td align="center">02-01</td>
+<td align="center">02-07</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">维稳的政治逻辑</td>
+<td align="center">谢岳</td>
+<td align="center">02-01</td>
+<td align="center">02-07</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">里世界郊游 1-5</td>
+<td align="center">【日】宮澤伊織</td>
+<td align="center">02-10</td>
+<td align="center">02-20</td>
+<td align="center">15h</td>
+</tr>
+<tr>
+<td align="center">我包罗万象</td>
+<td align="center">【英】埃德·扬</td>
+<td align="center">02-21</td>
+<td align="center">03-25</td>
+<td align="center">12h</td>
+</tr>
+<tr>
+<td align="center">路西法效应</td>
+<td align="center">【美】菲利普·津巴多</td>
+<td align="center">03-26</td>
+<td align="center">03-30</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">大图景：论生命的起源、意义和宇宙本身</td>
+<td align="center">【美】肖恩·卡罗尔</td>
+<td align="center">04-01</td>
+<td align="center">04-17</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">叫魂：1768 年中国妖术大恐慌</td>
+<td align="center">【美】孔飞力</td>
+<td align="center">04-05</td>
+<td align="center">04-24</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">时间的形状</td>
+<td align="center">汪洁</td>
+<td align="center">04-03</td>
+<td align="center">04-06</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">星空的琴弦</td>
+<td align="center">汪洁</td>
+<td align="center">04-06</td>
+<td align="center">04-10</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">无中生有的世界</td>
+<td align="center">吴京平</td>
+<td align="center">04-22</td>
+<td align="center">04-24</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">风之谷</td>
+<td align="center">【日】宫崎骏</td>
+<td align="center">04-10</td>
+<td align="center">04-17</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">citrus 柑橘味香氣</td>
+<td align="center">【日】サブロウタ</td>
+<td align="center">04-14</td>
+<td align="center">04-15</td>
+<td align="center">3h</td>
+</tr>
+<tr>
+<td align="center">亿万年的孤独</td>
+<td align="center">汪洁</td>
+<td align="center">04-20</td>
+<td align="center">04-22</td>
+<td align="center">2h</td>
+</tr>
+<tr>
+<td align="center">柔软的宇宙</td>
+<td align="center">吴京平</td>
+<td align="center">04-10</td>
+<td align="center">04-13</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">细胞生命的礼赞</td>
+<td align="center">【英】 刘易斯·托马斯</td>
+<td align="center">04-28</td>
+<td align="center">04-30</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">非暴力沟通</td>
+<td align="center">马歇尔·卢森堡</td>
+<td align="center">04-30</td>
+<td align="center">05-04</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">86-不存在的戰區 1-8</td>
+<td align="center">【日】安里朝戶</td>
+<td align="center">04-25</td>
+<td align="center">05-10</td>
+<td align="center">20h</td>
+</tr>
+<tr>
+<td align="center">中国近代史</td>
+<td align="center">徐中约</td>
+<td align="center">05-10</td>
+<td align="center">06-04</td>
+<td align="center">32h</td>
+</tr>
+<tr>
+<td align="center">kubernetes 网络权威指南</td>
+<td align="center">杜军</td>
+<td align="center">05-20</td>
+<td align="center">05-30</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">局外人</td>
+<td align="center">【法】 阿尔贝·加缪</td>
+<td align="center">06-01</td>
+<td align="center">06-03</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">深入解析 kubernetes</td>
+<td align="center">张磊</td>
+<td align="center">06-01</td>
+<td align="center">07-07</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">改革历程</td>
+<td align="center">赵紫阳</td>
+<td align="center">06-04</td>
+<td align="center">06-12</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">常识</td>
+<td align="center">【美】托马斯·潘恩</td>
+<td align="center">06-05</td>
+<td align="center">06-08</td>
+<td align="center">3h</td>
+</tr>
+<tr>
+<td align="center">断舍离</td>
+<td align="center">【日】山下英子</td>
+<td align="center">06-05</td>
+<td align="center">06-08</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">弯曲的脊梁：纳粹德国与民主德国时期的宣传活动</td>
+<td align="center">【美】兰德尔·彼特沃克</td>
+<td align="center">06-12</td>
+<td align="center">06-15</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">逼近宇宙的秘密</td>
+<td align="center">【英】马库斯•乔恩</td>
+<td align="center">06-13</td>
+<td align="center">06-16</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">别逗了，费曼先生</td>
+<td align="center">【美】R•P•费曼 / R•莱顿</td>
+<td align="center">06-16</td>
+<td align="center">06-20</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">祖先的故事：生命起源的朝圣之旅</td>
+<td align="center">【英】理查德·道金斯</td>
+<td align="center">06-20</td>
+<td align="center">06-28</td>
+<td align="center">14h</td>
+</tr>
+<tr>
+<td align="center">你的名字</td>
+<td align="center">【日】新海诚</td>
+<td align="center">06-28</td>
+<td align="center">06-29</td>
+<td align="center">1h</td>
+</tr>
+<tr>
+<td align="center">好想告诉你</td>
+<td align="center">【日】椎名轻穗</td>
+<td align="center">07-01</td>
+<td align="center">07-04</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">能量、性、死亡：<br/>粒線體與我們的生命</td>
+<td align="center">【英】尼克·莱恩</td>
+<td align="center">07-01</td>
+<td align="center">07-17</td>
+<td align="center">20h</td>
+</tr>
+<tr>
+<td align="center">女友成双</td>
+<td align="center">【日】弘幸</td>
+<td align="center">07-03</td>
+<td align="center">07-04</td>
+<td align="center">2h</td>
+</tr>
+<tr>
+<td align="center">我们星球上的生命：我一生的目击证词与未来憧憬</td>
+<td align="center">【英】大卫·爱登堡</td>
+<td align="center">07-03</td>
+<td align="center">07-05</td>
+<td align="center">3h</td>
+</tr>
+<tr>
+<td align="center">思慕雪的熱帶魚</td>
+<td align="center">【日】萩埜まこと</td>
+<td align="center">07-05</td>
+<td align="center">07-05</td>
+<td align="center">3h</td>
+</tr>
+<tr>
+<td align="center">春與綠</td>
+<td align="center">【日】深海紺</td>
+<td align="center">07-06</td>
+<td align="center">07-06</td>
+<td align="center">1h</td>
+</tr>
+<tr>
+<td align="center">恬淡晴天</td>
+<td align="center">【日】土室圭</td>
+<td align="center">07-08</td>
+<td align="center">07-08</td>
+<td align="center">1h</td>
+</tr>
+<tr>
+<td align="center">历史的先声：<br/>半个世纪前的承诺</td>
+<td align="center">笑蜀</td>
+<td align="center">07-10</td>
+<td align="center">07-15</td>
+<td align="center">10h</td>
+</tr>
+</tbody></table>
+<ul>
+<li>待读</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">书名</th>
+<th align="center">作者</th>
+<th align="center">start</th>
+<th align="center">end</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">地球上最伟大的表演：<br/>进化的证据</td>
+<td align="center">【英】理查德·道金斯</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">有所不为的反叛者：<br/>批判、怀疑与想象力</td>
+<td align="center">罗新</td>
+<td align="center">07-03</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">自私的基因</td>
+<td align="center">【英】理查德·道金斯</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">永不停歇的时钟：机器、生命动能与现代科学的形成</td>
+<td align="center">【美】杰西卡·里斯金</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">古拉格之恋：一个爱情与求生的真实故事</td>
+<td align="center">【英】奥兰多·费吉斯</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">数学女孩4：随机算法</td>
+<td align="center">【日】结城浩</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">数学女孩5：伽罗瓦理论</td>
+<td align="center">【日】结城浩</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">极权主义的起源</td>
+<td align="center">【德】汉娜·阿伦特</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">康德政治哲学讲稿</td>
+<td align="center">【德】 汉娜·阿伦特</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">人的境况</td>
+<td align="center">【德】 汉娜·阿伦特</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">暗杀教室</td>
+<td align="center">【日】松井优征</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">人类衰退之后</td>
+<td align="center">【日】田中罗密欧</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">国家建设与政府行为</td>
+<td align="center">周雪光</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">J</td>
+<td align="center">【英】霍华德·雅各布森</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">人类简史</td>
+<td align="center">【以]】尤瓦尔·赫拉利</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">从一到无穷大</td>
+<td align="center">【美】乔治·伽莫夫</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">论国家的作用</td>
+<td align="center">【德】亚历山大·冯·洪堡</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">大国崛起</td>
+<td align="center">唐晋</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">鼠疫</td>
+<td align="center">【法】阿尔贝·加缪</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">华氏 451</td>
+<td align="center">【美】雷·布拉德伯里</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">个人主义与经济秩序</td>
+<td align="center">【奥】弗里德里希·哈耶克</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">自由秩序原理</td>
+<td align="center">【奥】弗里德里希·哈耶克</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">论法的精神</td>
+<td align="center">【法】孟德斯鸠</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">第三帝国语言</td>
+<td align="center">【英】理查德·J. 埃文斯</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">法律、立法与自由</td>
+<td align="center">【奥】弗里德里希·哈耶克</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">大国的崩溃：苏联解体的台前幕后</td>
+<td align="center">【美】沙希利·浦洛基</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">绝望者笔记：纳粹德国时期的政治与社会生活</td>
+<td align="center">【德】弗里德里希·莱克</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">46亿年的地球物语</td>
+<td align="center">【美】约翰<em>·</em>H<em>·</em>布瑞德雷</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">理解媒介：论人的延申</td>
+<td align="center">【加拿大】马歇尔·麦克卢汉</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Age of Ambition</td>
+<td align="center">Evan Osnos</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">天才在左，疯子在右</td>
+<td align="center">高铭</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">你一定爱读的极简欧洲史</td>
+<td align="center">【澳】约翰·赫斯特</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">轴心时代</td>
+<td align="center">【英】凯伦·阿姆斯特朗</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">基因组：人类自传</td>
+<td align="center">【英】马特·里德利</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="2020"><a href="#2020" class="headerlink" title="2020"></a>2020</h2><table>
+<thead>
+<tr>
+<th align="center">书名</th>
+<th align="center">作者</th>
+<th align="center">start</th>
+<th align="center">end</th>
+<th align="center">时长</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">论人类不平等的起源和基础</td>
+<td align="center">【法】让-雅克·卢梭</td>
+<td align="center">01-01</td>
+<td align="center">01-05</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">社会主义：经济学与社会学的分析</td>
+<td align="center">【奥】 路德维希·冯·米瑟斯</td>
+<td align="center">01-01</td>
+<td align="center">01-10</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">心理测量者</td>
+<td align="center">【日】深真见</td>
+<td align="center">01-03</td>
+<td align="center">01-05</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">论革命</td>
+<td align="center">【德】汉娜·阿伦特</td>
+<td align="center">01-05</td>
+<td align="center">01-20</td>
+<td align="center">12h</td>
+</tr>
+<tr>
+<td align="center">新常识：一党专政的性质和后果</td>
+<td align="center">张雪忠</td>
+<td align="center">01-15</td>
+<td align="center">01-20</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">论科学与艺术</td>
+<td align="center">【法】让-雅克·卢梭</td>
+<td align="center">01-21</td>
+<td align="center">01-25</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">地球脉动：前所未见的自然之美</td>
+<td align="center">【英】阿拉斯泰尔·福瑟吉尔</td>
+<td align="center">01-22</td>
+<td align="center">01-25</td>
+<td align="center">2h</td>
+</tr>
+<tr>
+<td align="center">社会契约论 (译林人文精选)</td>
+<td align="center">【法】让-雅克·卢梭</td>
+<td align="center">01-23</td>
+<td align="center">01-25</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">中国国家治理的制度逻辑：一个组织学研究</td>
+<td align="center">周雪光</td>
+<td align="center">01-28</td>
+<td align="center">02-07</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">病毒星球</td>
+<td align="center">【美]】尔·齐默</td>
+<td align="center">01-28</td>
+<td align="center">01-30</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">病毒来袭</td>
+<td align="center">【美】内森•沃尔夫</td>
+<td align="center">01-29</td>
+<td align="center">01-31</td>
+<td align="center">2h</td>
+</tr>
+<tr>
+<td align="center">血疫：埃博拉的故事</td>
+<td align="center">【美】理查德·普雷斯顿</td>
+<td align="center">02-01</td>
+<td align="center">02-08</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">远古的葱茏：古植物王国</td>
+<td align="center">周志炎</td>
+<td align="center">02-05</td>
+<td align="center">05-08</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">古生物学简明教程</td>
+<td align="center">朱才伐</td>
+<td align="center">02-06</td>
+<td align="center">02-10</td>
+<td align="center">3h</td>
+</tr>
+<tr>
+<td align="center">上帝造人有多难：生命的密钥</td>
+<td align="center">朱钦士</td>
+<td align="center">02-07</td>
+<td align="center">02-12</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">朱钦士的个人博客</td>
+<td align="center">朱钦士</td>
+<td align="center">02-08</td>
+<td align="center">03-30</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">远古的辉煌：生物大幅射</td>
+<td align="center">戎嘉余</td>
+<td align="center">02-13</td>
+<td align="center">05-15</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">牛津通识读本：地球</td>
+<td align="center">【英】马丁·雷德芬</td>
+<td align="center">02-13</td>
+<td align="center">02-15</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">生命活动的摇篮：细胞</td>
+<td align="center">王耀发</td>
+<td align="center">02-16</td>
+<td align="center">02-18</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">地球脉动2：奇迹世界</td>
+<td align="center">【英】胡·科里</td>
+<td align="center">02-24</td>
+<td align="center">02-27</td>
+<td align="center">3h</td>
+</tr>
+<tr>
+<td align="center">一想到还有95<em>%的</em>问题留给人类，我就放心了</td>
+<td align="center">【巴拿马】豪尔赫•陈</td>
+<td align="center">03-07</td>
+<td align="center">03-15</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">历史的终结及最后之人</td>
+<td align="center">【美】弗朗西斯·福山</td>
+<td align="center">03-03</td>
+<td align="center">03-10</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">我無罪：劉曉波傳</td>
+<td align="center">余杰</td>
+<td align="center">03-13</td>
+<td align="center">03-20</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">神奇的生物化学</td>
+<td align="center">神奇的生物化学</td>
+<td align="center">03-23</td>
+<td align="center">03-25</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">费马最终定理</td>
+<td align="center">【日】日冲樱皮</td>
+<td align="center">03-26</td>
+<td align="center">03-28</td>
+<td align="center">3h</td>
+</tr>
+<tr>
+<td align="center">被讨厌的勇气</td>
+<td align="center">【日】岸見一郎</td>
+<td align="center">03-28</td>
+<td align="center">03-30</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">鸟瞰古文明</td>
+<td align="center">【法】 让-克劳德·戈尔万</td>
+<td align="center">04-03</td>
+<td align="center">04-10</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">自由宪章</td>
+<td align="center">【奥】弗里德里希·哈耶克</td>
+<td align="center">04-01</td>
+<td align="center">04-20</td>
+<td align="center">16h</td>
+</tr>
+<tr>
+<td align="center">盗火者：中国教育革命静悄悄</td>
+<td align="center">邓康延 梁罗兴</td>
+<td align="center">04-11</td>
+<td align="center">04-20</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">我们最幸福：北韩人民的真实生活</td>
+<td align="center">【美】芭芭拉·德米克</td>
+<td align="center">04-23</td>
+<td align="center">04-26</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">哈维尔文集</td>
+<td align="center">【捷克】哈维尔</td>
+<td align="center">04-24</td>
+<td align="center">04-30</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">布达佩斯往事：冷战时期一个东欧家庭的秘密档案</td>
+<td align="center">【美】卡蒂·马顿</td>
+<td align="center">04-26</td>
+<td align="center">04-30</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">致命的自负：社会主义的谬误</td>
+<td align="center">【奥】弗里德里希·哈耶克</td>
+<td align="center">05-01</td>
+<td align="center">05-30</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">地球的演变故事</td>
+<td align="center">姚建明</td>
+<td align="center">05-02</td>
+<td align="center">05-05</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">图解科技译丛：漫画元素118</td>
+<td align="center">【日】斋腾胜裕</td>
+<td align="center">05-02</td>
+<td align="center">05-03</td>
+<td align="center">2h</td>
+</tr>
+<tr>
+<td align="center">颓废与沉默：透视犬儒文化</td>
+<td align="center">徐贲</td>
+<td align="center">05-02</td>
+<td align="center">05-10</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">统治与教育：从国民到公民</td>
+<td align="center">徐贲</td>
+<td align="center">05-03</td>
+<td align="center">05-25</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">三角距离无限为零1-4</td>
+<td align="center">【日】岬鹭宫</td>
+<td align="center">05-05</td>
+<td align="center">05-25</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">被禁锢的头脑</td>
+<td align="center">【立】切斯瓦夫·米沃什</td>
+<td align="center">05-05</td>
+<td align="center">05-10</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">人以什么理由来记忆</td>
+<td align="center">徐贲</td>
+<td align="center">05-02</td>
+<td align="center">05-10</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">宇宙从一粒尘埃开始：9堂极简宇宙课</td>
+<td align="center">【英】布莱恩•考克斯</td>
+<td align="center">05-25</td>
+<td align="center">05-30</td>
+<td align="center">5h</td>
+</tr>
+<tr>
+<td align="center">通往尊严的公共生活</td>
+<td align="center">徐贲</td>
+<td align="center">05-25</td>
+<td align="center">05-30</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">宇宙从起源到未来</td>
+<td align="center">【美】约翰·布罗克曼</td>
+<td align="center">06-18</td>
+<td align="center">06-25</td>
+<td align="center">5h</td>
+</tr>
+<tr>
+<td align="center">kubernetes 网络权威指南</td>
+<td align="center">杜军</td>
+<td align="center">06-20</td>
+<td align="center">06-27</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">Linux开源网络全栈详解：从DPDK到OpenFlow</td>
+<td align="center">英特尔亚太研发有限公司</td>
+<td align="center">06-20</td>
+<td align="center">06-23</td>
+<td align="center">3h</td>
+</tr>
+<tr>
+<td align="center">大话处理器</td>
+<td align="center">万木杨</td>
+<td align="center">06-21</td>
+<td align="center">06-21</td>
+<td align="center">2h</td>
+</tr>
+<tr>
+<td align="center">三角的距离无限为零5</td>
+<td align="center">【日】岬鹭宫</td>
+<td align="center">06-24</td>
+<td align="center">06-25</td>
+<td align="center">2.5h</td>
+</tr>
+<tr>
+<td align="center">大话存储</td>
+<td align="center">张冬</td>
+<td align="center">06-27</td>
+<td align="center">07-21</td>
+<td align="center">18h</td>
+</tr>
+<tr>
+<td align="center">布拉格精神</td>
+<td align="center">【捷】伊凡·克里玛</td>
+<td align="center">07-01</td>
+<td align="center">07-10</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">徐贲文集</td>
+<td align="center">徐贲</td>
+<td align="center">07-10</td>
+<td align="center">07-30</td>
+<td align="center">30h</td>
+</tr>
+<tr>
+<td align="center">生命通史</td>
+<td align="center">朱钦士</td>
+<td align="center">04-10</td>
+<td align="center">08-20</td>
+<td align="center">60h</td>
+</tr>
+<tr>
+<td align="center">Kubernetes 源码剖析</td>
+<td align="center">郑东旭</td>
+<td align="center">08-01</td>
+<td align="center">08-10</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">Kubernetes 指南第四版</td>
+<td align="center">龚正，吴治辉，崔秀龙</td>
+<td align="center">08-10</td>
+<td align="center">08-30</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">媒介批判三部曲</td>
+<td align="center">【美】尼尔·波兹曼</td>
+<td align="center">09-01</td>
+<td align="center">09-30</td>
+<td align="center">20h</td>
+</tr>
+<tr>
+<td align="center">时光沙漏</td>
+<td align="center">【日】さと(</td>
+<td align="center">09-13</td>
+<td align="center">09-13</td>
+<td align="center">1h</td>
+</tr>
+<tr>
+<td align="center">Just Because!</td>
+<td align="center">【日】鸭志田一</td>
+<td align="center">09-13</td>
+<td align="center">09-14</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">我的青春戀愛物語果然有問題</td>
+<td align="center">【日】渡航</td>
+<td align="center">09-15</td>
+<td align="center">09-30</td>
+<td align="center">30h</td>
+</tr>
+<tr>
+<td align="center">kubernetes 源码分析</td>
+<td align="center">郑东旭</td>
+<td align="center">10-01</td>
+<td align="center">10-07</td>
+<td align="center">15h</td>
+</tr>
+<tr>
+<td align="center">安达与岛村 1-8</td>
+<td align="center">【日】入间人间</td>
+<td align="center">11-15</td>
+<td align="center">11-20</td>
+<td align="center">20h</td>
+</tr>
+<tr>
+<td align="center">复杂生命的起源</td>
+<td align="center">【英】 尼克·莱恩</td>
+<td align="center">11-30</td>
+<td align="center">12-07</td>
+<td align="center">15h</td>
+</tr>
+<tr>
+<td align="center">来自新世界</td>
+<td align="center">【日】贵志祐介</td>
+<td align="center">11-30</td>
+<td align="center">12-10</td>
+<td align="center">20h</td>
+</tr>
+<tr>
+<td align="center">政宗君的復仇</td>
+<td align="center">【日】竹冈叶月</td>
+<td align="center">12-05</td>
+<td align="center">12-07</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">星际穿越</td>
+<td align="center">【美】基普·索恩</td>
+<td align="center">12-10</td>
+<td align="center">12-12</td>
+<td align="center">4h</td>
+</tr>
+<tr>
+<td align="center">Life 生命</td>
+<td align="center">【美】约翰·布罗克曼</td>
+<td align="center">12-12</td>
+<td align="center">12-23</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">美丽新世界</td>
+<td align="center">【英】阿道司·赫胥黎</td>
+<td align="center">12-14</td>
+<td align="center">12-18</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">樱花庄的宠物女孩</td>
+<td align="center">【日】鸭志田一</td>
+<td align="center">12-13</td>
+<td align="center">12-21</td>
+<td align="center">36h</td>
+</tr>
+<tr>
+<td align="center">生命的跃升</td>
+<td align="center">【英】尼克·莱恩</td>
+<td align="center">12-22</td>
+<td align="center">12-26</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">消失的微生物：滥用抗生素引发的危机</td>
+<td align="center">【美】马丁•布莱泽</td>
+<td align="center">12-28</td>
+<td align="center">01-02</td>
+<td align="center">8h</td>
+</tr>
+</tbody></table>
+<h2 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h2><table>
+<thead>
+<tr>
+<th align="center">书名</th>
+<th align="center">作者</th>
+<th align="center">start</th>
+<th align="center">end</th>
+<th align="center">时长</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1984</td>
+<td align="center">【英】乔治·奥威尔</td>
+<td align="center">03-02</td>
+<td align="center">03-10</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">通往奴役之路</td>
+<td align="center">【奥】弗里德利希·哈耶克</td>
+<td align="center">10-10</td>
+<td align="center">10-30</td>
+<td align="center">18h</td>
+</tr>
+<tr>
+<td align="center">一百个人的十年</td>
+<td align="center">冯骥才</td>
+<td align="center">10-25</td>
+<td align="center">10-30</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">切尔诺贝利的悲鸣</td>
+<td align="center">【白俄】S·A·阿列克谢耶维奇</td>
+<td align="center">11-01</td>
+<td align="center">11-07</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">公正：该如何做是好?</td>
+<td align="center">【美】迈克尔·桑德尔</td>
+<td align="center">11-27</td>
+<td align="center">12-23</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">如果没有今天，明天会不会有昨天？</td>
+<td align="center">【瑞士】伊夫·博萨尔特</td>
+<td align="center">11-10</td>
+<td align="center">11-20</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">上帝笑了 99 次：哲学悖论里的大思考</td>
+<td align="center">【英】彼得·凯弗</td>
+<td align="center">10-01</td>
+<td align="center">10-06</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">学会提问：批判性思维指南</td>
+<td align="center">【美】M. Neil Browne【美】Stuart M. Keeley</td>
+<td align="center">01-10</td>
+<td align="center">01-20</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">独裁者手册</td>
+<td align="center">【美】布鲁诺·德·梅斯奎塔  【美】阿拉斯泰尔·史密斯</td>
+<td align="center">09-02</td>
+<td align="center">09-10</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">历史决定论的贫困</td>
+<td align="center">【英】卡尔·波普尔</td>
+<td align="center">12-01</td>
+<td align="center">12-10</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">疯狂的投资：跨越大西洋电缆的商业传奇</td>
+<td align="center">【美】约翰.S.戈登</td>
+<td align="center">01-20</td>
+<td align="center">02-25</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">乌合之众</td>
+<td align="center">【法】古斯塔夫·勒庞</td>
+<td align="center">06-21</td>
+<td align="center">06-30</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">肠子的小心思</td>
+<td align="center">【德】朱莉娅·恩德斯</td>
+<td align="center">01-11</td>
+<td align="center">01-21</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">娱乐至死</td>
+<td align="center">【美】尼尔·波兹曼</td>
+<td align="center">10-15</td>
+<td align="center">10-26</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">童年的消逝</td>
+<td align="center">【美】尼尔·波兹曼</td>
+<td align="center">10-21</td>
+<td align="center">10-26</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">民主的奇迹： 美国宪法制定的127天</td>
+<td align="center">【美】凯瑟琳·德林克·鲍恩</td>
+<td align="center">09-06</td>
+<td align="center">09-12</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">Kubernetes 指南第四版</td>
+<td align="center">龚正 / 吴治辉 / 崔秀龙 / 闫健勇</td>
+<td align="center">05-20</td>
+<td align="center">05-30</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">程序员的自我修养： 链接、装载与库</td>
+<td align="center">俞甲子 / 石凡 / 潘爱民</td>
+<td align="center">04-20</td>
+<td align="center">04-30</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">程序员的英语</td>
+<td align="center">【日】结城浩</td>
+<td align="center">05-01</td>
+<td align="center">06-30</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">永久记录</td>
+<td align="center">【美】爱德华·斯诺登</td>
+<td align="center">12-20</td>
+<td align="center">12-30</td>
+<td align="center">6h</td>
+</tr>
+<tr>
+<td align="center">少有人走的路</td>
+<td align="center">【美】M·斯科特·派克</td>
+<td align="center">03-02</td>
+<td align="center">04-30</td>
+<td align="center">20h</td>
+</tr>
+<tr>
+<td align="center">末日时在做什么？有没有空？可以来拯救吗？</td>
+<td align="center">【日】枯野瑛</td>
+<td align="center">06-01</td>
+<td align="center">06-12</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">流浪神差</td>
+<td align="center">【日】安達渡嘉</td>
+<td align="center">08-01</td>
+<td align="center">08-10</td>
+<td align="center">10h</td>
+</tr>
+<tr>
+<td align="center">终将成为你</td>
+<td align="center">【日】仲谷鳰</td>
+<td align="center">11-01</td>
+<td align="center">12-01</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">Happy Sugar Life ～</td>
+<td align="center">【日】键空富烧</td>
+<td align="center">11-06</td>
+<td align="center">11-11</td>
+<td align="center">8h</td>
+</tr>
+<tr>
+<td align="center">citrus</td>
+<td align="center">【日】サブロウタ</td>
+<td align="center">11-10</td>
+<td align="center">11-12</td>
+<td align="center">6h</td>
+</tr>
+</tbody></table>
+<h2 id="2015-2018"><a href="#2015-2018" class="headerlink" title="2015 ~ 2018"></a>2015 ~ 2018</h2><table>
+<thead>
+<tr>
+<th align="center">书名</th>
+<th align="center">作者</th>
+<th align="center">开始</th>
+<th align="center">结束</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数学简史</td>
+<td align="center">蔡天新</td>
+<td align="center">-</td>
+<td align="center">2017-04</td>
+</tr>
+<tr>
+<td align="center">只是为了好玩儿</td>
+<td align="center">【美】林纳斯·托瓦兹</td>
+<td align="center">-</td>
+<td align="center">2016-04</td>
+</tr>
+<tr>
+<td align="center">动物庄园 [Animal Farm]</td>
+<td align="center">【英】乔治·奥威尔</td>
+<td align="center">-</td>
+<td align="center">2017-04</td>
+</tr>
+<tr>
+<td align="center">数学女孩 1</td>
+<td align="center">【日】结城浩</td>
+<td align="center">-</td>
+<td align="center">2017-02</td>
+</tr>
+<tr>
+<td align="center">数学女孩2：费马大定理</td>
+<td align="center">【日】结城浩</td>
+<td align="center">-</td>
+<td align="center">2017-02</td>
+</tr>
+<tr>
+<td align="center">数学女孩3：德尔不完备定理</td>
+<td align="center">【日】结城浩</td>
+<td align="center">-</td>
+<td align="center">2017-02</td>
+</tr>
+<tr>
+<td align="center">费马最终定理</td>
+<td align="center">【日】日冲樱皮</td>
+<td align="center">-</td>
+<td align="center">2016-12</td>
+</tr>
+<tr>
+<td align="center">你的灯亮着吗：发现问题的真正所在</td>
+<td align="center">【美]】杰拉尔德·温伯格</td>
+<td align="center">-</td>
+<td align="center">2016-10</td>
+</tr>
+<tr>
+<td align="center">苏菲的世界</td>
+<td align="center">【挪】 乔斯坦·贾德</td>
+<td align="center">-</td>
+<td align="center">2017-08</td>
+</tr>
+<tr>
+<td align="center">小王子</td>
+<td align="center">【法】圣埃克苏佩里</td>
+<td align="center">-</td>
+<td align="center">2017-12</td>
+</tr>
+<tr>
+<td align="center">小王子（英文版）</td>
+<td align="center">【法】安东·德·圣艾修伯里</td>
+<td align="center">-</td>
+<td align="center">2017-12</td>
+</tr>
+<tr>
+<td align="center">黑客与画家</td>
+<td align="center">【美】保罗·格雷厄姆</td>
+<td align="center">-</td>
+<td align="center">2016-11</td>
+</tr>
+<tr>
+<td align="center">人月神话</td>
+<td align="center">佛瑞德·布鲁克斯</td>
+<td align="center">-</td>
+<td align="center">2018-05</td>
+</tr>
+<tr>
+<td align="center">若为自由故：由软件之父理查德 斯托曼传</td>
+<td align="center">【美】<em>理查德</em>·马修·斯托曼</td>
+<td align="center">-</td>
+<td align="center">2016-04</td>
+</tr>
+<tr>
+<td align="center">一个定理的诞生：我与菲尔茨奖的一千个日夜</td>
+<td align="center">【法】塞德里克·维拉尼</td>
+<td align="center">-</td>
+<td align="center">2016-10</td>
+</tr>
+<tr>
+<td align="center">热的解析理论</td>
+<td align="center">【法】约瑟夫·傅立叶</td>
+<td align="center">-</td>
+<td align="center">2018-03</td>
+</tr>
+<tr>
+<td align="center">我心爱的雷龙：一本写给大人的恐龙书</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-10</td>
+</tr>
+<tr>
+<td align="center">领导艺术（英文权威版）绿</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-11</td>
+</tr>
+<tr>
+<td align="center">大教堂与集市</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-05</td>
+</tr>
+<tr>
+<td align="center">植物知道生命的答案</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-10</td>
+</tr>
+<tr>
+<td align="center">数学史（修订版）（套装上下册）</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-06</td>
+</tr>
+<tr>
+<td align="center">素数之恋：黎曼和数学中最大的未解之谜</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-10</td>
+</tr>
+<tr>
+<td align="center">揭示宇宙奥秘的13个常数</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-12</td>
+</tr>
+<tr>
+<td align="center">庞加莱猜想 追寻宇宙的形状</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-10</td>
+</tr>
+<tr>
+<td align="center">代码的未来</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-08</td>
+</tr>
+<tr>
+<td align="center">数学之旅</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-10</td>
+</tr>
+<tr>
+<td align="center">费马大定理：一个困惑了世间智者358年的谜</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-10</td>
+</tr>
+<tr>
+<td align="center">数学巨匠：从欧拉到冯·诺伊曼</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-06</td>
+</tr>
+<tr>
+<td align="center">数学悖论与三次数学危机</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-06</td>
+</tr>
+<tr>
+<td align="center">黎曼猜想漫谈：一场攀登数学高峰的天才盛宴</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-06</td>
+</tr>
+<tr>
+<td align="center">数学大师：从芝诺到庞加莱</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-06</td>
+</tr>
+<tr>
+<td align="center">软件随想录 卷2</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-08</td>
+</tr>
+<tr>
+<td align="center">软件随想录 卷1</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-08</td>
+</tr>
+<tr>
+<td align="center">系统之美</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-08</td>
+</tr>
+<tr>
+<td align="center">《浅薄》：互联网如何毒化了我们的大脑？</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-04</td>
+</tr>
+<tr>
+<td align="center">欺骗的艺术</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-08</td>
+</tr>
+<tr>
+<td align="center">黑客</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-08</td>
+</tr>
+<tr>
+<td align="center">走出帝制：从晚清到民国的历史回望</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-12</td>
+</tr>
+<tr>
+<td align="center">如何阅读一本书</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-04</td>
+</tr>
+<tr>
+<td align="center">疯狂的投资：跨越大西洋电缆的商业传奇</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2015-10</td>
+</tr>
+<tr>
+<td align="center">浪潮之巅</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2015-10</td>
+</tr>
+<tr>
+<td align="center">藏地密码</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2015-10</td>
+</tr>
+<tr>
+<td align="center">天路之魂</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2015-07</td>
+</tr>
+<tr>
+<td align="center">民主与教育</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2015-12</td>
+</tr>
+<tr>
+<td align="center">数学之美</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2015-12</td>
+</tr>
+<tr>
+<td align="center">信息简史</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2015-12</td>
+</tr>
+<tr>
+<td align="center">图灵和ACM图灵奖</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2015-12</td>
+</tr>
+<tr>
+<td align="center">数学之书</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-10</td>
+</tr>
+<tr>
+<td align="center">普林斯顿微积分读本</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-10</td>
+</tr>
+<tr>
+<td align="center">深网 Google 搜不到的世界</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-10</td>
+</tr>
+<tr>
+<td align="center">庞加莱猜想 追寻宇宙的形状</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-10</td>
+</tr>
+<tr>
+<td align="center">微积分的历程：从牛顿到勒贝格</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-10</td>
+</tr>
+<tr>
+<td align="center">深入Linux内核架构</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-10</td>
+</tr>
+<tr>
+<td align="center">鸟哥的 Linux 私房菜</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-01</td>
+</tr>
+<tr>
+<td align="center">程序设计抽象思想：C语言描述</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-01</td>
+</tr>
+<tr>
+<td align="center">深入理解计算机系统</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-08</td>
+</tr>
+<tr>
+<td align="center">程序员的数学：概率统计</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-08</td>
+</tr>
+<tr>
+<td align="center">程序员的数学：线性代数</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-08</td>
+</tr>
+<tr>
+<td align="center">大嘴巴漫谈数据挖掘</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-08</td>
+</tr>
+<tr>
+<td align="center">Google SRE 运维解密</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-09</td>
+</tr>
+<tr>
+<td align="center">计算机程序设计艺术：基本算法</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-11</td>
+</tr>
+<tr>
+<td align="center">Linux 内核设计与实现</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-11</td>
+</tr>
+<tr>
+<td align="center">Kubernetes 权威指南第二版</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-11</td>
+</tr>
+<tr>
+<td align="center">docker 容器与容器云</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-11</td>
+</tr>
+<tr>
+<td align="center">第一本 docker 书</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-10</td>
+</tr>
+<tr>
+<td align="center">docker 源码分析</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-10</td>
+</tr>
+<tr>
+<td align="center">重新定义公司 Google是如何运营的</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-09</td>
+</tr>
+<tr>
+<td align="center">凤凰项目：一个IT运维的传奇故事</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-03</td>
+</tr>
+<tr>
+<td align="center">理解 Unix 进程</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-09</td>
+</tr>
+<tr>
+<td align="center">网络是怎样连接的</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-12</td>
+</tr>
+<tr>
+<td align="center">图解 HTTP</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-12</td>
+</tr>
+<tr>
+<td align="center">深入理解 Linux 内核</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-12</td>
+</tr>
+<tr>
+<td align="center">计算机体系结构量化研究方法</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-10</td>
+</tr>
+<tr>
+<td align="center">计算系统的形式语义</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-04</td>
+</tr>
+<tr>
+<td align="center">现代操作系统</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2016-08</td>
+</tr>
+<tr>
+<td align="center">具体数学</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-12</td>
+</tr>
+<tr>
+<td align="center">图解网络硬件</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-12</td>
+</tr>
+<tr>
+<td align="center">编译原理</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-04</td>
+</tr>
+<tr>
+<td align="center">半导体制作基础</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-03</td>
+</tr>
+<tr>
+<td align="center">程序员的自我修养</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-04</td>
+</tr>
+<tr>
+<td align="center">Linux 系统架构与应用技巧</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-12</td>
+</tr>
+<tr>
+<td align="center">图解服务器端网络架构</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2017-12</td>
+</tr>
+<tr>
+<td align="center">Linux 技术内幕</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-04</td>
+</tr>
+<tr>
+<td align="center">计算进化史 改变数学的命运</td>
+<td align="center"></td>
+<td align="center">-</td>
+<td align="center">2018-05</td>
+</tr>
+</tbody></table>
+<p><img src="https://p.k8s.li/kindle_cover8.png" alt=""></p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#读书笔记"><span class="nav-number">1.</span> <span class="nav-text">读书笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2021"><span class="nav-number">2.</span> <span class="nav-text">2021</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020"><span class="nav-number">3.</span> <span class="nav-text">2020</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019"><span class="nav-number">4.</span> <span class="nav-text">2019</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2015-2018"><span class="nav-number">5.</span> <span class="nav-text">2015 ~ 2018</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">41:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/booklist.html",
+            identifier: "booklist.html",
+            title: "阅读记录"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

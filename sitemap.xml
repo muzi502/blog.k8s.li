@@ -16,14 +16,14 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/link/index.html</loc>
+    <loc>https://blog.k8s.li/tags/index.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/index.html</loc>
+    <loc>https://blog.k8s.li/link/index.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -212,6 +212,20 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/RMS.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
     
     <lastmod>2021-07-20</lastmod>
@@ -220,6 +234,20 @@
   
   <url>
     <loc>https://blog.k8s.li/amd-yes.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/android-taibackup.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/buffon.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -310,7 +338,21 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/kernel-note-book.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/mirrors-test.html</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/networktools.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -331,7 +373,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
+    <loc>https://blog.k8s.li/play-with-docker.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -345,49 +387,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/RMS.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/android-taibackup.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/buffon.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/kernel-note-book.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/networktools.html</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/play-with-docker.html</loc>
+    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -865,6 +865,27 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
+    <lastmod>2021-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/OpenWrt/</loc>
+    <lastmod>2021-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/K3s/</loc>
+    <lastmod>2021-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/%E5%B0%8F%E8%AF%B4/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
@@ -894,27 +915,6 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2021-07-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
-    <lastmod>2021-07-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/OpenWrt/</loc>
-    <lastmod>2021-07-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/K3s/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1495,14 +1495,14 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://blog.k8s.li/tags/%E9%AA%91%E8%A1%8C/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E9%AA%91%E8%A1%8C/</loc>
+    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1537,13 +1537,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%B0%88/</loc>
-    <lastmod>2021-07-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/openwrt/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
@@ -1559,6 +1552,13 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E7%9B%91%E6%8E%A7/</loc>
+    <lastmod>2021-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%B0%88/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
