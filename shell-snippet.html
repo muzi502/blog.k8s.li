@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+  <meta name="description" content="偶然间看到了 Z.S.K.’s Records 大佬的一篇博客 《有趣的Shell Snippet》，突发奇想也准备写篇文章来记录一下常用的一些 shell 代码。 Bash{} 展开12$ echo &amp;#123;hack,build&amp;#125;hack build  变量替换 http:&#x2F;&#x2F;cn.linux.vbird.org&#x2F;linux_basic&#x2F;0320bash_2.php#variabl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搬砖常用的 shell 片段记录">
+<meta property="og:url" content="https://blog.k8s.li/shell-snippet.html">
+<meta property="og:site_name" content="木子">
+<meta property="og:description" content="偶然间看到了 Z.S.K.’s Records 大佬的一篇博客 《有趣的Shell Snippet》，突发奇想也准备写篇文章来记录一下常用的一些 shell 代码。 Bash{} 展开12$ echo &amp;#123;hack,build&amp;#125;hack build  变量替换 http:&#x2F;&#x2F;cn.linux.vbird.org&#x2F;linux_basic&#x2F;0320bash_2.php#variabl">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-19T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Bash">
+<meta property="article:tag" content="shell">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://blog.k8s.li/shell-snippet.html">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+  <title>搬砖常用的 shell 片段记录 | 木子</title>
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+<link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml">
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+  </li>
+        <li class="menu-item menu-item-books">
+    <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
+  </li>
+        <li class="menu-item menu-item-kindle">
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+  </li>
+        <li class="menu-item menu-item-friend">
+    <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
+  </li>
+        <li class="menu-item menu-item-about">
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+  </li>
+  </ul>
+</nav>
+</div>
+    </header>
+  <div class="reading-progress-bar"></div>
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div class="content">
+  <div class="posts-expand">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/shell-snippet.html">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木子">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          搬砖常用的 shell 片段记录
+        </h2>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="创建时间：2021-07-20 2021-07-20T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2021-07-20T00:00:00+08:00">2021-07-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
+  <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    <a title="disqus" href="/shell-snippet.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="shell-snippet.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>19 分钟</span>
+            </span>
+        </div>
+      </header>
+    <div class="post-body" itemprop="articleBody">
+        <p>偶然间看到了 <a href="https://izsk.me/" target="_blank" rel="noopener"><strong>Z.S.K.’s Records</strong></a> 大佬的一篇博客 《<a href="https://izsk.me/2021/03/21/shell-funny-snippet/" target="_blank" rel="noopener">有趣的Shell Snippet</a>》，突发奇想也准备写篇文章来记录一下常用的一些 shell 代码。</p>
+<h2 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h2><h3 id="展开"><a href="#展开" class="headerlink" title="{} 展开"></a>{} 展开</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> &#123;hack,build&#125;</span><br><span class="line">hack build</span><br></pre></td></tr></table></figure>
+<h3 id="变量替换"><a href="#变量替换" class="headerlink" title="变量替换"></a>变量替换</h3><blockquote>
+<p><a href="http://cn.linux.vbird.org/linux_basic/0320bash_2.php#variable_other" target="_blank" rel="noopener">http://cn.linux.vbird.org/linux_basic/0320bash_2.php#variable_other</a></p>
+<p>我们将这部份作个总结说明一下：</p>
+<table>
+<thead>
+<tr>
+<th>变量配置方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>${变量#关键词} ${变量##关键词}</td>
+<td>若变量内容从头开始的数据符合『关键词』，则将符合的最短数据删除 若变量内容从头开始的数据符合『关键词』，则将符合的最长数据删除</td>
+</tr>
+<tr>
+<td>${变量%关键词} ${变量%%关键词}</td>
+<td>若变量内容从尾向前的数据符合『关键词』，则将符合的最短数据删除 若变量内容从尾向前的数据符合『关键词』，则将符合的最长数据删除</td>
+</tr>
+<tr>
+<td>${变量/旧字符串/新字符串} ${变量//旧字符串/新字符串}</td>
+<td>若变量内容符合『旧字符串』则『第一个旧字符串会被新字符串取代』 若变量内容符合『旧字符串』则『全部的旧字符串会被新字符串取代』</td>
+</tr>
+</tbody></table>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ image=<span class="string">"library/nginx:1.19"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 比如要获取镜像的 tag 常用的是 echo 然后 awk/cut 的方式</span></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;image&#125;</span> | awk -F <span class="string">':'</span> <span class="string">'&#123;print $2&#125;'</span> 方式</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以直接使用 bash 内置的变量替换功能，截取特性字符串</span></span><br><span class="line">$ image_name=<span class="variable">$&#123;image%%:*&#125;</span></span><br><span class="line">$ image_tag=<span class="variable">$&#123;image##*:&#125;</span></span><br><span class="line">$ image_repo=<span class="variable">$&#123;image%%/*&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="变量配置方式"><a href="#变量配置方式" class="headerlink" title="变量配置方式"></a>变量配置方式</h3><table>
+<thead>
+<tr>
+<th>变量配置方式</th>
+<th>str 没有配置</th>
+<th>str 为空字符串</th>
+<th>str 已配置非为空字符串</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>var=${str-expr}</td>
+<td>var=expr</td>
+<td>var=</td>
+<td>var=$str</td>
+</tr>
+<tr>
+<td>var=${str:-expr}</td>
+<td>var=expr</td>
+<td>var=expr</td>
+<td>var=$str</td>
+</tr>
+<tr>
+<td>var=${str+expr}</td>
+<td>var=</td>
+<td>var=expr</td>
+<td>var=expr</td>
+</tr>
+<tr>
+<td>var=${str:+expr}</td>
+<td>var=</td>
+<td>var=</td>
+<td>var=expr</td>
+</tr>
+<tr>
+<td>var=${str=expr}</td>
+<td>str=expr var=expr</td>
+<td>str 不变 var=</td>
+<td>str 不变 var=$str</td>
+</tr>
+<tr>
+<td>var=${str:=expr}</td>
+<td>str=expr var=expr</td>
+<td>str=expr var=expr</td>
+<td>str 不变 var=$str</td>
+</tr>
+<tr>
+<td>var=${str?expr}</td>
+<td>expr 输出至 stderr</td>
+<td>var=</td>
+<td>var=$str</td>
+</tr>
+<tr>
+<td>var=${str:?expr}</td>
+<td>expr 输出至 stderr</td>
+<td>expr 输出至 stderr</td>
+<td>var=$str</td>
+</tr>
+</tbody></table>
+<h3 id="判断字符串中是否包含子串"><a href="#判断字符串中是否包含子串" class="headerlink" title="判断字符串中是否包含子串"></a>判断字符串中是否包含子串</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 ** 匹配</span></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">"<span class="variable">$&#123;var&#125;</span>"</span> == *<span class="string">"<span class="variable">$&#123;sub_string&#125;</span>"</span>* ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">printf</span> <span class="string">'%s\n'</span> <span class="string">"sub_string is in var."</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过 bash 内置的 =~ 判断</span></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">"<span class="variable">$&#123;sub_string&#125;</span>"</span> == <span class="string">"<span class="variable">$&#123;var&#125;</span>"</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">printf</span> <span class="string">'%s\n'</span> <span class="string">"sub_string is in var."</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><h3 id="安装-docker-ce"><a href="#安装-docker-ce" class="headerlink" title="安装 docker-ce"></a>安装 docker-ce</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">$ bash get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
+<p>另外可通过传入 DRY_RUN 的参数来实现实际会执行的内容，这个输出的内容可以用来配置 docker-ce 的源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ DRY_RUN=1 sh ./get-docker.sh --mirror Aliyun &gt; install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Executing docker install script, commit: 7cae5f8b0decc17d6571f9f52eb840fbc13b2737</span></span><br><span class="line">apt-get update -qq &gt;/dev/null</span><br><span class="line">DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl &gt;/dev/null</span><br><span class="line">curl -fsSL <span class="string">"https://mirrors.aliyun.com/docker-ce/linux/debian/gpg"</span> | apt-key add -qq - &gt;/dev/null</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/debian buster stable"</span> &gt; /etc/apt/sources.list.d/docker.list</span><br><span class="line">apt-get update -qq &gt;/dev/null</span><br><span class="line">apt-get install -y -qq --no-install-recommends docker-ce &gt;/dev/null</span><br><span class="line">DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce-rootless-extras &gt;/dev/null</span><br></pre></td></tr></table></figure>
+<h3 id="安装-helm"><a href="#安装-helm" class="headerlink" title="安装 helm"></a>安装 helm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash</span><br></pre></td></tr></table></figure>
+<h3 id="安装-docker-compose"><a href="#安装-docker-compose" class="headerlink" title="安装 docker-compose"></a>安装 docker-compose</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line">$ chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><h3 id="匹配行的下一行插入"><a href="#匹配行的下一行插入" class="headerlink" title="匹配行的下一行插入"></a>匹配行的下一行插入</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sed -i <span class="string">"/kube-node/a <span class="variable">$&#123;ip&#125;</span>"</span> <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<h3 id="输出两个匹配行之间的内容"><a href="#输出两个匹配行之间的内容" class="headerlink" title="输出两个匹配行之间的内容"></a>输出两个匹配行之间的内容</h3><p>在不使用 yq 或者 jq 的情况下，需要输出 <code>downloads</code> 列表中的所有内容，即 <code>download:</code> 和 <code>download_defaults:</code>之间的内容</p>
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/kubespray/blob/master/roles/download/defaults/main.yml" target="_blank" rel="noopener">download.yml</a></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dashboard_image_repo:</span> <span class="string">"<span class="template-variable">&#123;&#123; docker_image_repo &#125;&#125;</span>/kubernetesui/dashboard-<span class="template-variable">&#123;&#123; image_arch &#125;&#125;</span>"</span></span><br><span class="line"><span class="attr">dashboard_image_tag:</span> <span class="string">"v2.2.0"</span></span><br><span class="line"><span class="attr">dashboard_metrics_scraper_repo:</span> <span class="string">"<span class="template-variable">&#123;&#123; docker_image_repo &#125;&#125;</span>/kubernetesui/metrics-scraper"</span></span><br><span class="line"><span class="attr">dashboard_metrics_scraper_tag:</span> <span class="string">"v1.0.6"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">downloads:</span></span><br><span class="line">  <span class="attr">dashboard:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_enabled &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">container:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_image_repo &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">tag:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_image_tag &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">sha256:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_digest_checksum|default(None) &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">groups:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">kube_control_plane</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">dashboard_metrics_scrapper:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_enabled &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">container:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_metrics_scraper_repo &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">tag:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_metrics_scraper_tag &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">sha256:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_digest_checksum|default(None) &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">groups:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">kube_control_plane</span></span><br><span class="line"></span><br><span class="line"><span class="attr">download_defaults:</span></span><br><span class="line">  <span class="attr">container:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">file:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">None</span></span><br><span class="line">  <span class="attr">tag:</span> <span class="string">None</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">dest:</span> <span class="string">None</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">None</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">None</span></span><br></pre></td></tr></table></figure>
+<p>可使用 sed 的方式进行匹配输出 <code>sed -n &#39;/$VAR1/,/$VAR2/p&#39;</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sed -n <span class="string">'/^downloads:/,/download_defaults:/p'</span></span><br></pre></td></tr></table></figure>
+<h3 id="奇偶行合并"><a href="#奇偶行合并" class="headerlink" title="奇偶行合并"></a>奇偶行合并</h3><p>接着上一个问题，通过 <code>sed -n &quot;s/repo: //p;s/tag: //p&quot;</code> 匹配出镜像的 repo 和 tag，但一个完整的镜像的格式是 <code>repo:tag</code>，因此需要将 repo 和 tag 行进行合并。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">repo:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_image_repo &#125;&#125;</span>"</span></span><br><span class="line"><span class="attr">tag:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_image_tag &#125;&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">repo:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_metrics_scraper_repo &#125;&#125;</span>"</span></span><br><span class="line"><span class="attr">tag:</span> <span class="string">"<span class="template-variable">&#123;&#123; dashboard_metrics_scraper_tag &#125;&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p>可使用 <code>sed &#39;N;s#\n# #g&#39;</code> 进行奇偶行合并</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'/^downloads:/,/download_defaults:/p'</span> <span class="variable">$&#123;REPO_ROOT_DIR&#125;</span>/<span class="variable">$&#123;DOWNLOAD_YML&#125;</span> \</span><br><span class="line">| sed -n <span class="string">"s/repo: //p;s/tag: //p"</span> | tr -d <span class="string">' '</span> | sed <span class="string">'s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> \</span><br><span class="line">| sed <span class="string">'N;s#\n# #g'</span> | tr <span class="string">' '</span> <span class="string">':'</span> | sed <span class="string">'s/^/echo /g'</span> &gt;&gt; <span class="variable">$&#123;TEMP_DIR&#125;</span>/generate.sh</span><br></pre></td></tr></table></figure>
+<h2 id="grep-egrep"><a href="#grep-egrep" class="headerlink" title="grep/egrep"></a>grep/egrep</h2><h3 id="统计匹配行行数"><a href="#统计匹配行行数" class="headerlink" title="统计匹配行行数"></a>统计匹配行行数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ lsof -i | grep sshd | wc -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># grep 通过 -c 参数即可统计匹配行，不需要使用 wc 来统计</span></span><br><span class="line">$ lsof -i | grep -c sshd</span><br></pre></td></tr></table></figure>
+<h3 id="匹配-IPv4-地址"><a href="#匹配-IPv4-地址" class="headerlink" title="匹配 IPv4 地址"></a>匹配 IPv4 地址</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ egrep --only-matching -E <span class="string">'([[:digit:]]&#123;1,3&#125;\.)&#123;3&#125;[[:digit:]]&#123;1,3&#125;'</span></span><br></pre></td></tr></table></figure>
+<h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><h3 id="将镜像构建到本地目录"><a href="#将镜像构建到本地目录" class="headerlink" title="将镜像构建到本地目录"></a>将镜像构建到本地目录</h3><p>和 <code>FROM scratch</code>搭配起来使用，就可以将构建产物 build 到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ DOCKER_BUILDKIT=1 docker build -o <span class="built_in">type</span>=<span class="built_in">local</span>,dest=<span class="variable">$PWD</span> -f Dockerfile .</span><br></pre></td></tr></table></figure>
+<p>比如使用 Dockerfile 构建 skopeo 静态链接文件</p>
+<ul>
+<li>Dockerfile</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nixos/nix:<span class="number">2.3</span>.<span class="number">11</span> as builder</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /build</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . .</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> nix build -f nix</span></span><br><span class="line"><span class="keyword">FROM</span> scratch</span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --from=builder /build/result/bin/skopeo /skopeo</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>build</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOCKER_BUILDKIT=1 docker build -o <span class="built_in">type</span>=<span class="built_in">local</span>,dest=<span class="variable">$PWD</span> .</span><br></pre></td></tr></table></figure>
+<h2 id="kubectl"><a href="#kubectl" class="headerlink" title="kubectl"></a>kubectl</h2><ul>
+<li>获取集群中所有 pod 运行需要的镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pods -A -o=custom-columns=<span class="string">'IMAGE:spec.containers[*].image'</span> | tr <span class="string">','</span> <span class="string">'\n'</span> | sort -u</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取所有 namespace 的 events 日志并按照时间戳排序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get events --all-namespaces -o wide --sort-by=.metadata.creationTimestamp</span><br></pre></td></tr></table></figure>
+<ul>
+<li>导出一个 namespaces 下所有 pod 的日志</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pod -n kube-system | awk <span class="string">'&#123;print $1&#125;'</span> | xargs -L1 -I &#123;&#125; bash -c <span class="string">"kubectl -n kube-system logs &#123;&#125; &gt; &#123;&#125;.log"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>导出 k8s 组件的 pod 日志</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pod -n kube-system | grep -E <span class="string">"kube-apiserver|kube-controller|kube-proxy|kube-scheduler|coredns"</span> | awk <span class="string">'&#123;print $1&#125;'</span> | xargs -L1 -I &#123;&#125; sh -c <span class="string">"kubectl -n kube-system logs &#123;&#125; &gt; &#123;&#125;.log"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取集群中节点的 IP</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get nodes -o jsonpath=<span class="string">'&#123; $.items[*].status.addresses[?(@.type=="InternalIP")].address &#125;'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取所有 Pod 的 IP</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pods -o jsonpath=<span class="string">'&#123; $.items[*].status.podIP &#125;'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取所有 node 节点的子网信息</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get nodes -o jsonpath=<span class="string">'&#123;.items[*].spec.podCIDR&#125;'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取所有 service 的 IP</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get svc --no-headers --all-namespaces -o jsonpath=<span class="string">'&#123;$.items[*].spec.clusterIP&#125;'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>根据 CPU/RAM 占用排序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cpu</span></span><br><span class="line">kubectl top pods --all-namespaces | sort --reverse --key 3 --numeric</span><br><span class="line"><span class="comment"># memory</span></span><br><span class="line">kubectl top pods --all-namespaces | sort --reverse --key 4 --numeric</span><br></pre></td></tr></table></figure>
+<h2 id="yq-jq"><a href="#yq-jq" class="headerlink" title="yq/jq"></a>yq/jq</h2><h3 id="yq-根据某个-key-获取某个-value"><a href="#yq-根据某个-key-获取某个-value" class="headerlink" title="yq 根据某个 key 获取某个 value"></a>yq 根据某个 key 获取某个 value</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ cat cat &gt; images_origin.yaml &lt;&lt; EOF</span><br><span class="line">---</span><br><span class="line"><span class="comment"># kubeadm core images</span></span><br><span class="line">- src: k8s.gcr.io/kube-apiserver</span><br><span class="line">  dest: library/kube-apiserver</span><br><span class="line">- src: k8s.gcr.io/kube-controller-manager</span><br><span class="line">  dest: library/kube-controller-manager</span><br><span class="line">- src: k8s.gcr.io/kube-proxy</span><br><span class="line">  dest: library/kube-proxy</span><br><span class="line">- src: k8s.gcr.io/kube-scheduler</span><br><span class="line">  dest: library/kube-scheduler</span><br><span class="line">- src: k8s.gcr.io/coredns</span><br><span class="line">  dest: library/coredns</span><br><span class="line">- src: k8s.gcr.io/pause</span><br><span class="line">  dest: library/pause</span><br><span class="line"></span><br><span class="line"><span class="comment"># docker registry for offline resources</span></span><br><span class="line">- src: docker.io/library/registry</span><br><span class="line">  dest: library/registry</span><br><span class="line"></span><br><span class="line"><span class="comment"># helm chartmuseum for offline resources</span></span><br><span class="line">- src: ghcr.io/helm/chartmuseum</span><br><span class="line">  dest: library/chartmuseum</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">$ yq <span class="built_in">eval</span> <span class="string">'.[]|select(.dest=="library/chartmuseum") | .src'</span> images_origin.yaml</span><br></pre></td></tr></table></figure>
+<h3 id="jq-遍历-json-数组-列表元素"><a href="#jq-遍历-json-数组-列表元素" class="headerlink" title="jq 遍历 json 数组/列表元素"></a>jq 遍历 json 数组/列表元素</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> pmd_name <span class="keyword">in</span> $(kubectl <span class="variable">$&#123;KUBECONFIG_ARG&#125;</span> get cpm --no-headers | cut -d <span class="string">' '</span> -f1); <span class="keyword">do</span></span><br><span class="line">    CPMD_NAME=<span class="string">"<span class="variable">$&#123;pmd_name&#125;</span>"</span></span><br><span class="line">    JSON=<span class="string">"<span class="variable">$&#123;RCTL_TMP_PATH&#125;</span>/<span class="variable">$&#123;pmd_name&#125;</span>.json"</span></span><br><span class="line">    kubectl <span class="variable">$&#123;KUBECONFIG_ARG&#125;</span> get cpm <span class="variable">$&#123;pmd_name&#125;</span> -o jsonpath=<span class="string">'&#123;.spec&#125;'</span> &gt; <span class="variable">$&#123;JSON&#125;</span></span><br><span class="line">    ((moudles_num=$(jq <span class="string">'.modules|length'</span> <span class="variable">$&#123;JSON&#125;</span>)-1))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 <span class="variable">$&#123;moudles_num&#125;</span>); <span class="keyword">do</span></span><br><span class="line">        ((addons_num=$(jq <span class="string">".modules[<span class="variable">$&#123;i&#125;</span>].addons|length"</span> <span class="variable">$&#123;JSON&#125;</span>)-1))</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> $(seq 0 <span class="variable">$&#123;addons_num&#125;</span>); <span class="keyword">do</span></span><br><span class="line">            addon_name=$(jq -r <span class="string">".modules[<span class="variable">$&#123;i&#125;</span>].addons[<span class="variable">$&#123;j&#125;</span>].name"</span> <span class="variable">$&#123;JSON&#125;</span>)</span><br><span class="line">            <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;CHART_NAME&#125;</span>"</span> = <span class="string">"<span class="variable">$&#123;addon_name&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">                PATCH_DATA=$(jq -c <span class="string">".modules[<span class="variable">$&#123;i&#125;</span>].addons[<span class="variable">$&#123;j&#125;</span>].version = \"<span class="variable">$&#123;VERSION&#125;</span>\""</span> <span class="variable">$&#123;JSON&#125;</span>)</span><br><span class="line">                <span class="built_in">break</span> 3</span><br><span class="line">            <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="other"><a href="#other" class="headerlink" title="other"></a>other</h2><h3 id="判断两个版本号大小"><a href="#判断两个版本号大小" class="headerlink" title="判断两个版本号大小"></a>判断两个版本号大小</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">printf</span> <span class="string">"%s\\n%s\\n"</span> v1.21 <span class="variable">$&#123;kube_version%.*&#125;</span> | sort --check=quiet --version-sort; <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> -n <span class="variable">$&#123;coredns_version&#125;</span>;<span class="keyword">else</span> <span class="built_in">echo</span> -n <span class="variable">$&#123;coredns_version/v/&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看-x509-证书"><a href="#查看-x509-证书" class="headerlink" title="查看 x509 证书"></a>查看 x509 证书</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl x509 -noout -text -<span class="keyword">in</span> ca.cert</span><br></pre></td></tr></table></figure>
+<h3 id="获取文件大小"><a href="#获取文件大小" class="headerlink" title="获取文件大小"></a>获取文件大小</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">stat</span> -c <span class="string">'%s'</span> file</span><br></pre></td></tr></table></figure>
+<h3 id="获取本机-IP"><a href="#获取本机-IP" class="headerlink" title="获取本机 IP"></a>获取本机 IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ip r get 1 | awk <span class="string">'NR==1 &#123;print $NF&#125;'</span></span><br><span class="line">$ ip r get 1 | sed <span class="string">"s/uid.*//g"</span> | awk <span class="string">'NR==1 &#123;print $NF&#125;'</span></span><br></pre></td></tr></table></figure>
+<h2 id="function"><a href="#function" class="headerlink" title="function"></a>function</h2><p>一些 shell 脚本中常用的函数</p>
+<h3 id="tar-进度条"><a href="#tar-进度条" class="headerlink" title="tar 进度条"></a>tar 进度条</h3><p>避免 tar 解压文件的时候污染终端，建议使用进度条的方式展示解压过程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">untar</span></span>() &#123;</span><br><span class="line">  file_size=$(<span class="built_in">stat</span> -c <span class="string">'%s'</span> <span class="variable">$1</span>)</span><br><span class="line">  block_size=$(expr <span class="variable">$file_size</span> / 51200); block_size=$(expr <span class="variable">$block_size</span> + 1)</span><br><span class="line">  tar_info=<span class="string">"Untar <span class="variable">$1</span> progress:"</span></span><br><span class="line">  tar --blocking-factor=<span class="variable">$block_size</span> --checkpoint=1 --checkpoint-action=ttyout=<span class="string">"<span class="variable">$&#123;tar_info&#125;</span> %u%  \r"</span> -xpf <span class="variable">$1</span> -C <span class="variable">$2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="正则匹配-IP"><a href="#正则匹配-IP" class="headerlink" title="正则匹配 IP"></a>正则匹配 IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># regular match ip</span></span><br><span class="line"><span class="function"><span class="title">match_ip</span></span>() &#123;</span><br><span class="line">    <span class="built_in">local</span> INPUT_IPS=$*</span><br><span class="line">    <span class="built_in">local</span> IPS=<span class="string">""</span></span><br><span class="line">    <span class="keyword">if</span> ! <span class="built_in">echo</span> <span class="variable">$&#123;INPUT_IPS&#125;</span> | egrep --only-matching -E <span class="string">'([[:digit:]]&#123;1,3&#125;\.)&#123;3&#125;[[:digit:]]&#123;1,3&#125;-[[:digit:]]&#123;1,3&#125;'</span> &gt; /dev/null; <span class="keyword">then</span></span><br><span class="line">        IPS=<span class="string">"<span class="variable">$(echo $&#123;INPUT_IPS&#125; | egrep --only-matching -E '([[:digit:]]&#123;1,3&#125;\.)</span>&#123;3&#125;[[:digit:]]&#123;1,3&#125;' | tr '\n' ' ')"</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ip_prefix=<span class="string">"<span class="variable">$(echo $&#123;INPUT_IPS&#125; | egrep --only-matching -E '([[:digit:]]&#123;1,3&#125;\.)</span>&#123;3&#125;[[:digit:]]&#123;1,3&#125;-[[:digit:]]&#123;1,3&#125;' | cut -d '.' -f1-3)"</span></span><br><span class="line">        ip_suffix=<span class="string">"<span class="variable">$(echo $&#123;INPUT_IPS&#125; | egrep --only-matching -E '([[:digit:]]&#123;1,3&#125;\.)</span>&#123;3&#125;[[:digit:]]&#123;1,3&#125;-[[:digit:]]&#123;1,3&#125;' | cut -d '.' -f4 | tr '-' ' ')"</span></span><br><span class="line">        <span class="keyword">for</span> suffix <span class="keyword">in</span> $(seq <span class="variable">$&#123;ip_suffix&#125;</span>); <span class="keyword">do</span> IPS=<span class="string">"<span class="variable">$&#123;IPS&#125;</span> <span class="variable">$&#123;ip_prefix&#125;</span>.<span class="variable">$&#123;suffix&#125;</span>"</span>; <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$&#123;IPS&#125;</span> | egrep --only-matching -E <span class="string">'([[:digit:]]&#123;1,3&#125;\.)&#123;3&#125;[[:digit:]]&#123;1,3&#125;'</span> | tr <span class="string">'\n'</span> <span class="string">' '</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ssh-密码登录"><a href="#ssh-密码登录" class="headerlink" title="ssh 密码登录"></a>ssh 密码登录</h3><p>日常工作中常常需要 ssh 登录到机房的一些虚拟机上，又因为不同的机器密码不同，遂使用该脚本 ssh 登录到节点上。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">IP=<span class="variable">$&#123;1&#125;</span></span><br><span class="line">CMD=<span class="variable">$&#123;2&#125;</span></span><br><span class="line">USER=root</span><br><span class="line">ARGS=<span class="string">"-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPersist=12h -o ConnectionAttempts=100"</span></span><br><span class="line">PASSWORDS=<span class="string">"admin123456 test123456 centos1234"</span></span><br><span class="line">ssh-keygen -R <span class="variable">$&#123;1&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">PASS=<span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> pass <span class="keyword">in</span> <span class="variable">$&#123;PASSWORDS&#125;</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> sshpass -p <span class="variable">$&#123;pass&#125;</span> ssh <span class="variable">$&#123;ARGS&#125;</span> <span class="variable">$&#123;USER&#125;</span>@<span class="variable">$&#123;IP&#125;</span> <span class="string">"hostname"</span>; <span class="keyword">then</span> PASS=<span class="variable">$&#123;pass&#125;</span>; <span class="built_in">break</span> ; <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">sshpass -p <span class="variable">$&#123;PASS&#125;</span> ssh <span class="variable">$&#123;ARGS&#125;</span> <span class="variable">$&#123;USER&#125;</span>@<span class="variable">$&#123;IP&#125;</span> <span class="variable">$&#123;CMD&#125;</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+<h3 id="脚本中统计函数耗时"><a href="#脚本中统计函数耗时" class="headerlink" title="脚本中统计函数耗时"></a>脚本中统计函数耗时</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">reset_global_timer</span></span>() &#123;</span><br><span class="line">	<span class="built_in">export</span> SEC0=$(date --utc +%s)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">reset_function_timer</span></span>()&#123;</span><br><span class="line">    <span class="built_in">export</span> SEC1=$(date --utc +%s)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">running_time()</span><br><span class="line">&#123;</span><br><span class="line">    SEC2=$(date --utc +%s); DIFFSEC=$((<span class="variable">$&#123;SEC2&#125;</span> - <span class="variable">$&#123;SEC1&#125;</span>)); <span class="built_in">printf</span> <span class="string">"\nSection Time: <span class="variable">$(date +%H:%M:%S -ud @$&#123;DIFFSEC&#125;)</span>\n"</span></span><br><span class="line">    SEC2=$(date --utc +%s); DIFFSEC=$((<span class="variable">$&#123;SEC2&#125;</span> - <span class="variable">$&#123;SEC0&#125;</span>)); <span class="built_in">printf</span> <span class="string">"Elapsed Time: <span class="variable">$(date +%H:%M:%S -ud @$&#123;DIFFSEC&#125;)</span>\n\n"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reset_global_timer</span><br><span class="line">reset_function_timer</span><br><span class="line">running_time</span><br></pre></td></tr></table></figure>
+<h2 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h2><ul>
+<li>获取 CPU 架构</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ARCHITECTURE=$(uname -m)</span><br><span class="line">host_architecture=$(dpkg --<span class="built_in">print</span>-architecture)</span><br></pre></td></tr></table></figure>
+<h3 id="替换系统-OS-源"><a href="#替换系统-OS-源" class="headerlink" title="替换系统 OS 源"></a>替换系统 OS 源</h3><p> 使用华为云 yum 源</p>
+<ul>
+<li>CentOS 7</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.huaweicloud.com/repository/conf/CentOS-7-anon.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装华为云 EPEL 源</span></span><br><span class="line">yum install epel-release -y</span><br><span class="line">sed -i <span class="string">"s/#baseurl/baseurl/g"</span> /etc/yum.repos.d/epel.repo</span><br><span class="line">sed -i <span class="string">"s/metalink/#metalink/g"</span> /etc/yum.repos.d/epel.repo</span><br><span class="line">sed -i <span class="string">"s@https\?://download.fedoraproject.org/pub@https://mirrors.huaweicloud.com@g"</span> /etc/yum.repos.d/epel.repo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Debian</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sed -i <span class="string">'s/deb.debian.org/mirrors.huaweicloud.com/g'</span> /etc/apt/sources.list</span><br><span class="line">$ sed -i <span class="string">'s|security.debian.org/debian-security|mirrors.huaweicloud.com/debian-security|g'</span> /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Ubuntu</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sed -i <span class="string">'s/archive.ubuntu.com/mirrors.huaweicloud.com/g'</span> /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Alpine</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"http://mirrors.huaweicloud.com/alpine/latest-stable/main/"</span> &gt; /etc/apk/repositories</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"http://mirrors.huaweicloud.com/alpine/latest-stable/community/"</span> &gt;&gt; /etc/apk/repositories</span><br></pre></td></tr></table></figure>
+<h3 id="CA-证书信任"><a href="#CA-证书信任" class="headerlink" title="CA 证书信任"></a>CA 证书信任</h3><ul>
+<li>CentOS</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ update-ca-trust force-enable</span><br><span class="line">$ cp domain.crt /etc/pki/ca-trust/<span class="built_in">source</span>/anchors/domain.crt</span><br><span class="line">$ update-ca-trust</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Debian</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cp domain.crt /usr/share/ca-certificates/domain.crt</span><br><span class="line">$ <span class="built_in">echo</span> domain.crt &gt;&gt; /etc/ca-certificates.conf</span><br><span class="line">$ update-ca-certificates</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Ubuntu</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp domain.crt /usr/<span class="built_in">local</span>/share/ca-certificates/domain.crt</span><br><span class="line">$ update-ca-certificates</span><br></pre></td></tr></table></figure>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://github.com/dylanaraps/pure-bash-bible" target="_blank" rel="noopener">pure-bash-bible</a></li>
+<li><a href="http://cn.linux.vbird.org/linux_basic/0320bash_2.php#variable_other" target="_blank" rel="noopener">鸟哥 Linux 私房菜</a></li>
+<li><a href="https://mozillazg.com/2018/01/jq-use-examples-cookbook.html" target="_blank" rel="noopener">jq 常用操作</a></li>
+<li><a href="https://lyyao09.github.io/2019/08/02/tools/The-usage-of-yq-read-write/" target="_blank" rel="noopener">YAML处理工具yq之读写篇</a></li>
+</ul>
+    </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+              <a href="/tags/Bash/" rel="tag"><i class="fa fa-tag"></i> Bash</a>
+              <a href="/tags/shell/" rel="tag"><i class="fa fa-tag"></i> shell</a>
+          </div>
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/skopeo.html" rel="prev" title="镜像搬运工 skopeo 最佳实践">
+      <i class="fa fa-chevron-left"></i> 镜像搬运工 skopeo 最佳实践
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+  </article>
+  </div>
+          </div>
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+        </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash"><span class="nav-number">1.</span> <span class="nav-text">Bash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#展开"><span class="nav-number">1.1.</span> <span class="nav-text">{} 展开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量替换"><span class="nav-number">1.2.</span> <span class="nav-text">变量替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量配置方式"><span class="nav-number">1.3.</span> <span class="nav-text">变量配置方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断字符串中是否包含子串"><span class="nav-number">1.4.</span> <span class="nav-text">判断字符串中是否包含子串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">2.</span> <span class="nav-text">install</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-docker-ce"><span class="nav-number">2.1.</span> <span class="nav-text">安装 docker-ce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-helm"><span class="nav-number">2.2.</span> <span class="nav-text">安装 helm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-docker-compose"><span class="nav-number">2.3.</span> <span class="nav-text">安装 docker-compose</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sed"><span class="nav-number">3.</span> <span class="nav-text">sed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配行的下一行插入"><span class="nav-number">3.1.</span> <span class="nav-text">匹配行的下一行插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出两个匹配行之间的内容"><span class="nav-number">3.2.</span> <span class="nav-text">输出两个匹配行之间的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#奇偶行合并"><span class="nav-number">3.3.</span> <span class="nav-text">奇偶行合并</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep-egrep"><span class="nav-number">4.</span> <span class="nav-text">grep&#x2F;egrep</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#统计匹配行行数"><span class="nav-number">4.1.</span> <span class="nav-text">统计匹配行行数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配-IPv4-地址"><span class="nav-number">4.2.</span> <span class="nav-text">匹配 IPv4 地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker"><span class="nav-number">5.</span> <span class="nav-text">docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将镜像构建到本地目录"><span class="nav-number">5.1.</span> <span class="nav-text">将镜像构建到本地目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kubectl"><span class="nav-number">6.</span> <span class="nav-text">kubectl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yq-jq"><span class="nav-number">7.</span> <span class="nav-text">yq&#x2F;jq</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yq-根据某个-key-获取某个-value"><span class="nav-number">7.1.</span> <span class="nav-text">yq 根据某个 key 获取某个 value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jq-遍历-json-数组-列表元素"><span class="nav-number">7.2.</span> <span class="nav-text">jq 遍历 json 数组&#x2F;列表元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other"><span class="nav-number">8.</span> <span class="nav-text">other</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断两个版本号大小"><span class="nav-number">8.1.</span> <span class="nav-text">判断两个版本号大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看-x509-证书"><span class="nav-number">8.2.</span> <span class="nav-text">查看 x509 证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取文件大小"><span class="nav-number">8.3.</span> <span class="nav-text">获取文件大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取本机-IP"><span class="nav-number">8.4.</span> <span class="nav-text">获取本机 IP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#function"><span class="nav-number">9.</span> <span class="nav-text">function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tar-进度条"><span class="nav-number">9.1.</span> <span class="nav-text">tar 进度条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则匹配-IP"><span class="nav-number">9.2.</span> <span class="nav-text">正则匹配 IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-密码登录"><span class="nav-number">9.3.</span> <span class="nav-text">ssh 密码登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本中统计函数耗时"><span class="nav-number">9.4.</span> <span class="nav-text">脚本中统计函数耗时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS"><span class="nav-number">10.</span> <span class="nav-text">OS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#替换系统-OS-源"><span class="nav-number">10.1.</span> <span class="nav-text">替换系统 OS 源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA-证书信任"><span class="nav-number">10.2.</span> <span class="nav-text">CA 证书信任</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">11.</span> <span class="nav-text">未完待续</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">12.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-inner">
+<div class="copyright">
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">41:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+      </div>
+    </footer>
+  </div>
+  <script src="/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/shell-snippet.html",
+            identifier: "shell-snippet.html",
+            title: "搬砖常用的 shell 片段记录"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+</body>
+</html>
