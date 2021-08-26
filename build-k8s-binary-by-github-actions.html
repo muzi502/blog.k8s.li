@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="在使用 kubernetes 过程中由于某些需求往往要修改一下 k8s 官方的源码，然后重新编译才行。本文就以修改 kubeadm 生成证书为默认 10 年为例，来讲解如何使用 GitHub Actions 来编译和发布生成的二进制文件。 构建clone repo将 kubernetes 官方源码 fork 到自己的 repo 中 123456$ git clone https:&#x2F;&#x2F;github.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 GitHub Actions 编译 kubernetes 组件">
+<meta property="og:url" content="https://blog.k8s.li/build-k8s-binary-by-github-actions.html">
+<meta property="og:site_name" content="木子">
+<meta property="og:description" content="在使用 kubernetes 过程中由于某些需求往往要修改一下 k8s 官方的源码，然后重新编译才行。本文就以修改 kubeadm 生成证书为默认 10 年为例，来讲解如何使用 GitHub Actions 来编译和发布生成的二进制文件。 构建clone repo将 kubernetes 官方源码 fork 到自己的 repo 中 123456$ git clone https:&#x2F;&#x2F;github.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p.k8s.li/2021-08-25-build-k8s-binary-by-github-actions-1.png">
+<meta property="og:image" content="https://p.k8s.li/2021-08-25-build-k8s-binary-by-github-actions-2.png">
+<meta property="og:image" content="https://p.k8s.li/2021-08-25-build-k8s-binary-by-github-actions-3.png">
+<meta property="article:published_time" content="2021-08-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-25T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="k8s">
+<meta property="article:tag" content="GitHub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p.k8s.li/2021-08-25-build-k8s-binary-by-github-actions-1.png">
+
+<link rel="canonical" href="https://blog.k8s.li/build-k8s-binary-by-github-actions.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>使用 GitHub Actions 编译 kubernetes 组件 | 木子</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/build-k8s-binary-by-github-actions.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木子">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          使用 GitHub Actions 编译 kubernetes 组件
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 2021-08-26T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/build-k8s-binary-by-github-actions.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="build-k8s-binary-by-github-actions.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在使用 kubernetes 过程中由于某些需求往往要修改一下 k8s 官方的源码，然后重新编译才行。本文就以修改 kubeadm 生成证书为默认 10 年为例，来讲解如何使用 GitHub Actions 来编译和发布生成的二进制文件。</p>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><h3 id="clone-repo"><a href="#clone-repo" class="headerlink" title="clone repo"></a>clone repo</h3><p>将 kubernetes 官方源码 fork 到自己的 repo 中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/k8sli/kubernetes.git</span><br><span class="line">$ <span class="built_in">cd</span> kubernetes</span><br><span class="line">$ git remote add upstream https://github.com/kubernetes/kubernetes.git</span><br><span class="line">$ git fetch --all</span><br><span class="line">$ git checkout upstream/release-1.21</span><br><span class="line">$ git checkout -B kubeadm-1.21</span><br></pre></td></tr></table></figure>
+
+<h3 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h3><ul>
+<li><code>.github/workflows/kubeadm.yaml</code></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">Build</span> <span class="string">kubeadm</span> <span class="string">binary</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">tag:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">'v*'</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-20.04</span></span><br><span class="line">    <span class="comment"># 这里我们选择以 tag 的方式惩触发 job 的运行</span></span><br><span class="line">    <span class="attr">if:</span> <span class="string">startsWith(github.ref,</span> <span class="string">'refs/tags/'</span><span class="string">)</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">kubeadm</span> <span class="string">binary</span></span><br><span class="line">        <span class="attr">shell:</span> <span class="string">bash</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="comment"># 运行 build/run.sh 构建脚本来编译相应平台上的二进制文件</span></span><br><span class="line">          <span class="string">build/run.sh</span> <span class="string">make</span> <span class="string">kubeadm</span> <span class="string">KUBE_BUILD_PLATFORMS=linux/amd64</span></span><br><span class="line">          <span class="string">build/run.sh</span> <span class="string">make</span> <span class="string">kubeadm</span> <span class="string">KUBE_BUILD_PLATFORMS=linux/arm64</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 构建好的二进制文件存放在 _output/dockerized/bin/ 中</span></span><br><span class="line">      <span class="comment"># 我们根据二进制目标文件的系统名称+CPU体系架构名称进行命名</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Prepare</span> <span class="string">for</span> <span class="string">upload</span></span><br><span class="line">        <span class="attr">shell:</span> <span class="string">bash</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">mv</span> <span class="string">_output/dockerized/bin/linux/amd64/kubeadm</span> <span class="string">kubeadm-linux-amd64</span></span><br><span class="line">          <span class="string">mv</span> <span class="string">_output/dockerized/bin/linux/arm64/kubeadm</span> <span class="string">kubeadm-linux-arm64</span></span><br><span class="line">          <span class="string">sha256sum</span> <span class="string">kubeadm-linux-&#123;amd64,arm64&#125;</span> <span class="string">&gt;</span> <span class="string">sha256sum.txt</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 使用 softprops/action-gh-release 来将构建产物上传到 GitHub release 当中</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Release</span> <span class="string">and</span> <span class="string">upload</span> <span class="string">packages</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">softprops/action-gh-release@v1</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">GITHUB_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">files:</span> <span class="string">|</span></span><br><span class="line">            <span class="string">sha256sum.txt</span></span><br><span class="line">            <span class="string">kubeadm-linux-amd64</span></span><br><span class="line">            <span class="string">kubeadm-linux-arm64</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>build/run.sh</code></li>
+</ul>
+<blockquote>
+<p>: Run a command in a build docker container. Common invocations:</p>
+<ul>
+<li><code>build/run.sh make</code>: Build just linux binaries in the container. Pass options and packages as necessary.</li>
+<li><code>build/run.sh make cross</code>: Build all binaries for all platforms. To build only a specific platform, add <code>KUBE_BUILD_PLATFORMS=&lt;os&gt;/&lt;arch&gt;</code></li>
+<li><code>build/run.sh make kubectl KUBE_BUILD_PLATFORMS=darwin/amd64</code>: Build the specific binary for the specific platform (<code>kubectl</code> and <code>darwin/amd64</code> respectively in this example)</li>
+<li><code>build/run.sh make test</code>: Run all unit tests</li>
+<li><code>build/run.sh make test-integration</code>: Run integration test</li>
+<li><code>build/run.sh make test-cmd</code>: Run CLI tests</li>
+</ul>
+</blockquote>
+<h3 id="修改源码"><a href="#修改源码" class="headerlink" title="修改源码"></a>修改源码</h3><ul>
+<li><code>cmd/kubeadm/app/constants/constants.go</code></li>
+</ul>
+<p>找到 <code>CertificateValidity</code> 变量将它在 375 天后面加个 0，就将证书续命为 10 年了。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> 	<span class="comment">// CertificateValidity defines the validity for all the signed certificates generated by kubeadm</span></span><br><span class="line">-	CertificateValidity = time.Hour * <span class="number">24</span> * <span class="number">365</span></span><br><span class="line">+	CertificateValidity = time.Hour * <span class="number">24</span> * <span class="number">3650</span></span><br><span class="line"></span><br><span class="line"> 	<span class="comment">// CACertAndKeyBaseName defines certificate authority base name</span></span><br><span class="line"> 	CACertAndKeyBaseName = <span class="string">"ca"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>git diff</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/.github/workflows/kubeadm.yaml b/.github/workflows/kubeadm.yaml</span><br><span class="line">new file mode 100644</span><br><span class="line">index 00000000000..376f37c0edf</span><br><span class="line">--- /dev/null</span><br><span class="line">+++ b/.github/workflows/kubeadm.yaml</span><br><span class="line">@@ -0,0 +1,37 @@</span><br><span class="line">+---</span><br><span class="line">+name: Build kubeadm binary image</span><br><span class="line">+</span><br><span class="line">+on:</span><br><span class="line">+  push:</span><br><span class="line">+    tag:</span><br><span class="line">+      - <span class="string">'v*'</span></span><br><span class="line">+<span class="built_in">jobs</span>:</span><br><span class="line">+  build:</span><br><span class="line">+    runs-on: ubuntu-20.04</span><br><span class="line">+    <span class="keyword">if</span>: startsWith(github.ref, <span class="string">'refs/tags/'</span>)</span><br><span class="line">+    steps:</span><br><span class="line">+      - name: Checkout</span><br><span class="line">+        uses: actions/checkout@v2</span><br><span class="line">+</span><br><span class="line">+      - name: Build kubeadm binary</span><br><span class="line">+        shell: bash</span><br><span class="line">+        run: |</span><br><span class="line">+          build/run.sh make kubeadm KUBE_BUILD_PLATFORMS=linux/amd64</span><br><span class="line">+          build/run.sh make kubeadm KUBE_BUILD_PLATFORMS=linux/arm64</span><br><span class="line">+</span><br><span class="line">+      - name: Prepare <span class="keyword">for</span> upload</span><br><span class="line">+        shell: bash</span><br><span class="line">+        run: |</span><br><span class="line">+          mv _output/dockerized/bin/linux/amd64/kubeadm kubeadm-linux-amd64</span><br><span class="line">+          mv _output/dockerized/bin/linux/arm64/kubeadm kubeadm-linux-arm64</span><br><span class="line">+          sha256sum kubeadm-linux-&#123;amd64,arm64&#125; &gt; sha256sum.txt</span><br><span class="line">+</span><br><span class="line">+      - name: Release and upload packages</span><br><span class="line">+        uses: softprops/action-gh-release@v1</span><br><span class="line">+        env:</span><br><span class="line">+          GITHUB_TOKEN: <span class="variable">$&#123;&#123; secrets.GITHUB_TOKEN &#125;</span>&#125;</span><br><span class="line">+        with:</span><br><span class="line">+          files: |</span><br><span class="line">+            sha256sum.txt</span><br><span class="line">+            kubeadm-linux-amd64</span><br><span class="line">+            kubeadm-linux-arm64</span><br><span class="line">diff --git a/cmd/kubeadm/app/constants/constants.go b/cmd/kubeadm/app/constants/constants.go</span><br><span class="line">index aed3a713020..08a24d237f8 100644</span><br><span class="line">--- a/cmd/kubeadm/app/constants/constants.go</span><br><span class="line">+++ b/cmd/kubeadm/app/constants/constants.go</span><br><span class="line">@@ -46,7 +46,7 @@ const (</span><br><span class="line"> 	TempDirForKubeadm = <span class="string">"tmp"</span></span><br><span class="line"></span><br><span class="line"> 	// CertificateValidity defines the validity <span class="keyword">for</span> all the signed certificates generated by kubeadm</span><br><span class="line">-	CertificateValidity = time.Hour * 24 * 365</span><br><span class="line">+	CertificateValidity = time.Hour * 24 * 3650</span><br><span class="line"></span><br><span class="line"> 	// CACertAndKeyBaseName defines certificate authority base name</span><br><span class="line"> 	CACertAndKeyBaseName = <span class="string">"ca"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="cherry-pick"><a href="#cherry-pick" class="headerlink" title="cherry-pick"></a>cherry-pick</h3><p>在分支上完成修改之后，我们将这个修改 cherry-pick 到其他的 tag 上面去，下面以 v1.21.4 为例子：在 v1.21.4 tag 的基础之上将上述的修改 cherry-pick 过来，重新打上新的 tag。</p>
+<ul>
+<li>获取上述修改的 commit id</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ COMMIT_ID=$(git rev-parse HEAD)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>checkout 到 v1.21.4 这个 tag 上</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout v1.21.4</span><br><span class="line">Note: checking out <span class="string">'v1.21.4'</span>.</span><br><span class="line"></span><br><span class="line">You are <span class="keyword">in</span> <span class="string">'detached HEAD'</span> state. You can look around, make experimental</span><br><span class="line">changes and commit them, and you can discard any commits you make <span class="keyword">in</span> this</span><br><span class="line">state without impacting any branches by performing another checkout.</span><br><span class="line"></span><br><span class="line">If you want to create a new branch to retain commits you create, you may</span><br><span class="line"><span class="keyword">do</span> so (now or later) by using -b with the checkout <span class="built_in">command</span> again. Example:</span><br><span class="line"></span><br><span class="line">HEAD is now at 3cce4a82b44 Release commit <span class="keyword">for</span> Kubernetes v1.21.4</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将修改 cherry-pick 到当前 tag 上</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git cherry-pick <span class="variable">$COMMIT_ID</span></span><br><span class="line">[detached HEAD baadbe03458] Update kubeadm CertificateValidity time to ten years</span><br><span class="line"> Date: Tue Aug 24 16:32:49 2021 +0800</span><br><span class="line"> 2 files changed, 38 insertions(+), 1 deletion(-)</span><br><span class="line"> create mode 100644 .github/workflows/kubeadm.yaml</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重新打上新的 tag，如 <code>v1.21.4-patch-1.0</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git tag v1.21.4-patch-1.0 -f</span><br><span class="line">Updated tag <span class="string">'v1.21.4-patch-1.0'</span> (was 70bcbd6de6c)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p.k8s.li/2021-08-25-build-k8s-binary-by-github-actions-1.png" alt="image-20210826020226785"></p>
+<ul>
+<li>将 tag push 到 repo 中触发 workflow</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --tags -f</span><br><span class="line">Enumerating objects: 17, <span class="keyword">done</span>.</span><br><span class="line">Counting objects: 100% (17/17), <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 4 threads</span><br><span class="line">Compressing objects: 100% (9/9), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (10/10), 1.13 KiB | 192.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">Total 10 (delta 7), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (7/7), completed with 7 <span class="built_in">local</span> objects.</span><br><span class="line">To github.com:k8sli/kubernetes.git</span><br><span class="line"> + c2a633e07ec...baadbe03458 v1.21.4-patch-1.0 -&gt; v1.21.4-patch-1.0 (forced update)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p.k8s.li/2021-08-25-build-k8s-binary-by-github-actions-2.png" alt="image-20210826020837194"></p>
+<ul>
+<li>整个构建过程大概需要 7 分钟左右，效率还是蛮高的。</li>
+</ul>
+<p><img src="https://p.k8s.li/2021-08-25-build-k8s-binary-by-github-actions-3.png" alt="image-20210826021451447"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面只展示了以一个 tag 为单位进行构建的流程，想要构建其他版本的 kubeadm ，可以按照同样的流程和方法来完成。其实写一个 shell 脚本来处理也是十分简单。</p>
+<p>使用 GitHub Actions 的好处就是能够为我们解决代码管理和产物管理，构建好的二进制文件存放在 GitHub release 当中，下载和使用起来十分方便，不用在自己搞一台单独的机器或者存储服务器，节省很多人力维护成本。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/k8s/" rel="tag"><i class="fa fa-tag"></i> k8s</a>
+              <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/shell-snippet.html" rel="prev" title="搬砖常用的 shell 片段记录">
+      <i class="fa fa-chevron-left"></i> 搬砖常用的 shell 片段记录
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">1.</span> <span class="nav-text">构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#clone-repo"><span class="nav-number">1.1.</span> <span class="nav-text">clone repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#workflow"><span class="nav-number">1.2.</span> <span class="nav-text">workflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改源码"><span class="nav-number">1.3.</span> <span class="nav-text">修改源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cherry-pick"><span class="nav-number">1.4.</span> <span class="nav-text">cherry-pick</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">41:40</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/build-k8s-binary-by-github-actions.html",
+            identifier: "build-k8s-binary-by-github-actions.html",
+            title: "使用 GitHub Actions 编译 kubernetes 组件"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
