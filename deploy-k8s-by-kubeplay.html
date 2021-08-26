@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="简介kubelay 是基于 kubespray 实现的离线部署 kuberneres 集群的工具 特性 包含所有依赖，一条命令即可完成离线安装 支持 amd64 和 arm64 CPU 架构 kubeadm 生成的证书有效期调整为 10 年 去 docker 化部署，无缝迁移至 containerd 作为容器运行时 适用于 toB 私有化场景，可离线安装平台所依赖的 rpm&#x2F;deb 包（如存储客户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 kubeplay 来离线部署 kubernetes 集群">
+<meta property="og:url" content="https://blog.k8s.li/deploy-k8s-by-kubeplay.html">
+<meta property="og:site_name" content="木子">
+<meta property="og:description" content="简介kubelay 是基于 kubespray 实现的离线部署 kuberneres 集群的工具 特性 包含所有依赖，一条命令即可完成离线安装 支持 amd64 和 arm64 CPU 架构 kubeadm 生成的证书有效期调整为 10 年 去 docker 化部署，无缝迁移至 containerd 作为容器运行时 适用于 toB 私有化场景，可离线安装平台所依赖的 rpm&#x2F;deb 包（如存储客户">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-25T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="k8s">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.k8s.li/deploy-k8s-by-kubeplay.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>使用 kubeplay 来离线部署 kubernetes 集群 | 木子</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="木子" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/booklist.html" rel="section"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/link/" rel="section"><i class="fa fa-fw fa-link"></i>Friend</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/deploy-k8s-by-kubeplay.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木子">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          使用 kubeplay 来离线部署 kubernetes 集群
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 2021-08-26T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/deploy-k8s-by-kubeplay.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="deploy-k8s-by-kubeplay.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://github.com/k8sli/kubeplay" target="_blank" rel="noopener">kubelay</a> 是基于 <a href="https://github.com/k8sli/kubespray" target="_blank" rel="noopener">kubespray</a> 实现的离线部署 kuberneres 集群的工具</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>包含所有依赖，一条命令即可完成离线安装</li>
+<li>支持 amd64 和 arm64 CPU 架构</li>
+<li>kubeadm 生成的证书有效期调整为 10 年</li>
+<li>去 docker 化部署，无缝迁移至 containerd 作为容器运行时</li>
+<li>适用于 toB 私有化场景，可离线安装平台所依赖的 rpm/deb 包（如存储客户端）</li>
+<li>多集群部署，支持在 kubernetes 集群中以 Job Pod 方式部署 kubernetes 集群</li>
+<li>使用 GitHub Actions 构建离线安装包，无需充值会员，100% 开源 100% 免费</li>
+</ul>
+<h3 id="组件版本"><a href="#组件版本" class="headerlink" title="组件版本"></a>组件版本</h3><table>
+<thead>
+<tr>
+<th>addon</th>
+<th>version</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kubernetes</td>
+<td>v1.21.3</td>
+<td>kubernetes</td>
+</tr>
+<tr>
+<td>containerd</td>
+<td>v1.4.6</td>
+<td>容器运行时</td>
+</tr>
+<tr>
+<td>etcd</td>
+<td>v3.4.13</td>
+<td>etcd 服务</td>
+</tr>
+<tr>
+<td>crictl</td>
+<td>v1.21.0</td>
+<td>CRI CLI 工具</td>
+</tr>
+<tr>
+<td>pause</td>
+<td>3.3</td>
+<td>pause 容器镜像</td>
+</tr>
+<tr>
+<td>cni-plugins</td>
+<td>v0.9.1</td>
+<td>CNI 插件</td>
+</tr>
+<tr>
+<td>calico</td>
+<td>v3.18.4</td>
+<td>calico</td>
+</tr>
+<tr>
+<td>autoscaler</td>
+<td>1.8.3</td>
+<td>DNS 自动扩缩容</td>
+</tr>
+<tr>
+<td>coredns</td>
+<td>v1.8.0</td>
+<td>集群 DNS 服务</td>
+</tr>
+<tr>
+<td>flannel</td>
+<td>v0.14.0</td>
+<td>flannel</td>
+</tr>
+<tr>
+<td>nginx</td>
+<td>1.19</td>
+<td>node 节点反向代理 APIserver</td>
+</tr>
+<tr>
+<td>canel</td>
+<td>calico/flannel</td>
+<td>集成 calico 和 flannel</td>
+</tr>
+<tr>
+<td>helm</td>
+<td>v3.6.3</td>
+<td>helm CLI 工具</td>
+</tr>
+<tr>
+<td>nerdctl</td>
+<td>0.8.0</td>
+<td>containerd CLI 工具</td>
+</tr>
+<tr>
+<td>nerdctl-full</td>
+<td>0.11.0</td>
+<td>containerd 工具全家桶</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>v2.7.1</td>
+<td>提供镜像下载服务</td>
+</tr>
+<tr>
+<td>skopeo</td>
+<td>v1.4.0</td>
+<td>镜像搬运工具</td>
+</tr>
+</tbody></table>
+<h3 id="支持-OS"><a href="#支持-OS" class="headerlink" title="支持 OS"></a>支持 OS</h3><table>
+<thead>
+<tr>
+<th>distribution</th>
+<th>version</th>
+<th>arch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CentOS</td>
+<td>7.9</td>
+<td>amd64/arm64</td>
+</tr>
+<tr>
+<td>Debian</td>
+<td>10</td>
+<td>amd64/arm64</td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td>20.04</td>
+<td>amd64/arm6</td>
+</tr>
+</tbody></table>
+<h3 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h3><p>在部署工具运行节点使用 <a href="https://github.com/containerd/nerdctl" target="_blank" rel="noopener">nerdctl compose</a> 启动 nginx 和 registry 容器，分别提供离线资源下载和镜像分发服务。</p>
+<h3 id="kubespray"><a href="#kubespray" class="headerlink" title="kubespray"></a>kubespray</h3><p>使用 kubernetes 社区的 <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank" rel="noopener">kubespray</a> 作为集群部署的功能，部署过程中所依赖的资源从 compose 节点获取。</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>在 GitHub 的 release 页面 <a href="https://github.com/k8sli/kubeplay/releases" target="_blank" rel="noopener">k8sli/kubeplay/releases</a> 下载对应的离线安装包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sha256sum                                    <span class="comment"># 安装包 sha256sum 校验文件</span></span><br><span class="line">kubeplay-v0.1.0-alpha.1-linux-amd64.tar.gz   <span class="comment"># 适用于 amd64 CPU 体系架构</span></span><br><span class="line">kubeplay-v0.1.0-alpha.1-linux-arm64.tar.gz   <span class="comment"># 适用于 arm64 CPU 体系架构</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ tar -xpf kubeplay-v0.1.0-alpha.1-linux-amd64.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> kubeplay</span><br><span class="line">$ vi config.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><code>config.yaml</code> 配置文件主要分为如下几个部分</p>
+<ul>
+<li>compose：nginx 和 registry 部署节点信息</li>
+<li>kubespray：kubespray 部署配置</li>
+<li>invenory：kubernetes 集群节点 ssh 登录信息</li>
+<li>default：一些默认的参数</li>
+</ul>
+<h4 id="compose-1"><a href="#compose-1" class="headerlink" title="compose"></a>compose</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>internal_ip</td>
+<td>部署节点内网访问 IP</td>
+<td>192.168.10.11</td>
+</tr>
+<tr>
+<td>nginx_http_port</td>
+<td>部署 nginx 服务暴露的端口</td>
+<td>8080</td>
+</tr>
+<tr>
+<td>registry_domain</td>
+<td>部署 registry 镜像仓库服务的域名</td>
+<td>kube.registry.local</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">compose:</span></span><br><span class="line">  <span class="comment"># Compose bootstrap node ip, default is local internal ip</span></span><br><span class="line">  <span class="attr">internal_ip:</span> <span class="number">172.20</span><span class="number">.0</span><span class="number">.25</span></span><br><span class="line">  <span class="comment"># Nginx http server bind port for download files and packages</span></span><br><span class="line">  <span class="attr">nginx_http_port:</span> <span class="number">8080</span></span><br><span class="line">  <span class="comment"># Registry domain for CRI runtime download images</span></span><br><span class="line">  <span class="attr">registry_domain:</span> <span class="string">kube.registry.local</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="kubespray-1"><a href="#kubespray-1" class="headerlink" title="kubespray"></a>kubespray</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kube_version</td>
+<td>kubernetes 版本号</td>
+<td>v1.21.3</td>
+</tr>
+<tr>
+<td>external_apiserver_access_ip</td>
+<td>集群APIserver外部访问 IP</td>
+<td>192.168.10.100</td>
+</tr>
+<tr>
+<td>kube_network_plugin</td>
+<td>选用 CNI 网络插件名称</td>
+<td>calico</td>
+</tr>
+<tr>
+<td>container_manager</td>
+<td>容器运行时</td>
+<td>containerd</td>
+</tr>
+<tr>
+<td>etcd_deployment_type</td>
+<td>etcd 部署方式</td>
+<td>host</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kubespray:</span></span><br><span class="line">  <span class="comment"># Kubernetes version by default, only support v1.20.6</span></span><br><span class="line">  <span class="attr">kube_version:</span> <span class="string">v1.21.3</span></span><br><span class="line">  <span class="comment"># For deploy HA cluster you must configure a external apiserver access ip</span></span><br><span class="line">  <span class="attr">external_apiserver_access_ip:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">  <span class="comment"># Set network plugin to calico with vxlan mode by default</span></span><br><span class="line">  <span class="attr">kube_network_plugin:</span> <span class="string">calico</span></span><br><span class="line">  <span class="comment">#Container runtime, only support containerd if offline deploy</span></span><br><span class="line">  <span class="attr">container_manager:</span> <span class="string">containerd</span></span><br><span class="line">  <span class="comment"># Now only support host if use containerd as CRI runtime</span></span><br><span class="line">  <span class="attr">etcd_deployment_type:</span> <span class="string">host</span></span><br><span class="line">  <span class="comment"># Settings for etcd event server</span></span><br><span class="line">  <span class="attr">etcd_events_cluster_setup:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">etcd_events_cluster_enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="inventory"><a href="#inventory" class="headerlink" title="inventory"></a>inventory</h4><p>inventory 为 kubernetes 集群节点的 ssh 登录配置，支持 yaml, json, ini 三种格式。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ansible_port</td>
+<td>主机 ssh 登录端口号</td>
+<td>22</td>
+</tr>
+<tr>
+<td>ansible_user</td>
+<td>主机 ssh 登录用户名</td>
+<td></td>
+</tr>
+<tr>
+<td>ansible_ssh_pass</td>
+<td>主机 ssh 登录密码</td>
+<td></td>
+</tr>
+<tr>
+<td>ansible_ssh_private_key_file</td>
+<td>如果使用 private key 登录</td>
+<td>必须为<code>/kubespray/config/id_rsa</code></td>
+</tr>
+<tr>
+<td>ansible_host</td>
+<td>节点 IP</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>yaml 格式</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Cluster nodes inventory info</span></span><br><span class="line"><span class="attr">inventory:</span></span><br><span class="line">  <span class="attr">all:</span></span><br><span class="line">    <span class="attr">vars:</span></span><br><span class="line">      <span class="attr">ansible_port:</span> <span class="number">22</span></span><br><span class="line">      <span class="attr">ansible_user:</span> <span class="string">root</span></span><br><span class="line">      <span class="attr">ansible_ssh_pass:</span> <span class="string">Password</span></span><br><span class="line">      <span class="comment"># ansible_ssh_private_key_file: /kubespray/config/id_rsa</span></span><br><span class="line">    <span class="attr">hosts:</span></span><br><span class="line">      <span class="attr">node1:</span></span><br><span class="line">        <span class="attr">ansible_host:</span> <span class="number">172.20</span><span class="number">.0</span><span class="number">.21</span></span><br><span class="line">      <span class="attr">node2:</span></span><br><span class="line">        <span class="attr">ansible_host:</span> <span class="number">172.20</span><span class="number">.0</span><span class="number">.22</span></span><br><span class="line">      <span class="attr">node3:</span></span><br><span class="line">        <span class="attr">ansible_host:</span> <span class="number">172.20</span><span class="number">.0</span><span class="number">.23</span></span><br><span class="line">      <span class="attr">node4:</span></span><br><span class="line">        <span class="attr">ansible_host:</span> <span class="number">172.20</span><span class="number">.0</span><span class="number">.24</span></span><br><span class="line">    <span class="attr">children:</span></span><br><span class="line">      <span class="attr">kube_control_plane:</span></span><br><span class="line">        <span class="attr">hosts:</span></span><br><span class="line">          <span class="attr">node1:</span></span><br><span class="line">          <span class="attr">node2:</span></span><br><span class="line">          <span class="attr">node3:</span></span><br><span class="line">      <span class="attr">kube_node:</span></span><br><span class="line">        <span class="attr">hosts:</span></span><br><span class="line">          <span class="attr">node1:</span></span><br><span class="line">          <span class="attr">node2:</span></span><br><span class="line">          <span class="attr">node3:</span></span><br><span class="line">          <span class="attr">node4:</span></span><br><span class="line">      <span class="attr">etcd:</span></span><br><span class="line">        <span class="attr">hosts:</span></span><br><span class="line">          <span class="attr">node1:</span></span><br><span class="line">          <span class="attr">node2:</span></span><br><span class="line">          <span class="attr">node3:</span></span><br><span class="line">      <span class="attr">k8s_cluster:</span></span><br><span class="line">        <span class="attr">children:</span></span><br><span class="line">          <span class="attr">kube_control_plane:</span></span><br><span class="line">          <span class="attr">kube_node:</span></span><br><span class="line">      <span class="attr">gpu:</span></span><br><span class="line">        <span class="attr">hosts:</span> <span class="string">&#123;&#125;</span></span><br><span class="line">      <span class="attr">calico_rr:</span></span><br><span class="line">        <span class="attr">hosts:</span> <span class="string">&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>json 格式</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">inventory: |</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">"all"</span>: &#123;</span><br><span class="line">      <span class="attr">"vars"</span>: &#123;</span><br><span class="line">        <span class="attr">"ansible_port"</span>: <span class="number">22</span>,</span><br><span class="line">        <span class="attr">"ansible_user"</span>: <span class="string">"root"</span>,</span><br><span class="line">        <span class="attr">"ansible_ssh_pass"</span>: <span class="string">"Password"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"hosts"</span>: &#123;</span><br><span class="line">        <span class="attr">"node1"</span>: &#123;</span><br><span class="line">          <span class="attr">"ansible_host"</span>: <span class="string">"172.20.0.21"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"node2"</span>: &#123;</span><br><span class="line">          <span class="attr">"ansible_host"</span>: <span class="string">"172.20.0.22"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"node3"</span>: &#123;</span><br><span class="line">          <span class="attr">"ansible_host"</span>: <span class="string">"172.20.0.23"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"node4"</span>: &#123;</span><br><span class="line">          <span class="attr">"ansible_host"</span>: <span class="string">"172.20.0.24"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"children"</span>: &#123;</span><br><span class="line">        <span class="attr">"kube_control_plane"</span>: &#123;</span><br><span class="line">          <span class="attr">"hosts"</span>: &#123;</span><br><span class="line">            <span class="attr">"node1"</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">"node2"</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">"node3"</span>: <span class="literal">null</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"kube_node"</span>: &#123;</span><br><span class="line">          <span class="attr">"hosts"</span>: &#123;</span><br><span class="line">            <span class="attr">"node1"</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">"node2"</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">"node3"</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">"node4"</span>: <span class="literal">null</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"etcd"</span>: &#123;</span><br><span class="line">          <span class="attr">"hosts"</span>: &#123;</span><br><span class="line">            <span class="attr">"node1"</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">"node2"</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">"node3"</span>: <span class="literal">null</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"k8s_cluster"</span>: &#123;</span><br><span class="line">          <span class="attr">"children"</span>: &#123;</span><br><span class="line">            <span class="attr">"kube_control_plane"</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">"kube_node"</span>: <span class="literal">null</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"gpu"</span>: &#123;</span><br><span class="line">          <span class="attr">"hosts"</span>: &#123;&#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"calico_rr"</span>: &#123;</span><br><span class="line">          <span class="attr">"hosts"</span>: &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ini 格式</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">inventory: |</span><br><span class="line">  <span class="section">[all:vars]</span></span><br><span class="line">  ansible_port=22</span><br><span class="line">  ansible_user=root</span><br><span class="line">  ansible_ssh_pass=Password</span><br><span class="line">  <span class="comment">#ansible_ssh_private_key_file=/kubespray/config/id_rsa</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[all]</span></span><br><span class="line">  kube-control-01 ansible_host=172.20.0.21</span><br><span class="line">  kube-control-02 ansible_host=172.20.0.23</span><br><span class="line">  kube-control-03 ansible_host=172.20.0.22</span><br><span class="line">  kube-node-01 ansible_host=172.20.0.24</span><br><span class="line"></span><br><span class="line">  <span class="section">[bastion]</span></span><br><span class="line">  <span class="comment"># bastion-01 ansible_host=x.x.x.x ansible_user=some_user</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[kube_control_plane]</span></span><br><span class="line">  kube-control-01</span><br><span class="line">  kube-control-02</span><br><span class="line">  kube-control-03</span><br><span class="line"></span><br><span class="line">  <span class="section">[etcd]</span></span><br><span class="line">  kube-control-01</span><br><span class="line">  kube-control-02</span><br><span class="line">  kube-control-03</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="section">[kube_node]</span></span><br><span class="line">  kube-control-01</span><br><span class="line">  kube-control-02</span><br><span class="line">  kube-control-03</span><br><span class="line">  kube-node-01</span><br><span class="line"></span><br><span class="line">  <span class="section">[calico_rr]</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[k8s_cluster:children]</span></span><br><span class="line">  kube_control_plane</span><br><span class="line">  kube_node</span><br><span class="line">  calico_rr</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="default"><a href="#default" class="headerlink" title="default"></a>default</h4><p>以下几个默认的参数在没有特殊要求的情况下不建议修改，直接保持默认即可。<code>ntp_server</code> 参数为默认值时会自动替换成 compose 中的 <code>internal_ip</code> 值；<code>registry_ip</code> 和 <code>offline_resources_url</code> 这两个参数会根据 compose 中的参数自动生成无需修改。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ntp_server</td>
+<td>ntp 时钟同步服务器域名或 IP</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>registry_ip</td>
+<td>镜像仓库节点 IP</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>offline_resources_url</td>
+<td>提供离线资源下载的 URL 地址</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>offline_resources_enabled</td>
+<td>是否为离线部署</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td>generate_domain_crt</td>
+<td>是否为镜像仓库域名生成自签证书</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td>image_repository</td>
+<td>镜像仓库的 repo 或 project</td>
+<td align="center">library</td>
+</tr>
+<tr>
+<td>registry_https_port</td>
+<td>镜像仓库的端口号，该端口已禁止 PUSH 镜像</td>
+<td align="center">443</td>
+</tr>
+<tr>
+<td>registry_push_port</td>
+<td>用于 PUSH 镜像的 registry 端口号</td>
+<td align="center">5000</td>
+</tr>
+<tr>
+<td>download_container</td>
+<td>是否在所有节点 pull 下所有组件的镜像</td>
+<td align="center">false</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">default:</span></span><br><span class="line">  <span class="comment"># NTP server ip address or domain, default is internal_ip</span></span><br><span class="line">  <span class="attr">ntp_server:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">internal_ip</span></span><br><span class="line">  <span class="comment"># Registry ip address, default is internal_ip</span></span><br><span class="line">  <span class="attr">registry_ip:</span> <span class="string">internal_ip</span></span><br><span class="line">  <span class="comment"># Offline resource url for download files, default is internal_ip:nginx_http_port</span></span><br><span class="line">  <span class="attr">offline_resources_url:</span> <span class="string">internal_ip:nginx_http_port</span></span><br><span class="line">  <span class="comment"># Use nginx and registry provide all offline resources</span></span><br><span class="line">  <span class="attr">offline_resources_enabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Image repo in registry</span></span><br><span class="line">  <span class="attr">image_repository:</span> <span class="string">library</span></span><br><span class="line">  <span class="comment"># Kubespray container image for deploy user cluster or scale</span></span><br><span class="line">  <span class="attr">kubespray_image:</span> <span class="string">"kubespray"</span></span><br><span class="line">  <span class="comment"># Auto generate self-signed certificate for registry domain</span></span><br><span class="line">  <span class="attr">generate_domain_crt:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># For nodes pull image, use 443 as default</span></span><br><span class="line">  <span class="attr">registry_https_port:</span> <span class="number">443</span></span><br><span class="line">  <span class="comment"># For push image to this registry, use 5000 as default, and only bind at 127.0.0.1</span></span><br><span class="line">  <span class="attr">registry_push_port:</span> <span class="number">5000</span></span><br><span class="line">  <span class="comment"># Set false to disable download all container images on all nodes</span></span><br><span class="line">  <span class="attr">download_container:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="部署集群"><a href="#部署集群" class="headerlink" title="部署集群"></a>部署集群</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash install.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加节点"><a href="#增加节点" class="headerlink" title="增加节点"></a>增加节点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash install.sh add-node <span class="variable">$NODE_NAMES</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash install.sh remove-node <span class="variable">$NODE_NAME</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="移除集群"><a href="#移除集群" class="headerlink" title="移除集群"></a>移除集群</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash install.sh remove-cluster</span><br></pre></td></tr></table></figure>
+
+<h3 id="移除所有组件"><a href="#移除所有组件" class="headerlink" title="移除所有组件"></a>移除所有组件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash install.sh remove</span><br></pre></td></tr></table></figure>
+
+<h2 id="未完后续补充"><a href="#未完后续补充" class="headerlink" title="未完后续补充"></a>未完后续补充</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/k8s/" rel="tag"><i class="fa fa-tag"></i> k8s</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/shell-snippet.html" rel="prev" title="搬砖常用的 shell 片段记录">
+      <i class="fa fa-chevron-left"></i> 搬砖常用的 shell 片段记录
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/build-k8s-binary-by-github-actions.html" rel="next" title="使用 GitHub Actions 编译 kubernetes 组件">
+      使用 GitHub Actions 编译 kubernetes 组件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">1.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件版本"><span class="nav-number">1.2.</span> <span class="nav-text">组件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持-OS"><span class="nav-number">1.3.</span> <span class="nav-text">支持 OS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compose"><span class="nav-number">1.4.</span> <span class="nav-text">compose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kubespray"><span class="nav-number">1.5.</span> <span class="nav-text">kubespray</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">2.</span> <span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载"><span class="nav-number">2.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压"><span class="nav-number">2.2.</span> <span class="nav-text">解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署集群"><span class="nav-number">2.4.</span> <span class="nav-text">部署集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加节点"><span class="nav-number">2.5.</span> <span class="nav-text">增加节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除节点"><span class="nav-number">2.6.</span> <span class="nav-text">删除节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除集群"><span class="nav-number">2.7.</span> <span class="nav-text">移除集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除所有组件"><span class="nav-number">2.8.</span> <span class="nav-text">移除所有组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完后续补充"><span class="nav-number">3.</span> <span class="nav-text">未完后续补充</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kindle.k8s.li/" title="Kindle → https:&#x2F;&#x2F;kindle.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">41:51</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/deploy-k8s-by-kubeplay.html",
+            identifier: "deploy-k8s-by-kubeplay.html",
+            title: "使用 kubeplay 来离线部署 kubernetes 集群"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
