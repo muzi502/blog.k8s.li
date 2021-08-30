@@ -2,21 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/about.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/categories/index.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/index.html</loc>
     
     <lastmod>2021-08-30</lastmod>
     
@@ -30,7 +16,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
+    <loc>https://blog.k8s.li/tags/index.html</loc>
     
     <lastmod>2021-08-30</lastmod>
     
@@ -38,6 +24,20 @@
   
   <url>
     <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/about.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
     
     <lastmod>2021-08-30</lastmod>
     
@@ -170,35 +170,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/ffmepg-rtsp.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/life-sciences.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/wndr3700v4-openwrt.html</loc>
     
     <lastmod>2021-08-30</lastmod>
     
@@ -226,20 +198,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/RMS.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
     
     <lastmod>2021-08-30</lastmod>
@@ -248,20 +206,6 @@
   
   <url>
     <loc>https://blog.k8s.li/amd-yes.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/android-taibackup.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/buffon.html</loc>
     
     <lastmod>2021-08-30</lastmod>
     
@@ -317,6 +261,27 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/ffmepg-rtsp.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/fuch-rush-app-dir.html</loc>
     
     <lastmod>2021-08-30</lastmod>
@@ -338,21 +303,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/kernel-note-book.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/mirrors-test.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/networktools.html</loc>
     
     <lastmod>2021-08-30</lastmod>
     
@@ -380,6 +331,62 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/wndr3700v4-openwrt.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/RMS.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/android-taibackup.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/buffon.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/kernel-note-book.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/networktools.html</loc>
+    
+    <lastmod>2021-08-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/play-with-docker.html</loc>
     
     <lastmod>2021-08-30</lastmod>
@@ -388,13 +395,6 @@
   
   <url>
     <loc>https://blog.k8s.li/python-cnni.html</loc>
-    
-    <lastmod>2021-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2021-08-30</lastmod>
     
@@ -1327,13 +1327,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E9%98%B5%E5%88%97%E5%8D%A1/</loc>
-    <lastmod>2021-08-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/Linux-%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2021-08-30</lastmod>
     <changefreq>daily</changefreq>
@@ -1342,6 +1335,13 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
+    <lastmod>2021-08-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E9%98%B5%E5%88%97%E5%8D%A1/</loc>
     <lastmod>2021-08-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1516,14 +1516,14 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E9%AA%91%E8%A1%8C/</loc>
+    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2021-08-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://blog.k8s.li/tags/%E9%AA%91%E8%A1%8C/</loc>
     <lastmod>2021-08-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
