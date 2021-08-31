@@ -287,7 +287,7 @@
 </ul>
 <p>正因为上面的 Jenkins slave 存在这些种种痛点，我们渴望一种更高效更可靠的方式来完成这个 CI/CD 流程，而 Docker 虚拟化容器技术能很好的解决这个痛点，又特别是在 Kubernetes 集群环境下面能够更好来解决上面的问题，下图是基于 Kubernetes 搭建 Jenkins slave 集群的简单示意图：</p>
 <p><img src="https://p.k8s.li/k8s-jenkins-slave.png" alt="k8s-jenkins"></p>
-<p>从图上可以看到 Jenkins Master 时以 docker-compose 的方式运行在一个节点上。Jenkins Slave 以 Pod 形式运行在 Kubernetes 集群的 Node 上，并且它不是一直处于运行状态，它会按照需求动态的创建并自动删除。这种方式的工作流程大致为：当 Jenkins Master 接受到 Build 请求时，会根据配置的 Label 动态创建一个运行在 Pod 中的 Jenkins Slave 并注册到 Master 上，当运行完 Job 后，这个 Slave 会被注销并且这个 Pod 也会自动删除，恢复到最初状态。</p>
+<p>从图上可以看到 Jenkins Master 是以 docker-compose 的方式运行在一个节点上。Jenkins Slave 以 Pod 形式运行在 Kubernetes 集群的 Node 上，并且它不是一直处于运行状态，它会按照需求动态的创建并自动删除。这种方式的工作流程大致为：当 Jenkins Master 接受到 Build 请求时，会根据配置的 Label 动态创建一个运行在 Pod 中的 Jenkins Slave 并注册到 Master 上，当运行完 Job 后，这个 Slave 会被注销并且这个 Pod 也会自动删除，恢复到最初状态。</p>
 <p>那么我们使用这种方式带来了以下好处：</p>
 <ul>
 <li><strong>动态伸缩</strong>，合理使用资源，每次运行 Job 时，会自动创建一个 Jenkins Slave，Job 完成后，Slave 自动注销并删除容器，资源自动释放，而且 Kubernetes 会根据每个资源的使用情况，动态分配 Slave 到空闲的节点上创建，降低出现因某节点资源利用率高，还排队等待在该节点的情况。</li>
