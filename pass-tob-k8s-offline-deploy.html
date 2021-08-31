@@ -273,7 +273,7 @@
 <tr>
 <th align="center">Item</th>
 <th align="center">Language</th>
-<th align="center">Start</th>
+<th align="center">Star</th>
 <th align="center">Fork</th>
 <th align="left">离线部署支持情况</th>
 </tr>
@@ -370,7 +370,7 @@
 <p>If you want to try Docker or use it in a testing environment, but you’re not on a supported platform, you can try installing from static binaries. <strong>If possible, you should use packages built for your operating system</strong>, and use your operating system’s package management system to manage Docker installation and upgrades.</p>
 <p><a href="https://docs.docker.com/engine/install/binaries/" target="_blank" rel="noopener">Install Docker Engine from binaries</a></p>
 </blockquote>
-<p>实际上任何部署工具都会对系统 rpm/deb 包都会有不同程度上的依赖，有一部分依赖可以像 <a href="https://github.com/fanux/sealos" target="_blank" rel="noopener">sealos</a>  这样通过某种方式去规避掉。但着并不是所有的依赖都能规避的，比如提供挂载 PV 需要依赖的存储客户端（nfs-common/nfs-utils，lvm2，gluster-client）这些包，基本上是没有任何规避的途径，必须通过包管理器来安装才行。</p>
+<p>实际上任何部署工具都会对系统 rpm/deb 包都会有不同程度上的依赖，有一部分依赖可以像 <a href="https://github.com/fanux/sealos" target="_blank" rel="noopener">sealos</a>  这样通过某种方式去规避掉。但并不是所有的依赖都能规避的，比如提供挂载 PV 需要依赖的存储客户端（nfs-common/nfs-utils，lvm2，gluster-client）这些包，基本上是没有任何规避的途径，必须通过包管理器来安装才行。</p>
 <p>当然如果这些前置的依赖项在部署工具之外手动解决或者让用户自行去解决，那么使用 <a href="https://github.com/fanux/sealos" target="_blank" rel="noopener">sealos</a>  这种轻量级的工具来部署 K8s 是比较合适的。但对于一些 PaaS toB 的产品而言，让用户自己去手动解决这些依赖恐怕不太好。站在客户的角度来考虑既然平台提供了这部分功能，就应该在部署的时候解决所有的依赖问题，而不是让我自己手动临时来解决。</p>
 <h4 id="kubekey"><a href="#kubekey" class="headerlink" title="kubekey"></a>kubekey</h4><p>在 kubekey 中一些依赖项目则是要求用户自行安装，并没有提供离线安装的方式：</p>
 <blockquote>
@@ -430,7 +430,7 @@
 <li>离线源同时适配适配 ARM64 和 AMD64 有一定的难度</li>
 </ul>
 </blockquote>
-<p>好在文中也给出了一个比较通用的解决方案，即通过 Dockerfile 来构建离线源，具体的实现细节可以翻看《<a href="https://blog.k8s.li/make-offline-mirrors.html">使用 docker build 制作 yum/apt 离线源</a>》一文。使用这个方案可以解决 PaaS 或者 IaaS 层面的离线源制作的难题，同样也适用于我们部署 K8s 集群的场景，并且采用 Dockerfile 的方式来构建离线源可以完美地解决同时适配 arm64 和 amd64 的难题。</p>
+<p>好在文中也给出了一个比较通用的解决方案，即通过 Dockerfile 来构建离线源，具体的实现细节可以翻看《<a href="https://blog.k8s.li/make-offline-mirrors.html">使用 docker build 制作 yum/apt 离线源</a>》一文。使用这个方案可以解决 PaaS 或者 IaaS 层面的离线源制作的难题，同样也适用于我们部署 K8s 集群的场景，而且采用 Dockerfile 的方式来构建离线源可以完美地解决同时适配 arm64 和 amd64 的难题。</p>
 <h3 id="files"><a href="#files" class="headerlink" title="files"></a>files</h3><p>一些部署过程中需要的二进制文件，如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- kubelet</span><br><span class="line">- kubeadm</span><br><span class="line">- kubectl</span><br><span class="line">- etcd            <span class="comment"># systemd 方式部署 etcd 时需要的安装包</span></span><br><span class="line">- crictl          <span class="comment"># k8s 官方的 CRI CLI 工具</span></span><br><span class="line">- calicoctl       <span class="comment"># calico 的 CLI 工具</span></span><br><span class="line">- helm            <span class="comment"># 安装 helm 需要的二进制安装包</span></span><br><span class="line">- nerdctl         <span class="comment"># containerd 的 CLI 工具</span></span><br><span class="line">- cni-plugins     <span class="comment"># CNI 插件</span></span><br><span class="line">- cuda            <span class="comment"># GPU 依赖</span></span><br><span class="line">- nvidia_driver   <span class="comment"># GPU 驱动</span></span><br></pre></td></tr></table></figure>
 
@@ -449,7 +449,7 @@
 </ul>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">installDockerOnNode</span><span class="params">(mgr *manager.Manager, _ *kubekeyapiv1alpha1.HostCfg)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	dockerConfig, err := GenerateDockerConfig(mgr)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	dockerConfigBase64 := base64.StdEncoding.EncodeToString([]<span class="keyword">byte</span>(dockerConfig))</span><br><span class="line">	output, err1 := mgr.Runner.ExecuteCmd(fmt.Sprintf(<span class="string">"sudo -E /bin/sh -c \"if [ -z $(which docker) ] || [ ! -e /var/run/docker.sock ]; then curl https://kubernetes.pek3b.qingstor.com/tools/kubekey/docker-install.sh | sh &amp;&amp; systemctl enable docker; if [ ! -f /etc/docker/daemon.json ]; then mkdir -p /etc/docker &amp;&amp; echo %s | base64 -d &gt; /etc/docker/daemon.json; fi; systemctl daemon-reload &amp;&amp; systemctl restart docker; fi\""</span>, dockerConfigBase64), <span class="number">0</span>, <span class="literal">false</span>)</span><br><span class="line">	<span class="keyword">if</span> err1 != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors.Wrap(errors.WithStack(err1), fmt.Sprintf(<span class="string">"Failed to install docker:\n%s"</span>, output))</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>使用 docker 官方的安装脚本来安装 docker 是有一个明显的问题就是：比如没有版本控制，不能指定 docker 的版本，每次安装的 docker 版本都是最新的 stable 版本。没有版本控制就会导致不同时间部署的集群或者加入的节点，docker 版本可能就不一样，在这里可能会埋下一些坑，可能会带来一定的维护成本或者将来升级时遇到问题。</p>
+<p>使用 docker 官方的安装脚本来安装 docker 是有一个明显的问题就是：没有版本控制，不能指定 docker 的版本，每次安装的 docker 版本都是最新的 stable 版本。没有版本控制就会导致不同时间部署的集群或者加入的节点，docker 版本可能就不一样，在这里可能会埋下一些坑，可能会带来一定的维护成本或者将来升级时遇到问题。</p>
 <p>编译过 kubernetes 组件的可能都知道 k8s 源码当中存在一个 <a href="https://github.com/kubernetes/kubernetes/blob/master/build/dependencies.yaml" target="_blank" rel="noopener">build/dependencies.yaml</a> 的文件，里面记录的是 k8s 组件与其他组件 (如 docker, etcd, coredns, cni, pause) 所匹配的最佳版本。</p>
 <blockquote>
 <p>On each of your nodes, install the Docker for your Linux distribution as per <a href="https://docs.docker.com/engine/install/#server" target="_blank" rel="noopener">Install Docker Engine</a>. You can find the latest validated version of Docker in this <a href="https://git.k8s.io/kubernetes/build/dependencies.yaml" target="_blank" rel="noopener">dependencies</a> file.</p>
