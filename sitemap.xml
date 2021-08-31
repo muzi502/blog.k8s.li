@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/about.html</loc>
     
     <lastmod>2021-08-31</lastmod>
@@ -44,6 +37,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/homelab.html</loc>
     
     <lastmod>2021-08-31</lastmod>
@@ -66,20 +66,6 @@
   
   <url>
     <loc>https://blog.k8s.li/My-brick-lifting-tools.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/2019-review.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/container-linux-os.html</loc>
     
     <lastmod>2021-08-31</lastmod>
     
@@ -135,7 +121,21 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/2019-review.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/container-linux-os.html</loc>
     
     <lastmod>2021-08-31</lastmod>
     
@@ -163,70 +163,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/amd-yes.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/debian-gateway.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
     
     <lastmod>2021-08-31</lastmod>
     
@@ -240,28 +177,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/life-sciences.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/mirrors-test.html</loc>
-    
-    <lastmod>2021-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2021-08-31</lastmod>
     
@@ -310,6 +226,20 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/amd-yes.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/android-taibackup.html</loc>
     
     <lastmod>2021-08-31</lastmod>
@@ -324,7 +254,63 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/dashboard.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/debian-gateway.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
     
     <lastmod>2021-08-31</lastmod>
     
@@ -359,6 +345,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/mirrors-test.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/networktools.html</loc>
     
     <lastmod>2021-08-31</lastmod>
@@ -380,7 +373,21 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/play-with-docker.html</loc>
+    
+    <lastmod>2021-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2021-08-31</lastmod>
     
@@ -394,9 +401,9 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
+    <loc>https://blog.k8s.li/booklist.html</loc>
     
-    <lastmod>2021-08-31</lastmod>
+    <lastmod>2021-08-30</lastmod>
     
   </url>
   
@@ -418,13 +425,6 @@
     <loc>https://blog.k8s.li/deploy-k8s-by-kubeplay.html</loc>
     
     <lastmod>2021-08-25</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/booklist.html</loc>
-    
-    <lastmod>2021-08-23</lastmod>
     
   </url>
   
