@@ -48,12 +48,12 @@
   };
 </script>
 
-  <meta name="description" content="上周在写《镜像搬运工 skopeo 》 的时候看了很多关于容器镜像相关的博客，从大佬们那里偷偷学了不少知识，对容器镜像有了一点点深入的了解。这周末一个人闲着宅在家里没事就把最近所学的知识整理一下分享出来，供大家一起来食用。内容比较多，耐心看完的话，还是能收获一些没用的知识滴😂。 更新记录 2020-06-13：还有一些没有写完，后续补充 2020-06-06： 初稿 2020-09-02：补充">
+  <meta name="description" content="上周在写《镜像搬运工 skopeo 》 的时候看了很多关于容器镜像相关的博客，从大佬们那里偷偷学了不少知识，对容器镜像有了一点点深入的了解。这周末一个人闲着宅在家里没事就把最近所学的知识整理一下分享出来，供大家一起来食用。内容比较多，耐心看完的话，还是能收获一些没用的知识滴😂。 更新记录 2020-06-13：还有一些没有写完，后续补充 2020-06-06：初稿 2020-09-02：补充">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出容器镜像的一生🤔">
 <meta property="og:url" content="https://blog.k8s.li/Exploring-container-image.html">
 <meta property="og:site_name" content="木子">
-<meta property="og:description" content="上周在写《镜像搬运工 skopeo 》 的时候看了很多关于容器镜像相关的博客，从大佬们那里偷偷学了不少知识，对容器镜像有了一点点深入的了解。这周末一个人闲着宅在家里没事就把最近所学的知识整理一下分享出来，供大家一起来食用。内容比较多，耐心看完的话，还是能收获一些没用的知识滴😂。 更新记录 2020-06-13：还有一些没有写完，后续补充 2020-06-06： 初稿 2020-09-02：补充">
+<meta property="og:description" content="上周在写《镜像搬运工 skopeo 》 的时候看了很多关于容器镜像相关的博客，从大佬们那里偷偷学了不少知识，对容器镜像有了一点点深入的了解。这周末一个人闲着宅在家里没事就把最近所学的知识整理一下分享出来，供大家一起来食用。内容比较多，耐心看完的话，还是能收获一些没用的知识滴😂。 更新记录 2020-06-13：还有一些没有写完，后续补充 2020-06-06：初稿 2020-09-02：补充">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.k8s.li/docker-architecture.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/12036324/70367494-646d2380-18db-11ea-992a-d2bca4cbfeb0.png">
@@ -272,7 +272,7 @@
         <p>上周在写<a href="https://blog.k8s.li/skopeo.html">《镜像搬运工 skopeo 》</a> 的时候看了很多关于容器镜像相关的博客，从大佬们那里偷偷学了不少知识，对容器镜像有了一点点深入的了解。这周末一个人闲着宅在家里没事就把最近所学的知识整理一下分享出来，供大家一起来食用。内容比较多，耐心看完的话，还是能收获一些<del>没用的</del>知识滴😂。</p>
 <h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><ul>
 <li>2020-06-13：还有一些没有写完，后续补充</li>
-<li>2020-06-06： 初稿</li>
+<li>2020-06-06：初稿</li>
 <li>2020-09-02：补充</li>
 </ul>
 <h2 id="镜像是怎样炼成的🤔"><a href="#镜像是怎样炼成的🤔" class="headerlink" title="镜像是怎样炼成的🤔"></a>镜像是怎样炼成的🤔</h2><p>所谓炼成像就是构建镜像啦，下面用到的<strong>搓</strong>和<strong>炼制</strong>都是指的构建镜像啦，只是个人习惯用语而已😂。</p>
