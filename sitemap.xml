@@ -16,6 +16,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
+    
+    <lastmod>2021-09-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
     
     <lastmod>2021-09-06</lastmod>
@@ -38,13 +45,6 @@
   
   <url>
     <loc>https://blog.k8s.li/registry-gc.html</loc>
-    
-    <lastmod>2021-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
     
     <lastmod>2021-09-06</lastmod>
     
@@ -809,20 +809,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2021-09-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/Kindle/</loc>
-    <lastmod>2021-09-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/internet/</loc>
     <lastmod>2021-09-06</lastmod>
     <changefreq>daily</changefreq>
@@ -831,6 +817,20 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E5%BC%80%E6%BA%90/</loc>
+    <lastmod>2021-09-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E9%98%85%E8%AF%BB/</loc>
+    <lastmod>2021-09-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/Kindle/</loc>
     <lastmod>2021-09-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1621,13 +1621,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6/</loc>
-    <lastmod>2021-09-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/K8s/</loc>
     <lastmod>2021-09-06</lastmod>
     <changefreq>daily</changefreq>
@@ -1636,6 +1629,13 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E8%B0%83%E7%A0%94/</loc>
+    <lastmod>2021-09-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6/</loc>
     <lastmod>2021-09-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
