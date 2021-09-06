@@ -52,7 +52,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="kubelet 挂载 volume 原理分析">
 <meta property="og:url" content="https://blog.k8s.li/kubelet-mount-volumes-analysis.html">
-<meta property="og:site_name" content="木子的博客">
+<meta property="og:site_name" content="Reimu&#39;s blog">
 <meta property="og:description" content="最近在 kubernetes 中使用 NFS 存储的时候遇到了一个小问题，也找到了解决办法，不过还是想深入地了解一下 kubelet 挂载存储的原理和过程，于是就水了这篇博客 😂。虽然平时也知道 PV 、PVC 、存储类等怎么使用，但背后的过程和原理却没有深究过，有点一知半解的感觉。唉，太菜了 😑 （流下了没有技术的眼泪.jpg 疑惑 当使用 NFS 存储的 Pod 调度到没有安装 NFS c">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.k8s.li/types-of-mounts.png">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>kubelet 挂载 volume 原理分析 | 木子的博客</title>
+  <title>kubelet 挂载 volume 原理分析 | Reimu's blog</title>
   
 
 
@@ -110,7 +110,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="木子的博客" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -124,12 +124,10 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">木子的博客</span>
+        <span class="site-title">Reimu's blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Reimu's blog</h1>
-      
   </div>
 
   <div class="site-nav-toggle">
@@ -202,7 +200,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木子的博客">
+      <meta itemprop="name" content="Reimu's blog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
