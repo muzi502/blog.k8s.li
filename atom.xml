@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>木子</title>
+  <title>木子的博客</title>
   <icon>https://blog.k8s.li/icon.png</icon>
-  
+  <subtitle>Reimu&#39;s blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.k8s.li/"/>
