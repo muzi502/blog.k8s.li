@@ -2,21 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/about.html</loc>
-    
-    <lastmod>2021-09-08</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/friends.html</loc>
-    
-    <lastmod>2021-09-08</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
     
     <lastmod>2021-09-08</lastmod>
     
@@ -37,14 +23,28 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/mount-bind.html</loc>
+    <loc>https://blog.k8s.li/registry-gc.html</loc>
     
     <lastmod>2021-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/registry-gc.html</loc>
+    <loc>https://blog.k8s.li/about.html</loc>
+    
+    <lastmod>2021-09-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
+    
+    <lastmod>2021-09-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/mount-bind.html</loc>
     
     <lastmod>2021-09-08</lastmod>
     
@@ -143,6 +143,13 @@
   
   <url>
     <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
+    
+    <lastmod>2021-09-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
     
     <lastmod>2021-09-08</lastmod>
     
@@ -268,6 +275,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/install-k8s-ubuntu18-04.html</loc>
+    
+    <lastmod>2021-09-08</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/life-sciences.html</loc>
     
     <lastmod>2021-09-08</lastmod>
@@ -289,6 +303,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
+    
+    <lastmod>2021-09-08</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2021-09-08</lastmod>
@@ -303,7 +324,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
+    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2021-09-08</lastmod>
     
@@ -338,13 +359,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/install-k8s-ubuntu18-04.html</loc>
-    
-    <lastmod>2021-09-08</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/kernel-note-book.html</loc>
     
     <lastmod>2021-09-08</lastmod>
@@ -359,13 +373,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
-    
-    <lastmod>2021-09-08</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/play-with-docker.html</loc>
     
     <lastmod>2021-09-08</lastmod>
@@ -374,13 +381,6 @@
   
   <url>
     <loc>https://blog.k8s.li/python-cnni.html</loc>
-    
-    <lastmod>2021-09-08</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2021-09-08</lastmod>
     
@@ -1672,14 +1672,14 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://blog.k8s.li/categories/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2021-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <loc>https://blog.k8s.li/categories/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2021-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
