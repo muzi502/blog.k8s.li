@@ -221,7 +221,7 @@
 <p>当然这段时间也没白闲着，花了两周左右的时间完成了两个开源项目：一个是用于构建 yum/apt/dnf 离线源的工具 <a href="https://github.com/k8sli/os-packages" target="_blank" rel="noopener">k8sli/os-packages</a> ，以及无网环境中离线部署 k8s 的工具  <a href="https://github.com/k8sli/kubeplay" target="_blank" rel="noopener">k8sli/kubeplay</a> 。</p>
 <h2 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h2><p>离职前在字节跳动负责的工作事项偏向于运维开发或SRE：</p>
 <h3 id="版本发布"><a href="#版本发布" class="headerlink" title="版本发布"></a>版本发布</h3><p>这块主要是负责 PaaS toB 产品 (<a href="https://www.volcengine.com/product/compass" target="_blank" rel="noopener">Compass</a> 和 <a href="https://www.volcengine.com/product/clever" target="_blank" rel="noopener">Clever</a>) 的版本发布工作。在开发团队规模较小的场景下这块其实并不太重要，几个开发搞一搞就完事儿了。但等到产品功能越来越复杂、所涉及的代码仓库越来越多、开发人员越来越多的时候，就需要有一套标准的版本发布流程和一些公共事务规范去去协调这部分的工作了。我就是负责这块内容的，要和各个组件的负责人扯皮，总结起来三个字<strong>事儿多</strong>。其实这部分工作内容和 PingCAP 曾提到的 <a href="https://pingcap.com/zh/blog/behind-tidb-5.0-engineering-system-of-pingcap-1" target="_blank" rel="noopener">Behind TiDB 5.0 - 聊聊 PingCAP 的工程体系</a> 有相似之处。之前我也写过一篇博客 <a href="https://blog.k8s.li/pass-platform-release.html">原生 PaaS 产品发布&amp;部署方案</a>，感兴趣的可以读一下。</p>
-<h3 id="运维部署"><a href="#运维部署" class="headerlink" title="运维部署"></a>运维部署</h3><p>主要是负责开发平台底层 K8s 集群部署工具以及平台组件部署工具。有点类似于 Kubesphere 中负责集群部的 <a href="https://github.com/kubesphere/kubekey" target="_blank" rel="noopener">kubekey</a> 和负责平台组件部署的 <a href="https://github.com/kubesphere/ks-installer" target="_blank" rel="noopener">ks-installer</a> 。不同于 ks-installer 为每个平台组件单独写一些 ansible 的 playbook 来完成平台组件部署，我们的平台组件部署工具是使用 helm chart 统一部署的。这样维护起来也更加方便，因为所有的平台组件部署都是 helm chart，这个版本发布流程和自动化打包流水线是统一在一起的，维护的成本也比低。这部分内容可参考我写的博客：</p>
+<h3 id="运维部署"><a href="#运维部署" class="headerlink" title="运维部署"></a>运维部署</h3><p>主要是负责开发平台底层 K8s 集群部署工具以及平台组件部署工具。有点类似于 Kubesphere 中负责集群部的 <a href="https://github.com/kubesphere/kubekey" target="_blank" rel="noopener">kubekey</a> 和负责平台组件部署的 <a href="https://github.com/kubesphere/ks-installer" target="_blank" rel="noopener">ks-installer</a> 。不同于 ks-installer 为每个平台组件单独写一些 ansible 的 playbook 来完成平台组件部署，我们的平台组件部署工具是使用 helm chart 统一部署的。这样维护起来也更加方便，因为所有的平台组件部署都是 helm chart，这样版本发布流程和自动化打包流水线就能统一在一起，维护的成本也比低。这部分内容可参考我写的博客：</p>
 <ul>
 <li><a href="https://blog.k8s.li/pass-tob-k8s-offline-deploy.html">万字长文详解 PaaS toB 场景下 K8s 离线部署方案</a></li>
 <li><a href="https://blog.k8s.li/build-k8s-binary-by-github-actions.html">使用 GitHub Actions 编译 kubernetes 组件</a></li>
@@ -250,7 +250,7 @@
 </li>
 <li><p>掌握了 Python、Shell、Ansible 编程，给 kubernetes 社区的 kubespray 项目贡献过十几个 <a href="https://github.com/kubernetes-sigs/kubespray/pulls?q=is%3Apr+author%3Amuzi502+is%3Aclosed" target="_blank" rel="noopener">PR</a>。</p>
 </li>
-<li><p>至于 Golang 目前还在学习中，算是掌握了一些基本的语法和数据结构。年初的时候写过一个 CLI 工具，使用 <a href="https://github.com/xanzy/go-gitlab" target="_blank" rel="noopener">go-gitlab</a> 库进行 CRUD 操作，从 Gitlab  repo 中获某个 tag 下的一些特性的文件和目录。</p>
+<li><p>至于 Golang 目前还在学习中，算是掌握了一些基本的语法和数据结构。年初的时候写过一个 CLI 工具，使用 <a href="https://github.com/xanzy/go-gitlab" target="_blank" rel="noopener">go-gitlab</a> 库进行 CRUD 操作，从 Gitlab  repo 中获某个 tag 下的一些特定目录下的文件。当时体会到了写 Go 的乐趣，不过后来因为工作的原因很少会用 Go 写代码，基本上都是自己慢慢摸索着学。</p>
 </li>
 <li><p>能够使用 Jenkins、Gitlab CI、GitHub Actions 等工具为平台组件及产品构建 CI/CD 流水线、私有化打包发布流水线。</p>
 </li>
