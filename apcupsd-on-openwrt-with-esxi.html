@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="APC UPS BK650M2-CH上个月还在杭州的时候，房东家里的空气开关出现了故障，导致每天停电十几次，我那一百多块钱捡来的垃圾 UPS 断电之后续命不到 5 分钟就凉凉了。来到上海换了新家后，准备花 500 元左右买个好一点的 UPS，给我的 NAS 服务器找个好伴侣。这次的 UPS 不再买一百块钱的垃圾货了，实在是太坑人了呜呜呜，那台垃圾 UPS 已经在闲鱼上 50 包邮卖掉了。 市面上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 apcupsd 完成 UPS 断电后 ESXi 稳妥关机方案">
+<meta property="og:url" content="https://blog.k8s.li/apcupsd-on-openwrt-with-esxi.html">
+<meta property="og:site_name" content="Reimu&#39;s blog">
+<meta property="og:description" content="APC UPS BK650M2-CH上个月还在杭州的时候，房东家里的空气开关出现了故障，导致每天停电十几次，我那一百多块钱捡来的垃圾 UPS 断电之后续命不到 5 分钟就凉凉了。来到上海换了新家后，准备花 500 元左右买个好一点的 UPS，给我的 NAS 服务器找个好伴侣。这次的 UPS 不再买一百块钱的垃圾货了，实在是太坑人了呜呜呜，那台垃圾 UPS 已经在闲鱼上 50 包邮卖掉了。 市面上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p.k8s.li/2021-10-25-apcupsd-on-openwrt-with-esxi.png">
+<meta property="article:published_time" content="2021-10-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-24T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="垃圾佬">
+<meta property="article:tag" content="UPS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p.k8s.li/2021-10-25-apcupsd-on-openwrt-with-esxi.png">
+
+<link rel="canonical" href="https://blog.k8s.li/apcupsd-on-openwrt-with-esxi.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>使用 apcupsd 完成 UPS 断电后 ESXi 稳妥关机方案 | Reimu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Reimu's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friends">
+
+    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/apcupsd-on-openwrt-with-esxi.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reimu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          使用 apcupsd 完成 UPS 断电后 ESXi 稳妥关机方案
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-25 2021-10-25T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2021-10-25T00:00:00+08:00">2021-10-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/apcupsd-on-openwrt-with-esxi.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="apcupsd-on-openwrt-with-esxi.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="APC-UPS-BK650M2-CH"><a href="#APC-UPS-BK650M2-CH" class="headerlink" title="APC UPS BK650M2-CH"></a>APC UPS BK650M2-CH</h2><p>上个月还在杭州的时候，房东家里的空气开关出现了故障，导致每天停电十几次，我那一百多块钱捡来的垃圾 UPS 断电之后续命不到 5 分钟就凉凉了。来到上海换了新家后，准备花 500 元左右买个好一点的 UPS，给我的 NAS 服务器找个好伴侣。这次的 UPS 不再买一百块钱的垃圾货了，实在是太坑人了呜呜呜，那台垃圾 UPS 已经在闲鱼上 50 包邮卖掉了。</p>
+<p>市面上 500 左右的畅销 UPS 无非就是施耐德 APC 的 <a href="https://www.apc.com/shop/cn/zh/products/APC-BACK-UPS-BK-650VA-4-2-USB-230V-USB-/P-BK650M2-CH" target="_blank" rel="noopener">BK650M2-CH</a> 和国产山特的 <a href="https://www.santak.com.cn/product/santak-tg-box-ups.html" target="_blank" rel="noopener">TG-BOX 600/850</a> 。两者价位差不太多，从配置上来看  <a href="https://www.santak.com.cn/product/santak-tg-box-ups.html" target="_blank" rel="noopener">TG-BOX 600/850</a> 稍微好一点。但考虑到 APC 的 apcupsd 在 Linux 平台上兼容性比较好，因此我最终还是选择了 <a href="https://www.apc.com/shop/cn/zh/products/APC-BACK-UPS-BK-650VA-4-2-USB-230V-USB-/P-BK650M2-CH" target="_blank" rel="noopener">BK650M2-CH</a> ；另一方面还是本人不太喜欢和信任国产货，被小粉红看到会不会被骂成恨国党（手动狗头。</p>
+<p>之前在使用垃圾 UPS 的时候有过一个很 low 的 UPS 断电关机 NAS 的方案，就是通过 ping 的方式来判断是否停电，然后就预估个时间就断电关机。不过这种方案使用起来十分不方便，尤其是当网络抽风的时候，NAS 就无缘无故地关机了；或者有时候 UPS 电池用尽了，关机脚本还没有触发。因此还是需要通过 UPS 本身的串口协议来获取当前 UPS 的状态比较好一些，比用 ping 的方式高到不知道哪里去了。</p>
+<h2 id="ESXi-USB-直通翻车"><a href="#ESXi-USB-直通翻车" class="headerlink" title="ESXi USB 直通翻车"></a>ESXi USB 直通翻车</h2><p>使用 UPS 自带的 USB 线缆插到 NAS 主机 USB 接口之后，ESXi 的 USB 设备列表里也能正确地识别到了该设备。但将该设备添加到 Linux 虚拟机上之后，apcupsd 却无法获取该 UPS 的设备信息，而且在内核日志中一直会出现 <code>USB disconnect</code> 的信息，emmm，怀疑是 ESXi 直通 USB 的问题，遂放弃。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[  124.759971] usb 1-2.1: USB disconnect, device number 4</span><br><span class="line">[  126.840674] usb 1-2.1: new full-speed USB device number 5 using uhci_hcd</span><br><span class="line">[  127.364001] usb 1-2.1: New USB device found, idVendor=051d, idProduct=0002, bcdDevice= 1.06</span><br><span class="line">[  127.364006] usb 1-2.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3</span><br><span class="line">[  127.364009] usb 1-2.1: Product: Back-UPS BK650M2-CH FW:294803G -292804G</span><br><span class="line">[  127.364011] usb 1-2.1: Manufacturer: American Power Conversion</span><br><span class="line">[  127.364013] usb 1-2.1: SerialNumber: 9B2118A06920</span><br><span class="line">[  127.403811] hid-generic 0003:051D:0002.0003: hiddev0,hidraw1: USB HID v1.10 Device [American Power Conversion Back-UPS BK650M2-CH FW:294803G -292804G ] on usb-0000:02:01.0-2.1/input0</span><br><span class="line">[  248.394259] usb 1-2.1: USB disconnect, device number 5</span><br><span class="line">[  250.589751] usb 1-2.1: new full-speed USB device number 6 using uhci_hcd</span><br><span class="line">[  251.123039] usb 1-2.1: New USB device found, idVendor=051d, idProduct=0002, bcdDevice= 1.06</span><br><span class="line">[  251.123044] usb 1-2.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3</span><br><span class="line">[  251.123048] usb 1-2.1: Product: Back-UPS BK650M2-CH FW:294803G -292804G</span><br><span class="line">[  251.123050] usb 1-2.1: Manufacturer: American Power Conversion</span><br><span class="line">[  251.123052] usb 1-2.1: SerialNumber: 9B2118A06920</span><br><span class="line">[  251.160223] hid-generic 0003:051D:0002.0004: hiddev0,hidraw1: USB HID v1.10 Device [American Power Conversion Back-UPS BK650M2-CH FW:294803G -292804G ] on usb-0000:02:01.0-2.1/input0</span><br><span class="line">[  268.621010] usb 1-2.1: USB disconnect, device number 6</span><br></pre></td></tr></table></figure>
+
+<p>不幸 USB 直通给虚拟机的方案翻车了，于是想着要不将 USB 线缆连接到我的 R4S 软路由上🤔️。连接到软路由上要比在 ESXi 主机上好一些，这样在来电之后写的监控脚本也能检测到 UPS 已经通电了，这样就可以自动启动 NAS 主机以及上面的一些 VM。于是就琢磨了以下的方案，线路图如下：</p>
+<p><img src="https://p.k8s.li/2021-10-25-apcupsd-on-openwrt-with-esxi.png" alt="image-20211025224325577"></p>
+<p>我的 NAS 服务器、交换机、R4S 软路由的电源都连接到 UPS 上。R6300v2 通过无线桥接的方式连接到房东家的  Wi-Fi。无线桥接之后，R6300v2 就变成了一台”无线交换机”，连接到它的设备将会从房东家 Wi-Fi 路由器的 DHCP 那里获取到同一网段的 IP。R4S 的 WAN 口通过网线连接到 R6300v2 的 LAN 口上，这样 R4S 就能通过 R6300v2 连接到房东家的 Wi-Fi，从而连接到公网。</p>
+<p>在这里 R6300v2 的电源未使用 UPS，而通过市电连接，因为停电之后估计房东家的 Wi-Fi 也连不上，连接到 UPS 电源意义不大，其实也用不多少电。断电之后，运行在 R4S 软路由上的 apcupsd 进程会探测到 UPS 电源处于 offline 的状态。等到 UPS 剩余电量还剩 30% 时（或者其他自定义指标）就触发自己定义的断电关机脚本。然后剩余 30% 的电量就供给 R4S 软路由使用至少 5 个小时，这段时间应该很快就能来电。等监测到 UPS 通电之后，再触发自定义的 UPS 来电启动脚本。</p>
+<p>大致的流程梳理好之后，那么接下来就开始搞事情。</p>
+<h2 id="apcupsd-on-openwrt"><a href="#apcupsd-on-openwrt" class="headerlink" title="apcupsd on openwrt"></a>apcupsd on openwrt</h2><p>首先就是在 R4S openwrt 上安装和配置 apcupsd，安装和配置的详细内容可参考几万字的官方手册 <a href="http://www.apcupsd.org/manual/" target="_blank" rel="noopener">apcupsd.org/manual</a> （劝退😂。</p>
+<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p>先将 USP 自带的那根 USB 线缆 RJ45 的那一头查到 UPS 的上，再将 USB 那一头插到路由器的 USB 口上。</p>
+<ul>
+<li>安装 apcupsd 以及 usbutils 等相关依赖包</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># root @ OpenWrt in ~ [21:00:20]</span></span><br><span class="line">$ opkg update</span><br><span class="line">$ opkg install usbutils kmod-hid kmod-hid-generic kmod-usb-hid apcupsd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装完之后，会在 /etc/apcupsd 目录下生成如下文件</span></span><br><span class="line"><span class="comment"># root @ OpenWrt in ~ [21:01:32]</span></span><br><span class="line">$ tree /etc/apcupsd</span><br><span class="line">/etc/apcupsd</span><br><span class="line">├── apccontrol <span class="comment"># UPS 状态触发脚本</span></span><br><span class="line">├── apcupsd.conf <span class="comment"># apcupsd 配置文件</span></span><br><span class="line">├── apcupsd_mail.conf <span class="comment"># email 发送配置文件，断电都断网了，有它也没啥用呀</span></span><br><span class="line">├── changeme <span class="comment"># UPS 需要进行充电时触发的脚本</span></span><br><span class="line">├── commfailure <span class="comment"># 连接 UPS 设备失败后触发的脚本</span></span><br><span class="line">├── commok <span class="comment"># 连接 UPS 设备之后触发的脚本</span></span><br><span class="line">├── offbattery <span class="comment"># UPS 来电之后触发的脚本</span></span><br><span class="line">└── onbattery <span class="comment"># 断电之后 UPS 进入使用电池状态后触发的脚本</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 <code>lsusb</code> 或者 <code>dmesg</code> 命令查看 USB 设备是否正常连接以及内核加载 USB 设备的信息。如果 USB 设备能正常识别到，那就没问题啦。如果没出现的话，那就重启大法好！看看重启之后能不能识别到 UPS 设备信息。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># root @ OpenWrt in ~ [21:04:29]</span></span><br><span class="line">$ lsusb</span><br><span class="line">Bus 005 Device 003: ID 051d:0002 American Power Conversion Uninterruptible Power Supply</span><br><span class="line"><span class="comment"># root @ OpenWrt in ~ [21:04:29]</span></span><br><span class="line">$ dmesg</span><br><span class="line">[   64.485003] usb 5-1: new full-speed USB device number 2 using xhci-hcd</span><br><span class="line">[   64.669133] hid-generic 0003:051D:0002.0001: hiddev96,hidraw0: USB HID v1.10 Device [American Power Conversion Back-UPS BK650M2-CH FW:294803G -292804G ] on usb-xhci-hcd.0.auto-1/input0</span><br><span class="line">[ 1260.590529] usb 5-1: USB disconnect, device number 2</span><br><span class="line">[ 1261.285846] usb 5-1: new full-speed USB device number 3 using xhci-hcd</span><br><span class="line">[ 1261.468989] hid-generic 0003:051D:0002.0002: hiddev96,hidraw0: USB HID v1.10 Device [American Power Conversion Back-UPS BK650M2-CH FW:294803G -292804G ] on usb-xhci-hcd.0.auto-1/input0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改 <code>/etc/default/apcupsd</code></li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 因为不是使用 systemd 启动 apcupsd 的，需要将它修改为 yes</span></span><br><span class="line"><span class="attr">ISCONFIGURED</span>=<span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置 <code>/etc/apcupsd/apcupsd.conf</code></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 养成好习惯，先备份一下远配置文件</span></span><br><span class="line">$ cp /etc/apcupsd/apcupsd.conf&#123;,.bak&#125;</span><br><span class="line">$ vim /etc/apcupsd/apcupsd.conf</span><br><span class="line"><span class="comment"># 自定义你的 UPS 名称，使用默认的也可以</span></span><br><span class="line">UPSNAME BK650M2-CH</span><br><span class="line"><span class="comment"># 设置 UPS 的连接线缆为 USB 模式</span></span><br><span class="line">UPSCABLE usb</span><br><span class="line"><span class="comment"># 设置 UPS 的通讯模式为 USB 模式</span></span><br><span class="line">UPSTYPE usb</span><br><span class="line"><span class="comment"># DEVICE 这行需要注释掉或者去掉 /dev/ttyS0</span></span><br><span class="line"><span class="comment"># DEVICE /dev/ttyS0</span></span><br><span class="line">NETSERVER on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下三个参数定义了何时触发 doshutdown 关机事件</span></span><br><span class="line"><span class="comment"># 当剩余电池电量低于指定百分比</span></span><br><span class="line">BATTERYLEVEL 30</span><br><span class="line"><span class="comment"># 当UPS内部计算的电池剩余运行时间低于指定的分钟数  </span></span><br><span class="line">MINUTES 15</span><br><span class="line"><span class="comment"># 发生电源故障后，进入 UPS 电池模式时间</span></span><br><span class="line">TIMEOUT 0</span><br></pre></td></tr></table></figure>
+
+<p>配置文件具体的参数信息可参考官方手册 <a href="http://www.apcupsd.org/manual/#configuration-directive-reference" target="_blank" rel="noopener">configuration-directive-reference</a>，一般情况下只需要配置上面我提到的那几个参数就可以，感兴趣的可以仔细阅读一些官方手册。</p>
+<ul>
+<li>开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /etc/init.d/apcupsd <span class="built_in">enable</span></span><br><span class="line">$ /etc/init.d/apcupsd start</span><br></pre></td></tr></table></figure>
+
+<h3 id="UPS-状态参数"><a href="#UPS-状态参数" class="headerlink" title="UPS 状态参数"></a>UPS 状态参数</h3><ul>
+<li>使用 <code>apcaccess</code> 查看是否能连接到 UPS 设备，以下是正常通电时的信息：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># root @ OpenWrt in ~ [21:04:29]</span></span><br><span class="line">$ apcaccess</span><br><span class="line">APC      : 001,036,0860</span><br><span class="line">DATE     : 2021-10-24 21:02:51 +0800</span><br><span class="line">HOSTNAME : OpenWrt</span><br><span class="line">VERSION  : 3.14.14 (31 May 2016) unknown</span><br><span class="line">UPSNAME  : ups1</span><br><span class="line">CABLE    : USB Cable</span><br><span class="line">DRIVER   : USB UPS Driver</span><br><span class="line">UPSMODE  : Stand Alone</span><br><span class="line">STARTTIME: 2021-10-24 21:02:49 +0800</span><br><span class="line">MODEL    : Back-UPS BK650M2-CH</span><br><span class="line">STATUS   : ONLINE</span><br><span class="line">LINEV    : 224.0 Volts</span><br><span class="line">LOADPCT  : 14.0 Percent</span><br><span class="line">BCHARGE  : 100.0 Percent</span><br><span class="line">TIMELEFT : 46.8 Minutes</span><br><span class="line">MBATTCHG : 5 Percent</span><br><span class="line">MINTIMEL : 3 Minutes</span><br><span class="line">MAXTIME  : 0 Seconds</span><br><span class="line">SENSE    : Low</span><br><span class="line">LOTRANS  : 160.0 Volts</span><br><span class="line">HITRANS  : 278.0 Volts</span><br><span class="line">ALARMDEL : 30 Seconds</span><br><span class="line">BATTV    : 13.5 Volts</span><br><span class="line">LASTXFER : No transfers since turnon</span><br><span class="line">NUMXFERS : 0</span><br><span class="line">TONBATT  : 0 Seconds</span><br><span class="line">CUMONBATT: 0 Seconds</span><br><span class="line">XOFFBATT : N/A</span><br><span class="line">SELFTEST : NO</span><br><span class="line">BATTDATE : 2001-01-01</span><br><span class="line">NOMINV   : 220 Volts</span><br><span class="line">NOMBATTV : 12.0 Volts</span><br><span class="line">NOMPOWER : 390 Watts</span><br><span class="line">FIRMWARE : 294803G -292804G</span><br><span class="line">END APC  : 2021-10-24 21:04:36 +0800</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>尝试拔下 UPS 电源，断电之后的状态信息</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># root @ OpenWrt in ~ [21:06:39]</span></span><br><span class="line">$ apcaccess</span><br><span class="line">APC      : 001,037,0899</span><br><span class="line">DATE     : 2021-10-24 21:05:33 +0800</span><br><span class="line">HOSTNAME : OpenWrt</span><br><span class="line">VERSION  : 3.14.14 (31 May 2016) unknown</span><br><span class="line">UPSNAME  : ups1</span><br><span class="line">CABLE    : USB Cable</span><br><span class="line">DRIVER   : USB UPS Driver</span><br><span class="line">UPSMODE  : Stand Alone</span><br><span class="line">STARTTIME: 2021-10-24 21:02:49 +0800</span><br><span class="line">MODEL    : Back-UPS BK650M2-CH</span><br><span class="line">STATUS   : ONBATT</span><br><span class="line">LINEV    : 0.0 Volts</span><br><span class="line">LOADPCT  : 15.0 Percent</span><br><span class="line">BCHARGE  : 100.0 Percent</span><br><span class="line">TIMELEFT : 46.8 Minutes</span><br><span class="line">MBATTCHG : 5 Percent</span><br><span class="line">MINTIMEL : 3 Minutes</span><br><span class="line">MAXTIME  : 0 Seconds</span><br><span class="line">SENSE    : Low</span><br><span class="line">LOTRANS  : 160.0 Volts</span><br><span class="line">HITRANS  : 278.0 Volts</span><br><span class="line">ALARMDEL : 30 Seconds</span><br><span class="line">BATTV    : 12.8 Volts</span><br><span class="line">LASTXFER : No transfers since turnon</span><br><span class="line">NUMXFERS : 1</span><br><span class="line">XONBATT  : 2021-10-24 21:05:33 +0800</span><br><span class="line">TONBATT  : 27 Seconds</span><br><span class="line">CUMONBATT: 27 Seconds</span><br><span class="line">XOFFBATT : N/A</span><br><span class="line">SELFTEST : NO</span><br><span class="line">BATTDATE : 2001-01-01</span><br><span class="line">NOMINV   : 220 Volts</span><br><span class="line">NOMBATTV : 12.0 Volts</span><br><span class="line">NOMPOWER : 390 Watts</span><br><span class="line">FIRMWARE : 294803G -292804G</span><br><span class="line">END APC  : 2021-10-24 21:06:00 +0800</span><br></pre></td></tr></table></figure>
+
+<p>全部的 UPS 状态参数可参考官方手册 <a href="http://www.apcupsd.org/manual/#status-report-fields" target="_blank" rel="noopener">status-report-fields</a> ，不过对于我们来讲，以下几个参数比较重要：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>意义</th>
+<th>来电</th>
+<th>断电</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>STATUS</td>
+<td>UPS 状态</td>
+<td>ONLINE</td>
+<td>ONBATT</td>
+</tr>
+<tr>
+<td>LINEV</td>
+<td>接入电压</td>
+<td>224.0 Volts</td>
+<td>0.0 Volts</td>
+</tr>
+<tr>
+<td>BCHARGE</td>
+<td>电池剩余</td>
+<td>100.0 Percent</td>
+<td>&lt; 100.0 Percent</td>
+</tr>
+<tr>
+<td>XONBATT</td>
+<td>上次</td>
+<td>N/A</td>
+<td>~</td>
+</tr>
+<tr>
+<td>TONBATT</td>
+<td>当前电池使用时间</td>
+<td>N/A</td>
+<td>~</td>
+</tr>
+<tr>
+<td>CUMONBATT</td>
+<td>当前电池使用总时间</td>
+<td>N/A</td>
+<td>~</td>
+</tr>
+</tbody></table>
+<h3 id="apccontrol"><a href="#apccontrol" class="headerlink" title="apccontrol"></a>apccontrol</h3><p><code>apccontrol</code> 里定义了 UPS 事件触发后要执行的操作，完整的内容可参考官方手册 <a href="http://www.apcupsd.org/manual/#customizing-event-handling" target="_blank" rel="noopener">apcupsd</a> 。对于我们来讲 <code>doshutdown</code> 这个事件是比较重要的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">doshutdown</span><br><span class="line">When the UPS is running on batteries and one of the limits expires (time, run, load), this event is generated to cause the machine to shutdown.</span><br><span class="line"></span><br><span class="line">Default: Shuts down the system using shutdown -h or similar</span><br></pre></td></tr></table></figure>
+
+<p>当出现如下事件的时候则会调用 doshutdown 后的执行内容：</p>
+<ol>
+<li>UPS 电池即将用尽</li>
+<li>UPS 运行在电池模式下剩余时间低于所定义的 <code>MINUTES</code> 值</li>
+<li>UPS 电池剩余百分比低于所定义的 <code>BATTERYLEVEL</code> 值</li>
+<li>UPS. 运行在电池模式下所超出的时间 <code>TIMEOUT</code> 值</li>
+</ol>
+<blockquote>
+<p>When one of the conditions listed below occurs, apcupsd issues a shutdown command by calling <code>/etc/apcupsd/apccontrol doshutdown</code>, which should perform a shutdown of your system using the system shutdown(8) command. You can modify the behavior as described in <a href="http://www.apcupsd.org/manual/#customizing-event-handling" target="_blank" rel="noopener">Customizing Event Handling</a>.</p>
+<p>The conditions that trigger the shutdown can be any of the following:</p>
+<ul>
+<li>Running time on batteries have expired (<code>TIMEOUT</code>)</li>
+<li>The battery runtime remaining is below the configured value (<code>BATTERYLEVEL</code>)</li>
+<li>The estimated remaining runtime is below the configured value (<code>MINUTES</code>)</li>
+<li>The UPS signals that the batteries are exhausted.</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   doshutdown)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"UPS <span class="variable">$&#123;2&#125;</span> initiated Shutdown Sequence"</span> | <span class="variable">$&#123;WALL&#125;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"apcupsd UPS <span class="variable">$&#123;2&#125;</span> initiated shutdown"</span></span><br><span class="line">bash /opt/bin/shutdown_esxi.sh</span><br><span class="line">;;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就可以在 doshutdown 里面加入我们要执行的关机脚本，比如 <code>shutdown_esxi.sh</code>。至于如何优雅地关闭 ESXi 主机，推荐使用 govc 这个 CLI 工具。不太建议直接 ssh 到 ESXi 主机，然后 /sbin/shudown.sh &amp;&amp; poweroff 一把梭子就完事儿了。这样一顿操作猛有可能会对我们的虚拟机造成一定的影响，我们可以通过 govc 或者 vim-cmd 命令对虚拟机进行挂起或者保存快照的操作，来保存虚拟机断电之前的状态，等所有虚拟机安全关机之后，再关闭 ESXi 主机，这样比较稳妥一点。以下两种关闭 ESXi 的方式任选一种即即可：</p>
+<h2 id="govc"><a href="#govc" class="headerlink" title="govc"></a>govc</h2><p>由于我的 apcupsd 是运行在 R4S 软路由上，如果将关机脚本保存在 R4S 软路由上，可以使用 govc 这个工具，然后通过 ESXi 的 https API 来对虚拟机和 ESXi 主机进行相关操作。</p>
+<ul>
+<li>下载并安装安装 govc</li>
+</ul>
+<p>在 <a href="https://github.com/vmware/govmomi/releases" target="_blank" rel="noopener">vmware/govmomi/releases</a> 下载页面找到与自己 CPU 体系架构相匹配的下载地址，比如我的 aarch64 的 CPU 使用如下地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/vmware/govmomi/releases/download/v0.27.1/govc_Linux_arm64.tar.gz</span><br><span class="line">$ tar xf govc_Linux_arm64.tar.gz</span><br><span class="line">$ mv govc /usr/bin</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置 ESXi 连接信息，使用 <code>govc host.info</code> 命令查看是否能正常连接到 ESXi 主机</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> GOVC_URL=<span class="string">"https://root:passw0rd@esxi.yoi.li"</span></span><br><span class="line">$ <span class="built_in">export</span> GOVC_DATASTORE=<span class="string">"NVME"</span></span><br><span class="line"></span><br><span class="line">$ govc host.info</span><br><span class="line">Name:              hp-esxi.lan</span><br><span class="line">  Path:            /ha-datacenter/host/hp-esxi.lan/hp-esxi.lan</span><br><span class="line">  Manufacturer:    HPE</span><br><span class="line">  Logical CPUs:    6 CPUs @ 3000MHz</span><br><span class="line">  Processor <span class="built_in">type</span>:  Genuine Intel(R) CPU 0000 @ 3.00GHz</span><br><span class="line">  CPU usage:       960 MHz (5.3%)</span><br><span class="line">  Memory:          32613MB</span><br><span class="line">  Memory usage:    29512 MB (90.5%)</span><br><span class="line">  Boot time:       2021-10-24 13:57:04.396892 +0000 UTC</span><br><span class="line">  State:           connected</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取 ESXi 主机上虚拟机的列表</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ govc ls /ha-datacenter/vm</span><br><span class="line">/ha-datacenter/vm/NAS</span><br><span class="line">/ha-datacenter/vm/kube-control-02</span><br><span class="line">/ha-datacenter/vm/kube-control-03</span><br><span class="line">/ha-datacenter/vm/kube-node-01</span><br><span class="line">/ha-datacenter/vm/kube-registry-01</span><br><span class="line">/ha-datacenter/vm/WG0</span><br><span class="line">/ha-datacenter/vm/Windows</span><br><span class="line">/ha-datacenter/vm/OP</span><br><span class="line">/ha-datacenter/vm/Devbox</span><br><span class="line">/ha-datacenter/vm/kube-control-01</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>VM 的电源相关操作</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将虚拟机挂起</span></span><br><span class="line">$ govc vm.power -s NAS</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 VM 里执行命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先设置终端登录的用户名和密码</span></span><br><span class="line">$ <span class="built_in">export</span> GOVC_GUEST_LOGIN=<span class="string">"root:passw0rd"</span></span><br><span class="line"><span class="comment"># 先让缓冲区数据写入到磁盘，然后再使用 shutdown 安全地关机</span></span><br><span class="line">$ govc guest.run -vm NAS <span class="string">"sync &amp;&amp; shutdown -h now"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 esxcli 命令查看 VM 进程，以确保虚拟机真正的关闭了。只有当 esxcli vm process list 输出结果为空的时候，ESXi 上所有的 VM 才真正的退出，这时就可以放心大胆地关闭 ESXi 主机了。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">╭─root@esxi-debian-devbox ~</span><br><span class="line">╰─<span class="comment"># govc host.esxcli vm process list</span></span><br><span class="line">ConfigFile:   /vmfs/volumes/6118f30c-3e1989cb-77c4-b47af1db548c/NAS/NAS.vmx</span><br><span class="line">DisplayName:  NAS</span><br><span class="line">ProcessID:    0</span><br><span class="line">UUID:         56 4d 7a 57 4c 17 4e 68-07 25 03 5e 4b 0f 8c 96</span><br><span class="line">VMXCartelID:  1121973</span><br><span class="line">WorldID:      1121976</span><br><span class="line"></span><br><span class="line">ConfigFile:   /vmfs/volumes/6118f30c-3e1989cb-77c4-b47af1db548c/Devbox/Devbox.vmx</span><br><span class="line">DisplayName:  Devbox</span><br><span class="line">ProcessID:    0</span><br><span class="line">UUID:         56 4d 91 74 02 b7 b7 59-2b 48 e3 21 d2 a6 b2 9d</span><br><span class="line">VMXCartelID:  1122777</span><br><span class="line">WorldID:      1122778</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭 ESXi 主机</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过调用 esxcli 命令来关机</span></span><br><span class="line">$ govc host.esxcli system shutdown</span><br><span class="line"><span class="comment"># 通过 host.shutdown 来关机，不过翻车了</span></span><br><span class="line">╭─root@esxi-debian-devbox ~</span><br><span class="line">╰─<span class="comment"># govc host.shutdown -host "esxi.yoi.li"</span></span><br><span class="line">govc: no argument</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关机脚本<code>shutdown_esxi.sh</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">export</span> GOVC_URL=<span class="string">"https://root:passw0rd@esxi.yoi.li"</span></span><br><span class="line"><span class="built_in">export</span> GOVC_DATASTORE=<span class="string">"NVME"</span></span><br><span class="line"><span class="built_in">export</span> GOVC_INSECURE=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> GOVC_GUEST_LOGIN=<span class="string">"root:passw0rd"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># suspend all vms</span></span><br><span class="line">govc find . -<span class="built_in">type</span> m -runtime.powerState poweredOn | awk -F <span class="string">'/'</span> <span class="string">'&#123;print $NF&#125;'</span> \</span><br><span class="line">| grep -v NAS | xargs -L1 -&#123;&#125; govc vm.power -<span class="built_in">suspend</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># sync data to disk and shutdown vm</span></span><br><span class="line">govc vm.info NAS | grep -q poweredOn &amp;&amp; govc guest.run -vm NAS <span class="string">"sync &amp;&amp; shutdown -h now"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># wait all vm exit</span></span><br><span class="line"><span class="keyword">for</span>((i=0;i&lt;12;i++)); <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> ! esxcli vm process list | grep UUID; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    sleep 10</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">govc host.esxcli system shutdown</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改<code>/etc/apcupsd/apccontrol</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   doshutdown)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"UPS <span class="variable">$&#123;2&#125;</span> initiated Shutdown Sequence"</span> | <span class="variable">$&#123;WALL&#125;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"apcupsd UPS <span class="variable">$&#123;2&#125;</span> initiated shutdown"</span></span><br><span class="line"><span class="string">"bash /opt/bin/shutdown_esxi.sh"</span></span><br><span class="line">;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-cmd"><a href="#vim-cmd" class="headerlink" title="vim-cmd"></a>vim-cmd</h2><p>由于 vim-cmd 命令只能在 ESXi 主机上运行，因此我们需要将该关机脚本保存到 ESXI 主机上，或者通过 scp 的方式将该脚本传输到 ESXi 主机上，然后执行该脚本完成关机操作。</p>
+<ul>
+<li>修改<code>/etc/apcupsd/apccontrol</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   doshutdown)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"UPS <span class="variable">$&#123;2&#125;</span> initiated Shutdown Sequence"</span> | <span class="variable">$&#123;WALL&#125;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"apcupsd UPS <span class="variable">$&#123;2&#125;</span> initiated shutdown"</span></span><br><span class="line">scp shutdown_esxi.sh root@esxi.yoi.li:/</span><br><span class="line">ssh root@esxi.yoi.li <span class="string">"sh /shutdown_esxi.sh"</span></span><br><span class="line">;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>shutdown_esxi.sh</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">LOG_PATH=/vmfs/volumes/NVME/.<span class="built_in">log</span>/suspend.log</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(TZ=UTC-8 date +%Y-%m-%d" "%H:%M:%S)</span>"</span> &gt;&gt; <span class="variable">$&#123;LOG_PATH&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">poweroff_vms</span></span>()&#123;</span><br><span class="line">    <span class="keyword">for</span> vm <span class="keyword">in</span> $(vim-cmd vmsvc/getallvms | grep -E <span class="string">'NAS'</span> | awk <span class="string">'&#123;print $1&#125;'</span> | xargs); <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> vim-cmd vmsvc/power.getstate <span class="variable">$&#123;vm&#125;</span> | grep <span class="string">'Powered on'</span>; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"<span class="variable">$(TZ=UTC-8 date +%Y-%m-%d" "%H:%M:%S)</span> shutdown vm <span class="variable">$&#123;vm&#125;</span>"</span> &gt;&gt; <span class="variable">$&#123;LOG_PATH&#125;</span></span><br><span class="line">            vim-cmd vmsvc/power.shutdown <span class="variable">$&#123;vm&#125;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">suspend_vms</span></span>()&#123;</span><br><span class="line">    <span class="keyword">for</span> vm <span class="keyword">in</span> $(vim-cmd vmsvc/getallvms | grep -Ev <span class="string">'NAS|Vmid'</span> | awk <span class="string">'&#123;print $1&#125;'</span> | xargs); <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> vim-cmd vmsvc/power.getstate <span class="variable">$&#123;vm&#125;</span> | grep <span class="string">'Powered on'</span>; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$(TZ=UTC-8 date +%Y-%m-%d" "%H:%M:%S)</span> suppend vm <span class="variable">$&#123;vm&#125;</span>"</span> &gt;&gt; <span class="variable">$&#123;LOG_PATH&#125;</span></span><br><span class="line">        vim-cmd vmsvc/power.suspend <span class="variable">$&#123;vm&#125;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">suspend_vms</span><br><span class="line">poweroff_vms</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Poweroff at <span class="variable">$(TZ=UTC-8 date +%Y-%m-%d" "%H:%M:%S)</span>"</span> &gt;&gt; <span class="variable">$&#123;LOG_PATH&#125;</span></span><br><span class="line">/bin/host_shutdown.sh</span><br></pre></td></tr></table></figure>
+
+<p>通过 ssh 的方式执行该脚本需要 ESXi 主机开启 ssh 服务并做好 ssh 免密登录，这部分内容可参考 <a href="https://kb.vmware.com/s/article/1002866?lang=zh_CN" target="_blank" rel="noopener">允许使用公钥/私钥身份验证对 ESXi/ESX 主机进行 SSH 访问</a>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.apcupsd.org/manual/" target="_blank" rel="noopener">apcupsd 官方文档</a></li>
+<li><a href="https://wiki.debian.org/apcupsd" target="_blank" rel="noopener">apcupsd debian wiki</a></li>
+<li><a href="https://linuxtoy.org/archives/howto-use-apcupsd-to-automatically-shutdown-system-during-outrage.html" target="_blank" rel="noopener">使用 apcupsd 实现 UPS 断电自动关机</a></li>
+<li><a href="https://github.com/vmware/govmomi/blob/master/govc/USAGE.md" target="_blank" rel="noopener">govc usage</a></li>
+<li><a href="https://gitbook.curiouser.top/origin/vsphere-govc.html" target="_blank" rel="noopener">vSphere go命令行管理工具govc</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/NAS/" rel="tag"><i class="fa fa-tag"></i> NAS</a>
+              <a href="/tags/%E5%9E%83%E5%9C%BE%E4%BD%AC/" rel="tag"><i class="fa fa-tag"></i> 垃圾佬</a>
+              <a href="/tags/UPS/" rel="tag"><i class="fa fa-tag"></i> UPS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/pass-tob-k8s-offline-deploy.html" rel="prev" title="万字长文详解 PaaS toB 场景下 K8s 离线部署方案">
+      <i class="fa fa-chevron-left"></i> 万字长文详解 PaaS toB 场景下 K8s 离线部署方案
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#APC-UPS-BK650M2-CH"><span class="nav-number">1.</span> <span class="nav-text">APC UPS BK650M2-CH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESXi-USB-直通翻车"><span class="nav-number">2.</span> <span class="nav-text">ESXi USB 直通翻车</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apcupsd-on-openwrt"><span class="nav-number">3.</span> <span class="nav-text">apcupsd on openwrt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装配置"><span class="nav-number">3.1.</span> <span class="nav-text">安装配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UPS-状态参数"><span class="nav-number">3.2.</span> <span class="nav-text">UPS 状态参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apccontrol"><span class="nav-number">3.3.</span> <span class="nav-text">apccontrol</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#govc"><span class="nav-number">4.</span> <span class="nav-text">govc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-cmd"><span class="nav-number">5.</span> <span class="nav-text">vim-cmd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">129</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.6m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">43:55</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/apcupsd-on-openwrt-with-esxi.html",
+            identifier: "apcupsd-on-openwrt-with-esxi.html",
+            title: "使用 apcupsd 完成 UPS 断电后 ESXi 稳妥关机方案"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

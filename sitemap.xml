@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/about.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -44,6 +37,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/homelab.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -72,35 +72,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/container-linux-os.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/kindle-note.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/linux-login-alarm-telegram.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/make-e-book-from-html.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -142,6 +114,34 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/container-linux-os.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/linux-login-alarm-telegram.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/make-e-book-from-html.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -156,6 +156,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -163,7 +170,35 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/amd-yes.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/debian-gateway.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -178,6 +213,20 @@
   
   <url>
     <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -212,6 +261,20 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/mirrors-test.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/oh-my-pink.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -220,13 +283,6 @@
   
   <url>
     <loc>https://blog.k8s.li/wndr3700v4-openwrt.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -254,20 +310,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/amd-yes.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/android-taibackup.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -282,13 +324,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/dashboard.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -296,28 +331,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/debian-gateway.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/democracy-movement.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -352,21 +366,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/mirrors-test.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/networktools.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/oh-my-pink.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -397,6 +397,13 @@
     <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/apcupsd-on-openwrt-with-esxi.html</loc>
+    
+    <lastmod>2021-10-24</lastmod>
     
   </url>
   
@@ -963,6 +970,27 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/NAS/</loc>
+    <lastmod>2021-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E5%9E%83%E5%9C%BE%E4%BD%AC/</loc>
+    <lastmod>2021-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/UPS/</loc>
+    <lastmod>2021-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/typecho/</loc>
     <lastmod>2021-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -1250,13 +1278,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/NAS/</loc>
-    <lastmod>2021-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/WordPress/</loc>
     <lastmod>2021-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -1502,20 +1523,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/Bash/</loc>
-    <lastmod>2021-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/shell/</loc>
-    <lastmod>2021-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/%E6%90%AC%E7%A0%96%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -1601,6 +1608,20 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E7%9B%91%E6%8E%A7/</loc>
+    <lastmod>2021-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/Bash/</loc>
+    <lastmod>2021-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/shell/</loc>
     <lastmod>2021-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
