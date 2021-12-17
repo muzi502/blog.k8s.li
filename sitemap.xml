@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/python-kindle.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/about.html</loc>
     
     <lastmod>2021-12-17</lastmod>
@@ -56,6 +47,24 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/python-kindle.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/homelab.html</loc>
     
     <lastmod>2021-12-17</lastmod>
@@ -75,24 +84,6 @@
   
   <url>
     <loc>https://blog.k8s.li/registry-gc.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Brick-removal-note.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     
@@ -182,6 +173,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
     
     <lastmod>2021-12-17</lastmod>
@@ -192,6 +192,15 @@
   
   <url>
     <loc>https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/A-History-of-Protecting-Freedom-Where-Law-and-Technology-Collide.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     
@@ -218,34 +227,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/A-History-of-Protecting-Freedom-Where-Law-and-Technology-Collide.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/ffmepg-rtsp.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     
@@ -281,6 +263,33 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/RMS.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
     
     <lastmod>2021-12-17</lastmod>
@@ -299,6 +308,24 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/android-taibackup.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/buffon.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
     
     <lastmod>2021-12-17</lastmod>
@@ -308,7 +335,25 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/dashboard.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/debian-gateway.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/democracy-movement.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     
@@ -353,7 +398,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/mirrors-test.html</loc>
+    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     
@@ -362,43 +407,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/oh-my-pink.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/dashboard.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/democracy-movement.html</loc>
+    <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     
@@ -434,61 +443,16 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/RMS.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/android-taibackup.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/buffon.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/kernel-note-book.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/mirrors-test.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     
@@ -506,7 +470,43 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/oh-my-pink.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/play-with-docker.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     
@@ -518,6 +518,15 @@
     <loc>https://blog.k8s.li/python-cnni.html</loc>
     
     <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/cfwctl.html</loc>
+    
+    <lastmod>2021-12-14</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1240,6 +1249,13 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/Docker/</loc>
+    <lastmod>2021-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
