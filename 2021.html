@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="2021 依旧是人类社会倒车和加速灭亡的一年，全球范围内新冠病毒依旧在肆虐，新的变异又接踵而来，疫情并没有多少消退的迹象。而现在国内西安疫情又爆发开来，无法预想未来究竟能变成什么样子。 阅读2021 年 9 月份的时候将书单从原来的 Markdown 文本迁移到了 Notion上，体验十分棒。Notion 的表格数据库功能十分强大，对书单来说简直就是一件神器。抽空整理了一下书单  reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时光痕迹：2021 年总结">
+<meta property="og:url" content="https://blog.k8s.li/2021.html">
+<meta property="og:site_name" content="Reimu&#39;s blog">
+<meta property="og:description" content="2021 依旧是人类社会倒车和加速灭亡的一年，全球范围内新冠病毒依旧在肆虐，新的变异又接踵而来，疫情并没有多少消退的迹象。而现在国内西安疫情又爆发开来，无法预想未来究竟能变成什么样子。 阅读2021 年 9 月份的时候将书单从原来的 Markdown 文本迁移到了 Notion上，体验十分棒。Notion 的表格数据库功能十分强大，对书单来说简直就是一件神器。抽空整理了一下书单  reading.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p.k8s.li/image-20220103202406764.png">
+<meta property="og:image" content="https://p.k8s.li/image-20220103202406766.png">
+<meta property="og:image" content="https://p.k8s.li/image-20220104082135898.png">
+<meta property="og:image" content="https://p.k8s.li/image-20211231205927088.png">
+<meta property="og:image" content="https://p.k8s.li/image-20220103165850671.png">
+<meta property="og:image" content="https://p.k8s.li/image-20220103202406765.jpg">
+<meta property="article:published_time" content="2022-01-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-04T01:09:21.115Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="CI&#x2F;CD">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Registry">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="PaaS toB">
+<meta property="article:tag" content="运维开发">
+<meta property="article:tag" content="容器镜像">
+<meta property="article:tag" content="发布流水线">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p.k8s.li/image-20220103202406764.png">
+
+<link rel="canonical" href="https://blog.k8s.li/2021.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>时光痕迹：2021 年总结 | Reimu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Reimu's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friends">
+
+    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/2021.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reimu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          时光痕迹：2021 年总结
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-03 2022-01-03T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2022-01-03T00:00:00+08:00">2022-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-04 2022-01-04T09:09:21+08:00" itemprop="dateModified" datetime="2022-01-04T09:09:21+08:00">2022-01-04</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>2021 依旧是人类社会<strong>倒车和加速灭亡</strong>的一年，全球范围内新冠病毒依旧在肆虐，新的变异又接踵而来，疫情并没有多少消退的迹象。而现在国内西安疫情又爆发开来，无法预想未来究竟能变成什么样子。</p>
+<h2 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h2><p>2021 年 9 月份的时候将书单从原来的 Markdown 文本迁移到了 Notion上，体验十分棒。Notion 的表格数据库功能十分强大，对书单来说简直就是一件神器。抽空整理了一下书单  <a href="https://reading.k8s.li" target="_blank" rel="noopener">reading.k8s.li</a>  ，2021 年大概读完了 97 本书。其中科普 27 本、漫画 17 本、历史 13 本、政治 11 本、轻小说 8 本、社科 7 本、心理学 5 本、技术 5 本、法律 2 本。之所以能读完这么多书大概是因为如下😂：</p>
+<ul>
+<li>单身独居，自己一个人生活，没人打扰；</li>
+<li>不喜欢社交，不喜欢群聊闲聊扯淡撕逼；</li>
+<li>不玩游戏不刷短视频，没有其他爱好；</li>
+<li>周末和节假日大多数宅在家里玩儿；</li>
+</ul>
+<p>其中我觉着单身独居是最主要的原因，比如 <a href="https://twitter.com/yihong0618" target="_blank" rel="noopener">伊洪</a> 老哥也是如此：</p>
+<p><img src="https://p.k8s.li/image-20220103202406764.png" alt="image-20220103202406764"></p>
+<p>根据个人的喜好，就分享以下 10 本我个人觉着十分有意思的书给大家：</p>
+<p><img src="https://p.k8s.li/image-20220103202406766.png" alt="Snipaste_2021-12-31_19-28-11"></p>
+<p>由于读书笔记的篇幅太长，后面有空的话我会和去年的《<a href="https://blog.k8s.li/2020-booklist.html">2020 年读书笔记和思考</a>》一样，再写一篇 2021 年的读书笔记来分享给大家（大概率是在春节期间写了）。</p>
+<h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><h3 id="字节跳动"><a href="#字节跳动" class="headerlink" title="字节跳动"></a>字节跳动</h3><p>今年最大的变化就是换了新工作，这也是第二次换工作。本来没有打算离职，但是被破<del>字节</del>跳动了一年之后，感觉太累了，而且并没有想象中的那么快乐。</p>
+<p>不得不吐槽一下字节的基础设施做的实在是太烂了，比如镜像仓库各种奇葩的问题。当时还因为这破玩意儿出过版本发布的错误，导致组件编译的 base 镜像出错，后来又不得不重新发布一个版本来擦屁股。</p>
+<p>还有当时 PaaS 容器云平台私有化产品版本发布的时候，领导非得将打包发布的时间点定在临近晚上下班的时候。这就会导致我们组（苦命发版工具人）忙活到晚上十一二点，真的是十分不爽。就是因为一些公共事务没有做好，一些问题在组件自身的 CI/CD 流水线中并不能及时暴露，等到最终最后版本发布的时候，各种奇葩的问题突突突地冒出来。比如缺镜像、镜像错误、helm chart 错误、版本错误等。然后出了问题之后又要 @ 各个组件的 owner 去解决问题，它们修改好之后我们再重新打包部署新的环境来验证。每到发版日就十分痛苦，一些基础设施和公共事务没有做好，等到最后我们发版工具人来擦屁股。这让我想起了另一位推友分享的经历：</p>
+<p><img src="https://p.k8s.li/image-20220104082135898.png" alt="image-20220104082135898"></p>
+<h3 id="裸辞离职"><a href="#裸辞离职" class="headerlink" title="裸辞离职"></a>裸辞离职</h3><p>四月底和 leader 绩效沟通完后感觉不太满意于是内心就决定了要离职。不过因为当时一些组织架构的调整，我所做的工作没有一个合适的人来接盘。再加上新产品刚进入设计阶段，新产品平台底层的 K8s 部署以及私有化打包发布相关的工作没有其他人能够 take 起来，最尴尬的是这部分工作当时只有我一个人能完整地做出来。如果在五月底离职的话，可能会对新产品的开发带来一定影响。因此当时考虑了一下，还是等到新产品稳定发版以及把负责的工作交接给新人之后再离开吧。</p>
+<p>就这样自己一个人又重新负责起了整个 PaaS 平台的私有化部署和打包发布相关的工作，这段时间也收获挺多的，顺便给 kubernetes-sig 社区的 kubespray 项目贡献了十几个 <a href="https://github.com/kubernetes-sigs/kubespray/pulls?q=is%3Apr+author%3Amuzi502+is%3Aclosed" target="_blank" rel="noopener">PR</a>。等到七月底的时候，新产品已经进入了稳定开发的阶段，在第一个 alpha.1 版本时就搞定了私有化部署和私有化打包的流水线，又经过三个 sprint 的迭代后，终于稳定了下来。之后就整理了一些平时积累的文档，交接给了其他同事，然后办理离职手续走人。</p>
+<p>裸辞的原因也有很多：想走出心理舒适圈，换个环境能让自己成长起来；当时对工作也有了一点厌倦，想好好休息一下；当时的状态也不是很好，如果那时候准备面试的话，感觉效果不太好；很久没有回家了，想在家好好休息一段时间。当时也没有选择休假，而是将所有的假期都折算成双倍工资了，感觉这样更划算一些。如果是休假的话，保不准在休假的时候仍要在飞书上处理一些同事的问题。感觉这样就挺烦人的，所以干脆就直接走人，飞书都没了还怎么联系我。</p>
+<p>离职的第二天就收拾行李回老家，因为老爸的生日快到了，也想尽快回家和家人团聚。</p>
+<p>之后就一直在家划水摸鱼啦，期间花了两周左右的时间完成了两个开源项目：一个是用于构建 yum/apt/dnf 离线源的工具 <a href="https://github.com/k8sli/os-packages" target="_blank" rel="noopener">k8sli/os-packages</a> ，以及无网环境中离线部署 k8s 的工具  <a href="https://github.com/k8sli/kubeplay" target="_blank" rel="noopener">k8sli/kubeplay</a> 。</p>
+<h3 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h3><p>正式开始准备面试是在 9 月初的时候，已经划水摸鱼一个月了，感觉休息的也差不多了。还是赶紧找工作面试吧，在起初的一周是通过一些心仪公司的官网上投递的简历，不幸的是收到的回复很少。当时心里有点慌，写了篇求职《<a href="https://blog.k8s.li/jobs.html">求职贴：运维开发｜SRE</a>》介绍了一下自己的现状，终于收到了一些小伙伴们的内推。</p>
+<p><img src="https://p.k8s.li/image-20211231205927088.png" alt="image-20211231205927088"></p>
+<p>在此还是十分感谢帮助我内推的小伙伴，在我即将走投无路的时候有你们的推荐才有了我现在的工作机会。大大小小的面试总共进行了 25 次吧，差不多通过了一半，拿到 4 个书面 offer，最终去了一家做 IaaS 虚拟化和分布式块存储产品的 toB 公司。</p>
+<p>因为之前是在字节跳动做 PaaS toB 产品的集群部署和私有化交付相关工作，在新工作则是做 IaaS toB 产品的集群部署相关工作，都是“集群部署”相关的，因此和以往的经历比较匹配。对于像咱这种喜欢折腾的垃圾佬来说，还是硬件服务器、操作系统、虚拟化、分布式存储等方面的内容比较有意思，玩起来可开心惹🤣。</p>
+<p>更为重要的一点是新工作不再像以前那样运维技术为主了，而至以后端研发为主。其实我很早之前就想写一些 Go/Python 后端项目的代码了，只不过一直没找到一个合适的机会（其实是偷懒的借口🌚）。在字节的时候也没有太多后端开发的经验，所以当初面试的时候因为开发能力较弱被刷掉了很多，也让一些面试官极其失望。</p>
+<p>幸运的是面试的时候也遇到了一个非常 nice 的公司愿意花时间培养我这方面的能力，leader 也十分信任我的学习能力，让我从零开始承担一个项目的后端开发，给了我这么一个宝贵的机会来学习和弥补开发能力不足的短板。</p>
+<h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><p>生活上依旧是单身独居，自己一个人生活实在是太爽了，越来越习惯这种生活，好想永远地就这样生活下去，没有催婚的烦恼😖。独自一个人生活最重要的就是学会<strong>如何对抗虚无</strong>。只要找些有意义的事情来做（比如读书），就不会觉着生活无味或者有空虚感。回想起大学四年，基本上我也是的独自一人去图书馆看书、独自一人吃饭、独自一人去自习室，感觉和现在没有太多差别，只不过从上课学习换成了工作搬砖，其他时间的生活节奏基本上没有太大的变化。</p>
+<p>还有一点就是尽量的远离社交媒体，不要过度地依赖它们，更不要放纵自己不停地刷推或者短视频来娱乐消遣。其实这些东西并不能给我们带来真正意义上的快乐，有一部纪录片《<a href="https://www.netflix.com/sg-zh/title/81254224" target="_blank" rel="noopener">监视资本主义：智能陷阱</a>》里面也谈到过过度依赖社交媒体的后果。</p>
+<h3 id="杭州过年"><a href="#杭州过年" class="headerlink" title="杭州过年"></a>杭州过年</h3><p>因为疫情的原因 2021 年就没回家过年，再加上越是农村那种破地方防疫措施就是越离谱，看看现在西安的防疫措施你们就能明白了为什么不想回家。于是就懒得折腾，选择独自一人留在杭州过年，顺便还能领取杭州市政府的留杭补贴 1000 块钱。杭州市在这一块做的还真不错，去年还领了人才补贴的 1w 块钱，从老大哥手里薅羊毛，真鸡儿刺激。</p>
+<h3 id="环太湖骑行"><a href="#环太湖骑行" class="headerlink" title="环太湖骑行"></a>环太湖骑行</h3><p>为了不让五一假期再像过年那样一直烂在家里，就独自一人从杭州骑行到湖州、常州、无锡、苏州、太湖一带游玩，真的是很久没有那么开心过了。回来之后还更新了一篇博客《<a href="https://blog.k8s.li/taihu.html">五一假期环太湖骑行之旅</a>》，旅程的风景真的不错，感兴趣的话可以去读一下。</p>
+<h3 id="上海租房"><a href="#上海租房" class="headerlink" title="上海租房"></a>上海租房</h3><p>新工作的办公地点是在上海，因为不支持远程办公所以不得不从杭州搬家来到上海。在中介老哥的带领下找了一个月租 3100 元的卧室+独卫的房子（包水电费），整体感觉十分满意。房子比较特殊，是三室一厅。我住在其中的一个大卧室，房东他父母住在另一个卧室，剩余的一个卧室是空着的，除了我以外没有其他的租客。出于对老人安全的考虑，房东只允许我自己一个人住，不能带外人来。对我来说也没啥，独来独往的生活反正也不会有其他人来找我玩儿。</p>
+<p>卧室面积 3.3 * 4.3m=14.19平、玄关 1.1 * 1m=1.1平、卫生间 2.3 * 2.1m=4.38平。加起来总共差不多 20 平。感觉这个面积感觉比杭州那个带阳台的卧室大很多。一个 1.5 * 2m 的床、靠墙再放置两张 60* 120 cm 的宜家桌子、床的右侧又能放下一张 0.6 * 1.4m米的书桌，还有一个 0.5 *2m 的衣柜。</p>
+<p>现在终于住上了自己所期待的那种房子，回想起大学刚毕业那一年住的还是 300 块钱的上下铺青旅，就感觉当时十分寒酸😭。</p>
+<p><img src="https://p.k8s.li/image-20220103165850671.png" alt="image-20220103165850671"></p>
+<p>房间里还有一个带书架的电脑桌，放下一个 27 寸的显示器刚刚好。另外把我那台 HPE Gen10 Plus 服务器安置在了书桌下面。虽然靠近床头，但 NAS 里硬盘的噪音还算能接受，不至于吵得睡不着觉。有时候在想要不要整个 12U 的机柜来着，但规划了一下感觉还是没有太大的必要，先这样凑活着用吧。</p>
+<p><img src="https://p.k8s.li/image-20220103202406765.jpg" alt="IMG_2177"></p>
+<p>搬进来之后的第二天在闲鱼上花了 300 块钱捡来了一个原价 1699 的米家扫地机器人，又花了 200 块钱捡了一个米家空气净化器（贫穷如我，只能靠捡和薅来提升生活幸福感了）。感觉这两个家用电器还是挺值的，扫地机器人省去了打扫卫生的麻烦事儿，生活幸福感 +++。</p>
+<h2 id="2022"><a href="#2022" class="headerlink" title="2022"></a>2022</h2><p>就像作家方方所说的那样：<a href="http://fangfang.blog.caixin.com/archives/220746" target="_blank" rel="noopener">时代的一粒灰，落在个人头上就是一座山</a> 。外婆在 2020 年新冠疫情刚爆发的那段时间不幸离开了这个世界，而那段时间的经历也彻底改变了我看待生死的想法。仿佛一切都没有那么重要了，也让我深刻地明白了<strong>这个世界上没有什么东西无法不能失去的，也没有什么非得必须要得到的</strong>。即便是某一天我不幸去世，也没有太多遗憾和悔恨。所以去他的未来计划，和往常一样好好搬砖工作和看书学习，这样就够了。</p>
+<p>另外祝大家新的一年快快乐乐🥳</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/cfwctl.html" rel="prev" title="Tencent Cloud lighthouse Firewall tool">
+      <i class="fa fa-chevron-left"></i> Tencent Cloud lighthouse Firewall tool
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读"><span class="nav-number">1.</span> <span class="nav-text">阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作"><span class="nav-number">2.</span> <span class="nav-text">工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节跳动"><span class="nav-number">2.1.</span> <span class="nav-text">字节跳动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#裸辞离职"><span class="nav-number">2.2.</span> <span class="nav-text">裸辞离职</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试"><span class="nav-number">2.3.</span> <span class="nav-text">面试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生活"><span class="nav-number">3.</span> <span class="nav-text">生活</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#杭州过年"><span class="nav-number">3.1.</span> <span class="nav-text">杭州过年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环太湖骑行"><span class="nav-number">3.2.</span> <span class="nav-text">环太湖骑行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上海租房"><span class="nav-number">3.3.</span> <span class="nav-text">上海租房</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2022"><span class="nav-number">4.</span> <span class="nav-text">2022</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">130</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.6m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">44:30</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/2021.html",
+            identifier: "2021.html",
+            title: "时光痕迹：2021 年总结"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
