@@ -48,15 +48,15 @@
   };
 </script>
 
-  <meta name="description" content="本文转载至 stack overflow 创始人 Jeff Atwood 的Code: It’s Trivial背景是：当时 stack overflow 刚成立不久，而且使用的技术是 Windows server 及.net，就有特别多的人喷 stack overflow 技术垃圾，声称花一个周末的时间就能开发出像 stack overflow 一样的网站。 Jeff Atwood 于是写这篇文">
+  <meta name="description" content="最近 kubernetes-sig 社区的 kubespray 项目正式 release 了 v2.18.0 版本，同时对应 k8s-conformance 的 v1.21 和 v1.22 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。 组件版本以下是 v2.18.0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Code it is trivial 写代码是微不足道的">
-<meta property="og:url" content="https://blog.k8s.li/Code-It-s-Trivial.html">
+<meta property="og:title" content="Kubespray 2.18 版本特性预览">
+<meta property="og:url" content="https://blog.k8s.li/kubespray-2.18.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
-<meta property="og:description" content="本文转载至 stack overflow 创始人 Jeff Atwood 的Code: It’s Trivial背景是：当时 stack overflow 刚成立不久，而且使用的技术是 Windows server 及.net，就有特别多的人喷 stack overflow 技术垃圾，声称花一个周末的时间就能开发出像 stack overflow 一样的网站。 Jeff Atwood 于是写这篇文">
+<meta property="og:description" content="最近 kubernetes-sig 社区的 kubespray 项目正式 release 了 v2.18.0 版本，同时对应 k8s-conformance 的 v1.21 和 v1.22 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。 组件版本以下是 v2.18.0">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-11T14:18:38.354Z">
+<meta property="article:published_time" content="2022-01-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-11T14:18:38.378Z">
 <meta property="article:author" content="木子">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta property="article:tag" content="Docker">
@@ -69,7 +69,7 @@
 <meta property="article:tag" content="发布流水线">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://blog.k8s.li/Code-It-s-Trivial.html">
+<link rel="canonical" href="https://blog.k8s.li/kubespray-2.18.html">
 
 
 <script id="page-configurations">
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>Code it is trivial 写代码是微不足道的 | Reimu's blog</title>
+  <title>Kubespray 2.18 版本特性预览 | Reimu's blog</title>
   
 
 
@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/Code-It-s-Trivial.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/kubespray-2.18.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
@@ -206,7 +206,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          Code it is trivial 写代码是微不足道的
+          Kubespray 2.18 版本特性预览
         </h2>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-03-03 2019-03-03T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-03-03T00:00:00+08:00">2019-03-03</time>
+              <time title="创建时间：2022-01-05 2022-01-05T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2022-01-05T00:00:00+08:00">2022-01-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -225,17 +225,6 @@
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2022-01-11 2022-01-11T22:18:38+08:00" itemprop="dateModified" datetime="2022-01-11T22:18:38+08:00">2022-01-11</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91/" itemprop="url" rel="index">
-                    <span itemprop="name">互联网</span>
-                  </a>
-                </span>
-            </span>
 
           
   
@@ -246,8 +235,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/Code-It-s-Trivial.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Code-It-s-Trivial.html" itemprop="commentCount"></span>
+    <a title="disqus" href="/kubespray-2.18.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="kubespray-2.18.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -257,14 +246,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.5k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -276,31 +265,283 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本文转载至 stack overflow 创始人 Jeff Atwood 的<a href="https://blog.codinghorror.com/code-its-trivial/" target="_blank" rel="noopener">Code: It’s Trivial</a><br>背景是：当时 stack overflow 刚成立不久，而且使用的技术是 Windows server 及.net，就有特别多的人喷 stack overflow 技术垃圾，声称花一个周末的时间就能开发出像 stack overflow 一样的网站。 Jeff Atwood 于是写这篇文章怼回去，仔细看看 hack news 上的评论挺有意思的。<a href="https://news.ycombinator.com/item?id=678501" target="_blank" rel="noopener">hack news 的链接在这</a> 。还有当时的 <a href="https://news.ycombinator.com/item?id=8863" target="_blank" rel="noopener">droxbox</a>和<a href="https://news.ycombinator.com/item?id=426120" target="_blank" rel="noopener">Airbnb</a> 也被喷的狗血淋头。十年多过去了，喷他们的人只留下了一个ID，而被喷的人留下了一个伟大的网站。</p>
-<hr>
-<p>Remember that Stack Overflow thing we’ve been working on? Some commenters on a recent Hacker News article questioned the pricing of Stack Exchange – essentially, a hosted Stack Overflow:<br>Seems really pricey for a relatively simple software like this. Someone write an open source alternative? it looks like something that can be thrown together in a weekend.<br>Ah, yes, the stereotypical programmer response to most projects: it’s trivial! I could write that in a week!*<br>It’s even easier than that. Open source alternatives to Stack Overflow already exist, so you’ve got a head start. Gentlemen, start your compilers! Er, I mean, interpreters!<br>No, I don’t take this claim seriously. Not enough to write a response. And fortunately for me, now I don’t need to, because Benjamin Pollack – one of the few people outside our core team who has access to the Stack Overflow source code – already wrote a response. Even if I had written a response, I doubt it would have been half as well written as Benjamin’s.<br>Developers think cloning a site like StackOverflow is easy for the same reason that open-source software remains such a horrible pain in the ass to use. When you put a developer in front of StackOverflow, they don’t really see StackOverflow. What they actually see is this:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> QUESTION (<span class="keyword">ID</span> <span class="keyword">identity</span> primary <span class="keyword">key</span>,</span><br><span class="line">TITLE <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line"><span class="keyword">BODY</span> <span class="built_in">text</span>,</span><br><span class="line">UPVOTES <span class="built_in">integer</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span>,</span><br><span class="line">DOWNVOTES <span class="built_in">integer</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span>,</span><br><span class="line"><span class="keyword">USER</span> <span class="built_in">integer</span> <span class="keyword">references</span> <span class="keyword">USER</span>(<span class="keyword">ID</span>));</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> RESPONSE (<span class="keyword">ID</span> <span class="keyword">identity</span> primary <span class="keyword">key</span>,</span><br><span class="line"><span class="keyword">BODY</span> <span class="built_in">text</span>,</span><br><span class="line">UPVOTES <span class="built_in">integer</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span>,</span><br><span class="line">DOWNVOTES <span class="built_in">integer</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span>,</span><br><span class="line">QUESTION <span class="built_in">integer</span> <span class="keyword">references</span> QUESTION(<span class="keyword">ID</span>))</span><br></pre></td></tr></table></figure>
-
-<p>If you then tell a developer to replicate StackOverflow, what goes into his head are the above two SQL tables and enough HTML to display them without formatting, and that really is completely doable in a weekend. The smarter ones will realize that they need to implement login and logout, and comments, and that the votes need to be tied to a user, but that’s still totally doable in a weekend; it’s just a couple more tables in a SQL back-end, and the HTML to show their contents. Use a framework like Django, and you even get basic users and comments for free.<br>But that’s not what StackOverflow is about. Regardless of what your feelings may be on StackOverflow in general, most visitors seem to agree that the user experience is smooth, from start to finish. They feel that they’re interacting with a polished product. Even if I didn’tknow better, I would guess that very little of what actually makes StackOverflow a continuing success has to do with the database schema–and having had a chance to read through StackOverflow’s source code, I know how little really does. There is a tremendous amount of spit and polish that goes into making a major website highly usable. A developer, asked how hard something will be to clone, simply does not think about the polish, because the polish is incidental to the implementation.<br>I have zero doubt that given enough time, open source clones will begin to approximate what we’ve created with Stack Overflow. It’s as inevitable as evolution itself. Well, depending on what time scale you’re willing to look at. With a smart, motivated team of closed-source dinosaurs, it is indeed possible to outrun those teeny tiny open-source mammals. For now, anyway. Let’s say we’re those speedy, clever Velociraptor types of dinosaurs – those are cool, right?<br>Despite Benjamin’s well reasoned protests, the source code to Stack Overflow is, in fact, actually, kind of … well, trivial. Although there is starting to be quite a lot of it, as we’ve been beating on this stuff for almost a year now. That doesn’t mean our source code is good, by any means; as usual, we make crappy software, with bugs. But every day, our tiny little three person team of speedy-but-doomed Velociraptors starts out with the same goal. Not to write the best Stack Overflow code possible, but to create the best Stack Overflow experience possible. That’s our mission: make Stack Overflow better, in some small way, than it was the day before. We don’t always succeed, but we try very, very hard not to suck – and more importantly, we keep plugging away at it, day after day.<br>Building a better Stack Overflow experience does involve writing code and building cool features. But more often, it’s anything but:</p>
-<ol>
-<li>synthesizing cleaner, saner HTML markup</li>
-<li>optimizing our pages for speed and load time efficiency</li>
-<li>simplifying or improving our site layout, CSS, and graphics</li>
-<li>responding to support and feedback emails</li>
-<li>writing a blog post explaining some aspect of the site engine or philosophy</li>
-<li>being customers of our own sites, asking our own programming questions and sysadmin questions</li>
-<li>interacting with the community on our dedicated meta-discussion site to help gauge what we should be working on, and where the rough edges are that need polishing</li>
-<li>electing community moderators and building moderation tools so the community can police and regulate itself as it scales</li>
-<li>producing Creative Commons dumps of our user-contributed questions and answers</li>
-<li>coming up with schemes for responsible advertising so we can all make a living</li>
-<li>producing the Stack Overflow podcast with Joel</li>
-<li>helping set up logistics for the Stack Overflow DevDays conferences</li>
-<li>setting up the next site in the trilogy, and figuring out where we go next As programmers, as much as we might want to believe thatlots_of_awesome_code = success;</li>
-</ol>
-<hr>
-<p>There’s nothing particularly magical about the production of source code. In fact, writing code is a tiny proportion of what makes most businesses successful.<br>Code is meaningless if nobody knows about your product. Code is meaningless if the IRS comes and throws you in jail because you didn’t do your taxes. Code is meaningless if you get sued because you didn’t bother having a software license created by a lawyer.<br>Writing code is trivial. And fun. And something I continue to love doing. But if you really want your code to be successful, you’ll stop coding long enough to do all that other, even more trivial stuff around the code that’s necessary to make it successful.</p>
+        <p>最近 kubernetes-sig 社区的 <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank" rel="noopener">kubespray</a> 项目正式 release 了 <a href="https://github.com/kubernetes-sigs/kubespray/releases/tag/v2.18.0" target="_blank" rel="noopener">v2.18.0</a> 版本，同时对应 <a href="https://github.com/cncf/k8s-conformance" target="_blank" rel="noopener">k8s-conformance</a> 的 <a href="https://github.com/cncf/k8s-conformance/pull/1748" target="_blank" rel="noopener">v1.21</a> 和 <a href="https://github.com/cncf/k8s-conformance/pull/1760" target="_blank" rel="noopener">v1.22</a> 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。</p>
+<h2 id="组件版本"><a href="#组件版本" class="headerlink" title="组件版本"></a>组件版本</h2><p>以下是 v2.18.0 版本中 kubespray 部署组件的一些版本信息：</p>
+<h3 id="K8s-核心组件"><a href="#K8s-核心组件" class="headerlink" title="K8s 核心组件"></a>K8s 核心组件</h3><ul>
+<li>kubespray 支持的 Kubernetes 支持从 v1.22.0 到 v1.23.1 之间的所有正式版本，默认部署的版本为 v1.22.5，并且 <a href="https://github.com/cncf/k8s-conformance/pull/1760" target="_blank" rel="noopener">v1.22</a> 版本得到了 CNCF 官方的一致性认证；</li>
+<li>etcd 从原来的 v3.4.13 升级到了 v3.5.0；</li>
+<li>coredns 版本升级到了 v1.8.0，它的搭档 dnsautoscaler 则为 1.8.5；</li>
+<li>pod_infra 即 pause 镜像的版本没有变化依旧为 3.3；</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Addon</th>
+<th align="left">Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kube</td>
+<td align="left">v1.22.5</td>
+</tr>
+<tr>
+<td>pod_infra</td>
+<td align="left">3.3</td>
+</tr>
+<tr>
+<td>etcd</td>
+<td align="left">v3.5.0</td>
+</tr>
+<tr>
+<td>coredns</td>
+<td align="left">v1.8.0</td>
+</tr>
+</tbody></table>
+<h3 id="容器运行时"><a href="#容器运行时" class="headerlink" title="容器运行时"></a>容器运行时</h3><p>目前市面上所有的 Kubernetes 集群部署工具中，对容器运行时的支持 kubespray 无疑是最丰富的。部署能支持 docker、containerd、crun、kata、cri-o。默认的容器运行时已经从之前的 docker 切换到了 containerd，containerd 的版本是 v1.5.8。</p>
+<table>
+<thead>
+<tr>
+<th>Addon</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>containerd</td>
+<td>1.5.8</td>
+</tr>
+<tr>
+<td>docker</td>
+<td>20.10</td>
+</tr>
+<tr>
+<td>docker_containerd</td>
+<td>1.4.12</td>
+</tr>
+<tr>
+<td>crun</td>
+<td>1.3</td>
+</tr>
+<tr>
+<td>runc</td>
+<td>v1.0.3</td>
+</tr>
+<tr>
+<td>crio</td>
+<td>1.22</td>
+</tr>
+<tr>
+<td>kata_containers</td>
+<td>2.2.3</td>
+</tr>
+<tr>
+<td>gvisor</td>
+<td>20210921</td>
+</tr>
+</tbody></table>
+<h3 id="CNI"><a href="#CNI" class="headerlink" title="CNI"></a>CNI</h3><p>同样，目前市面上所有的 Kubernetes 集群部署工具中，对 CNI 的支持 kubespray 也无疑是最为丰富的，能支持 9 种 CNI 以及多种 CNI 组合部署的 <a href="https://github.com/intel/multus-cni" target="_blank" rel="noopener">multus</a> 。</p>
+<table>
+<thead>
+<tr>
+<th>Addon</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>calico</td>
+<td>v3.20.3</td>
+</tr>
+<tr>
+<td>flannel</td>
+<td>v0.15.1</td>
+</tr>
+<tr>
+<td>flannel_cni</td>
+<td>v1.0.0</td>
+</tr>
+<tr>
+<td>cni</td>
+<td>v1.0.1</td>
+</tr>
+<tr>
+<td>weave</td>
+<td>2.8.1</td>
+</tr>
+<tr>
+<td>cilium</td>
+<td>v1.9.11</td>
+</tr>
+<tr>
+<td>kube_ovn</td>
+<td>v1.8.1</td>
+</tr>
+<tr>
+<td>kube_router</td>
+<td>v1.3.2</td>
+</tr>
+<tr>
+<td>multus_cni</td>
+<td>0.4.0</td>
+</tr>
+<tr>
+<td>multus</td>
+<td>v3.8</td>
+</tr>
+</tbody></table>
+<h3 id="Kubernetes-app"><a href="#Kubernetes-app" class="headerlink" title="Kubernetes-app"></a>Kubernetes-app</h3><p>同时，kubespray 还支持一些 CLI 工具以及第三方应用的部署。</p>
 <ul>
-<li>Although, to be fair, I really could write Twitter in a week. It’s so ridiculously simple! Come on!</li>
+<li>CLI 工具</li>
+</ul>
+<p>一些 CLI 工具，比如 helm、nerdctl、krew、crictl。其中 nerdctl 的部署支持是咱在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/7500" target="_blank" rel="noopener">#7500</a> 中加入支持的，目的是为 containerd 用户提供一个相对友好的命令行操作体验，以替代 docker CLI。</p>
+<table>
+<thead>
+<tr>
+<th>addon</th>
+<th>version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>helm</td>
+<td>v3.7.1</td>
+</tr>
+<tr>
+<td>nerdctl</td>
+<td>0.15.0</td>
+</tr>
+<tr>
+<td>krew</td>
+<td>v0.4.2</td>
+</tr>
+<tr>
+<td>crictl</td>
+<td>v1.22.0</td>
+</tr>
+</tbody></table>
+<ul>
+<li>app</li>
+</ul>
+<p>个人感觉部署一些像 <code>dnsautoscaler</code>、 <code>argoCD</code> 这样的应用，还是使用 helm 比较好。因为基于 ansible 的 kubespray 维护这么多第三方组件，以及它们的升级管理都远不如 helm 方便。因此考虑到这些组件的升级维护成本，个人还是不太建议使用 kubespray 来部署这些组件。</p>
+<table>
+<thead>
+<tr>
+<th>Addon</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dnsautoscaler</td>
+<td>1.8.5</td>
+</tr>
+<tr>
+<td>netcheck</td>
+<td>v1.2.2</td>
+</tr>
+<tr>
+<td>nodelocaldns</td>
+<td>1.21.1</td>
+</tr>
+<tr>
+<td>metrics_server</td>
+<td>v0.5.0</td>
+</tr>
+<tr>
+<td>cert_manager</td>
+<td>v1.5.4</td>
+</tr>
+<tr>
+<td>addon_resizer</td>
+<td>1.8.11</td>
+</tr>
+<tr>
+<td>cinder_blockstorage</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>external_vsphere</td>
+<td>6.7u3</td>
+</tr>
+<tr>
+<td>nvidia_driver</td>
+<td>390.87</td>
+</tr>
+<tr>
+<td>oci_cloud_controller</td>
+<td>0.7.0</td>
+</tr>
+<tr>
+<td>metallb</td>
+<td>v0.10.3</td>
+</tr>
+<tr>
+<td>argocd</td>
+<td>v2.1.6</td>
+</tr>
+</tbody></table>
+<h2 id="支持的-OS"><a href="#支持的-OS" class="headerlink" title="支持的 OS"></a>支持的 OS</h2><table>
+<thead>
+<tr>
+<th>distribution</th>
+<th>version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Amazon Linux</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Fedora CoreOS</td>
+<td>34.x/35.x</td>
+</tr>
+<tr>
+<td>Flatcar Container Linux by Kinvolk</td>
+<td></td>
+</tr>
+<tr>
+<td>Alma Linux</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Rocky Linux</td>
+<td>8</td>
+</tr>
+<tr>
+<td>CentOS/RHEL</td>
+<td>7/8</td>
+</tr>
+<tr>
+<td>Oracle Linux</td>
+<td>7/8</td>
+</tr>
+<tr>
+<td>Debian</td>
+<td>8/9/10/11</td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td>16.04/18.04/20.04</td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td>34/35</td>
+</tr>
+<tr>
+<td>openSUSE</td>
+<td>Leap 15.x/Tumbleweed</td>
+</tr>
+</tbody></table>
+<h2 id="主要变化"><a href="#主要变化" class="headerlink" title="主要变化"></a>主要变化</h2><h3 id="废除"><a href="#废除" class="headerlink" title="废除"></a>废除</h3><ul>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8086" target="_blank" rel="noopener">#8086</a> 中移除了对 Ambassador 的支持；</li>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8327" target="_blank" rel="noopener">#8327</a> 中移除了对 registry-proxy 的支持；</li>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8246" target="_blank" rel="noopener">#8246</a> 中移除了对 Fedora 33 的支持，因为  Fedora 33 在 2021-11-30 就已经 EOL 了，所以被废弃支持也理所当然；</li>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8265" target="_blank" rel="noopener">#8265</a> 中移除了对 Mitogen 的支持，Mitogen 的作用就是用来优化 Ansible 的性能，但 Mitogen 对于一些新的 Linux 发行版支持的额并不是很友好，在 Kubespray 中维护的成本也比较大，因此社区就废弃它了；</li>
+</ul>
+<h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><ul>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/7895" target="_blank" rel="noopener">#7895</a> 中新增了 ArgoCD 的部署支持，通过设置 <code>argocd_enabled</code> 即可在部署集群的时候安装 ArgoCD。不过个人认为，ArgoCD 这玩意儿不太适合放在 K8s 部署当中来，看看 <a href="https://github.com/kubesphere/ks-installer" target="_blank" rel="noopener">ks-installer</a> 的代码你就能明白了😂。</li>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8175" target="_blank" rel="noopener">#8175</a> 中默认使用 containerd 作为默认的容器运行时，替代掉了 docker。不过需要注意的是，当前版本的 kubespray 是使用 <a href="https://github.com/containerd/containerd" target="_blank" rel="noopener">containerd</a> 官方 repo release 的二进制安装包，但二进制安装包并没有 arm64 版本的。所以如果要部署的集群节点包含 arm64 的机器，最好还是使用 docker 作为容器运行时。</li>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8291" target="_blank" rel="noopener">#8291</a> 新增了 registry 部署支持多种 ServiceTypes 的支持；</li>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8229" target="_blank" rel="noopener">#8229</a> 中新增了支持 registry 认证的方式，私有化部署的时候使用带有认证的 registry 会用到；</li>
+</ul>
+<h3 id="已知问题"><a href="#已知问题" class="headerlink" title="已知问题"></a>已知问题</h3><ul>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8239" target="_blank" rel="noopener">#8239</a> 中 <a href="https://github.com/cristicalin" target="_blank" rel="noopener">cristicalin</a> 大佬引入了一个修改，如果是 containerd 运行时，则使用 nerdctl 下载镜像。这将会导致配置了 containerd registry mirrors 的参数将会失效。</li>
 </ul>
 
     </div>
@@ -317,13 +558,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/android-taibackup.html" rel="prev" title="钛备份的逆向原理">
-      <i class="fa fa-chevron-left"></i> 钛备份的逆向原理
+    <a href="/2021.html" rel="prev" title="时光痕迹：2021 年总结">
+      <i class="fa fa-chevron-left"></i> 时光痕迹：2021 年总结
     </a></div>
-      <div class="post-nav-item">
-    <a href="/RMS.html" rel="next" title="RMS 的征婚启示">
-      RMS 的征婚启示 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -390,6 +628,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件版本"><span class="nav-number">1.</span> <span class="nav-text">组件版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K8s-核心组件"><span class="nav-number">1.1.</span> <span class="nav-text">K8s 核心组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器运行时"><span class="nav-number">1.2.</span> <span class="nav-text">容器运行时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNI"><span class="nav-number">1.3.</span> <span class="nav-text">CNI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kubernetes-app"><span class="nav-number">1.4.</span> <span class="nav-text">Kubernetes-app</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持的-OS"><span class="nav-number">2.</span> <span class="nav-text">支持的 OS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要变化"><span class="nav-number">3.</span> <span class="nav-text">主要变化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#废除"><span class="nav-number">3.1.</span> <span class="nav-text">废除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性"><span class="nav-number">3.2.</span> <span class="nav-text">新特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已知问题"><span class="nav-number">3.3.</span> <span class="nav-text">已知问题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -551,9 +790,9 @@
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "https://blog.k8s.li/Code-It-s-Trivial.html",
-            identifier: "Code-It-s-Trivial.html",
-            title: "Code it is trivial 写代码是微不足道的"
+            url: "https://blog.k8s.li/kubespray-2.18.html",
+            identifier: "kubespray-2.18.html",
+            title: "Kubespray 2.18 版本特性预览"
           }
         }
       });
