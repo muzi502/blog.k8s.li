@@ -2,7 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.k8s.li/friends.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/2021.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
     
     <lastmod>2022-02-06</lastmod>
     
@@ -39,33 +66,6 @@
   
   <url>
     <loc>https://blog.k8s.li/categories.html</loc>
-    
-    <lastmod>2022-02-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/friends.html</loc>
-    
-    <lastmod>2022-02-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags.html</loc>
-    
-    <lastmod>2022-02-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/docker-registry-to-harbor.html</loc>
     
     <lastmod>2022-02-06</lastmod>
     
@@ -111,6 +111,15 @@
   
   <url>
     <loc>https://blog.k8s.li/My-brick-lifting-tools.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/2019-review.html</loc>
     
     <lastmod>2022-02-06</lastmod>
     
@@ -191,15 +200,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/2019-review.html</loc>
-    
-    <lastmod>2022-02-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
     
     <lastmod>2022-02-06</lastmod>
@@ -245,6 +245,33 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
     
     <lastmod>2022-02-06</lastmod>
@@ -273,6 +300,15 @@
   
   <url>
     <loc>https://blog.k8s.li/life-sciences.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2022-02-06</lastmod>
     
@@ -398,33 +434,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
-    
-    <lastmod>2022-02-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
-    
-    <lastmod>2022-02-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
-    
-    <lastmod>2022-02-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
     
     <lastmod>2022-02-06</lastmod>
@@ -498,15 +507,6 @@
   
   <url>
     <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
-    
-    <lastmod>2022-02-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2022-02-06</lastmod>
     
@@ -1828,6 +1828,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2022-02-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/%E9%AA%91%E8%A1%8C/</loc>
     <lastmod>2022-02-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -1885,13 +1892,6 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E7%9B%91%E6%8E%A7/</loc>
-    <lastmod>2022-02-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-02-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
