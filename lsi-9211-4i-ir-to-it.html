@@ -48,12 +48,12 @@
   };
 </script>
 
-  <meta name="description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&#x2F;SATA C">
+  <meta name="description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&#x2F;SATA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="给阵列卡刷个机，IR 模式转 IT 模式">
 <meta property="og:url" content="https://blog.k8s.li/lsi-9211-4i-ir-to-it.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
-<meta property="og:description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&#x2F;SATA C">
+<meta property="og:description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&#x2F;SATA">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.k8s.li/20200830_9211-4i-01.jpg">
 <meta property="og:image" content="https://p.k8s.li/20200830_9211-4i-02.jpg">
@@ -270,53 +270,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="刷机？"><a href="#刷机？" class="headerlink" title="刷机？"></a>刷机？</h2><p>不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡👇。</p>
+        <h2 id="刷机？"><a href="#刷机？" class="headerlink" title="刷机？"></a>刷机？</h2><p>不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。</p>
 <p><img src="https://p.k8s.li/20200830_9211-4i-01.jpg" alt=""></p>
 <p>买的这块阵列卡型号是 <a href="https://lenovopress.com/tips0831-serveraid-h1110" target="_blank" rel="noopener">ServeRAID H1110 SAS/SATA Controller for IBM System x </a> ，卖家说是 <code>IBM H1110</code> ，其实都差不多啦。由于是第一次玩儿阵列卡，对这种型号也不是很熟悉，之后刷了新的固件又变成了 <code>LSI 9211-4i</code> 。</p>
 <h2 id="翻车？"><a href="#翻车？" class="headerlink" title="翻车？"></a>翻车？</h2><p>收到货后，迫不及待地将存满老婆的硬盘接到阵列卡上，开机的时候，一直卡在阵列卡 BIOS 初始化页面很久很久。顿时觉着，完蛋翻车了，正准备去怼一波卖家，阵列卡启动等了五六分钟后进入了久违的  ESXi 的启动页面。这尼玛，坑我啊，你一个巴掌大的阵列卡启动竟然需要五分钟？内心一万匹草泥马奔腾而过。</p>
 <p><img src="https://p.k8s.li/20200830_9211-4i-02.jpg" alt=""></p>
-<h2 id="IR-模式？"><a href="#IR-模式？" class="headerlink" title="IR 模式？"></a>IR 模式？</h2><p>在网上看来一下大佬们的评论，说阵列卡 IR 模式的启动速度要慢一些？然后又找到了 <a href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware" target="_blank" rel="noopener">IBM H1110卡刷为LSI 9211-4i IT固件</a> ，里面提到的可以将 IR 模式刷为 IT 直通模式。至于 IR 模式和 IT 模式，自己太菜没找到确切的资料。大概可以理解为 IR 模式适用于使用阵列卡组 RAID 阵列，而 IT 模式就是所谓的直通模式，不适用 RAID ，只使用阵列卡的磁盘控制器？相当于主板上的 SATA 接口。何况我这个是小主机，里面也塞不下那么多的磁盘，所以阵列卡使用 IT 直通模式无疑是最好的选择。</p>
+<h2 id="IR-模式？"><a href="#IR-模式？" class="headerlink" title="IR 模式？"></a>IR 模式？</h2><p>在网上看来一下大佬们的评论，说阵列卡 IR 模式的启动速度要慢一些？然后又找到了 <a href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware" target="_blank" rel="noopener">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a> ，里面提到的可以将 IR 模式刷为 IT 直通模式。至于 IR 模式和 IT 模式，自己太菜没找到确切的资料。大概可以理解为 IR 模式适用于使用阵列卡组 RAID 阵列，而 IT 模式就是所谓的直通模式，不适用 RAID ，只使用阵列卡的磁盘控制器？相当于主板上的 SATA 接口。何况我这个是小主机，里面也塞不下那么多的磁盘，所以阵列卡使用 IT 直通模式无疑是最好的选择。</p>
 <p><img src="https://p.k8s.li/20200828_9211-4i-03.jpg" alt=""></p>
 <h2 id="万物皆可刷？"><a href="#万物皆可刷？" class="headerlink" title="万物皆可刷？"></a>万物皆可刷？</h2><p>参照大佬们的博客，咱也要体验一把刷<del>机</del>卡的痛快了，毕竟折腾这些没用的玩意儿也是咱的一大乐趣。</p>
 <blockquote>
-<p>  我青年时代就刷过：诺基亚、摩托罗拉、三星、黑莓、Lumia、HTC，我还刷过：路由器、交换机、阵列卡、电视盒子……</p>
+<p>我青年时代就刷过：诺基亚、摩托罗拉、三星、黑莓、Lumia、HTC，我还刷过：路由器、交换机、阵列卡、电视盒子……</p>
 </blockquote>
 <p>安卓<del>基</del>机佬们想必对 twrp 再熟悉不过了，它是我们刷机，刷各种 ROM 包最常用的系统，相当于 Windows 中的 PE 系统，对系统分区刷上 ROM 来达到刷机的目的。刷阵列卡的固件和刷机也差不多，也是需要一个底层的系统进去对阵列卡上的存储芯片进行操作。最常见的就是 Dos 和 EFI Shell ，由于 Dos 年代久远，且我的主板对 EFI 支持比较友好，在进行刷机的时候为了稳妥起见选择 EFI shell。</p>
 <h3 id="记录-SAS-地址"><a href="#记录-SAS-地址" class="headerlink" title="记录 SAS 地址"></a>记录 SAS 地址</h3><p>在刷阵列卡之前要线记录下 SAS 的 Address ，进入到阵列卡的 BIOS 中会有这个信息。</p>
-<h3 id="找好固件和文档"><a href="#找好固件和文档" class="headerlink" title="找好固件和文档"></a>找好固件和文档</h3><p>由于我要刷入的固件不是阵列卡原厂的固件，只找到了现成的固件，直接就拿来用了，应该问题不大。而且刷入的流程也是比较简答。<a href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware" target="_blank" rel="noopener">IBM H1110卡刷为LSI 9211-4i IT固件</a> :</p>
+<h3 id="找好固件和文档"><a href="#找好固件和文档" class="headerlink" title="找好固件和文档"></a>找好固件和文档</h3><p>由于我要刷入的固件不是阵列卡原厂的固件，只找到了现成的固件，直接就拿来用了，应该问题不大。而且刷入的流程也是比较简答。<a href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware" target="_blank" rel="noopener">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a> :</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 备份原卡信息和sbr</span></span><br><span class="line">MegaCli.exe -AdpAllInfo -aAll -ApplogFile bak.txt</span><br><span class="line">MegaRec.exe -readsbr 0 orig.sbr</span><br><span class="line"><span class="meta">#</span><span class="bash">擦写sbr和flash一遍能刷入LSI原厂固件</span></span><br><span class="line">MegaRec -writesbr 0 sbrempty.bin</span><br><span class="line">MegaRec -cleanflash 0</span><br><span class="line"><span class="meta">#</span><span class="bash">重启再次进入DOS</span></span><br><span class="line">reboot</span><br><span class="line"><span class="meta">#</span><span class="bash">刷入对应IT固件和ROM</span></span><br><span class="line">sas2flsh -o -f 2114it.bin -b mptsas2.rom</span><br><span class="line"><span class="meta">#</span><span class="bash">恢复原来的SAS地址</span></span><br><span class="line">sas2flsh -o -sasadd xxxxxxxx</span><br><span class="line"><span class="meta">#</span><span class="bash">查看最新状态</span></span><br><span class="line">sas2flsh -list</span><br><span class="line"><span class="meta">#</span><span class="bash">重启，完成</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
-<p>一些官方的文档<a href="https://www.broadcom.cn/support/knowledgebase/1211161495925/flash-upgrading-firmware-on-lsi-sas-hbas-upgraded-firmware-on-92" target="_blank" rel="noopener">Flash upgrading firmware on LSI SAS HBAs; Upgraded firmware on 9211-8i to P8, now duplicated drives</a>：</p>
+<p>一些官方的文档 <a href="https://www.broadcom.cn/support/knowledgebase/1211161495925/flash-upgrading-firmware-on-lsi-sas-hbas-upgraded-firmware-on-92" target="_blank" rel="noopener">Flash upgrading firmware on LSI SAS HBAs; Upgraded firmware on 9211-8i to P8, now duplicated drives</a>：</p>
 <blockquote>
-<p>  Advanced users:</p>
-<p>  To delete the firmware and BIOS in your 9211, then reflash it, follow these steps:</p>
+<p>Advanced users:</p>
+<p>To delete the firmware and BIOS in your 9211, then reflash it, follow these steps:</p>
 <ol>
-<li><p>Check to see if there is an also an onboard SATA controller with disk in the system before running the commands below.<br>Run sas2flsh -listall<br>If you see only the 9211, then run the commands as shown below.<br>If you see two controllers (e.g. c0 and c1, then add -c 1 to all of the commands below–&gt; sas2flsh -c 1 -o -e 6</p>
-</li>
-<li><p>Record the SAS address of the 9211 in case you need it later.  To display it, type:<br>sas2flsh -list</p>
-<p>and write down the SAS address.  You can run the is DOS, Windows, Linux, etc.</p>
-</li>
-<li><p>Download 9211_8i_Package_for_P9_Firmware_BIOS_on_MSDOS_and_Windows.zip for the 9211-8i</p>
-</li>
-<li><p>Boot to DOS (create a DOS bootable USB stick from <a href="http://www.bootdisk.com" target="_blank" rel="noopener">http://www.bootdisk.com</a> or <a href="http://www.gocoding.com" target="_blank" rel="noopener">www.gocoding.com</a>).</p>
-</li>
-<li><p>Run from DOS sas2flsh -o -e 6 (this will erase the controller firmware and BIOS).</p>
-</li>
-<li><p>Turn the system off.</p>
-</li>
-<li><p>Turn the system on and boot to DOS (note:  the BIOS won’t post, as you will reflash it in step 8 below).</p>
-</li>
-<li><p>Run from DOS, with files sas2flsh.exe, the .bin and .rom files in the same directory:</p>
-<p>For IR firmware:  sas2flsh -f 9211IRP9.bin -b mptsas2.rom<br>For IT firmware:  sas2flsh -f 9211itp9.bin -b mptsas2.rom</p>
+<li>Check to see if there is an also an onboard SATA controller with disk in the system before running the commands below.<br>Run sas2flsh -listall<br>If you see only the 9211, then run the commands as shown below.<br>If you see two controllers (e.g. c0 and c1, then add -c 1 to all of the commands below–&gt; sas2flsh -c 1 -o -e 6</li>
+<li>Record the SAS address of the 9211 in case you need it later.  To display it, type:<br>sas2flsh -list</li>
+</ol>
+<p>and write down the SAS address.  You can run the is DOS, Windows, Linux, etc.<br>3.  Download 9211_8i_Package_for_P9_Firmware_BIOS_on_MSDOS_and_Windows.zip for the 9211-8i<br>4.  Boot to DOS (create a DOS bootable USB stick from <a href="http://www.bootdisk.com" target="_blank" rel="noopener">http://www.bootdisk.com</a> or <a href="http://www.gocoding.com" target="_blank" rel="noopener">www.gocoding.com</a>).<br>5.  Run from DOS sas2flsh -o -e 6 (this will erase the controller firmware and BIOS).<br>6.  Turn the system off.<br>7.  Turn the system on and boot to DOS (note:  the BIOS won’t post, as you will reflash it in step 8 below).<br>8.  Run from DOS, with files sas2flsh.exe, the .bin and .rom files in the same directory:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">For IR firmware:  sas2flsh -f 9211IRP9.bin -b mptsas2.rom</span><br><span class="line">For IT firmware:  sas2flsh -f 9211itp9.bin -b mptsas2.rom</span><br></pre></td></tr></table></figure>
+
 <p>Note:  you will need to rename 9211-8i_IR_P9.bin to 9211IRP9.bin and 9211-8i-IT_ph9.bin to 9211itp9.bin</p>
-</li>
-<li><p>The controller will now work normally, with the P9 firmware and BIOS.</p>
-</li>
-<li><p>Check to make sure you have a SAS address:<br>sas2flsh -list<br>If you see the same SAS address that you had in step 2, then you are done.<br>If you don’t see the same SAS address, or you don’t see a SAS address, type:<br>sas2flsh -o -sasadd <SAS address></p>
-</li>
+<ol start="9">
+<li>The controller will now work normally, with the P9 firmware and BIOS.</li>
+<li>Check to make sure you have a SAS address:<br>sas2flsh -list<br>If you see the same SAS address that you had in step 2, then you are done.<br>If you don’t see the same SAS address, or you don’t see a SAS address, type:<br>sas2flsh -o -sasadd <SAS address></li>
 </ol>
 </blockquote>
-<p>上面提到的都是基于 Dos 系统上操作的，不过我试了一下都翻车了🤣</p>
+<p>上面提到的都是基于 Dos 系统上操作的，不过我试了一下都翻车了 🤣</p>
 <h3 id="制作-EFI-shell-系统"><a href="#制作-EFI-shell-系统" class="headerlink" title="制作 EFI shell 系统"></a>制作 EFI shell 系统</h3><p>如果主板支持 EFI 的话，建议使用 EFI shell 刷入固件，在 Dos 下会有些奇怪的问题。</p>
 <p>按照 <a href="https://superuser.com/questions/1057446/how-do-i-boot-to-uefi-shell" target="_blank" rel="noopener">How do I “Boot to UEFI shell”?</a> 中提到的：</p>
 <blockquote>
@@ -324,18 +311,16 @@
 <p>Another way is to launch it just like you launch any other EFI binary (e.g. bootloader). Since it’s not really accessible to register a EFI binary to your UEFI or put the shell binary to your ESP in Windows, so the easiest way is probably to put it as <code>\EFI\Boot\bootx64.efi</code> <strong>(also put the <code>update.nsh</code> you need to run and the files it requires under <code>\EFI\Boot\</code>)</strong> in a FAT(32)-formatted USB drive (It shouldn’t matter whether it’s MBR or GPT as long as your UEFI is standard-conforming enough). <strong>Then reboot and boot the USB in UEFI mode from your UEFI boot menu.</strong></p>
 <p>You can obtain the EFI shell binary from the EDK2 project repo:</p>
 <ul>
-<li><p><a href="https://github.com/tianocore/edk2/releases/download/edk2-stable202002/ShellBinPkg.zip" target="_blank" rel="noopener">version 2</a></p>
-</li>
-<li><p><a href="https://github.com/tianocore/edk2/blob/UDK2018/EdkShellBinPkg/FullShell/X64/Shell_Full.efi?raw=true" target="_blank" rel="noopener">version 1 (no longer updated, only for old UEFI that does not work with v2)</a></p>
-<p>(<strong>Note:</strong> some older EFI tools like [sas2flash.efi](<a href="https://www.broadcom.com/site-search?q=Installer" target="_blank" rel="noopener">https://www.broadcom.com/site-search?q=Installer</a> for UEFI) only work with such an old EFI shell (which works on current mainboards with current UEFI))</p>
-</li>
+<li><a href="https://github.com/tianocore/edk2/releases/download/edk2-stable202002/ShellBinPkg.zip" target="_blank" rel="noopener">version 2</a></li>
+<li><a href="https://github.com/tianocore/edk2/blob/UDK2018/EdkShellBinPkg/FullShell/X64/Shell_Full.efi?raw=true" target="_blank" rel="noopener">version 1 (no longer updated, only for old UEFI that does not work with v2)</a></li>
 </ul>
+<p>(<strong>Note:</strong> some older EFI tools like <a href="[https://www.broadcom.com/site-search?q=Installer](https://www.broadcom.com/site-search?q=Installer">sas2flash.efi</a> for UEFI) only work with such an old EFI shell (which works on current mainboards with current UEFI))</p>
 </blockquote>
 <p>首先需要一个 U 盘，对容量没有闲置，几十兆足够，把分区格式化为 FAT32 文件系统格式，然后下载一个 EFI shell 的 efi 文件 <a href="https://github.com/tianocore/edk2/blob/UDK2018/EdkShellBinPkg/FullShell/X64/Shell_Full.efi?raw=true" target="_blank" rel="noopener">version 1 </a>，把该文件保存在 FAT32 分区下的 <code>\EFI\Boot\bootx64.efi</code> 路径下。</p>
 <blockquote>
-<p>  Download from Github Tianocore the precompiled UEFI version 1 Shell: <a href="https://github.com/tianocore/edk2/tree/master/EdkShellBinPkg/FullShell/X64" target="_blank" rel="noopener">Shell_Full.efi</a>. (Only v1 is applicable, later versions are not compatible with the flash tool and end up with the message: “InitShellApp: Application not started from Shell”.)</p>
+<p>Download from Github Tianocore the precompiled UEFI version 1 Shell: <a href="https://github.com/tianocore/edk2/tree/master/EdkShellBinPkg/FullShell/X64" target="_blank" rel="noopener">Shell_Full.efi</a>. (Only v1 is applicable, later versions are not compatible with the flash tool and end up with the message: “InitShellApp: Application not started from Shell”.)</p>
 </blockquote>
-<p>由于刷固件的工具 <code>sas2flash.efi</code> 只和 EFI shell v1 版本的兼容，我第一次刷的时候时使用的 v2 版本，提示 <code>“InitShellApp: Application not started from Shell”</code> 错误😂</p>
+<p>由于刷固件的工具 <code>sas2flash.efi</code> 只和 EFI shell v1 版本的兼容，我第一次刷的时候时使用的 v2 版本，提示 <code>“InitShellApp: Application not started from Shell”</code> 错误 😂</p>
 <p>然后还需要把固件 <code>2114it.bin</code> ，以及刷固件用到的工具 <code>sas2flash.efi</code> 放入到 FAT32 跟目录下，其中固件根据阵列卡的型号不同需要自行找到相应的固件版本，我这个虽然是 IBM H1110 型号的，但是可以刷成 LSI 9211 的，所以就没去找原厂的固件。</p>
 <h3 id="进入-EFI-shell-刷入新的固件"><a href="#进入-EFI-shell-刷入新的固件" class="headerlink" title="进入 EFI shell 刷入新的固件"></a>进入 EFI shell 刷入新的固件</h3><p>从 <a href="https://www.ixsystems.com/community/threads/how-to-flash-lsi-9211-8i-using-efi-shell.50902/" target="_blank" rel="noopener">How-to: Flash LSI 9211-8i using EFI shell</a> 大佬那里复制粘贴过来的的教程：</p>
 <blockquote>
@@ -384,7 +369,7 @@ ShellX64.efi</li>
 <p><img src="https://p.k8s.li/20200908_9211-4i-07.png" alt=""></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>由于是是第一次给阵列卡刷固件，在网上找到了写资料可以做参考。</p>
 <ul>
-<li><a href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware" target="_blank" rel="noopener">IBM H1110卡刷为LSI 9211-4i IT固件</a></li>
+<li><a href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware" target="_blank" rel="noopener">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a></li>
 <li><a href="https://www.tfir.io/easiest-way-to-flash-lsi-sas-9211-8i-on-motherboards-without-efi-shell/" target="_blank" rel="noopener">Easiest Way To Flash LSI SAS 9211-8i on Motherboards without EFI Shell</a></li>
 <li><a href="https://www.broadcom.cn/support/knowledgebase/1211161495925/flash-upgrading-firmware-on-lsi-sas-hbas-upgraded-firmware-on-92" target="_blank" rel="noopener">Flash upgrading firmware on LSI SAS HBAs; Upgraded firmware on 9211-8i to P8, now duplicated drives</a></li>
 <li><a href="chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fdocs.broadcom.com%2Fdoc%2F12353332">LSI® SAS 9211-4i PCI Express® to 6Gb/s Serial Attached SCSI (SAS) Host Bus Adapter </a></li>

@@ -48,15 +48,15 @@
   };
 </script>
 
-  <meta name="description" content="翻车（：由于我的 VPS 不是大盘鸡(就是大容量磁盘机器啦😂)， docker 存储目录 &#x2F;var&#x2F;lib&#x2F;docker 所在的分区严重不足，于是就想着在不改变 docker 配置的下将 &#x2F;opt 目录下的分区分配给 &#x2F;var&#x2F;lib&#x2F;docker 目录。首先想到的是把 &#x2F;var&#x2F;lib&#x2F;docker 复制到 &#x2F;opt&#x2F;docker，然后再将 &#x2F;opt&#x2F;docker 软链接到 &#x2F;var&#x2F;lib&#x2F;">
+  <meta name="description" content="翻车（：由于我的 VPS 不是大盘鸡(就是大容量磁盘机器啦 😂)， docker 存储目录 &#x2F;var&#x2F;lib&#x2F;docker 所在的分区严重不足，于是就想着在不改变 docker 配置的下将 &#x2F;opt 目录下的分区分配给 &#x2F;var&#x2F;lib&#x2F;docker 目录。首先想到的是把 &#x2F;var&#x2F;lib&#x2F;docker 复制到 &#x2F;opt&#x2F;docker，然后再将 &#x2F;opt&#x2F;docker 软链接到 &#x2F;var&#x2F;lib">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mount 命令之 --bind 挂载参数">
 <meta property="og:url" content="https://blog.k8s.li/mount-bind.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
-<meta property="og:description" content="翻车（：由于我的 VPS 不是大盘鸡(就是大容量磁盘机器啦😂)， docker 存储目录 &#x2F;var&#x2F;lib&#x2F;docker 所在的分区严重不足，于是就想着在不改变 docker 配置的下将 &#x2F;opt 目录下的分区分配给 &#x2F;var&#x2F;lib&#x2F;docker 目录。首先想到的是把 &#x2F;var&#x2F;lib&#x2F;docker 复制到 &#x2F;opt&#x2F;docker，然后再将 &#x2F;opt&#x2F;docker 软链接到 &#x2F;var&#x2F;lib&#x2F;">
+<meta property="og:description" content="翻车（：由于我的 VPS 不是大盘鸡(就是大容量磁盘机器啦 😂)， docker 存储目录 &#x2F;var&#x2F;lib&#x2F;docker 所在的分区严重不足，于是就想着在不改变 docker 配置的下将 &#x2F;opt 目录下的分区分配给 &#x2F;var&#x2F;lib&#x2F;docker 目录。首先想到的是把 &#x2F;var&#x2F;lib&#x2F;docker 复制到 &#x2F;opt&#x2F;docker，然后再将 &#x2F;opt&#x2F;docker 软链接到 &#x2F;var&#x2F;lib">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-02-28T14:12:52.056Z">
+<meta property="article:modified_time" content="2022-03-02T00:31:21.861Z">
 <meta property="article:author" content="木子">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="linux">
@@ -217,7 +217,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-28 2022-02-28T22:12:52+08:00" itemprop="dateModified" datetime="2022-02-28T22:12:52+08:00">2022-02-28</time>
+                <time title="修改时间：2022-03-02 2022-03-02T08:31:21+08:00" itemprop="dateModified" datetime="2022-03-02T08:31:21+08:00">2022-03-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,9 +270,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="翻车（："><a href="#翻车（：" class="headerlink" title="翻车（："></a>翻车（：</h2><p>由于我的 VPS 不是大盘鸡(就是大容量磁盘机器啦😂)， docker 存储目录 <code>/var/lib/docker</code> 所在的分区严重不足，于是就想着在不改变 docker 配置的下将 <code>/opt</code> 目录下的分区分配给 <code>/var/lib/docker</code> 目录。首先想到的是把 <code>/var/lib/docker</code> 复制到 <code>/opt/docker</code>，然后再将 <code>/opt/docker</code> 软链接到 <code>/var/lib/docker</code> 。</p>
-<p>于是我就一顿操作猛如虎，<code>mv /var/lib/docker /opt/docker &amp;&amp; ln -s /opt/docker /var/lib/docker</code> 一把梭，然后我启动一个容器的时候当场就翻车了🤣。</p>
-<p>原来有些程序是不支持软链接目录的，还有一点就是软链接的路径也有点坑。比如我将 <code>/opt/docker -&gt; /var/lib/docker/</code> ，在 <code>/var/lib/docker</code> 目录下执行 <code>ls ../</code> 即它的上一级目录是 <code>/opt</code> 而不是 <code>/var/lib</code> ，对于一些依赖相对路径的应用（尤其是 shell 脚本）来讲这样使用软链接的方式也容易翻车😂。</p>
+        <h2 id="翻车（："><a href="#翻车（：" class="headerlink" title="翻车（："></a>翻车（：</h2><p>由于我的 VPS 不是大盘鸡(就是大容量磁盘机器啦 😂)， docker 存储目录 <code>/var/lib/docker</code> 所在的分区严重不足，于是就想着在不改变 docker 配置的下将 <code>/opt</code> 目录下的分区分配给 <code>/var/lib/docker</code> 目录。首先想到的是把 <code>/var/lib/docker</code> 复制到 <code>/opt/docker</code>，然后再将 <code>/opt/docker</code> 软链接到 <code>/var/lib/docker</code> 。</p>
+<p>于是我就一顿操作猛如虎，<code>mv /var/lib/docker /opt/docker &amp;&amp; ln -s /opt/docker /var/lib/docker</code> 一把梭，然后我启动一个容器的时候当场就翻车了 🤣。</p>
+<p>原来有些程序是不支持软链接目录的，还有一点就是软链接的路径也有点坑。比如我将 <code>/opt/docker -&gt; /var/lib/docker/</code> ，在 <code>/var/lib/docker</code> 目录下执行 <code>ls ../</code> 即它的上一级目录是 <code>/opt</code> 而不是 <code>/var/lib</code> ，对于一些依赖相对路径的应用（尤其是 shell 脚本）来讲这样使用软链接的方式也容易翻车 😂。</p>
 <p>那么有没有一种更好的办法将两个目录进行“硬链接”呢，注意我在此用的是双引号，并非是真正的”硬链接“，搜了一圈发现 mount –bind 这种骚操作。无论我们对文件使用软链接/硬链接/bind，还是对目录使用软链接，其实都是希望操作的 <code>src</code> 和 <code>dest</code> 他们二者都能保持一致。通过 bind 挂载的方式具有着挂载点的一些特性，这是链接是不具有的，对一些不支持链接的应用来讲，bind 的方式要友好一些。</p>
 <h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><p>其实 bind 这个挂载选项我们在使用 docker 或者 kubernetes 多少都会用到的，尤其是当使用 kubernetes  时 kubelet 在启动容器挂载存储的时候底层是将 node 节点本机的 <code>/var/lib/kubelet/pods/&lt;Pod的ID&gt;/volumes/kubernetes.io~&lt;Volume类型&gt;/&lt;Volume名字&gt;</code> 目录通过 bind 的方式挂载到容器中的，详细的分析可以参考之前我写的一篇博客 <a href="https://blog.k8s.li/kubelet-mount-volumes-analysis.html">kubelet 挂载 volume 原理分析</a> 。</p>
 <blockquote>
@@ -295,28 +295,24 @@
 <p>在容器内使用 umount 命令卸载掉 <code>/var</code> ，umount 操作需要 root 权限，这也是为什么要在容器启动的时候加上 <code>--privileged</code> 参数来启动一个特权容器的原因。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/ # ls /var/</span><br><span class="line">74898710_p21.jpg    MJSTEALEY.md        docker-compose.yml  letsencrypt         resolv.conf</span><br><span class="line">CONSOLE.md          README.md           hostname            logs                stop-and-remove.sh</span><br><span class="line">LICENSE             config              hosts               nginx               webp-server</span><br><span class="line">/ # umount /var/</span><br><span class="line"><span class="meta">#</span><span class="bash"> umount 之后容器内原来的 /var 目录内容<span class="string">"恢复"</span>了</span></span><br><span class="line">/ # ls /var/</span><br><span class="line">cache  empty  lib    local  lock   log    mail   opt    run    spool  tmp</span><br></pre></td></tr></table></figure>
 
-<h2 id="其他用处🤔"><a href="#其他用处🤔" class="headerlink" title="其他用处🤔"></a>其他用处🤔</h2><h3 id="无缝更新-Webp-Server-Go"><a href="#无缝更新-Webp-Server-Go" class="headerlink" title="无缝更新 Webp Server Go"></a>无缝更新 Webp Server Go</h3><p>在 <a href="">小土豆</a>、<a href="">Nona</a> 大佬讨论 <a href="">Webp Server Go</a> 无缝更新的时候我们提出了一个思路：</p>
+<h2 id="其他用处-🤔"><a href="#其他用处-🤔" class="headerlink" title="其他用处 🤔"></a>其他用处 🤔</h2><h3 id="无缝更新-Webp-Server-Go"><a href="#无缝更新-Webp-Server-Go" class="headerlink" title="无缝更新 Webp Server Go"></a>无缝更新 Webp Server Go</h3><p>在 <a href="">小土豆</a>、<a href="">Nona</a> 大佬讨论 <a href="">Webp Server Go</a> 无缝更新的时候我们提出了一个思路：</p>
 <blockquote>
 <ul>
-<li><p>在更新之前先对 nginx 配置文件进行修改，去掉 webp server 的 location 字段：</p>
+<li>在更新之前先对 nginx 配置文件进行修改，去掉 webp server 的 location 字段：</li>
+</ul>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* \.(png|jpg|jpeg)$</span> &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:3333;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> HOST <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">add_header</span> Cache-Control <span class="string">'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>然后再 nginx -s reload 不中断 reload 一</p>
-</li>
-<li><p>接着停掉 webp server 服务 <code>systemctl stop webps</code></p>
-</li>
-<li><p>mv webp-server{.bak,}</p>
-</li>
-<li><p>mv ./upload/webp-server-linux-amd64 webp-server</p>
-</li>
-<li><p>接着启动 webp server 服务 <code>systemctl start webps</code></p>
-</li>
-<li><p>然后开倒车把 nginx 配置文件再改回去🍞</p>
-</li>
+
+<ul>
+<li>然后再 nginx -s reload 不中断 reload 一</li>
+<li>接着停掉 webp server 服务 <code>systemctl stop webps</code></li>
+<li>mv webp-server{.bak,}</li>
+<li>mv ./upload/webp-server-linux-amd64 webp-server</li>
+<li>接着启动 webp server 服务 <code>systemctl start webps</code></li>
+<li>然后开倒车把 nginx 配置文件再改回去 🍞</li>
 </ul>
 </blockquote>
-<p>在此需要提几点，我们希望<strong>无缝更新</strong>，即在更新的过程中不会导致用户请求图片资源失败，那怕 <code>+1s</code>都不行，所以我们需要暂时性地在 nginx 配置文件里去掉 webp server ，使它去请求原图片，等更新完 webp server 之后再添加上去。</p>
-<p>对于木子这种经常删库跑路的手残菜鸟来讲，对一个配置文件改来改去不是好方法，万一 nginx 配置文件改来改去没改好， nginx -s reload 一下 nginx 服务就炸了😂。那么使用 cp 和 mv 怎么样。</p>
+<p>在此需要提几点，我们希望<strong>无缝更新</strong>，即在更新的过程中不会导致用户请求图片资源失败，那怕 <code>+1s</code> 都不行，所以我们需要暂时性地在 nginx 配置文件里去掉 webp server ，使它去请求原图片，等更新完 webp server 之后再添加上去。</p>
+<p>对于木子这种经常删库跑路的手残菜鸟来讲，对一个配置文件改来改去不是好方法，万一 nginx 配置文件改来改去没改好， nginx -s reload 一下 nginx 服务就炸了 😂。那么使用 cp 和 mv 怎么样。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cp blog.conf&#123;,.bak&#125;</span><br><span class="line">vim blog.conf</span><br><span class="line">nginx -s reload</span><br><span class="line">- update webp server</span><br><span class="line">mv blog.conf&#123;,.bak2&#125;</span><br><span class="line">mv blog.conf&#123;.bak,&#125;</span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
 
 <p>使用 bind 呢？好像少了一步，下次更新 webp server 的时候只需要 umount 一下，更新完之后再 mount 一下就可以啦。</p>
@@ -417,7 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#翻车（："><span class="nav-number">1.</span> <span class="nav-text">翻车（：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bind"><span class="nav-number">2.</span> <span class="nav-text">bind</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他用处🤔"><span class="nav-number">3.</span> <span class="nav-text">其他用处🤔</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无缝更新-Webp-Server-Go"><span class="nav-number">3.1.</span> <span class="nav-text">无缝更新 Webp Server Go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPS-搬家助手"><span class="nav-number">3.2.</span> <span class="nav-text">VPS 搬家助手</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#翻车（："><span class="nav-number">1.</span> <span class="nav-text">翻车（：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bind"><span class="nav-number">2.</span> <span class="nav-text">bind</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他用处-🤔"><span class="nav-number">3.</span> <span class="nav-text">其他用处 🤔</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无缝更新-Webp-Server-Go"><span class="nav-number">3.1.</span> <span class="nav-text">无缝更新 Webp Server Go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPS-搬家助手"><span class="nav-number">3.2.</span> <span class="nav-text">VPS 搬家助手</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -48,12 +48,12 @@
   };
 </script>
 
-  <meta name="description" content="0. 要开始了？听说汝公司准备或者正在使用 kubernetes 容器调度平台了？那么对于一些及其重要的线上环境，如何选择一个合适的 kubernetes 版本呢？Kubernetes 版本号最循着 x.y.z 的命名规范，相信大家肯定不会拿 1.15.0 这样的版本用于生产环境吧😂。如何选择一个稳定的版本号最好的方法就是参考各大云计算厂商(Google、AWS digitalocean)。他们">
+  <meta name="description" content="0. 要开始了？听说汝公司准备或者正在使用 kubernetes 容器调度平台了？那么对于一些及其重要的线上环境，如何选择一个合适的 kubernetes 版本呢？Kubernetes 版本号最循着 x.y.z 的命名规范，相信大家肯定不会拿 1.15.0 这样的版本用于生产环境吧 😂。如何选择一个稳定的版本号最好的方法就是参考各大云计算厂商(Google、AWS digitalocean)。他">
 <meta property="og:type" content="article">
 <meta property="og:title" content="生产环境如何保守地选择 kubernetes 版本">
 <meta property="og:url" content="https://blog.k8s.li/How-to-choose-the-right-version-of-kubernetes.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
-<meta property="og:description" content="0. 要开始了？听说汝公司准备或者正在使用 kubernetes 容器调度平台了？那么对于一些及其重要的线上环境，如何选择一个合适的 kubernetes 版本呢？Kubernetes 版本号最循着 x.y.z 的命名规范，相信大家肯定不会拿 1.15.0 这样的版本用于生产环境吧😂。如何选择一个稳定的版本号最好的方法就是参考各大云计算厂商(Google、AWS digitalocean)。他们">
+<meta property="og:description" content="0. 要开始了？听说汝公司准备或者正在使用 kubernetes 容器调度平台了？那么对于一些及其重要的线上环境，如何选择一个合适的 kubernetes 版本呢？Kubernetes 版本号最循着 x.y.z 的命名规范，相信大家肯定不会拿 1.15.0 这样的版本用于生产环境吧 😂。如何选择一个稳定的版本号最好的方法就是参考各大云计算厂商(Google、AWS digitalocean)。他">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-08-14T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-02-29T16:00:00.000Z">
@@ -268,7 +268,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="0-要开始了？"><a href="#0-要开始了？" class="headerlink" title="0. 要开始了？"></a>0. 要开始了？</h2><p>听说汝公司准备或者正在使用 kubernetes 容器调度平台了？那么对于一些及其重要的线上环境，如何选择一个合适的 kubernetes 版本呢？Kubernetes 版本号最循着 x.y.z 的命名规范，相信大家肯定不会拿 1.15.0 这样的版本用于生产环境吧😂。如何选择一个稳定的版本号最好的方法就是参考各大云计算厂商(Google、AWS digitalocean)。他们提供 kubernetes 云平台，稳定性一般要高于我们平时的生产环境。他们如何选择 kubernetes 版本是个不错的参考依照。</p>
+        <h2 id="0-要开始了？"><a href="#0-要开始了？" class="headerlink" title="0. 要开始了？"></a>0. 要开始了？</h2><p>听说汝公司准备或者正在使用 kubernetes 容器调度平台了？那么对于一些及其重要的线上环境，如何选择一个合适的 kubernetes 版本呢？Kubernetes 版本号最循着 x.y.z 的命名规范，相信大家肯定不会拿 1.15.0 这样的版本用于生产环境吧 😂。如何选择一个稳定的版本号最好的方法就是参考各大云计算厂商(Google、AWS digitalocean)。他们提供 kubernetes 云平台，稳定性一般要高于我们平时的生产环境。他们如何选择 kubernetes 版本是个不错的参考依照。</p>
 <p>目前绝大多数的教程或者博客都是以 1.14.3 、1.15.2 、1.13.2  等等小版本号低于 5 的版本来部署，虽说小版本号之间没有多大差异，但这样无疑就带来一种风气，就是我生产环境也选择使用这些版本。我认为这样并不恰当，在小版本号低于 5 之前的版本，存在一些漏洞或者问题是我们生产环境是无法容忍的。这也是为什么各大 kubernetes 云服务厂商在上线新版本是会经过三到六个月的测试，比如 1.13 版本，无论是 AKS、EKS、GKE 他们都是在 1.13.6 版本之才推出 1.13 版本的正式版，之前的小版本都是测试或者预览版本。选择 1.12.10 这名高的版本也合适吗？抱歉，依照现在的进度，预估计小版本 10 以后就很少在更新维护了，所以万一有什么问题 1.13.6 可以很轻松地通过升级到 1.13.7 版本能解决，但 1.12 版本升级到 1.13 版本是比较麻烦地，没有稳定升级的空间，因此接近小版本 10 的也不建议新集群部署使用。</p>
 <h2 id="1-kubernetes-release-timeline"><a href="#1-kubernetes-release-timeline" class="headerlink" title="1. kubernetes release timeline"></a>1. kubernetes release timeline</h2><p>下面是我根据 kubernetes GitHub 的 release 总结汇总的一张表格</p>
 <h3 id="Kubernetes-release"><a href="#Kubernetes-release" class="headerlink" title="Kubernetes release"></a>Kubernetes release</h3><table>
@@ -565,7 +565,7 @@
 </tr>
 </tbody></table>
 <h2 id="2-Google-kubernetes"><a href="#2-Google-kubernetes" class="headerlink" title="2. Google kubernetes"></a>2. Google kubernetes</h2><p><strong>Google kubernetes <a href="https://cloud.google.com/kubernetes-engine/docs/release-notes" target="_blank" rel="noopener">官方文档</a></strong></p>
-<p> August 1, 2019</p>
+<p>August 1, 2019</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.13.7-gke.15</span><br><span class="line">1.12.9-gke.10</span><br><span class="line">1.12.7-gke.26</span><br><span class="line">1.12.8-gke.12</span><br></pre></td></tr></table></figure>
 
 <p><strong>June 27, 2019</strong></p>
@@ -577,13 +577,13 @@
 <p><strong>May 20, 2019</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.10.x (nodes only, completing)					1.11.8-gke.6</span><br><span class="line">1.12.6-gke.10									1.12.6-gke.11</span><br><span class="line">1.14.1-gke.4 and older 1.14.x (Alpha)			1.14.1-gke.5 (Alpha)</span><br><span class="line"></span><br><span class="line">--------</span><br><span class="line"></span><br><span class="line">1.12.x clusters v1.12.7-gke.17 and newer</span><br><span class="line">1.13.x clusters v1.13.5-gke.10 and newer</span><br><span class="line">1.14.x (Alpha) clusters v1.14.1-gke.5 and newer</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-AWS-kubernetes"><a href="#3-AWS-kubernetes" class="headerlink" title="3. AWS kubernetes"></a>3. AWS kubernetes</h2><p>AWS 的 Kubernetes 平台叫做 EKS，在创建 kubernetes 集群时可以选择的版本没有 GKE 那么详细，仅仅有 1.13 、1.12 、1.11 这样的版本号，没有最后一位修补版本号，但我收到过 EKS 的产品更新邮件提醒，当 EKS 推出 1.13 版本的时候第一个 1.13 版本是使用的 1.13.7。<a href="https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html" target="_blank" rel="noopener">这里</a> 有 EKS 版本的详细信息。目前的版本还是 1.13 、1.12、1.11。虽然 1.14.5 版本都推出了，但至今 EKS 也没有 1.14 版本的 Kubernetes 可用。由此可以推断，到 1.13之后。EKS 团队在选择 kubernetes 版本的时候更倾向于 x.y.z 中 z 大于 6 的版本。因为前面的 6 个小版本的修复已经使得这个版本的稳定性适用于生产环境了。</p>
+<h2 id="3-AWS-kubernetes"><a href="#3-AWS-kubernetes" class="headerlink" title="3. AWS kubernetes"></a>3. AWS kubernetes</h2><p>AWS 的 Kubernetes 平台叫做 EKS，在创建 kubernetes 集群时可以选择的版本没有 GKE 那么详细，仅仅有 1.13 、1.12 、1.11 这样的版本号，没有最后一位修补版本号，但我收到过 EKS 的产品更新邮件提醒，当 EKS 推出 1.13 版本的时候第一个 1.13 版本是使用的 1.13.7。<a href="https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html" target="_blank" rel="noopener">这里</a> 有 EKS 版本的详细信息。目前的版本还是 1.13 、1.12、1.11。虽然 1.14.5 版本都推出了，但至今 EKS 也没有 1.14 版本的 Kubernetes 可用。由此可以推断，到 1.13 之后。EKS 团队在选择 kubernetes 版本的时候更倾向于 x.y.z 中 z 大于 6 的版本。因为前面的 6 个小版本的修复已经使得这个版本的稳定性适用于生产环境了。</p>
 <blockquote>
 <p>Kubernetes 社区大约会每隔三个月发布次要版本。 这些版本包括新增功能和改进。 修补程序版本更为频繁（有时会每周发布），并且仅用于次要版本中的关键 Bug 修复。 这些修补程序版本包括针对影响大量客户以及在生产中基于 Kubernetes 运行的产品的安全漏洞或重大 Bug 的修复。</p>
 <p>AKS 旨在完成上游版本发布后的 30 天内，根据该版本的稳定性认证和发布新的 Kubernetes 版本</p>
 <p>此处剽窃 Azure 的官方文档 <a href="https://docs.microsoft.com/zh-cn/azure/aks/supported-kubernetes-versions" target="_blank" rel="noopener">Azure Kubernetes 服务 (AKS) 中支持的 Kubernetes 版本</a></p>
 </blockquote>
-<p>下面我就直接剽窃一下 EKS 的<a href="https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html" target="_blank" rel="noopener">官方文档</a>😂</p>
+<p>下面我就直接剽窃一下 EKS 的<a href="https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html" target="_blank" rel="noopener">官方文档</a> 😂</p>
 <p><strong>Kubernetes version 1.13</strong></p>
 <table>
 <thead>
@@ -636,7 +636,7 @@
 </tr>
 <tr>
 <td><code>1.11.8</code></td>
-<td>New platform version to support custom DNS names in the Kubelet certificate and improve <code>etcd</code>performance.</td>
+<td>New platform version to support custom DNS names in the Kubelet certificate and improve <code>etcd</code> performance.</td>
 </tr>
 <tr>
 <td><code>1.11.8</code></td>
@@ -648,7 +648,7 @@
 </tr>
 </tbody></table>
 <h2 id="4-AKS"><a href="#4-AKS" class="headerlink" title="4. AKS"></a>4. AKS</h2><p>再补充一下 M$ 家的 AKS 貌似和阿里云的 kubernetes 重名？😂</p>
-<p>看来 M$ 家的更新和支持挺快的，要比 kubernetes 亲爹 Google 还要快？不愧是最佳 Android 开发者😂。</p>
+<p>看来 M$ 家的更新和支持挺快的，要比 kubernetes 亲爹 Google 还要快？不愧是最佳 Android 开发者 😂。</p>
 <p><a href="https://github.com/Azure/AKS/releases" target="_blank" rel="noopener">AKS-release</a></p>
 <ol>
 <li><p><a href="https://github.com/Azure/AKS/releases/tag/2019-08-05" target="_blank" rel="noopener">2019-08-05</a></p>
@@ -667,8 +667,8 @@
 </li>
 </ol>
 <p>看来 M$ 的 kubernetes 平台比 Google 更新的还要快，版本 GA 的时候也要早于 GKE 。即便如此，各大云计算厂商仍然会倾向于等到 kubernetes 版本修复得差不了才将上线新版本。</p>
-<h2 id="5-DigitalOcean-kubernetes"><a href="#5-DigitalOcean-kubernetes" class="headerlink" title="5. DigitalOcean kubernetes"></a>5. DigitalOcean kubernetes</h2><h2 id="6-宿主机系统的参考"><a href="#6-宿主机系统的参考" class="headerlink" title="6. 宿主机系统的参考"></a>6. 宿主机系统的参考</h2><p>如果汝刚开始准备使用 Kubernetes ，那就抛弃 CentOS ，因为 CentOS 7.6 (1810) 的内核是 3.10 版本的，而 3.10 版本的内核是 2013 年 <a href="https://kernelnewbies.org/Linux_3.10" target="_blank" rel="noopener">release</a> 的 ，那时候的 Docker 还在妈妈的怀抱里吃奶呢😂。如今 Docker 容器虚拟化的一些特性需要新版本的 kernel 支持才能稳定低运行，而有些特性在 3.10 版本是不稳定的。<code>新版docker启用Linux CGroup memory这个feature，但这个feature在kernel 4.0以下版本中是非稳定版本</code> <a href="http://blog.allen-mo.com/2018/08/27/kubernetes_ops_troubleshooting/" target="_blank" rel="noopener">来自</a> 。</p>
-<p>综上，为了少折腾，少踩坑还是更新的长期支持的高版本内核吧。都 9102 年了，就不要再相信使用旧版本更稳定的言论了😂。你看，人家 Google GKE 的节点的宿主机系统都是使用的 4.14 的内核，没故障吧。</p>
+<h2 id="5-DigitalOcean-kubernetes"><a href="#5-DigitalOcean-kubernetes" class="headerlink" title="5. DigitalOcean kubernetes"></a>5. DigitalOcean kubernetes</h2><h2 id="6-宿主机系统的参考"><a href="#6-宿主机系统的参考" class="headerlink" title="6. 宿主机系统的参考"></a>6. 宿主机系统的参考</h2><p>如果汝刚开始准备使用 Kubernetes ，那就抛弃 CentOS ，因为 CentOS 7.6 (1810) 的内核是 3.10 版本的，而 3.10 版本的内核是 2013 年 <a href="https://kernelnewbies.org/Linux_3.10" target="_blank" rel="noopener">release</a> 的 ，那时候的 Docker 还在妈妈的怀抱里吃奶呢 😂。如今 Docker 容器虚拟化的一些特性需要新版本的 kernel 支持才能稳定低运行，而有些特性在 3.10 版本是不稳定的。<code>新版docker启用Linux CGroup memory这个feature，但这个feature在kernel 4.0以下版本中是非稳定版本</code> <a href="http://blog.allen-mo.com/2018/08/27/kubernetes_ops_troubleshooting/" target="_blank" rel="noopener">来自</a> 。</p>
+<p>综上，为了少折腾，少踩坑还是更新的长期支持的高版本内核吧。都 9102 年了，就不要再相信使用旧版本更稳定的言论了 😂。你看，人家 Google GKE 的节点的宿主机系统都是使用的 4.14 的内核，没故障吧。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">System Info:</span><br><span class="line"> Machine ID:                 acd0a47b56b6a4e6f775daaf31da236b</span><br><span class="line"> System UUID:                ACD0A47B-56B6-A4E6-F775-DAAF31DA236B</span><br><span class="line"> Boot ID:                    3b811f67-58cb-40af-8d6b-6e77e951dcee</span><br><span class="line"> Kernel Version:             4.14.127+</span><br><span class="line"> OS Image:                   Container-Optimized OS from Google</span><br><span class="line"> Operating System:           linux</span><br><span class="line"> Architecture:               amd64</span><br><span class="line"> Container Runtime Version:  docker://17.3.2</span><br><span class="line"> Kubelet Version:            v1.12.8-gke.10</span><br><span class="line"> Kube-Proxy Version:         v1.12.8-gke.10</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">╭─root@deploy ~</span><br><span class="line">╰─<span class="comment"># cat /etc/centos-release</span></span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">╭─root@deploy ~</span><br><span class="line">╰─<span class="comment"># uname -a</span></span><br><span class="line">Linux deploy 3.10.0-957.el7.x86_64 <span class="comment">#1 SMP Thu Nov 8 23:39:32 UTC 2018</span></span><br></pre></td></tr></table></figure>

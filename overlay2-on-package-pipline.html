@@ -273,7 +273,7 @@
 <p>我们的产品打包时会有一个镜像列表，并根据这个镜像列表在 CI/CD 的流水线镜像仓库里将镜像同步到一个发布归档的镜像仓库和一个打包的镜像仓库。最终会将打包的镜像仓库的 registry 存储目录打包一个未经 gzip 压缩的 tar 包。最终在客户环境部署的时候将这个 tar 包解压到部署的镜像仓库存储目录中，供集群部署和组件部署使用。至于部署的时候为什么可以这样做，其中的原理可以参考我之前写过的文章 <a href="https://blog.k8s.li/docker-registry-to-harbor.html">docker registry 迁移至 harbor</a>。</p>
 <p>在打包的过程中镜像同步会进行两次，每次都会根据一个 images.list 列表将镜像同步到不同的镜像仓库中，同步的方式使用的是  <code>docker pull –&gt; docker tag –&gt; docker push</code>。其镜像同步的流程如下图所示：</p>
 <p><img src="https://p.k8s.li/2021-03-01-001.jpeg" alt="img"></p>
-<p>第一次是从CI/CD 流水线镜像仓库（cicd.registry.local）中拉取镜像并 push 到发布归档的镜像仓库(archive.registry.local)中，其目的是归档并备份我们已经发布的镜像，这一步称其为保存备份同步（save sync）。</p>
+<p>第一次是从 CI/CD 流水线镜像仓库（cicd.registry.local）中拉取镜像并 push 到发布归档的镜像仓库(archive.registry.local)中，其目的是归档并备份我们已经发布的镜像，这一步称其为保存备份同步（save sync）。</p>
 <p>第二次将镜像从发布归档的镜像仓库 (archive.registry.local) 同步镜像到打包镜像仓库（package.registry.local）中。不同于第一次的镜像同步，这次同步镜像的时候会对镜像仓库做清理的操作，首先清理打包镜像仓库的存储目录，然后容器 registry 容器让 registry 重新提取镜像的元数据信息到内存中。其目的是清理旧数据，防止历史的镜像带入本次发布版本的安装包中。</p>
 <p>镜像同步完成之后会将整个打包镜像仓库的存储目录（/var/lib/registry）打包成一个 tar 包，并放到产品安装包中。</p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>我刚入职的时候，我们的产品发布耗时最久的就是镜像同步阶段，记得最长的时候耗时 <code>2h30min</code>。耗时这么久的主要原因分析如下：</p>
@@ -294,14 +294,10 @@
 <p>总之 overlay2 大法好！根据 overlay2 的特性，我们可以将历史的数据当作 overlay2 里的 lowerdir 来使用。而 upperdir 则是本次镜像同步的增量数据，merged 则是最终实际需要的数据。</p>
 <h2 id="overlay2"><a href="#overlay2" class="headerlink" title="overlay2"></a>overlay2</h2><p>虽然在上文中提到了使用 overlay2 的方案，但到目前为止还是没有一个成熟的解决方案。需要解决的问题如下：</p>
 <ul>
-<li><p>如何清理旧数据</p>
-</li>
-<li><p>如何复用历史的镜像？</p>
-</li>
-<li><p>如何区分出历史的镜像和本次的镜像？</p>
-</li>
-<li><p>如何保障本次镜像同步的结果只包含本次需要的镜像？</p>
-</li>
+<li>如何清理旧数据</li>
+<li>如何复用历史的镜像？</li>
+<li>如何区分出历史的镜像和本次的镜像？</li>
+<li>如何保障本次镜像同步的结果只包含本次需要的镜像？</li>
 </ul>
 <h3 id="registry-存储结构"><a href="#registry-存储结构" class="headerlink" title="registry 存储结构"></a>registry 存储结构</h3><p>既然要使用历史的镜像仓库数据来作为 overlay2 的 lowerdir。那么如何解决之前提到的清理旧数据问题，以及如何使用历史的镜像的问题？那么还是需要再次回顾一下 registry 存储目录结构。</p>
 <p><img src="https://p.k8s.li/registry-storage.jpeg" alt="img"></p>
@@ -390,8 +386,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/lib/registry/merged</span><br><span class="line">tar -cf docker.tar docker</span><br></pre></td></tr></table></figure>
 
 <p>在本地按照上述步骤进行了简单的验证，确实可以！在第二次同步镜像的时候会提示很多 blob 已经存在，镜像同步的速度比之前又快了 5 倍左右。那么将上述步骤写成一个脚本就能反复使用了。</p>
-<h3 id="registry-gc-问题-？"><a href="#registry-gc-问题-？" class="headerlink" title="registry gc 问题 ？"></a>registry gc 问题 ？</h3><p>在使用的过程中遇到过 registry GC 清理不干净的问题：在进行 GC 之后，一些镜像 layer 和 config 文件已经在 blobs 存储目录下删除了，但指向它的 link 文件依旧保存在 repositories 目录下🙄。GitHub 上有个 PR <a href="https://github.com/docker/distribution/issues/2288" target="_blank" rel="noopener">Remove the layer’s link by garbage-collect #2288</a> 就是专门来清理这些无用的 layer link 文件的，最早的一个是三年前的，但是还没有合并😂。</p>
-<p>解决办法就是使用我在 <a href="https://blog.k8s.li/registry-gc.html">docker registry GC 原理分析</a> 文章中提到的方案：自制 registry GC 脚本🙃。</p>
+<h3 id="registry-gc-问题-？"><a href="#registry-gc-问题-？" class="headerlink" title="registry gc 问题 ？"></a>registry gc 问题 ？</h3><p>在使用的过程中遇到过 registry GC 清理不干净的问题：在进行 GC 之后，一些镜像 layer 和 config 文件已经在 blobs 存储目录下删除了，但指向它的 link 文件依旧保存在 repositories 目录下 🙄。GitHub 上有个 PR <a href="https://github.com/docker/distribution/issues/2288" target="_blank" rel="noopener">Remove the layer’s link by garbage-collect #2288</a> 就是专门来清理这些无用的 layer link 文件的，最早的一个是三年前的，但是还没有合并 😂。</p>
+<p>解决办法就是使用我在 <a href="https://blog.k8s.li/registry-gc.html">docker registry GC 原理分析</a> 文章中提到的方案：自制 registry GC 脚本 🙃。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">v2=<span class="variable">$1</span></span><br><span class="line">v2=<span class="variable">$&#123;v2:="/var/lib/registry/docker/registry/v2"&#125;</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;v2&#125;</span></span><br><span class="line">all_blobs=/tmp/all_blobs.list</span><br><span class="line">: &gt; <span class="variable">$&#123;all_blobs&#125;</span></span><br><span class="line"><span class="comment"># delete unlink blob's link file in _layers</span></span><br><span class="line"><span class="keyword">for</span> link <span class="keyword">in</span> $(find repositories -<span class="built_in">type</span> f -name <span class="string">"link"</span> | grep -E <span class="string">"_layers\/sha256\/.*"</span>); <span class="keyword">do</span></span><br><span class="line">    link_sha256=$(<span class="built_in">echo</span> <span class="variable">$&#123;link&#125;</span> | grep -Eo <span class="string">"_layers\/sha256\/.*"</span> | sed <span class="string">'s/_layers\/sha256\///g;s/\/link//g'</span>)</span><br><span class="line">    link_short=<span class="variable">$&#123;link:0:2&#125;</span></span><br><span class="line">    link_dir=$(<span class="built_in">echo</span> <span class="variable">$&#123;link&#125;</span> | sed <span class="string">'s/\/link//'</span>)</span><br><span class="line">    data_file=blobs/sha256/<span class="variable">$&#123;link_short&#125;</span>/<span class="variable">$&#123;link&#125;</span></span><br><span class="line">    <span class="keyword">if</span> [[ ! -d <span class="variable">$&#123;data_file&#125;</span> ]]; <span class="keyword">then</span> rm -rf <span class="variable">$&#123;link_dir&#125;</span>; <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment">#marking all the blob by all images manifest</span></span><br><span class="line"><span class="keyword">for</span> tag <span class="keyword">in</span> $(find repositories -name <span class="string">"link"</span> | grep current); <span class="keyword">do</span></span><br><span class="line">    link=$(cat <span class="variable">$&#123;tag&#125;</span> | cut -c8-71)</span><br><span class="line">    mfs=blobs/sha256/<span class="variable">$&#123;link:0:2&#125;</span>/<span class="variable">$&#123;link&#125;</span>/data</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$&#123;link&#125;</span> &gt;&gt; <span class="variable">$&#123;all_blobs&#125;</span></span><br><span class="line">    grep -Eo <span class="string">"\b[a-f0-9]&#123;64&#125;\b"</span> <span class="variable">$&#123;mfs&#125;</span> | sort -n | uniq | cut -c1-12 &gt;&gt; <span class="variable">$&#123;all_blobs&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment">#delete blob if the blob doesn't exist in all_blobs.list</span></span><br><span class="line"><span class="keyword">for</span> blob <span class="keyword">in</span> $(find blobs -name <span class="string">"data"</span> | cut -d <span class="string">"/"</span> -f4); <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> ! grep <span class="variable">$&#123;blob&#125;</span> <span class="variable">$&#123;all_blobs&#125;</span>; <span class="keyword">then</span></span><br><span class="line">        rm -rf blobs/sha256/<span class="variable">$&#123;blob:0:2&#125;</span>/<span class="variable">$&#123;blob&#125;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>好了，至此最终的优化方案已经定下来了，其流程上如下：</p>
@@ -421,7 +417,7 @@
 <li>最后将镜像仓库存储目录打包就得到了本次需要的镜像啦。</li>
 </ul>
 <h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>虽然比之前的流程复杂了很多，但优化的结果是十分明显，比以往快了 5 到 15 倍，并在我们的生产环境中已经稳稳地使用了大半年。</p>
-<p>读完这篇文章可能你会觉得一头雾水，不知道究竟在讲什么。什么镜像同步、镜像 blob、layer、overlay2、联合挂载、写时复制等等，被这一堆复杂的背景和概念搞混了😂。本文确实不太好理解，因为背景可能较特殊和复杂，很少人会遇到这样的场景。为了很好地理解本文所讲到的内容和背后的原理，过段时间我会单独写一篇博客，通过最佳实践来理解本文提到的技术原理。敬请期待😝</p>
+<p>读完这篇文章可能你会觉得一头雾水，不知道究竟在讲什么。什么镜像同步、镜像 blob、layer、overlay2、联合挂载、写时复制等等，被这一堆复杂的背景和概念搞混了 😂。本文确实不太好理解，因为背景可能较特殊和复杂，很少人会遇到这样的场景。为了很好地理解本文所讲到的内容和背后的原理，过段时间我会单独写一篇博客，通过最佳实践来理解本文提到的技术原理。敬请期待 😝</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><ul>
 <li><a href="https://github.com/containers/image" target="_blank" rel="noopener">image</a></li>
 <li><a href="https://github.com/opencontainers/image-spec" target="_blank" rel="noopener">OCI Image Manifest Specification</a></li>
@@ -432,10 +428,10 @@
 <h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><ul>
 <li><a href="http://open.daocloud.io/allen-tan-docker-xi-lie-zhi-tu-kan-jin-docker-rong-qi-wen-jian-xi-tong/" target="_blank" rel="noopener">看尽 docker 容器文件系统</a></li>
 <li><a href="https://supereagle.github.io/2018/04/24/docker-registry/" target="_blank" rel="noopener">镜像仓库中镜像存储的原理解析</a></li>
-<li><a href="https://segmentfault.com/a/1190000014284289" target="_blank" rel="noopener">Docker镜像的存储机制</a></li>
+<li><a href="https://segmentfault.com/a/1190000014284289" target="_blank" rel="noopener">Docker 镜像的存储机制</a></li>
 </ul>
 <h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><ul>
-<li><a href="https://blog.k8s.li/Exploring-container-image.html">深入浅出容器镜像的一生🤔</a></li>
+<li><a href="https://blog.k8s.li/Exploring-container-image.html">深入浅出容器镜像的一生 🤔</a></li>
 <li><a href="https://blog.k8s.li/skopeo.html">镜像搬运工 skopeo 初体验</a></li>
 <li><a href="https://blog.k8s.li/mount-bind.html">mount 命令之 –bind 挂载参数</a></li>
 <li><a href="https://blog.k8s.li/registry-gc.html">docker registry GC 原理分析</a></li>

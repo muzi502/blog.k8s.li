@@ -56,7 +56,7 @@
 <meta property="og:description" content="最近 kubernetes-sig 社区的 kubespray 项目正式 release 了 v2.18.0 版本，同时对应 k8s-conformance 的 v1.21 和 v1.22 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。 组件版本以下是 v2.18.0">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-02-28T14:12:52.060Z">
+<meta property="article:modified_time" content="2022-03-02T00:31:21.865Z">
 <meta property="article:author" content="木子">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta property="article:tag" content="Docker">
@@ -223,7 +223,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-28 2022-02-28T22:12:52+08:00" itemprop="dateModified" datetime="2022-02-28T22:12:52+08:00">2022-02-28</time>
+                <time title="修改时间：2022-03-02 2022-03-02T08:31:21+08:00" itemprop="dateModified" datetime="2022-03-02T08:31:21+08:00">2022-03-02</time>
               </span>
 
           
@@ -535,7 +535,7 @@
 <li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8265" target="_blank" rel="noopener">#8265</a> 中移除了对 Mitogen 的支持，Mitogen 的作用就是用来优化 Ansible 的性能，但 Mitogen 对于一些新的 Linux 发行版支持的额并不是很友好，在 Kubespray 中维护的成本也比较大，因此社区就废弃它了；</li>
 </ul>
 <h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><ul>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/7895" target="_blank" rel="noopener">#7895</a> 中新增了 ArgoCD 的部署支持，通过设置 <code>argocd_enabled</code> 即可在部署集群的时候安装 ArgoCD。不过个人认为，ArgoCD 这玩意儿不太适合放在 K8s 部署当中来，看看 <a href="https://github.com/kubesphere/ks-installer" target="_blank" rel="noopener">ks-installer</a> 的代码你就能明白了😂。</li>
+<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/7895" target="_blank" rel="noopener">#7895</a> 中新增了 ArgoCD 的部署支持，通过设置 <code>argocd_enabled</code> 即可在部署集群的时候安装 ArgoCD。不过个人认为，ArgoCD 这玩意儿不太适合放在 K8s 部署当中来，看看 <a href="https://github.com/kubesphere/ks-installer" target="_blank" rel="noopener">ks-installer</a> 的代码你就能明白了 😂。</li>
 <li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8175" target="_blank" rel="noopener">#8175</a> 中默认使用 containerd 作为默认的容器运行时，替代掉了 docker。不过需要注意的是，当前版本的 kubespray 是使用 <a href="https://github.com/containerd/containerd" target="_blank" rel="noopener">containerd</a> 官方 repo release 的二进制安装包，但二进制安装包并没有 arm64 版本的。所以如果要部署的集群节点包含 arm64 的机器，最好还是使用 docker 作为容器运行时。</li>
 <li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8291" target="_blank" rel="noopener">#8291</a> 新增了 registry 部署支持多种 ServiceTypes 的支持；</li>
 <li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8229" target="_blank" rel="noopener">#8229</a> 中新增了支持 registry 认证的方式，私有化部署的时候使用带有认证的 registry 会用到；</li>

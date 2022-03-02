@@ -48,15 +48,15 @@
   };
 </script>
 
-  <meta name="description" content="Play With Docker 是一个运行在浏览器中的 Docker Playground，只需要服务端部署好 pwd 服务，客户端无需安装任何环境，使用浏览器就可以在线体验 Docker。类似的还有近期上线的 instantbox 在线体验Linux发行版。按照官方 readme 或 wiki 部署起来，会有不少坑，接下来就开始填坑。  1.安装 Docker 以及 docker-compos">
+  <meta name="description" content="Play With Docker 是一个运行在浏览器中的 Docker Playground，只需要服务端部署好 pwd 服务，客户端无需安装任何环境，使用浏览器就可以在线体验 Docker。类似的还有近期上线的 instantbox 在线体验 Linux 发行版。按照官方 readme 或 wiki 部署起来，会有不少坑，接下来就开始填坑。  1.安装 Docker 以及 docker-comp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Play-with-Docker --在线使用&#x2F;学习Docker">
 <meta property="og:url" content="https://blog.k8s.li/play-with-docker.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
-<meta property="og:description" content="Play With Docker 是一个运行在浏览器中的 Docker Playground，只需要服务端部署好 pwd 服务，客户端无需安装任何环境，使用浏览器就可以在线体验 Docker。类似的还有近期上线的 instantbox 在线体验Linux发行版。按照官方 readme 或 wiki 部署起来，会有不少坑，接下来就开始填坑。  1.安装 Docker 以及 docker-compos">
+<meta property="og:description" content="Play With Docker 是一个运行在浏览器中的 Docker Playground，只需要服务端部署好 pwd 服务，客户端无需安装任何环境，使用浏览器就可以在线体验 Docker。类似的还有近期上线的 instantbox 在线体验 Linux 发行版。按照官方 readme 或 wiki 部署起来，会有不少坑，接下来就开始填坑。  1.安装 Docker 以及 docker-comp">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-02-28T14:12:52.040Z">
+<meta property="article:modified_time" content="2022-03-02T00:31:21.841Z">
 <meta property="article:author" content="木子">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -215,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-28 2022-02-28T22:12:52+08:00" itemprop="dateModified" datetime="2022-02-28T22:12:52+08:00">2022-02-28</time>
+                <time title="修改时间：2022-03-02 2022-03-02T08:31:21+08:00" itemprop="dateModified" datetime="2022-03-02T08:31:21+08:00">2022-03-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,7 +268,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><code>Play With Docker</code> 是一个运行在浏览器中的 Docker Playground，只需要服务端部署好 pwd 服务，客户端无需安装任何环境，使用浏览器就可以在线体验 Docker。类似的还有近期上线的 <code>instantbox</code> 在线体验Linux发行版。<br>按照官方 readme 或 wiki 部署起来，会有不少坑，接下来就开始填坑。</p>
+        <p><code>Play With Docker</code> 是一个运行在浏览器中的 Docker Playground，只需要服务端部署好 pwd 服务，客户端无需安装任何环境，使用浏览器就可以在线体验 Docker。类似的还有近期上线的 <code>instantbox</code> 在线体验 Linux 发行版。<br>按照官方 readme 或 wiki 部署起来，会有不少坑，接下来就开始填坑。</p>
 <hr>
 <p>1.安装 Docker 以及 docker-compose ，相信你已经完成了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get install apt-transport-https ca-certificates curl</span><br><span class="line"></span><br><span class="line"><span class="comment">### Add Docker’s official GPG key</span></span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="comment">### Add Docker apt repository.</span></span><br><span class="line">add-apt-repository <span class="string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu <span class="variable">$(lsb_release -cs)</span> stable"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Install Docker CE.</span></span><br><span class="line">apt-get update &amp;&amp; apt-get install docker-ce</span><br></pre></td></tr></table></figure>
@@ -282,14 +282,14 @@
 <p>4.拉取 dind 镜像，也即是工作台运行实例的模板镜像</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull franela/dind</span><br></pre></td></tr></table></figure>
 
-<p>5.修改监听地址和域名，如果部署在 VPS 上需要把 localhost 修改为域名或 IP<br>vi api.go<br>在api.go文件的 <code>config.ParseFlags()</code> 下面添加 <code>config.PlaygroundDomain = &quot;YOU-IP or DOMAIN&quot;</code></p>
+<p>5.修改监听地址和域名，如果部署在 VPS 上需要把 localhost 修改为域名或 IP<br>vi api.go<br>在 api.go 文件的 <code>config.ParseFlags()</code> 下面添加 <code>config.PlaygroundDomain = &quot;YOU-IP or DOMAIN&quot;</code></p>
 <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    config.ParseFlags()</span><br><span class="line">    config.PlaygroundDomain = <span class="string">"YOU-IP or DOMAIN"</span></span><br></pre></td></tr></table></figure>
 
-<p>另外附上shell脚本中获取本机公网ip的方法</p>
+<p>另外附上 shell 脚本中获取本机公网 ip 的方法</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ips=`ifconfig | grep inet | grep -v inet6 | grep -v 127 | grep -v 172 |  sed 's/^[ \t]*//g' | cut -d ' ' -f2`</span><br><span class="line">IPADDR=$ips</span><br></pre></td></tr></table></figure>
 
 <p>5.最后一步 <code>docker-compose up</code> 走起！😋</p>
-<p>几个坑：<br>1.服务器RAM低于1GB 经常会提示 <code>fatal error: runtime: out of memory</code> ,代码没问题，是你的服务器内存太少了，开启 <code>SWAP</code> 可解决。如果自己编译 <code>go build</code> 的话也会遇到同样的错误，debug了好几遍发现是物理内存不足的问题。</p>
+<p>几个坑：<br>1.服务器 RAM 低于 1GB 经常会提示 <code>fatal error: runtime: out of memory</code> ,代码没问题，是你的服务器内存太少了，开启 <code>SWAP</code> 可解决。如果自己编译 <code>go build</code> 的话也会遇到同样的错误，debug 了好几遍发现是物理内存不足的问题。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/zero of=/swapfile bs=4MB count=512</span><br><span class="line">mkswap /swapfile</span><br><span class="line">chmod 600 /swapfile</span><br><span class="line">swapon /swapfile</span><br></pre></td></tr></table></figure>
 
 <p>2.有些环境下会提示找不到 <code>$GOPATH</code> ，而 <code>docker-compose.yml</code> 里使用了 <code>$GOPATH</code> 指定目录，可以换成绝对路径。</p>

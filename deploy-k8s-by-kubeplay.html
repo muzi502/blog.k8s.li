@@ -444,7 +444,7 @@
 </tr>
 <tr>
 <td>external_apiserver_access_ip</td>
-<td>集群APIserver外部访问 IP</td>
+<td>集群 APIserver 外部访问 IP</td>
 <td>192.168.10.100</td>
 </tr>
 <tr>
@@ -492,7 +492,7 @@
 <tr>
 <td>ansible_ssh_private_key_file</td>
 <td>如果使用 private key 登录</td>
-<td>必须为<code>/kubespray/config/id_rsa</code></td>
+<td>必须为 <code>/kubespray/config/id_rsa</code></td>
 </tr>
 <tr>
 <td>ansible_host</td>
@@ -514,8 +514,6 @@
 <li>ini 格式</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">inventory: |</span><br><span class="line">  <span class="section">[all:vars]</span></span><br><span class="line">  ansible_port=22</span><br><span class="line">  ansible_user=root</span><br><span class="line">  ansible_ssh_pass=Password</span><br><span class="line">  <span class="comment">#ansible_ssh_private_key_file=/kubespray/config/id_rsa</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[all]</span></span><br><span class="line">  kube-control-01 ansible_host=172.20.0.21</span><br><span class="line">  kube-control-02 ansible_host=172.20.0.23</span><br><span class="line">  kube-control-03 ansible_host=172.20.0.22</span><br><span class="line">  kube-node-01 ansible_host=172.20.0.24</span><br><span class="line"></span><br><span class="line">  <span class="section">[bastion]</span></span><br><span class="line">  <span class="comment"># bastion-01 ansible_host=x.x.x.x ansible_user=some_user</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[kube_control_plane]</span></span><br><span class="line">  kube-control-01</span><br><span class="line">  kube-control-02</span><br><span class="line">  kube-control-03</span><br><span class="line"></span><br><span class="line">  <span class="section">[etcd]</span></span><br><span class="line">  kube-control-01</span><br><span class="line">  kube-control-02</span><br><span class="line">  kube-control-03</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="section">[kube_node]</span></span><br><span class="line">  kube-control-01</span><br><span class="line">  kube-control-02</span><br><span class="line">  kube-control-03</span><br><span class="line">  kube-node-01</span><br><span class="line"></span><br><span class="line">  <span class="section">[calico_rr]</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[k8s_cluster:children]</span></span><br><span class="line">  kube_control_plane</span><br><span class="line">  kube_node</span><br><span class="line">  calico_rr</span><br></pre></td></tr></table></figure>
-
-
 
 <h4 id="default"><a href="#default" class="headerlink" title="default"></a>default</h4><p>以下几个默认的参数在没有特殊要求的情况下不建议修改，直接保持默认即可。<code>ntp_server</code> 参数为默认值时会自动替换成 compose 中的 <code>internal_ip</code> 值；<code>registry_ip</code> 和 <code>offline_resources_url</code> 这两个参数会根据 compose 中的参数自动生成无需修改。</p>
 <table>
