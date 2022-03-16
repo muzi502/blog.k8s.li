@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="上个月参加了 Rancher 社区举办的 《Dockershim 即将被移除，你准备好了么？》直播分享后，得知自 1.24 版本之后，Kubernetes 社区将正式放弃对 docker CRI 的支持，docker CRI 这部分代码则由  cri-dockerd 项目来接盘。目前众多主流的 Kubernetes 私有化部署工具（比如 kubespray、kubekey、sealos）也逐渐地不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="流水线中使用 docker in pod 方式构建容器镜像">
+<meta property="og:url" content="https://blog.k8s.li/docker-in-pod.html">
+<meta property="og:site_name" content="Reimu&#39;s blog">
+<meta property="og:description" content="上个月参加了 Rancher 社区举办的 《Dockershim 即将被移除，你准备好了么？》直播分享后，得知自 1.24 版本之后，Kubernetes 社区将正式放弃对 docker CRI 的支持，docker CRI 这部分代码则由  cri-dockerd 项目来接盘。目前众多主流的 Kubernetes 私有化部署工具（比如 kubespray、kubekey、sealos）也逐渐地不">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-15T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="kubernetes">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="dind">
+<meta property="article:tag" content="dinp">
+<meta property="article:tag" content="jenkins">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.k8s.li/docker-in-pod.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>流水线中使用 docker in pod 方式构建容器镜像 | Reimu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Reimu's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friends">
+
+    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/docker-in-pod.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reimu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          流水线中使用 docker in pod 方式构建容器镜像
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-15 2022-03-15T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2022-03-15T00:00:00+08:00">2022-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-16 2022-03-16T00:00:00+08:00" itemprop="dateModified" datetime="2022-03-16T00:00:00+08:00">2022-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/docker-in-pod.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="docker-in-pod.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>21k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>36 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>上个月参加了 Rancher 社区举办的 《<a href="https://www.bilibili.com/video/BV1Xa411C78k" target="_blank" rel="noopener">Dockershim 即将被移除，你准备好了么？</a>》直播分享后，得知自 1.24 版本之后，Kubernetes 社区将正式放弃对 docker CRI 的支持，docker CRI 这部分代码则由 <a href="https://github.com/Mirantis/cri-dockerd" target="_blank" rel="noopener"> cri-dockerd</a> 项目来接盘。目前众多主流的 Kubernetes 私有化部署工具（比如 <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank" rel="noopener">kubespray</a>、<a href="https://github.com/kubesphere/kubekey" target="_blank" rel="noopener">kubekey</a>、<a href="https://github.com/fanux/sealos" target="_blank" rel="noopener">sealos</a>）也逐渐地不再将 docker 作为首选的容器运行时而纷纷转向了 containerd，去 docker 也成为了目前云原生社区热门的讨论话题。</p>
+<p>docker 虽然作为一个 CRI 在 Kubernetes 社区一直被人诟病，但我们要知道 CRI 仅仅是 docker 的一部分功能而已。对于本地开发测试或者 CI/CD 流水线镜像构建来讲，依然有很多地方严重地依赖着 docker。比如 GitHub 上容器镜像构建的 Action 里， docker 官方的 <a href="https://github.com/docker/build-push-action" target="_blank" rel="noopener">build-push-action</a> 是众多项目首选的方式。即便是 docker 的竞争对手 <a href="https://github.com/containers/podman" target="_blank" rel="noopener">podman</a> + <a href="https://github.com/containers/skopeo" target="_blank" rel="noopener">skopeo</a> + <a href="https://github.com/containers/buildah" target="_blank" rel="noopener">buildah</a> 三剑客它们自身的容器镜像也是采用 docker 来构建的 <a href="https://github.com/containers/buildah/blob/main/.github/workflows/multi-arch-build.yaml" target="_blank" rel="noopener">multi-arch-build.yaml</a>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">multi:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">multi-arch</span> <span class="string">image</span> <span class="string">build</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">      <span class="attr">REPONAME:</span> <span class="string">buildah</span>  <span class="comment"># No easy way to parse this out of $GITHUB_REPOSITORY</span></span><br><span class="line">      <span class="comment"># Server/namespace value used to format FQIN</span></span><br><span class="line">      <span class="attr">REPONAME_QUAY_REGISTRY:</span> <span class="string">quay.io/buildah</span></span><br><span class="line">      <span class="attr">CONTAINERS_QUAY_REGISTRY:</span> <span class="string">quay.io/containers</span></span><br><span class="line">      <span class="comment"># list of architectures for build</span></span><br><span class="line">      <span class="attr">PLATFORMS:</span> <span class="string">linux/amd64,linux/s390x,linux/ppc64le,linux/arm64</span></span><br><span class="line">      <span class="comment"># Command to execute in container to obtain project version number</span></span><br><span class="line">      <span class="attr">VERSION_CMD:</span> <span class="string">"buildah --version"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># build several images (upstream, testing, stable) in parallel</span></span><br><span class="line">    <span class="attr">strategy:</span></span><br><span class="line">      <span class="comment"># By default, failure of one matrix item cancels all others</span></span><br><span class="line">      <span class="attr">fail-fast:</span> <span class="literal">false</span></span><br><span class="line">      <span class="attr">matrix:</span></span><br><span class="line">        <span class="comment"># Builds are located under contrib/&lt;reponame&gt;image/&lt;source&gt; directory</span></span><br><span class="line">        <span class="attr">source:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">upstream</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">testing</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">stable</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="comment"># internal registry caches build for inspection before push</span></span><br><span class="line">    <span class="attr">services:</span></span><br><span class="line">      <span class="attr">registry:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">quay.io/libpod/registry:2</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="number">5000</span><span class="string">:5000</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Set</span> <span class="string">up</span> <span class="string">QEMU</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">docker/setup-qemu-action@v1</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Set</span> <span class="string">up</span> <span class="string">Docker</span> <span class="string">Buildx</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">docker/setup-buildx-action@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">driver-opts:</span> <span class="string">network=host</span></span><br><span class="line">          <span class="attr">install:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">and</span> <span class="string">locally</span> <span class="string">push</span> <span class="string">image</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">docker/build-push-action@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">context:</span> <span class="string">contrib/$&#123;&#123;</span> <span class="string">env.REPONAME</span> <span class="string">&#125;&#125;image/$&#123;&#123;</span> <span class="string">matrix.source</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">file:</span> <span class="string">./contrib/$&#123;&#123;</span> <span class="string">env.REPONAME</span> <span class="string">&#125;&#125;image/$&#123;&#123;</span> <span class="string">matrix.source</span> <span class="string">&#125;&#125;/Dockerfile</span></span><br><span class="line">          <span class="attr">platforms:</span> <span class="string">$&#123;&#123;</span> <span class="string">env.PLATFORMS</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">push:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">tags:</span> <span class="string">localhost:5000/$&#123;&#123;</span> <span class="string">env.REPONAME</span> <span class="string">&#125;&#125;/$&#123;&#123;</span> <span class="string">matrix.source</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Jenkins-流水线"><a href="#Jenkins-流水线" class="headerlink" title="Jenkins 流水线"></a>Jenkins 流水线</h2><p>我们的 CI/CD 流水线是使用 Jenkins + Kubernetes plugin 的方式在 Kubernetes 上动态地创建 Pod 作为 Jenkins Slave。在使用 docker 作为容器时的情况下，Jenkins  Slave Pod 将宿主机上的 <code>/var/run/docker.sock</code> 文件通过 hostPath 的方式挂载到 pod 容器内，容器内的 docker CLI 就能通过该 sock 与宿主机的 docker 守护进程进行通信，这样在 pod 容器内就可以无缝地使用 docker build 、push 等命令了。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">Kubernetes</span> <span class="string">pod</span> <span class="string">template</span> <span class="string">to</span> <span class="string">run.</span></span><br><span class="line"><span class="string">podTemplate(</span></span><br><span class="line">    <span class="attr">cloud:</span> <span class="string">"kubernetes"</span><span class="string">,</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">"default"</span><span class="string">,</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">POD_NAME,</span></span><br><span class="line">    <span class="attr">label:</span> <span class="string">POD_NAME,</span></span><br><span class="line">    <span class="attr">yaml:</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">apiVersion: v1</span></span><br><span class="line"><span class="string">kind: Pod</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="string">  containers:</span></span><br><span class="line"><span class="string">  - name: debian</span></span><br><span class="line"><span class="string">    image: "</span><span class="string">$&#123;JENKINS_POD_IMAGE_NAME&#125;"</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">    <span class="attr">tty:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">volumeMounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dockersock</span></span><br><span class="line">      <span class="attr">mountPath:</span> <span class="string">/var/run/docker.sock</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">jnlp</span></span><br><span class="line">    <span class="attr">args:</span> <span class="string">["\$(JENKINS_SECRET)",</span> <span class="string">"\$(JENKINS_NAME)"</span><span class="string">]</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">"jenkins/inbound-agent:4.3-4-alpine"</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dockersock</span></span><br><span class="line">      <span class="attr">hostPath:</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">/var/run/docker.sock</span></span><br><span class="line"><span class="string">""</span><span class="string">",</span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure>
+
+<p>当不再使用 docker 作为 Kubernetes 的容器运行时之后，宿主机上则就没有了 docker 守护进程，挂载 <code>/var/run/docker.sock</code> 的方式也就凉凉了，因此我们需要找到一些替代的方法。</p>
+<p>目前能想到的有两种方案：方案一是替代掉 docker 使用其他镜像构建工具比如 <a href="https://github.com/containers/podman" target="_blank" rel="noopener">podman</a> + <a href="https://github.com/containers/skopeo" target="_blank" rel="noopener">skopeo</a> + <a href="https://github.com/containers/buildah" target="_blank" rel="noopener">buildah</a>。陈少文博主在《<a href="https://www.chenshaowen.com/blog/using-podman-to-build-images-under-kubernetes-and-jenkins.html" target="_blank" rel="noopener">基于 Kubernetes 的 Jenkins 服务也可以去 Docker 了</a>》详细地讲过该方案。但我们的 Makefile 里缝合了一些 docker buildKit 的特性参数并不能地通过 <code>alias docker=podman</code> 别名的方式简单粗暴地给替换掉 😂。</p>
+<p>比如 podman 构建镜像就不支持 <code>--output type=local,dest=path</code>  <a href="https://github.com/containers/buildah/issues/3789" target="_blank" rel="noopener">Support custom build outputs #3789</a> 这种特性。目前看来 podman 想要完全取代掉 docker 的老大哥地位仍还有很长的路要走，尤其 podman 还没有解决自身的镜像是由 docker 来构建的这个尴尬难题。</p>
+<p>方案二就是继续使用 docker 作为镜像构建工具，虽然集群节点上没有了 docker 守护进程，但这并不意味着在 Kubernetes 集群里就无法使用 docker 了。我们可以换种方式将 docker 作为一个 pod 运行在 kubernetes 集群中，而非以 systemd 的方式部署在节点上。然后通过 service IP 或 Node IP 访问 docker 的 TCP 端口进行通信，这样也能无缝地继续使用 docker 。于是在 dind (docker-in-docker) 的基础上就有了 dinp (docker-in-pod) 的套娃操作，其实二者本质上都是相同的，只不过是部署方式和访问方式不太相同而已。</p>
+<p>对比一下这两种方案，方案一通过 <code>alias docker=podman</code> 使用 podman 替代 docker 有点投机取巧，在正式的生产环境流水线中应该很少会被采用，除非你的 Makefile 或者镜像构建脚本中没有依赖 docker 的特性参数，能够完全兼容 podman；方案二比较稳定可靠，它无非就是将之前的宿主机节点上的 docker 守护进程替换成了集群内的 Pod，对于使用者而言只需要修改一下访问 docker 的方式，即 <code>DOCKER_HOST</code> 环境变量即可。因此本文选用方案二来给大家介绍几种在 K8s 集群里部署和使用 dind/dinp 的方式。</p>
+<h2 id="docker-in-pod"><a href="#docker-in-pod" class="headerlink" title="docker in pod"></a>docker in pod</h2><p>不同于 docker in docker，docker in pod 并不关心底层的容器运行时是什么，可以是 docker 也可以是 containerd。在 pod 内运行和使用 docker 个人总结出以下三种比较合适的方式，可以根据不同的场景选择一个合适的：</p>
+<h3 id="sidecar"><a href="#sidecar" class="headerlink" title="sidecar"></a>sidecar</h3><p>将 dind 容器作为 <a href="https://kubernetes.io/zh/docs/concepts/workloads/pods/#using-pods" target="_blank" rel="noopener">sidecar 容器</a> 来运行，主容器通过 localhost 的方式访问 docker 的 2375/2376 TCP 端口。这种方案的好处就是如果创建了多个 Pod，各个 Pod 之间是相互独立的，dind 容器不会共享给其他 pod 使用，隔离性比较好。缺点也比较明显，每一个 Pod 都带一个 dind 容器占用的系统资源比较多，有点大材小用的感觉；</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">dinp-sidecar</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">docker:20.10.12</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">debug</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">["sleep",</span> <span class="string">"3600"</span><span class="string">]</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">DOCKER_TLS_VERIFY</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">""</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">DOCKER_HOST</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">tcp://localhost:2375</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dind</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker:20.10.12-dind-rootless</span></span><br><span class="line">    <span class="attr">args:</span> <span class="string">["--insecure-registry=$(REGISTRY)"]</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">    <span class="comment"># 如果镜像仓库域名为自签证书，需要在这里配置 insecure-registry</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">REGISTRY</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">hub.k8s.li</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">DOCKER_TLS_CERTDIR</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">""</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">DOCKER_HOST</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">tcp://localhost:2375</span></span><br><span class="line">    <span class="attr">securityContext:</span></span><br><span class="line">      <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">tty:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 使用 docker info 命令就绪探针来确保 dind 容器正常启动 </span></span><br><span class="line">    <span class="attr">readinessProbe:</span></span><br><span class="line">      <span class="attr">exec:</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">["docker",</span> <span class="string">"info"</span><span class="string">]</span></span><br><span class="line">      <span class="attr">initialDelaySeconds:</span> <span class="number">10</span></span><br><span class="line">      <span class="attr">failureThreshold:</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="daemonset"><a href="#daemonset" class="headerlink" title="daemonset"></a>daemonset</h3><p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/" target="_blank" rel="noopener">daemonset</a> 则是在集群的每一个 Node 节点上运行一个 dind Pod，并且使用 hostNetwork 方式来暴露 2375/2376 TCP 端口。使用者则通过 <code>status.hostIP</code> 访问宿主机的 2375/2376 TCP 端口来与 docker 进行通信；另外再通过 hostPath 挂载的方式来将 dind 容器内的 <code>/var/lib/docker</code> 数据持久化存储下来，能够缓存一些数据提高镜像构建的效率。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">DaemonSet</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">dinp-daemonset</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">dinp-daemonset</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">dinp-daemonset</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">hostNetwork:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dind</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">docker:20.10.12-dind</span></span><br><span class="line">        <span class="attr">args:</span> <span class="string">["--insecure-registry=$(REGISTRY)"]</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">REGISTRY</span></span><br><span class="line">          <span class="attr">value:</span> <span class="string">hub.k8s.li</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">DOCKER_TLS_CERTDIR</span></span><br><span class="line">          <span class="attr">value:</span> <span class="string">""</span></span><br><span class="line">        <span class="attr">securityContext:</span></span><br><span class="line">          <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">tty:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">volumeMounts:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">docker-storage</span></span><br><span class="line">          <span class="attr">mountPath:</span>  <span class="string">/var/lib/docker</span></span><br><span class="line">        <span class="attr">readinessProbe:</span></span><br><span class="line">          <span class="attr">exec:</span></span><br><span class="line">            <span class="attr">command:</span> <span class="string">["docker",</span> <span class="string">"info"</span><span class="string">]</span></span><br><span class="line">          <span class="attr">initialDelaySeconds:</span> <span class="number">10</span></span><br><span class="line">          <span class="attr">failureThreshold:</span> <span class="number">6</span></span><br><span class="line">        <span class="attr">livenessProbe:</span></span><br><span class="line">          <span class="attr">exec:</span></span><br><span class="line">            <span class="attr">command:</span> <span class="string">["docker",</span> <span class="string">"info"</span><span class="string">]</span></span><br><span class="line">          <span class="attr">initialDelaySeconds:</span> <span class="number">60</span></span><br><span class="line">          <span class="attr">failureThreshold:</span> <span class="number">10</span></span><br><span class="line">      <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">docker-storage</span></span><br><span class="line">        <span class="attr">hostPath:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">/var/lib/docker</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="deployment"><a href="#deployment" class="headerlink" title="deployment"></a>deployment</h3><p>Deployment 方式则是在集群中部署一个或多个 dind Pod，使用者通过 service IP 来访问 docker 的 2375/2376 端口，如果是以非 TLS 方式启动 dind 容器，使用 service IP 来访问 docker 要比前面的 daemonset 使用 host IP 安全性要好一些。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">dinp-deployment</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">default</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">dinp-deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">dinp-deployment</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">dinp-deployment</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dind</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">docker:20.10.12-dind</span></span><br><span class="line">        <span class="attr">args:</span> <span class="string">["--insecure-registry=$(REGISTRY)"]</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">REGISTRY</span></span><br><span class="line">          <span class="attr">value:</span> <span class="string">hub.k8s.li</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">DOCKER_TLS_CERTDIR</span></span><br><span class="line">          <span class="attr">value:</span> <span class="string">""</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">DOCKER_HOST</span></span><br><span class="line">          <span class="attr">value:</span> <span class="string">tcp://localhost:2375</span></span><br><span class="line">        <span class="attr">securityContext:</span></span><br><span class="line">          <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">tty:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">volumeMounts:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">docker-storage</span></span><br><span class="line">          <span class="attr">mountPath:</span>  <span class="string">/var/lib/docker</span></span><br><span class="line">        <span class="attr">readinessProbe:</span></span><br><span class="line">          <span class="attr">exec:</span></span><br><span class="line">            <span class="attr">command:</span> <span class="string">["docker",</span> <span class="string">"info"</span><span class="string">]</span></span><br><span class="line">          <span class="attr">initialDelaySeconds:</span> <span class="number">10</span></span><br><span class="line">          <span class="attr">failureThreshold:</span> <span class="number">6</span></span><br><span class="line">        <span class="attr">livenessProbe:</span></span><br><span class="line">          <span class="attr">exec:</span></span><br><span class="line">            <span class="attr">command:</span> <span class="string">["docker",</span> <span class="string">"info"</span><span class="string">]</span></span><br><span class="line">          <span class="attr">initialDelaySeconds:</span> <span class="number">60</span></span><br><span class="line">          <span class="attr">failureThreshold:</span> <span class="number">10</span></span><br><span class="line">      <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">docker-storage</span></span><br><span class="line">        <span class="attr">hostPath:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">/var/lib/docker</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="comment"># 定义 service name，使用者通过它来访问 docker 的 2375 端口</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">dinp-deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">dinp-deployment</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">2375</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">2375</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Jenkinsfile"><a href="#Jenkinsfile" class="headerlink" title="Jenkinsfile"></a>Jenkinsfile</h2><p>在 Jenkins 的 podTemplate 模版里，可以根据 dinp 部署方式的不同选用以下几种不同的模版：</p>
+<h3 id="sidecare"><a href="#sidecare" class="headerlink" title="sidecare"></a>sidecare</h3><p>Pod 内容器共享同一个网络协议栈，因此可以通过 localhost 来访问 docker 的 TCP 端口，另外最好使用 rootless 模式启动 dind 容器，这样能在同一节点上运行多个这样的 Pod 实例。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">def</span> <span class="string">JOB_NAME</span> <span class="string">=</span> <span class="string">"$&#123;env.JOB_BASE_NAME&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">BUILD_NUMBER</span> <span class="string">=</span> <span class="string">"$&#123;env.BUILD_NUMBER&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">POD_NAME</span> <span class="string">=</span> <span class="string">"jenkins-$&#123;JOB_NAME&#125;-$&#123;BUILD_NUMBER&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">K8S_CLUSTER</span> <span class="string">=</span> <span class="string">params.k8s_cluster</span> <span class="string">?:</span> <span class="string">kubernetes</span></span><br><span class="line"></span><br><span class="line"><span class="string">//</span> <span class="string">Kubernetes</span> <span class="string">pod</span> <span class="string">template</span> <span class="string">to</span> <span class="string">run.</span></span><br><span class="line"><span class="string">podTemplate(</span></span><br><span class="line">    <span class="attr">cloud:</span> <span class="string">K8S_CLUSTER,</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">"default"</span><span class="string">,</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">POD_NAME,</span></span><br><span class="line">    <span class="attr">label:</span> <span class="string">POD_NAME,</span></span><br><span class="line">    <span class="attr">yaml:</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">apiVersion: v1</span></span><br><span class="line"><span class="string">kind: Pod</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="string">  containers:</span></span><br><span class="line"><span class="string">  - name: runner</span></span><br><span class="line"><span class="string">    image: golang:1.17-buster</span></span><br><span class="line"><span class="string">    imagePullPolicy: IfNotPresent</span></span><br><span class="line"><span class="string">    tty: true</span></span><br><span class="line"><span class="string">    env:</span></span><br><span class="line"><span class="string">    - name: DOCKER_HOST</span></span><br><span class="line"><span class="string">      vaule: tcp://localhost:2375</span></span><br><span class="line"><span class="string">    - name: DOCKER_TLS_VERIFY</span></span><br><span class="line"><span class="string">      value: "</span><span class="string">"</span></span><br><span class="line"><span class="string">  - name: jnlp</span></span><br><span class="line"><span class="string">    args: ["</span><span class="string">\$(JENKINS_SECRET)",</span> <span class="string">"\$(JENKINS_NAME)"</span><span class="string">]</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">"jenkins/inbound-agent:4.11.2-4-alpine"</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dind</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker:20.10.12-dind-rootless</span></span><br><span class="line">    <span class="attr">args:</span> <span class="string">["--insecure-registry=$(REGISTRY)"]</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">REGISTRY</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">hub.k8s.li</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">DOCKER_TLS_CERTDIR</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">""</span></span><br><span class="line">    <span class="attr">securityContext:</span></span><br><span class="line">      <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">tty:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">readinessProbe:</span></span><br><span class="line">      <span class="attr">exec:</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">["docker",</span> <span class="string">"info"</span><span class="string">]</span></span><br><span class="line">      <span class="attr">initialDelaySeconds:</span> <span class="number">10</span></span><br><span class="line">      <span class="attr">failureThreshold:</span> <span class="number">6</span></span><br><span class="line"><span class="string">""</span><span class="string">",</span></span><br><span class="line"><span class="string">) &#123;</span></span><br><span class="line"><span class="string">    node(POD_NAME) &#123;</span></span><br><span class="line"><span class="string">        container("</span><span class="string">runner")</span> <span class="string">&#123;</span></span><br><span class="line">            <span class="string">stage("Checkout")</span> <span class="string">&#123;</span></span><br><span class="line">                <span class="string">retry(10)</span> <span class="string">&#123;</span></span><br><span class="line">                    <span class="string">checkout([</span></span><br><span class="line">                        <span class="string">$class:</span> <span class="string">'GitSCM'</span><span class="string">,</span></span><br><span class="line">                        <span class="attr">branches:</span> <span class="string">scm.branches,</span></span><br><span class="line">                        <span class="attr">doGenerateSubmoduleConfigurations:</span> <span class="string">scm.doGenerateSubmoduleConfigurations,</span></span><br><span class="line">                        <span class="attr">extensions:</span> <span class="string">[[$class:</span> <span class="string">'CloneOption'</span><span class="string">,</span> <span class="attr">noTags:</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">shallow:</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">depth:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">reference:</span> <span class="string">''</span><span class="string">]],</span></span><br><span class="line">                        <span class="attr">userRemoteConfigs:</span> <span class="string">scm.userRemoteConfigs,</span></span><br><span class="line">                    <span class="string">])</span></span><br><span class="line">                <span class="string">&#125;</span></span><br><span class="line">            <span class="string">&#125;</span></span><br><span class="line">            <span class="string">stage("Build")</span> <span class="string">&#123;</span></span><br><span class="line">                <span class="string">sh</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                # make docker-build</span></span><br><span class="line"><span class="string">                docker build -t app:v1.0.0-alpha.1 .</span></span><br><span class="line"><span class="string">                "</span><span class="string">""</span></span><br><span class="line">            <span class="string">&#125;</span></span><br><span class="line">        <span class="string">&#125;</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="daemonset-1"><a href="#daemonset-1" class="headerlink" title="daemonset"></a>daemonset</h3><p>由于使用的是 hostNetwork，因此可以通过 host IP 来访问 docker 的 TCP 端口，当然也可以像 deployment 那样通过 service Name 来访问，在这里就不演示了。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">def</span> <span class="string">JOB_NAME</span> <span class="string">=</span> <span class="string">"$&#123;env.JOB_BASE_NAME&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">BUILD_NUMBER</span> <span class="string">=</span> <span class="string">"$&#123;env.BUILD_NUMBER&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">POD_NAME</span> <span class="string">=</span> <span class="string">"jenkins-$&#123;JOB_NAME&#125;-$&#123;BUILD_NUMBER&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">K8S_CLUSTER</span> <span class="string">=</span> <span class="string">params.k8s_cluster</span> <span class="string">?:</span> <span class="string">kubernetes</span></span><br><span class="line"></span><br><span class="line"><span class="string">//</span> <span class="string">Kubernetes</span> <span class="string">pod</span> <span class="string">template</span> <span class="string">to</span> <span class="string">run.</span></span><br><span class="line"><span class="string">podTemplate(</span></span><br><span class="line">    <span class="attr">cloud:</span> <span class="string">K8S_CLUSTER,</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">"default"</span><span class="string">,</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">POD_NAME,</span></span><br><span class="line">    <span class="attr">label:</span> <span class="string">POD_NAME,</span></span><br><span class="line">    <span class="attr">yaml:</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">apiVersion: v1</span></span><br><span class="line"><span class="string">kind: Pod</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="string">  containers:</span></span><br><span class="line"><span class="string">  - name: runner</span></span><br><span class="line"><span class="string">    image: golang:1.17-buster</span></span><br><span class="line"><span class="string">    imagePullPolicy: IfNotPresent</span></span><br><span class="line"><span class="string">    tty: true</span></span><br><span class="line"><span class="string">    env:</span></span><br><span class="line"><span class="string">    - name: DOCKER_HOST</span></span><br><span class="line"><span class="string">      valueFrom:</span></span><br><span class="line"><span class="string">        fieldRef:</span></span><br><span class="line"><span class="string">          fieldPath: status.hostIP</span></span><br><span class="line"><span class="string">    - name: DOCKER_TLS_VERIFY</span></span><br><span class="line"><span class="string">      value: "</span><span class="string">"</span></span><br><span class="line"><span class="string">  - name: jnlp</span></span><br><span class="line"><span class="string">    args: ["</span><span class="string">\$(JENKINS_SECRET)",</span> <span class="string">"\$(JENKINS_NAME)"</span><span class="string">]</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">"jenkins/inbound-agent:4.11.2-4-alpine"</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="string">""</span><span class="string">",</span></span><br><span class="line"><span class="string">) &#123;</span></span><br><span class="line"><span class="string">    node(POD_NAME) &#123;</span></span><br><span class="line"><span class="string">        container("</span><span class="string">runner")</span> <span class="string">&#123;</span></span><br><span class="line">            <span class="string">stage("Checkout")</span> <span class="string">&#123;</span></span><br><span class="line">                <span class="string">retry(10)</span> <span class="string">&#123;</span></span><br><span class="line">                    <span class="string">checkout([</span></span><br><span class="line">                        <span class="string">$class:</span> <span class="string">'GitSCM'</span><span class="string">,</span></span><br><span class="line">                        <span class="attr">branches:</span> <span class="string">scm.branches,</span></span><br><span class="line">                        <span class="attr">doGenerateSubmoduleConfigurations:</span> <span class="string">scm.doGenerateSubmoduleConfigurations,</span></span><br><span class="line">                        <span class="attr">extensions:</span> <span class="string">[[$class:</span> <span class="string">'CloneOption'</span><span class="string">,</span> <span class="attr">noTags:</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">shallow:</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">depth:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">reference:</span> <span class="string">''</span><span class="string">]],</span></span><br><span class="line">                        <span class="attr">userRemoteConfigs:</span> <span class="string">scm.userRemoteConfigs,</span></span><br><span class="line">                    <span class="string">])</span></span><br><span class="line">                <span class="string">&#125;</span></span><br><span class="line">            <span class="string">&#125;</span></span><br><span class="line">            <span class="string">stage("Build")</span> <span class="string">&#123;</span></span><br><span class="line">                <span class="string">sh</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                # make docker-build</span></span><br><span class="line"><span class="string">                docker build -t app:v1.0.0-alpha.1 .</span></span><br><span class="line"><span class="string">                "</span><span class="string">""</span></span><br><span class="line">            <span class="string">&#125;</span></span><br><span class="line">        <span class="string">&#125;</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="deployment-1"><a href="#deployment-1" class="headerlink" title="deployment"></a>deployment</h3><p>通过 service name 访问 docker，其他参数和 daemonset 都是相同的</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">def</span> <span class="string">JOB_NAME</span> <span class="string">=</span> <span class="string">"$&#123;env.JOB_BASE_NAME&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">BUILD_NUMBER</span> <span class="string">=</span> <span class="string">"$&#123;env.BUILD_NUMBER&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">POD_NAME</span> <span class="string">=</span> <span class="string">"jenkins-$&#123;JOB_NAME&#125;-$&#123;BUILD_NUMBER&#125;"</span></span><br><span class="line"><span class="string">def</span> <span class="string">K8S_CLUSTER</span> <span class="string">=</span> <span class="string">params.k8s_cluster</span> <span class="string">?:</span> <span class="string">kubernetes</span></span><br><span class="line"></span><br><span class="line"><span class="string">//</span> <span class="string">Kubernetes</span> <span class="string">pod</span> <span class="string">template</span> <span class="string">to</span> <span class="string">run.</span></span><br><span class="line"><span class="string">podTemplate(</span></span><br><span class="line">    <span class="attr">cloud:</span> <span class="string">K8S_CLUSTER,</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">"default"</span><span class="string">,</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">POD_NAME,</span></span><br><span class="line">    <span class="attr">label:</span> <span class="string">POD_NAME,</span></span><br><span class="line">    <span class="attr">yaml:</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">apiVersion: v1</span></span><br><span class="line"><span class="string">kind: Pod</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="string">  containers:</span></span><br><span class="line"><span class="string">  - name: runner</span></span><br><span class="line"><span class="string">    image: golang:1.17-buster</span></span><br><span class="line"><span class="string">    imagePullPolicy: IfNotPresent</span></span><br><span class="line"><span class="string">    tty: true</span></span><br><span class="line"><span class="string">    env:</span></span><br><span class="line"><span class="string">    - name: DOCKER_HOST</span></span><br><span class="line"><span class="string">       value: tcp://dinp-deployment:2375</span></span><br><span class="line"><span class="string">    - name: DOCKER_TLS_VERIFY</span></span><br><span class="line"><span class="string">      value: "</span><span class="string">"</span></span><br><span class="line"><span class="string">  - name: jnlp</span></span><br><span class="line"><span class="string">    args: ["</span><span class="string">\$(JENKINS_SECRET)",</span> <span class="string">"\$(JENKINS_NAME)"</span><span class="string">]</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">"jenkins/inbound-agent:4.11.2-4-alpine"</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="string">""</span><span class="string">",</span></span><br><span class="line"><span class="string">) &#123;</span></span><br><span class="line"><span class="string">    node(POD_NAME) &#123;</span></span><br><span class="line"><span class="string">        container("</span><span class="string">runner")</span> <span class="string">&#123;</span></span><br><span class="line">            <span class="string">stage("Checkout")</span> <span class="string">&#123;</span></span><br><span class="line">                <span class="string">retry(10)</span> <span class="string">&#123;</span></span><br><span class="line">                    <span class="string">checkout([</span></span><br><span class="line">                        <span class="string">$class:</span> <span class="string">'GitSCM'</span><span class="string">,</span></span><br><span class="line">                        <span class="attr">branches:</span> <span class="string">scm.branches,</span></span><br><span class="line">                        <span class="attr">doGenerateSubmoduleConfigurations:</span> <span class="string">scm.doGenerateSubmoduleConfigurations,</span></span><br><span class="line">                        <span class="attr">extensions:</span> <span class="string">[[$class:</span> <span class="string">'CloneOption'</span><span class="string">,</span> <span class="attr">noTags:</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">shallow:</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">depth:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">reference:</span> <span class="string">''</span><span class="string">]],</span></span><br><span class="line">                        <span class="attr">userRemoteConfigs:</span> <span class="string">scm.userRemoteConfigs,</span></span><br><span class="line">                    <span class="string">])</span></span><br><span class="line">                <span class="string">&#125;</span></span><br><span class="line">            <span class="string">&#125;</span></span><br><span class="line">            <span class="string">stage("Build")</span> <span class="string">&#123;</span></span><br><span class="line">                <span class="string">sh</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                # make docker-build</span></span><br><span class="line"><span class="string">                docker build -t app:v1.0.0-alpha.1 .</span></span><br><span class="line"><span class="string">                "</span><span class="string">""</span></span><br><span class="line">            <span class="string">&#125;</span></span><br><span class="line">        <span class="string">&#125;</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="readinessProbe"><a href="#readinessProbe" class="headerlink" title="readinessProbe"></a>readinessProbe</h3><p>有些时候 dind 无法正常启动，所以一定要设置就绪探针，来确保 diind 容器能够正常启动</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">readinessProbe:</span></span><br><span class="line">  <span class="attr">exec:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">["docker",</span> <span class="string">"info"</span><span class="string">]</span></span><br><span class="line">  <span class="attr">initialDelaySeconds:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">failureThreshold:</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2375-2376-端口"><a href="#2375-2376-端口" class="headerlink" title="2375/2376 端口"></a>2375/2376 端口</h3><p>docker 默认是以 TLS 方式启动，监听端口为 2376，如果设置环境变量 <code>DOCKER_TLS_CERTDIR</code> 为空则就以非 TLS 模式启动，监听端口为 2375，这时就不会校验 TLS 证书。如果使用 2376 端口，则就需要一个持久化存储来将 docker 生成的证书共享给客户端，这点比较麻烦。因此如果不想瞎折腾还是使用 2375 非 TLS 方式吧 😂。</p>
+<h3 id="dinp-必须以开启-privileged-true"><a href="#dinp-必须以开启-privileged-true" class="headerlink" title="dinp 必须以开启 privileged: true"></a>dinp 必须以开启 privileged: true</h3><p>以 pod 方式运行 docker，无论是否是 rootless 模式，都要在 pod 容器的 <code>securityContext</code> 中设置 <code>privileged: true</code>，否则 pod 无法正常启动。而且 rootless 模式也有一定的限制，需要依赖一些内核的特性，目前也只是实验阶段，没有特殊的需求还是尽量不要使用 rootless 特性吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# kubectl logs -f dinp-sidecar</span><br><span class="line">error: a container name must be specified for pod dinp-sidecar, choose one of: [debug dind]</span><br><span class="line">[root@localhost ~]# kubectl logs -f dinp-sidecar -c dind</span><br><span class="line">Device &quot;ip_tables&quot; does not exist.</span><br><span class="line">ip_tables              27126  4 iptable_raw,iptable_mangle,iptable_filter,iptable_nat</span><br><span class="line">modprobe: can&#39;t change directory to &#39;&#x2F;lib&#x2F;modules&#39;: No such file or directory</span><br><span class="line">WARN[0000] failed to mount sysfs, falling back to read-only mount: operation not permitted</span><br><span class="line">WARN[0000] failed to mount sysfs: operation not permitted</span><br><span class="line">open: No such file or directory</span><br><span class="line">[rootlesskit:child ] error: executing [[ip tuntap add name tap0 mode tap] [ip link set tap0 address 02:50:00:00:00:01]]: exit status 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="rootless-user-max-user-namespaces"><a href="#rootless-user-max-user-namespaces" class="headerlink" title="rootless user.max_user_namespaces"></a>rootless user.max_user_namespaces</h3><p>rootless 模式下需要依赖一些内核参数 <a href="https://docs.docker.com/engine/security/rootless/" target="_blank" rel="noopener">Run the Docker daemon as a non-root user (Rootless mode)</a>。在 CentOS 7.9 上会出现 <a href="https://github.com/docker-library/docker/issues/201" target="_blank" rel="noopener">dind-rootless: failed to start up dind rootless in k8s due to max_user_namespaces</a> 问题。解决方案是在修改一下 <code>user.max_user_namespaces=28633</code> 内核参数。</p>
+<blockquote>
+<p>Add user.max_user_namespaces=28633 to /etc/sysctl.conf (or /etc/sysctl.d) and run sudo sysctl -p</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># kubectl get pod -w</span></span><br><span class="line">NAME                              READY   STATUS   RESTARTS     AGE</span><br><span class="line">dinp-deployment-cf488bfd8-g8vxx   0/1     CrashLoopBackOff   1 (2s ago)   4s</span><br><span class="line">[root@localhost ~]<span class="comment"># kubectl logs -f dinp-deployment-cf488bfd8-m5cms</span></span><br><span class="line">Device <span class="string">"ip_tables"</span> does not exist.</span><br><span class="line">ip_tables              27126  5 iptable_raw,iptable_mangle,iptable_filter,iptable_nat</span><br><span class="line">modprobe: can<span class="string">'t change directory to '</span>/lib/modules<span class="string">': No such file or directory</span></span><br><span class="line"><span class="string">error: attempting to run rootless dockerd but need '</span>user.max_user_namespaces<span class="string">' (/proc/sys/user/max_user_namespaces) set to a sufficiently large value</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="非-rootless-模式下同一-node-节点只能运行一个-dinp"><a href="#非-rootless-模式下同一-node-节点只能运行一个-dinp" class="headerlink" title="非 rootless 模式下同一 node 节点只能运行一个 dinp"></a>非 rootless 模式下同一 node 节点只能运行一个 dinp</h3><p>如果是使用 deployment 方式部署 dinp，一个 node 节点上只能有一个 dinp Pod，多余的 Pod 无法正常启动。因此如果想要运行多个 dinp Pod，建议使用 daemonset 方式运行它；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# kubectl get deploy</span><br><span class="line">NAME              READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">dinp-deployment   1&#x2F;3     3            1           4m16s</span><br><span class="line">[root@localhost ~]# kubectl get pod -w</span><br><span class="line">NAME                               READY   STATUS    RESTARTS      AGE</span><br><span class="line">dinp-deployment-547bd9bb6d-2mn6c   0&#x2F;1     Running   3 (61s ago)   4m9s</span><br><span class="line">dinp-deployment-547bd9bb6d-8ht8l   1&#x2F;1     Running   0             4m9s</span><br><span class="line">dinp-deployment-547bd9bb6d-x5vpv   0&#x2F;1     Running   3 (61s ago)   4m9s</span><br><span class="line">[root@localhost ~]# kubectl logs -f dinp-deployment-547bd9bb6d-2mn6c</span><br><span class="line">INFO[2022-03-14T14:14:10.905652548Z] Starting up</span><br><span class="line">WARN[2022-03-14T14:14:10.906986721Z] could not change group &#x2F;var&#x2F;run&#x2F;docker.sock to docker: group docker not found</span><br><span class="line">WARN[2022-03-14T14:14:10.907249071Z] Binding to IP address without --tlsverify is insecure and gives root access on this machine to everyone who has access to your network.  host&#x3D;&quot;tcp:&#x2F;&#x2F;0.0.0.0:2375&quot;</span><br><span class="line">WARN[2022-03-14T14:14:10.907269951Z] Binding to an IP address, even on localhost, can also give access to scripts run in a browser. Be safe out there!  host&#x3D;&quot;tcp:&#x2F;&#x2F;0.0.0.0:2375&quot;</span><br><span class="line">WARN[2022-03-14T14:14:11.908057635Z] Binding to an IP address without --tlsverify is deprecated. Startup is intentionally being slowed down to show this message  host&#x3D;&quot;tcp:&#x2F;&#x2F;0.0.0.0:2375&quot;</span><br><span class="line">WARN[2022-03-14T14:14:11.908103696Z] Please consider generating tls certificates with client validation to prevent exposing unauthenticated root access to your network  host&#x3D;&quot;tcp:&#x2F;&#x2F;0.0.0.0:2375&quot;</span><br><span class="line">WARN[2022-03-14T14:14:11.908114541Z] You can override this by explicitly specifying &#39;--tls&#x3D;false&#39; or &#39;--tlsverify&#x3D;false&#39;  host&#x3D;&quot;tcp:&#x2F;&#x2F;0.0.0.0:2375&quot;</span><br><span class="line">WARN[2022-03-14T14:14:11.908125477Z] Support for listening on TCP without authentication or explicit intent to run without authentication will be removed in the next release  host&#x3D;&quot;tcp:&#x2F;&#x2F;0.0.0.0:2375&quot;</span><br><span class="line">INFO[2022-03-14T14:14:26.914587276Z] libcontainerd: started new containerd process  pid&#x3D;41</span><br><span class="line">INFO[2022-03-14T14:14:26.914697125Z] parsed scheme: &quot;unix&quot;                         module&#x3D;grpc</span><br><span class="line">INFO[2022-03-14T14:14:26.914710376Z] scheme &quot;unix&quot; not registered, fallback to default scheme  module&#x3D;grpc</span><br><span class="line">INFO[2022-03-14T14:14:26.914785052Z] ccResolverWrapper: sending update to cc: &#123;[&#123;unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock  &lt;nil&gt; 0 &lt;nil&gt;&#125;] &lt;nil&gt; &lt;nil&gt;&#125;  module&#x3D;grpc</span><br><span class="line">INFO[2022-03-14T14:14:26.914796039Z] ClientConn switching balancer to &quot;pick_first&quot;  module&#x3D;grpc</span><br><span class="line">INFO[2022-03-14T14:14:26.930311832Z] starting containerd                           revision&#x3D;7b11cfaabd73bb80907dd23182b9347b4245eb5d version&#x3D;v1.4.12</span><br><span class="line">INFO[2022-03-14T14:14:26.953641900Z] loading plugin &quot;io.containerd.content.v1.content&quot;...  type&#x3D;io.containerd.content.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.953721059Z] loading plugin &quot;io.containerd.snapshotter.v1.aufs&quot;...  type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.960295816Z] skip loading plugin &quot;io.containerd.snapshotter.v1.aufs&quot;...  error&#x3D;&quot;aufs is not supported (modprobe aufs failed: exit status 1 \&quot;ip: can&#39;t find device &#39;aufs&#39;\\nmodprobe: can&#39;t change directory to &#39;&#x2F;lib&#x2F;modules&#39;: No such file or directory\\n\&quot;): skip plugin&quot; type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.960329840Z] loading plugin &quot;io.containerd.snapshotter.v1.btrfs&quot;...  type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.960524514Z] skip loading plugin &quot;io.containerd.snapshotter.v1.btrfs&quot;...  error&#x3D;&quot;path &#x2F;var&#x2F;lib&#x2F;docker&#x2F;containerd&#x2F;daemon&#x2F;io.containerd.snapshotter.v1.btrfs (xfs) must be a btrfs filesystem to be used with the btrfs snapshotter: skip plugin&quot; type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.960537441Z] loading plugin &quot;io.containerd.snapshotter.v1.devmapper&quot;...  type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">WARN[2022-03-14T14:14:26.960558843Z] failed to load plugin io.containerd.snapshotter.v1.devmapper  error&#x3D;&quot;devmapper not configured&quot;</span><br><span class="line">INFO[2022-03-14T14:14:26.960569516Z] loading plugin &quot;io.containerd.snapshotter.v1.native&quot;...  type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.960593224Z] loading plugin &quot;io.containerd.snapshotter.v1.overlayfs&quot;...  type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.960678728Z] loading plugin &quot;io.containerd.snapshotter.v1.zfs&quot;...  type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.960814844Z] skip loading plugin &quot;io.containerd.snapshotter.v1.zfs&quot;...  error&#x3D;&quot;path &#x2F;var&#x2F;lib&#x2F;docker&#x2F;containerd&#x2F;daemon&#x2F;io.containerd.snapshotter.v1.zfs must be a zfs filesystem to be used with the zfs snapshotter: skip plugin&quot; type&#x3D;io.containerd.snapshotter.v1</span><br><span class="line">INFO[2022-03-14T14:14:26.960827133Z] loading plugin &quot;io.containerd.metadata.v1.bolt&quot;...  type&#x3D;io.containerd.metadata.v1</span><br><span class="line">WARN[2022-03-14T14:14:26.960839223Z] could not use snapshotter devmapper in metadata plugin  error&#x3D;&quot;devmapper not configured&quot;</span><br><span class="line">INFO[2022-03-14T14:14:26.960848698Z] metadata content store policy set             policy&#x3D;shared</span><br><span class="line">WARN[2022-03-14T14:14:27.915528371Z] grpc: addrConn.createTransport failed to connect to &#123;unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock  &lt;nil&gt; 0 &lt;nil&gt;&#125;. Err :connection error: desc &#x3D; &quot;transport: error while dialing: dial unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock: timeout&quot;. Reconnecting...  module&#x3D;grpc</span><br><span class="line">WARN[2022-03-14T14:14:30.722257725Z] grpc: addrConn.createTransport failed to connect to &#123;unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock  &lt;nil&gt; 0 &lt;nil&gt;&#125;. Err :connection error: desc &#x3D; &quot;transport: error while dialing: dial unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock: timeout&quot;. Reconnecting...  module&#x3D;grpc</span><br><span class="line">WARN[2022-03-14T14:14:35.549453706Z] grpc: addrConn.createTransport failed to connect to &#123;unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock  &lt;nil&gt; 0 &lt;nil&gt;&#125;. Err :connection error: desc &#x3D; &quot;transport: error while dialing: dial unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock: timeout&quot;. Reconnecting...  module&#x3D;grpc</span><br><span class="line">WARN[2022-03-14T14:14:41.759010407Z] grpc: addrConn.createTransport failed to connect to &#123;unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock  &lt;nil&gt; 0 &lt;nil&gt;&#125;. Err :connection error: desc &#x3D; &quot;transport: error while dialing: dial unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker&#x2F;containerd&#x2F;containerd.sock: timeout&quot;. Reconnecting...  module&#x3D;grpc</span><br><span class="line">failed to start containerd: timeout waiting for containerd to start</span><br></pre></td></tr></table></figure>
+
+<h3 id="var-lib-docker-不支持共享存储"><a href="#var-lib-docker-不支持共享存储" class="headerlink" title="/var/lib/docker 不支持共享存储"></a>/var/lib/docker 不支持共享存储</h3><p>陈少文博主曾在 《<a href="https://www.chenshaowen.com/blog/can-we-mount-var-lib-docker-to-remote-storage.html" target="_blank" rel="noopener">/var/lib/docker 能不能挂载远端存储</a>》提到过 docker 目前并支持将 <code>/var/lib/docker</code> 挂载远程存储使用，因此建议使用 hostPath 的方式保存 docker 的持久化存储数据。</p>
+<blockquote>
+<p>本次测试使用的 Docker 版本为 20.10.6，不能将 <code>/var/lib/docker</code> 挂载远程存储使用。主要原因是容器的实现依赖于内核的能力(xttrs)，而类似 NFS Server 这种远程存储无法提供这些能力。如果采用 Device Mapper 进行映射，使用磁盘挂载存在可行性，但只能用于迁移而不能实现共享。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">INFO[2022-03-13T13:43:08.750810130Z] ClientConn switching balancer to <span class="string">"pick_first"</span>  module=grpc</span><br><span class="line">ERRO[2022-03-13T13:43:08.781932359Z] failed to mount overlay: invalid argument     storage-driver=overlay2</span><br><span class="line">ERRO[2022-03-13T13:43:08.782078828Z] <span class="built_in">exec</span>: <span class="string">"fuse-overlayfs"</span>: executable file not found <span class="keyword">in</span> <span class="variable">$PATH</span>  storage-driver=fuse-overlayfs</span><br><span class="line">ERRO[2022-03-13T13:43:08.793311119Z] AUFS was not found <span class="keyword">in</span> /proc/filesystems       storage-driver=aufs</span><br><span class="line">ERRO[2022-03-13T13:43:08.813505621Z] failed to mount overlay: invalid argument     storage-driver=overlay</span><br><span class="line">ERRO[2022-03-13T13:43:08.813529990Z] Failed to built-in GetDriver graph devicemapper /var/lib/docker</span><br><span class="line">INFO[2022-03-13T13:43:08.897769363Z] Loading containers: start.</span><br><span class="line">WARN[2022-03-13T13:43:08.919252078Z] Running modprobe bridge br_netfilter failed with message: ip: can<span class="string">'t find device '</span>bridge<span class="string">'</span></span><br><span class="line"><span class="string">[root@localhost dinp]# kubectl exec -it dinp-sidecar -c debug sh</span></span><br><span class="line"><span class="string">/ # docker pull alpine</span></span><br><span class="line"><span class="string">Using default tag: latest</span></span><br><span class="line"><span class="string">Error response from daemon: error creating temporary lease: file resize error: truncate /var/lib/docker/containerd/daemon/io.containerd.metadata.v1.bolt/meta.db: bad file descriptor: unknown</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.bilibili.com/video/BV1Xa411C78k" target="_blank" rel="noopener">Dockershim 即将被移除，你准备好了么？</a></li>
+<li><a href="https://draveness.me/whys-the-design-kubernetes-deprecate-docker/" target="_blank" rel="noopener">为什么 Kubernetes 要替换 Docker</a></li>
+<li><a href="https://applatix.com/case-docker-docker-kubernetes-part-2" target="_blank" rel="noopener">A case for Docker-in-Docker on Kubernetes</a></li>
+<li><a href="https://docs.docker.com/engine/security/rootless/" target="_blank" rel="noopener">Run the Docker daemon as a non-root user (Rootless mode)</a></li>
+<li><a href="https://github.com/docker-library/docker" target="_blank" rel="noopener">Docker Official Image packaging for Docker</a></li>
+<li><a href="https://www.chenshaowen.com/blog/can-we-mount-var-lib-docker-to-remote-storage.html" target="_blank" rel="noopener">/var/lib/docker 能不能挂载远端存储</a></li>
+<li><a href="https://www.chenshaowen.com/blog/how-to-use-docker-in-docker.html" target="_blank" rel="noopener">如何在 Docker 中使用 Docker</a></li>
+<li><a href="https://www.chenshaowen.com/blog/using-podman-to-build-images-under-kubernetes-and-jenkins.html" target="_blank" rel="noopener">基于 Kubernetes 的 Jenkins 服务也可以去 Docker 了</a></li>
+<li><a href="https://github.com/docker-library/docker/issues/201" target="_blank" rel="noopener">dind-rootless: failed to start up dind rootless in k8s due to max_user_namespaces #201</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/kubernetes/" rel="tag"><i class="fa fa-tag"></i> kubernetes</a>
+              <a href="/tags/docker/" rel="tag"><i class="fa fa-tag"></i> docker</a>
+              <a href="/tags/dind/" rel="tag"><i class="fa fa-tag"></i> dind</a>
+              <a href="/tags/dinp/" rel="tag"><i class="fa fa-tag"></i> dinp</a>
+              <a href="/tags/jenkins/" rel="tag"><i class="fa fa-tag"></i> jenkins</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archive-argo-workflow-log-by-kubectl.html" rel="prev" title="使用 kubectl 自动归档 argo workflow 日志">
+      <i class="fa fa-chevron-left"></i> 使用 kubectl 自动归档 argo workflow 日志
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins-流水线"><span class="nav-number">1.</span> <span class="nav-text">Jenkins 流水线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-in-pod"><span class="nav-number">2.</span> <span class="nav-text">docker in pod</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sidecar"><span class="nav-number">2.1.</span> <span class="nav-text">sidecar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#daemonset"><span class="nav-number">2.2.</span> <span class="nav-text">daemonset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deployment"><span class="nav-number">2.3.</span> <span class="nav-text">deployment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkinsfile"><span class="nav-number">3.</span> <span class="nav-text">Jenkinsfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sidecare"><span class="nav-number">3.1.</span> <span class="nav-text">sidecare</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#daemonset-1"><span class="nav-number">3.2.</span> <span class="nav-text">daemonset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deployment-1"><span class="nav-number">3.3.</span> <span class="nav-text">deployment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#readinessProbe"><span class="nav-number">4.1.</span> <span class="nav-text">readinessProbe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2375-2376-端口"><span class="nav-number">4.2.</span> <span class="nav-text">2375&#x2F;2376 端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dinp-必须以开启-privileged-true"><span class="nav-number">4.3.</span> <span class="nav-text">dinp 必须以开启 privileged: true</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rootless-user-max-user-namespaces"><span class="nav-number">4.4.</span> <span class="nav-text">rootless user.max_user_namespaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非-rootless-模式下同一-node-节点只能运行一个-dinp"><span class="nav-number">4.5.</span> <span class="nav-text">非 rootless 模式下同一 node 节点只能运行一个 dinp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#var-lib-docker-不支持共享存储"><span class="nav-number">4.6.</span> <span class="nav-text">&#x2F;var&#x2F;lib&#x2F;docker 不支持共享存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">139</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.7m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">46:29</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/docker-in-pod.html",
+            identifier: "docker-in-pod.html",
+            title: "流水线中使用 docker in pod 方式构建容器镜像"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
