@@ -290,15 +290,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
-    
-    <lastmod>2022-04-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
     
     <lastmod>2022-04-29</lastmod>
@@ -317,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/debian-gateway.html</loc>
+    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2022-04-29</lastmod>
     
@@ -335,7 +326,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/mirrors-test.html</loc>
+    <loc>https://blog.k8s.li/debian-gateway.html</loc>
     
     <lastmod>2022-04-29</lastmod>
     
@@ -344,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
+    <loc>https://blog.k8s.li/mirrors-test.html</loc>
     
     <lastmod>2022-04-29</lastmod>
     
@@ -371,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/get-someone-info.html</loc>
+    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
     
     <lastmod>2022-04-29</lastmod>
     
@@ -381,6 +372,15 @@
   
   <url>
     <loc>https://blog.k8s.li/oh-my-pink.html</loc>
+    
+    <lastmod>2022-04-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/get-someone-info.html</loc>
     
     <lastmod>2022-04-29</lastmod>
     
@@ -2039,6 +2039,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6/</loc>
+    <lastmod>2022-04-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/K8s/</loc>
     <lastmod>2022-04-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -2047,13 +2054,6 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E8%B0%83%E7%A0%94/</loc>
-    <lastmod>2022-04-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6/</loc>
     <lastmod>2022-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
