@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.k8s.li').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="从去年十一月底到现在一直在做在  VMware ESXi  上部署 超融合集群 的产品化工具，也是在最近完成了前后端的联调，五一节后开始进入测试阶段。为了测试不同的 VMware ESXi 版本和我们产品的兼容性，需要很频繁地在一些物理服务器（如戴尔、联想、惠普、浪潮、超微等）上安装 VMware ESXi OS。 之前一直都是登录 IPMI 管理页面，挂载远程的 ISO 文件手动安装。安装完成之">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 redfish 自动化安装 ESXi OS">
+<meta property="og:url" content="https://blog.k8s.li/redfish-esxi-os-installer.html">
+<meta property="og:site_name" content="Reimu&#39;s blog">
+<meta property="og:description" content="从去年十一月底到现在一直在做在  VMware ESXi  上部署 超融合集群 的产品化工具，也是在最近完成了前后端的联调，五一节后开始进入测试阶段。为了测试不同的 VMware ESXi 版本和我们产品的兼容性，需要很频繁地在一些物理服务器（如戴尔、联想、惠普、浪潮、超微等）上安装 VMware ESXi OS。 之前一直都是登录 IPMI 管理页面，挂载远程的 ISO 文件手动安装。安装完成之">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-01.png">
+<meta property="og:image" content="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-06.png">
+<meta property="og:image" content="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-04.png">
+<meta property="og:image" content="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-05.png">
+<meta property="og:image" content="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-02.png">
+<meta property="og:image" content="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-03.png">
+<meta property="og:image" content="https://p.k8s.li/2022-04-30-redfish-esxi-os-installer-07.png">
+<meta property="article:published_time" content="2022-04-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-29T16:00:00.000Z">
+<meta property="article:author" content="木子">
+<meta property="article:tag" content="ESXi">
+<meta property="article:tag" content="Redfish">
+<meta property="article:tag" content="Dell 服务器">
+<meta property="article:tag" content="HPE 服务器">
+<meta property="article:tag" content="Lenovo 服务器">
+<meta property="article:tag" content="裸金属服务器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-01.png">
+
+<link rel="canonical" href="https://blog.k8s.li/redfish-esxi-os-installer.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>使用 redfish 自动化安装 ESXi OS | Reimu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Reimu's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
+
+  </li>
+        <li class="menu-item menu-item-kindle">
+
+    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
+
+  </li>
+        <li class="menu-item menu-item-friends">
+
+    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/redfish-esxi-os-installer.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
+      <meta itemprop="name" content="木子">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reimu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          使用 redfish 自动化安装 ESXi OS
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-30 2022-04-30T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2022-04-30T00:00:00+08:00">2022-04-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/redfish-esxi-os-installer.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="redfish-esxi-os-installer.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>27k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>45 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>从去年十一月底到现在一直在做在  <a href="https://www.vmware.com/products/esxi-and-esx.html" target="_blank" rel="noopener">VMware ESXi</a>  上部署 <a href="https://www.smartx.com/smartx-hci/" target="_blank" rel="noopener">超融合集群</a> 的产品化工具，也是在最近完成了前后端的联调，五一节后开始进入测试阶段。为了测试不同的 VMware ESXi 版本和我们产品的兼容性，需要很频繁地在一些物理服务器（如戴尔、联想、惠普、浪潮、超微等）上安装 VMware ESXi OS。</p>
+<p>之前一直都是登录 IPMI 管理页面，挂载远程的 ISO 文件手动安装。安装完成之后还需要配置 ESXi 管理网络的 IP 地址。整体的安装流程比较繁琐，而且物理服务器每次重启和开机都十分耗时，对经常要安装 ESXi 的 QE 小伙伴来讲十分痛苦。</p>
+<p>为了后续测试起来爽快一点，不用再为安装 ESXi OS 而烦恼，于是就基于 Redfish 快速实现了一套自动化安装 ESXi OS 的工具 <a href="https://github.com/muzi502/redfish-esxi-os-installer" target="_blank" rel="noopener">redfish-esxi-os-installer</a>。通过它我们内部的戴尔、联想、HPE 服务器安装 ESXi OS 只需要填写一个配置文件并选择需要安装的 ESXi ISO，运行一下 Jenkins Job 等待十几分钟就能自动安装好。原本需要一个多小时的工作量，现在只需要运行一下 Jenkins Job 帮助我们自动安装好 ESXi OS 啦 😂，真是爽歪歪。</p>
+<p>五一假期刚开始，正好有时间抽空整理一下最近学到的东西，和大家分享一下这套自动化安装 ESXi OS 工具。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ul>
+<li>支持服务器：联想/戴尔/HPE（超微和浪潮优先级不高，暂时不支持）；</li>
+<li>一键自动化安装/重装 ESXi OS，最好能配置好 Jenkins Job；</li>
+<li>指定 ESXi OS 安装的物理盘：由于物理服务器有多块硬盘，ESXi OS 需要安装在指定的硬盘上。一般为 SATA DOM 盘。比如戴尔的 <a href="https://downloads.dell.com/manuals/all-products/esuprt_solutions_int/esuprt_solutions_int_solutions_resources/servers-solution-resources_white-papers10_en-us.pdf" target="_blank" rel="noopener">DELLBOSS</a>，联想的 <a href="https://lenovopress.com/lp0769.pdf" target="_blank" rel="noopener">ThinkSystem M.2</a> 。这类 DOM 盘的好处就在于不占用多余的 HBA 卡或 PCI 插槽，有点类似于家用台式机主板上的 M.2 硬盘位插槽；</li>
+<li>指定网卡并配置静态 IP 地址：由于我们的物理服务器上有多块网卡，且不同的网卡有不同的网络用途，因此需要指定某块物理网卡为 ESXi 管理网络所使用的网卡。</li>
+<li>为 ESXi 管理网路配置静态 IP、子网掩码、网关，便于部署好之后直接就能通过该 IP 访问 ESXi。而不是通过 DHCP 分配一个 IP，然后再登录 IPMI 管理页面手动查看 ESXi 的 IP；</li>
+</ul>
+<h2 id="技术调研"><a href="#技术调研" class="headerlink" title="技术调研"></a>技术调研</h2><p>目前市面上主流的裸金属服务器自动化安装 OS 的工具有 PXE 和 IPMI/Redfish 两种。</p>
+<h3 id="PXE"><a href="#PXE" class="headerlink" title="PXE"></a>PXE</h3><p>虽然内部也有 PXE 服务可用，但重启服务器和设置服务器的引导项为 PXE 启动仍然需要手动登录 IPMI 管理页面进行操作，无法做到自动重启和自动重装，仍有一定的工作量。而且 PXE 安装 OS 无法解决为每台服务器配置各自的安装盘和管理网络网卡及静态 IP 地址的问题，遂放弃。</p>
+<h3 id="IPMI-Redfish"><a href="#IPMI-Redfish" class="headerlink" title="IPMI/Redfish"></a>IPMI/Redfish</h3><p><a href="https://www.dmtf.org/standards/redfish" target="_blank" rel="noopener">Redfish</a> 的概念和原理什么的就懒得介绍了，下面就直接剽窃一下官方的文档吧 😅：</p>
+<blockquote>
+<p><code>DMTF</code> 的 <code>Redfish®</code> 是一个标准 <code>API</code>，旨在为融合、混合 <code>IT</code> 和软件定义数据中心（<code>SDDC</code>）提供简单和安全管理。</p>
+<p>在 <code>Redfish</code> 出现之前，现代数据中心环境中缺乏互操作管理标准。随着机构越来越青睐于大规模的解决方案，传统标准不足以成功管理大量简单的多节点服务器或混合基础设施。<code>IPMI</code> 是一种较早的带外管理标准，仅限于“最小公共集”命令集（例如，开机/关机/重启、温度值、文本控制台等），由于供应商扩展在所有平台上并不常见，导致了客户常用的功能集减少。许多用户开发了自己的紧密集成工具，但是也不得不依赖带内管理软件。</p>
+<p>而对于企业级用户来说，设备都是上千台，其需要统一的管理界面，就要对接不同供应商的 <code>API</code>。当基本 <code>IPMI</code> 功能已经不太好满足大规模 <code>Scale-out</code> 环境时，如何以更便捷的方式调用服务器高级管理功能就是一个新的需求。</p>
+<p>为了寻求一个基于广泛使用的工具来加快发展的现代接口，现如今，客户需要一个使用互联网和 <code>web</code> 服务环境中常见的协议、结构和安全模型定义的 <code>API</code>。</p>
+<p><code>Redfish</code> 可扩展平台管理 <code>API</code>（<code>The Redfish Scalable Platforms Management API</code>）是一种新的规范，其使用 <code>RESTful</code> 接口语义来访问定义在模型格式中的数据，用于执行带外系统管理 （<code>out of band systems management</code>）。其适用于大规模的服务器，从独立的服务器到机架式和刀片式的服务器环境，而且也同样适用于大规模的云环境。</p>
+<p><code>Redfish</code> 的第 <code>1</code> 版侧重于服务器，为 <code>IPMI-over-LAN</code> 提供了一个安全、多节点的替代品。随后的 <code>Redfish</code> 版本增加了对网络接口(例如 <code>NIC</code>、<code>CNA</code> 和 <code>FC HBA</code>)、<code>PCIe</code> 交换、本地存储、<code>NVDIMM</code>、多功能适配器和可组合性以及固件更新服务、软件更新推送方法和安全特权映射的管理。此外，<code>Redfish</code> 主机接口规范允许在操作系统上运行应用程序和工具，包括在启动前（固件）阶段-与 <code>Redfish</code> 管理服务沟通。</p>
+<p>在定义 <code>Redfish</code> 标准时，协议与数据模型可分开并允许独立地修改。以模式为基础的数据模型是可伸缩和可扩展的，并且随着行业的发展，它将越来越具有人类可读性定义。</p>
+</blockquote>
+<p>通过 Redfish 我们可以对服务器进行挂载/卸载 ISO、设置 BIOS 启动项、开机/关机/重启等操作。只需要使用一些特定的 ansible 模块，将它们缝合起来就能将整个流程跑通。</p>
+<p>内部的服务器戴尔、联想、HPE 的较多，这三家厂商对 Redfish 支持的也比较完善。于是这个 ESXi OS 自动化安装工具 <a href="https://github.com/muzi502/redfish-esxi-os-installer" target="_blank" rel="noopener">redfish-esxi-os-installer</a> 就基于 Redfish 并结合 Jenkins 实现了一套自动化安装 ESXi OS 的方案，下面就详细介绍一下这套方案的安装流程和技术实现细节。</p>
+<h2 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h2><ol>
+<li>获取硬盘和网卡硬件设备信息</li>
+<li>根据硬件设备信息填写配置文件</li>
+<li>根据配置文件生成 ansible inventory 文件</li>
+<li>根据配置文件为每台主机生成 kickstart 文件</li>
+<li>将生成好的 kickstart 文件打包放到 ESXi ISO 当中</li>
+<li>为每台主机重新构建一个 ESXi ISO 文件</li>
+<li>通过 redfish 弹出已有的 ISO 镜像</li>
+<li>通过 redfish 插入远程的 ISO 镜像</li>
+<li>设置 one-boot 启动引导项为虚拟光驱</li>
+<li>重启服务器到 ESXI ISO，ESXI installer 调用 Kickstarter 脚本安装 OS</li>
+<li>等待 ESXi OS 安装完成</li>
+</ol>
+<h3 id="获取硬件信息"><a href="#获取硬件信息" class="headerlink" title="获取硬件信息"></a>获取硬件信息</h3><p>该步骤主要是获取 ESXi OS 安装的硬盘和管理网络网卡设备信息。</p>
+<h4 id="获取硬盘型号-序列号"><a href="#获取硬盘型号-序列号" class="headerlink" title="获取硬盘型号/序列号"></a>获取硬盘型号/序列号</h4><p>要指定 ESXi OS 安装的硬盘，可以通过硬盘型号或序列号的方式。如果当前服务器已经安装了 ESXi，登录到 ESXi 则可以查看到所安装硬盘的型号：</p>
+<ul>
+<li>比如这台戴尔的服务器 ESXi OS 安装的硬盘型号是 <code>DELLBOSS VD</code>（注意中间的空格不要省略）；</li>
+</ul>
+<p><img src="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-01.png" alt="img"></p>
+<ul>
+<li>比如这台联想服务器的 SATA DOM 盘型号为 <code>ThinkSystem M.2</code></li>
+</ul>
+<p><img src="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-06.png" alt="img"></p>
+<ul>
+<li>如果安装的是 Linux，可以通过 <a href="https://www.smartmontools.org/" target="_blank" rel="noopener">smartctl</a> 工具查看所要安装硬盘的型号即 <code>Device Model</code>，比如：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">╭─root@esxi-debian-nas ~</span><br><span class="line">╰─<span class="comment"># smartctl -x /dev/sdb</span></span><br><span class="line">smartctl 6.6 2017-11-05 r4594 [x86_64-linux-4.19.0-18-amd64] (<span class="built_in">local</span> build)</span><br><span class="line">Copyright (C) 2002-17, Bruce Allen, Christian Franke, www.smartmontools.org</span><br><span class="line"></span><br><span class="line">=== START OF INFORMATION SECTION ===</span><br><span class="line">Device Model:     HGST HUH721212ALE604</span><br><span class="line">Serial Number:    5PJAMUHD</span><br><span class="line">LU WWN Device Id: 5 000cca 291e10521</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-04.png" alt="img"></p>
+<p>如果有多块型号相同的硬盘，ESXi 则会默认选择第一块，如果要指定某一块硬盘则使用 WWN 号的方式，获取 WWN ID 的命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">╭─root@esxi-debian-nas ~</span><br><span class="line">╰─<span class="comment"># smartctl -x /dev/sdb | sed -n "s/LU WWN Device Id:/naa./p" | tr -d ' '</span></span><br><span class="line">naa.5000cca291e10521</span><br></pre></td></tr></table></figure>
+
+<h4 id="获取网卡设备名-MAC-地址"><a href="#获取网卡设备名-MAC-地址" class="headerlink" title="获取网卡设备名/MAC 地址"></a>获取网卡设备名/MAC 地址</h4><ul>
+<li>如果当前物理服务器已经安装了 ESXi，则登录 ESXi 主机查看 ESXi 默认的管理网络 vSwitch0 虚拟交换机所连接的物理网卡设备名，比如这台服务器网卡设备名为 <code>vmnic4</code></li>
+</ul>
+<p><img src="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-05.png" alt="img"></p>
+<ul>
+<li>另一种方式则是登录服务器的 IPMI 管理页面，查看对应网卡的 MAC 地址</li>
+</ul>
+<p><img src="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-02.png" alt="img"></p>
+<h3 id="填写配置文件"><a href="#填写配置文件" class="headerlink" title="填写配置文件"></a>填写配置文件</h3><p>通过以上方式确定好 ESXi OS 所安装的硬盘型号或序列号，以及 ESXi 默认管理网络 vSwitch0 所关联的物理网卡设备名或 MAC 地址之后，我们就将这些配置参数填入到该配置文件当中。后面的工具会使用该配置为每台机器生成不同的 kickstart 文件，在 kickstart 文件中指定 ESXi OS 安装的硬盘，ESXi 管理网络所使用的网卡，以及设置静态 IP、子网掩码、网关、主机名等参数。</p>
+<ul>
+<li><a href="https://github.com/muzi502/redfish-esxi-os-installer/blob/master/config-example.yaml" target="_blank" rel="noopener">config.yaml</a></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">hosts:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">ipmi:</span></span><br><span class="line">    <span class="attr">vendor:</span> <span class="string">lenovo</span>                  <span class="comment"># 服务器厂商名 [dell, lenovo, hpe]</span></span><br><span class="line">    <span class="attr">address:</span> <span class="number">10.172</span><span class="number">.70</span><span class="number">.186</span>          <span class="comment"># IPMI IP 地址</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">username</span>              <span class="comment"># IPMI 用户名</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">password</span>              <span class="comment"># IPMI 密码</span></span><br><span class="line">  <span class="attr">esxi:</span></span><br><span class="line">    <span class="attr">esxi_disk:</span> <span class="string">ThinkSystem</span> <span class="string">M.2</span>      <span class="comment"># ESXi OS 所安装硬盘的型号或序列号</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">password</span>              <span class="comment"># ESXi 的 root 用户密码</span></span><br><span class="line">    <span class="attr">address:</span> <span class="number">10.172</span><span class="number">.69</span><span class="number">.86</span>           <span class="comment"># ESXi 管理网络 IP 地址</span></span><br><span class="line">    <span class="attr">gateway:</span> <span class="number">10.172</span><span class="number">.64</span><span class="number">.1</span>            <span class="comment"># ESXi 管理网络网关</span></span><br><span class="line">    <span class="attr">netmask:</span> <span class="number">255.255</span><span class="number">.240</span><span class="number">.0</span>          <span class="comment"># ESXi 管理网络子网掩码</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">esxi-69-86</span>            <span class="comment"># ESXi 主机名（可选）</span></span><br><span class="line">    <span class="attr">mgtnic:</span> <span class="string">vmnic4</span>                  <span class="comment"># ESXi 管理网络网卡名称或MAC 地址</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="attr">ipmi:</span></span><br><span class="line">    <span class="attr">vendor:</span> <span class="string">dell</span></span><br><span class="line">    <span class="attr">address:</span> <span class="number">10.172</span><span class="number">.18</span><span class="number">.191</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">username</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">password</span></span><br><span class="line">  <span class="attr">esxi:</span></span><br><span class="line">    <span class="attr">esxi_disk:</span> <span class="string">DELLBOSS</span> <span class="string">VD</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">password</span></span><br><span class="line">    <span class="attr">address:</span> <span class="number">10.172</span><span class="number">.18</span><span class="number">.95</span></span><br><span class="line">    <span class="attr">gateway:</span> <span class="number">10.172</span><span class="number">.16</span><span class="number">.1</span></span><br><span class="line">    <span class="attr">netmask:</span> <span class="number">255.255</span><span class="number">.240</span><span class="number">.0</span></span><br><span class="line">    <span class="attr">mgtnic:</span> <span class="string">B4:96:91:A7:3F:D6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="生成-inventory-文件"><a href="#生成-inventory-文件" class="headerlink" title="生成 inventory 文件"></a>生成 inventory 文件</h3><p>在 <a href="https://github.com/muzi502/redfish-esxi-os-installer/blob/master/tools.sh" target="_blank" rel="noopener">tools.sh</a> 脚本中通过 <a href="https://github.com/mikefarah/yq" target="_blank" rel="noopener">yq</a> 命令行工具解析 <code>config.yaml</code> 配置文件，得到每台主机的配置信息，并根据该信息生成一个 ansible 的 inventory 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">rendder_host_info</span></span>()&#123;</span><br><span class="line">    <span class="built_in">local</span> index=<span class="variable">$1</span></span><br><span class="line">    vendor=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].ipmi.vendor"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    os_disk=<span class="string">"<span class="variable">$(yq -e eval ".hosts.[$index].esxi.esxi_disk" $&#123;CONFIG&#125;)</span>"</span></span><br><span class="line">    esxi_mgtnic=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].esxi.mgtnic"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    esxi_address=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].esxi.address"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    esxi_gateway=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].esxi.gateway"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    esxi_netmask=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].esxi.netmask"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    esxi_password=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].esxi.password"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    ipmi_address=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].ipmi.address"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    ipmi_username=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].ipmi.username"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    ipmi_password=$(yq -e <span class="built_in">eval</span> <span class="string">".hosts.[<span class="variable">$index</span>].ipmi.password"</span> <span class="variable">$&#123;CONFIG&#125;</span>)</span><br><span class="line">    esxi_hostname=<span class="string">"<span class="variable">$(yq -e eval ".hosts.[$index].esxi.hostname" $&#123;CONFIG&#125; 2&gt; /dev/null || true)</span>"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">gen_inventory</span></span>()&#123;</span><br><span class="line">    cat &lt;&lt; EOF &gt; <span class="variable">$&#123;INVENTORY&#125;</span></span><br><span class="line">_hpe_</span><br><span class="line"></span><br><span class="line">_dell_</span><br><span class="line"></span><br><span class="line">_lenovo_</span><br><span class="line"></span><br><span class="line">[all:children]</span><br><span class="line">hpe</span><br><span class="line">dell</span><br><span class="line">lenovo</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 `expr <span class="variable">$&#123;nums&#125;</span> - 1`); <span class="keyword">do</span></span><br><span class="line">        rendder_host_info <span class="variable">$&#123;i&#125;</span></span><br><span class="line">        host_info=<span class="string">"<span class="variable">$&#123;ipmi_address&#125;</span> username=<span class="variable">$&#123;ipmi_username&#125;</span> password=<span class="variable">$&#123;ipmi_password&#125;</span> esxi_address=<span class="variable">$&#123;esxi_address&#125;</span> esxi_password=<span class="variable">$&#123;esxi_password&#125;</span>"</span></span><br><span class="line">        sed -i <span class="string">"/_<span class="variable">$&#123;vendor&#125;</span>_/a <span class="variable">$&#123;host_info&#125;</span>"</span> <span class="variable">$&#123;INVENTORY&#125;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">    sed -i <span class="string">"s#^_dell_#[dell]#g;s#^_lenovo_#[lenovo]#g;s#_hpe_#[hpe]#g"</span> <span class="variable">$&#123;INVENTORY&#125;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"gen inventory success"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>生成后的 inventory 文件内容如下，根据不同的厂商名称进行分组</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[hpe]</span></span><br><span class="line">10.172.18.191 username=username password=password esxi_address=10.172.18.95 esxi_password=password</span><br><span class="line"></span><br><span class="line"><span class="section">[dell]</span></span><br><span class="line">10.172.18.192 username=username password=password esxi_address=10.172.18.96 esxi_password=password</span><br><span class="line"></span><br><span class="line"><span class="section">[lenovo]</span></span><br><span class="line">10.172.18.193 username=username password=password esxi_address=10.172.18.97 esxi_password=password</span><br><span class="line"></span><br><span class="line"><span class="section">[all:children]</span></span><br><span class="line">hpe</span><br><span class="line">dell</span><br><span class="line">lenovo</span><br></pre></td></tr></table></figure>
+
+<h3 id="检查-Redfish-登录是否正常"><a href="#检查-Redfish-登录是否正常" class="headerlink" title="检查 Redfish 登录是否正常"></a>检查 Redfish 登录是否正常</h3><p>通过 Redfish 的 GetSystemInventory 命令获取服务器的 inventory 清单来检查登录 Redfish 是否正常，用户名或密码是否正确。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Getting</span> <span class="string">system</span> <span class="string">inventory</span></span><br><span class="line">  <span class="attr">community.general.redfish_info:</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">Systems</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">GetSystemInventory</span></span><br><span class="line">    <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="生成-kickstart-文件"><a href="#生成-kickstart-文件" class="headerlink" title="生成 kickstart 文件"></a>生成 kickstart 文件</h3><p>在 <a href="">tools.sh</a> 同样使用 yq 命令行工具渲染配置文件，得到每台主机的配置信息，为每台主机生成一个特定的 kickstart 文件。</p>
+<p>在 kickstart 文件中我们我们可以通过 <code>install --overwritevmfs --firstdisk=&quot;${ESXI_DISK}&quot;</code> 配置 ESXi OS 安装在哪一块硬盘上；</p>
+<p>通过 <code>network --bootproto=static</code> 为 ESXi 管理网络配置静态 IP、子网掩码、网关、主机名、物理网卡等参数。需要注意的是，如果使用 MAC 地址指定网卡，MAC 地址必须为大写，因此需要使用 tr 进行了一下大小写转换；</p>
+<p>通过 <code>clearpart --alldrives --overwritevmfs</code> 可以清除所有硬盘上的分区，我们安装时一般是将它们全部清理掉，方便进行测试；</p>
+<p>最后再开启 SSH 服务并开启 sshServer 的防火墙，方便后续测试使用；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">gen_iso_ks</span></span>()&#123;</span><br><span class="line">    <span class="built_in">local</span> ISO_KS=<span class="variable">$1</span></span><br><span class="line">    <span class="built_in">local</span> ESXI_DISK=<span class="variable">$&#123;os_disk&#125;</span></span><br><span class="line">    <span class="built_in">local</span> IP_ADDRESS=<span class="variable">$&#123;esxi_address&#125;</span></span><br><span class="line">    <span class="built_in">local</span> NETMASK=<span class="variable">$&#123;esxi_netmask&#125;</span></span><br><span class="line">    <span class="built_in">local</span> GATEWAY=<span class="variable">$&#123;esxi_gateway&#125;</span></span><br><span class="line">    <span class="built_in">local</span> DNS_SERVER=<span class="string">"<span class="variable">$&#123;GATEWAY&#125;</span>"</span></span><br><span class="line">    <span class="built_in">local</span> PASSWORD=<span class="variable">$&#123;esxi_password&#125;</span></span><br><span class="line">    <span class="built_in">local</span> HOSTNAME=<span class="string">"<span class="variable">$(echo $&#123;esxi_hostname&#125; | sed "s/null/esxi-$&#123;esxi_address//./-&#125;/")</span>"</span></span><br><span class="line">    <span class="built_in">local</span> MGTNIC=$(<span class="built_in">echo</span> <span class="variable">$&#123;esxi_mgtnic&#125;</span> | tr <span class="string">'[a-z]'</span> <span class="string">'[A-Z]'</span> | sed <span class="string">'s/VMNIC/vmnic/g'</span>)</span><br><span class="line">    cat &lt;&lt; EOF &gt; <span class="variable">$&#123;ISO_KS&#125;</span></span><br><span class="line">vmaccepteula</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the root password for the DCUI and Tech Support Mode</span></span><br><span class="line">rootpw <span class="variable">$&#123;PASSWORD&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the keyboard</span></span><br><span class="line">keyboard <span class="string">'US Default'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># wipe exisiting VMFS store # CAREFUL!</span></span><br><span class="line">clearpart --alldrives --overwritevmfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install on the first local disk available on machine</span></span><br><span class="line">install --overwritevmfs --firstdisk=<span class="string">"<span class="variable">$&#123;ESXI_DISK&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the network to DHCP on the first network adapter</span></span><br><span class="line">network --bootproto=static --hostname=<span class="variable">$&#123;HOSTNAME&#125;</span> --ip=<span class="variable">$&#123;IP_ADDRESS&#125;</span> --gateway=<span class="variable">$&#123;GATEWAY&#125;</span> --nameserver=<span class="variable">$&#123;DNS_SERVER&#125;</span> --netmask=<span class="variable">$&#123;NETMASK&#125;</span> --device=<span class="string">"<span class="variable">$&#123;MGTNIC&#125;</span>"</span></span><br><span class="line"></span><br><span class="line">reboot</span><br><span class="line"></span><br><span class="line">%firstboot --interpreter=busybox</span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable SSH</span></span><br><span class="line">vim-cmd hostsvc/enable_ssh</span><br><span class="line">vim-cmd hostsvc/start_ssh</span><br><span class="line">esxcli network firewall ruleset <span class="built_in">set</span> --enabled=<span class="literal">false</span> --ruleset-id=sshServer</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="重新构建-ESXi-ISO"><a href="#重新构建-ESXi-ISO" class="headerlink" title="重新构建 ESXi ISO"></a>重新构建 ESXi ISO</h3><p>这一步的操作主要是修改 ESXi ISO 的启动项配置，配置 ks 文件的路径，主要是修改 ISO 文件里的 <code>boot.cfg</code> 和 <code>efi/boot/boot.cfg</code> 文件。在启动参数中加入 <code>ks=cdrom:/KS.CFG</code> 用于指定 ESXi OS 安装通过读取 kickstart 脚本的方式来完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i -e <span class="string">'s#cdromBoot#ks=cdrom:/KS.CFG systemMediaSize=small#g'</span> boot.cfg</span><br><span class="line">sed -i -e <span class="string">'s#cdromBoot#ks=cdrom:/KS.CFG systemMediaSize=small#g'</span> efi/boot/boot.cfg</span><br></pre></td></tr></table></figure>
+
+<p>另外在 VMware 的 KB <a href="https://kb.vmware.com/s/article/81166" target="_blank" rel="noopener">Boot option to configure the size of ESXi system partitions (81166)</a> 中，提到过可以设置 <code>systemMediaSize=small</code> 来调整 VMFS-L 分区的大小。ESXi 7.0 版本之后会默认创建一个 VMFS-L 分区，如果 SATA DOM 盘比较小的话比如只有 128G，建议设置此参数。不然可能会导致安装完 ESXi OS 之后磁盘剩余的空间都被 VMFS-L 分区给占用，导致没有一个本地的数据存储可以使用。</p>
+<p>修改好 ESXi 的启动配置之后，我们再使用 genisoimage 命令重新构建一个 ESXi ISO 文件，将构建好的 ISO 文件放到一个 http 文件服务的目录下，如 nginx 的 <code>/usr/share/nginx/html/iso</code>。后面将会通过 http 的方式将 ISO 挂载到服务器的虚拟光驱上。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">rebuild_esxi_iso</span></span>() &#123;</span><br><span class="line">    <span class="built_in">local</span> dest_iso_mount_dir=<span class="variable">$1</span></span><br><span class="line">    <span class="built_in">local</span> dest_iso_path=<span class="variable">$2</span></span><br><span class="line">    <span class="built_in">pushd</span> <span class="variable">$&#123;dest_iso_mount_dir&#125;</span> &gt; /dev/null</span><br><span class="line">    sed -i -e <span class="string">'s#cdromBoot#ks=cdrom:/KS.CFG systemMediaSize=small#g'</span> boot.cfg</span><br><span class="line">    sed -i -e <span class="string">'s#cdromBoot#ks=cdrom:/KS.CFG systemMediaSize=small#g'</span> efi/boot/boot.cfg</span><br><span class="line">    genisoimage -J \</span><br><span class="line">                -R  \</span><br><span class="line">                -o <span class="variable">$&#123;dest_iso_path&#125;</span> \</span><br><span class="line">                -relaxed-filenames \</span><br><span class="line">                -b isolinux.bin \</span><br><span class="line">                -c boot.cat \</span><br><span class="line">                -no-emul-boot \</span><br><span class="line">                -boot-load-size 4 \</span><br><span class="line">                -boot-info-table \</span><br><span class="line">                -eltorito-alt-boot \</span><br><span class="line">                -eltorito-boot efiboot.img \</span><br><span class="line">                -quiet --no-emul-boot \</span><br><span class="line">                . &gt; /dev/null</span><br><span class="line">  <span class="built_in">popd</span> &gt; /dev/null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重新构建好 ESXi ISO 之后的 nginx 目录结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tree /usr/share/nginx/html/iso/</span></span><br><span class="line">/usr/share/nginx/html/iso/</span><br><span class="line">├── redfish</span><br><span class="line">│   ├── 172.20.18.191</span><br><span class="line">│   │   └── VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso <span class="comment"># 重新构建的 ISO</span></span><br><span class="line">│   ├── 172.20.18.192</span><br><span class="line">│   │   └── VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso <span class="comment"># 重新构建的 ISO</span></span><br><span class="line">│   ├── 172.20.18.193</span><br><span class="line">│   │   └── VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso <span class="comment"># 重新构建的 ISO</span></span><br><span class="line">│   └── 172.20.70.186</span><br><span class="line">│       └── VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso <span class="comment"># 重新构建的 ISO</span></span><br><span class="line">├── VMware-VMvisor-Installer-6.7.0.update03-14320388.x86_64.iso <span class="comment"># 原 ISO</span></span><br><span class="line">├── VMware-VMvisor-Installer-7.0U2a-17867351.x86_64.iso         <span class="comment"># 原 ISO</span></span><br><span class="line">└── VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso         <span class="comment"># 原 ISO</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-redfish-弹出已有的-Virtual-Media"><a href="#通过-redfish-弹出已有的-Virtual-Media" class="headerlink" title="通过 redfish 弹出已有的 Virtual Media"></a>通过 redfish 弹出已有的 Virtual Media</h3><p>redfish 插入/弹出 ISO 操作有现成可用的 ansible 模块可以使用，不必重复造轮子。不同的服务器厂商调用的模块可能会有所不同，不过参数基本上是相同的。</p>
+<p>如果当前服务器上已经挂载了一些其他的 ISO，要将他们全部弹出才行，不然在挂载 ISO 的时候会失败退出，并且也能避免多个 ISO 重启启动的时候引起冲突启动到另一个 ISO 中。</p>
+<ul>
+<li>联想服务器的 VirtualMediaEject 命令可以弹出所有的 ISO</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Lenovo</span> <span class="string">|</span> <span class="string">Eject</span> <span class="string">all</span> <span class="string">Virtual</span> <span class="string">Media</span></span><br><span class="line">  <span class="attr">community.general.xcc_redfish_command:</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">Manager</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">VirtualMediaEject</span></span><br><span class="line">    <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">resource_id:</span> <span class="string">"1"</span></span><br><span class="line">  <span class="attr">when:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">inventory_hostname</span> <span class="string">in</span> <span class="string">groups['lenovo']</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">mount-iso</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">umount-iso</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>戴尔和 HPE 服务器在弹出 ISO 的时候需要先知道原有 ISO 的 URL。因此先通过 <code>GetVirtualMedia</code> 命令获取到一个 ISO 的 URL 列表，然后再根据这个列表一一弹出。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Get</span> <span class="string">virtual</span> <span class="string">media</span> <span class="string">details</span></span><br><span class="line">  <span class="attr">community.general.redfish_info:</span></span><br><span class="line">    <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">"Manager"</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">"GetVirtualMedia"</span></span><br><span class="line">  <span class="attr">register:</span> <span class="string">result</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">mount-iso</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">umount-iso</span></span><br><span class="line">  <span class="attr">when:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">inventory_hostname</span> <span class="string">not</span> <span class="string">in</span> <span class="string">groups['lenovo']</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Eject</span> <span class="string">virtual</span> <span class="string">media</span></span><br><span class="line">  <span class="attr">community.general.redfish_command:</span></span><br><span class="line">    <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">"Manager"</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">"VirtualMediaEject"</span></span><br><span class="line">    <span class="attr">virtual_media:</span></span><br><span class="line">      <span class="attr">image_url:</span> <span class="string">"<span class="template-variable">&#123;&#123; item &#125;&#125;</span>"</span></span><br><span class="line">  <span class="attr">with_items:</span> <span class="string">"<span class="template-variable">&#123;&#123; result.redfish_facts.virtual_media.entries[0][1] | selectattr('ConnectedVia', 'equalto','URI') | map(attribute='Image') | list &#125;&#125;</span>"</span></span><br><span class="line">  <span class="attr">when:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">inventory_hostname</span> <span class="string">not</span> <span class="string">in</span> <span class="string">groups['lenovo']</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">mount-iso</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">umount-iso</span></span><br></pre></td></tr></table></figure>
+
+<p>在弹出一个 ISO 的时候需要先知道 ISO 的 URL，感觉有点奇葩 😂。更合理的应该是需要一个挂载点的标识，就像比 Linux 上的挂载点。在 umount 挂载的设备时，只需要知道挂载点即可，不需要知道挂载的设备是什么。在 ISSUE <a href="https://github.com/ansible-collections/community.general/issues/3042" target="_blank" rel="noopener">VirtualMediaEject should not require image_url </a> 中有大佬反馈过在弹出 ISO 的时候不应该需要 image url，不过被 maintainer 给否决了 😅。</p>
+<blockquote>
+<p>Yes, at least with the behavior we’ve implemented today the image URL is needed since the expectation is the user is specifying the image URL for the ISO to eject. I think we need to consider some things first before making changes.</p>
+<p>If the image URL is not given, then what exactly should be ejected? All virtual media your example indicates? This seems a bit heavy handed in my opinion, but others might like this behavior. Redfish itself doesn’t support an “eject all” type of operation, and I suspect the script you’re referencing is either using OEM actions or is just looping on all slots and ejecting everything.</p>
+<p>Should a user be allowed specify an alternative identifier (such as the “Id” of the virtual media instance) in order to control what slot is ejected?</p>
+<p>Certainly would like opinions from others for desired behavior. I do like the idea of keeping the mandatory argument list as minimal as possible, but would like to agree upon the desired behavior first.</p>
+</blockquote>
+<h3 id="通过-Redfish-插入-ISO"><a href="#通过-Redfish-插入-ISO" class="headerlink" title="通过 Redfish 插入 ISO"></a>通过 Redfish 插入 ISO</h3><ul>
+<li>联想服务器使用的是 <code>community.general.xcc_redfish_command</code> 模块，redfish 的 command 为 VirtualMediaInsert；</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Lenovo</span> <span class="string">|</span> <span class="string">Insert</span> <span class="string">&#123;&#123;</span> <span class="string">image_url</span> <span class="string">&#125;&#125;</span> <span class="string">Virtual</span> <span class="string">Media</span></span><br><span class="line">  <span class="attr">community.general.xcc_redfish_command:</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">Manager</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">VirtualMediaInsert</span></span><br><span class="line">    <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">virtual_media:</span></span><br><span class="line">      <span class="attr">image_url:</span> <span class="string">"<span class="template-variable">&#123;&#123; image_url &#125;&#125;</span>"</span></span><br><span class="line">      <span class="attr">media_types:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">CD</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">DVD</span></span><br><span class="line">    <span class="attr">resource_id:</span> <span class="string">"1"</span></span><br><span class="line">  <span class="attr">when:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">inventory_hostname</span> <span class="string">in</span> <span class="string">groups['lenovo']</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">mount-iso</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>戴尔和 HPE 服务器挂载 ISO 使用的则是 <code>community.general.redfish_command</code> 模块，command 和联想的相同；</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Insert</span> <span class="string">&#123;&#123;</span> <span class="string">image_url</span> <span class="string">&#125;&#125;</span> <span class="string">ISO</span> <span class="string">as</span> <span class="string">virtual</span> <span class="string">media</span> <span class="string">device</span></span><br><span class="line"> <span class="attr">community.general.redfish_command:</span></span><br><span class="line">   <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">   <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">   <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">   <span class="attr">category:</span> <span class="string">"Manager"</span></span><br><span class="line">   <span class="attr">command:</span> <span class="string">"VirtualMediaInsert"</span></span><br><span class="line">   <span class="attr">virtual_media:</span></span><br><span class="line">     <span class="attr">image_url:</span> <span class="string">"<span class="template-variable">&#123;&#123; image_url &#125;&#125;</span>"</span></span><br><span class="line">     <span class="attr">media_types:</span></span><br><span class="line">       <span class="bullet">-</span> <span class="string">CD</span></span><br><span class="line">       <span class="bullet">-</span> <span class="string">DVD</span></span><br><span class="line"> <span class="attr">when:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">inventory_hostname</span> <span class="string">not</span> <span class="string">in</span> <span class="string">groups['lenovo']</span></span><br><span class="line"> <span class="attr">tags:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">mount-iso</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：如果使用 <code>community.general.redfish_command</code> 模块为联想的服务器挂载 ISO 会提示 4xx 错误，必须使用 <code>community.general.xcc_redfish_command</code> 模块才行。</p>
+<h3 id="设置启动项为虚拟光驱"><a href="#设置启动项为虚拟光驱" class="headerlink" title="设置启动项为虚拟光驱"></a>设置启动项为虚拟光驱</h3><p>此过程是将服务器的启动项设置为虚拟光驱，不同厂商的服务器调用的 ansible 模块可能也会有所不同。</p>
+<ul>
+<li>联想和 HPE 服务器</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Set</span> <span class="string">one-time</span> <span class="string">boot</span> <span class="string">device</span> <span class="string">to</span> <span class="string">&#123;&#123;</span> <span class="string">bootdevice</span> <span class="string">&#125;&#125;</span></span><br><span class="line">  <span class="attr">community.general.redfish_command:</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">Systems</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">SetOneTimeBoot</span></span><br><span class="line">    <span class="attr">bootdevice:</span> <span class="string">"<span class="template-variable">&#123;&#123; bootdevice &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">timeout:</span> <span class="number">20</span></span><br><span class="line">  <span class="attr">when:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">inventory_hostname</span> <span class="string">not</span> <span class="string">in</span> <span class="string">groups['dell']</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>戴尔服务器</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span>  <span class="string">Dell</span> <span class="string">|</span> <span class="string">set</span> <span class="string">iDRAC</span> <span class="string">attribute</span> <span class="string">for</span> <span class="string">one-time</span> <span class="string">boot</span> <span class="string">from</span> <span class="string">virtual</span> <span class="string">CD</span></span><br><span class="line">  <span class="attr">community.general.idrac_redfish_config:</span></span><br><span class="line">    <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">"Manager"</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">"SetManagerAttributes"</span></span><br><span class="line">    <span class="attr">manager_attributes:</span></span><br><span class="line">      <span class="attr">ServerBoot.1.BootOnce:</span> <span class="string">"Enabled"</span></span><br><span class="line">      <span class="attr">ServerBoot.1.FirstBootDevice:</span> <span class="string">"VCD-DVD"</span></span><br><span class="line">  <span class="attr">when:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">inventory_hostname</span> <span class="string">in</span> <span class="string">groups['dell']</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重启服务器"><a href="#重启服务器" class="headerlink" title="重启服务器"></a>重启服务器</h3><p>重启服务器直接调用 <code>community.general.redfish_command</code> 模块就可以。不过需要注意的是，重启服务器之前要保证服务器当前状态为开启状态，因此调用一下 redfish 的 PowerOn 命令对服务器进行开机，如果已处于开机状态则无影响，然后再调用 PowerForceRestart 命令重启服务器。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">hosts:</span> <span class="string">all</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">Power</span> <span class="string">Force</span> <span class="string">Restart</span> <span class="string">the</span> <span class="string">host</span></span><br><span class="line">  <span class="attr">gather_facts:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">tasks:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Turn</span> <span class="string">system</span> <span class="string">power</span> <span class="string">on</span></span><br><span class="line">    <span class="attr">community.general.redfish_command:</span></span><br><span class="line">      <span class="attr">category:</span> <span class="string">Systems</span></span><br><span class="line">      <span class="attr">command:</span> <span class="string">PowerOn</span></span><br><span class="line">      <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">      <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Reboot</span> <span class="string">system</span></span><br><span class="line">    <span class="attr">community.general.redfish_command:</span></span><br><span class="line">      <span class="attr">category:</span> <span class="string">Systems</span></span><br><span class="line">      <span class="attr">command:</span> <span class="string">PowerForceRestart</span></span><br><span class="line">      <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">      <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">      <span class="attr">timeout:</span> <span class="number">20</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">reboot</span></span><br></pre></td></tr></table></figure>
+
+<p>这里还有优化的空间，就是根据电源的状态决定是重启还是开机，不过有点麻烦懒得弄了 😅</p>
+<h3 id="等待-ESXi-OS-安装完成"><a href="#等待-ESXi-OS-安装完成" class="headerlink" title="等待 ESXi OS 安装完成"></a>等待 ESXi OS 安装完成</h3><p>服务器重启之后，我们通过 govc 命令不断尝试连接 ESXi 主机，如果能够正常连接则说明 ESXi OS 已经安装完成了。一般情况下等待 15 分钟左右就能安装完成，期间需要重启服务器两次，每次重启大概需要 5 分钟左右，实际上 ESXi 进入安装页面到安装完成只需要 5 分钟左右，服务器开机自检占用的时间会稍微长一点。</p>
+<p><img src="https://p.k8s.li/2022-04-30-redfish-auto-install-esxi-os-03.png" alt="image-20220428210819057"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">hosts:</span> <span class="string">all</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">Wait</span> <span class="string">for</span> <span class="string">the</span> <span class="string">ESXi</span> <span class="string">OS</span> <span class="string">installation</span> <span class="string">to</span> <span class="string">complete</span></span><br><span class="line">  <span class="attr">gather_facts:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">vars:</span></span><br><span class="line">    <span class="attr">esxi_username:</span> <span class="string">"root"</span></span><br><span class="line">    <span class="attr">govc_url:</span> <span class="string">"https://<span class="template-variable">&#123;&#123; esxi_username &#125;&#125;</span>:<span class="template-variable">&#123;&#123; esxi_password &#125;&#125;</span>@<span class="template-variable">&#123;&#123; esxi_address &#125;&#125;</span>"</span></span><br><span class="line">  <span class="attr">tasks:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">"Wait for <span class="template-variable">&#123;&#123; inventory_hostname &#125;&#125;</span> install ESXi <span class="template-variable">&#123;&#123; esxi_address &#125;&#125;</span> host to be complete"</span></span><br><span class="line">    <span class="attr">shell:</span> <span class="string">"govc about -k=true -u=<span class="template-variable">&#123;&#123; govc_url&#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">retries:</span> <span class="number">60</span></span><br><span class="line">    <span class="attr">delay:</span> <span class="number">30</span></span><br><span class="line">    <span class="attr">register:</span> <span class="string">result</span></span><br><span class="line">    <span class="attr">until:</span> <span class="string">result.rc</span> <span class="string">==</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">post-check</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Makefile-封装"><a href="#Makefile-封装" class="headerlink" title="Makefile 封装"></a>Makefile 封装</h2><p>为了方便操作，将上述流程使用 Makefile 进行封装一下，如果不配置 Jenkins Job 的话，可以在本地填写好 <code>config.yaml</code> 配置文件，然后运行 make 命令来进行相关操作。</p>
+<h3 id="vars"><a href="#vars" class="headerlink" title="vars"></a>vars</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SRC_ISO_DIR     ?= /usr/share/nginx/html/iso</span><br><span class="line">HTTP_DIR        ?= /usr/share/nginx/html/iso/redfish</span><br><span class="line">HTTP_URL        ?= http://172.20.17.20/iso/redfish</span><br><span class="line">ESXI_ISO        ?= VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso</span><br><span class="line"></span><br><span class="line">SRC_ISO_DIR   <span class="comment"># 原 ESXi ISO 的存放目录</span></span><br><span class="line">ESXI_ISO      <span class="comment"># ESXi ISO 的文件名，如 VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso</span></span><br><span class="line">HTTP_DIR      <span class="comment"># HTTP 服务器的静态文件存放目录，比如 /usr/share/nginx/html 或 /var/www/html</span></span><br><span class="line">              <span class="comment"># 重新构建好的 ISO 文件将存放到这个目录当中</span></span><br><span class="line">HTTP_URL      <span class="comment"># HTTP 服务器的 URL 地址，比如 http://172.20.29.171/iso/redfish</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="target"><a href="#target" class="headerlink" title="target"></a>target</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">make</span> <span class="string">docke-run</span>  <span class="comment"># 在 docker 容器里运行所有操作，好处就是不用再安装一堆 ansible 等工具的依赖</span></span><br><span class="line"><span class="string">make</span> <span class="string">inventory</span>  <span class="comment"># 根据 config.yaml 配置文件生成 ansible 的 inventory 文件</span></span><br><span class="line"><span class="string">make</span> <span class="string">pre-check</span>  <span class="comment"># 检查生成的 inventory 文件是否正确，连接 redfish 是否正常</span></span><br><span class="line"><span class="string">make</span> <span class="string">build-iso</span>  <span class="comment"># 为每台主机生成 kickstart 文件并重新构建 ESXi OS ISO 文件</span></span><br><span class="line"><span class="string">make</span> <span class="string">mount-iso</span>  <span class="comment"># 将构建好的 ISO 文件通过 redfish 挂载到物理服务器的虚拟光驱，并设备启动项</span></span><br><span class="line"><span class="string">make</span> <span class="string">reboot</span>     <span class="comment"># 重启服务器，进入到虚拟光驱启动 ESXi inatller</span></span><br><span class="line"><span class="string">make</span> <span class="string">post-check</span> <span class="comment"># 等待 ESXi OS 安装完成</span></span><br><span class="line"><span class="string">make</span> <span class="string">install-os</span> <span class="comment"># 运行 pre-check, mount-iso, reboot, post-check</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Jenkins-Job"><a href="#Jenkins-Job" class="headerlink" title="Jenkins Job"></a>Jenkins Job</h2><p>虽然在 Makefile 里封装了比较方便的命令操作，但是对于不太熟悉这套流程的使用人员来讲还是不够便捷。对于使用人员来讲不需要知道具体的流程是什么，因此还需要提供一个更为便捷的入口来使用这套工具，对外屏蔽掉技术实现的细节。</p>
+<p>在我们内部，老牌 CI 工具 Jenkins 大叔十分受欢迎，使用的十分普遍。之前同事也常调侃：<code>我们内部的 Jenkins 虽然达不到人手一个的数量，但每个团队有两三个自己的 Jenkins 再正常不过了</code>🤣。因此提供了一个 Jenkins Job 来运行这套安装工具再完美不过了。这样使用人员就不用再 clone repo 代码，傻乎乎地运行一些 make 命令了，毕竟一个 Jenkins build 的按钮比 make 命令好好用得太多。</p>
+<p>我们组的 Jenkins 比较特殊，是使用 kubernetes Pod 作为动态 Jenkins slave 节点，即每运行一个 Jenkins Job 就会根据定义的 Pod 模版创建一个 Pod 到指定的 Kubernetes 集群中，然后 Jenkinsfile 中定义的 stage 都会运行在这个 Pod 容器内。这些内容可以参考一下我之前写的 <a href="https://blog.k8s.li/jenkins-with-kubernetes.html">Jenkins 大叔与 kubernetes 船长手牵手 🧑‍🤝‍🧑</a>。</p>
+<h3 id="Jenkinsfile"><a href="#Jenkinsfile" class="headerlink" title="Jenkinsfile"></a>Jenkinsfile</h3><p>如果你熟悉 Jenkins 的话，可以创建一个 Jenkins Job ，并在 Job 中设置好如下几个参数，并将这个 <a href="https://github.com/muzi502/redfish-esxi-os-installer/blob/master/jenkins/Jenkinsfile" target="_blank" rel="noopener">Jenkinsfile</a> 中的内容复制到 Jenkins Job 的配置中。</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>esxi_iso</td>
+<td>ArrayList</td>
+<td>ESXi ISO 文件名列表</td>
+</tr>
+<tr>
+<td>http_server</td>
+<td>String</td>
+<td>HTTP 服务器的 IP 地址</td>
+</tr>
+<tr>
+<td>http_dir</td>
+<td>String</td>
+<td>HTTP 服务器的文件目录路径</td>
+</tr>
+<tr>
+<td>config_yaml</td>
+<td>Text</td>
+<td>config.yaml 配置文件内容</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">// params of jenkins job</span><br><span class="line">def ESXI_ISO = params.esxi_iso</span><br><span class="line">def CONFIG_YAML = params.config_yaml</span><br><span class="line">def HTTP_SERVER = params.http_server</span><br><span class="line"></span><br><span class="line">// default params <span class="keyword">for</span> the job</span><br><span class="line">def HTTP_DIR  = params.http_dir ?: <span class="string">"/usr/share/nginx/html"</span></span><br><span class="line">def SRC_ISO_DIR = params.src_iso_dir ?: <span class="string">"<span class="variable">$&#123;HTTP_DIR&#125;</span>/iso"</span></span><br><span class="line">def DEST_ISO_DIR = params.dest_iso_dir ?: <span class="string">"<span class="variable">$&#123;HTTP_DIR&#125;</span>/iso/redfish"</span></span><br><span class="line"></span><br><span class="line">def WORKSPACE = env.WORKSPACE</span><br><span class="line">def JOB_NAME = <span class="string">"<span class="variable">$&#123;env.JOB_BASE_NAME&#125;</span>"</span></span><br><span class="line">def BUILD_NUMBER = <span class="string">"<span class="variable">$&#123;env.BUILD_NUMBER&#125;</span>"</span></span><br><span class="line">def POD_NAME = <span class="string">"jenkins-<span class="variable">$&#123;JOB_NAME&#125;</span>-<span class="variable">$&#123;BUILD_NUMBER&#125;</span>"</span></span><br><span class="line">def POD_IMAGE = params.pod_image ?: <span class="string">"ghcr.io/muzi502/redfish-esxi-os-installer:v0.1.0-alpha.1"</span></span><br><span class="line">// Kubernetes pod template to run.</span><br><span class="line">podTemplate(</span><br><span class="line">    cloud: <span class="string">"kubernetes"</span>,</span><br><span class="line">    namespace: <span class="string">"default"</span>,</span><br><span class="line">    name: POD_NAME,</span><br><span class="line">    label: POD_NAME,</span><br><span class="line">    yaml: <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">apiVersion: v1</span></span><br><span class="line"><span class="string">kind: Pod</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="string">  containers:</span></span><br><span class="line"><span class="string">  - name: runner</span></span><br><span class="line"><span class="string">    image: <span class="variable">$&#123;POD_IMAGE&#125;</span></span></span><br><span class="line"><span class="string">    imagePullPolicy: Always</span></span><br><span class="line"><span class="string">    tty: true</span></span><br><span class="line"><span class="string">    volumeMounts:</span></span><br><span class="line"><span class="string">    - name: http-dir</span></span><br><span class="line"><span class="string">      mountPath: <span class="variable">$&#123;HTTP_DIR&#125;</span></span></span><br><span class="line"><span class="string">    securityContext:</span></span><br><span class="line"><span class="string">      privileged: true</span></span><br><span class="line"><span class="string">    env:</span></span><br><span class="line"><span class="string">    - name: ESXI_ISO</span></span><br><span class="line"><span class="string">      value: <span class="variable">$&#123;ESXI_ISO&#125;</span></span></span><br><span class="line"><span class="string">    - name: SRC_ISO_DIR</span></span><br><span class="line"><span class="string">      value: <span class="variable">$&#123;SRC_ISO_DIR&#125;</span></span></span><br><span class="line"><span class="string">    - name: HTTP_DIR</span></span><br><span class="line"><span class="string">      value: <span class="variable">$&#123;DEST_ISO_DIR&#125;</span></span></span><br><span class="line"><span class="string">    - name: HTTP_URL</span></span><br><span class="line"><span class="string">      value: http://<span class="variable">$&#123;HTTP_SERVER&#125;</span>/iso/redfish</span></span><br><span class="line"><span class="string">  - name: jnlp</span></span><br><span class="line"><span class="string">    args: ["</span>\$(JENKINS_SECRET)<span class="string">", "</span>\$(JENKINS_NAME)<span class="string">"]</span></span><br><span class="line"><span class="string">    image: "</span>jenkins/inbound-agent:4.11.2-4-alpine<span class="string">"</span></span><br><span class="line"><span class="string">    imagePullPolicy: IfNotPresent</span></span><br><span class="line"><span class="string">  volumes:</span></span><br><span class="line"><span class="string">  - name: http-dir</span></span><br><span class="line"><span class="string">    nfs:</span></span><br><span class="line"><span class="string">      server: <span class="variable">$&#123;HTTP_SERVER&#125;</span></span></span><br><span class="line"><span class="string">      path: <span class="variable">$&#123;HTTP_DIR&#125;</span></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span>,</span><br><span class="line">) &#123;</span><br><span class="line">    node(POD_NAME) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            container(<span class="string">"runner"</span>) &#123;</span><br><span class="line">                writeFile file: <span class="string">'config.yaml'</span>, text: <span class="string">"<span class="variable">$&#123;CONFIG_YAML&#125;</span>"</span></span><br><span class="line">                stage(<span class="string">"Inventory"</span>) &#123;</span><br><span class="line">                    sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                    cp -rf /ansible/* .</span></span><br><span class="line"><span class="string">                    make inventory</span></span><br><span class="line"><span class="string">                    "</span><span class="string">""</span></span><br><span class="line">                &#125;</span><br><span class="line">                stage(<span class="string">"Precheck"</span>) &#123;</span><br><span class="line">                    sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                    make pre-check</span></span><br><span class="line"><span class="string">                    "</span><span class="string">""</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (params.build_iso) &#123;</span><br><span class="line">                    stage(<span class="string">"Build-iso"</span>) &#123;</span><br><span class="line">                        sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                        make build-iso</span></span><br><span class="line"><span class="string">                        "</span><span class="string">""</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                stage(<span class="string">"Mount-iso"</span>) &#123;</span><br><span class="line">                    sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                    make mount-iso</span></span><br><span class="line"><span class="string">                    "</span><span class="string">""</span></span><br><span class="line">                &#125;</span><br><span class="line">                stage(<span class="string">"Reboot"</span>) &#123;</span><br><span class="line">                    sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                    make reboot</span></span><br><span class="line"><span class="string">                    sleep 60</span></span><br><span class="line"><span class="string">                    "</span><span class="string">""</span></span><br><span class="line">                &#125;</span><br><span class="line">                stage(<span class="string">"Postcheck"</span>) &#123;</span><br><span class="line">                    sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                    make post-check</span></span><br><span class="line"><span class="string">                    "</span><span class="string">""</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            stage(<span class="string">"Success"</span>)&#123;</span><br><span class="line">                MESSAGE = <span class="string">"【Succeed】Jenkins Job <span class="variable">$&#123;JOB_NAME&#125;</span>-<span class="variable">$&#123;BUILD_NUMBER&#125;</span> Link: <span class="variable">$&#123;BUILD_URL&#125;</span>"</span></span><br><span class="line">                // slackSend(channel: <span class="string">'$&#123;SLACK_CHANNE&#125;'</span>, color: <span class="string">'good'</span>, message: <span class="string">"<span class="variable">$&#123;MESSAGE&#125;</span>"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            MESSAGE = <span class="string">"【Failed】Jenkins Job <span class="variable">$&#123;JOB_NAME&#125;</span>-<span class="variable">$&#123;BUILD_NUMBER&#125;</span> Link: <span class="variable">$&#123;BUILD_URL&#125;</span>"</span></span><br><span class="line">            // slackSend(channel: <span class="string">'$&#123;SLACK_CHANNE&#125;'</span>, color: <span class="string">'warning'</span>, message: <span class="string">"<span class="variable">$&#123;MESSAGE&#125;</span>"</span>)</span><br><span class="line">            throw e</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或者参考 <a href="https://stackoverflow.com/questions/8424228/export-import-jobs-in-jenkins" target="_blank" rel="noopener">Export/import jobs in Jenkins</a> 将这个 <a href="https://github.com/muzi502/redfish-esxi-os-installer/blob/master/jenkins/config.xml" target="_blank" rel="noopener">Job</a> 的配置导入到 Jenkins 当中，并设置好上面提到的几个参数。</p>
+<p><img src="https://p.k8s.li/2022-04-30-redfish-esxi-os-installer-07.png" alt="image-20220429201859704"></p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="硬件信息收集"><a href="#硬件信息收集" class="headerlink" title="硬件信息收集"></a>硬件信息收集</h3><p>整体上该方案有一点不足的就是需要人为地确认 ESXi OS 安装硬盘的型号/序列号，以及 ESXi 管理网络所使用的物理网卡。其实是可以通过 redfish 的 API 来统一地获取，然后再根据这些硬件设备信息进行选择，这样就不用登录到每一台物理服务器上进行查看了。</p>
+<p>但考虑到实现成本，工作量会翻倍，而且我们的服务器都是固定的，只要人为确认一次就可以，下一次重装 ESXi OS 的时候只需要复制粘贴上一次的硬件配置即可，所以目前并没有打算做获取硬件信息的功能。</p>
+<p>而且即便是将硬件信息获取出来，如果没有一个可视化的 Web UI 展示这些设备信息，也很难从一堆硬件数据中找出特定的设备，对这些数据进行 UI 展示工作量也会翻倍，因此暂时不再考虑这个功能了。</p>
+<h3 id="挂载-ISO-之前先确保-ISO-存在"><a href="#挂载-ISO-之前先确保-ISO-存在" class="headerlink" title="挂载 ISO 之前先确保 ISO 存在"></a>挂载 ISO 之前先确保 ISO 存在</h3><p>有些服务器比如 HPE 在挂载一个不存在的 ISO 时并不会报错，当时我排查了好久才发现 😂，我一直以为是启动项设置的问题。因此在挂载 ISO 之前我们可以通过 curl 的方式检查一下 ISO 的 URL 是否正确，如果 404 不存在的话就报错退出。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">hosts:</span> <span class="string">all</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">Mount</span>  <span class="string">&#123;&#123;</span> <span class="string">image_url</span> <span class="string">&#125;&#125;</span> <span class="string">ISO</span></span><br><span class="line">  <span class="attr">gather_facts:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">tasks:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Check</span> <span class="string">&#123;&#123;</span> <span class="string">image_url</span> <span class="string">&#125;&#125;</span> <span class="string">ISO</span> <span class="string">file</span> <span class="string">exists</span></span><br><span class="line">    <span class="attr">shell:</span> <span class="string">"curl -sI <span class="template-variable">&#123;&#123; image_url &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">register:</span> <span class="string">response</span></span><br><span class="line">    <span class="attr">failed_when:</span> <span class="string">"'200 OK' not in response.stdout or '404 Not Found' in response.stdout"</span></span><br><span class="line">    <span class="attr">tags:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">mount-iso</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="单独构建-Kickstart-ISO"><a href="#单独构建-Kickstart-ISO" class="headerlink" title="单独构建 Kickstart ISO"></a>单独构建 Kickstart ISO</h3><p>目前的方案是为将 ESXi 的 kickstart 文件 KS.CFG 放到了 ESXi OS ISO 镜像里，由于每台主机的 kickstart 文件都不相同，这就需要为每台服务器构建一个 ISO 文件，如果机器数量比较多的话，可能会占用大量的磁盘存储空间，效率上会有些问题。也尝试过将 kickstart 文件单独放到一个 ISO 中，大体的思路如下：</p>
+<ul>
+<li>构建 kickstart ISO 文件，-V 参数指定 ISO 的 label 名称为 KS</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ genisoimage -o /tmp/ks.iso -V KS ks.cfg</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改 ESXi 启动配置，将 ks 文件路径通过 label 的方式指向刚才构建的 ISO</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sed -i -e <span class="string">'s#cdromBoot#ks=hd:KS:/ks.cfg systemMediaSize=small#g'</span> boot.cfg</span><br><span class="line">$ sed -i -e <span class="string">'s#cdromBoot#ks=hd:KS:/ks.cfg systemMediaSize=small#g'</span> efi/boot/boot.cfg</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改一下 playbook，插入两个 ISO</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Insert</span> <span class="string">&#123;&#123;</span> <span class="string">item</span> <span class="string">&#125;&#125;</span> <span class="string">ISO</span> <span class="string">as</span> <span class="string">virtual</span> <span class="string">media</span> <span class="string">device</span></span><br><span class="line">  <span class="attr">community.general.redfish_command:</span></span><br><span class="line">    <span class="attr">baseuri:</span> <span class="string">"<span class="template-variable">&#123;&#123; baseuri &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">"<span class="template-variable">&#123;&#123; username &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">"<span class="template-variable">&#123;&#123; password &#125;&#125;</span>"</span></span><br><span class="line">    <span class="attr">category:</span> <span class="string">"Manager"</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">"VirtualMediaInsert"</span></span><br><span class="line">    <span class="attr">virtual_media:</span></span><br><span class="line">      <span class="attr">image_url:</span> <span class="string">"<span class="template-variable">&#123;&#123; item &#125;&#125;</span>"</span></span><br><span class="line">      <span class="attr">media_types:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">CD</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">DVD</span></span><br><span class="line">  <span class="attr">with_items:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">"<span class="template-variable">&#123;&#123; esxi_iso_url &#125;&#125;</span>"</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">"<span class="template-variable">&#123;&#123; ks_iso_url &#125;&#125;</span>"</span></span><br><span class="line">  <span class="attr">when:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">inventory_hostname</span> <span class="string">not</span> <span class="string">in</span> <span class="string">groups['lenovo']</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">mount-iso</span></span><br></pre></td></tr></table></figure>
+
+<p>等这些都修改好之后我满怀期待地运行了 make mount-iso 命令等到奇迹的发生，没想到直接翻车了！不支持挂载两个 ISO，白白高兴一场，真气人 😡</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">TASK</span> <span class="string">[Insert</span> <span class="string">&#123;&#123;</span> <span class="string">item</span> <span class="string">&#125;&#125;</span> <span class="string">ISO</span> <span class="string">as</span> <span class="string">virtual</span> <span class="string">media</span> <span class="string">device]</span> <span class="string">******************************************************************************************</span></span><br><span class="line"><span class="attr">changed:</span> <span class="string">[10.172.18.191]</span> <span class="string">=&gt;</span> <span class="string">(item=http://10.172.29.171/iso/redfish/VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso)</span></span><br><span class="line"><span class="attr">changed:</span> <span class="string">[10.172.18.192]</span> <span class="string">=&gt;</span> <span class="string">(item=http://10.172.29.171/iso/redfish/VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso)</span></span><br><span class="line"><span class="attr">changed:</span> <span class="string">[10.172.18.193]</span> <span class="string">=&gt;</span> <span class="string">(item=http://10.172.29.171/iso/redfish/VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso)</span></span><br><span class="line"><span class="attr">failed:</span> <span class="string">[10.172.18.193]</span> <span class="string">(item=http://10.172.29.171/iso/redfish/10.172.18.193/ks.iso)</span> <span class="string">=&gt;</span> <span class="string">&#123;"ansible_loop_var":</span> <span class="string">"item"</span><span class="string">,</span> <span class="attr">"changed":</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">"item":</span> <span class="string">"http://10.172.29.171/iso/redfish/10.172.18.193/ks.iso"</span><span class="string">,</span> <span class="attr">"msg":</span> <span class="string">"Unable to find an available VirtualMedia resource supporting ['CD', 'DVD']"</span><span class="string">&#125;</span></span><br><span class="line"><span class="attr">failed:</span> <span class="string">[10.172.18.192]</span> <span class="string">(item=http://10.172.29.171/iso/redfish/10.172.18.192/ks.iso)</span> <span class="string">=&gt;</span> <span class="string">&#123;"ansible_loop_var":</span> <span class="string">"item"</span><span class="string">,</span> <span class="attr">"changed":</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">"item":</span> <span class="string">"http://10.172.29.171/iso/redfish/10.172.18.192/ks.iso"</span><span class="string">,</span> <span class="attr">"msg":</span> <span class="string">"Unable to find an available VirtualMedia resource supporting ['CD', 'DVD']"</span><span class="string">&#125;</span></span><br><span class="line"><span class="attr">failed:</span> <span class="string">[10.172.18.191]</span> <span class="string">(item=http://10.172.29.171/iso/redfish/10.172.18.191/ks.iso)</span> <span class="string">=&gt;</span> <span class="string">&#123;"ansible_loop_var":</span> <span class="string">"item"</span><span class="string">,</span> <span class="attr">"changed":</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">"item":</span> <span class="string">"http://10.172.29.171/iso/redfish/10.172.18.191/ks.iso"</span><span class="string">,</span> <span class="attr">"msg":</span> <span class="string">"Unable to find an available VirtualMedia resource supporting ['CD', 'DVD']"</span><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>或许将 ISO 替换成软盘  floppy  的方式可能行得通，不过当我看了 <a href="https://stackoverflow.com/questions/11202706/create-a-virtual-floppy-image-without-mount" target="_blank" rel="noopener">create-a-virtual-floppy-image-without-mount</a> 后直接把我整不会了，没想创建一个软盘文件到这么麻烦，还是直接放弃该方案吧 🌚。</p>
+<p>多说一句，之所以想到使用软盘的方式是因为之前在玩 <a href="https://github.com/hashicorp/packer" target="_blank" rel="noopener">Packer</a> 的时候，研究过它就是将 kickstart 文件制作成一个软盘，插入到虚拟机中。虚拟机开机后通过 vCenter API 发送键盘输入，插入 kickstart 的路径，anaconda 执行自动化安装 OS。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">==&gt; vsphere-iso-base: Creating VM...</span><br><span class="line">==&gt; vsphere-iso-base: Customizing hardware...</span><br><span class="line">==&gt; vsphere-iso-base: Mounting ISO images...</span><br><span class="line">==&gt; vsphere-iso-base: Adding configuration parameters...</span><br><span class="line">==&gt; vsphere-iso-base: Creating floppy disk...</span><br><span class="line">    vsphere-iso-base: Copying files flatly from floppy_files</span><br><span class="line">    vsphere-iso-base: Done copying files from floppy_files</span><br><span class="line">    vsphere-iso-base: Collecting paths from floppy_dirs</span><br><span class="line">    vsphere-iso-base: Resulting paths from floppy_dirs : [./kickstart/centos/http/]</span><br><span class="line">    vsphere-iso-base: Recursively copying : ./kickstart/centos/http/</span><br><span class="line">    vsphere-iso-base: Done copying paths from floppy_dirs</span><br><span class="line">    vsphere-iso-base: Copying files from floppy_content</span><br><span class="line">    vsphere-iso-base: Done copying files from floppy_content</span><br><span class="line">==&gt; vsphere-iso-base: Uploading created floppy image</span><br><span class="line">==&gt; vsphere-iso-base: Adding generated Floppy...</span><br><span class="line">==&gt; vsphere-iso-base: Set boot order temporary...</span><br><span class="line">==&gt; vsphere-iso-base: Power on VM...</span><br><span class="line">==&gt; vsphere-iso-base: Waiting 15s <span class="keyword">for</span> boot...</span><br><span class="line">==&gt; vsphere-iso-base: Typing boot <span class="built_in">command</span>...</span><br><span class="line">==&gt; vsphere-iso-base: Waiting <span class="keyword">for</span> IP...</span><br><span class="line"></span><br><span class="line">root@devbox-fedora:/root <span class="comment"># scp 192.168.24.43:/vmfs/volumes/Packer/base-os-centos7/packer-tmp-created-floppy.flp .</span></span><br><span class="line">packer-tmp-created-floppy.flp                                                                                100% 1440KB  89.4MB/s   00:00</span><br><span class="line">root@devbox-fedora:/root <span class="comment"># mount packer-tmp-created-floppy.flp /mnt</span></span><br><span class="line">root@devbox-fedora:/root <span class="comment"># readlink /dev/disk/by-label/packer</span></span><br><span class="line">../../loop2</span><br><span class="line">root@devbox-fedora:/root <span class="comment"># df -h /mnt</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/loop2      1.4M   16K  1.4M   2% /mnt</span><br><span class="line">root@devbox-fedora:/root <span class="comment">#</span></span><br><span class="line">root@devbox-fedora:/root <span class="comment"># ls /mnt</span></span><br><span class="line">HTTP</span><br><span class="line">root@devbox-fedora:/root <span class="comment"># ls /mnt/HTTP</span></span><br><span class="line">7</span><br><span class="line">root@devbox-fedora:/root <span class="comment"># ls /mnt/HTTP/7</span></span><br><span class="line">KS.CFG</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-http-方式读取-kickstart"><a href="#通过-http-方式读取-kickstart" class="headerlink" title="通过 http 方式读取 kickstart"></a>通过 http 方式读取 kickstart</h3><p>不一定可行，在通过 http 方式读取 kickstart 文件之前，ESXi OS installer 需要有一个 IP 地址才行。如果服务器如果有多块网卡的话，就很难确定是否分配到一个 IP，使用默认 DHCP 的方式并不一定能获取到正确的 IP 地址。因此读取 kickstart 文件的方式还是建议使用 ISO 的方式，这样在安装 OS 时对网络环境无依赖，更稳定一些。</p>
+<h3 id="支持其他-OS-的安装"><a href="#支持其他-OS-的安装" class="headerlink" title="支持其他 OS 的安装"></a>支持其他 OS 的安装</h3><p>目前该方案只支持 ESXi OS 的安装，其他 OS 的自动化安装其实原理是一样的。比如 CentOS 同样也是修改 kickstart 文件。如果要指定 OS 所安装的磁盘可以参考一下戴尔官方的一篇文档 <a href="https://www.dell.com/support/kbdoc/zh-hk/000177584/automating-operating-system-deployment-to-dell-boss-techniques-for-different-operating-systems" target="_blank" rel="noopener">Automating Operating System Deployment to Dell BOSS – Techniques for Different Operating Systems</a> 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%include /tmp/bootdisk.cfg</span><br><span class="line">%pre</span><br><span class="line"><span class="comment"># Use DELLBOSS device for OS install if present.</span></span><br><span class="line">BOSS_DEV=$(find /dev -name <span class="string">"*DELLBOSS*"</span> -<span class="built_in">printf</span> %P<span class="string">"\n"</span> | egrep -v -e part -e scsi| head -1)</span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$BOSS_DEV</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> ignoredisk --only-use=<span class="string">"<span class="variable">$BOSS_DEV</span>"</span> &gt; /tmp/bootdisk.cfg</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">%end</span><br></pre></td></tr></table></figure>
+
+<p>如果要为某块物理网卡配置 IP 地址，可以根据 MAC 地址找到对应的物理网卡，然后将静态 IP 配置写入到网卡配置文件当中。比如 CentOS 在 kickstart 中为某块物理网卡配置静态 IP，可以采用如下方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">MAC_ADDRESS 在生成 kickstart 文件的时候根据 config.yaml 动态修改的</span><br><span class="line"><span class="comment"># MAC_ADDRESS=B4:96:91:A7:3F:D6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据 MAC 地址获取到网卡设备的名称</span></span><br><span class="line">NIC=$(grep -l <span class="variable">$&#123;MAC_ADDRESS&#125;</span> /sys/class/net/*/address | awk -F<span class="string">'/'</span> <span class="string">'&#123;print $5&#125;'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将网卡静态 IP 配置写入到文件当中</span></span><br><span class="line">cat &lt;&lt; EOF &gt; /etc/sysconfig/network-scripts/ifcfg-<span class="variable">$&#123;NIC&#125;</span></span><br><span class="line">TYPE=Ehternet</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">NAME=<span class="variable">$&#123;NIC&#125;</span></span><br><span class="line">DEVICE=<span class="variable">$&#123;NIC&#125;</span></span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=<span class="variable">$&#123;IP&#125;</span></span><br><span class="line">NETMASK=<span class="variable">$&#123;NETMASK&#125;</span></span><br><span class="line">GATEWAY=<span class="variable">$&#123;GATEWAY&#125;</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>由于时间关系，在这里就不再进行深入讲解了，在这里只是提供一个方法和思路。至于 Debian/Ubuntu 发行版，还是你们自己摸索吧，因为我工作中确实没有在物理服务器上安装这些发行版的场景，毕竟国内企业私有云环境中使用 CentOS/RedHat 系列发行版的占绝大多数。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><h3 id="Redfish-相关"><a href="#Redfish-相关" class="headerlink" title="Redfish 相关"></a>Redfish 相关</h3><ul>
+<li><a href="https://www.dmtf.org/standards/redfish" target="_blank" rel="noopener">DMTF’s Redfish</a></li>
+<li><a href="https://www.dmtf.org/sites/default/files/DSP2044%20Redfish%20%E7%99%BD%E7%9A%AE%E4%B9%A6%201.0.0.pdf" target="_blank" rel="noopener">Redfish 白皮书</a></li>
+<li><a href="https://wsgzao.github.io/post/redfish/" target="_blank" rel="noopener">Redfish 下一代数据中心管理标准详解和实践</a></li>
+<li><a href="https://github.com/dell/redfish-ansible-module" target="_blank" rel="noopener">redfish-ansible-module</a></li>
+<li><a href="https://github.com/lenovo/python-redfish-lenovo" target="_blank" rel="noopener">python-redfish-lenovo</a></li>
+<li><a href="https://docs.ansible.com/ansible/latest/collections/community/general/xcc_redfish_command_module.html" target="_blank" rel="noopener">xcc_redfish_command module</a></li>
+<li><a href="https://sysmgt.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.systems.management.xcc.doc%2Frest_api.html" target="_blank" rel="noopener">Lenovo XClarity Controller Redfish REST API</a></li>
+<li><a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.esxi.upgrade.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html" target="_blank" rel="noopener">Installation and Upgrade Script Commands</a></li>
+<li><a href="https://www.hpe.com/psnow/doc/4AA6-1727ENW" target="_blank" rel="noopener">Redfish API implementation on HPE servers with iLO RESTful API technical white paper</a></li>
+<li><a href="https://github.com/ansible-collections/community.general/issues/3042" target="_blank" rel="noopener">VirtualMediaEject should not require image_url </a></li>
+</ul>
+<h3 id="VMware-ESXi-相关"><a href="#VMware-ESXi-相关" class="headerlink" title="VMware ESXi 相关"></a>VMware ESXi 相关</h3><ul>
+<li><a href="https://communities.vmware.com/t5/ESXi-Discussions/Reducing-Esxi-7-VMFSL/td-p/2808955" target="_blank" rel="noopener">Reducing Esxi 7 VMFSL</a></li>
+<li><a href="https://kb.vmware.com/s/article/1014953" target="_blank" rel="noopener">Identifying disks when working with VMware ESXi (1014953)</a></li>
+<li><a href="https://downloads.dell.com/manuals/all-products/esuprt_solutions_int/esuprt_solutions_int_solutions_resources/servers-solution-resources_white-papers10_en-us.pdf" target="_blank" rel="noopener">PowerEdge Boot Optimized Storage Solution BOSS - Dell</a></li>
+<li><a href="https://www.reddit.com/r/vmware/comments/2a5jv7/esxi_kickstart_script_to_grep_for_correct_lun/" target="_blank" rel="noopener">ESXi Kickstart script to grep for correct LUN? (iSCSI, Boot from SAN)</a></li>
+<li><a href="https://www.dell.com/support/kbdoc/zh-hk/000177584/automating-operating-system-deployment-to-dell-boss-techniques-for-different-operating-systems" target="_blank" rel="noopener">Automating Operating System Deployment to Dell BOSS – Techniques for Different Operating Systems</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/ESXi/" rel="tag"><i class="fa fa-tag"></i> ESXi</a>
+              <a href="/tags/Redfish/" rel="tag"><i class="fa fa-tag"></i> Redfish</a>
+              <a href="/tags/Dell-%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> Dell 服务器</a>
+              <a href="/tags/HPE-%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> HPE 服务器</a>
+              <a href="/tags/Lenovo-%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> Lenovo 服务器</a>
+              <a href="/tags/%E8%A3%B8%E9%87%91%E5%B1%9E%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 裸金属服务器</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/govc-usage.html" rel="prev" title="搬砖工具 govc 使用记录">
+      <i class="fa fa-chevron-left"></i> 搬砖工具 govc 使用记录
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术调研"><span class="nav-number">2.</span> <span class="nav-text">技术调研</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PXE"><span class="nav-number">2.1.</span> <span class="nav-text">PXE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPMI-Redfish"><span class="nav-number">2.2.</span> <span class="nav-text">IPMI&#x2F;Redfish</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装流程"><span class="nav-number">3.</span> <span class="nav-text">安装流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取硬件信息"><span class="nav-number">3.1.</span> <span class="nav-text">获取硬件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填写配置文件"><span class="nav-number">3.2.</span> <span class="nav-text">填写配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成-inventory-文件"><span class="nav-number">3.3.</span> <span class="nav-text">生成 inventory 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查-Redfish-登录是否正常"><span class="nav-number">3.4.</span> <span class="nav-text">检查 Redfish 登录是否正常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成-kickstart-文件"><span class="nav-number">3.5.</span> <span class="nav-text">生成 kickstart 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新构建-ESXi-ISO"><span class="nav-number">3.6.</span> <span class="nav-text">重新构建 ESXi ISO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-redfish-弹出已有的-Virtual-Media"><span class="nav-number">3.7.</span> <span class="nav-text">通过 redfish 弹出已有的 Virtual Media</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Redfish-插入-ISO"><span class="nav-number">3.8.</span> <span class="nav-text">通过 Redfish 插入 ISO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置启动项为虚拟光驱"><span class="nav-number">3.9.</span> <span class="nav-text">设置启动项为虚拟光驱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启服务器"><span class="nav-number">3.10.</span> <span class="nav-text">重启服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待-ESXi-OS-安装完成"><span class="nav-number">3.11.</span> <span class="nav-text">等待 ESXi OS 安装完成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile-封装"><span class="nav-number">4.</span> <span class="nav-text">Makefile 封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vars"><span class="nav-number">4.1.</span> <span class="nav-text">vars</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target"><span class="nav-number">4.2.</span> <span class="nav-text">target</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins-Job"><span class="nav-number">5.</span> <span class="nav-text">Jenkins Job</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkinsfile"><span class="nav-number">5.1.</span> <span class="nav-text">Jenkinsfile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">6.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件信息收集"><span class="nav-number">6.1.</span> <span class="nav-text">硬件信息收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载-ISO-之前先确保-ISO-存在"><span class="nav-number">6.2.</span> <span class="nav-text">挂载 ISO 之前先确保 ISO 存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单独构建-Kickstart-ISO"><span class="nav-number">6.3.</span> <span class="nav-text">单独构建 Kickstart ISO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-http-方式读取-kickstart"><span class="nav-number">6.4.</span> <span class="nav-text">通过 http 方式读取 kickstart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持其他-OS-的安装"><span class="nav-number">6.5.</span> <span class="nav-text">支持其他 OS 的安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redfish-相关"><span class="nav-number">7.1.</span> <span class="nav-text">Redfish 相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VMware-ESXi-相关"><span class="nav-number">7.2.</span> <span class="nav-text">VMware ESXi 相关</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="木子"
+      src="https://blog.k8s.li/avatar.png">
+  <p class="site-author-name" itemprop="name">木子</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木子</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.7m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">47:31</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://muzi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.k8s.li/redfish-esxi-os-installer.html",
+            identifier: "redfish-esxi-os-installer.html",
+            title: "使用 redfish 自动化安装 ESXi OS"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://muzi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
