@@ -2,2564 +2,119 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta property="og:type" content="website">
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="Reimu&#39;s blog">
 <meta property="og:url" content="https://blog.k8s.li/index.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="木子">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Registry">
 <meta property="article:tag" content="Kubernetes">
 <meta property="article:tag" content="PaaS toB">
+<meta property="article:tag" content="IaaS toB">
+<meta property="article:tag" content="超融合">
+<meta property="article:tag" content="虚拟化">
+<meta property="article:tag" content="裸金属服务器">
 <meta property="article:tag" content="运维开发">
 <meta property="article:tag" content="容器镜像">
 <meta property="article:tag" content="发布流水线">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://blog.k8s.li/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: true,
-    isPost: false
-  };
-</script>
 
-  <title>Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Reimu's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
         
-        <span class="collection-header">很好! 目前共计 115 篇日志。 继续努力。</span>
-      </div>
-
-      
-    <div class="collection-year">
-      <h2 class="collection-header">2022</h2>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-30T00:00:00+08:00"
-              content="2022-04-30">
-          04-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/redfish-esxi-os-installer.html" itemprop="url">
-            <span itemprop="name">使用 Redfish 自动化安装 ESXi OS</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-03-31T00:00:00+08:00"
-              content="2022-03-31">
-          03-31
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/govc-usage.html" itemprop="url">
-            <span itemprop="name">搬砖工具 govc 使用记录</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-03-15T00:00:00+08:00"
-              content="2022-03-15">
-          03-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/docker-in-pod.html" itemprop="url">
-            <span itemprop="name">流水线中使用 docker in pod 方式构建容器镜像</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-02-28T00:00:00+08:00"
-              content="2022-02-28">
-          02-28
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/archive-argo-workflow-log-by-kubectl.html" itemprop="url">
-            <span itemprop="name">使用 kubectl 自动归档 argo workflow 日志</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-02-06T00:00:00+08:00"
-              content="2022-02-06">
-          02-06
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/deploy-tanzu-k8s-cluster.html" itemprop="url">
-            <span itemprop="name">VMware Tanzu kubernetes 发行版部署尝鲜</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-01-25T00:00:00+08:00"
-              content="2022-01-25">
-          01-25
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/rebuild-iso-image.html" itemprop="url">
-            <span itemprop="name">使用 overlay2 或 bind 重新构建 ISO 镜像</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-01-05T00:00:00+08:00"
-              content="2022-01-05">
-          01-05
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/kubespray-2.18.html" itemprop="url">
-            <span itemprop="name">Kubespray 2.18 版本特性预览</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-01-03T00:00:00+08:00"
-              content="2022-01-03">
-          01-03
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2021.html" itemprop="url">
-            <span itemprop="name">时光痕迹：2021 年总结</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <h2 class="collection-header">2021</h2>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-15T00:00:00+08:00"
-              content="2021-12-15">
-          12-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/cfwctl.html" itemprop="url">
-            <span itemprop="name">Tencent Cloud lighthouse Firewall tool</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-30T00:00:00+08:00"
-              content="2021-11-30">
-          11-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/python-kindle.html" itemprop="url">
-            <span itemprop="name">Python 处理 kindle 标注文本</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-10-25T00:00:00+08:00"
-              content="2021-10-25">
-          10-25
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/apcupsd-on-openwrt-with-esxi.html" itemprop="url">
-            <span itemprop="name">使用 apcupsd 完成 UPS 断电后 ESXi 稳妥关机方案</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-08-30T00:00:00+08:00"
-              content="2021-08-30">
-          08-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/pass-tob-k8s-offline-deploy.html" itemprop="url">
-            <span itemprop="name">万字长文详解 PaaS toB 场景下 K8s 离线部署方案</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-08-26T00:00:00+08:00"
-              content="2021-08-26">
-          08-26
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/build-k8s-binary-by-github-actions.html" itemprop="url">
-            <span itemprop="name">使用 GitHub Actions 编译 kubernetes 组件</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-08-26T00:00:00+08:00"
-              content="2021-08-26">
-          08-26
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/deploy-k8s-by-kubeplay.html" itemprop="url">
-            <span itemprop="name">使用 kubeplay 来离线部署 kubernetes 集群</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-20T00:00:00+08:00"
-              content="2021-07-20">
-          07-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/shell-snippet.html" itemprop="url">
-            <span itemprop="name">搬砖常用的 shell 片段记录</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-11T00:00:00+08:00"
-              content="2021-07-11">
-          07-11
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/skopeo.html" itemprop="url">
-            <span itemprop="name">镜像搬运工 skopeo</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-10T00:00:00+08:00"
-              content="2021-06-10">
-          06-10
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/pass-platform-release.html" itemprop="url">
-            <span itemprop="name">云原生 PaaS 产品发布&部署方案</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-30T00:00:00+08:00"
-              content="2021-05-30">
-          05-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/taihu.html" itemprop="url">
-            <span itemprop="name">2021 五一假期环太湖骑行之旅</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-23T00:00:00+08:00"
-              content="2021-05-23">
-          05-23
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/make-offline-mirrors.html" itemprop="url">
-            <span itemprop="name">使用 GitHub Actions 自动化构建 yum/apt 离线源</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-13T00:00:00+08:00"
-              content="2021-05-13">
-          05-13
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/kubespray-tips.html" itemprop="url">
-            <span itemprop="name">kubespray 部署常见问题和优化汇总</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-29T00:00:00+08:00"
-              content="2021-04-29">
-          04-29
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/deploy-k8s-by-kubespray.html" itemprop="url">
-            <span itemprop="name">使用 Kubespray 本地开发测试部署 kubernetes 集群</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-28T00:00:00+08:00"
-              content="2021-04-28">
-          04-28
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/select-registry-images.html" itemprop="url">
-            <span itemprop="name">什么？发布流水线中镜像“同步”速度又提升了 15 倍 ！</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-17T00:00:00+08:00"
-              content="2021-04-17">
-          04-17
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/skopeo-to-registry.html" itemprop="url">
-            <span itemprop="name">如何使用 registry 存储的特性</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-23T00:00:00+08:00"
-              content="2021-03-23">
-          03-23
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/gitlab-cli.html" itemprop="url">
-            <span itemprop="name">python-gitlab CLI 使用记录</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-06T00:00:00+08:00"
-              content="2021-03-06">
-          03-06
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/jenkins-with-kubernetes.html" itemprop="url">
-            <span itemprop="name">Jenkins 大叔与 kubernetes 船长手牵手 🧑‍🤝‍🧑</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-02T00:00:00+08:00"
-              content="2021-03-02">
-          03-02
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/overlay2-on-package-pipline.html" itemprop="url">
-            <span itemprop="name">overlay2 在打包发布流水线中的应用</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-10T00:00:00+08:00"
-              content="2021-02-10">
-          02-10
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/sync-dockerhub-library-images.html" itemprop="url">
-            <span itemprop="name">同步 docker hub library 镜像到本地 registry</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-31T00:00:00+08:00"
-              content="2021-01-31">
-          01-31
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/docker-registry-to-harbor.html" itemprop="url">
-            <span itemprop="name">docker registry 迁移至 harbor</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <h2 class="collection-header">2020</h2>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-31T00:00:00+08:00"
-              content="2020-12-31">
-          12-31
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020-booklist.html" itemprop="url">
-            <span itemprop="name">2020 年读书笔记和思考</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-25T00:00:00+08:00"
-              content="2020-09-25">
-          09-25
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/Photon-OS.html" itemprop="url">
-            <span itemprop="name">轻量级容器优化型 Linux 发行版 Photon OS</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-08T00:00:00+08:00"
-              content="2020-09-08">
-          09-08
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/lsi-9211-4i-ir-to-it.html" itemprop="url">
-            <span itemprop="name">给阵列卡刷个机，IR 模式转 IT 模式</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-21T00:00:00+08:00"
-              content="2020-08-21">
-          08-21
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/homelab.html" itemprop="url">
-            <span itemprop="name">垃圾佬的 Homelab 折腾记录</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-11T00:00:00+08:00"
-              content="2020-07-11">
-          07-11
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/registry-gc.html" itemprop="url">
-            <span itemprop="name">docker registry GC 原理分析</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-20T00:00:00+08:00"
-              content="2020-06-20">
-          06-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/Q2-reading.html" itemprop="url">
-            <span itemprop="name">2020 阅读记录（二）</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-14T00:00:00+08:00"
-              content="2020-06-14">
-          06-14
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/Exploring-container-image.html" itemprop="url">
-            <span itemprop="name">深入浅出容器镜像的一生🤔</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-02T00:00:00+08:00"
-              content="2020-06-02">
-          06-02
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/mount-bind.html" itemprop="url">
-            <span itemprop="name">mount 命令之 --bind 挂载参数</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-27T00:00:00+08:00"
-              content="2020-05-27">
-          05-27
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/skopeo-101.html" itemprop="url">
-            <span itemprop="name">镜像搬运工 skopeo 初体验</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-22T00:00:00+08:00"
-              content="2020-05-22">
-          05-22
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/My-brick-lifting-tools.html" itemprop="url">
-            <span itemprop="name">木子的搬砖工具😂</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-17T00:00:00+08:00"
-              content="2020-05-17">
-          05-17
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/from-chongqing-to-hangzhou.html" itemprop="url">
-            <span itemprop="name">无砖可搬的日子：换厂记</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-01T00:00:00+08:00"
-              content="2020-05-01">
-          05-01
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/kubelet-mount-volumes-analysis.html" itemprop="url">
-            <span itemprop="name">kubelet 挂载 volume 原理分析</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-16T00:00:00+08:00"
-              content="2020-04-16">
-          04-16
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/interview-wordpress-install.html" itemprop="url">
-            <span itemprop="name">一次有趣的面试：WordPress 部署</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-15T00:00:00+08:00"
-              content="2020-04-15">
-          04-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/kubeadm-deploy-k8s-v1.17.4.html" itemprop="url">
-            <span itemprop="name">使用 kubeadm 快速部署体验 K8s</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-12T00:00:00+08:00"
-              content="2020-04-12">
-          04-12
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/gitlab-ci-harbor.html" itemprop="url">
-            <span itemprop="name">基于 Gitlab-ci + Harbor 的 CI 流水线</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-05T00:00:00+08:00"
-              content="2020-04-05">
-          04-05
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/with-chanshiyu-qa.html" itemprop="url">
-            <span itemprop="name">和蝉时雨的有趣笔谈</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-28T00:00:00+08:00"
-              content="2020-03-28">
-          03-28
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/spring-reading-note.html" itemprop="url">
-            <span itemprop="name">春季读书笔记</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-26T00:00:00+08:00"
-              content="2020-03-26">
-          03-26
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/cloudflare-worker-build-mirror-website.html" itemprop="url">
-            <span itemprop="name">使用 CloudFlare Workers 搭建 telegram 频道镜像站</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-19T00:00:00+08:00"
-              content="2020-03-19">
-          03-19
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/systemd.html" itemprop="url">
-            <span itemprop="name">Linux 的小伙伴 systemd 详解</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-08T00:00:00+08:00"
-              content="2020-03-08">
-          03-08
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/N1-openwrt.html" itemprop="url">
-            <span itemprop="name">N1 盒子刷入 OpenWrt 并部署 K3s</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-05T00:00:00+08:00"
-              content="2020-03-05">
-          03-05
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/oh-my-webpsh.html" itemprop="url">
-            <span itemprop="name">让图片飞起来 oh-my-webp.sh ！</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-02T00:00:00+08:00"
-              content="2020-03-02">
-          03-02
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/linux-net-and-iptables.html" itemprop="url">
-            <span itemprop="name">Linux 网络和 iptables 运行原理</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-01T00:00:00+08:00"
-              content="2020-03-01">
-          03-01
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/k8s-01.html" itemprop="url">
-            <span itemprop="name">kubernets 相关技术调研</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-28T00:00:00+08:00"
-              content="2020-02-28">
-          02-28
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/nonprofit-foundation-overview.html" itemprop="url">
-            <span itemprop="name">知名软件基金会概览</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-12T00:00:00+08:00"
-              content="2020-02-12">
-          02-12
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/wd-hc310-dc-hdd.html" itemprop="url">
-            <span itemprop="name">盘王：Ultrastar ® DC HC310 开箱与评测</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-01T00:00:00+08:00"
-              content="2020-02-01">
-          02-01
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/fuck-chinese-software.html" itemprop="url">
-            <span itemprop="name">珍爱生活：远离国产毒瘤软件</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-14T00:00:00+08:00"
-              content="2020-01-14">
-          01-14
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/telegram-tips.html" itemprop="url">
-            <span itemprop="name">使用 telegram 时我在做什么</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-13T00:00:00+08:00"
-              content="2020-01-13">
-          01-13
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/merge-bilibili-flv-video.html" itemprop="url">
-            <span itemprop="name">高效批量下载 B 站视频并合并转码为 mp4</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-09T00:00:00+08:00"
-              content="2020-01-09">
-          01-09
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/kindle-note.html" itemprop="url">
-            <span itemprop="name">分享 kindle 标注的几种方法</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-06T00:00:00+08:00"
-              content="2020-01-06">
-          01-06
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/PSYCHO-PASS-booklist.html" itemprop="url">
-            <span itemprop="name">PSYCHO-PASS 心理测量者小说读后感</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-04T00:00:00+08:00"
-              content="2020-01-04">
-          01-04
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/make-e-book-from-html.html" itemprop="url">
-            <span itemprop="name">网页小说制作 kindle 电子书</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-02T00:00:00+08:00"
-              content="2020-01-02">
-          01-02
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/dockerfile-tips.html" itemprop="url">
-            <span itemprop="name">Dockerfile 搓镜像的小技巧</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-02T00:00:00+08:00"
-              content="2020-01-02">
-          01-02
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/linux-login-alarm-telegram.html" itemprop="url">
-            <span itemprop="name">VPS 安全加固之用户登录后向 telegram 发送登录信息</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <h2 class="collection-header">2019</h2>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-31T00:00:00+08:00"
-              content="2019-12-31">
-          12-31
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019-review.html" itemprop="url">
-            <span itemprop="name">2019 review</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-31T00:00:00+08:00"
-              content="2019-12-31">
-          12-31
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/container-linux-os.html" itemprop="url">
-            <span itemprop="name">Container Linux OS 从入坑到爬出来😂</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-31T00:00:00+08:00"
-              content="2019-12-31">
-          12-31
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019-reading-notes.html" itemprop="url">
-            <span itemprop="name">2019 年读书笔记和思考</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-26T00:00:00+08:00"
-              content="2019-12-26">
-          12-26
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/pc-e5v3-e3v3-amd2600.html" itemprop="url">
-            <span itemprop="name">台式机装机方案</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-10T00:00:00+08:00"
-              content="2019-12-10">
-          12-10
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/Kubernetes-Introduction-for-VMware-Users-zh.html" itemprop="url">
-            <span itemprop="name">【翻译】给 VMware vSphere 用户的 Kubernetes 简介</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-04T00:00:00+08:00"
-              content="2019-12-04">
-          12-04
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/K8s-QA.html" itemprop="url">
-            <span itemprop="name">(2000+) kubernetes 社群分享 QA 汇总</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-01T00:00:00+08:00"
-              content="2019-12-01">
-          12-01
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/Kindle-Oasis2-vs-Paperwhite3.html" itemprop="url">
-            <span itemprop="name">Kindle Oasis 和 Kindle Paperwhite3 使用体验</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-21T00:00:00+08:00"
-              content="2019-11-21">
-          11-21
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/blog-typecho-to-hexo.html" itemprop="url">
-            <span itemprop="name">博客从 typecho 迁移到 hexo</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-02T00:00:00+08:00"
-              content="2019-11-02">
-          11-02
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/Internet-related-foundations-and-organizations.html" itemprop="url">
-            <span itemprop="name">与互联网相关的基金会和组织</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-14T00:00:00+08:00"
-              content="2019-10-14">
-          10-14
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/A-History-of-Protecting-Freedom-Where-Law-and-Technology-Collide.html" itemprop="url">
-            <span itemprop="name">【翻译】一段在法律与技术冲突的地方捍卫自由的历史</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-14T00:00:00+08:00"
-              content="2019-10-14">
-          10-14
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/life-sciences.html" itemprop="url">
-            <span itemprop="name">时光痕迹：中学时我在想什么</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-08T00:00:00+08:00"
-              content="2019-10-08">
-          10-08
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/wndr3700v4-openwrt.html" itemprop="url">
-            <span itemprop="name">wndr3700v4  刷 openwrt 一些小优化</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-01T00:00:00+08:00"
-              content="2019-10-01">
-          10-01
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/thinking-2019.html" itemprop="url">
-            <span itemprop="name">毕业后的一些思考</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-30T00:00:00+08:00"
-              content="2019-09-30">
-          09-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/frps-prot-monitor.html" itemprop="url">
-            <span itemprop="name">监控某个端口是否存活并发短信报警</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-28T00:00:00+08:00"
-              content="2019-09-28">
-          09-28
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/fastdfs-lua-redis.html" itemprop="url">
-            <span itemprop="name">Lua + Redis 对 nginx 做动态路由</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-25T00:00:00+08:00"
-              content="2019-09-25">
-          09-25
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/docker-deploy-fastdfs.html" itemprop="url">
-            <span itemprop="name">Docker 部署 FastDFS</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-23T00:00:00+08:00"
-              content="2019-09-23">
-          09-23
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/esp8266-pc-switch.html" itemprop="url">
-            <span itemprop="name">使用 ESP8266 NodeMCU 打造 WiFi 开关</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-22T00:00:00+08:00"
-              content="2019-09-22">
-          09-22
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/ovf-to-ova.html" itemprop="url">
-            <span itemprop="name">OVF 与 OVA 区别与转换</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-21T00:00:00+08:00"
-              content="2019-09-21">
-          09-21
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/esxi-openwrt.html" itemprop="url">
-            <span itemprop="name">OpenWRT 软路由</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-18T00:00:00+08:00"
-              content="2019-09-18">
-          09-18
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/The-Dictator%E2%80%99s-Handbook.html" itemprop="url">
-            <span itemprop="name">独裁者手册读书笔记</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-18T00:00:00+08:00"
-              content="2019-09-18">
-          09-18
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/mirrors-test.html" itemprop="url">
-            <span itemprop="name">国内镜像源伪评测</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-10T00:00:00+08:00"
-              content="2019-09-10">
-          09-10
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/ffmepg-rtsp.html" itemprop="url">
-            <span itemprop="name">使用 FFmpeg 远程读取 rtsp 监控视频流</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-03T00:00:00+08:00"
-              content="2019-09-03">
-          09-03
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/centos7-offline-install-docker.html" itemprop="url">
-            <span itemprop="name">CentOS7 离线安装 Docker-ce</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-08-28T00:00:00+08:00"
-              content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/esxi-vmbase.html" itemprop="url">
-            <span itemprop="name">手搓虚拟机模板</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-08-15T00:00:00+08:00"
-              content="2019-08-15">
-          08-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/How-to-choose-the-right-version-of-kubernetes.html" itemprop="url">
-            <span itemprop="name">生产环境如何保守地选择 kubernetes 版本</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-06-30T00:00:00+08:00"
-              content="2019-06-30">
-          06-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/debian-gateway.html" itemprop="url">
-            <span itemprop="name">搓一个 Debian 透明代理/旁路网关 虚拟机</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-06-30T00:00:00+08:00"
-              content="2019-06-30">
-          06-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/oh-my-pink.html" itemprop="url">
-            <span itemprop="name">一键粉红手机😂</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-06-28T00:00:00+08:00"
-              content="2019-06-28">
-          06-28
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/Asking-the-right-questions.html" itemprop="url">
-            <span itemprop="name">《学会提问：批判性思维指南 》读书笔记</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-06-28T00:00:00+08:00"
-              content="2019-06-28">
-          06-28
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/amd-yes.html" itemprop="url">
-            <span itemprop="name">一次愉悦地装机 AMD YES</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-06-24T00:00:00+08:00"
-              content="2019-06-24">
-          06-24
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/get-someone-info.html" itemprop="url">
-            <span itemprop="name">利用社交网络获取骗子的信息</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-06-18T00:00:00+08:00"
-              content="2019-06-18">
-          06-18
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/dashboard.html" itemprop="url">
-            <span itemprop="name">deploy kubernets dashborad with https</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-06-04T00:00:00+08:00"
-              content="2019-06-04">
-          06-04
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/democracy-movement.html" itemprop="url">
-            <span itemprop="name">弱者的抵抗</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-05-22T00:00:00+08:00"
-              content="2019-05-22">
-          05-22
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/gitlab-install.html" itemprop="url">
-            <span itemprop="name">部署 Gitlab 及 gitlab-runner</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-05-16T00:00:00+08:00"
-              content="2019-05-16">
-          05-16
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/CentOS7-install-k8s.html" itemprop="url">
-            <span itemprop="name">CentOS7 使用 kubeadm 部署 kubernetes</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-05-16T00:00:00+08:00"
-              content="2019-05-16">
-          05-16
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/fuch-rush-app-dir.html" itemprop="url">
-            <span itemprop="name">清理毒瘤app在sdcard目录下拉屎产生的文件夹</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-05-16T00:00:00+08:00"
-              content="2019-05-16">
-          05-16
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/install-k8s-ubuntu18-04.html" itemprop="url">
-            <span itemprop="name">ubuntu 1804 使用 kubeadm 部署 kubernetes</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-05-13T00:00:00+08:00"
-              content="2019-05-13">
-          05-13
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/zabbix-compose.html" itemprop="url">
-            <span itemprop="name">zabbix 监控服务</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-05-03T00:00:00+08:00"
-              content="2019-05-03">
-          05-03
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/oracle-rips-redhat.html" itemprop="url">
-            <span itemprop="name">Oracle rips RedHat and 'sort of' launches a new Linux</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-05-02T00:00:00+08:00"
-              content="2019-05-02">
-          05-02
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/ops36.html" itemprop="url">
-            <span itemprop="name">高效运维社区分享系列.运维三十六计</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-04-27T00:00:00+08:00"
-              content="2019-04-27">
-          04-27
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/android-tools.html" itemprop="url">
-            <span itemprop="name">推荐使用过的 Android 神器</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-04-24T00:00:00+08:00"
-              content="2019-04-24">
-          04-24
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/android-tasker.html" itemprop="url">
-            <span itemprop="name">tasker 神器</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-04-15T00:00:00+08:00"
-              content="2019-04-15">
-          04-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/used-devices.html" itemprop="url">
-            <span itemprop="name">我青年时代就--用过的手机</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-04-14T00:00:00+08:00"
-              content="2019-04-14">
-          04-14
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/privacy-protections.html" itemprop="url">
-            <span itemprop="name">浅谈保护隐私的几种方法</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-04-12T00:00:00+08:00"
-              content="2019-04-12">
-          04-12
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/moto-z-play-AOSIP.html" itemprop="url">
-            <span itemprop="name">moto z play addsion xt1635-02 刷机指南</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-04-05T00:00:00+08:00"
-              content="2019-04-05">
-          04-05
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/networktools.html" itemprop="url">
-            <span itemprop="name">every linux networking tool i know</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-04-02T00:00:00+08:00"
-              content="2019-04-02">
-          04-02
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/play-with-docker.html" itemprop="url">
-            <span itemprop="name">Play-with-Docker --在线使用/学习Docker</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-03-15T00:00:00+08:00"
-              content="2019-03-15">
-          03-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/RMS.html" itemprop="url">
-            <span itemprop="name">RMS 的征婚启示</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-03-03T00:00:00+08:00"
-              content="2019-03-03">
-          03-03
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/Code-It-s-Trivial.html" itemprop="url">
-            <span itemprop="name">Code it is trivial 写代码是微不足道的</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-02-20T00:00:00+08:00"
-              content="2019-02-20">
-          02-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/android-taibackup.html" itemprop="url">
-            <span itemprop="name">钛备份的逆向原理</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <h2 class="collection-header">2018</h2>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-11-20T00:00:00+08:00"
-              content="2018-11-20">
-          11-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/buffon.html" itemprop="url">
-            <span itemprop="name">诗歌：自然史 布封</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-11-20T00:00:00+08:00"
-              content="2018-11-20">
-          11-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/domain-email.html" itemprop="url">
-            <span itemprop="name">使用 namecheap 域名邮箱转发功能拥有无限个邮箱</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-11-20T00:00:00+08:00"
-              content="2018-11-20">
-          11-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/justic.html" itemprop="url">
-            <span itemprop="name">公开课：（Justice 公正：该如何做是好）</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-10-20T00:00:00+08:00"
-              content="2018-10-20">
-          10-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/kernel-note-book.html" itemprop="url">
-            <span itemprop="name">深入理解 Linux 内核读书笔记</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-07-20T00:00:00+08:00"
-              content="2018-07-20">
-          07-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/python-cnni.html" itemprop="url">
-            <span itemprop="name">一个简单的 python 爬虫</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-
-    </div>
-  </div>
   
-  
-  
-
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
         </li>
@@ -2568,131 +123,2466 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+        <a href="/archives/">
           <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+          <a href="/categories/">
         <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+          <a href="/tags/">
         <span class="site-state-item-count">147</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
       </span>
   </div>
 
 
 
+        </div>
       </div>
-        <div class="back-to-top motion-element">
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
-
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner archive posts-collapse">
+
+
+  
+  
+  
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
         
+        <span class="collection-header">很好! 目前共计 115 篇日志。 继续努力。</span>
+      </div>
+
+      
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-04-30T00:00:00+08:00"
+              content="2022-04-30">
+          04-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/redfish-esxi-os-installer.html" itemprop="url">
+            <span itemprop="name">使用 Redfish 自动化安装 ESXi OS</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-03-31T00:00:00+08:00"
+              content="2022-03-31">
+          03-31
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/govc-usage.html" itemprop="url">
+            <span itemprop="name">搬砖工具 govc 使用记录</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-03-15T00:00:00+08:00"
+              content="2022-03-15">
+          03-15
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/docker-in-pod.html" itemprop="url">
+            <span itemprop="name">流水线中使用 docker in pod 方式构建容器镜像</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-02-28T00:00:00+08:00"
+              content="2022-02-28">
+          02-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/archive-argo-workflow-log-by-kubectl.html" itemprop="url">
+            <span itemprop="name">使用 kubectl 自动归档 argo workflow 日志</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-02-06T00:00:00+08:00"
+              content="2022-02-06">
+          02-06
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/deploy-tanzu-k8s-cluster.html" itemprop="url">
+            <span itemprop="name">VMware Tanzu kubernetes 发行版部署尝鲜</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-01-25T00:00:00+08:00"
+              content="2022-01-25">
+          01-25
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/rebuild-iso-image.html" itemprop="url">
+            <span itemprop="name">使用 overlay2 或 bind 重新构建 ISO 镜像</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-01-05T00:00:00+08:00"
+              content="2022-01-05">
+          01-05
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/kubespray-2.18.html" itemprop="url">
+            <span itemprop="name">Kubespray 2.18 版本特性预览</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-01-03T00:00:00+08:00"
+              content="2022-01-03">
+          01-03
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021.html" itemprop="url">
+            <span itemprop="name">时光痕迹：2021 年总结</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2021</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-12-15T00:00:00+08:00"
+              content="2021-12-15">
+          12-15
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/cfwctl.html" itemprop="url">
+            <span itemprop="name">Tencent Cloud lighthouse Firewall tool</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-11-30T00:00:00+08:00"
+              content="2021-11-30">
+          11-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/python-kindle.html" itemprop="url">
+            <span itemprop="name">Python 处理 kindle 标注文本</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-10-25T00:00:00+08:00"
+              content="2021-10-25">
+          10-25
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/apcupsd-on-openwrt-with-esxi.html" itemprop="url">
+            <span itemprop="name">使用 apcupsd 完成 UPS 断电后 ESXi 稳妥关机方案</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-08-30T00:00:00+08:00"
+              content="2021-08-30">
+          08-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/pass-tob-k8s-offline-deploy.html" itemprop="url">
+            <span itemprop="name">万字长文详解 PaaS toB 场景下 K8s 离线部署方案</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-08-26T00:00:00+08:00"
+              content="2021-08-26">
+          08-26
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/build-k8s-binary-by-github-actions.html" itemprop="url">
+            <span itemprop="name">使用 GitHub Actions 编译 kubernetes 组件</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-08-26T00:00:00+08:00"
+              content="2021-08-26">
+          08-26
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/deploy-k8s-by-kubeplay.html" itemprop="url">
+            <span itemprop="name">使用 kubeplay 来离线部署 kubernetes 集群</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-07-20T00:00:00+08:00"
+              content="2021-07-20">
+          07-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/shell-snippet.html" itemprop="url">
+            <span itemprop="name">搬砖常用的 shell 片段记录</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-07-11T00:00:00+08:00"
+              content="2021-07-11">
+          07-11
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/skopeo.html" itemprop="url">
+            <span itemprop="name">镜像搬运工 skopeo</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-06-10T00:00:00+08:00"
+              content="2021-06-10">
+          06-10
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/pass-platform-release.html" itemprop="url">
+            <span itemprop="name">云原生 PaaS 产品发布&部署方案</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-05-30T00:00:00+08:00"
+              content="2021-05-30">
+          05-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/taihu.html" itemprop="url">
+            <span itemprop="name">2021 五一假期环太湖骑行之旅</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-05-23T00:00:00+08:00"
+              content="2021-05-23">
+          05-23
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/make-offline-mirrors.html" itemprop="url">
+            <span itemprop="name">使用 GitHub Actions 自动化构建 yum/apt 离线源</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-05-13T00:00:00+08:00"
+              content="2021-05-13">
+          05-13
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/kubespray-tips.html" itemprop="url">
+            <span itemprop="name">kubespray 部署常见问题和优化汇总</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-04-29T00:00:00+08:00"
+              content="2021-04-29">
+          04-29
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/deploy-k8s-by-kubespray.html" itemprop="url">
+            <span itemprop="name">使用 Kubespray 本地开发测试部署 kubernetes 集群</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-04-28T00:00:00+08:00"
+              content="2021-04-28">
+          04-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/select-registry-images.html" itemprop="url">
+            <span itemprop="name">什么？发布流水线中镜像“同步”速度又提升了 15 倍 ！</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-04-17T00:00:00+08:00"
+              content="2021-04-17">
+          04-17
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/skopeo-to-registry.html" itemprop="url">
+            <span itemprop="name">如何使用 registry 存储的特性</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-03-23T00:00:00+08:00"
+              content="2021-03-23">
+          03-23
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/gitlab-cli.html" itemprop="url">
+            <span itemprop="name">python-gitlab CLI 使用记录</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-03-06T00:00:00+08:00"
+              content="2021-03-06">
+          03-06
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/jenkins-with-kubernetes.html" itemprop="url">
+            <span itemprop="name">Jenkins 大叔与 kubernetes 船长手牵手 🧑‍🤝‍🧑</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-03-02T00:00:00+08:00"
+              content="2021-03-02">
+          03-02
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/overlay2-on-package-pipline.html" itemprop="url">
+            <span itemprop="name">overlay2 在打包发布流水线中的应用</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-02-10T00:00:00+08:00"
+              content="2021-02-10">
+          02-10
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/sync-dockerhub-library-images.html" itemprop="url">
+            <span itemprop="name">同步 docker hub library 镜像到本地 registry</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-01-31T00:00:00+08:00"
+              content="2021-01-31">
+          01-31
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/docker-registry-to-harbor.html" itemprop="url">
+            <span itemprop="name">docker registry 迁移至 harbor</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2020</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-12-31T00:00:00+08:00"
+              content="2020-12-31">
+          12-31
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2020-booklist.html" itemprop="url">
+            <span itemprop="name">2020 年读书笔记和思考</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-09-25T00:00:00+08:00"
+              content="2020-09-25">
+          09-25
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/Photon-OS.html" itemprop="url">
+            <span itemprop="name">轻量级容器优化型 Linux 发行版 Photon OS</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-09-08T00:00:00+08:00"
+              content="2020-09-08">
+          09-08
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/lsi-9211-4i-ir-to-it.html" itemprop="url">
+            <span itemprop="name">给阵列卡刷个机，IR 模式转 IT 模式</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-08-21T00:00:00+08:00"
+              content="2020-08-21">
+          08-21
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/homelab.html" itemprop="url">
+            <span itemprop="name">垃圾佬的 Homelab 折腾记录</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-07-11T00:00:00+08:00"
+              content="2020-07-11">
+          07-11
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/registry-gc.html" itemprop="url">
+            <span itemprop="name">docker registry GC 原理分析</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-06-20T00:00:00+08:00"
+              content="2020-06-20">
+          06-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/Q2-reading.html" itemprop="url">
+            <span itemprop="name">2020 阅读记录（二）</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-06-14T00:00:00+08:00"
+              content="2020-06-14">
+          06-14
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/Exploring-container-image.html" itemprop="url">
+            <span itemprop="name">深入浅出容器镜像的一生🤔</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-06-02T00:00:00+08:00"
+              content="2020-06-02">
+          06-02
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/mount-bind.html" itemprop="url">
+            <span itemprop="name">mount 命令之 --bind 挂载参数</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-05-27T00:00:00+08:00"
+              content="2020-05-27">
+          05-27
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/skopeo-101.html" itemprop="url">
+            <span itemprop="name">镜像搬运工 skopeo 初体验</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-05-22T00:00:00+08:00"
+              content="2020-05-22">
+          05-22
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/My-brick-lifting-tools.html" itemprop="url">
+            <span itemprop="name">木子的搬砖工具😂</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-05-17T00:00:00+08:00"
+              content="2020-05-17">
+          05-17
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/from-chongqing-to-hangzhou.html" itemprop="url">
+            <span itemprop="name">无砖可搬的日子：换厂记</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-05-01T00:00:00+08:00"
+              content="2020-05-01">
+          05-01
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/kubelet-mount-volumes-analysis.html" itemprop="url">
+            <span itemprop="name">kubelet 挂载 volume 原理分析</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-04-16T00:00:00+08:00"
+              content="2020-04-16">
+          04-16
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/interview-wordpress-install.html" itemprop="url">
+            <span itemprop="name">一次有趣的面试：WordPress 部署</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-04-15T00:00:00+08:00"
+              content="2020-04-15">
+          04-15
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/kubeadm-deploy-k8s-v1.17.4.html" itemprop="url">
+            <span itemprop="name">使用 kubeadm 快速部署体验 K8s</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-04-12T00:00:00+08:00"
+              content="2020-04-12">
+          04-12
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/gitlab-ci-harbor.html" itemprop="url">
+            <span itemprop="name">基于 Gitlab-ci + Harbor 的 CI 流水线</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-04-05T00:00:00+08:00"
+              content="2020-04-05">
+          04-05
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/with-chanshiyu-qa.html" itemprop="url">
+            <span itemprop="name">和蝉时雨的有趣笔谈</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-03-28T00:00:00+08:00"
+              content="2020-03-28">
+          03-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/spring-reading-note.html" itemprop="url">
+            <span itemprop="name">春季读书笔记</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-03-26T00:00:00+08:00"
+              content="2020-03-26">
+          03-26
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/cloudflare-worker-build-mirror-website.html" itemprop="url">
+            <span itemprop="name">使用 CloudFlare Workers 搭建 telegram 频道镜像站</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-03-19T00:00:00+08:00"
+              content="2020-03-19">
+          03-19
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/systemd.html" itemprop="url">
+            <span itemprop="name">Linux 的小伙伴 systemd 详解</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-03-08T00:00:00+08:00"
+              content="2020-03-08">
+          03-08
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/N1-openwrt.html" itemprop="url">
+            <span itemprop="name">N1 盒子刷入 OpenWrt 并部署 K3s</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-03-05T00:00:00+08:00"
+              content="2020-03-05">
+          03-05
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/oh-my-webpsh.html" itemprop="url">
+            <span itemprop="name">让图片飞起来 oh-my-webp.sh ！</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-03-02T00:00:00+08:00"
+              content="2020-03-02">
+          03-02
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/linux-net-and-iptables.html" itemprop="url">
+            <span itemprop="name">Linux 网络和 iptables 运行原理</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-03-01T00:00:00+08:00"
+              content="2020-03-01">
+          03-01
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/k8s-01.html" itemprop="url">
+            <span itemprop="name">kubernets 相关技术调研</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-02-28T00:00:00+08:00"
+              content="2020-02-28">
+          02-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/nonprofit-foundation-overview.html" itemprop="url">
+            <span itemprop="name">知名软件基金会概览</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-02-12T00:00:00+08:00"
+              content="2020-02-12">
+          02-12
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/wd-hc310-dc-hdd.html" itemprop="url">
+            <span itemprop="name">盘王：Ultrastar ® DC HC310 开箱与评测</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-02-01T00:00:00+08:00"
+              content="2020-02-01">
+          02-01
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/fuck-chinese-software.html" itemprop="url">
+            <span itemprop="name">珍爱生活：远离国产毒瘤软件</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-01-14T00:00:00+08:00"
+              content="2020-01-14">
+          01-14
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/telegram-tips.html" itemprop="url">
+            <span itemprop="name">使用 telegram 时我在做什么</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-01-13T00:00:00+08:00"
+              content="2020-01-13">
+          01-13
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/merge-bilibili-flv-video.html" itemprop="url">
+            <span itemprop="name">高效批量下载 B 站视频并合并转码为 mp4</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-01-09T00:00:00+08:00"
+              content="2020-01-09">
+          01-09
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/kindle-note.html" itemprop="url">
+            <span itemprop="name">分享 kindle 标注的几种方法</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-01-06T00:00:00+08:00"
+              content="2020-01-06">
+          01-06
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/PSYCHO-PASS-booklist.html" itemprop="url">
+            <span itemprop="name">PSYCHO-PASS 心理测量者小说读后感</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-01-04T00:00:00+08:00"
+              content="2020-01-04">
+          01-04
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/make-e-book-from-html.html" itemprop="url">
+            <span itemprop="name">网页小说制作 kindle 电子书</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-01-02T00:00:00+08:00"
+              content="2020-01-02">
+          01-02
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/dockerfile-tips.html" itemprop="url">
+            <span itemprop="name">Dockerfile 搓镜像的小技巧</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-01-02T00:00:00+08:00"
+              content="2020-01-02">
+          01-02
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/linux-login-alarm-telegram.html" itemprop="url">
+            <span itemprop="name">VPS 安全加固之用户登录后向 telegram 发送登录信息</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2019</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-12-31T00:00:00+08:00"
+              content="2019-12-31">
+          12-31
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2019-reading-notes.html" itemprop="url">
+            <span itemprop="name">2019 年读书笔记和思考</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-12-31T00:00:00+08:00"
+              content="2019-12-31">
+          12-31
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2019-review.html" itemprop="url">
+            <span itemprop="name">2019 review</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-12-31T00:00:00+08:00"
+              content="2019-12-31">
+          12-31
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/container-linux-os.html" itemprop="url">
+            <span itemprop="name">Container Linux OS 从入坑到爬出来😂</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-12-26T00:00:00+08:00"
+              content="2019-12-26">
+          12-26
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/pc-e5v3-e3v3-amd2600.html" itemprop="url">
+            <span itemprop="name">台式机装机方案</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-12-10T00:00:00+08:00"
+              content="2019-12-10">
+          12-10
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/Kubernetes-Introduction-for-VMware-Users-zh.html" itemprop="url">
+            <span itemprop="name">【翻译】给 VMware vSphere 用户的 Kubernetes 简介</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-12-04T00:00:00+08:00"
+              content="2019-12-04">
+          12-04
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/K8s-QA.html" itemprop="url">
+            <span itemprop="name">(2000+) kubernetes 社群分享 QA 汇总</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-12-01T00:00:00+08:00"
+              content="2019-12-01">
+          12-01
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/Kindle-Oasis2-vs-Paperwhite3.html" itemprop="url">
+            <span itemprop="name">Kindle Oasis 和 Kindle Paperwhite3 使用体验</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-11-21T00:00:00+08:00"
+              content="2019-11-21">
+          11-21
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/blog-typecho-to-hexo.html" itemprop="url">
+            <span itemprop="name">博客从 typecho 迁移到 hexo</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-11-02T00:00:00+08:00"
+              content="2019-11-02">
+          11-02
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/Internet-related-foundations-and-organizations.html" itemprop="url">
+            <span itemprop="name">与互联网相关的基金会和组织</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-10-14T00:00:00+08:00"
+              content="2019-10-14">
+          10-14
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/A-History-of-Protecting-Freedom-Where-Law-and-Technology-Collide.html" itemprop="url">
+            <span itemprop="name">【翻译】一段在法律与技术冲突的地方捍卫自由的历史</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-10-14T00:00:00+08:00"
+              content="2019-10-14">
+          10-14
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/life-sciences.html" itemprop="url">
+            <span itemprop="name">时光痕迹：中学时我在想什么</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-10-08T00:00:00+08:00"
+              content="2019-10-08">
+          10-08
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/wndr3700v4-openwrt.html" itemprop="url">
+            <span itemprop="name">wndr3700v4  刷 openwrt 一些小优化</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-10-01T00:00:00+08:00"
+              content="2019-10-01">
+          10-01
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/thinking-2019.html" itemprop="url">
+            <span itemprop="name">毕业后的一些思考</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-30T00:00:00+08:00"
+              content="2019-09-30">
+          09-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/frps-prot-monitor.html" itemprop="url">
+            <span itemprop="name">监控某个端口是否存活并发短信报警</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-28T00:00:00+08:00"
+              content="2019-09-28">
+          09-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/fastdfs-lua-redis.html" itemprop="url">
+            <span itemprop="name">Lua + Redis 对 nginx 做动态路由</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-25T00:00:00+08:00"
+              content="2019-09-25">
+          09-25
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/docker-deploy-fastdfs.html" itemprop="url">
+            <span itemprop="name">Docker 部署 FastDFS</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-23T00:00:00+08:00"
+              content="2019-09-23">
+          09-23
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/esp8266-pc-switch.html" itemprop="url">
+            <span itemprop="name">使用 ESP8266 NodeMCU 打造 WiFi 开关</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-22T00:00:00+08:00"
+              content="2019-09-22">
+          09-22
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/ovf-to-ova.html" itemprop="url">
+            <span itemprop="name">OVF 与 OVA 区别与转换</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-21T00:00:00+08:00"
+              content="2019-09-21">
+          09-21
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/esxi-openwrt.html" itemprop="url">
+            <span itemprop="name">OpenWRT 软路由</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-18T00:00:00+08:00"
+              content="2019-09-18">
+          09-18
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/The-Dictator%E2%80%99s-Handbook.html" itemprop="url">
+            <span itemprop="name">独裁者手册读书笔记</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-18T00:00:00+08:00"
+              content="2019-09-18">
+          09-18
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/mirrors-test.html" itemprop="url">
+            <span itemprop="name">国内镜像源伪评测</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-10T00:00:00+08:00"
+              content="2019-09-10">
+          09-10
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/ffmepg-rtsp.html" itemprop="url">
+            <span itemprop="name">使用 FFmpeg 远程读取 rtsp 监控视频流</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-09-03T00:00:00+08:00"
+              content="2019-09-03">
+          09-03
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/centos7-offline-install-docker.html" itemprop="url">
+            <span itemprop="name">CentOS7 离线安装 Docker-ce</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-08-28T00:00:00+08:00"
+              content="2019-08-28">
+          08-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/esxi-vmbase.html" itemprop="url">
+            <span itemprop="name">手搓虚拟机模板</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-08-15T00:00:00+08:00"
+              content="2019-08-15">
+          08-15
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/How-to-choose-the-right-version-of-kubernetes.html" itemprop="url">
+            <span itemprop="name">生产环境如何保守地选择 kubernetes 版本</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-06-30T00:00:00+08:00"
+              content="2019-06-30">
+          06-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/debian-gateway.html" itemprop="url">
+            <span itemprop="name">搓一个 Debian 透明代理/旁路网关 虚拟机</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-06-30T00:00:00+08:00"
+              content="2019-06-30">
+          06-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/oh-my-pink.html" itemprop="url">
+            <span itemprop="name">一键粉红手机😂</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-06-28T00:00:00+08:00"
+              content="2019-06-28">
+          06-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/Asking-the-right-questions.html" itemprop="url">
+            <span itemprop="name">《学会提问：批判性思维指南 》读书笔记</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-06-28T00:00:00+08:00"
+              content="2019-06-28">
+          06-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/amd-yes.html" itemprop="url">
+            <span itemprop="name">一次愉悦地装机 AMD YES</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-06-24T00:00:00+08:00"
+              content="2019-06-24">
+          06-24
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/get-someone-info.html" itemprop="url">
+            <span itemprop="name">利用社交网络获取骗子的信息</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-06-18T00:00:00+08:00"
+              content="2019-06-18">
+          06-18
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/dashboard.html" itemprop="url">
+            <span itemprop="name">deploy kubernets dashborad with https</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-06-04T00:00:00+08:00"
+              content="2019-06-04">
+          06-04
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/democracy-movement.html" itemprop="url">
+            <span itemprop="name">弱者的抵抗</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-05-22T00:00:00+08:00"
+              content="2019-05-22">
+          05-22
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/gitlab-install.html" itemprop="url">
+            <span itemprop="name">部署 Gitlab 及 gitlab-runner</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-05-16T00:00:00+08:00"
+              content="2019-05-16">
+          05-16
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/CentOS7-install-k8s.html" itemprop="url">
+            <span itemprop="name">CentOS7 使用 kubeadm 部署 kubernetes</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-05-16T00:00:00+08:00"
+              content="2019-05-16">
+          05-16
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/fuch-rush-app-dir.html" itemprop="url">
+            <span itemprop="name">清理毒瘤app在sdcard目录下拉屎产生的文件夹</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-05-16T00:00:00+08:00"
+              content="2019-05-16">
+          05-16
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/install-k8s-ubuntu18-04.html" itemprop="url">
+            <span itemprop="name">ubuntu 1804 使用 kubeadm 部署 kubernetes</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-05-13T00:00:00+08:00"
+              content="2019-05-13">
+          05-13
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/zabbix-compose.html" itemprop="url">
+            <span itemprop="name">zabbix 监控服务</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-05-03T00:00:00+08:00"
+              content="2019-05-03">
+          05-03
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/oracle-rips-redhat.html" itemprop="url">
+            <span itemprop="name">Oracle rips RedHat and 'sort of' launches a new Linux</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-05-02T00:00:00+08:00"
+              content="2019-05-02">
+          05-02
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/ops36.html" itemprop="url">
+            <span itemprop="name">高效运维社区分享系列.运维三十六计</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-04-27T00:00:00+08:00"
+              content="2019-04-27">
+          04-27
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/android-tools.html" itemprop="url">
+            <span itemprop="name">推荐使用过的 Android 神器</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-04-24T00:00:00+08:00"
+              content="2019-04-24">
+          04-24
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/android-tasker.html" itemprop="url">
+            <span itemprop="name">tasker 神器</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-04-15T00:00:00+08:00"
+              content="2019-04-15">
+          04-15
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/used-devices.html" itemprop="url">
+            <span itemprop="name">我青年时代就--用过的手机</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-04-14T00:00:00+08:00"
+              content="2019-04-14">
+          04-14
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/privacy-protections.html" itemprop="url">
+            <span itemprop="name">浅谈保护隐私的几种方法</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-04-12T00:00:00+08:00"
+              content="2019-04-12">
+          04-12
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/moto-z-play-AOSIP.html" itemprop="url">
+            <span itemprop="name">moto z play addsion xt1635-02 刷机指南</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-04-05T00:00:00+08:00"
+              content="2019-04-05">
+          04-05
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/networktools.html" itemprop="url">
+            <span itemprop="name">every linux networking tool i know</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-04-02T00:00:00+08:00"
+              content="2019-04-02">
+          04-02
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/play-with-docker.html" itemprop="url">
+            <span itemprop="name">Play-with-Docker --在线使用/学习Docker</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-03-15T00:00:00+08:00"
+              content="2019-03-15">
+          03-15
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/RMS.html" itemprop="url">
+            <span itemprop="name">RMS 的征婚启示</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-03-03T00:00:00+08:00"
+              content="2019-03-03">
+          03-03
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/Code-It-s-Trivial.html" itemprop="url">
+            <span itemprop="name">Code it is trivial 写代码是微不足道的</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2019-02-20T00:00:00+08:00"
+              content="2019-02-20">
+          02-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/android-taibackup.html" itemprop="url">
+            <span itemprop="name">钛备份的逆向原理</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2018</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2018-11-20T00:00:00+08:00"
+              content="2018-11-20">
+          11-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/buffon.html" itemprop="url">
+            <span itemprop="name">诗歌：自然史 布封</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2018-11-20T00:00:00+08:00"
+              content="2018-11-20">
+          11-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/domain-email.html" itemprop="url">
+            <span itemprop="name">使用 namecheap 域名邮箱转发功能拥有无限个邮箱</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2018-11-20T00:00:00+08:00"
+              content="2018-11-20">
+          11-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/justic.html" itemprop="url">
+            <span itemprop="name">公开课：（Justice 公正：该如何做是好）</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2018-10-20T00:00:00+08:00"
+              content="2018-10-20">
+          10-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/kernel-note-book.html" itemprop="url">
+            <span itemprop="name">深入理解 Linux 内核读书笔记</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2018-07-20T00:00:00+08:00"
+              content="2018-07-20">
+          07-20
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/python-cnni.html" itemprop="url">
+            <span itemprop="name">一个简单的 python 爬虫</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+
+    </div>
+  </div>
+  
+  
+  
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -2700,40 +2590,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink({
-        timeout: 3000,
-        priority: true,
-        ignores: [uri => uri.includes('#'),uri => uri == 'https://blog.k8s.li/',]
-      });
-      });
-  </script>
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

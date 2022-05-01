@@ -2,263 +2,285 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="TL  分享一个装机方案：CPU: E5 2670V3 ×2主板: Dell T7810 准系统内存: 三星 DDR4 2133 16G×4显卡: Quador K2000 2GB硬盘: 西数 HC310 7K 4TB固态: 三星 PM 981 256GB价格: 550×2+1700+260×4+400+760+290&#x3D;5290￥你就能拥有一台 24C&#x2F;48T CPU、64GB RAM 、256G">
-<meta property="og:type" content="article">
+    <meta name="description" content="TL  分享一个装机方案：CPU: E5 2670V3 ×2主板: Dell T7810 准系统内存: 三星 DDR4 2133 16G×4显卡: Quador K2000 2GB硬盘: 西数 HC310 7K 4TB固态: 三星 PM 981 256GB价格: 550×2+1700+260×4+400+760+290&#x3D;5290￥你就能拥有一台 24C&#x2F;48T CPU、64GB RAM 、256G">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="台式机装机方案">
 <meta property="og:url" content="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
 <meta property="og:description" content="TL  分享一个装机方案：CPU: E5 2670V3 ×2主板: Dell T7810 准系统内存: 三星 DDR4 2133 16G×4显卡: Quador K2000 2GB硬盘: 西数 HC310 7K 4TB固态: 三星 PM 981 256GB价格: 550×2+1700+260×4+400+760+290&#x3D;5290￥你就能拥有一台 24C&#x2F;48T CPU、64GB RAM 、256G">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-30T00:21:08.443Z">
-<meta property="article:author" content="木子">
+<meta property="article:modified_time" content="2022-05-01T12:37:56.652Z">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="捡垃圾">
 <meta property="article:tag" content="PC">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>台式机装机方案 | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html","path":"pc-e5v3-e3v3-amd2600.html","title":"台式机装机方案"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>台式机装机方案 | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TL"><span class="nav-number">1.</span> <span class="nav-text">TL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E3-V3"><span class="nav-number">2.</span> <span class="nav-text">E3 V3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD-Ryzen"><span class="nav-number">3.</span> <span class="nav-text">AMD Ryzen</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A9%E6%A2%AF%E5%9B%BE"><span class="nav-number">3.1.</span> <span class="nav-text">天梯图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-1"><span class="nav-number">3.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E8%B7%AF-E5-V3"><span class="nav-number">4.</span> <span class="nav-text">双路 E5 V3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2"><span class="nav-number">4.1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A9%E6%A2%AF%E5%9B%BE-1"><span class="nav-number">4.2.</span> <span class="nav-text">天梯图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%B7%AF-E5-V3"><span class="nav-number">5.</span> <span class="nav-text">单路 E5 V3</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div class="posts-expand">
-      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="台式机装机方案 | Reimu's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           台式机装机方案
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-26 2019-12-26T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-12-26T00:00:00+08:00">2019-12-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 2022-04-30T08:21:08+08:00" itemprop="dateModified" datetime="2022-04-30T08:21:08+08:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%90%9E%E6%9C%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">搞机</span>
-                  </a>
-                </span>
-            </span>
+      <time title="创建时间：2019-12-26 2019-12-26T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-12-26T00:00:00+08:00">2019-12-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-01 2022-05-01T20:37:56+08:00" itemprop="dateModified" datetime="2022-05-01T20:37:56+08:00">2022-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%90%9E%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">搞机</span></a>
+        </span>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/pc-e5v3-e3v3-amd2600.html#comments" itemprop="discussionUrl">
+    <a title="disqus" href="/pc-e5v3-e3v3-amd2600.html#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="pc-e5v3-e3v3-amd2600.html" itemprop="commentCount"></span>
     </a>
   </span>
   
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -267,11 +289,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <h2 id="TL"><a href="#TL" class="headerlink" title="TL"></a>TL</h2>
 
-<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">分享一个装机方案：<br>CPU: E5 2670V3 ×2<br>主板: Dell T7810 准系统<br>内存: 三星 DDR4 2133 16G×4<br>显卡: Quador K2000 2GB<br>硬盘: 西数 HC310 7K 4TB<br>固态: 三星 PM 981 256GB<br><br>价格: 550×2+1700+260×4+400+760+290=5290￥<br><br>你就能拥有一台 24C/48T CPU、64GB RAM 、256GB SDD/4TB HDD 配置的高性能工作站 <a href="https://t.co/NIkegB1Vck" target="_blank" rel="noopener">pic.twitter.com/NIkegB1Vck</a></p>&mdash; 502 (@muzi_ii) <a href="https://twitter.com/muzi_ii/status/1209832133092528129?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">December 25, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">分享一个装机方案：<br>CPU: E5 2670V3 ×2<br>主板: Dell T7810 准系统<br>内存: 三星 DDR4 2133 16G×4<br>显卡: Quador K2000 2GB<br>硬盘: 西数 HC310 7K 4TB<br>固态: 三星 PM 981 256GB<br><br>价格: 550×2+1700+260×4+400+760+290=5290￥<br><br>你就能拥有一台 24C/48T CPU、64GB RAM 、256GB SDD/4TB HDD 配置的高性能工作站 <a target="_blank" rel="noopener" href="https://t.co/NIkegB1Vck">pic.twitter.com/NIkegB1Vck</a></p>&mdash; 502 (@muzi_ii) <a target="_blank" rel="noopener" href="https://twitter.com/muzi_ii/status/1209832133092528129?ref_src=twsrc%5Etfw">December 25, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 <h2 id="E3-V3"><a href="#E3-V3" class="headerlink" title="E3 V3"></a>E3 V3</h2><table>
@@ -285,7 +305,7 @@
 </thead>
 <tbody><tr>
 <td align="center">CPU</td>
-<td>E3-1270 V3 4C/8T 3.50 GHz~3.90 GHz</td>
+<td>E3-1270 V3 4C&#x2F;8T 3.50 GHz~3.90 GHz</td>
 <td align="center">520</td>
 <td align="center"></td>
 </tr>
@@ -334,7 +354,7 @@
 </tbody></table>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
 <li>如今的 E3 V3 价格已经跌破 500 左右了，但 AMD Ryzen R5 的价格散片也就 650 左右，加上 150 块钱就能提升 30% 的单核性能，外加 2 个核心和 4 个框框 😂，总之 E3 V3 目前来讲性价比不如 AMD Ryzen R5。</li>
-<li>E3 V3 是 Intel 第四代  CPU 1150 芯片组无法从 M.2 启动，速度只能达到 SATA III 也就是顶多 600 MB/s 的读写速度，而目前随便一块支持  PCI-e M.2 的主板普遍都能达到 3000MB/s 了。所以这一点来讲 E3 V3 已经不值得捡了。</li>
+<li>E3 V3 是 Intel 第四代  CPU 1150 芯片组无法从 M.2 启动，速度只能达到 SATA III 也就是顶多 600 MB&#x2F;s 的读写速度，而目前随便一块支持  PCI-e M.2 的主板普遍都能达到 3000MB&#x2F;s 了。所以这一点来讲 E3 V3 已经不值得捡了。</li>
 </ul>
 <h2 id="AMD-Ryzen"><a href="#AMD-Ryzen" class="headerlink" title="AMD Ryzen"></a>AMD Ryzen</h2><table>
 <thead>
@@ -394,7 +414,7 @@
 <td></td>
 </tr>
 </tbody></table>
-<h3 id="天梯图"><a href="#天梯图" class="headerlink" title="天梯图"></a><a href="http://itianti.sinaapp.com/index.php/cpu" target="_blank" rel="noopener">天梯图</a></h3><ul>
+<h3 id="天梯图"><a href="#天梯图" class="headerlink" title="天梯图"></a><a target="_blank" rel="noopener" href="http://itianti.sinaapp.com/index.php/cpu">天梯图</a></h3><ul>
 <li>仅供娱乐，实际性能还要做对比测试，只是让您心里有点 B 数</li>
 <li>AMD Ryzen 5 2400G 的性能和 E3-1270 V3 性能相近，AMD Ryzen 5 2600 性能要比两者高大概 30% 的性能（个人瞎猜）。</li>
 <li>AMD Ryzen 5 2400G 的散片价格，目前（2019-12-26）淘宝 720￥，而 AMD Ryzen 5 2600 的价格在 640￥ 左右。</li>
@@ -571,11 +591,11 @@
 </tbody></table>
 <h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
 <li>目前来讲 E5 V3 平台装机最令人头疼的就是主板死贵，主板价格都比两个 U 加起来的价格还要高。之所以选择 Dell T7810 准系统 准系统是因为相比来讲 Dell 塔式服务器的稳定性要比捡垃圾搞来的工包主板稳定性强很多，翻车概率要小一些。如果单独买主板的话还要和机箱象匹配，电源功率也要够。而 Dell T7810 准系统完美地解决了这些困扰，不用再考虑买合适的机箱和电源。一整套配合起来完美运行。</li>
-<li>开箱博客 <a href="https://blog.silversky.moe/works/evaluation-of-out-of-the-box-dell-precision-t7910" target="_blank" rel="noopener">开箱测评——DELL PRECISION T7910</a></li>
+<li>开箱博客 <a target="_blank" rel="noopener" href="https://blog.silversky.moe/works/evaluation-of-out-of-the-box-dell-precision-t7910">开箱测评——DELL PRECISION T7910</a></li>
 <li>Dell T7810 有一些毛病，可以参考如下：</li>
 <li><blockquote>
 <ul>
-<li>并不建议使用 DELL T7910，非常伤 因为阵列卡的原因，系统速度会非常慢（肉眼可见的，比如说打开 Windows Image Viewer，会等 1-2 秒才会显示（不管大小） 目测应该是什么硬件冲突，禁用板载阵列卡就好了（已经在国外论坛上看到很多案例了，很多公司/个人因为这个不去买 DELL 这个账</li>
+<li>并不建议使用 DELL T7910，非常伤 因为阵列卡的原因，系统速度会非常慢（肉眼可见的，比如说打开 Windows Image Viewer，会等 1-2 秒才会显示（不管大小） 目测应该是什么硬件冲突，禁用板载阵列卡就好了（已经在国外论坛上看到很多案例了，很多公司&#x2F;个人因为这个不去买 DELL 这个账</li>
 <li>那是不是禁用阵列卡不用他不就好了呢 然而 T7910 的阵列卡和“背板”是 12G 的，接口使用的 MiniSAS HD（SFF-8643）不管是再买阵列卡还是通道卡，都要有一笔不小的花费 还有 K2000 太烂了。</li>
 <li>当然，我指的是这一代 DELL Precision，不光是 T7910</li>
 <li>继续吐槽，T7910 正面是三个风扇的，通过橡胶的减震钉固定在风扇架上。这些橡胶的减震钉，时间长了会老化，然后就会变得很恶心（最后被我拆掉用螺丝 + 螺帽代替）（我印象中我摸过其他的 Lenovo 的机器，甚至时间更长的都没有 DELL 这个老化之后的恶心 而且风扇的异响会变得比较讨厌（购入后 1 年内</li>
@@ -585,11 +605,11 @@
 <li>这一代的 Precision 有巨多的问题（设计和硬件上的） 我是不可能推荐 Precision 的（至少是这代，因为我用了，用的还是旗舰） 相比之下，如果是 OEM 准系统组装的话，我更愿意推荐 PowerEdge T630 或者 HPE 的 Z 系列 T630 有更好的电源配置，散热系统，扩展性，以及易于维护 HPE Z 系列的模块化设计也是甩 DELL10 条街</li>
 <li>btw, 我在 6 月把这台机器扔给我妈办公用之前，DELL 的新固件我都会刷，然而并没有任何卵用</li>
 </ul>
-<p>引用自 <a href="https://twitter.com/AkatsukiRyuu/status/1210157947906490368" target="_blank" rel="noopener">暁龍之介的推文</a></p>
+<p>引用自 <a target="_blank" rel="noopener" href="https://twitter.com/AkatsukiRyuu/status/1210157947906490368">暁龍之介的推文</a></p>
 </blockquote>
 </li>
 </ul>
-<h3 id="天梯图-1"><a href="#天梯图-1" class="headerlink" title="天梯图"></a><a href="http://itianti.sinaapp.com/index.php/cpu" target="_blank" rel="noopener">天梯图</a></h3><ul>
+<h3 id="天梯图-1"><a href="#天梯图-1" class="headerlink" title="天梯图"></a><a target="_blank" rel="noopener" href="http://itianti.sinaapp.com/index.php/cpu">天梯图</a></h3><ul>
 <li>仅供娱乐，具体实际性能还要看是实际的测试</li>
 <li>可见  E5-2660 v3 的单核性能和 i7-8700K、Ryzen 7 2700x 相近</li>
 </ul>
@@ -789,7 +809,7 @@
 <td></td>
 </tr>
 </tbody></table>
-<p>不过我倒是 jio 着，既然垃圾佬都上 E5 了，不玩玩双路对得起自己嘛，所以多花 1000 块相当于多一个 U ，多 12C/24T ，双路要比单路多 24 个框框啊，数起可好玩喽 😂</p>
+<p>不过我倒是 jio 着，既然垃圾佬都上 E5 了，不玩玩双路对得起自己嘛，所以多花 1000 块相当于多一个 U ，多 12C&#x2F;24T ，双路要比单路多 24 个框框啊，数起可好玩喽 😂</p>
 
     </div>
 
@@ -797,216 +817,89 @@
     
     
 
-      <footer class="post-footer">
-          
+    <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%8D%A1%E5%9E%83%E5%9C%BE/" rel="tag"><i class="fa fa-tag"></i> 捡垃圾</a>
-              <a href="/tags/PC/" rel="tag"><i class="fa fa-tag"></i> PC</a>
+              <a href="/tags/%E6%8D%A1%E5%9E%83%E5%9C%BE/" rel="tag"># 捡垃圾</a>
+              <a href="/tags/PC/" rel="tag"># PC</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/Kubernetes-Introduction-for-VMware-Users-zh.html" rel="prev" title="【翻译】给 VMware vSphere 用户的 Kubernetes 简介">
-      <i class="fa fa-chevron-left"></i> 【翻译】给 VMware vSphere 用户的 Kubernetes 简介
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019-reading-notes.html" rel="next" title="2019 年读书笔记和思考">
-      2019 年读书笔记和思考 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Kubernetes-Introduction-for-VMware-Users-zh.html" rel="prev" title="【翻译】给 VMware vSphere 用户的 Kubernetes 简介">
+                  <i class="fa fa-chevron-left"></i> 【翻译】给 VMware vSphere 用户的 Kubernetes 简介
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/container-linux-os.html" rel="next" title="Container Linux OS 从入坑到爬出来😂">
+                  Container Linux OS 从入坑到爬出来😂 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
-
-  </div>
+</div>
 
 
-          </div>
-          
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TL"><span class="nav-number">1.</span> <span class="nav-text">TL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E3-V3"><span class="nav-number">2.</span> <span class="nav-text">E3 V3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">2.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD-Ryzen"><span class="nav-number">3.</span> <span class="nav-text">AMD Ryzen</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#天梯图"><span class="nav-number">3.1.</span> <span class="nav-text">天梯图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项-1"><span class="nav-number">3.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双路-E5-V3"><span class="nav-number">4.</span> <span class="nav-text">双路 E5 V3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项-2"><span class="nav-number">4.1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天梯图-1"><span class="nav-number">4.2.</span> <span class="nav-text">天梯图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单路-E5-V3"><span class="nav-number">5.</span> <span class="nav-text">单路 E5 V3</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -1014,51 +907,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html",
-            identifier: "pc-e5v3-e3v3-amd2600.html",
-            title: "台式机装机方案"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

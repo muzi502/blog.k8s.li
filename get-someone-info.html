@@ -2,264 +2,286 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="更新日志 2019-06-24 初稿 2019-07-10 骗子已归还钱 2019-12-09 修改几处 typo  背景朋友 A 在闲鱼上遇到骗子 B，被骗金额 1000 元。因为使用微信转账故走平台是无法解决的，能做的就是利用该骗子 B 现有的信息顺藤摸瓜搞到她的真实身份、真实姓名、学校，身份证号、家庭住址等信息。耗时巨大，将近 6 个小时，一点一点地从及其微小的线索找到了她的实名信息。同时也">
-<meta property="og:type" content="article">
+    <meta name="description" content="更新日志 2019-06-24 初稿 2019-07-10 骗子已归还钱 2019-12-09 修改几处 typo  背景朋友 A 在闲鱼上遇到骗子 B，被骗金额 1000 元。因为使用微信转账故走平台是无法解决的，能做的就是利用该骗子 B 现有的信息顺藤摸瓜搞到她的真实身份、真实姓名、学校，身份证号、家庭住址等信息。耗时巨大，将近 6 个小时，一点一点地从及其微小的线索找到了她的实名信息。同时也">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="利用社交网络获取骗子的信息">
 <meta property="og:url" content="https://blog.k8s.li/get-someone-info.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
 <meta property="og:description" content="更新日志 2019-06-24 初稿 2019-07-10 骗子已归还钱 2019-12-09 修改几处 typo  背景朋友 A 在闲鱼上遇到骗子 B，被骗金额 1000 元。因为使用微信转账故走平台是无法解决的，能做的就是利用该骗子 B 现有的信息顺藤摸瓜搞到她的真实身份、真实姓名、学校，身份证号、家庭住址等信息。耗时巨大，将近 6 个小时，一点一点地从及其微小的线索找到了她的实名信息。同时也">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-06-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-30T00:21:08.235Z">
-<meta property="article:author" content="木子">
+<meta property="article:modified_time" content="2022-05-01T12:37:56.428Z">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="life">
 <meta property="article:tag" content="社会工程学实践">
 <meta property="article:tag" content="隐私保护">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://blog.k8s.li/get-someone-info.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>利用社交网络获取骗子的信息 | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/get-someone-info.html","path":"get-someone-info.html","title":"利用社交网络获取骗子的信息"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>利用社交网络获取骗子的信息 | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97"><span class="nav-number">1.</span> <span class="nav-text">更新日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%8E%B7%E5%8F%96%E7%9C%9F%E5%AE%9E%E5%A7%93%E5%90%8D"><span class="nav-number">3.</span> <span class="nav-text">1.获取真实姓名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%8E%B7%E5%8F%96%E5%BF%AB%E9%80%92%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80"><span class="nav-number">4.</span> <span class="nav-text">2.获取快递收货地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BB%BC%E5%90%88%E4%BD%BF%E7%94%A8%E5%90%84%E5%A4%A7%E7%BD%91%E7%AB%99%E5%AF%86%E7%A0%81%E6%89%BE%E5%9B%9E"><span class="nav-number">5.</span> <span class="nav-text">3.综合使用各大网站密码找回</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BB%8E%E5%BE%AE%E5%8D%9A%E5%85%A5%E6%89%8B"><span class="nav-number">6.</span> <span class="nav-text">4.从微博入手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%8E-QQ-%E7%A9%BA%E9%97%B4%E5%85%A5%E6%89%8B"><span class="nav-number">7.</span> <span class="nav-text">5.从 QQ 空间入手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A8%E5%8F%A8"><span class="nav-number">7.1.</span> <span class="nav-text">叨叨</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%AE%9A%E4%BD%8D%E5%9C%B0%E5%9D%80"><span class="nav-number">8.</span> <span class="nav-text">6.定位地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%AE%9A%E4%BD%8D%E5%85%AC%E5%8F%B8"><span class="nav-number">9.</span> <span class="nav-text">7.定位公司</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E7%BB%93%E5%B0%BE"><span class="nav-number">10.</span> <span class="nav-text">8.结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%BF%BD%E6%82%A0%E7%9F%AD%E4%BF%A1"><span class="nav-number">11.</span> <span class="nav-text">9.忽悠短信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E5%B1%80"><span class="nav-number">12.</span> <span class="nav-text">结局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="nav-number">13.</span> <span class="nav-text">时间线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E8%AE%AD"><span class="nav-number">14.</span> <span class="nav-text">教训</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C"><span class="nav-number">15.</span> <span class="nav-text">经验</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div class="posts-expand">
-      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/get-someone-info.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="利用社交网络获取骗子的信息 | Reimu's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           利用社交网络获取骗子的信息
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-24 2019-06-24T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-06-24T00:00:00+08:00">2019-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 2022-04-30T08:21:08+08:00" itemprop="dateModified" datetime="2022-04-30T08:21:08+08:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91/" itemprop="url" rel="index">
-                    <span itemprop="name">互联网</span>
-                  </a>
-                </span>
-            </span>
+      <time title="创建时间：2019-06-24 2019-06-24T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-06-24T00:00:00+08:00">2019-06-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-01 2022-05-01T20:37:56+08:00" itemprop="dateModified" datetime="2022-05-01T20:37:56+08:00">2022-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">互联网</span></a>
+        </span>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/get-someone-info.html#comments" itemprop="discussionUrl">
+    <a title="disqus" href="/get-someone-info.html#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="get-someone-info.html" itemprop="commentCount"></span>
     </a>
   </span>
   
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -268,8 +290,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><ul>
 <li>2019-06-24 初稿</li>
 <li>2019-07-10 骗子已归还钱</li>
@@ -292,7 +312,18 @@
 <h2 id="6-定位地址"><a href="#6-定位地址" class="headerlink" title="6.定位地址"></a>6.定位地址</h2><p>拿到准确的身份证号之后，通过身份证号查询到她户口所在的市区，但无法精确定位到是哪个曲线或街道？身份证 15 位和 16 位是可以准确知道户口所在地的派出所编号。于是询问了一下在派出所上班的哥们，他说可以通过身份证号确认到户口所在地的乡镇和街道。但他目前没有查询的权限，所以无法帮到我。于是我又在 Google 和 baidu 上搜索卖家 B 所在市的身份证图片和身份证号，看看能不能找到与卖家 B 身份证号 15 位和 16 位相同的身份证号，但是很遗憾没找到。如果报警立案的话，派出所的人很快就能搞出来，但目前还不想立案，因为这样会伤害到卖家 B。我不想因为这件事儿，而让她纳入失信名单，在她的档案里留下污点。希望她能理解我的好意把钱归还。</p>
 <h2 id="7-定位公司"><a href="#7-定位公司" class="headerlink" title="7.定位公司"></a>7.定位公司</h2><p>这个并不是很准确，通过卖家 B 的微信昵称可以确定，她在某市的一家教育机构里上班。在谷歌里搜索了一下这家公司，正好和她微博上发图片的定位地址在一个市区。但不是很确定她是否还在这家公司上班。找了一下这家公司的招聘信息，还是没有找到有用的线索。</p>
 <h2 id="8-结尾"><a href="#8-结尾" class="headerlink" title="8.结尾"></a>8.结尾</h2><p>到此结束，耗时 6 个小时，一直在利用各种线索找找找找找，弄完后感慨万千。掌握的信息有：她的真实姓名和身份证号、手机号、学校、年级、班级、毕业高中、以及一些她舍友的 QQ 号，她所在社团的 QQ 群等。终于告一段落了。于是我使用我美国的手机号给她发了短信。</p>
-<h2 id="9-忽悠短信"><a href="#9-忽悠短信" class="headerlink" title="9.忽悠短信"></a>9.忽悠短信</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">我希望你能诚实守信，你考过教师资格证，道德底线你应该明白</span><br><span class="line">你已经涉嫌欺诈犯罪，我们这儿超过500元派出所就给立案。</span><br><span class="line">但我不想走司法起诉的方式解决这件事儿。因为这样对你的前途</span><br><span class="line">有极大的影响。首先你会因为这件事被纳入失信名单，上征信系统</span><br><span class="line">往后你买火车票都买不到，整个家庭都会因为你失信而受到影响</span><br><span class="line">你当老师也会受到影响。希望你能冷静地考虑清楚，把该退款的钱</span><br><span class="line">归还与我。不要逃避，逃避是解决不了问题滴，我有充足的时间能</span><br><span class="line">弄到你父母的联系方式。但我真的不忍心打扰你的父母。为了你身</span><br><span class="line">边的朋友，以及你的辅导员，同事，舍友，还有社团里的同学等，</span><br><span class="line">我不想去打扰他们，但你要是死赖着我就不敢保证他们知道</span><br><span class="line">你失信于人后会对你有什么看法和影响。我已经得到你舍友以及社团</span><br><span class="line">还有你辅导员的联系方式。希望不要因为这点事而自毁自己的前途。</span><br></pre></td></tr></table></figure>
+<h2 id="9-忽悠短信"><a href="#9-忽悠短信" class="headerlink" title="9.忽悠短信"></a>9.忽悠短信</h2><pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">我希望你能诚实守信，你考过教师资格证，道德底线你应该明白
+你已经涉嫌欺诈犯罪，我们这儿超过500元派出所就给立案。
+但我不想走司法起诉的方式解决这件事儿。因为这样对你的前途
+有极大的影响。首先你会因为这件事被纳入失信名单，上征信系统
+往后你买火车票都买不到，整个家庭都会因为你失信而受到影响
+你当老师也会受到影响。希望你能冷静地考虑清楚，把该退款的钱
+归还与我。不要逃避，逃避是解决不了问题滴，我有充足的时间能
+弄到你父母的联系方式。但我真的不忍心打扰你的父母。为了你身
+边的朋友，以及你的辅导员，同事，舍友，还有社团里的同学等，
+我不想去打扰他们，但你要是死赖着我就不敢保证他们知道
+你失信于人后会对你有什么看法和影响。我已经得到你舍友以及社团
+还有你辅导员的联系方式。希望不要因为这点事而自毁自己的前途。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>其中有些话是危言耸听，故意吓唬她。😂</p>
 <h2 id="结局"><a href="#结局" class="headerlink" title="结局"></a>结局</h2><p>第二天我朋友再次联系她，她回信息了，之前是不回的。她说下个月十五号发工资就还。但我朋友 A 还是再次同情她一次，允许她下个月还。这是第三次故意拖延了，我为朋友 A 的做法感到无奈。没有办法，卖家 B 比我朋友 A 的妹妹还小，还是个学生和老师。朋友 A 心太善良了，朋友 A 很早就辍学了所以一向很羡慕和尊重大学生和老师，所以这次再次允许卖家 B 拖到下个月还钱。</p>
@@ -313,7 +344,7 @@
 <h2 id="教训"><a href="#教训" class="headerlink" title="教训"></a>教训</h2><p>整个过程花了 6 个小时，从各种网站上提取信息，我深刻意识到隐私保护的重要性，及其重要。这篇博客的目的不是为了去人肉陷害他人，我希望是用合法的手段利用逻辑和推理来捍卫自己的权力，整个过程没有违法，没有侵害到他人权力，仅仅是利用一些 公开的信息进行推理和判断，从而找到自己想要的信息。关于隐私保护我觉着编程随想大佬总结的十分好，大家可以自己搜搜去读一下，他写过整个系列的文章，十分强烈推荐去读。在此我不贴出链接，有能力的人自然可以找到。我仅仅是补充一些，以及一些切实可行的措施来保护我们的隐私。</p>
 <p><code>措施</code></p>
 <p>1.关闭任何网站或社交软件使用手机号登录<br>2.不同的网站账号使用不同的邮箱注册和绑定。可以使用 outlook 的别名功能，为不同的账号分配不同的邮箱别名，别再用 QQ 邮箱啦 😂。而且 outlook 邮箱别名功能所有的地址都会发送到一个邮箱中，十分方便。不过我使用的是自己域名的邮箱，在 namecheap 开启邮件转发功能，会将我域名下所有的邮件转发到我的 gmail 中。这样也很方便，不过这样也会暴域名。<br>3.朋友圈、QQ 空间等社交网站禁止陌生人访问，虽然我早已删光了所有的 QQ 空间动态和朋友圈。<br>4.社交平台的生日不要设置为真的，也不要设置城市学校等敏感信息<br>5.火车票、机票、电影票等别再晒了，那点虚荣心值得晒嘛 🐎<br>6.各个网站之间不要有关联，闲鱼不要链接微博等网站<br>7.还有很多待补充，欢迎在评论区留言。</p>
-<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><p>关于隐私保护的详细系统的方案墙裂建议看一下<a href="https://program-think.blogspot.com/2019/01/Security-Guide-for-Political-Activists.html" target="_blank" rel="noopener">安全经验总结</a></p>
+<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><p>关于隐私保护的详细系统的方案墙裂建议看一下<a target="_blank" rel="noopener" href="https://program-think.blogspot.com/2019/01/Security-Guide-for-Political-Activists.html">安全经验总结</a></p>
 
     </div>
 
@@ -321,217 +352,90 @@
     
     
 
-      <footer class="post-footer">
-          
+    <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/life/" rel="tag"><i class="fa fa-tag"></i> life</a>
-              <a href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6%E5%AE%9E%E8%B7%B5/" rel="tag"><i class="fa fa-tag"></i> 社会工程学实践</a>
-              <a href="/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/" rel="tag"><i class="fa fa-tag"></i> 隐私保护</a>
+              <a href="/tags/life/" rel="tag"># life</a>
+              <a href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6%E5%AE%9E%E8%B7%B5/" rel="tag"># 社会工程学实践</a>
+              <a href="/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/" rel="tag"># 隐私保护</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/dashboard.html" rel="prev" title="deploy kubernets dashborad with https">
-      <i class="fa fa-chevron-left"></i> deploy kubernets dashborad with https
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/amd-yes.html" rel="next" title="一次愉悦地装机 AMD YES">
-      一次愉悦地装机 AMD YES <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/dashboard.html" rel="prev" title="deploy kubernets dashborad with https">
+                  <i class="fa fa-chevron-left"></i> deploy kubernets dashborad with https
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/amd-yes.html" rel="next" title="一次愉悦地装机 AMD YES">
+                  一次愉悦地装机 AMD YES <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
-
-  </div>
+</div>
 
 
-          </div>
-          
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新日志"><span class="nav-number">1.</span> <span class="nav-text">更新日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-获取真实姓名"><span class="nav-number">3.</span> <span class="nav-text">1.获取真实姓名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-获取快递收货地址"><span class="nav-number">4.</span> <span class="nav-text">2.获取快递收货地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-综合使用各大网站密码找回"><span class="nav-number">5.</span> <span class="nav-text">3.综合使用各大网站密码找回</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-从微博入手"><span class="nav-number">6.</span> <span class="nav-text">4.从微博入手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-从-QQ-空间入手"><span class="nav-number">7.</span> <span class="nav-text">5.从 QQ 空间入手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#叨叨"><span class="nav-number">7.1.</span> <span class="nav-text">叨叨</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-定位地址"><span class="nav-number">8.</span> <span class="nav-text">6.定位地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-定位公司"><span class="nav-number">9.</span> <span class="nav-text">7.定位公司</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-结尾"><span class="nav-number">10.</span> <span class="nav-text">8.结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-忽悠短信"><span class="nav-number">11.</span> <span class="nav-text">9.忽悠短信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结局"><span class="nav-number">12.</span> <span class="nav-text">结局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间线"><span class="nav-number">13.</span> <span class="nav-text">时间线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#教训"><span class="nav-number">14.</span> <span class="nav-text">教训</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经验"><span class="nav-number">15.</span> <span class="nav-text">经验</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -539,51 +443,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/get-someone-info.html",
-            identifier: "get-someone-info.html",
-            title: "利用社交网络获取骗子的信息"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

@@ -2,54 +2,27 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="开倒车 🚗 ？年后这几周花了两周左右的时间将我司的 GitHub 代码迁移到内部的 Gitlab。影响最大的就是我们产品的发布流水线，需要适配 Gitlab 和内网环境的一些服务。基本上整个产品打包发布的流水线代码全部重写了一遍，可累坏咱了 🥺。当时心里还认为代码迁移至 Gitlab 纯属倒车行为 😅，不过等到所有的适配修改完毕后忽然发现 Gitlab 真香！ 归根结底内网的 Gitlab">
-<meta property="og:type" content="article">
+    <meta name="description" content="开倒车 🚗 ？年后这几周花了两周左右的时间将我司的 GitHub 代码迁移到内部的 Gitlab。影响最大的就是我们产品的发布流水线，需要适配 Gitlab 和内网环境的一些服务。基本上整个产品打包发布的流水线代码全部重写了一遍，可累坏咱了 🥺。当时心里还认为代码迁移至 Gitlab 纯属倒车行为 😅，不过等到所有的适配修改完毕后忽然发现 Gitlab 真香！ 归根结底内网的 Gitlab">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="python-gitlab CLI 使用记录">
 <meta property="og:url" content="https://blog.k8s.li/gitlab-cli.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
@@ -58,209 +31,258 @@
 <meta property="og:image" content="https://p.k8s.li/image-20210319085926423.png">
 <meta property="article:published_time" content="2021-03-22T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-03-19T16:00:00.000Z">
-<meta property="article:author" content="木子">
-<meta property="article:tag" content="ci">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="gitlab">
+<meta property="article:tag" content="ci">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://p.k8s.li/image-20210319085926423.png">
+
 
 <link rel="canonical" href="https://blog.k8s.li/gitlab-cli.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>python-gitlab CLI 使用记录 | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/gitlab-cli.html","path":"gitlab-cli.html","title":"python-gitlab CLI 使用记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>python-gitlab CLI 使用记录 | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%80%92%E8%BD%A6-%F0%9F%9A%97-%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">开倒车 🚗 ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab"><span class="nav-number">2.</span> <span class="nav-text">Gitlab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab-workflow"><span class="nav-number">3.</span> <span class="nav-text">Gitlab workflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PR"><span class="nav-number">3.1.</span> <span class="nav-text">PR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MR"><span class="nav-number">3.2.</span> <span class="nav-text">MR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab-API"><span class="nav-number">4.</span> <span class="nav-text">Gitlab API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-gitlab-CLI"><span class="nav-number">5.</span> <span class="nav-text">python-gitlab CLI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">5.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">5.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">5.3.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#project"><span class="nav-number">5.4.</span> <span class="nav-text">project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file"><span class="nav-number">5.5.</span> <span class="nav-text">file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MR-1"><span class="nav-number">5.6.</span> <span class="nav-text">MR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tag"><span class="nav-number">5.7.</span> <span class="nav-text">Tag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lint-%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">6.</span> <span class="nav-text">Lint 流水线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div class="posts-expand">
-      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/gitlab-cli.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="python-gitlab CLI 使用记录 | Reimu's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           python-gitlab CLI 使用记录
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-23 2021-03-23T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2021-03-23T00:00:00+08:00">2021-03-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-20 2021-03-20T00:00:00+08:00" itemprop="dateModified" datetime="2021-03-20T00:00:00+08:00">2021-03-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-            </span>
+      <time title="创建时间：2021-03-23 2021-03-23T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2021-03-23T00:00:00+08:00">2021-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-03-20 2021-03-20T00:00:00+08:00" itemprop="dateModified" datetime="2021-03-20T00:00:00+08:00">2021-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/gitlab-cli.html#comments" itemprop="discussionUrl">
+    <a title="disqus" href="/gitlab-cli.html#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="gitlab-cli.html" itemprop="commentCount"></span>
     </a>
   </span>
   
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>16k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>27 分钟</span>
-            </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>16k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>15 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -269,8 +291,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <h2 id="开倒车-🚗-？"><a href="#开倒车-🚗-？" class="headerlink" title="开倒车 🚗 ？"></a>开倒车 🚗 ？</h2><p>年后这几周花了两周左右的时间将我司的 GitHub 代码迁移到内部的 Gitlab。影响最大的就是我们产品的发布流水线，需要适配 Gitlab 和内网环境的一些服务。基本上整个产品打包发布的流水线代码全部重写了一遍，可累坏咱了 🥺。当时心里还认为代码迁移至 Gitlab 纯属倒车行为 😅，不过等到所有的适配修改完毕后忽然发现 Gitlab 真香！</p>
 <p>归根结底内网的 Gitlab 网络状况十倍百倍与 GitHub 不止。众所周知在学习<strong>墙国</strong>，GitHub 直连的速度和稳定性差的一批。也正因此之前在 GitHub 上的流水线经常会被网络抖动所干扰，有时侯 fetch 一个 repo 十几二十分钟！迁移到内网 Gitlab 之后，那速度简直飞起！以往最少十几分钟的流水线现在只需要不到五分钟就能完成 😂。</p>
 <p>于是今天就写篇博客记录一下当时折腾 Gitlab 时收获的一点人生经验 👓</p>
@@ -279,13 +299,13 @@
 </blockquote>
 <h2 id="Gitlab"><a href="#Gitlab" class="headerlink" title="Gitlab"></a>Gitlab</h2><p>在折腾的过程中使用到的有关 Gitlab 的文档和工具：</p>
 <ul>
-<li><a href="https://about.gitlab.com/topics/version-control/what-is-gitlab-workflow/" target="_blank" rel="noopener">Gitlab workflow</a>：了解一下 Gitlab 的工作流，不同于 GitHub 的 PR，在 Gitlab 中使用的是 MR 的方式；</li>
-<li><a href="https://docs.gitlab.com/ee/api/README.html" target="_blank" rel="noopener">Gitlab API</a>：Gitlab API 的官方文档，了解它在使用下下面这些工具时候会得心应手。</li>
-<li><a href="https://python-gitlab.readthedocs.io/en/stable/api-objects.html" target="_blank" rel="noopener">python-gitlab</a> API client：使用 Python 实现的 Gitlab API client，用它来完成一些特定需求工具的开发，比如根据 tag 或者 branch 获取 repo 中指定的文件或目录；</li>
-<li><a href="https://python-gitlab.readthedocs.io/" target="_blank" rel="noopener">python-gitlab</a> CLI：基于 <a href="https://python-gitlab.readthedocs.io/en/stable/api-objects.html" target="_blank" rel="noopener">python-gitlab</a> API client 封装成的命令行工具，因为是 CLI 工具所以可以很方便地集成在一些流水线的脚本中；</li>
-<li><a href="https://github.com/xanzy/go-gitlab" target="_blank" rel="noopener">go-gitlab</a> API client：使用 Golang 实现的 Gitlab API client。由于发布流水线中的一个阶段就是根据一个 list 来收集其他 repo 中的特定文件和目录，使用的工具是 golang 写的，为了减少代码修改量就使用了 go-gitlab 而不是 python-gitlab。</li>
+<li><a target="_blank" rel="noopener" href="https://about.gitlab.com/topics/version-control/what-is-gitlab-workflow/">Gitlab workflow</a>：了解一下 Gitlab 的工作流，不同于 GitHub 的 PR，在 Gitlab 中使用的是 MR 的方式；</li>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/README.html">Gitlab API</a>：Gitlab API 的官方文档，了解它在使用下下面这些工具时候会得心应手。</li>
+<li><a target="_blank" rel="noopener" href="https://python-gitlab.readthedocs.io/en/stable/api-objects.html">python-gitlab</a> API client：使用 Python 实现的 Gitlab API client，用它来完成一些特定需求工具的开发，比如根据 tag 或者 branch 获取 repo 中指定的文件或目录；</li>
+<li><a target="_blank" rel="noopener" href="https://python-gitlab.readthedocs.io/">python-gitlab</a> CLI：基于 <a target="_blank" rel="noopener" href="https://python-gitlab.readthedocs.io/en/stable/api-objects.html">python-gitlab</a> API client 封装成的命令行工具，因为是 CLI 工具所以可以很方便地集成在一些流水线的脚本中；</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/xanzy/go-gitlab">go-gitlab</a> API client：使用 Golang 实现的 Gitlab API client。由于发布流水线中的一个阶段就是根据一个 list 来收集其他 repo 中的特定文件和目录，使用的工具是 golang 写的，为了减少代码修改量就使用了 go-gitlab 而不是 python-gitlab。</li>
 </ul>
-<h2 id="Gitlab-workflow"><a href="#Gitlab-workflow" class="headerlink" title="Gitlab workflow"></a><a href="https://about.gitlab.com/topics/version-control/what-is-gitlab-workflow/" target="_blank" rel="noopener">Gitlab workflow</a></h2><h3 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h3><p>在 GitHub 上我们一般使用 PR 的方式来完成代码合并工作，流程如下：</p>
+<h2 id="Gitlab-workflow"><a href="#Gitlab-workflow" class="headerlink" title="Gitlab workflow"></a><a target="_blank" rel="noopener" href="https://about.gitlab.com/topics/version-control/what-is-gitlab-workflow/">Gitlab workflow</a></h2><h3 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h3><p>在 GitHub 上我们一般使用 PR 的方式来完成代码合并工作，流程如下：</p>
 <ul>
 <li>成员 Fork 原始仓库，将 Fork 出来的仓库 clone 到本地</li>
 <li>在本地创建新分支，并基于新分支进行修改和提交，推送新分支到 Fork 的仓库</li>
@@ -303,25 +323,45 @@
 <li>审核者 review 代码，管理员 Merge 代码</li>
 </ul>
 <p>相比来讲 MR 和方式更适合团队内部的协作开发，PR 的方式适合开源项目的协作开发。</p>
-<h2 id="Gitlab-API"><a href="#Gitlab-API" class="headerlink" title="Gitlab API"></a><a href="https://docs.gitlab.com/ee/api/README.html" target="_blank" rel="noopener">Gitlab</a> API</h2><blockquote>
-<p>The main GitLab API is a <a href="http://spec.openapis.org/oas/v3.0.3" target="_blank" rel="noopener">REST</a> API. Because of this, the documentation in this section assumes that you’re familiar with REST concepts.</p>
+<h2 id="Gitlab-API"><a href="#Gitlab-API" class="headerlink" title="Gitlab API"></a><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/README.html">Gitlab</a> API</h2><blockquote>
+<p>The main GitLab API is a <a target="_blank" rel="noopener" href="http://spec.openapis.org/oas/v3.0.3">REST</a> API. Because of this, the documentation in this section assumes that you’re familiar with REST concepts.</p>
 </blockquote>
-<p>参照官方文档 <a href="https://docs.gitlab.com/ee/api/api_resources.html" target="_blank" rel="noopener">API resources</a> 可知，共有 Projects 、Groups、Standalone 这三种 API 分组。</p>
+<p>参照官方文档 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/api_resources.html">API resources</a> 可知，共有 Projects 、Groups、Standalone 这三种 API 分组。</p>
 <ul>
 <li>Projects： 对应的就是与 repo 相关的 API ，比如 tag、commit、branch 、MR、Issue 这一类型；</li>
 <li>Groups： 对应类似于 GitHub 上的 Organizations，一般来讲公司里的 repo 都会按照团队来划分组织，同一团队里的 repo 会放在 gitlab 同一个 Groups  下，而不是以个人为单位存放 repo；</li>
 <li>Standalone：则是除了 Projects 和 Groups 之外的 API 资源，如 user</li>
 </ul>
-<p>而我们多数情况下使用的是 Projects 相关的 API，通过它来对 repo 进行增删改查。简单介绍完 Gitlab API 类型之后，本文会介绍几种使用 Gitlab API 的工具。在使用这些工具的过程中，如果遇到一些错误可以通过 <a href="https://docs.gitlab.com/ee/api/README.html#status-codes" target="_blank" rel="noopener">Status codes</a> API 返回状态码来排查问题。</p>
-<h2 id="python-gitlab-CLI"><a href="#python-gitlab-CLI" class="headerlink" title="python-gitlab CLI"></a><a href="https://python-gitlab.readthedocs.io/" target="_blank" rel="noopener">python-gitlab</a> CLI</h2><p>这是一个使用 <a href="https://python-gitlab.readthedocs.io/en/stable/api-objects.html" target="_blank" rel="noopener">python-gitlab</a> API client 封装好的 gitlab 命令行工具，可以使用它来完成绝大多数 Gitlab API 所支持的操作。因为之前的流水线中有很多操作是访问的 GitHub，比如提交 PR、获取 repo tag、查看 PR labels 等，都是写在 Jenkinsfile 调用各种脚本和工具来完成的。 切换到了 Gitlab，自然也需要一个工具来完成上述操作了。那么 python-gitlab CLI 这个工具无疑是不二之选，甚至比之前的工具更方便。因为迄今为止还没有见到过 GitHub 能有像 python-gitlab 这样的工具。总之，对于使用 Gitlab 的人来讲，要对 repo 完成一些自动化处理的工作，强烈推荐使用这个 CLI 工具，它可以很方便地集成在流水线中。</p>
+<p>而我们多数情况下使用的是 Projects 相关的 API，通过它来对 repo 进行增删改查。简单介绍完 Gitlab API 类型之后，本文会介绍几种使用 Gitlab API 的工具。在使用这些工具的过程中，如果遇到一些错误可以通过 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/README.html#status-codes">Status codes</a> API 返回状态码来排查问题。</p>
+<h2 id="python-gitlab-CLI"><a href="#python-gitlab-CLI" class="headerlink" title="python-gitlab CLI"></a><a target="_blank" rel="noopener" href="https://python-gitlab.readthedocs.io/">python-gitlab</a> CLI</h2><p>这是一个使用 <a target="_blank" rel="noopener" href="https://python-gitlab.readthedocs.io/en/stable/api-objects.html">python-gitlab</a> API client 封装好的 gitlab 命令行工具，可以使用它来完成绝大多数 Gitlab API 所支持的操作。因为之前的流水线中有很多操作是访问的 GitHub，比如提交 PR、获取 repo tag、查看 PR labels 等，都是写在 Jenkinsfile 调用各种脚本和工具来完成的。 切换到了 Gitlab，自然也需要一个工具来完成上述操作了。那么 python-gitlab CLI 这个工具无疑是不二之选，甚至比之前的工具更方便。因为迄今为止还没有见到过 GitHub 能有像 python-gitlab 这样的工具。总之，对于使用 Gitlab 的人来讲，要对 repo 完成一些自动化处理的工作，强烈推荐使用这个 CLI 工具，它可以很方便地集成在流水线中。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>python-gitlab CLI 依赖 Python 2.7 或者 3.4+，2021 年啦，就不要使用 Python2.7 啦 😊。本地安装好 python3 和 pip3 后使用如下命令安装即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在这里使用清华的 pypi 源来加速安装，毕竟是墙🧱国</span></span><br><span class="line">$ sudo pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple requests PyYAML python-gitlab</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在这里使用清华的 pypi 源来加速安装，毕竟是墙🧱国</span>
+$ <span class="token function">sudo</span> pip3 <span class="token function">install</span> -i https://pypi.tuna.tsinghua.edu.cn/simple requests PyYAML python-gitlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>由于使用这个工具的场景大多数是在 Jenkins 所创建的 slave pod 中执行的，所以也可以构建一个 docker 镜像， <code>Dockerfile</code> 如下</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> debian:buster</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt install -y --no-install-recommends \</span></span><br><span class="line"><span class="bash">        git \</span></span><br><span class="line"><span class="bash">        python3 \</span></span><br><span class="line"><span class="bash">        python3-pip \</span></span><br><span class="line"><span class="bash">        jq \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -rf /var/lib/apt/lists/* \</span></span><br><span class="line"><span class="bash">    &amp;&amp; pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple requests PyYAML python-gitlab</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> python-gitlab.cfg /etc/python-gitlab.cfg</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM debian:buster
+RUN apt update \
+    &amp;&amp; apt install -y --no-install-recommends \
+        git \
+        python3 \
+        python3-pip \
+        jq \
+    &amp;&amp; rm -rf &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;* \
+    &amp;&amp; pip3 install -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple requests PyYAML python-gitlab
+
+COPY python-gitlab.cfg &#x2F;etc&#x2F;python-gitlab.cfg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>Gitlab CLI 工具需要使用一个 <code>python-gitlab.cfg</code> 配置文件用于连接 Gitlab 服务器以及完成一些鉴权认证，配置文件格式为 <code>ini</code> 如下：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">default</span> = gitlab.com</span><br><span class="line"><span class="attr">ssl_verify</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">timeout</span> = <span class="number">5</span></span><br><span class="line"><span class="attr">per_page</span> = <span class="number">100</span></span><br><span class="line"><span class="attr">api_version</span> = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="section">[gitlab.com]</span></span><br><span class="line"><span class="attr">url</span> = https://gitlab.com</span><br><span class="line"><span class="attr">private_token</span> = xxxxxxxxx</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">global</span><span class="token punctuation">]</span></span>
+<span class="token key attr-name">default</span> <span class="token punctuation">=</span> <span class="token value attr-value">gitlab.com</span>
+<span class="token key attr-name">ssl_verify</span> <span class="token punctuation">=</span> <span class="token value attr-value">true</span>
+<span class="token key attr-name">timeout</span> <span class="token punctuation">=</span> <span class="token value attr-value">5</span>
+<span class="token key attr-name">per_page</span> <span class="token punctuation">=</span> <span class="token value attr-value">100</span>
+<span class="token key attr-name">api_version</span> <span class="token punctuation">=</span> <span class="token value attr-value">4</span>
+
+<span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">gitlab.com</span><span class="token punctuation">]</span></span>
+<span class="token key attr-name">url</span> <span class="token punctuation">=</span> <span class="token value attr-value">https://gitlab.com</span>
+<span class="token key attr-name">private_token</span> <span class="token punctuation">=</span> <span class="token value attr-value">xxxxxxxxx</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>全局的连接参数</li>
@@ -347,7 +387,7 @@
 <tr>
 <td><code>api_version</code></td>
 <td><code>4</code></td>
-<td>API 的版本，默认为 4 即可，参考 <a href="https://docs.gitlab.com/ee/api/v3_to_v4.html" target="_blank" rel="noopener">API V3 to API V4</a></td>
+<td>API 的版本，默认为 4 即可，参考 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/v3_to_v4.html">API V3 to API V4</a></td>
 </tr>
 <tr>
 <td><code>per_page</code></td>
@@ -371,7 +411,7 @@
 </tr>
 <tr>
 <td><code>private_token</code></td>
-<td>通过访问 gitlab 服务器的 <a href="https://gitlab.com/-/profile/personal_access_tokens" target="_blank" rel="noopener">-/profile/personal_access_tokens</a> 来生成 token</td>
+<td>通过访问 gitlab 服务器的 <a target="_blank" rel="noopener" href="https://gitlab.com/-/profile/personal_access_tokens">-&#x2F;profile&#x2F;personal_access_tokens</a> 来生成 token</td>
 </tr>
 <tr>
 <td><code>oauth_token</code></td>
@@ -396,152 +436,280 @@
 </tbody></table>
 <p>将文件保存在 <code>~/.python-gitlab.cfg</code> 或者 <code>/etc/python-gitlab.cfg</code> ，也可以使用环境变量 <code>PYTHON_GITLAB_CFG</code> 或者 <code>--config-file</code> 执行配置文件的路径，为了省事儿还是将它放到 <code>~/.python-gitlab.cfg</code> 下。</p>
 <p>配置完成之后，可以使用 <code>gitlab current-user get</code> 命令测试连接是否正常，如果有返回值且正确的用户名说明配置成功了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab current-user get</span><br><span class="line">username: muzi502</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab current-user get
+username: muzi502<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>gitlab 命令行工具主要是对 Gitlab 服务器上的各种对象如：user, project, file, repo, mr, tag, commit 等进行增删改查(get、list、create、delete、update)。使用的命令行格式方式如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab &lt;option&gt; [object] [action] &lt;option&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab <span class="token operator">&lt;</span>option<span class="token operator">></span> <span class="token punctuation">[</span>object<span class="token punctuation">]</span> <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token operator">&lt;</span>option<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>一般来讲只需要 4 种参数：</p>
 <ul>
-<li>第一个参数是紧接着 gitlab 命令后面的参数，它是 gitlab 命令行的输出参数和配置参数，如 <code>-o</code> 参数指定输出结果的格式；<code>-f</code> 参数将输出结果存放到文件中; <code>-g</code> 参数执行连接哪个 Gitlab 服务器。</li>
+<li>第一个参数是紧接着 gitlab 命令后面的参数，它是 gitlab 命令行的输出参数和配置参数，如 <code>-o </code> 参数指定输出结果的格式；<code>-f</code> 参数将输出结果存放到文件中; <code>-g</code> 参数执行连接哪个 Gitlab 服务器。</li>
 <li>第二个参数则是用来指定所要操作的对象，比如 project-merge-request，project-tag 等，所支持的对象有很多，基本上涵盖了所有 Gitlab API 所支持的操作对象，如下：</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab -h</span><br><span class="line">usage: gitlab [-h] [--version] [-v] [-d] [-c CONFIG_FILE] [-g GITLAB] [-o &#123;json,legacy,yaml&#125;] [-f FIELDS]</span><br><span class="line">&#123;application,application-appearance,application-settings,audit-event,broadcast-message,current-user,current-user-email,current-user-gp-gkey,current-user-key,current-user-status,deploy-key,deploy-token,dockerfile,event,feature,geo-node,gitignore,gitlabciyml,group,group-access-request,group-badge,group-board,group-board-list,group-cluster,group-custom-attribute,group-deploy-token,group-epic,group-epic-issue,group-epic-resource-label-event,group-export,group-import,group-issue,group-label,group-member,group-merge-request,group-milestone,group-notification-settings,group-package,group-project,group-runner,group-subgroup,group-variable,hook,issue,l-da-pgroup,license,merge-request,namespace,notification-settings,pages-domain,project,project-access-request,project-additional-statistics,project-approval,project-approval-rule,project-badge,project-board,project-board-list,project-branch,project-cluster,project-commit,project-commit-comment,project-commit-discussion,project-commit-discussion-note,project-commit-status,project-custom-attribute,project-deploy-token,project-deployment,project-environment,project-event,project-export,project-file,project-fork,project-hook,project-import,project-issue,project-issue-award-emoji,project-issue-discussion,project-issue-discussion-note,project-issue-link,project-issue-note,project-issue-note-award-emoji,project-issue-resource-label-event,project-issue-resource-milestone-event,project-issues-statistics,project-job,project-key,project-label,project-member,project-merge-request,project-merge-request-approval,project-merge-request-approval-rule,project-merge-request-award-emoji,project-merge-request-diff,project-merge-request-discussion,project-merge-request-discussion-note,project-merge-request-note,project-merge-request-note-award-emoji,project-merge-request-resource-label-event,project-merge-request-resource-milestone-event,project-milestone,project-note,project-notification-settings,project-package,project-pages-domain,project-pipeline,project-pipeline-bridge,project-pipeline-job,project-pipeline-schedule,project-pipeline-schedule-variable,project-pipeline-variable,project-protected-branch,project-protected-tag,project-push-rules,project-registry-repository,project-registry-tag,project-release,project-remote-mirror,project-runner,project-service,project-snippet,project-snippet-award-emoji,project-snippet-discussion,project-snippet-discussion-note,project-snippet-note,project-snippet-note-award-emoji,project-tag,project-trigger,project-user,project-variable,project-wiki,runner,runner-job,snippet,todo,user,user-activities,user-custom-attribute,user-email,user-event,user-gp-gkey,user-impersonation-token,user-key,user-membership,user-project,user-status,variable&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">$ gitlab -h
+usage<span class="token operator">:</span> gitlab <span class="token punctuation">[</span>-h<span class="token punctuation">]</span> <span class="token punctuation">[</span>--version<span class="token punctuation">]</span> <span class="token punctuation">[</span>-v<span class="token punctuation">]</span> <span class="token punctuation">[</span>-d<span class="token punctuation">]</span> <span class="token punctuation">[</span>-c CONFIG_FILE<span class="token punctuation">]</span> <span class="token punctuation">[</span>-g GITLAB<span class="token punctuation">]</span> <span class="token punctuation">[</span>-o <span class="token punctuation">&#123;</span>json<span class="token punctuation">,</span>legacy<span class="token punctuation">,</span>yaml<span class="token punctuation">&#125;</span><span class="token punctuation">]</span> <span class="token punctuation">[</span>-f FIELDS<span class="token punctuation">]</span>
+<span class="token punctuation">&#123;</span>application<span class="token punctuation">,</span>application-appearance<span class="token punctuation">,</span>application-settings<span class="token punctuation">,</span>audit-event<span class="token punctuation">,</span>broadcast-message<span class="token punctuation">,</span>current-user<span class="token punctuation">,</span>current-user-email<span class="token punctuation">,</span>current-user-gp-gkey<span class="token punctuation">,</span>current-user-key<span class="token punctuation">,</span>current-user-status<span class="token punctuation">,</span>deploy-key<span class="token punctuation">,</span>deploy-token<span class="token punctuation">,</span>dockerfile<span class="token punctuation">,</span>event<span class="token punctuation">,</span>feature<span class="token punctuation">,</span>geo-node<span class="token punctuation">,</span>gitignore<span class="token punctuation">,</span>gitlabciyml<span class="token punctuation">,</span>group<span class="token punctuation">,</span>group-access-request<span class="token punctuation">,</span>group-badge<span class="token punctuation">,</span>group-board<span class="token punctuation">,</span>group-board-list<span class="token punctuation">,</span>group-cluster<span class="token punctuation">,</span>group-custom-attribute<span class="token punctuation">,</span>group-deploy-token<span class="token punctuation">,</span>group-epic<span class="token punctuation">,</span>group-epic-issue<span class="token punctuation">,</span>group-epic-resource-label-event<span class="token punctuation">,</span>group-export<span class="token punctuation">,</span>group-import<span class="token punctuation">,</span>group-issue<span class="token punctuation">,</span>group-label<span class="token punctuation">,</span>group-member<span class="token punctuation">,</span>group-merge-request<span class="token punctuation">,</span>group-milestone<span class="token punctuation">,</span>group-notification-settings<span class="token punctuation">,</span>group-package<span class="token punctuation">,</span>group-project<span class="token punctuation">,</span>group-runner<span class="token punctuation">,</span>group-subgroup<span class="token punctuation">,</span>group-variable<span class="token punctuation">,</span>hook<span class="token punctuation">,</span>issue<span class="token punctuation">,</span>l-da-pgroup<span class="token punctuation">,</span>license<span class="token punctuation">,</span>merge-request<span class="token punctuation">,</span>namespace<span class="token punctuation">,</span>notification-settings<span class="token punctuation">,</span>pages-domain<span class="token punctuation">,</span>project<span class="token punctuation">,</span>project-access-request<span class="token punctuation">,</span>project-additional-statistics<span class="token punctuation">,</span>project-approval<span class="token punctuation">,</span>project-approval-rule<span class="token punctuation">,</span>project-badge<span class="token punctuation">,</span>project-board<span class="token punctuation">,</span>project-board-list<span class="token punctuation">,</span>project-branch<span class="token punctuation">,</span>project-cluster<span class="token punctuation">,</span>project-commit<span class="token punctuation">,</span>project-commit-comment<span class="token punctuation">,</span>project-commit-discussion<span class="token punctuation">,</span>project-commit-discussion-note<span class="token punctuation">,</span>project-commit-status<span class="token punctuation">,</span>project-custom-attribute<span class="token punctuation">,</span>project-deploy-token<span class="token punctuation">,</span>project-deployment<span class="token punctuation">,</span>project-environment<span class="token punctuation">,</span>project-event<span class="token punctuation">,</span>project-export<span class="token punctuation">,</span>project-file<span class="token punctuation">,</span>project-fork<span class="token punctuation">,</span>project-hook<span class="token punctuation">,</span>project-import<span class="token punctuation">,</span>project-issue<span class="token punctuation">,</span>project-issue-award-emoji<span class="token punctuation">,</span>project-issue-discussion<span class="token punctuation">,</span>project-issue-discussion-note<span class="token punctuation">,</span>project-issue-link<span class="token punctuation">,</span>project-issue-note<span class="token punctuation">,</span>project-issue-note-award-emoji<span class="token punctuation">,</span>project-issue-resource-label-event<span class="token punctuation">,</span>project-issue-resource-milestone-event<span class="token punctuation">,</span>project-issues-statistics<span class="token punctuation">,</span>project-job<span class="token punctuation">,</span>project-key<span class="token punctuation">,</span>project-label<span class="token punctuation">,</span>project-member<span class="token punctuation">,</span>project-merge-request<span class="token punctuation">,</span>project-merge-request-approval<span class="token punctuation">,</span>project-merge-request-approval-rule<span class="token punctuation">,</span>project-merge-request-award-emoji<span class="token punctuation">,</span>project-merge-request-diff<span class="token punctuation">,</span>project-merge-request-discussion<span class="token punctuation">,</span>project-merge-request-discussion-note<span class="token punctuation">,</span>project-merge-request-note<span class="token punctuation">,</span>project-merge-request-note-award-emoji<span class="token punctuation">,</span>project-merge-request-resource-label-event<span class="token punctuation">,</span>project-merge-request-resource-milestone-event<span class="token punctuation">,</span>project-milestone<span class="token punctuation">,</span>project-note<span class="token punctuation">,</span>project-notification-settings<span class="token punctuation">,</span>project-package<span class="token punctuation">,</span>project-pages-domain<span class="token punctuation">,</span>project-pipeline<span class="token punctuation">,</span>project-pipeline-bridge<span class="token punctuation">,</span>project-pipeline-job<span class="token punctuation">,</span>project-pipeline-schedule<span class="token punctuation">,</span>project-pipeline-schedule-variable<span class="token punctuation">,</span>project-pipeline-variable<span class="token punctuation">,</span>project-protected-branch<span class="token punctuation">,</span>project-protected-tag<span class="token punctuation">,</span>project-push-rules<span class="token punctuation">,</span>project-registry-repository<span class="token punctuation">,</span>project-registry-tag<span class="token punctuation">,</span>project-release<span class="token punctuation">,</span>project-remote-mirror<span class="token punctuation">,</span>project-runner<span class="token punctuation">,</span>project-service<span class="token punctuation">,</span>project-snippet<span class="token punctuation">,</span>project-snippet-award-emoji<span class="token punctuation">,</span>project-snippet-discussion<span class="token punctuation">,</span>project-snippet-discussion-note<span class="token punctuation">,</span>project-snippet-note<span class="token punctuation">,</span>project-snippet-note-award-emoji<span class="token punctuation">,</span>project-tag<span class="token punctuation">,</span>project-trigger<span class="token punctuation">,</span>project-user<span class="token punctuation">,</span>project-variable<span class="token punctuation">,</span>project-wiki<span class="token punctuation">,</span>runner<span class="token punctuation">,</span>runner-job<span class="token punctuation">,</span>snippet<span class="token punctuation">,</span>todo<span class="token punctuation">,</span>user<span class="token punctuation">,</span>user-activities<span class="token punctuation">,</span>user-custom-attribute<span class="token punctuation">,</span>user-email<span class="token punctuation">,</span>user-event<span class="token punctuation">,</span>user-gp-gkey<span class="token punctuation">,</span>user-impersonation-token<span class="token punctuation">,</span>user-key<span class="token punctuation">,</span>user-membership<span class="token punctuation">,</span>user-project<span class="token punctuation">,</span>user-status<span class="token punctuation">,</span>variable<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>第三个参数则是 action 参数，即用于指定对所操作的对象进行何种操作，一般来讲都会支持增删改查操作（get, list, create, update, delete）</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab project-tag</span><br><span class="line">usage: gitlab project-tag [-h] &#123;list,get,create,delete,<span class="built_in">set</span>-release-description&#125; ...</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-tag
+usage: gitlab project-tag <span class="token punctuation">[</span>-h<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>list,get,create,delete,set-release-description<span class="token punctuation">&#125;</span> <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>第三个参数则是 object + action 所依赖的参数，比如指定 project id</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab project-tag list</span><br><span class="line">usage: gitlab project-tag list --project-id PROJECT_ID [--page PAGE] [--per-page PER_PAGE] [--all]</span><br><span class="line">gitlab project-tag list: error: the following arguments are required: --project-id</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-tag list
+usage: gitlab project-tag list --project-id PROJECT_ID <span class="token punctuation">[</span>--page PAGE<span class="token punctuation">]</span> <span class="token punctuation">[</span>--per-page PER_PAGE<span class="token punctuation">]</span> <span class="token punctuation">[</span>--all<span class="token punctuation">]</span>
+gitlab project-tag list: error: the following arguments are required: --project-id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li><p>Project-ID：是 gitlab 上唯一表示该 repo 的 ID，可分为两种，一种是 <code>group/project</code> 的形式，其中 <code>/</code> 要转译成 <code>%2F</code> 如：<code>muzi502%2Fkubespray</code>；另一种则是数字的形式，在该 repo 的 web 页面上可以看到，推荐使用第二种。</p>
-<p><img src="https://p.k8s.li/image-20210319085926423.png" alt="image-20210319085926423"></p>
+<p><img data-src="https://p.k8s.li/image-20210319085926423.png" alt="image-20210319085926423"></p>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 也可以使用gitlab 命令获取 repo 的 id</span></span><br><span class="line">$ gitlab project get --id muzi502%2Fkubespray</span><br><span class="line">id: 25099880</span><br><span class="line">path: kubespray</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 也可以使用gitlab 命令获取 repo 的 id</span>
+$ gitlab project get --id muzi502%2Fkubespray
+id: <span class="token number">25099880</span>
+path: kubespray<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>在流水线中可以根据 token 获取用户的用户名和邮箱，用于配置流水线中的 repo git 信息，避免因为 CLA 无法通过。</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gitlab -o json current-user get | jq '.id'</span><br><span class="line">git config --global user.email $(gitlab -o json current-user get | jq -r '.email')</span><br><span class="line">git config --global user.name $(gitlab -o json current-user get | jq -r '.username')</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">gitlab -o json current-user get <span class="token operator">|</span> jq <span class="token string">'.id'</span>
+<span class="token function">git</span> config --global user.email <span class="token variable"><span class="token variable">$(</span>gitlab -o json current-user get <span class="token operator">|</span> jq -r <span class="token string">'.email'</span><span class="token variable">)</span></span>
+<span class="token function">git</span> config --global user.name <span class="token variable"><span class="token variable">$(</span>gitlab -o json current-user get <span class="token operator">|</span> jq -r <span class="token string">'.username'</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="project"><a href="#project" class="headerlink" title="project"></a>project</h3><ul>
 <li>获取 repo ssh url  地址</li>
 </ul>
 <p>由于 Jenkins 流水线中 clone 的 repo url 是使用 token+ https 的方式，在流水线中如果要 push 代码到 repo 需要修改为 ssh 的方式，可使用如下方式根据 project id 来获取该 repo 的 ssh url。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab -o json  project get --id <span class="variable">$&#123;PROJECT_ID&#125;</span> | jq -r <span class="string">'.ssh_url_to_repo'</span></span><br><span class="line">$ git remote remove origin</span><br><span class="line">$ git remote add origin $(gitlab -o json  project get --id <span class="variable">$&#123;PROJECT_ID&#125;</span> | jq -r <span class="string">'.ssh_url_to_repo'</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json  project get --id <span class="token variable">$&#123;PROJECT_ID&#125;</span> <span class="token operator">|</span> jq -r <span class="token string">'.ssh_url_to_repo'</span>
+$ <span class="token function">git</span> remote remove origin
+$ <span class="token function">git</span> remote <span class="token function">add</span> origin <span class="token variable"><span class="token variable">$(</span>gitlab -o json  project get --id $<span class="token punctuation">&#123;</span>PROJECT_ID<span class="token punctuation">&#125;</span> <span class="token operator">|</span> jq -r <span class="token string">'.ssh_url_to_repo'</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="file"><a href="#file" class="headerlink" title="file"></a>file</h3><p>对于 repo 中文件的操作使用 project-file</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab project-file</span><br><span class="line">usage: gitlab project-file [-h] &#123;get,create,update,delete,raw,blame&#125; ...</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-file
+usage: gitlab project-file <span class="token punctuation">[</span>-h<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>get,create,update,delete,raw,blame<span class="token punctuation">&#125;</span> <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>获取文件，通过 <code>project-file</code> 对象的 get 操作</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab -o json project-file get --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master  | jq <span class="string">'.'</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"file_name"</span>: <span class="string">".gitignore"</span>,</span><br><span class="line">  <span class="string">"file_path"</span>: <span class="string">".gitignore"</span>,</span><br><span class="line">  <span class="string">"size"</span>: 1208,</span><br><span class="line">  <span class="string">"encoding"</span>: <span class="string">"base64"</span>,</span><br><span class="line">  <span class="string">"content_sha256"</span>: <span class="string">"91f1d50ba3a4f79f96d9371afc70b389f75dfb2ac5190b8fb01051aa8679fd04"</span>,</span><br><span class="line">  <span class="string">"ref"</span>: <span class="string">"master"</span>,</span><br><span class="line">  <span class="string">"blob_id"</span>: <span class="string">"b09ca9d3b101034c7e34430177c1d64738df5fbb"</span>,</span><br><span class="line">  <span class="string">"commit_id"</span>: <span class="string">"a9c97e5253c455546c2c7fdd794147eeb9b8ab7a"</span>,</span><br><span class="line">  <span class="string">"last_commit_id"</span>: <span class="string">"4ffc106c58fc5865b6d72a52365e25b8c268d4d8"</span>,</span><br><span class="line">  <span class="string">"content"</span>: <span class="string">"LnZhZ3JhbnQKKi5yZXRyeQoqKi92YWdyYW50X2Fuc2libGVfaW52ZW50b3J5CiouaW1sCnRlbXAKLmlkZWEKLnRveAouY2FjaGUKKi5iYWsKKi50ZnN0YXRlCioudGZzdGF0ZS5iYWNrdXAKLnRlcnJhZm9ybS8KY29udHJpYi90ZXJyYWZvcm0vYXdzL2NyZWRlbnRpYWxzLnRmdmFycwovc3NoLWJhc3Rpb24uY29uZgoqKi8qLnN3W3Bvbl0KKn4KdmFncmFudC8KcGx1Z2lucy9taXRvZ2VuCgojIEFuc2libGUgaW52ZW50b3J5CmludmVudG9yeS8qCiFpbnZlbnRvcnkvbG9jYWwKIWludmVudG9yeS9zYW1wbGUKaW52ZW50b3J5LyovYXJ0aWZhY3RzLwoKIyBCeXRlLWNvbXBpbGVkIC8gb3B0aW1pemVkIC8gRExMIGZpbGVzCl9fcHljYWNoZV9fLwoqLnB5W2NvZF0KKiRweS5jbGFzcwoKIyBEaXN0cmlidXRpb24gLyBwYWNrYWdpbmcKLlB5dGhvbgplbnYvCmJ1aWxkLwpjcmVkZW50aWFscy8KZGV2ZWxvcC1lZ2dzLwpkaXN0Lwpkb3dubG9hZHMvCmVnZ3MvCi5lZ2dzLwpwYXJ0cy8Kc2Rpc3QvCnZhci8KKi5lZ2ctaW5mby8KLmluc3RhbGxlZC5jZmcKKi5lZ2cKCiMgUHlJbnN0YWxsZXIKIyAgVXN1YWxseSB0aGVzZSBmaWxlcyBhcmUgd3JpdHRlbiBieSBhIHB5dGhvbiBzY3JpcHQgZnJvbSBhIHRlbXBsYXRlCiMgIGJlZm9yZSBQeUluc3RhbGxlciBidWlsZHMgdGhlIGV4ZSwgc28gYXMgdG8gaW5qZWN0IGRhdGUvb3RoZXIgaW5mb3MgaW50byBpdC4KKi5tYW5pZmVzdAoqLnNwZWMKCiMgSW5zdGFsbGVyIGxvZ3MKcGlwLWxvZy50eHQKcGlwLWRlbGV0ZS10aGlzLWRpcmVjdG9yeS50eHQKCiMgVW5pdCB0ZXN0IC8gY292ZXJhZ2UgcmVwb3J0cwpodG1sY292LwoudG94LwouY292ZXJhZ2UKLmNvdmVyYWdlLioKLmNhY2hlCm5vc2V0ZXN0cy54bWwKY292ZXJhZ2UueG1sCiosY292ZXIKLmh5cG90aGVzaXMvCgojIFRyYW5zbGF0aW9ucwoqLm1vCioucG90CgojIERqYW5nbyBzdHVmZjoKKi5sb2cKbG9jYWxfc2V0dGluZ3MucHkKCiMgRmxhc2sgc3R1ZmY6Cmluc3RhbmNlLwoud2ViYXNzZXRzLWNhY2hlCgojIFNjcmFweSBzdHVmZjoKLnNjcmFweQoKIyBTcGhpbnggZG9jdW1lbnRhdGlvbgpkb2NzL19idWlsZC8KCiMgUHlCdWlsZGVyCnRhcmdldC8KCiMgSVB5dGhvbiBOb3RlYm9vawouaXB5bmJfY2hlY2twb2ludHMKCiMgcHllbnYKLnB5dGhvbi12ZXJzaW9uCgojIGRvdGVudgouZW52CgojIHZpcnR1YWxlbnYKdmVudi8KRU5WLwo="</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件内容是 base64 编码的，需要使用 base64 解码才能获取原始的内容。</span></span><br><span class="line">$ gitlab -g gitlab -o json project-file get --project-id 25099880 --file-path .gitignore --ref master  | jq -r <span class="string">'.content'</span> | base64 -d</span><br><span class="line">.vagrant</span><br><span class="line">*.retry</span><br><span class="line">**/vagrant_ansible_inventory</span><br><span class="line">*.iml</span><br><span class="line">temp</span><br><span class="line">.idea</span><br><span class="line">.tox</span><br><span class="line">…………</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json project-file get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master  <span class="token operator">|</span> jq <span class="token string">'.'</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token string">"file_name"</span><span class="token builtin class-name">:</span> <span class="token string">".gitignore"</span>,
+  <span class="token string">"file_path"</span><span class="token builtin class-name">:</span> <span class="token string">".gitignore"</span>,
+  <span class="token string">"size"</span><span class="token builtin class-name">:</span> <span class="token number">1208</span>,
+  <span class="token string">"encoding"</span><span class="token builtin class-name">:</span> <span class="token string">"base64"</span>,
+  <span class="token string">"content_sha256"</span><span class="token builtin class-name">:</span> <span class="token string">"91f1d50ba3a4f79f96d9371afc70b389f75dfb2ac5190b8fb01051aa8679fd04"</span>,
+  <span class="token string">"ref"</span><span class="token builtin class-name">:</span> <span class="token string">"master"</span>,
+  <span class="token string">"blob_id"</span><span class="token builtin class-name">:</span> <span class="token string">"b09ca9d3b101034c7e34430177c1d64738df5fbb"</span>,
+  <span class="token string">"commit_id"</span><span class="token builtin class-name">:</span> <span class="token string">"a9c97e5253c455546c2c7fdd794147eeb9b8ab7a"</span>,
+  <span class="token string">"last_commit_id"</span><span class="token builtin class-name">:</span> <span class="token string">"4ffc106c58fc5865b6d72a52365e25b8c268d4d8"</span>,
+  <span class="token string">"content"</span><span class="token builtin class-name">:</span> <span class="token string">"LnZhZ3JhbnQKKi5yZXRyeQoqKi92YWdyYW50X2Fuc2libGVfaW52ZW50b3J5CiouaW1sCnRlbXAKLmlkZWEKLnRveAouY2FjaGUKKi5iYWsKKi50ZnN0YXRlCioudGZzdGF0ZS5iYWNrdXAKLnRlcnJhZm9ybS8KY29udHJpYi90ZXJyYWZvcm0vYXdzL2NyZWRlbnRpYWxzLnRmdmFycwovc3NoLWJhc3Rpb24uY29uZgoqKi8qLnN3W3Bvbl0KKn4KdmFncmFudC8KcGx1Z2lucy9taXRvZ2VuCgojIEFuc2libGUgaW52ZW50b3J5CmludmVudG9yeS8qCiFpbnZlbnRvcnkvbG9jYWwKIWludmVudG9yeS9zYW1wbGUKaW52ZW50b3J5LyovYXJ0aWZhY3RzLwoKIyBCeXRlLWNvbXBpbGVkIC8gb3B0aW1pemVkIC8gRExMIGZpbGVzCl9fcHljYWNoZV9fLwoqLnB5W2NvZF0KKiRweS5jbGFzcwoKIyBEaXN0cmlidXRpb24gLyBwYWNrYWdpbmcKLlB5dGhvbgplbnYvCmJ1aWxkLwpjcmVkZW50aWFscy8KZGV2ZWxvcC1lZ2dzLwpkaXN0Lwpkb3dubG9hZHMvCmVnZ3MvCi5lZ2dzLwpwYXJ0cy8Kc2Rpc3QvCnZhci8KKi5lZ2ctaW5mby8KLmluc3RhbGxlZC5jZmcKKi5lZ2cKCiMgUHlJbnN0YWxsZXIKIyAgVXN1YWxseSB0aGVzZSBmaWxlcyBhcmUgd3JpdHRlbiBieSBhIHB5dGhvbiBzY3JpcHQgZnJvbSBhIHRlbXBsYXRlCiMgIGJlZm9yZSBQeUluc3RhbGxlciBidWlsZHMgdGhlIGV4ZSwgc28gYXMgdG8gaW5qZWN0IGRhdGUvb3RoZXIgaW5mb3MgaW50byBpdC4KKi5tYW5pZmVzdAoqLnNwZWMKCiMgSW5zdGFsbGVyIGxvZ3MKcGlwLWxvZy50eHQKcGlwLWRlbGV0ZS10aGlzLWRpcmVjdG9yeS50eHQKCiMgVW5pdCB0ZXN0IC8gY292ZXJhZ2UgcmVwb3J0cwpodG1sY292LwoudG94LwouY292ZXJhZ2UKLmNvdmVyYWdlLioKLmNhY2hlCm5vc2V0ZXN0cy54bWwKY292ZXJhZ2UueG1sCiosY292ZXIKLmh5cG90aGVzaXMvCgojIFRyYW5zbGF0aW9ucwoqLm1vCioucG90CgojIERqYW5nbyBzdHVmZjoKKi5sb2cKbG9jYWxfc2V0dGluZ3MucHkKCiMgRmxhc2sgc3R1ZmY6Cmluc3RhbmNlLwoud2ViYXNzZXRzLWNhY2hlCgojIFNjcmFweSBzdHVmZjoKLnNjcmFweQoKIyBTcGhpbnggZG9jdW1lbnRhdGlvbgpkb2NzL19idWlsZC8KCiMgUHlCdWlsZGVyCnRhcmdldC8KCiMgSVB5dGhvbiBOb3RlYm9vawouaXB5bmJfY2hlY2twb2ludHMKCiMgcHllbnYKLnB5dGhvbi12ZXJzaW9uCgojIGRvdGVudgouZW52CgojIHZpcnR1YWxlbnYKdmVudi8KRU5WLwo="</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment"># 文件内容是 base64 编码的，需要使用 base64 解码才能获取原始的内容。</span>
+$ gitlab -g gitlab -o json project-file get --project-id <span class="token number">25099880</span> --file-path .gitignore --ref master  <span class="token operator">|</span> jq -r <span class="token string">'.content'</span> <span class="token operator">|</span> base64 -d
+.vagrant
+*.retry
+**/vagrant_ansible_inventory
+*.iml
+temp
+.idea
+.tox
+…………<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>通过 project-file 的 raw 方法可以获取文件的原始内容，无须 base64 解码</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab project-file get --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-file get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li><p>创建文件，对文件的增删改都是通过提交 commit 来完成的，因此需要指定所要操作的分支以及 commit-message 的信息。另外如果操作的文件是 master 分支获取其他保护分支，要确保当前用户有写入的权限，不然会提示如下错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gitlab project-file update</span><br><span class="line">Impossible to update object (400: You are not allowed to push into this branch)</span><br></pre></td></tr></table></figure>
-
-</li>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitlab project-file update
+Impossible to update object <span class="token punctuation">(</span><span class="token number">400</span>: You are not allowed to push into this branch<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
 <p>之前在 GitHub 上有一套 CI 并不能适用于 Gitlab，因此需要为所有的分支创建 CI 流水线，用于检查代码是否符合规范，可以通过如下方法批量量地向所有分支创建文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ID=123456</span><br><span class="line">BRANCHS=$(gitlab -o json project-branch list --project-id <span class="variable">$&#123;ID&#125;</span> --all | jq -r <span class="string">".[].name"</span>)</span><br><span class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> <span class="variable">$&#123;BRANCHS&#125;</span>; <span class="keyword">do</span></span><br><span class="line">	gitlab project-file create --project-id <span class="variable">$&#123;ID&#125;</span> --file-path .gitlab-ci.yml --branch <span class="variable">$&#123;branch&#125;</span> --content @.gitlab-ci.yml --commit-message <span class="string">"feat(gitlab-ci): add gitlab-ci.yml for ci"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">ID</span><span class="token operator">=</span><span class="token number">123456</span>
+<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab -o json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> --all <span class="token operator">|</span> jq -r <span class="token string">".[].name"</span><span class="token variable">)</span></span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">branch</span> <span class="token keyword">in</span> <span class="token variable">$&#123;BRANCHS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+	gitlab project-file create --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path .gitlab-ci.yml --branch <span class="token variable">$&#123;branch&#125;</span> --content @.gitlab-ci.yml --commit-message <span class="token string">"feat(gitlab-ci): add gitlab-ci.yml for ci"</span>
+<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>更新文件</li>
 </ul>
 <p>比如批量更新所有分支的 <code>Makefile</code> 中 <code>github.com</code> 为 <code>gitlab.com</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ID=123456</span><br><span class="line">BRANCHS=$(gitlab -o json project-branch list --project-id <span class="variable">$&#123;ID&#125;</span> --all | jq -r <span class="string">".[].name"</span>)</span><br><span class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> <span class="variable">$&#123;BRANCHS&#125;</span>; <span class="keyword">do</span></span><br><span class="line">    rm -f Makefile Makefile-</span><br><span class="line">    gitlab project-file raw --project-id <span class="variable">$&#123;ID&#125;</span> --file-path Makefile --ref <span class="variable">$&#123;branch&#125;</span> &gt; Makefile</span><br><span class="line">    sed -i- <span class="string">"s|github.com/muzi502|gitlab.com/muzi502"</span> Makefile</span><br><span class="line">    gitlab project-file update --project-id <span class="variable">$&#123;ID&#125;</span> --file-path Makefile --branch <span class="variable">$&#123;branch&#125;</span> --content @Makefile \</span><br><span class="line">    --commit-message <span class="string">"chore(Makefile): update repo url in Makefile for migrate gitlab"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">ID</span><span class="token operator">=</span><span class="token number">123456</span>
+<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab -o json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> --all <span class="token operator">|</span> jq -r <span class="token string">".[].name"</span><span class="token variable">)</span></span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">branch</span> <span class="token keyword">in</span> <span class="token variable">$&#123;BRANCHS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token function">rm</span> -f Makefile Makefile-
+    gitlab project-file raw --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path Makefile --ref <span class="token variable">$&#123;branch&#125;</span> <span class="token operator">></span> Makefile
+    <span class="token function">sed</span> -i- <span class="token string">"s|github.com/muzi502|gitlab.com/muzi502"</span> Makefile
+    gitlab project-file update --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path Makefile --branch <span class="token variable">$&#123;branch&#125;</span> --content @Makefile <span class="token punctuation">\</span>
+    --commit-message <span class="token string">"chore(Makefile): update repo url in Makefile for migrate gitlab"</span>
+<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>删除文件</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab project-file delete --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master \</span><br><span class="line">--commit-message <span class="string">"test delete file"</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-file delete --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master <span class="token punctuation">\</span>
+--commit-message <span class="token string">"test delete file"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="MR-1"><a href="#MR-1" class="headerlink" title="MR"></a>MR</h3><ul>
 <li>创建 MR，指定 source branch 和 target branch 以及 mr 的 title 这三个参数。前面最好加上 -o json 参数用户获取 mr 的 iid，可通过此 iid 来对这个 mr 进行增删改查。</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab -o json project-merge-request create --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --<span class="built_in">source</span>-branch --target-branch <span class="variable">$&#123;BASE_BRANCH&#125;</span> --title <span class="string">"<span class="variable">$&#123;MR_TITLE&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json project-merge-request create --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --source-branch --target-branch <span class="token variable">$&#123;BASE_BRANCH&#125;</span> --title <span class="token string">"<span class="token variable">$&#123;MR_TITLE&#125;</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>通过 -o json 参数会返回此 mr 的信息，其中 <code>iid</code> 就是该 mr 在此 repo 中的唯一标示</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab -g gitlab -o json project-merge-request create --project-id 25099880 --source-branch release-2.14 --target-branch  master --title "mr create test"</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"id"</span>: <span class="number">92872102</span>,</span><br><span class="line">  <span class="attr">"iid"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">"project_id"</span>: <span class="number">25099880</span>,</span><br><span class="line">  <span class="attr">"title"</span>: <span class="string">"mr create test"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">"state"</span>: <span class="string">"opened"</span>,</span><br><span class="line">  <span class="attr">"created_at"</span>: <span class="string">"2021-03-21T12:42:52.893Z"</span>,</span><br><span class="line">  <span class="attr">"updated_at"</span>: <span class="string">"2021-03-21T12:42:52.893Z"</span>,</span><br><span class="line">  <span class="attr">"merged_by"</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">"merged_at"</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">"closed_by"</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">"closed_at"</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">"target_branch"</span>: <span class="string">"master"</span>,</span><br><span class="line">  <span class="attr">"source_branch"</span>: <span class="string">"release-2.14"</span>,</span><br><span class="line">  <span class="attr">"user_notes_count"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"upvotes"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"downvotes"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"author"</span>: &#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="number">5599205</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"muzi502"</span>,</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"muzi502"</span>,</span><br><span class="line">    <span class="attr">"state"</span>: <span class="string">"active"</span>,</span><br><span class="line">    <span class="attr">"avatar_url"</span>: <span class="string">"https://secure.gravatar.com/avatar/f91578ffea9a538eedd8fbaf3007289b?s=80&amp;d=identicon"</span>,</span><br><span class="line">    <span class="attr">"web_url"</span>: <span class="string">"https://gitlab.com/muzi502"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">$ gitlab -g gitlab -o json project-merge-request create --project-id <span class="token number">25099880</span> --source-branch release<span class="token number">-2.14</span> --target-branch  master --title <span class="token string">"mr create test"</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">92872102</span><span class="token punctuation">,</span>
+  <span class="token property">"iid"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token property">"project_id"</span><span class="token operator">:</span> <span class="token number">25099880</span><span class="token punctuation">,</span>
+  <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"mr create test"</span><span class="token punctuation">,</span>
+  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">"state"</span><span class="token operator">:</span> <span class="token string">"opened"</span><span class="token punctuation">,</span>
+  <span class="token property">"created_at"</span><span class="token operator">:</span> <span class="token string">"2021-03-21T12:42:52.893Z"</span><span class="token punctuation">,</span>
+  <span class="token property">"updated_at"</span><span class="token operator">:</span> <span class="token string">"2021-03-21T12:42:52.893Z"</span><span class="token punctuation">,</span>
+  <span class="token property">"merged_by"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">"merged_at"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">"closed_by"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">"closed_at"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">"target_branch"</span><span class="token operator">:</span> <span class="token string">"master"</span><span class="token punctuation">,</span>
+  <span class="token property">"source_branch"</span><span class="token operator">:</span> <span class="token string">"release-2.14"</span><span class="token punctuation">,</span>
+  <span class="token property">"user_notes_count"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token property">"upvotes"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token property">"downvotes"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">5599205</span><span class="token punctuation">,</span>
+    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"muzi502"</span><span class="token punctuation">,</span>
+    <span class="token property">"username"</span><span class="token operator">:</span> <span class="token string">"muzi502"</span><span class="token punctuation">,</span>
+    <span class="token property">"state"</span><span class="token operator">:</span> <span class="token string">"active"</span><span class="token punctuation">,</span>
+    <span class="token property">"avatar_url"</span><span class="token operator">:</span> <span class="token string">"https://secure.gravatar.com/avatar/f91578ffea9a538eedd8fbaf3007289b?s=80&amp;d=identicon"</span><span class="token punctuation">,</span>
+    <span class="token property">"web_url"</span><span class="token operator">:</span> <span class="token string">"https://gitlab.com/muzi502"</span>
+  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>合并 MR</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab project-merge-request merge --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-merge-request merge --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>查看 MR 状态</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab -o json project-merge-request get --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid | jq -r <span class="string">".state"</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid <span class="token operator">|</span> jq -r <span class="token string">".state"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>集成在 Jenkinsfile  中完成创建 MR、合并 MR、检查 MR</li>
 </ul>
 <p>调用用它的时候只需要传入 SOURCE_BRANCH, TARGET_BRANCH, MR_TITLE 这三个参数即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def makeMR(SOURCE_BRANCH, TARGET_BRANCH, MR_TITLE) &#123;</span><br><span class="line">    container(<span class="string">"debian"</span>) &#123;</span><br><span class="line">        sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">        gitlab -o json project-merge-request create --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span>  --title \"<span class="variable">$&#123;MR_TITLE&#125;</span>\" \</span></span><br><span class="line"><span class="string">        --source-branch <span class="variable">$&#123;SOURCE_BRANCH&#125;</span> --target-branch <span class="variable">$&#123;TARGET_BRANCH&#125;</span> &gt; mr_info.json</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        jq -r '.iid' mr_info.json &gt; mr_iid</span></span><br><span class="line"><span class="string">        jq -r '.web_url' mr_info.json &gt; mr_url</span></span><br><span class="line"><span class="string">        "</span><span class="string">""</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">def <span class="function"><span class="title">checkMR</span></span>() &#123;</span><br><span class="line">    container(<span class="string">"debian"</span>) &#123;</span><br><span class="line">        retry(120) &#123;</span><br><span class="line">        sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">        if [ ! -s mr_iid ]; then exit 0; else sleep 60s; fi</span></span><br><span class="line"><span class="string">        gitlab -o json project-merge-request get --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid | jq -r "</span>.labels[]<span class="string">" | grep 'approve'</span></span><br><span class="line"><span class="string">        "</span><span class="string">""</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">def <span class="function"><span class="title">mergeMR</span></span>()&#123;</span><br><span class="line">    container(<span class="string">"debian"</span>) &#123;</span><br><span class="line">        retry(10)&#123;</span><br><span class="line">        sh <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">        if [ ! -s mr_iid ]; then exit 0; else sleep 60s; fi</span></span><br><span class="line"><span class="string">        if gitlab project-merge-request merge --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid; then sleep 10s; fi</span></span><br><span class="line"><span class="string">        gitlab -o json project-merge-request get --project-id <span class="variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid | jq -r "</span>.state<span class="string">" | grep 'merged'</span></span><br><span class="line"><span class="string">        "</span><span class="string">""</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">def makeMR<span class="token punctuation">(</span>SOURCE_BRANCH, TARGET_BRANCH, MR_TITLE<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    container<span class="token punctuation">(</span><span class="token string">"debian"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">sh</span> <span class="token string">""</span>"
+        gitlab -o json project-merge-request create --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span>  --title <span class="token punctuation">\</span>"<span class="token variable">$&#123;MR_TITLE&#125;</span><span class="token punctuation">\</span>" <span class="token punctuation">\</span>
+        --source-branch <span class="token variable">$&#123;SOURCE_BRANCH&#125;</span> --target-branch <span class="token variable">$&#123;TARGET_BRANCH&#125;</span> <span class="token operator">></span> mr_info.json
+
+        jq -r <span class="token string">'.iid'</span> mr_info.json <span class="token operator">></span> mr_iid
+        jq -r <span class="token string">'.web_url'</span> mr_info.json <span class="token operator">></span> mr_url
+        <span class="token string">""</span>"
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+def <span class="token function-name function">checkMR</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    container<span class="token punctuation">(</span><span class="token string">"debian"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        retry<span class="token punctuation">(</span><span class="token number">120</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">sh</span> <span class="token string">""</span>"
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -s mr_iid <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">exit</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token function">sleep</span> 60s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
+        gitlab -o json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid <span class="token operator">|</span> jq -r <span class="token string">".labels[]"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'approve'</span>
+        <span class="token string">""</span>"
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+def <span class="token function-name function">mergeMR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    container<span class="token punctuation">(</span><span class="token string">"debian"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        retry<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">sh</span> <span class="token string">""</span>"
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -s mr_iid <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">exit</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token function">sleep</span> 60s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
+        <span class="token keyword">if</span> gitlab project-merge-request merge --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid<span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token function">sleep</span> 10s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
+        gitlab -o json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid <span class="token operator">|</span> jq -r <span class="token string">".state"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'merged'</span>
+        <span class="token string">""</span>"
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="Tag"><a href="#Tag" class="headerlink" title="Tag"></a>Tag</h3><ul>
 <li>列出 repo tag</li>
 </ul>
 <p>在这里还是推荐使用 git tag 的方式获取 repo tag ，因为 Gitlab API 的限制，每次请求最多只能返回 100 个值，可以加上 <code>--all</code> 参数来返回所有的值。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab -o json project-tag list --project-id <span class="variable">$&#123;ID&#125;</span> | jq -r <span class="string">'.[].name'</span></span><br><span class="line">$ gitlab -o json project-tag list --project-id <span class="variable">$&#123;ID&#125;</span> --all | jq -r <span class="string">'.[].name'</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json project-tag list --project-id <span class="token variable">$&#123;ID&#125;</span> <span class="token operator">|</span> jq -r <span class="token string">'.[].name'</span>
+$ gitlab -o json project-tag list --project-id <span class="token variable">$&#123;ID&#125;</span> --all <span class="token operator">|</span> jq -r <span class="token string">'.[].name'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>创建 tag</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab project-tag create --project-id <span class="variable">$&#123;ID&#125;</span> --tag-name v1.0.0-rc.2 --ref master</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-tag create --project-id <span class="token variable">$&#123;ID&#125;</span> --tag-name v1.0.0-rc.2 --ref master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>删除 tag</li>
 </ul>
 <p>upstream 上的 repo tag 只能通过在 Gitlab 上删除，在本地 repo 下是无法删除的，因此可以使用如下命令删除  Gitlab repo tag，注意：受保护的 repo tag 如果没有权限的话是无法删除的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitlab project-tag delete --project-id <span class="variable">$&#123;ID&#125;</span> --tag-name v1.0.0-rc.2</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-tag delete --project-id <span class="token variable">$&#123;ID&#125;</span> --tag-name v1.0.0-rc.2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>创建受保护的 repo tag</li>
 </ul>
 <p>由于我们流水线任务依赖于 repo tag 来做版本的对于，因此需要保护每一个 repo tag，但有特殊情况下又要覆盖 repo tag，所以受保护的 repo tag 目前还没有找到合适的方法，只能先手动创建了，等到需要删除的时候再删除它。可以使用如下命令批量创建受保护的 repo tag。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag | xargs -L1 -I &#123;&#125; gitlab project-protected-tag create --project-id <span class="variable">$&#123;ID&#125;</span> --name &#123;&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> tag <span class="token operator">|</span> <span class="token function">xargs</span> -L1 -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> gitlab project-protected-tag create --project-id <span class="token variable">$&#123;ID&#125;</span> --name <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="Lint-流水线"><a href="#Lint-流水线" class="headerlink" title="Lint 流水线"></a>Lint 流水线</h2><p>迁移到了 Gitlab 之后原有的流水线在内网的 Gitlab 上也就无法使用了，为了减少维护成本就使用了 Gitlab 自带的 CI 。我所维护的 repo 使用 Gitlab CI 只是做一些 lint 的检查内容，因此 CI 配置起来也特别简单。如 kubespray 的 CI 配置：</p>
 <ul>
 <li><code>.gitlab-ci.yml</code></li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">lint:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">'quay.io/kubespray/kubespray:v2.15.0'</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">chmod</span> <span class="string">-R</span> <span class="string">o-w</span> <span class="string">.</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">make</span> <span class="string">lint</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">shared</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">lint</span><span class="token punctuation">:</span>
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">'quay.io/kubespray/kubespray:v2.15.0'</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> chmod <span class="token punctuation">-</span>R o<span class="token punctuation">-</span>w .
+    <span class="token punctuation">-</span> make lint
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> shared<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>使用 gitlab CLI 工具给所有分支添加 <code>.gitlab-ci.yml</code> 文件</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ID=123456</span><br><span class="line">BRANCHS=$(gitlab -o json project-branch list --project-id <span class="variable">$&#123;ID&#125;</span> --all | jq -r <span class="string">".[].name"</span>)</span><br><span class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> <span class="variable">$&#123;BRANCHS&#125;</span>; <span class="keyword">do</span></span><br><span class="line">	gitlab project-file create --project-id <span class="variable">$&#123;ID&#125;</span> --file-path .gitlab-ci.yml --branch <span class="variable">$&#123;branch&#125;</span> --content @.gitlab-ci.yml --commit-message <span class="string">"feat(gitlab-ci): add gitlab-ci.yml for ci"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">ID</span><span class="token operator">=</span><span class="token number">123456</span>
+<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab -o json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> --all <span class="token operator">|</span> jq -r <span class="token string">".[].name"</span><span class="token variable">)</span></span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">branch</span> <span class="token keyword">in</span> <span class="token variable">$&#123;BRANCHS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+	gitlab project-file create --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path .gitlab-ci.yml --branch <span class="token variable">$&#123;branch&#125;</span> --content @.gitlab-ci.yml --commit-message <span class="token string">"feat(gitlab-ci): add gitlab-ci.yml for ci"</span>
+<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
 <li>repo 迁移</li>
 </ul>
 <p>由于内部的 Gitlab 不支持导入 git url 的方式，所以只能手动地将 GitHub 上的 repo clone 到本地再 push 到 Gitlab 上。使用 git clone 的方式本地只会有一个 master 分支，要把 GitHub 上 repo 的所有分支都 track 一遍，然后再 push 到 Gitlab 上。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 git clone 下来的 repo 默认为 master 分支</span></span><br><span class="line">$ git <span class="built_in">clone</span> git@gitlab.com/muzi502/kubespray.git</span><br><span class="line"><span class="comment"># track 出 origin 上的所有分支</span></span><br><span class="line">$ git branch -r | grep -v <span class="string">'\-&gt;'</span> | <span class="keyword">while</span> <span class="built_in">read</span> remote; <span class="keyword">do</span> git branch --track <span class="string">"<span class="variable">$&#123;remote#origin/&#125;</span>"</span> <span class="string">"<span class="variable">$remote</span>"</span>; <span class="keyword">done</span></span><br><span class="line">$ git fetch --all</span><br><span class="line">$ git pull --all</span><br><span class="line">$ git remote remove origin</span><br><span class="line">$ git remote add origin git@gitlab/gitlab502/kubespray.git</span><br><span class="line">$ git push origin --all</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 使用 git clone 下来的 repo 默认为 master 分支</span>
+$ <span class="token function">git</span> clone git@gitlab.com/muzi502/kubespray.git
+<span class="token comment"># track 出 origin 上的所有分支</span>
+$ <span class="token function">git</span> branch -r <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token string">'\->'</span> <span class="token operator">|</span> <span class="token keyword">while</span> <span class="token builtin class-name">read</span> remote<span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">git</span> branch --track <span class="token string">"<span class="token variable">$&#123;remote<span class="token operator">#</span>origin<span class="token operator">/</span>&#125;</span>"</span> <span class="token string">"<span class="token variable">$remote</span>"</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
+$ <span class="token function">git</span> fetch --all
+$ <span class="token function">git</span> pull --all
+$ <span class="token function">git</span> remote remove origin
+$ <span class="token function">git</span> remote <span class="token function">add</span> origin git@gitlab/gitlab502/kubespray.git
+$ <span class="token function">git</span> push origin --all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches" target="_blank" rel="noopener">How to fetch all Git branches</a></li>
-<li><a href="https://yixinglu.gitlab.io/gitlab-workflow.html" target="_blank" rel="noopener">GitLab 工作流</a></li>
-<li><a href="https://python-gitlab.readthedocs.io/" target="_blank" rel="noopener">python-gitlab</a></li>
-<li><a href="https://docs.gitlab.com/ee/api/README.html" target="_blank" rel="noopener">Gitlab API Docs</a></li>
-<li><a href="https://github.com/xanzy/go-gitlab" target="_blank" rel="noopener">go-gitlab</a></li>
-<li><a href="https://mp.weixin.qq.com/s/x5PHNn87OYCSpYE_hb8I2A" target="_blank" rel="noopener">谈谈 Git 存储原理及相关实现</a></li>
-<li><a href="https://morningspace.github.io/tech/inside-git-3/" target="_blank" rel="noopener">Git 解密——认识 Git 引用</a></li>
-<li><a href="https://blinkfox.github.io/2018/11/22/ruan-jian-gong-ju/devops/gitlab-ci-jie-shao-he-shi-yong/" target="_blank" rel="noopener">GitLab CI/CD 介绍和使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches">How to fetch all Git branches</a></li>
+<li><a target="_blank" rel="noopener" href="https://yixinglu.gitlab.io/gitlab-workflow.html">GitLab 工作流</a></li>
+<li><a target="_blank" rel="noopener" href="https://python-gitlab.readthedocs.io/">python-gitlab</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/README.html">Gitlab API Docs</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/xanzy/go-gitlab">go-gitlab</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/x5PHNn87OYCSpYE_hb8I2A">谈谈 Git 存储原理及相关实现</a></li>
+<li><a target="_blank" rel="noopener" href="https://morningspace.github.io/tech/inside-git-3/">Git 解密——认识 Git 引用</a></li>
+<li><a target="_blank" rel="noopener" href="https://blinkfox.github.io/2018/11/22/ruan-jian-gong-ju/devops/gitlab-ci-jie-shao-he-shi-yong/">GitLab CI&#x2F;CD 介绍和使用</a></li>
 </ul>
 
     </div>
@@ -550,216 +718,89 @@
     
     
 
-      <footer class="post-footer">
-          
+    <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/ci/" rel="tag"><i class="fa fa-tag"></i> ci</a>
-              <a href="/tags/gitlab/" rel="tag"><i class="fa fa-tag"></i> gitlab</a>
+              <a href="/tags/gitlab/" rel="tag"># gitlab</a>
+              <a href="/tags/ci/" rel="tag"># ci</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/jenkins-with-kubernetes.html" rel="prev" title="Jenkins 大叔与 kubernetes 船长手牵手 🧑‍🤝‍🧑">
-      <i class="fa fa-chevron-left"></i> Jenkins 大叔与 kubernetes 船长手牵手 🧑‍🤝‍🧑
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/skopeo-to-registry.html" rel="next" title="如何使用 registry 存储的特性">
-      如何使用 registry 存储的特性 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/jenkins-with-kubernetes.html" rel="prev" title="Jenkins 大叔与 kubernetes 船长手牵手 🧑‍🤝‍🧑">
+                  <i class="fa fa-chevron-left"></i> Jenkins 大叔与 kubernetes 船长手牵手 🧑‍🤝‍🧑
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/skopeo-to-registry.html" rel="next" title="如何使用 registry 存储的特性">
+                  如何使用 registry 存储的特性 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
-
-  </div>
+</div>
 
 
-          </div>
-          
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开倒车-🚗-？"><span class="nav-number">1.</span> <span class="nav-text">开倒车 🚗 ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab"><span class="nav-number">2.</span> <span class="nav-text">Gitlab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab-workflow"><span class="nav-number">3.</span> <span class="nav-text">Gitlab workflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PR"><span class="nav-number">3.1.</span> <span class="nav-text">PR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MR"><span class="nav-number">3.2.</span> <span class="nav-text">MR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab-API"><span class="nav-number">4.</span> <span class="nav-text">Gitlab API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-gitlab-CLI"><span class="nav-number">5.</span> <span class="nav-text">python-gitlab CLI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">5.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">5.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用"><span class="nav-number">5.3.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#project"><span class="nav-number">5.4.</span> <span class="nav-text">project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file"><span class="nav-number">5.5.</span> <span class="nav-text">file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MR-1"><span class="nav-number">5.6.</span> <span class="nav-text">MR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tag"><span class="nav-number">5.7.</span> <span class="nav-text">Tag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lint-流水线"><span class="nav-number">6.</span> <span class="nav-text">Lint 流水线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -767,51 +808,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/gitlab-cli.html",
-            identifier: "gitlab-cli.html",
-            title: "python-gitlab CLI 使用记录"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

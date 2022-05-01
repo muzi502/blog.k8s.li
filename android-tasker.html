@@ -2,54 +2,27 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="1.使用 tasker 自动填写验证码复制验证码 (25)A1: 变量设置 [ 名称:%SYM 发往:%SMSRB Recurse Variables:关 无匹配:关 附加:关 ]A2: 变量搜索替换 [ 变量:%SYM 搜索:[\d]{6}|[\d]{4} 忽略大小写:开 多行:开 只匹配一次:开 将匹配存储到:%SYM 替代匹配:关 替代为: ]A3: 通知 LED [ 标题:验证码 %SYM">
-<meta property="og:type" content="article">
+    <meta name="description" content="1.使用 tasker 自动填写验证码复制验证码 (25)A1: 变量设置 [ 名称:%SYM 发往:%SMSRB Recurse Variables:关 无匹配:关 附加:关 ]A2: 变量搜索替换 [ 变量:%SYM 搜索:[\d]{6}|[\d]{4} 忽略大小写:开 多行:开 只匹配一次:开 将匹配存储到:%SYM 替代匹配:关 替代为: ]A3: 通知 LED [ 标题:验证码 %SYM">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="tasker 神器">
 <meta property="og:url" content="https://blog.k8s.li/android-tasker.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
@@ -57,209 +30,258 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-23T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-02-29T16:00:00.000Z">
-<meta property="article:author" content="木子">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="刷机">
 <meta property="article:tag" content="andorid">
 <meta property="article:tag" content="tasker">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://blog.k8s.li/android-tasker.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>tasker 神器 | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/android-tasker.html","path":"android-tasker.html","title":"tasker 神器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>tasker 神器 | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8-tasker-%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%86%99%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">1.使用 tasker 自动填写验证码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8-tasker-%E6%B8%85%E9%99%A4%E6%B5%81%E9%87%8F%E7%BB%9F%E8%AE%A1%EF%BC%8C%E9%80%82%E7%94%A8%E4%BA%8E%E6%97%A5%E7%A7%9F%E5%8D%A1"><span class="nav-number">2.</span> <span class="nav-text">2. 使用 tasker 清除流量统计，适用于日租卡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8-tasker-%E9%94%81%E5%B1%8F%E5%90%8E%E8%BF%9B%E5%85%A5%E6%89%93%E7%9B%B9%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">3.使用 tasker 锁屏后进入打盹模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8-tasker-%E6%8F%90%E9%86%92%E8%87%AA%E5%B7%B1%E7%BB%99-lycamobile-%E7%BB%AD%E5%91%BD"><span class="nav-number">4.</span> <span class="nav-text">4.使用 tasker 提醒自己给 lycamobile 续命</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BD%BF%E7%94%A8-tasker-%E8%87%AA%E5%8A%A8%E5%BC%80%E5%90%AF%E4%BB%A3%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">5.使用 tasker 自动开启代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8-tasker-%E5%9C%A8%E6%92%AD%E6%94%BE%E9%9F%B3%E4%B9%90%E6%98%AF%E8%87%AA%E5%8A%A8%E5%BC%80%E5%90%AF%E8%9D%B0%E8%9B%87%E9%9F%B3%E6%95%88"><span class="nav-number">6.</span> <span class="nav-text">6.使用 tasker 在播放音乐是自动开启蝰蛇音效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%A4%9C%E9%97%B4%E9%9D%99%E9%9F%B3%EF%BC%8C%E5%85%B3%E9%97%AD%E7%A7%BB%E5%8A%A8%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%85%B3%E9%97%AD%E8%93%9D%E7%89%99%EF%BC%8C%E5%85%B3%E9%97%AD%E5%90%8C%E6%AD%A5"><span class="nav-number">7.</span> <span class="nav-text">7.夜间静音，关闭移动数据，关闭蓝牙，关闭同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%89%93%E5%BC%80-Chrome-%E6%97%B6%E8%87%AA%E5%8A%A8%E6%89%93%E5%BC%80%E4%BB%A3%E7%90%86%E5%B9%B6%E5%BC%80%E5%90%AF%E5%90%8C%E6%AD%A5"><span class="nav-number">8.</span> <span class="nav-text">8.打开 Chrome 时自动打开代理并开启同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E9%94%81%E5%B1%8F%E7%9C%81%E7%94%B5"><span class="nav-number">9.</span> <span class="nav-text">9.锁屏省电</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div class="posts-expand">
-      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/android-tasker.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="tasker 神器 | Reimu's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           tasker 神器
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-04-24 2019-04-24T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-04-24T00:00:00+08:00">2019-04-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-01 2020-03-01T00:00:00+08:00" itemprop="dateModified" datetime="2020-03-01T00:00:00+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%90%9E%E6%9C%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">搞机</span>
-                  </a>
-                </span>
-            </span>
+      <time title="创建时间：2019-04-24 2019-04-24T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-04-24T00:00:00+08:00">2019-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-03-01 2020-03-01T00:00:00+08:00" itemprop="dateModified" datetime="2020-03-01T00:00:00+08:00">2020-03-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%90%9E%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">搞机</span></a>
+        </span>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/android-tasker.html#comments" itemprop="discussionUrl">
+    <a title="disqus" href="/android-tasker.html#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="android-tasker.html" itemprop="commentCount"></span>
     </a>
   </span>
   
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>15 分钟</span>
-            </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -268,18 +290,233 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <h2 id="1-使用-tasker-自动填写验证码"><a href="#1-使用-tasker-自动填写验证码" class="headerlink" title="1.使用 tasker 自动填写验证码"></a>1.使用 tasker 自动填写验证码</h2><p>复制验证码 (25)<br>A1: 变量设置 [ 名称:%SYM 发往:%SMSRB Recurse Variables:关 无匹配:关 附加:关 ]<br>A2: 变量搜索替换 [ 变量:%SYM 搜索:[\d]{6}|[\d]{4} 忽略大小写:开 多行:开 只匹配一次:开 将匹配存储到:%SYM 替代匹配:关 替代为: ]<br>A3: 通知 LED [ 标题:验证码 %SYM1 已复制到剪贴板 文字: 图标:null 数字:0 颜色:红色 速率:500 优先级:3 Repeat Alert:关 ]<br>A4: 设置剪贴板 [ 文字:%SYM1 添加:关 ]<br>A5: 输入 [ 文字:%SYM1 重复次数:1 ]</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TaskerData</span> <span class="attr">sr</span>=<span class="string">""</span> <span class="attr">dvi</span>=<span class="string">"1"</span> <span class="attr">tv</span>=<span class="string">"5.5.bf2"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Task</span> <span class="attr">sr</span>=<span class="string">"task25"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cdate</span>&gt;</span>1539441850928<span class="tag">&lt;/<span class="name">cdate</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">edate</span>&gt;</span>1556107366039<span class="tag">&lt;/<span class="name">edate</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>25<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nme</span>&gt;</span>复制验证码<span class="tag">&lt;/<span class="name">nme</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">pri</span>&gt;</span>100<span class="tag">&lt;/<span class="name">pri</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act0"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>547<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%SYM<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%SMSRB<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act1"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>598<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%SYM<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>[\d]&#123;6&#125;|[\d]&#123;4&#125;<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%SYM<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg6"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg7"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act2"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>525<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>验证码 %SYM1 已复制到剪贴板<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Img</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">ve</span>=<span class="string">"2"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">val</span>=<span class="string">"500"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg6"</span> <span class="attr">val</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg7"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act3"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>105<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%SYM1<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act4"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>702<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%SYM1<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TaskerData</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TaskerData</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">dvi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">tv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5.5.bf2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Task</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>task25<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cdate</span><span class="token punctuation">></span></span>1539441850928<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>cdate</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>edate</span><span class="token punctuation">></span></span>1556107366039<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>edate</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>25<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nme</span><span class="token punctuation">></span></span>复制验证码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nme</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pri</span><span class="token punctuation">></span></span>100<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pri</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>547<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>%SYM<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>%SMSRB<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>598<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>%SYM<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>[\d]&#123;6&#125;|[\d]&#123;4&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg5<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>%SYM<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg6<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg7<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act2<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>525<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>验证码 %SYM1 已复制到剪贴板<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Img</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg5<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>500<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg6<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg7<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act3<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>105<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>%SYM1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act4<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>702<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>%SYM1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Task</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TaskerData</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
-<h2 id="2-使用-tasker-清除流量统计，适用于日租卡"><a href="#2-使用-tasker-清除流量统计，适用于日租卡" class="headerlink" title="2. 使用 tasker 清除流量统计，适用于日租卡"></a>2. 使用 tasker 清除流量统计，适用于日租卡</h2><p>数据重置 (3)<br>A1: 移动数据 [ 设置:开 ]<br>A2: 运行外壳 [ 命令:rm -rf /data/system/netstats/* 超时（秒）:0 使用 Root:开 输出存储到: 错误存储到: 将结果保存到: ]<br>A3: 通知震动 [ 标题:数据重置，即将关机 文字: 图标:null 数字:0 模式: 优先级:3 Repeat Alert:关 ]<br>A4: 等待 [ MS:0 秒:1 分:0 小时:0 天:0 ]<br>A5: 状态栏 [ 设置:展开 ]<br>A6: 执行任务 [ 名称:存储移动 优先级:%priority 参数 1 (%par1): 参数 2 (%par2): 返回值变量: 停止:关 ]<br>A7: 等待 [ MS:0 秒:0 分:3 小时:0 天:0 ]<br>A8: 重启 [ 类型:常规 ]</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TaskerData</span> <span class="attr">sr</span>=<span class="string">""</span> <span class="attr">dvi</span>=<span class="string">"1"</span> <span class="attr">tv</span>=<span class="string">"5.5.bf2"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Task</span> <span class="attr">sr</span>=<span class="string">"task3"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">cdate</span>&gt;</span>1539351038664<span class="tag">&lt;/<span class="name">cdate</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">edate</span>&gt;</span>1556107131126<span class="tag">&lt;/<span class="name">edate</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">id</span>&gt;</span>3<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">nme</span>&gt;</span>数据重置<span class="tag">&lt;/<span class="name">nme</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">pri</span>&gt;</span>100<span class="tag">&lt;/<span class="name">pri</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act0"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span>433<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act1"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>rm -rf /data/system/netstats/*<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act2"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span>536<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>数据重置，即将关机<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Img</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">ve</span>=<span class="string">"2"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">val</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg6"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act3"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span>30<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act4"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span>512<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act5"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span>130<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>存储移动<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">var</span>&gt;</span>%priority<span class="tag">&lt;/<span class="name">var</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Int</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act6"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span>30<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act7"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span>59<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TaskerData</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-使用-tasker-清除流量统计，适用于日租卡"><a href="#2-使用-tasker-清除流量统计，适用于日租卡" class="headerlink" title="2. 使用 tasker 清除流量统计，适用于日租卡"></a>2. 使用 tasker 清除流量统计，适用于日租卡</h2><p>数据重置 (3)<br>A1: 移动数据 [ 设置:开 ]<br>A2: 运行外壳 [ 命令:rm -rf &#x2F;data&#x2F;system&#x2F;netstats&#x2F;* 超时（秒）:0 使用 Root:开 输出存储到: 错误存储到: 将结果保存到: ]<br>A3: 通知震动 [ 标题:数据重置，即将关机 文字: 图标:null 数字:0 模式: 优先级:3 Repeat Alert:关 ]<br>A4: 等待 [ MS:0 秒:1 分:0 小时:0 天:0 ]<br>A5: 状态栏 [ 设置:展开 ]<br>A6: 执行任务 [ 名称:存储移动 优先级:%priority 参数 1 (%par1): 参数 2 (%par2): 返回值变量: 停止:关 ]<br>A7: 等待 [ MS:0 秒:0 分:3 小时:0 天:0 ]<br>A8: 重启 [ 类型:常规 ]</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TaskerData</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">dvi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">tv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5.5.bf2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Task</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>task3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cdate</span><span class="token punctuation">></span></span>1539351038664<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>cdate</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>edate</span><span class="token punctuation">></span></span>1556107131126<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>edate</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nme</span><span class="token punctuation">></span></span>数据重置<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nme</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pri</span><span class="token punctuation">></span></span>100<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pri</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>433<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>123<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>rm -rf /data/system/netstats/*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg5<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act2<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>536<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>数据重置，即将关机<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Img</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg5<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg6<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act3<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act4<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>512<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act5<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>130<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>存储移动<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>var</span><span class="token punctuation">></span></span>%priority<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>var</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Int</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg5<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act6<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act7<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>59<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Task</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TaskerData</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
-<h2 id="3-使用-tasker-锁屏后进入打盹模式"><a href="#3-使用-tasker-锁屏后进入打盹模式" class="headerlink" title="3.使用 tasker 锁屏后进入打盹模式"></a>3.使用 tasker 锁屏后进入打盹模式</h2><p>⭐️ 省电 (37)<br>A1: 停止 [ 伴随错误:关 任务:🐳 均衡 ]<br>A2: 停止 [ 伴随错误:关 任务:⭐️ 省电 ] If [ %STATUS ~ 1 ]<br>&lt; 亮屏等待时间 &gt;<br>A3: 等待 [ MS:0 秒:0 分:5 小时:0 天:0 ]<br>&lt; 省电模式（节省一点电量带来更多卡顿，相对感知卡顿：115）&gt;<br>A4: 运行外壳 [ 命令:sh /data/powercfg powersave 超时（秒）:0 使用 Root:开 输出存储到: 错误存储到: 将结果保存到: ]<br>A5: 立即休眠 [ 配置:All greenified apps 超时（秒）:0 ]<br>A6: 嗜睡模式 [ 配置:打开 超时（秒）:0 ]<br>A7: 变量设置 [ 名称:%STATUS 发往:1 Recurse Variables:关 无匹配:开 附加:关 ]<br>A8: [X] 等待 [ MS:0 秒:0 分:0 小时:1 天:0 ]<br>A9: [X] 移动数据 [ 设置:关 ]</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TaskerData</span> <span class="attr">sr</span>=<span class="string">""</span> <span class="attr">dvi</span>=<span class="string">"1"</span> <span class="attr">tv</span>=<span class="string">"5.5.bf2"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">Task</span> <span class="attr">sr</span>=<span class="string">"task37"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cdate</span>&gt;</span>1528600734643<span class="tag">&lt;/<span class="name">cdate</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">edate</span>&gt;</span>1556107574089<span class="tag">&lt;/<span class="name">edate</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>37<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nme</span>&gt;</span>⭐️ 省电<span class="tag">&lt;/<span class="name">nme</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">pri</span>&gt;</span>6<span class="tag">&lt;/<span class="name">pri</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act0"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>137<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>🐳 均衡<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act1"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>137<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>⭐️ 省电<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">ConditionList</span> <span class="attr">sr</span>=<span class="string">"if"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Condition</span> <span class="attr">sr</span>=<span class="string">"c0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">lhs</span>&gt;</span>%STATUS<span class="tag">&lt;/<span class="name">lhs</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">op</span>&gt;</span>2<span class="tag">&lt;/<span class="name">op</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">rhs</span>&gt;</span>1<span class="tag">&lt;/<span class="name">rhs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Condition</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">ConditionList</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act2"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>30<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">label</span>&gt;</span>亮屏等待时间<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"5"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act3"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">label</span>&gt;</span>省电模式（节省一点电量带来更多卡顿，相对感知卡顿：115）<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>sh /data/powercfg powersave<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act4"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>2056827700<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Bundle</span> <span class="attr">sr</span>=<span class="string">"arg0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Vals</span> <span class="attr">sr</span>=<span class="string">"val"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">com.twofortyfouram.locale.intent.extra.BLURB</span>&gt;</span>All greenified apps<span class="tag">&lt;/<span class="name">com.twofortyfouram.locale.intent.extra.BLURB</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">com.twofortyfouram.locale.intent.extra.BLURB-type</span>&gt;</span>java.lang.String<span class="tag">&lt;/<span class="name">com.twofortyfouram.locale.intent.extra.BLURB-type</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">net.dinglisch.android.tasker.subbundled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">net.dinglisch.android.tasker.subbundled</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">net.dinglisch.android.tasker.subbundled-type</span>&gt;</span>java.lang.Boolean<span class="tag">&lt;/<span class="name">net.dinglisch.android.tasker.subbundled-type</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">source</span>&gt;</span>net.dinglisch.android.taskerm<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">source-type</span>&gt;</span>java.lang.String<span class="tag">&lt;/<span class="name">source-type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Vals</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">Bundle</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>com.oasisfeng.greenify<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>com.oasisfeng.greenify.GreenifyShortcut<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act5"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>289233647<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Bundle</span> <span class="attr">sr</span>=<span class="string">"arg0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Vals</span> <span class="attr">sr</span>=<span class="string">"val"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">cmd</span>&gt;</span>1<span class="tag">&lt;/<span class="name">cmd</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">cmd-type</span>&gt;</span>java.lang.Integer<span class="tag">&lt;/<span class="name">cmd-type</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">com.twofortyfouram.locale.intent.extra.BLURB</span>&gt;</span>打开<span class="tag">&lt;/<span class="name">com.twofortyfouram.locale.intent.extra.BLURB</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">com.twofortyfouram.locale.intent.extra.BLURB-type</span>&gt;</span>java.lang.String<span class="tag">&lt;/<span class="name">com.twofortyfouram.locale.intent.extra.BLURB-type</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">net.dinglisch.android.tasker.subbundled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">net.dinglisch.android.tasker.subbundled</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">net.dinglisch.android.tasker.subbundled-type</span>&gt;</span>java.lang.Boolean<span class="tag">&lt;/<span class="name">net.dinglisch.android.tasker.subbundled-type</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">state</span>&gt;</span>true<span class="tag">&lt;/<span class="name">state</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">state-type</span>&gt;</span>java.lang.Boolean<span class="tag">&lt;/<span class="name">state-type</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">targetActivity</span>&gt;</span>TaskerPluginActivity<span class="tag">&lt;/<span class="name">targetActivity</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">targetActivity-type</span>&gt;</span>java.lang.String<span class="tag">&lt;/<span class="name">targetActivity-type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Vals</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">Bundle</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>com.oasisfeng.greenify<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>com.oasisfeng.greenify.TaskerAggressiveDoze<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act6"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>547<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act7"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>30<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">on</span>&gt;</span>false<span class="tag">&lt;/<span class="name">on</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act8"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">code</span>&gt;</span>433<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">on</span>&gt;</span>false<span class="tag">&lt;/<span class="name">on</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TaskerData</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-使用-tasker-锁屏后进入打盹模式"><a href="#3-使用-tasker-锁屏后进入打盹模式" class="headerlink" title="3.使用 tasker 锁屏后进入打盹模式"></a>3.使用 tasker 锁屏后进入打盹模式</h2><p>⭐️ 省电 (37)<br>A1: 停止 [ 伴随错误:关 任务:🐳 均衡 ]<br>A2: 停止 [ 伴随错误:关 任务:⭐️ 省电 ] If [ %STATUS ~ 1 ]<br>&lt; 亮屏等待时间 &gt;<br>A3: 等待 [ MS:0 秒:0 分:5 小时:0 天:0 ]<br>&lt; 省电模式（节省一点电量带来更多卡顿，相对感知卡顿：115）&gt;<br>A4: 运行外壳 [ 命令:sh &#x2F;data&#x2F;powercfg powersave 超时（秒）:0 使用 Root:开 输出存储到: 错误存储到: 将结果保存到: ]<br>A5: 立即休眠 [ 配置:All greenified apps 超时（秒）:0 ]<br>A6: 嗜睡模式 [ 配置:打开 超时（秒）:0 ]<br>A7: 变量设置 [ 名称:%STATUS 发往:1 Recurse Variables:关 无匹配:开 附加:关 ]<br>A8: [X] 等待 [ MS:0 秒:0 分:0 小时:1 天:0 ]<br>A9: [X] 移动数据 [ 设置:关 ]</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TaskerData</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">dvi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">tv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5.5.bf2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Task</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>task37<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cdate</span><span class="token punctuation">></span></span>1528600734643<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>cdate</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>edate</span><span class="token punctuation">></span></span>1556107574089<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>edate</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>37<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nme</span><span class="token punctuation">></span></span>⭐️ 省电<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nme</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pri</span><span class="token punctuation">></span></span>6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pri</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>137<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>🐳 均衡<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>137<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>⭐️ 省电<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ConditionList</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>if<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Condition</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>c0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>lhs</span><span class="token punctuation">></span></span>%STATUS<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>lhs</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>op</span><span class="token punctuation">></span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>op</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rhs</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>rhs</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Condition</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ConditionList</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act2<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">></span></span>亮屏等待时间<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act3<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>123<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">></span></span>省电模式（节省一点电量带来更多卡顿，相对感知卡顿：115）<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>sh /data/powercfg powersave<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg5<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act4<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>2056827700<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Bundle</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Vals</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>val<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>com.twofortyfouram.locale.intent.extra.BLURB</span><span class="token punctuation">></span></span>All greenified apps<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>com.twofortyfouram.locale.intent.extra.BLURB</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>com.twofortyfouram.locale.intent.extra.BLURB-type</span><span class="token punctuation">></span></span>java.lang.String<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>com.twofortyfouram.locale.intent.extra.BLURB-type</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>net.dinglisch.android.tasker.subbundled</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>net.dinglisch.android.tasker.subbundled</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>net.dinglisch.android.tasker.subbundled-type</span><span class="token punctuation">></span></span>java.lang.Boolean<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>net.dinglisch.android.tasker.subbundled-type</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span><span class="token punctuation">></span></span>net.dinglisch.android.taskerm<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>source</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source-type</span><span class="token punctuation">></span></span>java.lang.String<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>source-type</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Vals</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Bundle</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>com.oasisfeng.greenify<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>com.oasisfeng.greenify.GreenifyShortcut<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act5<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>289233647<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Bundle</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Vals</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>val<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cmd</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>cmd</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cmd-type</span><span class="token punctuation">></span></span>java.lang.Integer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>cmd-type</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>com.twofortyfouram.locale.intent.extra.BLURB</span><span class="token punctuation">></span></span>打开<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>com.twofortyfouram.locale.intent.extra.BLURB</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>com.twofortyfouram.locale.intent.extra.BLURB-type</span><span class="token punctuation">></span></span>java.lang.String<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>com.twofortyfouram.locale.intent.extra.BLURB-type</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>net.dinglisch.android.tasker.subbundled</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>net.dinglisch.android.tasker.subbundled</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>net.dinglisch.android.tasker.subbundled-type</span><span class="token punctuation">></span></span>java.lang.Boolean<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>net.dinglisch.android.tasker.subbundled-type</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>state</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>state</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>state-type</span><span class="token punctuation">></span></span>java.lang.Boolean<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>state-type</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>targetActivity</span><span class="token punctuation">></span></span>TaskerPluginActivity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>targetActivity</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>targetActivity-type</span><span class="token punctuation">></span></span>java.lang.String<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>targetActivity-type</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Vals</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Bundle</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>com.oasisfeng.greenify<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>com.oasisfeng.greenify.TaskerAggressiveDoze<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act6<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>547<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>%STATUS<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Str</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Str</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act7<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>on</span><span class="token punctuation">></span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>on</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg1<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg2<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg3<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg4<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Action</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>act8<span class="token punctuation">"</span></span> <span class="token attr-name">ve</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span>433<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>on</span><span class="token punctuation">></span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>on</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Int</span> <span class="token attr-name">sr</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>arg0<span class="token punctuation">"</span></span> <span class="token attr-name">val</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Action</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Task</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TaskerData</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <h2 id="4-使用-tasker-提醒自己给-lycamobile-续命"><a href="#4-使用-tasker-提醒自己给-lycamobile-续命" class="headerlink" title="4.使用 tasker 提醒自己给 lycamobile 续命"></a>4.使用 tasker 提醒自己给 lycamobile 续命</h2><p>lycamobile 现在需要每两个月消费一次，不然会被收回。一年至少发送六次短信才能续命。<br>使用 tasker 设置个定时任务，每月月次提醒自己要给 lycamobile 续命啦 😂</p>
@@ -297,217 +534,90 @@
     
     
 
-      <footer class="post-footer">
-          
+    <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%88%B7%E6%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 刷机</a>
-              <a href="/tags/andorid/" rel="tag"><i class="fa fa-tag"></i> andorid</a>
-              <a href="/tags/tasker/" rel="tag"><i class="fa fa-tag"></i> tasker</a>
+              <a href="/tags/%E5%88%B7%E6%9C%BA/" rel="tag"># 刷机</a>
+              <a href="/tags/andorid/" rel="tag"># andorid</a>
+              <a href="/tags/tasker/" rel="tag"># tasker</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/used-devices.html" rel="prev" title="我青年时代就--用过的手机">
-      <i class="fa fa-chevron-left"></i> 我青年时代就--用过的手机
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/android-tools.html" rel="next" title="推荐使用过的 Android 神器">
-      推荐使用过的 Android 神器 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/used-devices.html" rel="prev" title="我青年时代就--用过的手机">
+                  <i class="fa fa-chevron-left"></i> 我青年时代就--用过的手机
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/android-tools.html" rel="next" title="推荐使用过的 Android 神器">
+                  推荐使用过的 Android 神器 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
-
-  </div>
+</div>
 
 
-          </div>
-          
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用-tasker-自动填写验证码"><span class="nav-number">1.</span> <span class="nav-text">1.使用 tasker 自动填写验证码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用-tasker-清除流量统计，适用于日租卡"><span class="nav-number">2.</span> <span class="nav-text">2. 使用 tasker 清除流量统计，适用于日租卡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用-tasker-锁屏后进入打盹模式"><span class="nav-number">3.</span> <span class="nav-text">3.使用 tasker 锁屏后进入打盹模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用-tasker-提醒自己给-lycamobile-续命"><span class="nav-number">4.</span> <span class="nav-text">4.使用 tasker 提醒自己给 lycamobile 续命</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-使用-tasker-自动开启代理"><span class="nav-number">5.</span> <span class="nav-text">5.使用 tasker 自动开启代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-使用-tasker-在播放音乐是自动开启蝰蛇音效"><span class="nav-number">6.</span> <span class="nav-text">6.使用 tasker 在播放音乐是自动开启蝰蛇音效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-夜间静音，关闭移动数据，关闭蓝牙，关闭同步"><span class="nav-number">7.</span> <span class="nav-text">7.夜间静音，关闭移动数据，关闭蓝牙，关闭同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-打开-Chrome-时自动打开代理并开启同步"><span class="nav-number">8.</span> <span class="nav-text">8.打开 Chrome 时自动打开代理并开启同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-锁屏省电"><span class="nav-number">9.</span> <span class="nav-text">9.锁屏省电</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -515,51 +625,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/android-tasker.html",
-            identifier: "android-tasker.html",
-            title: "tasker 神器"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

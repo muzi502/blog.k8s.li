@@ -2,54 +2,27 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="最近参加了一场视频会议面试，虽然结果可能不太理想，但还是发现自己对技术细节钻研的不够深，一些很基础性的知识点并没有形成一个系统性的知识架构。比如 TCP 和 UDP 的区别，这是再简单不过的问题。虽然平时都知道 TCP 应用于哪些场景，UDP 应用与哪些场景，但二者之间的细节，还是没能仔细地深入研究。所以从现在开始从新学习一下一些基础性的东西，补足一下欠下的知识 😥。不过这次面试也让我意识到，我">
-<meta property="og:type" content="article">
+    <meta name="description" content="最近参加了一场视频会议面试，虽然结果可能不太理想，但还是发现自己对技术细节钻研的不够深，一些很基础性的知识点并没有形成一个系统性的知识架构。比如 TCP 和 UDP 的区别，这是再简单不过的问题。虽然平时都知道 TCP 应用于哪些场景，UDP 应用与哪些场景，但二者之间的细节，还是没能仔细地深入研究。所以从现在开始从新学习一下一些基础性的东西，补足一下欠下的知识 😥。不过这次面试也让我意识到，我">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="Linux 网络和 iptables 运行原理">
 <meta property="og:url" content="https://blog.k8s.li/linux-net-and-iptables.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
@@ -59,202 +32,251 @@
 <meta property="og:image" content="https://www.frozentux.net/iptables-tutorial/chunkyhtml/images/tables_traverse.jpg">
 <meta property="article:published_time" content="2020-03-01T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-03-01T16:00:00.000Z">
-<meta property="article:author" content="木子">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="Linux 网络">
 <meta property="article:tag" content="防火墙">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://p.k8s.li/iptables.png">
 
+
 <link rel="canonical" href="https://blog.k8s.li/linux-net-and-iptables.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>Linux 网络和 iptables 运行原理 | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/linux-net-and-iptables.html","path":"linux-net-and-iptables.html","title":"Linux 网络和 iptables 运行原理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux 网络和 iptables 运行原理 | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="nav-number">1.</span> <span class="nav-text">Linux 协议栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">收包流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">发包流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">2.</span> <span class="nav-text">防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iptales"><span class="nav-number">2.1.</span> <span class="nav-text">iptales</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netfilter"><span class="nav-number">2.2.</span> <span class="nav-text">netfilter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB"><span class="nav-number">2.3.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">数据包流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E9%93%BE%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">2.5.</span> <span class="nav-text">遍历链流程图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables-%E5%AE%9E%E6%88%98"><span class="nav-number">3.</span> <span class="nav-text">iptables 实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E9%80%89%E9%A1%B9"><span class="nav-number">3.1.</span> <span class="nav-text">命令选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E9%80%89%E9%A1%B9"><span class="nav-number">3.2.</span> <span class="nav-text">匹配选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E9%80%89%E9%A1%B9"><span class="nav-number">3.3.</span> <span class="nav-text">操作选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.4.</span> <span class="nav-text">命令详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.5.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div class="posts-expand">
-      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/linux-net-and-iptables.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux 网络和 iptables 运行原理 | Reimu's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Linux 网络和 iptables 运行原理
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-02 2020-03-02T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2020-03-02T00:00:00+08:00">2020-03-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-            </span>
+      <time title="创建时间：2020-03-02 2020-03-02T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2020-03-02T00:00:00+08:00">2020-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/linux-net-and-iptables.html#comments" itemprop="discussionUrl">
+    <a title="disqus" href="/linux-net-and-iptables.html#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="linux-net-and-iptables.html" itemprop="commentCount"></span>
     </a>
   </span>
   
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>22k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>36 分钟</span>
-            </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>21k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>19 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -263,10 +285,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>最近参加了一场视频会议面试，虽然结果可能不太理想，但还是发现自己对技术细节钻研的不够深，一些很基础性的知识点并没有形成一个系统性的知识架构。比如 TCP 和 UDP 的区别，这是再简单不过的问题。虽然平时都知道 TCP 应用于哪些场景，UDP 应用与哪些场景，但二者之间的细节，还是没能仔细地深入研究。所以从现在开始从新学习一下一些基础性的东西，补足一下欠下的知识 😥。不过这次面试也让我意识到，我是该离开这个安逸的环境了，再过几年就要三十而立了，而这几年也正是技术积累沉淀的黄金时代，希望珍惜这段时光踏踏实实研究技术。</p>
-<h2 id="Linux-协议栈"><a href="#Linux-协议栈" class="headerlink" title="Linux 协议栈"></a>Linux 协议栈</h2><p>在讲解 iptables 之前要回顾一下 Linux 接收数据包和发送数据包的流程，才能理解 iptables 在 Linux 网络协议栈中的位置和作用。去年的时候听了 Go 夜读的  <a href="https://github.com/developer-learning/night-reading-go/issues/506" target="_blank" rel="noopener">【Go 夜读】 网络知识十全大补丸</a> ，推荐去看一下 <a href="https://www.youtube.com/watch?v=30wCahZEjNg" target="_blank" rel="noopener">YouTube【Go 夜读】#68 网络知识十全大补丸</a>。</p>
+<h2 id="Linux-协议栈"><a href="#Linux-协议栈" class="headerlink" title="Linux 协议栈"></a>Linux 协议栈</h2><p>在讲解 iptables 之前要回顾一下 Linux 接收数据包和发送数据包的流程，才能理解 iptables 在 Linux 网络协议栈中的位置和作用。去年的时候听了 Go 夜读的  <a target="_blank" rel="noopener" href="https://github.com/developer-learning/night-reading-go/issues/506">【Go 夜读】 网络知识十全大补丸</a> ，推荐去看一下 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=30wCahZEjNg">YouTube【Go 夜读】#68 网络知识十全大补丸</a>。</p>
 <blockquote>
 <p>后端工程师在工作中经常会遇到计算机网络方面的问题，网络对多数人来说还是一个黑盒子，本次技术分享从常见的网络硬件、企业和数据中心的网络拓扑、Linux 协议栈和防火墙等基础网络知识开始介绍，一直讲到 TCP 和 HTTP 这些年的技术演进路线和未来趋势。</p>
 </blockquote>
@@ -293,7 +313,7 @@
 <blockquote>
 <p>1.<strong>中断处理：</strong>当网络中大量数据包到来时，会产生频繁的硬件中断请求，这些硬件中断可以打断之前较低优先级的软中断或者系统调用的执行过程，如果这种打断频繁的话，将会产生较高的性能开销。<br>2.<strong>内存拷贝</strong>：正常情况下，一个网络数据包从网卡到应用程序需要经过如下的过程：数据从网卡通过 DMA 等方式传到内核开辟的缓冲区，然后从内核空间拷贝到用户态空间，在 Linux 内核协议栈中，这个耗时操作甚至占到了数据包整个处理流程的 57.1%。<br>3.<strong>上下文切换：</strong>频繁到达的硬件中断和软中断都可能随时抢占系统调用的运行，这会产生大量的上下文切换开销。另外，在基于多线程的服务器设计框架中，线程间的调度也会产生频繁的上下文切换开销，同样，锁竞争的耗能也是一个非常严重的问题。<br>4.<strong>局部性失效：</strong>如今主流的处理器都是多个核心的，这意味着一个数据包的处理可能跨多个 CPU 核心，比如一个数据包可能中断在 cpu0，内核态处理在 cpu1，用户态处理在 cpu2，这样跨多个核心，容易造成 CPU 缓存失效，造成局部性失效。如果是 NUMA 架构，更会造成跨 NUMA 访问内存，性能受到很大影响。<br>5.<strong>内存管理：</strong>传统服务器内存页为 4K，为了提高内存的访问速度，避免 cache miss，可以增加 cache 中映射表的条目，但这又会影响 CPU 的检索效率。</p>
 </blockquote>
-<p><code>此处引用</code> <a href="https://github.com/OSH-2019/x-xdp-on-android/blob/master/docs/research.md" target="_blank" rel="noopener">1</a></p>
+<p><code>此处引用</code> <a target="_blank" rel="noopener" href="https://github.com/OSH-2019/x-xdp-on-android/blob/master/docs/research.md">1</a></p>
 <h4 id="8-软中断对网卡进行轮训收包"><a href="#8-软中断对网卡进行轮训收包" class="headerlink" title="8. 软中断对网卡进行轮训收包"></a>8. 软中断对网卡进行轮训收包</h4><ul>
 <li><strong>补充</strong></li>
 </ul>
@@ -308,8 +328,99 @@
 <p>网卡多队列：一个网卡对应多个接收队列，在收到数据包后会对源地址和目的地址做一个 HASH 分配到对各个队列当中去，每一个队列都会有个子中断号，这个子中断号可以分配到不同的 CPU 中去处理。这样可以让 NIC 收到的数据包让多个 CPU 来处理。</p>
 <p>CPU 绑定：一个 NIC 产生多个中断，让多个 CPU 去分担中断的负载。</p>
 <h4 id="10-将数据包送入协议栈，调用-ip-recv"><a href="#10-将数据包送入协议栈，调用-ip-recv" class="headerlink" title="10. 将数据包送入协议栈，调用 ip_recv"></a>10. 将数据包送入协议栈，调用 ip_recv</h4><p>在此数据包就进入了协议栈，调用 ip_recv 进入三层协议栈。</p>
-<p>ip_recv 函数 <a href="http://abcdxyzk.github.io/blog/2015/03/04/kernel-net-ip/" target="_blank" rel="noopener">linux TCP/IP 协议栈-IP 层</a></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 主要功能：对IP头部合法性进行严格检查，然后把具体功能交给ip_rcv_finish。*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ip_rcv</span><span class="params">(struct sk_buff *skb, struct net_device *dev, struct packet_type *pt, struct net_device *orig_dev)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">iphdr</span> *<span class="title">iph</span>;</span></span><br><span class="line">	u32 len;</span><br><span class="line">	<span class="comment">/* 网络名字空间，忽略 */</span></span><br><span class="line">	<span class="keyword">if</span> (dev-&gt;nd_net != &amp;init_net)</span><br><span class="line">		<span class="keyword">goto</span> drop;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 *当网卡处于混杂模式时，收到不是发往该主机的数据包，由net_rx_action()设置。</span></span><br><span class="line"><span class="comment">	 *在调用ip_rcv之前，内核会将该数据包交给嗅探器，所以该函数仅丢弃该包。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">if</span> (skb-&gt;pkt_type == PACKET_OTHERHOST)</span><br><span class="line">		<span class="keyword">goto</span> drop;</span><br><span class="line">	<span class="comment">/* SNMP所需要的统计数据，忽略 */</span></span><br><span class="line">	IP_INC_STATS_BH(IPSTATS_MIB_INRECEIVES);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 *ip_rcv是由netif_receive_skb函数调用，如果嗅探器或者其他的用户对数据包需要进</span></span><br><span class="line"><span class="comment">	 *进行处理，则在调用ip_rcv之前，netif_receive_skb会增加skb的引用计数，既该引</span></span><br><span class="line"><span class="comment">	 *用计数会大于1。若如此次，则skb_share_check会创建sk_buff的一份拷贝。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">if</span> ((skb = skb_share_check(skb, GFP_ATOMIC)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		IP_INC_STATS_BH(IPSTATS_MIB_INDISCARDS);</span><br><span class="line">		<span class="keyword">goto</span> out;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 *pskb_may_pull确保skb-&gt;data指向的内存包含的数据至少为IP头部大小，由于每个</span></span><br><span class="line"><span class="comment">	 *IP数据包包括IP分片必须包含一个完整的IP头部。如果小于IP头部大小，则缺失</span></span><br><span class="line"><span class="comment">	 *的部分将从数据分片中拷贝。这些分片保存在skb_shinfo(skb)-&gt;frags[]中。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">if</span> (!pskb_may_pull(skb, <span class="keyword">sizeof</span>(struct iphdr)))</span><br><span class="line">		<span class="keyword">goto</span> inhdr_error;</span><br><span class="line">	<span class="comment">/* pskb_may_pull可能会调整skb中的指针，所以需要重新定义IP头部*/</span></span><br><span class="line">	iph = ip_hdr(skb);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 *    RFC1122: 3.1.2.2 MUST silently discard any IP frame that fails the checksum.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 *    Is the datagram acceptable?</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 *    1.    Length at least the size of an ip header</span></span><br><span class="line"><span class="comment">	 *    2.    Version of 4</span></span><br><span class="line"><span class="comment">	 *    3.    Checksums correctly. [Speed optimisation for later, skip loopback checksums]</span></span><br><span class="line"><span class="comment">	 *    4.    Doesn't have a bogus length</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">/* 上面说的很清楚了 */</span></span><br><span class="line">	<span class="keyword">if</span> (iph-&gt;ihl &lt; <span class="number">5</span> || iph-&gt;version != <span class="number">4</span>)</span><br><span class="line">		<span class="keyword">goto</span> inhdr_error;</span><br><span class="line">	<span class="comment">/* 确保IP完整的头部包括选项在内存中 */</span></span><br><span class="line">	<span class="keyword">if</span> (!pskb_may_pull(skb, iph-&gt;ihl*<span class="number">4</span>))</span><br><span class="line">		<span class="keyword">goto</span> inhdr_error;</span><br><span class="line">	</span><br><span class="line">	iph = ip_hdr(skb);</span><br><span class="line">	<span class="comment">/* 验证IP头部的校验和 */</span></span><br><span class="line">	<span class="keyword">if</span> (unlikely(ip_fast_csum((u8 *)iph, iph-&gt;ihl)))</span><br><span class="line">		<span class="keyword">goto</span> inhdr_error;</span><br><span class="line">	<span class="comment">/* IP头部中指示的IP数据包总长度 */</span></span><br><span class="line">	len = ntohs(iph-&gt;tot_len);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 *确保skb的数据长度大于等于IP头部中指示的IP数据包总长度及数据包总长度必须</span></span><br><span class="line"><span class="comment">	 *大于等于IP头部长度。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">if</span> (skb-&gt;len &lt; len) &#123;</span><br><span class="line">		IP_INC_STATS_BH(IPSTATS_MIB_INTRUNCATEDPKTS);</span><br><span class="line">		<span class="keyword">goto</span> drop;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (len &lt; (iph-&gt;ihl*<span class="number">4</span>))</span><br><span class="line">		<span class="keyword">goto</span> inhdr_error;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Our transport medium may have padded the buffer out. Now we know it</span></span><br><span class="line"><span class="comment">	 * is IP we can trim to the true length of the frame.</span></span><br><span class="line"><span class="comment">	 * Note this now means skb-&gt;len holds ntohs(iph-&gt;tot_len).</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">/* 注释说明的很清楚，该函数成功执行完之后，skb-&gt;len = ntohs(iph-&gt;tot_len). */</span></span><br><span class="line">	<span class="keyword">if</span> (pskb_trim_rcsum(skb, len)) &#123;</span><br><span class="line">		IP_INC_STATS_BH(IPSTATS_MIB_INDISCARDS);</span><br><span class="line">		<span class="keyword">goto</span> drop;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Remove any debris in the socket control block */</span></span><br><span class="line">	<span class="built_in">memset</span>(IPCB(skb), <span class="number">0</span>, <span class="keyword">sizeof</span>(struct inet_skb_parm));</span><br><span class="line">	<span class="comment">/* 忽略与netfilter子系统的交互，调用为ip_rcv_finish(skb) */</span></span><br><span class="line">	<span class="keyword">return</span> NF_HOOK(PF_INET, NF_IP_PRE_ROUTING, skb, dev, <span class="literal">NULL</span>,</span><br><span class="line">		 ip_rcv_finish);</span><br><span class="line"></span><br><span class="line">inhdr_error:</span><br><span class="line">	IP_INC_STATS_BH(IPSTATS_MIB_INHDRERRORS);</span><br><span class="line">drop:</span><br><span class="line">	kfree_skb(skb);</span><br><span class="line">out:</span><br><span class="line">	<span class="keyword">return</span> NET_RX_DROP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ip_recv 函数 <a target="_blank" rel="noopener" href="http://abcdxyzk.github.io/blog/2015/03/04/kernel-net-ip/">linux TCP&#x2F;IP 协议栈-IP 层</a></p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* 主要功能：对IP头部合法性进行严格检查，然后把具体功能交给ip_rcv_finish。*/</span>
+<span class="token keyword">int</span> <span class="token function">ip_rcv</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sk_buff</span> <span class="token operator">*</span>skb<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">net_device</span> <span class="token operator">*</span>dev<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">packet_type</span> <span class="token operator">*</span>pt<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">net_device</span> <span class="token operator">*</span>orig_dev<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">struct</span> <span class="token class-name">iphdr</span> <span class="token operator">*</span>iph<span class="token punctuation">;</span>
+	u32 len<span class="token punctuation">;</span>
+	<span class="token comment">/* 网络名字空间，忽略 */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>dev<span class="token operator">-></span>nd_net <span class="token operator">!=</span> <span class="token operator">&amp;</span>init_net<span class="token punctuation">)</span>
+		<span class="token keyword">goto</span> drop<span class="token punctuation">;</span>
+	<span class="token comment">/*
+	 *当网卡处于混杂模式时，收到不是发往该主机的数据包，由net_rx_action()设置。
+	 *在调用ip_rcv之前，内核会将该数据包交给嗅探器，所以该函数仅丢弃该包。
+	 */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>skb<span class="token operator">-></span>pkt_type <span class="token operator">==</span> PACKET_OTHERHOST<span class="token punctuation">)</span>
+		<span class="token keyword">goto</span> drop<span class="token punctuation">;</span>
+	<span class="token comment">/* SNMP所需要的统计数据，忽略 */</span>
+	<span class="token function">IP_INC_STATS_BH</span><span class="token punctuation">(</span>IPSTATS_MIB_INRECEIVES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/*
+	 *ip_rcv是由netif_receive_skb函数调用，如果嗅探器或者其他的用户对数据包需要进
+	 *进行处理，则在调用ip_rcv之前，netif_receive_skb会增加skb的引用计数，既该引
+	 *用计数会大于1。若如此次，则skb_share_check会创建sk_buff的一份拷贝。
+	 */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>skb <span class="token operator">=</span> <span class="token function">skb_share_check</span><span class="token punctuation">(</span>skb<span class="token punctuation">,</span> GFP_ATOMIC<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">IP_INC_STATS_BH</span><span class="token punctuation">(</span>IPSTATS_MIB_INDISCARDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">goto</span> out<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token comment">/*
+	 *pskb_may_pull确保skb->data指向的内存包含的数据至少为IP头部大小，由于每个
+	 *IP数据包包括IP分片必须包含一个完整的IP头部。如果小于IP头部大小，则缺失
+	 *的部分将从数据分片中拷贝。这些分片保存在skb_shinfo(skb)->frags[]中。
+	 */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">pskb_may_pull</span><span class="token punctuation">(</span>skb<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">iphdr</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">goto</span> inhdr_error<span class="token punctuation">;</span>
+	<span class="token comment">/* pskb_may_pull可能会调整skb中的指针，所以需要重新定义IP头部*/</span>
+	iph <span class="token operator">=</span> <span class="token function">ip_hdr</span><span class="token punctuation">(</span>skb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/*
+	 *    RFC1122: 3.1.2.2 MUST silently discard any IP frame that fails the checksum.
+	 *
+	 *    Is the datagram acceptable?
+	 *
+	 *    1.    Length at least the size of an ip header
+	 *    2.    Version of 4
+	 *    3.    Checksums correctly. [Speed optimisation for later, skip loopback checksums]
+	 *    4.    Doesn't have a bogus length
+	 */</span>
+	<span class="token comment">/* 上面说的很清楚了 */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>iph<span class="token operator">-></span>ihl <span class="token operator">&lt;</span> <span class="token number">5</span> <span class="token operator">||</span> iph<span class="token operator">-></span>version <span class="token operator">!=</span> <span class="token number">4</span><span class="token punctuation">)</span>
+		<span class="token keyword">goto</span> inhdr_error<span class="token punctuation">;</span>
+	<span class="token comment">/* 确保IP完整的头部包括选项在内存中 */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">pskb_may_pull</span><span class="token punctuation">(</span>skb<span class="token punctuation">,</span> iph<span class="token operator">-></span>ihl<span class="token operator">*</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">goto</span> inhdr_error<span class="token punctuation">;</span>
+	
+	iph <span class="token operator">=</span> <span class="token function">ip_hdr</span><span class="token punctuation">(</span>skb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">/* 验证IP头部的校验和 */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">unlikely</span><span class="token punctuation">(</span><span class="token function">ip_fast_csum</span><span class="token punctuation">(</span><span class="token punctuation">(</span>u8 <span class="token operator">*</span><span class="token punctuation">)</span>iph<span class="token punctuation">,</span> iph<span class="token operator">-></span>ihl<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">goto</span> inhdr_error<span class="token punctuation">;</span>
+	<span class="token comment">/* IP头部中指示的IP数据包总长度 */</span>
+	len <span class="token operator">=</span> <span class="token function">ntohs</span><span class="token punctuation">(</span>iph<span class="token operator">-></span>tot_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">/*
+	 *确保skb的数据长度大于等于IP头部中指示的IP数据包总长度及数据包总长度必须
+	 *大于等于IP头部长度。
+	 */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>skb<span class="token operator">-></span>len <span class="token operator">&lt;</span> len<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">IP_INC_STATS_BH</span><span class="token punctuation">(</span>IPSTATS_MIB_INTRUNCATEDPKTS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">goto</span> drop<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>len <span class="token operator">&lt;</span> <span class="token punctuation">(</span>iph<span class="token operator">-></span>ihl<span class="token operator">*</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">goto</span> inhdr_error<span class="token punctuation">;</span>
+
+	<span class="token comment">/* Our transport medium may have padded the buffer out. Now we know it
+	 * is IP we can trim to the true length of the frame.
+	 * Note this now means skb->len holds ntohs(iph->tot_len).
+	 */</span>
+	<span class="token comment">/* 注释说明的很清楚，该函数成功执行完之后，skb->len = ntohs(iph->tot_len). */</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">pskb_trim_rcsum</span><span class="token punctuation">(</span>skb<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">IP_INC_STATS_BH</span><span class="token punctuation">(</span>IPSTATS_MIB_INDISCARDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">goto</span> drop<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token comment">/* Remove any debris in the socket control block */</span>
+	<span class="token function">memset</span><span class="token punctuation">(</span><span class="token function">IPCB</span><span class="token punctuation">(</span>skb<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">inet_skb_parm</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">/* 忽略与netfilter子系统的交互，调用为ip_rcv_finish(skb) */</span>
+	<span class="token keyword">return</span> <span class="token function">NF_HOOK</span><span class="token punctuation">(</span>PF_INET<span class="token punctuation">,</span> NF_IP_PRE_ROUTING<span class="token punctuation">,</span> skb<span class="token punctuation">,</span> dev<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span>
+		 ip_rcv_finish<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+inhdr_error<span class="token operator">:</span>
+	<span class="token function">IP_INC_STATS_BH</span><span class="token punctuation">(</span>IPSTATS_MIB_INHDRERRORS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+drop<span class="token operator">:</span>
+	<span class="token function">kfree_skb</span><span class="token punctuation">(</span>skb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+out<span class="token operator">:</span>
+	<span class="token keyword">return</span> NET_RX_DROP<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="11-调用-netfilter-的-PREROUTING-链"><a href="#11-调用-netfilter-的-PREROUTING-链" class="headerlink" title="11. 调用 netfilter 的 PREROUTING 链"></a>11. 调用 netfilter 的 PREROUTING 链</h4><blockquote>
 <p>netfilter： 是 Linux 内核中进行数据包过滤，连接跟踪（Connect Track），网络地址转换（NAT）等功能的主要实现框架；该框架在网络协议栈处理数据包的关键流程中定义了一系列钩子点（Hook 点），并在这些钩子点中注册一系列函数对数据包进行处理。这些注册在钩子点的函数即为设置在网络协议栈内的数据包通行策略，也就意味着，这些函数可以决定内核是接受还是丢弃某个数据包，换句话说，这些函数的处理结果决定了这些网络数据包的“命运”。</p>
@@ -329,11 +440,11 @@
 <li>tx-usecs</li>
 <li>tx-frames</li>
 </ul>
-<h4 id="12-驱动程序启用网卡的硬件中断"><a href="#12-驱动程序启用网卡的硬件中断" class="headerlink" title="12. 驱动程序启用网卡的硬件中断"></a>12. 驱动程序启用网卡的硬件中断</h4><h4 id="13-驱动程序将数据包映射到-DMA-内存"><a href="#13-驱动程序将数据包映射到-DMA-内存" class="headerlink" title="13. 驱动程序将数据包映射到 DMA 内存"></a>13. 驱动程序将数据包映射到 DMA 内存</h4><h4 id="14-网卡从-DMA-中取数据并发送"><a href="#14-网卡从-DMA-中取数据并发送" class="headerlink" title="14. 网卡从 DMA 中取数据并发送"></a>14. 网卡从 DMA 中取数据并发送</h4><h4 id="15-网卡发送完毕后触发硬件中断"><a href="#15-网卡发送完毕后触发硬件中断" class="headerlink" title="15. 网卡发送完毕后触发硬件中断"></a>15. 网卡发送完毕后触发硬件中断</h4><h4 id="16-硬中断清理中断信号后触发软中断"><a href="#16-硬中断清理中断信号后触发软中断" class="headerlink" title="16. 硬中断清理中断信号后触发软中断"></a>16. 硬中断清理中断信号后触发软中断</h4><h4 id="17-软中断释放已经发送完的数据包的内存"><a href="#17-软中断释放已经发送完的数据包的内存" class="headerlink" title="17. 软中断释放已经发送完的数据包的内存"></a>17. 软中断释放已经发送完的数据包的内存</h4><h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>提到防火墙，想必各位都知道大名鼎鼎的方教授哈 😂，不过咱今天不谈这，感兴趣的可以去读一哈 <a href="https://gfw.report/blog/gfw_shadowsocks/zh.html" target="_blank" rel="noopener">Shadowsocks 是如何被检测和封锁的</a> 和 <a href="http://www.oneyearago.me/2019/06/14/learn_gwf/" target="_blank" rel="noopener">G.F.W 的原理</a></p>
+<h4 id="12-驱动程序启用网卡的硬件中断"><a href="#12-驱动程序启用网卡的硬件中断" class="headerlink" title="12. 驱动程序启用网卡的硬件中断"></a>12. 驱动程序启用网卡的硬件中断</h4><h4 id="13-驱动程序将数据包映射到-DMA-内存"><a href="#13-驱动程序将数据包映射到-DMA-内存" class="headerlink" title="13. 驱动程序将数据包映射到 DMA 内存"></a>13. 驱动程序将数据包映射到 DMA 内存</h4><h4 id="14-网卡从-DMA-中取数据并发送"><a href="#14-网卡从-DMA-中取数据并发送" class="headerlink" title="14. 网卡从 DMA 中取数据并发送"></a>14. 网卡从 DMA 中取数据并发送</h4><h4 id="15-网卡发送完毕后触发硬件中断"><a href="#15-网卡发送完毕后触发硬件中断" class="headerlink" title="15. 网卡发送完毕后触发硬件中断"></a>15. 网卡发送完毕后触发硬件中断</h4><h4 id="16-硬中断清理中断信号后触发软中断"><a href="#16-硬中断清理中断信号后触发软中断" class="headerlink" title="16. 硬中断清理中断信号后触发软中断"></a>16. 硬中断清理中断信号后触发软中断</h4><h4 id="17-软中断释放已经发送完的数据包的内存"><a href="#17-软中断释放已经发送完的数据包的内存" class="headerlink" title="17. 软中断释放已经发送完的数据包的内存"></a>17. 软中断释放已经发送完的数据包的内存</h4><h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>提到防火墙，想必各位都知道大名鼎鼎的方教授哈 😂，不过咱今天不谈这，感兴趣的可以去读一哈 <a target="_blank" rel="noopener" href="https://gfw.report/blog/gfw_shadowsocks/zh.html">Shadowsocks 是如何被检测和封锁的</a> 和 <a target="_blank" rel="noopener" href="http://www.oneyearago.me/2019/06/14/learn_gwf/">G.F.W 的原理</a></p>
 <p>讲完了 Linux 发包和收包的整个流程我们就清楚了防火墙在网络中所工作的地方，下面就将一下 Linux 上的防火墙 iptables。</p>
 <h3 id="iptales"><a href="#iptales" class="headerlink" title="iptales"></a>iptales</h3><p>自从 Linux 内核 2.4 之后 iptables 就集成进主线内核，不过 iptables 只是一个命令行工具，用于配置管理数据包的过滤规则，而真正起到信息包过滤作用的是 netfilter 框架。准确来讲 iptables 是一个通过控制 Linux 内核的 netfilter 模块来<strong>管理网络数据包的流动与转送</strong>的应用软件，其功能包括不仅仅包括防火墙的控制出入流量，还有端口转发等等。</p>
 <h3 id="netfilter"><a href="#netfilter" class="headerlink" title="netfilter"></a>netfilter</h3><p>netfilter 是内核的一个子系统，其工作在内核空间，核心是一个报文过滤架构，它包含了一组分布在报文处理各个阶段的钩子函数，报文经过网络协议栈时进入 netfilter 处理架构，会调用其他模块在各个阶段注册的钩子函数，并返回处理结果，netfilter 根据返回结果进行不同的处理。</p>
-<h4 id="表-链-规则"><a href="#表-链-规则" class="headerlink" title="表/链/规则"></a>表/链/规则</h4><p>iptables 内部有表 tables、链 chains、规则 rules 这三种概念。其中每一个 <code>表</code> 都和不同的数据包处理有关，而决定数据包是否可以穿越的是 <code>链</code>、而链上的一条条 <code>规则</code> 决定了是否送往下一条链（或其它的动作）。 netfilter/iptables 可以理解成是 <code>表</code> 的容器；表则是 <code>链</code> 的容器，即所有的 <code>链</code> 都属于其对应的 <code>表</code>；<code>链</code> 是 <code>规则</code> 的容器，其集合从属关系可以表述为（表（链（规则）））。</p>
+<h4 id="表-x2F-链-x2F-规则"><a href="#表-x2F-链-x2F-规则" class="headerlink" title="表&#x2F;链&#x2F;规则"></a>表&#x2F;链&#x2F;规则</h4><p>iptables 内部有表 tables、链 chains、规则 rules 这三种概念。其中每一个 <code>表</code> 都和不同的数据包处理有关，而决定数据包是否可以穿越的是 <code>链</code>、而链上的一条条 <code>规则</code> 决定了是否送往下一条链（或其它的动作）。 netfilter&#x2F;iptables 可以理解成是 <code>表</code> 的容器；表则是 <code>链</code> 的容器，即所有的 <code>链</code> 都属于其对应的 <code>表</code>；<code>链</code> 是 <code>规则</code> 的容器，其集合从属关系可以表述为（表（链（规则）））。</p>
 <p>广为流传的说法是 iptables 有四表五链，其中四表（ raw、filter, nat, mangle,）五链（INPUT、OUTPUT、FORWARD、 PREROUTING、 POSTROUTING），不过也有说法为五表（ raw、filter、nat、mangle、security）五链，不过 security 表大多数情况下不会用到，常用的是  filter 和 nat 表，mangle 表次之。</p>
 <h4 id="五表"><a href="#五表" class="headerlink" title="五表"></a>五表</h4><ul>
 <li>raw 表： 优先级最高，通常与 <code>NOTRACK</code> 一起使用，用于跳过 <code>连接跟踪（conntrack）</code> 和 nat 表的处理用于配置数据包，raw 中的数据包不会被系统跟踪。设置 raw 时一般是为了不再让 iptables 做数据包的链接跟踪处理，提高性能。</li>
@@ -348,8 +459,8 @@
 <p><code>连接跟踪</code>，顾名思义，就是跟踪并记录网络连接的状态（你可能认为只有 TCP 才有“连接”这个概念，但是在 netfilter 中，TCP、UDP、ICMP 一视同仁）。netfilter 会为每个经过网络堆栈的连接生成一个<strong>连接记录项（Connection Entry）</strong>；此后所有属于此连接的数据包都被唯一地分配给这个连接并标识连接的状态；由所有连接记录项组成的表其实就是所谓的<strong>连接跟踪表</strong>。</p>
 <p>为什么需要连接跟踪？因为它是<strong>状态防火墙和 NAT 的实现基础</strong>！</p>
 <ul>
-<li><code>状态防火墙</code>：iptables 的 conntrack/state 模块允许我们根据连接的状态进行规则配置，如果没有连接跟踪，那是做不到的。</li>
-<li><code>NAT</code>，NAT 其实就是修改数据包的源地址/端口、目的地址/端口，如果没有连接跟踪，那么也不可能再找回修改前的地址信息。</li>
+<li><code>状态防火墙</code>：iptables 的 conntrack&#x2F;state 模块允许我们根据连接的状态进行规则配置，如果没有连接跟踪，那是做不到的。</li>
+<li><code>NAT</code>，NAT 其实就是修改数据包的源地址&#x2F;端口、目的地址&#x2F;端口，如果没有连接跟踪，那么也不可能再找回修改前的地址信息。</li>
 </ul>
 </blockquote>
 <h4 id="五链"><a href="#五链" class="headerlink" title="五链"></a>五链</h4><p>链(chains)是数据包传输的路径，对应着报文处理的五个不同阶段：</p>
@@ -391,19 +502,52 @@
 </ul>
 <h4 id="Mangle-表"><a href="#Mangle-表" class="headerlink" title="Mangle 表"></a>Mangle 表</h4><p>Mangle 表包含五种内建链：PREROUTING、OUTPUT、FORWARD、INPUT、POSTROUTING。</p>
 <h4 id="Raw-表"><a href="#Raw-表" class="headerlink" title="Raw 表"></a>Raw 表</h4><p>含两个内建链：PREROUTING, OUTPUT.</p>
-<h3 id="数据包流程"><a href="#数据包流程" class="headerlink" title="数据包流程"></a>数据包流程</h3><p><img src="https://p.k8s.li/iptables.png" alt=""></p>
+<h3 id="数据包流程"><a href="#数据包流程" class="headerlink" title="数据包流程"></a>数据包流程</h3><p><img data-src="https://p.k8s.li/iptables.png"></p>
 <p>在 Linux 下，从任何网络端口进来的每一个 IP 数据包都要从上到下的穿过这张图，iptabales 对从任何端口进入的数据包都会采取相同的处理方式。</p>
-<p>此图摘自 <a href="https://wiki.archlinux.org/index.php/Iptables" target="_blank" rel="noopener">Archlinux 文档</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">                               XXXXXXXXXXXXXXXXXX</span><br><span class="line">                             XXX     Network    XXX</span><br><span class="line">                               XXXXXXXXXXXXXXXXXX</span><br><span class="line">                                       +</span><br><span class="line">                                       |</span><br><span class="line">                                       v</span><br><span class="line"> +-------------+              +------------------+</span><br><span class="line"> |table: filter| &lt;---+        | table: nat       |</span><br><span class="line"> |chain: INPUT |     |        | chain: PREROUTING|</span><br><span class="line"> +-----+-------+     |        +--------+---------+</span><br><span class="line">       |             |                 |</span><br><span class="line">       v             |                 v</span><br><span class="line"> [local process]     |           ****************          +--------------+</span><br><span class="line">       |             +---------+ Routing decision +------&gt; |table: filter |</span><br><span class="line">       v                         ****************          |chain: FORWARD|</span><br><span class="line">****************                                           +------+-------+</span><br><span class="line">Routing decision                                                  |</span><br><span class="line">****************                                                  |</span><br><span class="line">       |                                                          |</span><br><span class="line">       v                        ****************                  |</span><br><span class="line">+-------------+       +------&gt;  Routing decision  &lt;---------------+</span><br><span class="line">|table: nat   |       |         ****************</span><br><span class="line">|chain: OUTPUT|       |               +</span><br><span class="line">+-----+-------+       |               |</span><br><span class="line">      |               |               v</span><br><span class="line">      v               |      +-------------------+</span><br><span class="line">+--------------+      |      | table: nat        |</span><br><span class="line">|table: filter | +----+      | chain: POSTROUTING|</span><br><span class="line">|chain: OUTPUT |             +--------+----------+</span><br><span class="line">+--------------+                      |</span><br><span class="line">                                      v</span><br><span class="line">                               XXXXXXXXXXXXXXXXXX</span><br><span class="line">                             XXX    Network     XXX</span><br><span class="line">                               XXXXXXXXXXXXXXXXXX</span><br></pre></td></tr></table></figure>
+<p>此图摘自 <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Iptables">Archlinux 文档</a></p>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">                               XXXXXXXXXXXXXXXXXX
+                             XXX     Network    XXX
+                               XXXXXXXXXXXXXXXXXX
+                                       +
+                                       |
+                                       v
+ +-------------+              +------------------+
+ |table: filter| &lt;---+        | table: nat       |
+ |chain: INPUT |     |        | chain: PREROUTING|
+ +-----+-------+     |        +--------+---------+
+       |             |                 |
+       v             |                 v
+ [local process]     |           ****************          +--------------+
+       |             +---------+ Routing decision +------> |table: filter |
+       v                         ****************          |chain: FORWARD|
+****************                                           +------+-------+
+Routing decision                                                  |
+****************                                                  |
+       |                                                          |
+       v                        ****************                  |
++-------------+       +------>  Routing decision  &lt;---------------+
+|table: nat   |       |         ****************
+|chain: OUTPUT|       |               +
++-----+-------+       |               |
+      |               |               v
+      v               |      +-------------------+
++--------------+      |      | table: nat        |
+|table: filter | +----+      | chain: POSTROUTING|
+|chain: OUTPUT |             +--------+----------+
++--------------+                      |
+                                      v
+                               XXXXXXXXXXXXXXXXXX
+                             XXX    Network     XXX
+                               XXXXXXXXXXXXXXXXXX<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="遍历链流程图"><a href="#遍历链流程图" class="headerlink" title="遍历链流程图"></a>遍历链流程图</h3><p>该流程图描述链了在任何接口上收到的网络数据包是按照怎样的顺序穿过表的交通管制链。</p>
-<p><img src="https://www.frozentux.net/iptables-tutorial/chunkyhtml/images/tables_traverse.jpg" alt=""></p>
+<p><img data-src="https://www.frozentux.net/iptables-tutorial/chunkyhtml/images/tables_traverse.jpg"></p>
 <ul>
 <li>第一个路由策略包括决定数据包的目的地是本地主机（这种情况下，数据包穿过 INPUT 链），还是其他主机（数据包穿过 FORWARD 链）；</li>
 <li>中间的路由策略包括决定给传出的数据包使用那个源地址、分配哪个接口；</li>
 <li>最后一个路由策略存在是因为先前的 mangle 与 nat 链可能会改变数据包的路由信息。</li>
 </ul>
-<p>数据包通过路径上的每一条链时，链中的每一条规则按顺序匹配；无论何时匹配了一条规则，相应的 target/jump 动作将会执行。最常用的 3 个 target 是 ACCEPT, DROP ,或者 jump 到用户自定义的链。内置的链有默认的策略，但是用户自定义的链没有默认的策略。在 jump 到的链中，若每一条规则都不能提供完全匹配，那么数据包像这张图片描述的一样返回到调用链。在任何时候，若 DROP target 的规则实现完全匹配，那么被匹配的数据包会被丢弃，不会进行进一步处理。如果一个数据包在链中被 ACCEPT，那么它也会被所有的父链 ACCEPT，并且不再遍历其他父链。然而，要注意的是，数据包还会以正常的方式继续遍历其他表中的其他链。</p>
+<p>数据包通过路径上的每一条链时，链中的每一条规则按顺序匹配；无论何时匹配了一条规则，相应的 target&#x2F;jump 动作将会执行。最常用的 3 个 target 是 ACCEPT, DROP ,或者 jump 到用户自定义的链。内置的链有默认的策略，但是用户自定义的链没有默认的策略。在 jump 到的链中，若每一条规则都不能提供完全匹配，那么数据包像这张图片描述的一样返回到调用链。在任何时候，若 DROP target 的规则实现完全匹配，那么被匹配的数据包会被丢弃，不会进行进一步处理。如果一个数据包在链中被 ACCEPT，那么它也会被所有的父链 ACCEPT，并且不再遍历其他父链。然而，要注意的是，数据包还会以正常的方式继续遍历其他表中的其他链。</p>
 <h4 id="本机发出的包"><a href="#本机发出的包" class="headerlink" title="本机发出的包"></a>本机发出的包</h4><p>本机进程 -&gt; OUTPUT 链 -&gt; 路由选择 -&gt; POSTROUTING 链 -&gt; 出口网卡</p>
 <h4 id="本机收到的包"><a href="#本机收到的包" class="headerlink" title="本机收到的包"></a>本机收到的包</h4><p>入口网卡 -&gt; PREROUTING 链 -&gt; 路由选择 -&gt; 此时有两种可能的情况：</p>
 <ul>
@@ -568,55 +712,370 @@
 <td>记录日志信息，除记录外不对数据包做任何其他操作，仍然匹配下一条规则</td>
 </tr>
 </tbody></table>
-<h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 命令用法 (man 文档)</span></span><br><span class="line">iptables [-t table] &#123;-A|-C|-D&#125; chain rule-specification         <span class="comment"># (ipv4) 追加|检查|删除 规则</span></span><br><span class="line">ip6tables [-t table] &#123;-A|-C|-D&#125; chain rule-specification        <span class="comment"># (ipv6) 追加|检查|删除 规则</span></span><br><span class="line">iptables [-t table] -I chain [rulenum] rule-specification       <span class="comment"># 在 rulenum 处插入规则 (默认为 1)</span></span><br><span class="line">iptables [-t table] -R chain rulenum rule-specification         <span class="comment"># 替换第 rulenum 条规则</span></span><br><span class="line">iptables [-t table] -D chain rulenum                            <span class="comment"># 删除第 rulenum 条规则</span></span><br><span class="line">iptables [-t table] -S [chain [rulenum]]                        <span class="comment"># 打印指定 table 的规则</span></span><br><span class="line">iptables [-t table] &#123;-F|-L|-Z&#125; [chain [rulenum]] [options...]   <span class="comment"># 清空|列出|置零 链/规则</span></span><br><span class="line">iptables [-t table] -P chain target                             <span class="comment"># 设置默认策略</span></span><br><span class="line">iptables [-t table] -N chain                                    <span class="comment"># 新建自定义链</span></span><br><span class="line">iptables [-t table] -X [chain]                                  <span class="comment"># 删除自定义链</span></span><br><span class="line">iptables [-t table] -E old-chain-name new-chain-name            <span class="comment"># 重命名自定义链</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 一般形式</span></span><br><span class="line">iptables [-t 表名] &#123;-A|I|D|R&#125; 链名 [规则号] 匹配规则 -j 动作</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看帮助</span></span><br><span class="line">iptables --<span class="built_in">help</span>             <span class="comment"># 查看 iptables 的帮助</span></span><br><span class="line">iptables -m 模块名 --<span class="built_in">help</span>   <span class="comment"># 查看指定模块的可用参数</span></span><br><span class="line">iptables -j 动作名 --<span class="built_in">help</span>   <span class="comment"># 查看指定动作的可用参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 持久化规则</span></span><br><span class="line"><span class="comment"># 在 RHEL/CentOS 中，默认规则文件为 /etc/sysconfig/iptables</span></span><br><span class="line"><span class="comment"># 在 iptables 服务启动时，默认会加载该配置文件中定义的规则</span></span><br><span class="line"><span class="comment"># 如果想要设置的规则在重启后有效，就需要保存规则到这个文件</span></span><br><span class="line"><span class="comment"># 使用这两个工具：iptables-save、iptables-restore 重定向即可</span></span><br><span class="line"><span class="comment">## 保存当前规则</span></span><br><span class="line">iptables-save &gt;/etc/sysconfig/iptables</span><br><span class="line">iptables-save &gt;/etc/sysconfig/iptables.20171125</span><br><span class="line"><span class="comment">## 恢复当前规则</span></span><br><span class="line">iptables-restore &lt;/etc/sysconfig/iptables</span><br><span class="line">iptables-restore &lt;/etc/sysconfig/iptables.20171125</span><br><span class="line"></span><br><span class="line"><span class="comment">### 命令和选项</span></span><br><span class="line">-t              <span class="comment"># 指定要操作的表，如果省略则默认为 filter 表</span></span><br><span class="line">-A              <span class="comment"># "追加" 一条规则，只能追加到末尾</span></span><br><span class="line">-I              <span class="comment"># "插入" 一条规则，如果省略序号则默认为 1</span></span><br><span class="line">-R              <span class="comment"># "替换" 一条规则，必须指定序号</span></span><br><span class="line">-D              <span class="comment"># "删除" 一条规则，必须指定序号</span></span><br><span class="line">-C              <span class="comment"># "检查" 规则是否存在，如果存在则返回 0</span></span><br><span class="line">-P              <span class="comment"># 设置链的 "默认策略"，nat 表不允许修改默认策略</span></span><br><span class="line">-S              <span class="comment"># "查看" 规则（原始格式）</span></span><br><span class="line">-L              <span class="comment"># "打印" 规则（友好格式）</span></span><br><span class="line">-F              <span class="comment"># 清空表中的规则并将包计数器、字节计数器置零</span></span><br><span class="line">-Z              <span class="comment"># 将某个链或某条规则的包计数器、字节计数器置零</span></span><br><span class="line">-N              <span class="comment"># 新建自定义链</span></span><br><span class="line">-X              <span class="comment"># 删除自定义链</span></span><br><span class="line">-E              <span class="comment"># 重命名自定义链</span></span><br><span class="line">-n              <span class="comment"># 以数字形式显示地址和端口</span></span><br><span class="line">-v              <span class="comment"># 在打印规则时显示详细信息</span></span><br><span class="line">--line-numbers  <span class="comment"># 在打印规则时显示规则序号</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 反向匹配</span></span><br><span class="line"><span class="comment"># 只需在选项前面使用 ! 即可，如: ! -s 192.168.0.0/16 表示除 192.168/16 外的源 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 通用匹配</span></span><br><span class="line">-s addr[/mask][...] <span class="comment"># 源 IP，可以有多个，使用逗号隔开，有多少个地址就有多少条规则</span></span><br><span class="line">-d addr[/mask][...] <span class="comment"># 目的 IP，可以有多个，使用逗号隔开，有多少个地址就有多少条规则</span></span><br><span class="line">-i input-nic[+]     <span class="comment"># 数据包来自哪个网卡，+ 表示通配符</span></span><br><span class="line">-o output-nic[+]    <span class="comment"># 数据包送往哪个网卡，+ 表示通配符</span></span><br><span class="line">-p &#123;tcp|udp|udplite|icmp|icmpv6|esp|ah|sctp|mh|all&#125;</span><br><span class="line">                    <span class="comment"># 指定匹配的协议，all 表示所有</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 隐式扩展匹配 (tcp/udp/icmp)</span></span><br><span class="line"><span class="comment">## tcp 扩展</span></span><br><span class="line">--sport port[:port]     <span class="comment"># 源端口号，100:200 表示端口范围</span></span><br><span class="line">--dport port[:port]     <span class="comment"># 目的端口号，100:200 表示端口范围</span></span><br><span class="line">--tcp-flags mask comp   <span class="comment"># TCP 标志位，flags=&#123;SYN|ACK|FIN|RST|URG|PSH|ALL|NONE&#125;</span></span><br><span class="line">--syn                   <span class="comment"># SYN 标志位，等同于 --tcp-flags SYN,RST,ACK,FIN SYN</span></span><br><span class="line">--tcp-option number     <span class="comment"># TCP 选项</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## udp 扩展</span></span><br><span class="line">--sport port[:port]     <span class="comment"># 源端口号</span></span><br><span class="line">--dport port[:port]     <span class="comment"># 目的端口号</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## icmp 扩展</span></span><br><span class="line">--icmp-type name[/code] <span class="comment"># icmp 类型，常用的两个: ping、pong，请求和应答</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 显式扩展匹配 (-m module-name)</span></span><br><span class="line"><span class="comment">## multiport 多端口</span></span><br><span class="line">--sports port[,port:port,port...]   <span class="comment"># 匹配多个源端口[范围]</span></span><br><span class="line">--dports port[,port:port,port...]   <span class="comment"># 匹配多个目的端口[范围]</span></span><br><span class="line">--ports port[,port:port,port...]    <span class="comment"># 匹配多个源和目的端口[范围]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## owner 所属用户(组)</span></span><br><span class="line">--uid-owner userid[-userid]     <span class="comment"># 匹配 UID[范围]/username</span></span><br><span class="line">--gid-owner groupid[-groupid]   <span class="comment"># 匹配 GID[范围]/groupname</span></span><br><span class="line">--socket-exists                 <span class="comment"># 匹配与套接字相关联的数据包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## state 连接状态(基本)</span></span><br><span class="line">--state [INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED][,...]</span><br><span class="line"><span class="comment"># NEW           新连接</span></span><br><span class="line"><span class="comment"># ESTABLISHED   已建立的连接</span></span><br><span class="line"><span class="comment"># RELATED       关联的连接，如 ftp</span></span><br><span class="line"><span class="comment"># INVALID       无效/非法的连接</span></span><br><span class="line"><span class="comment"># UNTRACKED     未启用连接跟踪的连接</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## conntrack 连接状态</span></span><br><span class="line">--ctstate &#123;INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT&#125;[,...]</span><br><span class="line"></span><br><span class="line"><span class="comment">## iprange IP范围</span></span><br><span class="line">--src-range ip[-ip]     <span class="comment"># 匹配指定的源 IP 范围</span></span><br><span class="line">--dst-range ip[-ip]     <span class="comment"># 匹配指定的目的 IP 范围</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## mac 源MAC地址</span></span><br><span class="line">--mac-source XX:XX:XX:XX:XX:XX  <span class="comment"># 匹配源 MAC 地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## addrtype 地址类型</span></span><br><span class="line">--src-type <span class="built_in">type</span>[,...]   <span class="comment"># 匹配 source ip 地址的类型</span></span><br><span class="line">--dst-type <span class="built_in">type</span>[,...]   <span class="comment"># 匹配 destination ip 地址的类型</span></span><br><span class="line"><span class="comment"># UNSPEC       未指定的地址，如 0.0.0.0</span></span><br><span class="line"><span class="comment"># UNICAST      单播地址</span></span><br><span class="line"><span class="comment"># LOCAL        本机地址</span></span><br><span class="line"><span class="comment"># BROADCAST    广播地址</span></span><br><span class="line"><span class="comment"># ANYCAST      任播地址</span></span><br><span class="line"><span class="comment"># MULTICAST    多播地址</span></span><br><span class="line"><span class="comment"># BLACKHOLE    黑洞地址</span></span><br><span class="line"><span class="comment"># UNREACHABLE  不可达地址</span></span><br><span class="line"><span class="comment"># PROHIBIT     禁止访问的地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## time 时间</span></span><br><span class="line">--datestart time     <span class="comment"># 起始日期 YYYY[-MM[-DD[Thh[:mm[:ss]]]]]</span></span><br><span class="line">--datestop time      <span class="comment"># 结束日期 YYYY[-MM[-DD[Thh[:mm[:ss]]]]]</span></span><br><span class="line">--timestart time     <span class="comment"># 起始时间 hh:mm[:ss]</span></span><br><span class="line">--timestop time      <span class="comment"># 结束时间 hh:mm[:ss]</span></span><br><span class="line">--monthdays value    <span class="comment"># 几号，1 至 31，默认为 all</span></span><br><span class="line">--weekdays value     <span class="comment"># 星期几，1 至 7，默认为 all</span></span><br><span class="line">--kerneltz           <span class="comment"># 使用内核时区而非 UTC</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## string 关键字匹配</span></span><br><span class="line">--from offset       <span class="comment"># 设置起始偏移量</span></span><br><span class="line">--to offset         <span class="comment"># 设置结束偏移量</span></span><br><span class="line">--algo &#123;bm|kmp&#125;     <span class="comment"># 指定使用的算法</span></span><br><span class="line">--icase             <span class="comment"># 忽略大小写匹配</span></span><br><span class="line">--string string     <span class="comment"># 要匹配的字符串</span></span><br><span class="line">--hex-string string <span class="comment"># 要匹配的字符串，十六进制</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## length 数据包大小</span></span><br><span class="line">--length length[:length]    <span class="comment"># 匹配数据包大小[范围]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## mark 防火墙标记</span></span><br><span class="line">--mark value[/mask]     <span class="comment"># 匹配有指定防火墙标记的数据包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## connmark "连接"标记</span></span><br><span class="line">--mark value[/mask]     <span class="comment"># 如果当前数据包所属的"连接"打了给定的标记，则匹配成功</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## limit 速率限制</span></span><br><span class="line">--<span class="built_in">limit</span> avg             <span class="comment"># 平均速率限制，如 3/hour，单位: sec|minute|hour|day</span></span><br><span class="line">--<span class="built_in">limit</span>-burst number    <span class="comment"># 封顶速率限制，默认为 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## connlimit 并发连接数</span></span><br><span class="line">--connlimit-upto n      <span class="comment"># 0..n</span></span><br><span class="line">--connlimit-above n     <span class="comment"># &gt; n</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### -j target 动作</span></span><br><span class="line"><span class="comment">## 无参数系列</span></span><br><span class="line">ACCEPT      <span class="comment"># 接收数据包</span></span><br><span class="line">DROP        <span class="comment"># 丢弃数据包</span></span><br><span class="line">CUST-CHAIN  <span class="comment"># 进入自定义链</span></span><br><span class="line">RETURN      <span class="comment"># 退出当前链，分两种情况：</span></span><br><span class="line">            <span class="comment"># 如果当前链是自定义链，则返回调用链，继续匹配调用点的下一条规则</span></span><br><span class="line">            <span class="comment"># 如果当前链不是自定义链，则执行当前链的默认策略，如 ACCEPT、DROP</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 带参数系列</span></span><br><span class="line"><span class="comment"># REJECT 拒绝（带原因）</span></span><br><span class="line">--reject-with <span class="built_in">type</span>              <span class="comment"># 丢弃数据包，并回复源主机，可用的 type 如下：</span></span><br><span class="line">    icmp-net-unreachable        <span class="comment"># ICMP 网络不可达</span></span><br><span class="line">    net-unreach                 <span class="comment"># 同上，别名</span></span><br><span class="line">    icmp-host-unreachable       <span class="comment"># ICMP 主机不可达</span></span><br><span class="line">    host-unreach                <span class="comment"># 同上，别名</span></span><br><span class="line">    icmp-proto-unreachable      <span class="comment"># ICMP 协议不可达</span></span><br><span class="line">    proto-unreach               <span class="comment"># 同上，别名</span></span><br><span class="line">    icmp-port-unreachable       <span class="comment"># ICMP 端口不可达（默认）</span></span><br><span class="line">    port-unreach                <span class="comment"># 同上，别名</span></span><br><span class="line">    icmp-net-prohibited         <span class="comment"># ICMP 网络限制</span></span><br><span class="line">    net-prohib                  <span class="comment"># 同上，别名</span></span><br><span class="line">    icmp-host-prohibited        <span class="comment"># ICMP 主机限制</span></span><br><span class="line">    host-prohib                 <span class="comment"># 同上，别名</span></span><br><span class="line">    icmp-admin-prohibited       <span class="comment"># ICMP 管理员限制</span></span><br><span class="line">    admin-prohib                <span class="comment"># 同上，别名</span></span><br><span class="line">    tcp-reset                   <span class="comment"># TCP RST 连接重置</span></span><br><span class="line">    tcp-rst                     <span class="comment"># 同上，别名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MARK 打防火墙标记</span></span><br><span class="line">--<span class="built_in">set</span>-mark value[/mask]   <span class="comment"># 设置标记，mask OR value（推荐）</span></span><br><span class="line">--<span class="built_in">set</span>-xmark value[/mask]  <span class="comment"># 设置标记，mask XOR value</span></span><br><span class="line">--and-mark bits           <span class="comment"># 设置二进制标记，AND</span></span><br><span class="line">--or-mark bits            <span class="comment"># 设置二进制标记，OR</span></span><br><span class="line">--xor-mask bits           <span class="comment"># 设置二进制标记，XOR</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># CONNMARK 打"连接"标记</span></span><br><span class="line">--<span class="built_in">set</span>-mark value[/mask]       <span class="comment"># 设置当前数据包所属连接的连接标记</span></span><br><span class="line">--save-mark [--mask mask]     <span class="comment"># 将当前数据包的标记作为其所属连接的标记</span></span><br><span class="line">--restore-mark [--mask mask]  <span class="comment"># 将当前数据包所属连接的标记作为该数据包的标记</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># LOG 防火墙日志，dmesg 可查看</span></span><br><span class="line">--<span class="built_in">log</span>-level level       <span class="comment"># 日志级别（syslog.conf）</span></span><br><span class="line">--<span class="built_in">log</span>-prefix prefix     <span class="comment"># 日志前缀字符串</span></span><br><span class="line">--<span class="built_in">log</span>-tcp-sequence      <span class="comment"># 记录 TCP seq 序列号</span></span><br><span class="line">--<span class="built_in">log</span>-tcp-options       <span class="comment"># 记录 TCP options 选项</span></span><br><span class="line">--<span class="built_in">log</span>-ip-options        <span class="comment"># 记录 IP options 选项</span></span><br><span class="line">--<span class="built_in">log</span>-uid               <span class="comment"># 记录套接字相关联的 UID</span></span><br><span class="line">--<span class="built_in">log</span>-macdecode         <span class="comment"># 解析 MAC 地址和协议</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ULOG 防火墙日志，kernel 2.4+</span></span><br><span class="line">--ulog-nlgroup nlgroup  <span class="comment"># 记录的 NETLINK 组</span></span><br><span class="line">--ulog-cprange size     <span class="comment"># 要复制的字节数</span></span><br><span class="line">--ulog-qthreshold       <span class="comment"># 内核队列的消息阈值</span></span><br><span class="line">--ulog-prefix prefix    <span class="comment"># 日志前缀字符串</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># NFLOG 防火墙日志，kernel 2.6+</span></span><br><span class="line">--nflog-group NUM       <span class="comment"># 记录的 NETLINK 组</span></span><br><span class="line">--nflog-size NUM        <span class="comment"># 要复制的字节数</span></span><br><span class="line">--nflog-threshold NUM   <span class="comment"># 内核队列的消息阈值</span></span><br><span class="line">--nflog-prefix STRING   <span class="comment"># 日志前缀字符串</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SNAT 源地址转换，用在 POSTROUTING、INPUT 链</span></span><br><span class="line">--to-source [&lt;ipaddr&gt;[-&lt;ipaddr&gt;]][:port[-port]]</span><br><span class="line">--random        <span class="comment"># 映射到随机端口号</span></span><br><span class="line">--random-fully  <span class="comment"># 映射到随机端口号（PRNG 完全随机化）</span></span><br><span class="line">--persistent    <span class="comment"># 映射到固定地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># DNAT 目的地址转换，用在 PREROUTING、OUTPUT 链</span></span><br><span class="line">--to-destination [&lt;ipaddr&gt;[-&lt;ipaddr&gt;]][:port[-port]]</span><br><span class="line">--random        <span class="comment"># 映射到随机端口号</span></span><br><span class="line">--persistent    <span class="comment"># 映射到固定地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MASQUERADE 源地址转换（适用于 DHCP 动态 IP），用在 POSTROUTING 链</span></span><br><span class="line">--to-ports &lt;port&gt;[-&lt;port&gt;]  <span class="comment"># 映射到指定端口号[范围]</span></span><br><span class="line">--random                    <span class="comment"># 映射到随机端口号</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># REDIRECT 目的地址转换（重定向至 localhost:端口号），用在 PREROUTING、OUTPUT 链</span></span><br><span class="line">--to-ports &lt;port&gt;[-&lt;port&gt;]  <span class="comment"># 重定向到指定端口号[范围]</span></span><br><span class="line">--random                    <span class="comment"># 重定向到随机端口号</span></span><br></pre></td></tr></table></figure>
+<h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">### 命令用法 (man 文档)</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-A<span class="token operator">|</span>-C<span class="token operator">|</span>-D<span class="token punctuation">&#125;</span> chain rule-specification         <span class="token comment"># (ipv4) 追加|检查|删除 规则</span>
+ip6tables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-A<span class="token operator">|</span>-C<span class="token operator">|</span>-D<span class="token punctuation">&#125;</span> chain rule-specification        <span class="token comment"># (ipv6) 追加|检查|删除 规则</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -I chain <span class="token punctuation">[</span>rulenum<span class="token punctuation">]</span> rule-specification       <span class="token comment"># 在 rulenum 处插入规则 (默认为 1)</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -R chain rulenum rule-specification         <span class="token comment"># 替换第 rulenum 条规则</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -D chain rulenum                            <span class="token comment"># 删除第 rulenum 条规则</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -S <span class="token punctuation">[</span>chain <span class="token punctuation">[</span>rulenum<span class="token punctuation">]</span><span class="token punctuation">]</span>                        <span class="token comment"># 打印指定 table 的规则</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-F<span class="token operator">|</span>-L<span class="token operator">|</span>-Z<span class="token punctuation">&#125;</span> <span class="token punctuation">[</span>chain <span class="token punctuation">[</span>rulenum<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token punctuation">[</span>options<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 清空|列出|置零 链/规则</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -P chain target                             <span class="token comment"># 设置默认策略</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -N chain                                    <span class="token comment"># 新建自定义链</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -X <span class="token punctuation">[</span>chain<span class="token punctuation">]</span>                                  <span class="token comment"># 删除自定义链</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -E old-chain-name new-chain-name            <span class="token comment"># 重命名自定义链</span>
 
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iptables --<span class="built_in">help</span>             <span class="comment"># 查看 iptables 的帮助</span></span><br><span class="line">iptables -m 模块名 --<span class="built_in">help</span>    <span class="comment"># 查看指定模块的可用参数</span></span><br><span class="line">iptables -j 动作名 --<span class="built_in">help</span>    <span class="comment"># 查看指定动作的可用参数</span></span><br></pre></td></tr></table></figure>
+<span class="token comment">### 一般形式</span>
+iptables <span class="token punctuation">[</span>-t 表名<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-A<span class="token operator">|</span>I<span class="token operator">|</span>D<span class="token operator">|</span>R<span class="token punctuation">&#125;</span> 链名 <span class="token punctuation">[</span>规则号<span class="token punctuation">]</span> 匹配规则 -j 动作
 
-<h4 id="查看规则"><a href="#查看规则" class="headerlink" title="查看规则"></a>查看规则</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">iptables -nvL</span><br><span class="line">iptables -t nat -nvL</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示规则序号</span></span><br><span class="line">iptables -nvL INPUT --line-numbers</span><br><span class="line">iptables -t nat -nvL --line-numbers</span><br><span class="line">iptables -t nat -nvL PREROUTING --line-numbers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看规则的原始格式</span></span><br><span class="line">iptables -t filter -S</span><br><span class="line">iptables -t nat -S</span><br><span class="line">iptables -t mangle -S</span><br><span class="line">iptables -t raw -S</span><br></pre></td></tr></table></figure>
+<span class="token comment">### 查看帮助</span>
+iptables --help             <span class="token comment"># 查看 iptables 的帮助</span>
+iptables -m 模块名 --help   <span class="token comment"># 查看指定模块的可用参数</span>
+iptables -j 动作名 --help   <span class="token comment"># 查看指定动作的可用参数</span>
 
-<h4 id="设置默认规则"><a href="#设置默认规则" class="headerlink" title="设置默认规则"></a>设置默认规则</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iptables -P INPUT DROP     <span class="comment"># 配置默认丢弃访问的数据表</span></span><br><span class="line">iptables -P FORWARD DROP   <span class="comment"># 配置默认禁止转发</span></span><br><span class="line">iptables -P OUTPUT ACCEPT  <span class="comment"># 配置默认允许向外的请求</span></span><br></pre></td></tr></table></figure>
+<span class="token comment">### 持久化规则</span>
+<span class="token comment"># 在 RHEL/CentOS 中，默认规则文件为 /etc/sysconfig/iptables</span>
+<span class="token comment"># 在 iptables 服务启动时，默认会加载该配置文件中定义的规则</span>
+<span class="token comment"># 如果想要设置的规则在重启后有效，就需要保存规则到这个文件</span>
+<span class="token comment"># 使用这两个工具：iptables-save、iptables-restore 重定向即可</span>
+<span class="token comment">## 保存当前规则</span>
+iptables-save <span class="token operator">></span>/etc/sysconfig/iptables
+iptables-save <span class="token operator">></span>/etc/sysconfig/iptables.20171125
+<span class="token comment">## 恢复当前规则</span>
+iptables-restore <span class="token operator">&lt;</span>/etc/sysconfig/iptables
+iptables-restore <span class="token operator">&lt;</span>/etc/sysconfig/iptables.20171125
+
+<span class="token comment">### 命令和选项</span>
+-t              <span class="token comment"># 指定要操作的表，如果省略则默认为 filter 表</span>
+-A              <span class="token comment"># "追加" 一条规则，只能追加到末尾</span>
+-I              <span class="token comment"># "插入" 一条规则，如果省略序号则默认为 1</span>
+-R              <span class="token comment"># "替换" 一条规则，必须指定序号</span>
+-D              <span class="token comment"># "删除" 一条规则，必须指定序号</span>
+-C              <span class="token comment"># "检查" 规则是否存在，如果存在则返回 0</span>
+-P              <span class="token comment"># 设置链的 "默认策略"，nat 表不允许修改默认策略</span>
+-S              <span class="token comment"># "查看" 规则（原始格式）</span>
+-L              <span class="token comment"># "打印" 规则（友好格式）</span>
+-F              <span class="token comment"># 清空表中的规则并将包计数器、字节计数器置零</span>
+-Z              <span class="token comment"># 将某个链或某条规则的包计数器、字节计数器置零</span>
+-N              <span class="token comment"># 新建自定义链</span>
+-X              <span class="token comment"># 删除自定义链</span>
+-E              <span class="token comment"># 重命名自定义链</span>
+-n              <span class="token comment"># 以数字形式显示地址和端口</span>
+-v              <span class="token comment"># 在打印规则时显示详细信息</span>
+--line-numbers  <span class="token comment"># 在打印规则时显示规则序号</span>
+
+<span class="token comment">### 反向匹配</span>
+<span class="token comment"># 只需在选项前面使用 ! 即可，如: ! -s 192.168.0.0/16 表示除 192.168/16 外的源 IP</span>
+
+<span class="token comment">### 通用匹配</span>
+-s addr<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span> <span class="token comment"># 源 IP，可以有多个，使用逗号隔开，有多少个地址就有多少条规则</span>
+-d addr<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span> <span class="token comment"># 目的 IP，可以有多个，使用逗号隔开，有多少个地址就有多少条规则</span>
+-i input-nic<span class="token punctuation">[</span>+<span class="token punctuation">]</span>     <span class="token comment"># 数据包来自哪个网卡，+ 表示通配符</span>
+-o output-nic<span class="token punctuation">[</span>+<span class="token punctuation">]</span>    <span class="token comment"># 数据包送往哪个网卡，+ 表示通配符</span>
+-p <span class="token punctuation">&#123;</span>tcp<span class="token operator">|</span>udp<span class="token operator">|</span>udplite<span class="token operator">|</span>icmp<span class="token operator">|</span>icmpv6<span class="token operator">|</span>esp<span class="token operator">|</span>ah<span class="token operator">|</span>sctp<span class="token operator">|</span>mh<span class="token operator">|</span>all<span class="token punctuation">&#125;</span>
+                    <span class="token comment"># 指定匹配的协议，all 表示所有</span>
+
+<span class="token comment">### 隐式扩展匹配 (tcp/udp/icmp)</span>
+<span class="token comment">## tcp 扩展</span>
+--sport port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 源端口号，100:200 表示端口范围</span>
+--dport port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 目的端口号，100:200 表示端口范围</span>
+--tcp-flags mask comp   <span class="token comment"># TCP 标志位，flags=&#123;SYN|ACK|FIN|RST|URG|PSH|ALL|NONE&#125;</span>
+--syn                   <span class="token comment"># SYN 标志位，等同于 --tcp-flags SYN,RST,ACK,FIN SYN</span>
+--tcp-option number     <span class="token comment"># TCP 选项</span>
+
+<span class="token comment">## udp 扩展</span>
+--sport port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 源端口号</span>
+--dport port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 目的端口号</span>
+
+<span class="token comment">## icmp 扩展</span>
+--icmp-type name<span class="token punctuation">[</span>/code<span class="token punctuation">]</span> <span class="token comment"># icmp 类型，常用的两个: ping、pong，请求和应答</span>
+
+<span class="token comment">### 显式扩展匹配 (-m module-name)</span>
+<span class="token comment">## multiport 多端口</span>
+--sports port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 匹配多个源端口[范围]</span>
+--dports port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 匹配多个目的端口[范围]</span>
+--ports port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>    <span class="token comment"># 匹配多个源和目的端口[范围]</span>
+
+<span class="token comment">## owner 所属用户(组)</span>
+--uid-owner userid<span class="token punctuation">[</span>-userid<span class="token punctuation">]</span>     <span class="token comment"># 匹配 UID[范围]/username</span>
+--gid-owner groupid<span class="token punctuation">[</span>-groupid<span class="token punctuation">]</span>   <span class="token comment"># 匹配 GID[范围]/groupname</span>
+--socket-exists                 <span class="token comment"># 匹配与套接字相关联的数据包</span>
+
+<span class="token comment">## state 连接状态(基本)</span>
+--state <span class="token punctuation">[</span>INVALID<span class="token operator">|</span>ESTABLISHED<span class="token operator">|</span>NEW<span class="token operator">|</span>RELATED<span class="token operator">|</span>UNTRACKED<span class="token punctuation">]</span><span class="token punctuation">[</span>,<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+<span class="token comment"># NEW           新连接</span>
+<span class="token comment"># ESTABLISHED   已建立的连接</span>
+<span class="token comment"># RELATED       关联的连接，如 ftp</span>
+<span class="token comment"># INVALID       无效/非法的连接</span>
+<span class="token comment"># UNTRACKED     未启用连接跟踪的连接</span>
+
+<span class="token comment">## conntrack 连接状态</span>
+--ctstate <span class="token punctuation">&#123;</span>INVALID<span class="token operator">|</span>ESTABLISHED<span class="token operator">|</span>NEW<span class="token operator">|</span>RELATED<span class="token operator">|</span>UNTRACKED<span class="token operator">|</span>SNAT<span class="token operator">|</span>DNAT<span class="token punctuation">&#125;</span><span class="token punctuation">[</span>,<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+
+<span class="token comment">## iprange IP范围</span>
+--src-range ip<span class="token punctuation">[</span>-ip<span class="token punctuation">]</span>     <span class="token comment"># 匹配指定的源 IP 范围</span>
+--dst-range ip<span class="token punctuation">[</span>-ip<span class="token punctuation">]</span>     <span class="token comment"># 匹配指定的目的 IP 范围</span>
+
+<span class="token comment">## mac 源MAC地址</span>
+--mac-source XX:XX:XX:XX:XX:XX  <span class="token comment"># 匹配源 MAC 地址</span>
+
+<span class="token comment">## addrtype 地址类型</span>
+--src-type type<span class="token punctuation">[</span>,<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 匹配 source ip 地址的类型</span>
+--dst-type type<span class="token punctuation">[</span>,<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 匹配 destination ip 地址的类型</span>
+<span class="token comment"># UNSPEC       未指定的地址，如 0.0.0.0</span>
+<span class="token comment"># UNICAST      单播地址</span>
+<span class="token comment"># LOCAL        本机地址</span>
+<span class="token comment"># BROADCAST    广播地址</span>
+<span class="token comment"># ANYCAST      任播地址</span>
+<span class="token comment"># MULTICAST    多播地址</span>
+<span class="token comment"># BLACKHOLE    黑洞地址</span>
+<span class="token comment"># UNREACHABLE  不可达地址</span>
+<span class="token comment"># PROHIBIT     禁止访问的地址</span>
+
+<span class="token comment">## time 时间</span>
+--datestart <span class="token function">time</span>     <span class="token comment"># 起始日期 YYYY[-MM[-DD[Thh[:mm[:ss]]]]]</span>
+--datestop <span class="token function">time</span>      <span class="token comment"># 结束日期 YYYY[-MM[-DD[Thh[:mm[:ss]]]]]</span>
+--timestart <span class="token function">time</span>     <span class="token comment"># 起始时间 hh:mm[:ss]</span>
+--timestop <span class="token function">time</span>      <span class="token comment"># 结束时间 hh:mm[:ss]</span>
+--monthdays value    <span class="token comment"># 几号，1 至 31，默认为 all</span>
+--weekdays value     <span class="token comment"># 星期几，1 至 7，默认为 all</span>
+--kerneltz           <span class="token comment"># 使用内核时区而非 UTC</span>
+
+<span class="token comment">## string 关键字匹配</span>
+--from offset       <span class="token comment"># 设置起始偏移量</span>
+--to offset         <span class="token comment"># 设置结束偏移量</span>
+--algo <span class="token punctuation">&#123;</span>bm<span class="token operator">|</span>kmp<span class="token punctuation">&#125;</span>     <span class="token comment"># 指定使用的算法</span>
+--icase             <span class="token comment"># 忽略大小写匹配</span>
+--string string     <span class="token comment"># 要匹配的字符串</span>
+--hex-string string <span class="token comment"># 要匹配的字符串，十六进制</span>
+
+<span class="token comment">## length 数据包大小</span>
+--length length<span class="token punctuation">[</span>:length<span class="token punctuation">]</span>    <span class="token comment"># 匹配数据包大小[范围]</span>
+
+<span class="token comment">## mark 防火墙标记</span>
+--mark value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>     <span class="token comment"># 匹配有指定防火墙标记的数据包</span>
+
+<span class="token comment">## connmark "连接"标记</span>
+--mark value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>     <span class="token comment"># 如果当前数据包所属的"连接"打了给定的标记，则匹配成功</span>
+
+<span class="token comment">## limit 速率限制</span>
+--limit avg             <span class="token comment"># 平均速率限制，如 3/hour，单位: sec|minute|hour|day</span>
+--limit-burst number    <span class="token comment"># 封顶速率限制，默认为 5</span>
+
+<span class="token comment">## connlimit 并发连接数</span>
+--connlimit-upto n      <span class="token comment"># 0..n</span>
+--connlimit-above n     <span class="token comment"># > n</span>
+
+<span class="token comment">### -j target 动作</span>
+<span class="token comment">## 无参数系列</span>
+ACCEPT      <span class="token comment"># 接收数据包</span>
+DROP        <span class="token comment"># 丢弃数据包</span>
+CUST-CHAIN  <span class="token comment"># 进入自定义链</span>
+RETURN      <span class="token comment"># 退出当前链，分两种情况：</span>
+            <span class="token comment"># 如果当前链是自定义链，则返回调用链，继续匹配调用点的下一条规则</span>
+            <span class="token comment"># 如果当前链不是自定义链，则执行当前链的默认策略，如 ACCEPT、DROP</span>
+
+<span class="token comment">## 带参数系列</span>
+<span class="token comment"># REJECT 拒绝（带原因）</span>
+--reject-with <span class="token builtin class-name">type</span>              <span class="token comment"># 丢弃数据包，并回复源主机，可用的 type 如下：</span>
+    icmp-net-unreachable        <span class="token comment"># ICMP 网络不可达</span>
+    net-unreach                 <span class="token comment"># 同上，别名</span>
+    icmp-host-unreachable       <span class="token comment"># ICMP 主机不可达</span>
+    host-unreach                <span class="token comment"># 同上，别名</span>
+    icmp-proto-unreachable      <span class="token comment"># ICMP 协议不可达</span>
+    proto-unreach               <span class="token comment"># 同上，别名</span>
+    icmp-port-unreachable       <span class="token comment"># ICMP 端口不可达（默认）</span>
+    port-unreach                <span class="token comment"># 同上，别名</span>
+    icmp-net-prohibited         <span class="token comment"># ICMP 网络限制</span>
+    net-prohib                  <span class="token comment"># 同上，别名</span>
+    icmp-host-prohibited        <span class="token comment"># ICMP 主机限制</span>
+    host-prohib                 <span class="token comment"># 同上，别名</span>
+    icmp-admin-prohibited       <span class="token comment"># ICMP 管理员限制</span>
+    admin-prohib                <span class="token comment"># 同上，别名</span>
+    tcp-reset                   <span class="token comment"># TCP RST 连接重置</span>
+    tcp-rst                     <span class="token comment"># 同上，别名</span>
+
+<span class="token comment"># MARK 打防火墙标记</span>
+--set-mark value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>   <span class="token comment"># 设置标记，mask OR value（推荐）</span>
+--set-xmark value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>  <span class="token comment"># 设置标记，mask XOR value</span>
+--and-mark bits           <span class="token comment"># 设置二进制标记，AND</span>
+--or-mark bits            <span class="token comment"># 设置二进制标记，OR</span>
+--xor-mask bits           <span class="token comment"># 设置二进制标记，XOR</span>
+
+<span class="token comment"># CONNMARK 打"连接"标记</span>
+--set-mark value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>       <span class="token comment"># 设置当前数据包所属连接的连接标记</span>
+--save-mark <span class="token punctuation">[</span>--mask mask<span class="token punctuation">]</span>     <span class="token comment"># 将当前数据包的标记作为其所属连接的标记</span>
+--restore-mark <span class="token punctuation">[</span>--mask mask<span class="token punctuation">]</span>  <span class="token comment"># 将当前数据包所属连接的标记作为该数据包的标记</span>
+
+<span class="token comment"># LOG 防火墙日志，dmesg 可查看</span>
+--log-level level       <span class="token comment"># 日志级别（syslog.conf）</span>
+--log-prefix prefix     <span class="token comment"># 日志前缀字符串</span>
+--log-tcp-sequence      <span class="token comment"># 记录 TCP seq 序列号</span>
+--log-tcp-options       <span class="token comment"># 记录 TCP options 选项</span>
+--log-ip-options        <span class="token comment"># 记录 IP options 选项</span>
+--log-uid               <span class="token comment"># 记录套接字相关联的 UID</span>
+--log-macdecode         <span class="token comment"># 解析 MAC 地址和协议</span>
+
+<span class="token comment"># ULOG 防火墙日志，kernel 2.4+</span>
+--ulog-nlgroup nlgroup  <span class="token comment"># 记录的 NETLINK 组</span>
+--ulog-cprange size     <span class="token comment"># 要复制的字节数</span>
+--ulog-qthreshold       <span class="token comment"># 内核队列的消息阈值</span>
+--ulog-prefix prefix    <span class="token comment"># 日志前缀字符串</span>
+
+<span class="token comment"># NFLOG 防火墙日志，kernel 2.6+</span>
+--nflog-group NUM       <span class="token comment"># 记录的 NETLINK 组</span>
+--nflog-size NUM        <span class="token comment"># 要复制的字节数</span>
+--nflog-threshold NUM   <span class="token comment"># 内核队列的消息阈值</span>
+--nflog-prefix STRING   <span class="token comment"># 日志前缀字符串</span>
+
+<span class="token comment"># SNAT 源地址转换，用在 POSTROUTING、INPUT 链</span>
+--to-source <span class="token punctuation">[</span><span class="token operator">&lt;</span>ipaddr<span class="token operator">></span><span class="token punctuation">[</span>-<span class="token operator">&lt;</span>ipaddr<span class="token operator">></span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>:port<span class="token punctuation">[</span>-port<span class="token punctuation">]</span><span class="token punctuation">]</span>
+--random        <span class="token comment"># 映射到随机端口号</span>
+--random-fully  <span class="token comment"># 映射到随机端口号（PRNG 完全随机化）</span>
+--persistent    <span class="token comment"># 映射到固定地址</span>
+
+<span class="token comment"># DNAT 目的地址转换，用在 PREROUTING、OUTPUT 链</span>
+--to-destination <span class="token punctuation">[</span><span class="token operator">&lt;</span>ipaddr<span class="token operator">></span><span class="token punctuation">[</span>-<span class="token operator">&lt;</span>ipaddr<span class="token operator">></span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>:port<span class="token punctuation">[</span>-port<span class="token punctuation">]</span><span class="token punctuation">]</span>
+--random        <span class="token comment"># 映射到随机端口号</span>
+--persistent    <span class="token comment"># 映射到固定地址</span>
+
+<span class="token comment"># MASQUERADE 源地址转换（适用于 DHCP 动态 IP），用在 POSTROUTING 链</span>
+--to-ports <span class="token operator">&lt;</span>port<span class="token operator">></span><span class="token punctuation">[</span>-<span class="token operator">&lt;</span>port<span class="token operator">></span><span class="token punctuation">]</span>  <span class="token comment"># 映射到指定端口号[范围]</span>
+--random                    <span class="token comment"># 映射到随机端口号</span>
+
+<span class="token comment"># REDIRECT 目的地址转换（重定向至 localhost:端口号），用在 PREROUTING、OUTPUT 链</span>
+--to-ports <span class="token operator">&lt;</span>port<span class="token operator">></span><span class="token punctuation">[</span>-<span class="token operator">&lt;</span>port<span class="token operator">></span><span class="token punctuation">]</span>  <span class="token comment"># 重定向到指定端口号[范围]</span>
+--random                    <span class="token comment"># 重定向到随机端口号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables --help             <span class="token comment"># 查看 iptables 的帮助</span>
+iptables -m 模块名 --help    <span class="token comment"># 查看指定模块的可用参数</span>
+iptables -j 动作名 --help    <span class="token comment"># 查看指定动作的可用参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="查看规则"><a href="#查看规则" class="headerlink" title="查看规则"></a>查看规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -nvL
+iptables -t nat -nvL
+
+<span class="token comment"># 显示规则序号</span>
+iptables -nvL INPUT --line-numbers
+iptables -t nat -nvL --line-numbers
+iptables -t nat -nvL PREROUTING --line-numbers
+
+<span class="token comment"># 查看规则的原始格式</span>
+iptables -t filter -S
+iptables -t nat -S
+iptables -t mangle -S
+iptables -t raw -S<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="设置默认规则"><a href="#设置默认规则" class="headerlink" title="设置默认规则"></a>设置默认规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -P INPUT DROP     <span class="token comment"># 配置默认丢弃访问的数据表</span>
+iptables -P FORWARD DROP   <span class="token comment"># 配置默认禁止转发</span>
+iptables -P OUTPUT ACCEPT  <span class="token comment"># 配置默认允许向外的请求</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="清除所有规则"><a href="#清除所有规则" class="headerlink" title="清除所有规则"></a>清除所有规则</h4><p>注意，在使用的时候</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">iptables -F  <span class="comment"># 清空表中所有的规则</span></span><br><span class="line">iptables -X  <span class="comment"># 删除表中用户自定义的链</span></span><br><span class="line">iptables -Z  <span class="comment"># 清空计数</span></span><br><span class="line"></span><br><span class="line">iptables -t nat -F</span><br><span class="line">iptables -t nat -X</span><br><span class="line">iptables -t mangle -F</span><br><span class="line">iptables -t mangle -X</span><br><span class="line">iptables -t raw -F</span><br><span class="line">iptables -t raw -X</span><br><span class="line">iptables -t security -F</span><br><span class="line">iptables -t security -X</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -F  <span class="token comment"># 清空表中所有的规则</span>
+iptables -X  <span class="token comment"># 删除表中用户自定义的链</span>
+iptables -Z  <span class="token comment"># 清空计数</span>
 
-<h4 id="增加规则"><a href="#增加规则" class="headerlink" title="增加规则"></a>增加规则</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加一条规则到最后</span></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注：以下几条操作都需要使用规则的序号，需要使用 -L --line-numbers 参数先查看规则的顺序号</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加一条规则到指定位置</span></span><br><span class="line">iptables -I INPUT 2 -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -t raw -F
+iptables -t raw -X
+iptables -t security -F
+iptables -t security -X<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="删除规则"><a href="#删除规则" class="headerlink" title="删除规则"></a>删除规则</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将所有 iptables 以序号标记显示</span></span><br><span class="line">iptables -L -n --line-numbers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据规则的序号来删除</span></span><br><span class="line">iptabels -D INPUT <span class="variable">$&#123;line-numbers&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="增加规则"><a href="#增加规则" class="headerlink" title="增加规则"></a>增加规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 增加一条规则到最后</span>
+iptables -A INPUT -i eth0 -p tcp --dport <span class="token number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT
 
-<h4 id="修改规则"><a href="#修改规则" class="headerlink" title="修改规则"></a>修改规则</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -R INPUT 3 -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+<span class="token comment"># 注：以下几条操作都需要使用规则的序号，需要使用 -L --line-numbers 参数先查看规则的顺序号</span>
 
-<h4 id="开放指定端口"><a href="#开放指定端口" class="headerlink" title="开放指定端口"></a>开放指定端口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 允许本地回环接口(即运行本机访问本机)</span></span><br><span class="line">iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许已建立的或相关连接的通行</span></span><br><span class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许所有本机向外的访问</span></span><br><span class="line">iptables -A OUTPUT -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许 22,80,443 端口的访问</span></span><br><span class="line">iptables -A INPUT -p tcp --dport 22 -j ACCEPT</span><br><span class="line">iptables -A INPUT -p tcp --dports 80,443 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许 ping</span></span><br><span class="line">iptables -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁止 ping</span></span><br><span class="line">iptables -A INPUT -p icmp -m icmp --icmp-type 8 -j DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁止其他未允许的规则访问</span></span><br><span class="line">iptables -A INPUT -j REJECT</span><br><span class="line">iptables -A FORWARD -j REJECT</span><br></pre></td></tr></table></figure>
+<span class="token comment"># 添加一条规则到指定位置</span>
+iptables -I INPUT <span class="token number">2</span> -i eth0 -p tcp --dport <span class="token number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="设置白名单"><a href="#设置白名单" class="headerlink" title="设置白名单"></a>设置白名单</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 允许机房内网机器可以访问</span></span><br><span class="line">iptables -A INPUT -p all -s 10.10.10.0/24 -j ACCEPT</span><br><span class="line"><span class="comment"># 允许 10.10.10.22 访问本机的 22 端口</span></span><br><span class="line">iptables -A INPUT -p tcp -s 10.10.10.22 --dport 22 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h4 id="删除规则"><a href="#删除规则" class="headerlink" title="删除规则"></a>删除规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将所有 iptables 以序号标记显示</span>
+iptables -L -n --line-numbers
 
-<h4 id="屏蔽某-IP"><a href="#屏蔽某-IP" class="headerlink" title="屏蔽某 IP"></a>屏蔽某 IP</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 屏蔽恶意主机（比如，114.114.114.114)</span></span><br><span class="line">iptables -A INPUT -p tcp -m tcp -s 114.114.114.114 -j DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># 屏蔽单个IP的命令</span></span><br><span class="line">iptables -I INPUT -s 123.45.6.7 -j DROP</span><br><span class="line"></span><br><span class="line"><span class="comment">#封整个段即从 10.10.10.1 到 10.10.10.254的命令</span></span><br><span class="line">iptables -I INPUT -s 10.10.10.0/24 -j DROP</span><br></pre></td></tr></table></figure>
+<span class="token comment"># 根据规则的序号来删除</span>
+iptabels -D INPUT <span class="token variable">$&#123;line-numbers&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="指定数据包出去的网络接口"><a href="#指定数据包出去的网络接口" class="headerlink" title="指定数据包出去的网络接口"></a>指定数据包出去的网络接口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只对 OUTPUT，FORWARD，POSTROUTING 三个链起作用</span></span><br><span class="line">iptables -A FORWARD -o eth0</span><br></pre></td></tr></table></figure>
+<h4 id="修改规则"><a href="#修改规则" class="headerlink" title="修改规则"></a>修改规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -R INPUT <span class="token number">3</span> -i eth0 -p tcp --dport <span class="token number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h4 id="防止-SYN-洪水攻击"><a href="#防止-SYN-洪水攻击" class="headerlink" title="防止 SYN 洪水攻击"></a>防止 SYN 洪水攻击</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -p tcp --syn -m <span class="built_in">limit</span> --<span class="built_in">limit</span> 5/second -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h4 id="开放指定端口"><a href="#开放指定端口" class="headerlink" title="开放指定端口"></a>开放指定端口</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 允许本地回环接口(即运行本机访问本机)</span>
+iptables -A INPUT -i lo -j ACCEPT
 
-<h4 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本机的 2222 端口映射到内网虚拟机的22 端口</span></span><br><span class="line">iptables -t nat -A PREROUTING -d 223.6.6.6 -p tcp --dport 2222  -j DNAT --to-dest 10.10.10.22:22</span><br></pre></td></tr></table></figure>
+<span class="token comment"># 允许已建立的或相关连接的通行</span>
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
-<h4 id="持久化规则："><a href="#持久化规则：" class="headerlink" title="持久化规则："></a>持久化规则：</h4><p><strong>RHEL/CentOS</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 运维千万条，备份第一条，操作不规范，数据全完蛋(大雾</span></span><br><span class="line">cp /etc/sysconfig/iptables&#123;，.bak&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存当前规则</span></span><br><span class="line">iptables-save &gt; /etc/sysconfig/iptables</span><br><span class="line">cat /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复备份规则</span></span><br><span class="line">iptables-restore &lt; iptables</span><br></pre></td></tr></table></figure>
+<span class="token comment"># 允许所有本机向外的访问</span>
+iptables -A OUTPUT -j ACCEPT
 
-<p><strong>Debian/Ubuntu</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份当前规则</span></span><br><span class="line">cp /etc/iptables/rules.v4&#123;,.bak&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 持久化当前规则</span></span><br><span class="line">iptables-save &gt; /etc/iptables/rules.v4</span><br></pre></td></tr></table></figure>
+<span class="token comment"># 允许 22,80,443 端口的访问</span>
+iptables -A INPUT -p tcp --dport <span class="token number">22</span> -j ACCEPT
+iptables -A INPUT -p tcp --dports <span class="token number">80,443</span> -j ACCEPT
+
+<span class="token comment"># 允许 ping</span>
+iptables -A INPUT -p icmp -m icmp --icmp-type <span class="token number">8</span> -j ACCEPT
+
+<span class="token comment"># 禁止 ping</span>
+iptables -A INPUT -p icmp -m icmp --icmp-type <span class="token number">8</span> -j DROP
+
+<span class="token comment"># 禁止其他未允许的规则访问</span>
+iptables -A INPUT -j REJECT
+iptables -A FORWARD -j REJECT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="设置白名单"><a href="#设置白名单" class="headerlink" title="设置白名单"></a>设置白名单</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 允许机房内网机器可以访问</span>
+iptables -A INPUT -p all -s <span class="token number">10.10</span>.10.0/24 -j ACCEPT
+<span class="token comment"># 允许 10.10.10.22 访问本机的 22 端口</span>
+iptables -A INPUT -p tcp -s <span class="token number">10.10</span>.10.22 --dport <span class="token number">22</span> -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="屏蔽某-IP"><a href="#屏蔽某-IP" class="headerlink" title="屏蔽某 IP"></a>屏蔽某 IP</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"> <span class="token comment"># 屏蔽恶意主机（比如，114.114.114.114)</span>
+iptables -A INPUT -p tcp -m tcp -s <span class="token number">114.114</span>.114.114 -j DROP
+
+<span class="token comment"># 屏蔽单个IP的命令</span>
+iptables -I INPUT -s <span class="token number">123.45</span>.6.7 -j DROP
+
+<span class="token comment">#封整个段即从 10.10.10.1 到 10.10.10.254的命令</span>
+iptables -I INPUT -s <span class="token number">10.10</span>.10.0/24 -j DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="指定数据包出去的网络接口"><a href="#指定数据包出去的网络接口" class="headerlink" title="指定数据包出去的网络接口"></a>指定数据包出去的网络接口</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 只对 OUTPUT，FORWARD，POSTROUTING 三个链起作用</span>
+iptables -A FORWARD -o eth0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="防止-SYN-洪水攻击"><a href="#防止-SYN-洪水攻击" class="headerlink" title="防止 SYN 洪水攻击"></a>防止 SYN 洪水攻击</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -A INPUT -p tcp --syn -m limit --limit <span class="token number">5</span>/second -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 本机的 2222 端口映射到内网虚拟机的22 端口</span>
+iptables -t nat -A PREROUTING -d <span class="token number">223.6</span>.6.6 -p tcp --dport <span class="token number">2222</span>  -j DNAT --to-dest <span class="token number">10.10</span>.10.22:22<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="持久化规则："><a href="#持久化规则：" class="headerlink" title="持久化规则："></a>持久化规则：</h4><p><strong>RHEL&#x2F;CentOS</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 运维千万条，备份第一条，操作不规范，数据全完蛋(大雾</span>
+<span class="token function">cp</span> /etc/sysconfig/iptables<span class="token punctuation">&#123;</span>，.bak<span class="token punctuation">&#125;</span>
+
+<span class="token comment"># 保存当前规则</span>
+iptables-save <span class="token operator">></span> /etc/sysconfig/iptables
+<span class="token function">cat</span> /etc/sysconfig/iptables
+
+<span class="token comment"># 恢复备份规则</span>
+iptables-restore <span class="token operator">&lt;</span> iptables<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>Debian&#x2F;Ubuntu</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 备份当前规则</span>
+<span class="token function">cp</span> /etc/iptables/rules.v4<span class="token punctuation">&#123;</span>,.bak<span class="token punctuation">&#125;</span>
+
+<span class="token comment"># 持久化当前规则</span>
+iptables-save <span class="token operator">></span> /etc/iptables/rules.v4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="切记"><a href="#切记" class="headerlink" title="切记"></a>切记</h4><p>在操作 iptables 规则时一定要主要先后顺序，因为链上的规则是一条条规则遍历下来的，所以顺序出错的话，iptables 作用的效果也有可能不一样的哦。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="http://cxd2014.github.io/2017/08/15/connection-tracking-system/" target="_blank" rel="noopener">Linux 协议栈–连接跟踪源码分析</a></li>
-<li><a href="https://github.com/OSH-2019/x-xdp-on-android/blob/master/docs/research.md" target="_blank" rel="noopener">x-xdp-on-android</a></li>
-<li><a href="http://abcdxyzk.github.io/blog/2015/03/04/kernel-net-ip/" target="_blank" rel="noopener">linux TCP/IP 协议栈-IP 层</a></li>
-<li><a href="https://nieyong.github.io/wiki_cpu/CPU%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84-DMA.html" target="_blank" rel="noopener">CPU 体系架构 DMA</a></li>
-<li><a href="http://blog.konghy.cn/2019/07/21/iptables/" target="_blank" rel="noopener">iptables 使用方式整理</a></li>
-<li><a href="https://wiki.archlinux.org/index.php/Iptables_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" target="_blank" rel="noopener">Archlinux：Iptables</a></li>
-<li><a href="https://windard.com/opinion/2016/10/15/About-Iptables" target="_blank" rel="noopener">iptables 防火墙基本配置和使用</a></li>
-<li><a href="http://www.ha97.com/3928.html" target="_blank" rel="noopener">Linux 的 iptables 常用配置范例（1）</a></li>
-<li><a href="https://www.bennythink.com/ufw-iptables.html" target="_blank" rel="noopener">开启 ufw 导致断网不能 ping? ufw 和 iptables 的那些坑</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/93630586" target="_blank" rel="noopener">Linux 网络层收发包流程及 Netfilter 框架浅析</a></li>
-<li><a href="http://www.mikewootc.com/wiki/linux/usage/linux_firewall_iptables_intro.html" target="_blank" rel="noopener">Linux 防火墙与 iptables 介绍</a></li>
-<li><a href="https://www.zfl9.com/iptables.html" target="_blank" rel="noopener">iptables 详解</a></li>
+<li><a target="_blank" rel="noopener" href="http://cxd2014.github.io/2017/08/15/connection-tracking-system/">Linux 协议栈–连接跟踪源码分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/OSH-2019/x-xdp-on-android/blob/master/docs/research.md">x-xdp-on-android</a></li>
+<li><a target="_blank" rel="noopener" href="http://abcdxyzk.github.io/blog/2015/03/04/kernel-net-ip/">linux TCP&#x2F;IP 协议栈-IP 层</a></li>
+<li><a target="_blank" rel="noopener" href="https://nieyong.github.io/wiki_cpu/CPU%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84-DMA.html">CPU 体系架构 DMA</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.konghy.cn/2019/07/21/iptables/">iptables 使用方式整理</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Iptables_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Archlinux：Iptables</a></li>
+<li><a target="_blank" rel="noopener" href="https://windard.com/opinion/2016/10/15/About-Iptables">iptables 防火墙基本配置和使用</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ha97.com/3928.html">Linux 的 iptables 常用配置范例（1）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bennythink.com/ufw-iptables.html">开启 ufw 导致断网不能 ping? ufw 和 iptables 的那些坑</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/93630586">Linux 网络层收发包流程及 Netfilter 框架浅析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.mikewootc.com/wiki/linux/usage/linux_firewall_iptables_intro.html">Linux 防火墙与 iptables 介绍</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zfl9.com/iptables.html">iptables 详解</a></li>
 </ul>
 
     </div>
@@ -625,216 +1084,89 @@
     
     
 
-      <footer class="post-footer">
-          
+    <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Linux-%E7%BD%91%E7%BB%9C/" rel="tag"><i class="fa fa-tag"></i> Linux 网络</a>
-              <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99/" rel="tag"><i class="fa fa-tag"></i> 防火墙</a>
+              <a href="/tags/Linux-%E7%BD%91%E7%BB%9C/" rel="tag"># Linux 网络</a>
+              <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99/" rel="tag"># 防火墙</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/k8s-01.html" rel="prev" title="kubernets 相关技术调研">
-      <i class="fa fa-chevron-left"></i> kubernets 相关技术调研
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/oh-my-webpsh.html" rel="next" title="让图片飞起来 oh-my-webp.sh ！">
-      让图片飞起来 oh-my-webp.sh ！ <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/k8s-01.html" rel="prev" title="kubernets 相关技术调研">
+                  <i class="fa fa-chevron-left"></i> kubernets 相关技术调研
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/oh-my-webpsh.html" rel="next" title="让图片飞起来 oh-my-webp.sh ！">
+                  让图片飞起来 oh-my-webp.sh ！ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
-
-  </div>
+</div>
 
 
-          </div>
-          
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-协议栈"><span class="nav-number">1.</span> <span class="nav-text">Linux 协议栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#收包流程"><span class="nav-number">1.1.</span> <span class="nav-text">收包流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发包流程"><span class="nav-number">1.2.</span> <span class="nav-text">发包流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙"><span class="nav-number">2.</span> <span class="nav-text">防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iptales"><span class="nav-number">2.1.</span> <span class="nav-text">iptales</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netfilter"><span class="nav-number">2.2.</span> <span class="nav-text">netfilter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系"><span class="nav-number">2.3.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据包流程"><span class="nav-number">2.4.</span> <span class="nav-text">数据包流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历链流程图"><span class="nav-number">2.5.</span> <span class="nav-text">遍历链流程图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables-实战"><span class="nav-number">3.</span> <span class="nav-text">iptables 实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令选项"><span class="nav-number">3.1.</span> <span class="nav-text">命令选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配选项"><span class="nav-number">3.2.</span> <span class="nav-text">匹配选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作选项"><span class="nav-number">3.3.</span> <span class="nav-text">操作选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令详解"><span class="nav-number">3.4.</span> <span class="nav-text">命令详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">3.5.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -842,51 +1174,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/linux-net-and-iptables.html",
-            identifier: "linux-net-and-iptables.html",
-            title: "Linux 网络和 iptables 运行原理"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

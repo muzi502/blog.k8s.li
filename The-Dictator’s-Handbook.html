@@ -2,264 +2,286 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="今年年初的时候，在栋叔（软件那些事儿电台博主、绿帽子大学校长、钢管舞演员、滴滴车司机）群里见到他推荐的这本书《独裁者手册》。最近一个月才抽空花了 10 个小时读完了它，在此记录一下（大部分内容照抄自原文）： PS：栋叔是个很有趣的中年油腻老男人，这是他博客栋哥的博客，在微信公众号叫 软件那些事儿，还有他的绿帽子大学 个人评价这本书最主要的还是从统治的三个维度来分析专制国家和民主国家的区别，以及一些">
-<meta property="og:type" content="article">
+    <meta name="description" content="今年年初的时候，在栋叔（软件那些事儿电台博主、绿帽子大学校长、钢管舞演员、滴滴车司机）群里见到他推荐的这本书《独裁者手册》。最近一个月才抽空花了 10 个小时读完了它，在此记录一下（大部分内容照抄自原文）： PS：栋叔是个很有趣的中年油腻老男人，这是他博客栋哥的博客，在微信公众号叫 软件那些事儿，还有他的绿帽子大学 个人评价这本书最主要的还是从统治的三个维度来分析专制国家和民主国家的区别，以及一些">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="独裁者手册读书笔记">
 <meta property="og:url" content="https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
 <meta property="og:description" content="今年年初的时候，在栋叔（软件那些事儿电台博主、绿帽子大学校长、钢管舞演员、滴滴车司机）群里见到他推荐的这本书《独裁者手册》。最近一个月才抽空花了 10 个小时读完了它，在此记录一下（大部分内容照抄自原文）： PS：栋叔是个很有趣的中年油腻老男人，这是他博客栋哥的博客，在微信公众号叫 软件那些事儿，还有他的绿帽子大学 个人评价这本书最主要的还是从统治的三个维度来分析专制国家和民主国家的区别，以及一些">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-09-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-30T00:21:08.259Z">
-<meta property="article:author" content="木子">
-<meta property="article:tag" content="life">
-<meta property="article:tag" content="阅读">
+<meta property="article:modified_time" content="2022-05-01T12:37:56.452Z">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="life">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>独裁者手册读书笔记 | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html","path":"The-Dictator’s-Handbook.html","title":"独裁者手册读书笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>独裁者手册读书笔记 | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E8%AF%84%E4%BB%B7"><span class="nav-number">1.</span> <span class="nav-text">个人评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">内容简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E8%80%85%E7%AE%80%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">作者简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BD%E7%BA%A6%E6%97%B6%E6%8A%A5%E4%B8%AD%E6%96%87%E7%BD%91%E4%B9%A6%E8%AF%84"><span class="nav-number">4.</span> <span class="nav-text">纽约时报中文网书评</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%BF%E6%B2%BB%E7%9A%84%E4%B8%89%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="nav-number">5.</span> <span class="nav-text">政治的三个维度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8D%E4%B9%89%E9%80%89%E6%8B%A9%E4%BA%BA%E9%9B%86%E5%9B%A2"><span class="nav-number">5.1.</span> <span class="nav-text">名义选择人集团</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E9%80%89%E6%8B%A9%E4%BA%BA%E9%9B%86%E5%9B%A2"><span class="nav-number">5.2.</span> <span class="nav-text">实际选择人集团</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%B4%E8%83%9C%E8%81%94%E7%9B%9F"><span class="nav-number">5.3.</span> <span class="nav-text">致胜联盟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E4%B8%80%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="nav-number">5.4.</span> <span class="nav-text">补充一个维度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%BB%B4%E6%94%BF%E6%B2%BB%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">5.5.</span> <span class="nav-text">三维政治的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E7%AB%A0%E8%8A%82"><span class="nav-number">6.</span> <span class="nav-text">本书章节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E3%80%81%E6%94%BF%E6%B2%BB%E7%9A%84%E6%B3%95%E5%88%99"><span class="nav-number">6.1.</span> <span class="nav-text">一 、政治的法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8A%E5%8F%B0"><span class="nav-number">6.2.</span> <span class="nav-text">二、上台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%8E%8C%E6%9D%83"><span class="nav-number">6.3.</span> <span class="nav-text">三、掌权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%AA%83%E8%B4%AB%E6%B5%8E%E5%AF%8C"><span class="nav-number">6.4.</span> <span class="nav-text">四、窃贫济富</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%8E%B7%E5%8F%96%E4%B8%8E%E8%8A%B1%E8%B4%B9"><span class="nav-number">6.5.</span> <span class="nav-text">五、获取与花费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E8%85%90%E8%B4%A5"><span class="nav-number">6.6.</span> <span class="nav-text">六、腐败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AF%B9%E5%A4%96%E6%8F%B4%E5%8A%A9"><span class="nav-number">6.7.</span> <span class="nav-text">七、对外援助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81-%E5%8F%8D%E5%8F%9B%E4%B8%AD%E7%9A%84%E4%BA%BA%E6%B0%91"><span class="nav-number">6.8.</span> <span class="nav-text">八、 反叛中的人民</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%88%98%E4%BA%89%EF%BC%8C%E5%92%8C%E5%B9%B3%E4%B8%8E%E4%B8%96%E7%95%8C%E7%A7%A9%E5%BA%8F"><span class="nav-number">6.9.</span> <span class="nav-text">九、战争，和平与世界秩序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">6.10.</span> <span class="nav-text">十、怎么办？</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div class="posts-expand">
-      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="独裁者手册读书笔记 | Reimu's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           独裁者手册读书笔记
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-09-18 2019-09-18T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-09-18T00:00:00+08:00">2019-09-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 2022-04-30T08:21:08+08:00" itemprop="dateModified" datetime="2022-04-30T08:21:08+08:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%98%85%E8%AF%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">阅读</span>
-                  </a>
-                </span>
-            </span>
+      <time title="创建时间：2019-09-18 2019-09-18T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2019-09-18T00:00:00+08:00">2019-09-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-01 2022-05-01T20:37:56+08:00" itemprop="dateModified" datetime="2022-05-01T20:37:56+08:00">2022-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a>
+        </span>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/The-Dictator%E2%80%99s-Handbook.html#comments" itemprop="discussionUrl">
+    <a title="disqus" href="/The-Dictator%E2%80%99s-Handbook.html#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="The-Dictator’s-Handbook.html" itemprop="commentCount"></span>
     </a>
   </span>
   
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>12 分钟</span>
-            </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -268,12 +290,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>今年年初的时候，在栋叔（软件那些事儿电台博主、绿帽子大学校长、钢管舞演员、滴滴车司机）群里见到他推荐的这本书《独裁者手册》。最近一个月才抽空花了 10 个小时读完了它，在此记录一下（大部分内容照抄自原文）：</p>
-<p>PS：栋叔是个很有趣的中年油腻老男人，这是他博客<a href="https://liuyandong.com/" target="_blank" rel="noopener">栋哥的博客</a>，在微信公众号叫 <code>软件那些事儿</code>，还有他的<a href="https://lmzdx.com/" target="_blank" rel="noopener">绿帽子大学</a></p>
+<p>PS：栋叔是个很有趣的中年油腻老男人，这是他博客<a target="_blank" rel="noopener" href="https://liuyandong.com/">栋哥的博客</a>，在微信公众号叫 <code>软件那些事儿</code>，还有他的<a target="_blank" rel="noopener" href="https://lmzdx.com/">绿帽子大学</a></p>
 <h2 id="个人评价"><a href="#个人评价" class="headerlink" title="个人评价"></a>个人评价</h2><p>这本书最主要的还是从统治的三个维度来分析专制国家和民主国家的区别，以及一些企业上对管理层权力斗争的原则。介绍一个理解政治的三维视角，即名义选择人、实际选择人、致胜联盟。而我们这帮屁民属于哪个维度？对不起，你没有选举权、你没有选票，你不属于其中的任何一个维度，你只是颗韭菜。</p>
-<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>下面直接剽窃一段豆瓣上的<a href="https://book.douban.com/subject/25881102/" target="_blank" rel="noopener">简介</a></p>
+<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>下面直接剽窃一段豆瓣上的<a target="_blank" rel="noopener" href="https://book.douban.com/subject/25881102/">简介</a></p>
 <blockquote>
 <p>为什么同样一个人可以在一个国家推行善政却在另一个国家施行最残暴的独裁？在这里，与其说制度是答案还不如说是问题本身。为什么比利时的制度越来越民主，而同一时期，同一领导人的刚果，却越来越独裁？难道是因为利奥波德二世只爱本国人或者有种族歧视？但后来刚果自己“选”出来的领导人并没有做得更好，仍然是一个糟糕的独裁者。</p>
 <p>在《独裁者手册》这本书里，梅斯奎塔和史密斯研究多年，得出了一个能够相当完美地解释这一政治现象的理论，即：不管是国家、公司还是国际组织，其政治格局不能简单地以“民主”和“独裁”来划分，而必须用民意选民、实际选民、胜利联盟的数字多少来描写。如果胜利联盟的人数很多，那么这个国家就是我们通常所说的民主国家。反过来，如果胜利联盟的人数非常少，那么不管这个国家有没有选举，都是事实上的非民主国家。据此，很容易明白：在刚果，利奥波德二世只需要让少数人高兴就足以维持自己的统治；而在比利时，他必须让很多人满意才行。</p>
@@ -284,7 +304,7 @@
 <p>阿拉斯泰尔·史密斯，纽约大学政治学教授。他此前在圣路易斯华盛顿大学和耶鲁大学任教。他从美国罗彻斯特大学获得政治科学博士学位，从牛津大学获得化学学士学位。他从美国国家科学基金会获得过三项研究津贴，2005 年他获得卡尔•多伊奇奖（Karl Deutsch Award），该奖每两年一次颁发给 40 岁以下最出色的国际关系研究学者。1997—1998 年他被斯坦福大学胡佛研究所选为国家研究员。</p>
 </blockquote>
 <p>作者水平还是相当不错的，比起国内那些唱赞歌的教授不知道高到哪里去了 😂</p>
-<h2 id="纽约时报中文网书评"><a href="#纽约时报中文网书评" class="headerlink" title="纽约时报中文网书评"></a>纽约时报中文网书评</h2><p><a href="https://cn.nytimes.com/books/20140630/tc30liuyu/" target="_blank" rel="noopener">原文连接</a></p>
+<h2 id="纽约时报中文网书评"><a href="#纽约时报中文网书评" class="headerlink" title="纽约时报中文网书评"></a>纽约时报中文网书评</h2><p><a target="_blank" rel="noopener" href="https://cn.nytimes.com/books/20140630/tc30liuyu/">原文连接</a></p>
 <blockquote>
 <p>《独裁者手册》(The Dictator’s Handbook)可真是一部典型的“标题党”作品。根据这个书名，这本书将手把手教会我们如何成为一个呼风唤雨的独裁者。真有这样的秘笈？原以为征服世界需要千军万马，现在看来只需要 42 元。</p>
 <p>可是，掏钱买书之后，打开一读，我们就会发现自己“上当”了。这本书真正的标题似乎应该是《如何理解政治：一个三维的视角》。但是鉴于多数人一读到“三维”这个字眼就睡着了，所以，还是用个吸引眼球的书名、让人们先掏钱再说吧。</p>
@@ -387,7 +407,7 @@
 <h3 id="八、-反叛中的人民"><a href="#八、-反叛中的人民" class="headerlink" title="八、 反叛中的人民"></a>八、 反叛中的人民</h3><blockquote>
 <p>一名成功的领导人总是把核心支持者的需要置于人民的需要之上。[1]没有他的致胜联盟的支持，一名领导人什么都不是，很快就会被对手横扫出局。但如果领导人的统治权只依赖于少数人，让联盟满意是得花钱的。通常来说，联盟成员获得的酬劳以牺牲社会其他部分的利益为代价。没错，是有一些独裁者让人民生活过得更好而成了名人堂成员。大多数独裁者不这么做。那些不这么做的独裁者将坐在办公室里为了自己和联盟的利益将国家的经济搞得一蹶不振。最终形势发展到足够恶化的地步，导致一些人民开始厌倦身上的重负。他们也会对领导人的生存产生威胁。</p>
 </blockquote>
-<h4 id="贸易战"><a href="#贸易战" class="headerlink" title="贸易战"></a>贸易战</h4><p>关于贸易战的本质问题，可以去读一下这篇文章 <a href="https://terminus2049.github.io/archive/2019/05/23/China-America-trade-war.html" target="_blank" rel="noopener">贸易战的本质问题是什么</a></p>
+<h4 id="贸易战"><a href="#贸易战" class="headerlink" title="贸易战"></a>贸易战</h4><p>关于贸易战的本质问题，可以去读一下这篇文章 <a target="_blank" rel="noopener" href="https://terminus2049.github.io/archive/2019/05/23/China-America-trade-war.html">贸易战的本质问题是什么</a></p>
 <blockquote>
 <p>美国的诉求是 “三零二停一允许”。“三零” 是零关税、零非关税壁垒、零补贴，“二停” 是停止盗窃知识产权、停止强行技术转让，“一允许” 是允许美国人到中国独立开设公司。</p>
 <p>需要指出的是，这 “三零二停一允许” 不是单方的，而是双方的。你对我 “三零两停一允许”，我也对你 “三零两停一允许”。这个政策也是美国给到全体盟友的，美国对于中国，除了部分关税以外 (仍比中国低很多)，已经大部分实现 “三零二停一允许” 了，中国人去美国开设公司的政策上早已执行很久了。</p>
@@ -409,217 +429,90 @@
     
     
 
-      <footer class="post-footer">
-          
+    <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/life/" rel="tag"><i class="fa fa-tag"></i> life</a>
-              <a href="/tags/%E9%98%85%E8%AF%BB/" rel="tag"><i class="fa fa-tag"></i> 阅读</a>
-              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 读书笔记</a>
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+              <a href="/tags/%E9%98%85%E8%AF%BB/" rel="tag"># 阅读</a>
+              <a href="/tags/life/" rel="tag"># life</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/mirrors-test.html" rel="prev" title="国内镜像源伪评测">
-      <i class="fa fa-chevron-left"></i> 国内镜像源伪评测
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/esxi-openwrt.html" rel="next" title="OpenWRT 软路由">
-      OpenWRT 软路由 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mirrors-test.html" rel="prev" title="国内镜像源伪评测">
+                  <i class="fa fa-chevron-left"></i> 国内镜像源伪评测
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/esxi-openwrt.html" rel="next" title="OpenWRT 软路由">
+                  OpenWRT 软路由 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
-
-  </div>
+</div>
 
 
-          </div>
-          
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#个人评价"><span class="nav-number">1.</span> <span class="nav-text">个人评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容简介"><span class="nav-number">2.</span> <span class="nav-text">内容简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作者简介"><span class="nav-number">3.</span> <span class="nav-text">作者简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纽约时报中文网书评"><span class="nav-number">4.</span> <span class="nav-text">纽约时报中文网书评</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#政治的三个维度"><span class="nav-number">5.</span> <span class="nav-text">政治的三个维度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#名义选择人集团"><span class="nav-number">5.1.</span> <span class="nav-text">名义选择人集团</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际选择人集团"><span class="nav-number">5.2.</span> <span class="nav-text">实际选择人集团</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#致胜联盟"><span class="nav-number">5.3.</span> <span class="nav-text">致胜联盟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充一个维度"><span class="nav-number">5.4.</span> <span class="nav-text">补充一个维度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三维政治的特点"><span class="nav-number">5.5.</span> <span class="nav-text">三维政治的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本书章节"><span class="nav-number">6.</span> <span class="nav-text">本书章节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-、政治的法则"><span class="nav-number">6.1.</span> <span class="nav-text">一 、政治的法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、上台"><span class="nav-number">6.2.</span> <span class="nav-text">二、上台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、掌权"><span class="nav-number">6.3.</span> <span class="nav-text">三、掌权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、窃贫济富"><span class="nav-number">6.4.</span> <span class="nav-text">四、窃贫济富</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、获取与花费"><span class="nav-number">6.5.</span> <span class="nav-text">五、获取与花费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、腐败"><span class="nav-number">6.6.</span> <span class="nav-text">六、腐败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、对外援助"><span class="nav-number">6.7.</span> <span class="nav-text">七、对外援助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、-反叛中的人民"><span class="nav-number">6.8.</span> <span class="nav-text">八、 反叛中的人民</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、战争，和平与世界秩序"><span class="nav-number">6.9.</span> <span class="nav-text">九、战争，和平与世界秩序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十、怎么办？"><span class="nav-number">6.10.</span> <span class="nav-text">十、怎么办？</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -627,51 +520,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html",
-            identifier: "The-Dictator’s-Handbook.html",
-            title: "独裁者手册读书笔记"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

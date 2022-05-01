@@ -2,259 +2,287 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="最近 kubernetes-sig 社区的 kubespray 项目正式 release 了 v2.18.0 版本，同时对应 k8s-conformance 的 v1.21 和 v1.22 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。 组件版本以下是 v2.18.0">
-<meta property="og:type" content="article">
+    <meta name="description" content="最近 kubernetes-sig 社区的 kubespray 项目正式 release 了 v2.18.0 版本，同时对应 k8s-conformance 的 v1.21 和 v1.22 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。 组件版本以下是 v2.18.0">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="Kubespray 2.18 版本特性预览">
 <meta property="og:url" content="https://blog.k8s.li/kubespray-2.18.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
 <meta property="og:description" content="最近 kubernetes-sig 社区的 kubespray 项目正式 release 了 v2.18.0 版本，同时对应 k8s-conformance 的 v1.21 和 v1.22 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。 组件版本以下是 v2.18.0">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-30T00:21:08.687Z">
-<meta property="article:author" content="木子">
+<meta property="article:modified_time" content="2022-05-01T12:37:56.896Z">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Registry">
 <meta property="article:tag" content="Kubernetes">
 <meta property="article:tag" content="PaaS toB">
+<meta property="article:tag" content="IaaS toB">
+<meta property="article:tag" content="超融合">
+<meta property="article:tag" content="虚拟化">
+<meta property="article:tag" content="裸金属服务器">
 <meta property="article:tag" content="运维开发">
 <meta property="article:tag" content="容器镜像">
 <meta property="article:tag" content="发布流水线">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://blog.k8s.li/kubespray-2.18.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>Kubespray 2.18 版本特性预览 | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/kubespray-2.18.html","path":"kubespray-2.18.html","title":"Kubespray 2.18 版本特性预览"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Kubespray 2.18 版本特性预览 | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">组件版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K8s-%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">K8s 核心组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6"><span class="nav-number">1.2.</span> <span class="nav-text">容器运行时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNI"><span class="nav-number">1.3.</span> <span class="nav-text">CNI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kubernetes-app"><span class="nav-number">1.4.</span> <span class="nav-text">Kubernetes-app</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84-OS"><span class="nav-number">2.</span> <span class="nav-text">支持的 OS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8F%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">主要变化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%9F%E9%99%A4"><span class="nav-number">3.1.</span> <span class="nav-text">废除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">3.2.</span> <span class="nav-text">新特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E7%9F%A5%E9%97%AE%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">已知问题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div class="posts-expand">
-      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/kubespray-2.18.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Kubespray 2.18 版本特性预览 | Reimu's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Kubespray 2.18 版本特性预览
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-01-05 2022-01-05T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2022-01-05T00:00:00+08:00">2022-01-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 2022-04-30T08:21:08+08:00" itemprop="dateModified" datetime="2022-04-30T08:21:08+08:00">2022-04-30</time>
-              </span>
+      <time title="创建时间：2022-01-05 2022-01-05T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2022-01-05T00:00:00+08:00">2022-01-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-01 2022-05-01T20:37:56+08:00" itemprop="dateModified" datetime="2022-05-01T20:37:56+08:00">2022-05-01</time>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/kubespray-2.18.html#comments" itemprop="discussionUrl">
+    <a title="disqus" href="/kubespray-2.18.html#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="kubespray-2.18.html" itemprop="commentCount"></span>
     </a>
   </span>
   
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -263,12 +291,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-        <p>最近 kubernetes-sig 社区的 <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank" rel="noopener">kubespray</a> 项目正式 release 了 <a href="https://github.com/kubernetes-sigs/kubespray/releases/tag/v2.18.0" target="_blank" rel="noopener">v2.18.0</a> 版本，同时对应 <a href="https://github.com/cncf/k8s-conformance" target="_blank" rel="noopener">k8s-conformance</a> 的 <a href="https://github.com/cncf/k8s-conformance/pull/1748" target="_blank" rel="noopener">v1.21</a> 和 <a href="https://github.com/cncf/k8s-conformance/pull/1760" target="_blank" rel="noopener">v1.22</a> 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。</p>
+        <p>最近 kubernetes-sig 社区的 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray">kubespray</a> 项目正式 release 了 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/releases/tag/v2.18.0">v2.18.0</a> 版本，同时对应 <a target="_blank" rel="noopener" href="https://github.com/cncf/k8s-conformance">k8s-conformance</a> 的 <a target="_blank" rel="noopener" href="https://github.com/cncf/k8s-conformance/pull/1748">v1.21</a> 和 <a target="_blank" rel="noopener" href="https://github.com/cncf/k8s-conformance/pull/1760">v1.22</a> 版本 kubespray 也都已经得到 CNCF 的一致性认证。于是今天就借这个新版本 release 的机会整理一下 2.18 版本的 kubespray 有哪些有趣的变化。</p>
 <h2 id="组件版本"><a href="#组件版本" class="headerlink" title="组件版本"></a>组件版本</h2><p>以下是 v2.18.0 版本中 kubespray 部署组件的一些版本信息：</p>
 <h3 id="K8s-核心组件"><a href="#K8s-核心组件" class="headerlink" title="K8s 核心组件"></a>K8s 核心组件</h3><ul>
-<li>kubespray 支持的 Kubernetes 支持从 v1.22.0 到 v1.23.1 之间的所有正式版本，默认部署的版本为 v1.22.5，并且 <a href="https://github.com/cncf/k8s-conformance/pull/1760" target="_blank" rel="noopener">v1.22</a> 版本得到了 CNCF 官方的一致性认证；</li>
+<li>kubespray 支持的 Kubernetes 支持从 v1.22.0 到 v1.23.1 之间的所有正式版本，默认部署的版本为 v1.22.5，并且 <a target="_blank" rel="noopener" href="https://github.com/cncf/k8s-conformance/pull/1760">v1.22</a> 版本得到了 CNCF 官方的一致性认证；</li>
 <li>etcd 从原来的 v3.4.13 升级到了 v3.5.0；</li>
 <li>coredns 版本升级到了 v1.8.0，它的搭档 dnsautoscaler 则为 1.8.5；</li>
 <li>pod_infra 即 pause 镜像的版本没有变化依旧为 3.3；</li>
@@ -338,7 +364,7 @@
 <td>20210921</td>
 </tr>
 </tbody></table>
-<h3 id="CNI"><a href="#CNI" class="headerlink" title="CNI"></a>CNI</h3><p>同样，目前市面上所有的 Kubernetes 集群部署工具中，对 CNI 的支持 kubespray 也无疑是最为丰富的，能支持 9 种 CNI 以及多种 CNI 组合部署的 <a href="https://github.com/intel/multus-cni" target="_blank" rel="noopener">multus</a> 。</p>
+<h3 id="CNI"><a href="#CNI" class="headerlink" title="CNI"></a>CNI</h3><p>同样，目前市面上所有的 Kubernetes 集群部署工具中，对 CNI 的支持 kubespray 也无疑是最为丰富的，能支持 9 种 CNI 以及多种 CNI 组合部署的 <a target="_blank" rel="noopener" href="https://github.com/intel/multus-cni">multus</a> 。</p>
 <table>
 <thead>
 <tr>
@@ -391,7 +417,7 @@
 <ul>
 <li>CLI 工具</li>
 </ul>
-<p>一些 CLI 工具，比如 helm、nerdctl、krew、crictl。其中 nerdctl 的部署支持是咱在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/7500" target="_blank" rel="noopener">#7500</a> 中加入支持的，目的是为 containerd 用户提供一个相对友好的命令行操作体验，以替代 docker CLI。</p>
+<p>一些 CLI 工具，比如 helm、nerdctl、krew、crictl。其中 nerdctl 的部署支持是咱在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/7500">#7500</a> 中加入支持的，目的是为 containerd 用户提供一个相对友好的命令行操作体验，以替代 docker CLI。</p>
 <table>
 <thead>
 <tr>
@@ -489,7 +515,7 @@
 </tr>
 <tr>
 <td>Fedora CoreOS</td>
-<td>34.x/35.x</td>
+<td>34.x&#x2F;35.x</td>
 </tr>
 <tr>
 <td>Flatcar Container Linux by Kinvolk</td>
@@ -504,44 +530,44 @@
 <td>8</td>
 </tr>
 <tr>
-<td>CentOS/RHEL</td>
-<td>7/8</td>
+<td>CentOS&#x2F;RHEL</td>
+<td>7&#x2F;8</td>
 </tr>
 <tr>
 <td>Oracle Linux</td>
-<td>7/8</td>
+<td>7&#x2F;8</td>
 </tr>
 <tr>
 <td>Debian</td>
-<td>8/9/10/11</td>
+<td>8&#x2F;9&#x2F;10&#x2F;11</td>
 </tr>
 <tr>
 <td>Ubuntu</td>
-<td>16.04/18.04/20.04</td>
+<td>16.04&#x2F;18.04&#x2F;20.04</td>
 </tr>
 <tr>
 <td>Fedora</td>
-<td>34/35</td>
+<td>34&#x2F;35</td>
 </tr>
 <tr>
 <td>openSUSE</td>
-<td>Leap 15.x/Tumbleweed</td>
+<td>Leap 15.x&#x2F;Tumbleweed</td>
 </tr>
 </tbody></table>
 <h2 id="主要变化"><a href="#主要变化" class="headerlink" title="主要变化"></a>主要变化</h2><h3 id="废除"><a href="#废除" class="headerlink" title="废除"></a>废除</h3><ul>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8086" target="_blank" rel="noopener">#8086</a> 中移除了对 Ambassador 的支持；</li>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8327" target="_blank" rel="noopener">#8327</a> 中移除了对 registry-proxy 的支持；</li>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8246" target="_blank" rel="noopener">#8246</a> 中移除了对 Fedora 33 的支持，因为  Fedora 33 在 2021-11-30 就已经 EOL 了，所以被废弃支持也理所当然；</li>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8265" target="_blank" rel="noopener">#8265</a> 中移除了对 Mitogen 的支持，Mitogen 的作用就是用来优化 Ansible 的性能，但 Mitogen 对于一些新的 Linux 发行版支持的额并不是很友好，在 Kubespray 中维护的成本也比较大，因此社区就废弃它了；</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/8086">#8086</a> 中移除了对 Ambassador 的支持；</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/8327">#8327</a> 中移除了对 registry-proxy 的支持；</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/8246">#8246</a> 中移除了对 Fedora 33 的支持，因为  Fedora 33 在 2021-11-30 就已经 EOL 了，所以被废弃支持也理所当然；</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/8265">#8265</a> 中移除了对 Mitogen 的支持，Mitogen 的作用就是用来优化 Ansible 的性能，但 Mitogen 对于一些新的 Linux 发行版支持的额并不是很友好，在 Kubespray 中维护的成本也比较大，因此社区就废弃它了；</li>
 </ul>
 <h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><ul>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/7895" target="_blank" rel="noopener">#7895</a> 中新增了 ArgoCD 的部署支持，通过设置 <code>argocd_enabled</code> 即可在部署集群的时候安装 ArgoCD。不过个人认为，ArgoCD 这玩意儿不太适合放在 K8s 部署当中来，看看 <a href="https://github.com/kubesphere/ks-installer" target="_blank" rel="noopener">ks-installer</a> 的代码你就能明白了 😂。</li>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8175" target="_blank" rel="noopener">#8175</a> 中默认使用 containerd 作为默认的容器运行时，替代掉了 docker。不过需要注意的是，当前版本的 kubespray 是使用 <a href="https://github.com/containerd/containerd" target="_blank" rel="noopener">containerd</a> 官方 repo release 的二进制安装包，但二进制安装包并没有 arm64 版本的。所以如果要部署的集群节点包含 arm64 的机器，最好还是使用 docker 作为容器运行时。</li>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8291" target="_blank" rel="noopener">#8291</a> 新增了 registry 部署支持多种 ServiceTypes 的支持；</li>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8229" target="_blank" rel="noopener">#8229</a> 中新增了支持 registry 认证的方式，私有化部署的时候使用带有认证的 registry 会用到；</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/7895">#7895</a> 中新增了 ArgoCD 的部署支持，通过设置 <code>argocd_enabled</code> 即可在部署集群的时候安装 ArgoCD。不过个人认为，ArgoCD 这玩意儿不太适合放在 K8s 部署当中来，看看 <a target="_blank" rel="noopener" href="https://github.com/kubesphere/ks-installer">ks-installer</a> 的代码你就能明白了 😂。</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/8175">#8175</a> 中默认使用 containerd 作为默认的容器运行时，替代掉了 docker。不过需要注意的是，当前版本的 kubespray 是使用 <a target="_blank" rel="noopener" href="https://github.com/containerd/containerd">containerd</a> 官方 repo release 的二进制安装包，但二进制安装包并没有 arm64 版本的。所以如果要部署的集群节点包含 arm64 的机器，最好还是使用 docker 作为容器运行时。</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/8291">#8291</a> 新增了 registry 部署支持多种 ServiceTypes 的支持；</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/8229">#8229</a> 中新增了支持 registry 认证的方式，私有化部署的时候使用带有认证的 registry 会用到；</li>
 </ul>
 <h3 id="已知问题"><a href="#已知问题" class="headerlink" title="已知问题"></a>已知问题</h3><ul>
-<li>在 <a href="https://github.com/kubernetes-sigs/kubespray/pull/8239" target="_blank" rel="noopener">#8239</a> 中 <a href="https://github.com/cristicalin" target="_blank" rel="noopener">cristicalin</a> 大佬引入了一个修改，如果是 containerd 运行时，则使用 nerdctl 下载镜像。这将会导致配置了 containerd registry mirrors 的参数将会失效。</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubespray/pull/8239">#8239</a> 中 <a target="_blank" rel="noopener" href="https://github.com/cristicalin">cristicalin</a> 大佬引入了一个修改，如果是 containerd 运行时，则使用 nerdctl 下载镜像。这将会导致配置了 containerd registry mirrors 的参数将会失效。</li>
 </ul>
 
     </div>
@@ -550,211 +576,85 @@
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021.html" rel="prev" title="时光痕迹：2021 年总结">
-      <i class="fa fa-chevron-left"></i> 时光痕迹：2021 年总结
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/rebuild-iso-image.html" rel="next" title="使用 overlay2 或 bind 重新构建 ISO 镜像">
-      使用 overlay2 或 bind 重新构建 ISO 镜像 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-  </div>
-
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021.html" rel="prev" title="时光痕迹：2021 年总结">
+                  <i class="fa fa-chevron-left"></i> 时光痕迹：2021 年总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/rebuild-iso-image.html" rel="next" title="使用 overlay2 或 bind 重新构建 ISO 镜像">
+                  使用 overlay2 或 bind 重新构建 ISO 镜像 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-          
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件版本"><span class="nav-number">1.</span> <span class="nav-text">组件版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K8s-核心组件"><span class="nav-number">1.1.</span> <span class="nav-text">K8s 核心组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器运行时"><span class="nav-number">1.2.</span> <span class="nav-text">容器运行时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNI"><span class="nav-number">1.3.</span> <span class="nav-text">CNI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kubernetes-app"><span class="nav-number">1.4.</span> <span class="nav-text">Kubernetes-app</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持的-OS"><span class="nav-number">2.</span> <span class="nav-text">支持的 OS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要变化"><span class="nav-number">3.</span> <span class="nav-text">主要变化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#废除"><span class="nav-number">3.1.</span> <span class="nav-text">废除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性"><span class="nav-number">3.2.</span> <span class="nav-text">新特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已知问题"><span class="nav-number">3.3.</span> <span class="nav-text">已知问题</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -762,51 +662,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/kubespray-2.18.html",
-            identifier: "kubespray-2.18.html",
-            title: "Kubespray 2.18 版本特性预览"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

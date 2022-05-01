@@ -2,54 +2,27 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="前段时间捡垃圾东拼西凑搞了台 Homelab 👇 玩玩 👉《垃圾佬的 Homelab 折腾记录》 。  总体来讲性价比高，Intel i5-6600T 的性能和 i5-6600 持平，比那种 8250U 之类的低压 U 要高很多，跑一堆虚拟机也不成问题，甚至跑个三 master + 两 node 的 kubernetes 集群也是可以 😂。至于功耗，整机待机时不到 30W ，一天不到 1 度">
-<meta property="og:type" content="article">
+    <meta name="description" content="前段时间捡垃圾东拼西凑搞了台 Homelab 👇 玩玩 👉《垃圾佬的 Homelab 折腾记录》 。  总体来讲性价比高，Intel i5-6600T 的性能和 i5-6600 持平，比那种 8250U 之类的低压 U 要高很多，跑一堆虚拟机也不成问题，甚至跑个三 master + 两 node 的 kubernetes 集群也是可以 😂。至于功耗，整机待机时不到 30W ，一天不到 1 度">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="轻量级容器优化型 Linux 发行版 Photon OS">
 <meta property="og:url" content="https://blog.k8s.li/Photon-OS.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
@@ -62,203 +35,252 @@
 <meta property="og:image" content="https://p.k8s.li/20200925-pihole.png">
 <meta property="article:published_time" content="2020-09-24T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-09-24T16:00:00.000Z">
-<meta property="article:author" content="木子">
+<meta property="article:author" content="Reimu">
+<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="容器">
 <meta property="article:tag" content="PhotonOS">
-<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://p.k8s.li/20200913_esxi_01.png">
+
 
 <link rel="canonical" href="https://blog.k8s.li/Photon-OS.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>轻量级容器优化型 Linux 发行版 Photon OS | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/Photon-OS.html","path":"Photon-OS.html","title":"轻量级容器优化型 Linux 发行版 Photon OS"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>轻量级容器优化型 Linux 发行版 Photon OS | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-Container-OS"><span class="nav-number">1.</span> <span class="nav-text">Linux Container OS ?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GKE-%E7%9A%84-Container-Optimized-OS"><span class="nav-number">1.1.</span> <span class="nav-text">GKE 的 Container-Optimized OS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AWS-%E7%9A%84-Bottlerocket-OS"><span class="nav-number">1.2.</span> <span class="nav-text">AWS 的 Bottlerocket OS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimized-performance-through-AWS-integrations"><span class="nav-number">1.3.</span> <span class="nav-text">Optimized performance through AWS integrations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreOS-Container-Linux"><span class="nav-number">1.4.</span> <span class="nav-text">CoreOS Container Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E5%B8%BD%E7%9A%84-RHCOS"><span class="nav-number">1.5.</span> <span class="nav-text">红帽的 RHCOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RancherOS"><span class="nav-number">1.6.</span> <span class="nav-text">RancherOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VMware-%E7%9A%84-Photon-OS"><span class="nav-number">1.7.</span> <span class="nav-text">VMware 的 Photon OS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94"><span class="nav-number">2.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Download-Format"><span class="nav-number">3.1.</span> <span class="nav-text">Download Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Photon-OS-3-0-Revision-2-Update3-Binaries"><span class="nav-number">3.2.</span> <span class="nav-text">Photon OS 3.0 Revision 2 Update3 Binaries</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="nav-number">4.</span> <span class="nav-text">系统信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="nav-number">5.1.</span> <span class="nav-text">网络管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86"><span class="nav-number">5.2.</span> <span class="nav-text">包管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91"><span class="nav-number">5.3.</span> <span class="nav-text">源码编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">运行容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pi-hole"><span class="nav-number">6.1.</span> <span class="nav-text">Pi-hole</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div class="posts-expand">
-      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/Photon-OS.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="轻量级容器优化型 Linux 发行版 Photon OS | Reimu's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           轻量级容器优化型 Linux 发行版 Photon OS
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-25 2020-09-25T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2020-09-25T00:00:00+08:00">2020-09-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-            </span>
+      <time title="创建时间：2020-09-25 2020-09-25T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2020-09-25T00:00:00+08:00">2020-09-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/Photon-OS.html#comments" itemprop="discussionUrl">
+    <a title="disqus" href="/Photon-OS.html#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Photon-OS.html" itemprop="commentCount"></span>
     </a>
   </span>
   
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>18k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>30 分钟</span>
-            </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>18k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>16 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -267,28 +289,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>前段时间捡垃圾东拼西凑搞了台 Homelab 👇 玩玩 👉<a href="https://blog.k8s.li/homelab.html">《垃圾佬的 Homelab 折腾记录》</a> 。</p>
-<p><img src="https://p.k8s.li/20200913_esxi_01.png" alt=""></p>
+<p><img data-src="https://p.k8s.li/20200913_esxi_01.png"></p>
 <p>总体来讲性价比高，Intel i5-6600T 的性能和 i5-6600 持平，比那种 8250U 之类的低压 U 要高很多，跑一堆虚拟机也不成问题，甚至跑个三 master + 两 node 的 kubernetes 集群也是可以 😂。至于功耗，整机待机时不到 30W ，一天不到 1 度电，不用担心电费爆表了；至于价格，一颗 Intel i5-6600T  不到 450 块钱，还不香嘛 🙃。</p>
-<p>在 ESXi 运行着一些虚拟机，比如用 WireGuard 打通 VPS 之间的网络，运行在一个 alpine 虚拟机里作为网关机使用；比如使用 <a href="https://pi-hole.net/" target="_blank" rel="noopener">Pi-hole®</a> 来构建自己的 DNS 服务器，用来拦截屏蔽域名；比如运行 time-machine 服务用来定时备份 MacBook ；比如 Windows 虚拟机里运行着一些国产毒瘤软件 😡；比如使用 <a href="https://docs.drone.io/" target="_blank" rel="noopener">Drone</a> 跑一套轻量级的 CI 流水线系统，总之可玩性非常高哦，只要你又时间瞎折腾，总能找点乐子玩 😂。</p>
+<p>在 ESXi 运行着一些虚拟机，比如用 WireGuard 打通 VPS 之间的网络，运行在一个 alpine 虚拟机里作为网关机使用；比如使用 <a target="_blank" rel="noopener" href="https://pi-hole.net/">Pi-hole®</a> 来构建自己的 DNS 服务器，用来拦截屏蔽域名；比如运行 time-machine 服务用来定时备份 MacBook ；比如 Windows 虚拟机里运行着一些国产毒瘤软件 😡；比如使用 <a target="_blank" rel="noopener" href="https://docs.drone.io/">Drone</a> 跑一套轻量级的 CI 流水线系统，总之可玩性非常高哦，只要你又时间瞎折腾，总能找点乐子玩 😂。</p>
 <h2 id="Linux-Container-OS"><a href="#Linux-Container-OS" class="headerlink" title="Linux Container OS ?"></a>Linux Container OS ?</h2><p>有了一台运行着 ESXi 的 Homelab ，今天就玩一下 Linux container OS ，即 Linux 容器  OS 、容器优化型 OS，这是一类专门针对运行容器定制化开发的 Linux 发行版，裁剪掉一些不必要的软件和内核模块，使系统更加轻量一些。虽然来说民用级的 Intel i5-6600T 性能也不算太差，但和 E3  小王子，E5 老大哥比还是差个十万八千里。因此为了节省一些 CPU 资源，减少虚拟化带来的开销，就选择了容器化运行一些应用，同时再为这些容器找一个轻量级的宿主机 OS ，这就是为什么想要使用 Linux container OS 的原因。</p>
-<h3 id="GKE-的-Container-Optimized-OS"><a href="#GKE-的-Container-Optimized-OS" class="headerlink" title="GKE 的 Container-Optimized OS"></a>GKE 的 <a href="https://cloud.google.com/container-optimized-os/docs/" target="_blank" rel="noopener">Container-Optimized OS</a></h3><p>Kubernetes 的亲爸爸 Google 家的 <a href="https://cloud.google.com/kubernetes-engine" target="_blank" rel="noopener">Google Kubernetes Engine</a> 即 GKE 集群中的每个节点都是使用 <a href="https://cloud.google.com/container-optimized-os/docs/" target="_blank" rel="noopener">Container-Optimized OS</a> 来运行工作负载，不过仅仅是针对 GCE 来进行优化的，可能在 OpenStack 或者 vSphere 上运行不起来，(瞎猜 😂。</p>
+<h3 id="GKE-的-Container-Optimized-OS"><a href="#GKE-的-Container-Optimized-OS" class="headerlink" title="GKE 的 Container-Optimized OS"></a>GKE 的 <a target="_blank" rel="noopener" href="https://cloud.google.com/container-optimized-os/docs/">Container-Optimized OS</a></h3><p>Kubernetes 的亲爸爸 Google 家的 <a target="_blank" rel="noopener" href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine</a> 即 GKE 集群中的每个节点都是使用 <a target="_blank" rel="noopener" href="https://cloud.google.com/container-optimized-os/docs/">Container-Optimized OS</a> 来运行工作负载，不过仅仅是针对 GCE 来进行优化的，可能在 OpenStack 或者 vSphere 上运行不起来，(瞎猜 😂。</p>
 <blockquote>
-<p>Container-Optimized OS 是适用于 <a href="https://cloud.google.com/compute" target="_blank" rel="noopener">Compute Engine</a> 虚拟机的操作系统映像，专为运行 Docker 容器而优化。借助 Container-Optimized OS，您可以快速、高效、安全地在 Google Cloud Platform 上启动 Docker 容器。Container-Optimized OS 由 Google 维护，基于 <a href="https://www.chromium.org/chromium-os" target="_blank" rel="noopener">Chromium OS</a> 开放源代码项目。</p>
+<p>Container-Optimized OS 是适用于 <a target="_blank" rel="noopener" href="https://cloud.google.com/compute">Compute Engine</a> 虚拟机的操作系统映像，专为运行 Docker 容器而优化。借助 Container-Optimized OS，您可以快速、高效、安全地在 Google Cloud Platform 上启动 Docker 容器。Container-Optimized OS 由 Google 维护，基于 <a target="_blank" rel="noopener" href="https://www.chromium.org/chromium-os">Chromium OS</a> 开放源代码项目。</p>
 </blockquote>
-<p>特点就是不同于其他的 Linux 发行版，这个是基于 <a href="https://www.chromium.org/chromium-os" target="_blank" rel="noopener">Chromium OS</a> 定制化开发的，对内核版本选用的也比较激进，一般是 <code>4.19.112+</code> 或者 <code>5.x</code> 版本，这样你就不用再担心像 CentOS 7.x 系列那样各种内核 bug 了。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">items:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line">  <span class="attr">kind:</span> <span class="string">Node</span></span><br><span class="line">  <span class="attr">metadata:</span></span><br><span class="line">    <span class="attr">nodeInfo:</span></span><br><span class="line">      <span class="attr">architecture:</span> <span class="string">amd64</span></span><br><span class="line">      <span class="attr">bootID:</span> <span class="string">0c517083-aaf6-75fc4b2204ba</span></span><br><span class="line">      <span class="attr">containerRuntimeVersion:</span> <span class="string">docker://19.3.1</span></span><br><span class="line">      <span class="attr">kernelVersion:</span> <span class="number">4.19</span><span class="number">.112</span><span class="string">+</span></span><br><span class="line">      <span class="attr">kubeProxyVersion:</span> <span class="string">v1.16.13-gke.1</span></span><br><span class="line">      <span class="attr">kubeletVersion:</span> <span class="string">v1.16.13-gke.1</span></span><br><span class="line">      <span class="attr">machineID:</span> <span class="string">33a96ff3203d88c0a542</span></span><br><span class="line">      <span class="attr">operatingSystem:</span> <span class="string">linux</span></span><br><span class="line">      <span class="attr">osImage:</span> <span class="string">Container-Optimized</span> <span class="string">OS</span> <span class="string">from</span> <span class="string">Google</span></span><br><span class="line">      <span class="attr">systemUUID:</span> <span class="string">33a96ff33d88c0a542</span></span><br></pre></td></tr></table></figure>
+<p>特点就是不同于其他的 Linux 发行版，这个是基于 <a target="_blank" rel="noopener" href="https://www.chromium.org/chromium-os">Chromium OS</a> 定制化开发的，对内核版本选用的也比较激进，一般是 <code>4.19.112+</code> 或者 <code>5.x</code> 版本，这样你就不用再担心像 CentOS 7.x 系列那样各种内核 bug 了。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">items</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> Node
+  <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">nodeInfo</span><span class="token punctuation">:</span>
+      <span class="token key atrule">architecture</span><span class="token punctuation">:</span> amd64
+      <span class="token key atrule">bootID</span><span class="token punctuation">:</span> 0c517083<span class="token punctuation">-</span>aaf6<span class="token punctuation">-</span>75fc4b2204ba
+      <span class="token key atrule">containerRuntimeVersion</span><span class="token punctuation">:</span> docker<span class="token punctuation">:</span>//19.3.1
+      <span class="token key atrule">kernelVersion</span><span class="token punctuation">:</span> 4.19.112+
+      <span class="token key atrule">kubeProxyVersion</span><span class="token punctuation">:</span> v1.16.13<span class="token punctuation">-</span>gke.1
+      <span class="token key atrule">kubeletVersion</span><span class="token punctuation">:</span> v1.16.13<span class="token punctuation">-</span>gke.1
+      <span class="token key atrule">machineID</span><span class="token punctuation">:</span> 33a96ff3203d88c0a542
+      <span class="token key atrule">operatingSystem</span><span class="token punctuation">:</span> linux
+      <span class="token key atrule">osImage</span><span class="token punctuation">:</span> Container<span class="token punctuation">-</span>Optimized OS from Google
+      <span class="token key atrule">systemUUID</span><span class="token punctuation">:</span> 33a96ff33d88c0a542<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>Chromium OS 就是 Google 基于 Linux 内核开发的操作系统，所以 Google 也有这个实力针对自家的 GCP 云平台进行定制化开发个 OS 出来，专门给 kubernetes 集群运行使用，定制化开发的好处就是可以带来更多的新特性，二不受制于上游的 Linux 发行版的限制。比如不久前 Google 宣布将使用 <a href="https://cilium.io/" target="_blank" rel="noopener">Cilium</a> 作为 GKE 的下一代数据面，<a href="https://cloud.google.com/blog/products/containers-kubernetes/bringing-ebpf-and-cilium-to-google-kubernetes-engine" target="_blank" rel="noopener">New GKE Dataplane V2 increases security and visibility for containers</a> ，而 Cilium 这项技术是依赖于对 eBPF 技术，而 eBPF 又依赖于内核特性的支持。</p>
-<h3 id="AWS-的-Bottlerocket-OS"><a href="#AWS-的-Bottlerocket-OS" class="headerlink" title="AWS 的 Bottlerocket OS"></a>AWS 的 <a href="https://github.com/bottlerocket-os/bottlerocket" target="_blank" rel="noopener">Bottlerocket OS</a></h3><p>这个是 AWS 最近开源专门针对  EC2 进行优化的 Linux Container OS，和 GKE 一样，只是针对于自家的 AWS 公有云，由于是最近刚刚推出的，还没来得及关注，所以就不介绍了。同 GKE 的 Container-Optimized OS 一样，一般公有云定制化开发的 Container OS 仅仅只针对自家的云平台。</p>
+<p>Chromium OS 就是 Google 基于 Linux 内核开发的操作系统，所以 Google 也有这个实力针对自家的 GCP 云平台进行定制化开发个 OS 出来，专门给 kubernetes 集群运行使用，定制化开发的好处就是可以带来更多的新特性，二不受制于上游的 Linux 发行版的限制。比如不久前 Google 宣布将使用 <a target="_blank" rel="noopener" href="https://cilium.io/">Cilium</a> 作为 GKE 的下一代数据面，<a target="_blank" rel="noopener" href="https://cloud.google.com/blog/products/containers-kubernetes/bringing-ebpf-and-cilium-to-google-kubernetes-engine">New GKE Dataplane V2 increases security and visibility for containers</a> ，而 Cilium 这项技术是依赖于对 eBPF 技术，而 eBPF 又依赖于内核特性的支持。</p>
+<h3 id="AWS-的-Bottlerocket-OS"><a href="#AWS-的-Bottlerocket-OS" class="headerlink" title="AWS 的 Bottlerocket OS"></a>AWS 的 <a target="_blank" rel="noopener" href="https://github.com/bottlerocket-os/bottlerocket">Bottlerocket OS</a></h3><p>这个是 AWS 最近开源专门针对  EC2 进行优化的 Linux Container OS，和 GKE 一样，只是针对于自家的 AWS 公有云，由于是最近刚刚推出的，还没来得及关注，所以就不介绍了。同 GKE 的 Container-Optimized OS 一样，一般公有云定制化开发的 Container OS 仅仅只针对自家的云平台。</p>
 <blockquote>
 <h3 id="Optimized-performance-through-AWS-integrations"><a href="#Optimized-performance-through-AWS-integrations" class="headerlink" title="Optimized performance through AWS integrations"></a>Optimized performance through AWS integrations</h3><p>AWS provided builds of Bottlerocket are optimized to run on Amazon EC2 and include support for the latest Amazon EC2 instance capabilities. They also have built-in integrations with AWS services for container orchestration, registries, and observability.</p>
 </blockquote>
 <h3 id="CoreOS-Container-Linux"><a href="#CoreOS-Container-Linux" class="headerlink" title="CoreOS Container Linux"></a>CoreOS Container Linux</h3><p>来自 CoreOS 团队的 CoreOS Container Linux ，它应该是最古老的 Linux Container OS ，早在 2013 年 10 月就已经 release 第一个版本，那时候的 docker 还没有在 0.x.x 版本。</p>
 <blockquote>
-<p><a href="https://github.com/coreos/manifest/releases/tag/v94.0.0" target="_blank" rel="noopener">v94.0.0</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/coreos/manifest/releases/tag/v94.0.0">v94.0.0</a></p>
 <ul>
 <li>Git is now included by default as a number of people use it for shipping around assets, code, etc like a distributed rsync</li>
 <li>Docker is upgraded to 0.6.3</li>
@@ -299,29 +334,46 @@
 <p>它没有像 yum 或 apt 这样的包管理器来安装软件，在 CoreOS 中你不需要安装软件，因为所有的应用程序都要使用 docker 来打包。</p>
 <ul>
 <li>最小化的操作系统： 占用内存很少，比典型的服务器版本 Linux 少占 40% 的内存。</li>
-<li>易于升级： CoreOS 采用双系统分区（主动分区/被动分区）设计而不是采用传统的通过升级包来升级系统，这使得每次升级更加快速，可靠和易于回滚。这一点有点像 Android 的 A/B 分区？</li>
+<li>易于升级： CoreOS 采用双系统分区（主动分区&#x2F;被动分区）设计而不是采用传统的通过升级包来升级系统，这使得每次升级更加快速，可靠和易于回滚。这一点有点像 Android 的 A&#x2F;B 分区？</li>
 <li>集成 Docker： CoreOS 默认集成 Docker 并作了很好的支持和优化，省去用户安装，配置，优化 Docker 的时间，极大地方便了用户。</li>
 <li>易于集群化： CoreOS 本身提供了大型 Docker 容器集群的整体解决方案，通过内置的 fleet 工具在多台系统中部署容器并进行集群化管理。同时通过提供 Discovery Service，便于动态部署和管理集群，解决方案比较成熟。</li>
 <li>自动化的大规模部署： CoreOS 自身提供的解决方案能够自动地大规模批量部署并操作系统，极大地减少用户工作量。</li>
 <li>使用 systemd 做为系统服务管理工具，性能比较好，systemd 有现代化的日志功能，同时采用 socket 式与 D-Bus 总线式激活服务.</li>
 </ul>
-<p>不过 CoreOS 早在今年四月份就已经 EOF 了，<a href="https://getfedora.org/coreos/" target="_blank" rel="noopener">Fedora CoreOS</a> 成为 CoreOS 的继任者：</p>
+<p>不过 CoreOS 早在今年四月份就已经 EOF 了，<a target="_blank" rel="noopener" href="https://getfedora.org/coreos/">Fedora CoreOS</a> 成为 CoreOS 的继任者：</p>
 <blockquote>
-<p>As we’ve <a href="https://groups.google.com/d/msg/coreos-user/zgqkG88DS3U/PFP9yrKbAgAJ" target="_blank" rel="noopener">previously announced</a>, <a href="https://getfedora.org/coreos/" target="_blank" rel="noopener">Fedora CoreOS</a> is the official successor to CoreOS Container Linux. Fedora CoreOS is a <a href="https://fedoramagazine.org/fedora-coreos-out-of-preview/" target="_blank" rel="noopener">new Fedora Edition</a> built specifically for running containerized workloads securely and at scale. It combines the provisioning tools and automatic update model of Container Linux with the packaging technology, OCI support, and SELinux security of Atomic Host. For more on the Fedora CoreOS philosophy, goals, and design, see the <a href="https://fedoramagazine.org/introducing-fedora-coreos/" target="_blank" rel="noopener">announcement of the preview release</a> and the <a href="https://docs.fedoraproject.org/en-US/fedora-coreos/" target="_blank" rel="noopener">Fedora CoreOS documentation</a>.</p>
+<p>As we’ve <a target="_blank" rel="noopener" href="https://groups.google.com/d/msg/coreos-user/zgqkG88DS3U/PFP9yrKbAgAJ">previously announced</a>, <a target="_blank" rel="noopener" href="https://getfedora.org/coreos/">Fedora CoreOS</a> is the official successor to CoreOS Container Linux. Fedora CoreOS is a <a target="_blank" rel="noopener" href="https://fedoramagazine.org/fedora-coreos-out-of-preview/">new Fedora Edition</a> built specifically for running containerized workloads securely and at scale. It combines the provisioning tools and automatic update model of Container Linux with the packaging technology, OCI support, and SELinux security of Atomic Host. For more on the Fedora CoreOS philosophy, goals, and design, see the <a target="_blank" rel="noopener" href="https://fedoramagazine.org/introducing-fedora-coreos/">announcement of the preview release</a> and the <a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/fedora-coreos/">Fedora CoreOS documentation</a>.</p>
 </blockquote>
-<h3 id="红帽的-RHCOS"><a href="#红帽的-RHCOS" class="headerlink" title="红帽的 RHCOS"></a>红帽的 <a href="https://docs.openshift.com/container-platform/4.1/architecture/architecture-rhcos.html" target="_blank" rel="noopener">RHCOS</a></h3><p>来自红帽子家的 <a href="https://docs.openshift.com/container-platform/4.1/architecture/architecture-rhcos.html" target="_blank" rel="noopener">Red Hat Enterprise Linux CoreOS (RHCOS)</a>，是基于不过这个 OS 仅仅适用于它自家的 <a href="https://docs.openshift.com/" target="_blank" rel="noopener">OpenShift</a>，而且容器运行时仅支持 CRI-O。</p>
+<h3 id="红帽的-RHCOS"><a href="#红帽的-RHCOS" class="headerlink" title="红帽的 RHCOS"></a>红帽的 <a target="_blank" rel="noopener" href="https://docs.openshift.com/container-platform/4.1/architecture/architecture-rhcos.html">RHCOS</a></h3><p>来自红帽子家的 <a target="_blank" rel="noopener" href="https://docs.openshift.com/container-platform/4.1/architecture/architecture-rhcos.html">Red Hat Enterprise Linux CoreOS (RHCOS)</a>，是基于不过这个 OS 仅仅适用于它自家的 <a target="_blank" rel="noopener" href="https://docs.openshift.com/">OpenShift</a>，而且容器运行时仅支持 CRI-O。</p>
 <blockquote>
 <p>At the moment, CRI-O is only available as a container engine within OpenShift Container Platform clusters.</p>
 </blockquote>
-<p>因为 CoreOS 团队现如今已经被 Red Hat® 收购了，正如在 <a href="https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.2/html/architecture/architecture-rhcos" target="_blank" rel="noopener">OpenShift 文档</a> 中提到的： Red Hat Enterprise Linux CoreOS (RHCOS) 代表了下一代单用途容器操作系统技术。RHCOS 由创建了 Red Hat Enterprise Linux Atomic Host 和 CoreOS Container Linux 的同一开发团队打造，它将 Red Hat Enterprise Linux (RHEL) 的质量标准与 Container Linux 的自动化远程升级功能结合在一起。</p>
+<p>因为 CoreOS 团队现如今已经被 Red Hat® 收购了，正如在 <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.2/html/architecture/architecture-rhcos">OpenShift 文档</a> 中提到的： Red Hat Enterprise Linux CoreOS (RHCOS) 代表了下一代单用途容器操作系统技术。RHCOS 由创建了 Red Hat Enterprise Linux Atomic Host 和 CoreOS Container Linux 的同一开发团队打造，它将 Red Hat Enterprise Linux (RHEL) 的质量标准与 Container Linux 的自动化远程升级功能结合在一起。</p>
 <h3 id="RancherOS"><a href="#RancherOS" class="headerlink" title="RancherOS"></a>RancherOS</h3><p>RancherOS 是 Rancher 团队所维护的开源项目，也是对标 CoreOS 一样，专门用来运行容器，并且可以运行在生产环境（至少官方做了这么样的承诺，咱也没在生产用过，不好说。在 RancherOS 中所有的进程（包括系统所有的服务，比如 udev 和 syslog）都是用 docker 来管理，这一点要比 CoreOS 更加激进一些，而 CoreOS 还是使用传统 Linux 发行版中的 systemd 来管理系统中的服务。RancherOS 通过移除传统 Linux 发行版中不必要的服务和库来最小化系统，使他专注单一的功能，即运行 docker 容器。不过之前体验了一番，占用资源比较多 😂，好像并没有太大的优势（</p>
 <p><code>Everything in RancherOS is a Docker container.</code> 感觉这个要比 CoreOS 更加容器化，甚至使用 docker 取代了 systemd 来管理系统的各种服务。系统启动后运行两个 docker 服务进程，一个是系统 docker ，在此之上在运行系统服务容器，和用户层面的 docker 。不过看一下下面的这张图你就会明白。总的来讲 RancherOS 是使用 docker 来管理整个系统的服务的，包括用户层面的 docker 。</p>
-<p><img src="https://p.k8s.li/rancheroshowitworks.png" alt=""></p>
-<h3 id="VMware-的-Photon-OS"><a href="#VMware-的-Photon-OS" class="headerlink" title="VMware 的 Photon OS"></a>VMware 的 <a href="https://vmware.github.io/photon/" target="_blank" rel="noopener">Photon OS</a></h3><p>今天的主角，VMware  开源的 Photon OS，这个 OS 你可能没听说过，但 VMware 开源的 Harbor 想必很熟悉，而 Harbor 的基础镜像使用的就是他家的 Photon OS😂。</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root [ /harbor ]# cat /etc/os-release</span><br><span class="line"><span class="attr">NAME</span>=<span class="string">"VMware Photon OS"</span></span><br><span class="line"><span class="attr">VERSION</span>=<span class="string">"2.0"</span></span><br><span class="line"><span class="attr">ID</span>=photon</span><br><span class="line"><span class="attr">VERSION_ID</span>=<span class="number">2.0</span></span><br><span class="line"><span class="attr">PRETTY_NAME</span>=<span class="string">"VMware Photon OS/Linux"</span></span><br><span class="line"><span class="attr">ANSI_COLOR</span>=<span class="string">"1;34"</span></span><br><span class="line"><span class="attr">HOME_URL</span>=<span class="string">"https://vmware.github.io/photon/"</span></span><br><span class="line"><span class="attr">BUG_REPORT_URL</span>=<span class="string">"https://github.com/vmware/photon/issues"</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="https://p.k8s.li/rancheroshowitworks.png"></p>
+<h3 id="VMware-的-Photon-OS"><a href="#VMware-的-Photon-OS" class="headerlink" title="VMware 的 Photon OS"></a>VMware 的 <a target="_blank" rel="noopener" href="https://vmware.github.io/photon/">Photon OS</a></h3><p>今天的主角，VMware  开源的 Photon OS，这个 OS 你可能没听说过，但 VMware 开源的 Harbor 想必很熟悉，而 Harbor 的基础镜像使用的就是他家的 Photon OS😂。</p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini">root [ /harbor ]# cat /etc/os-release
+<span class="token key attr-name">NAME</span><span class="token punctuation">=</span><span class="token value attr-value">"<span class="token inner-value">VMware Photon OS</span>"</span>
+<span class="token key attr-name">VERSION</span><span class="token punctuation">=</span><span class="token value attr-value">"<span class="token inner-value">2.0</span>"</span>
+<span class="token key attr-name">ID</span><span class="token punctuation">=</span><span class="token value attr-value">photon</span>
+<span class="token key attr-name">VERSION_ID</span><span class="token punctuation">=</span><span class="token value attr-value">2.0</span>
+<span class="token key attr-name">PRETTY_NAME</span><span class="token punctuation">=</span><span class="token value attr-value">"<span class="token inner-value">VMware Photon OS/Linux</span>"</span>
+<span class="token key attr-name">ANSI_COLOR</span><span class="token punctuation">=</span><span class="token value attr-value">"<span class="token inner-value">1;34</span>"</span>
+<span class="token key attr-name">HOME_URL</span><span class="token punctuation">=</span><span class="token value attr-value">"<span class="token inner-value">https://vmware.github.io/photon/</span>"</span>
+<span class="token key attr-name">BUG_REPORT_URL</span><span class="token punctuation">=</span><span class="token value attr-value">"<span class="token inner-value">https://github.com/vmware/photon/issues</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>在 Photon OS 的构建脚本 <a href="https://github.com/vmware/photon/blob/master/build.py" target="_blank" rel="noopener">build.py</a> 中可以看到它构建的产物支持 ISO 和 docker 镜像，以及众多公有云的虚拟机格式，两者都是来自相同的源码，根据构建出来的是形式不同，所包含的软件也不同。因为裁剪掉了一些不必要的系统服务， docker 镜像格式的要更精简一些。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">targetList = &#123;</span><br><span class="line">        "image":["iso", "ami", "gce", "azure", "rpi3", "ova", "ova_uefi", "all", "src-iso",</span><br><span class="line">                "photon-docker-image", "k8s-docker-images", "all-images", "minimal-iso", "rt-iso"],</span><br><span class="line"></span><br><span class="line">        "rpmBuild": ["packages", "packages-minimal", "packages-initrd", "packages-docker",</span><br><span class="line">                "updated-packages", "tool-chain-stage1", "tool-chain-stage2", "check",</span><br><span class="line">                "ostree-repo", "generate-yaml-files", "create-repo", "distributed-build"],</span><br><span class="line"></span><br><span class="line">        "buildEnvironment": ["packages-cached", "sources", "sources-cached", "publish-rpms",</span><br><span class="line">                "publish-x-rpms", "publish-rpms-cached", "publish-x-rpms-cached", "photon-stage"]</span><br></pre></td></tr></table></figure>
+<p>在 Photon OS 的构建脚本 <a target="_blank" rel="noopener" href="https://github.com/vmware/photon/blob/master/build.py">build.py</a> 中可以看到它构建的产物支持 ISO 和 docker 镜像，以及众多公有云的虚拟机格式，两者都是来自相同的源码，根据构建出来的是形式不同，所包含的软件也不同。因为裁剪掉了一些不必要的系统服务， docker 镜像格式的要更精简一些。</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">targetList = <span class="token punctuation">&#123;</span>
+        <span class="token property">"image"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"iso"</span><span class="token punctuation">,</span> <span class="token string">"ami"</span><span class="token punctuation">,</span> <span class="token string">"gce"</span><span class="token punctuation">,</span> <span class="token string">"azure"</span><span class="token punctuation">,</span> <span class="token string">"rpi3"</span><span class="token punctuation">,</span> <span class="token string">"ova"</span><span class="token punctuation">,</span> <span class="token string">"ova_uefi"</span><span class="token punctuation">,</span> <span class="token string">"all"</span><span class="token punctuation">,</span> <span class="token string">"src-iso"</span><span class="token punctuation">,</span>
+                <span class="token string">"photon-docker-image"</span><span class="token punctuation">,</span> <span class="token string">"k8s-docker-images"</span><span class="token punctuation">,</span> <span class="token string">"all-images"</span><span class="token punctuation">,</span> <span class="token string">"minimal-iso"</span><span class="token punctuation">,</span> <span class="token string">"rt-iso"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+        <span class="token property">"rpmBuild"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"packages"</span><span class="token punctuation">,</span> <span class="token string">"packages-minimal"</span><span class="token punctuation">,</span> <span class="token string">"packages-initrd"</span><span class="token punctuation">,</span> <span class="token string">"packages-docker"</span><span class="token punctuation">,</span>
+                <span class="token string">"updated-packages"</span><span class="token punctuation">,</span> <span class="token string">"tool-chain-stage1"</span><span class="token punctuation">,</span> <span class="token string">"tool-chain-stage2"</span><span class="token punctuation">,</span> <span class="token string">"check"</span><span class="token punctuation">,</span>
+                <span class="token string">"ostree-repo"</span><span class="token punctuation">,</span> <span class="token string">"generate-yaml-files"</span><span class="token punctuation">,</span> <span class="token string">"create-repo"</span><span class="token punctuation">,</span> <span class="token string">"distributed-build"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+        <span class="token property">"buildEnvironment"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"packages-cached"</span><span class="token punctuation">,</span> <span class="token string">"sources"</span><span class="token punctuation">,</span> <span class="token string">"sources-cached"</span><span class="token punctuation">,</span> <span class="token string">"publish-rpms"</span><span class="token punctuation">,</span>
+                <span class="token string">"publish-x-rpms"</span><span class="token punctuation">,</span> <span class="token string">"publish-rpms-cached"</span><span class="token punctuation">,</span> <span class="token string">"publish-x-rpms-cached"</span><span class="token punctuation">,</span> <span class="token string">"photon-stage"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>总的来讲，上面提到的几种容器优化型 OS 中 ，Photon OS 比较开放一些，虽然来说是针对于自家 vSphere 进行优化的，但其他公有云和私有云也是支持，甚至还支持树莓派 🍓！所以个人用户想拿来玩玩，还是不错滴。尤其是针对咱这种玩 ESXi 软路由的垃圾佬，在 Photon OS 上跑一些容器应用，再适合不过了。</p>
 <h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><table>
@@ -335,13 +387,13 @@
 </thead>
 <tbody><tr>
 <td align="center">Google</td>
-<td align="center"><a href="https://github.com/GoogleCloudPlatform/cos-customizer" target="_blank" rel="noopener">Container-Optimized OS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/cos-customizer">Container-Optimized OS</a></td>
 <td align="center">-</td>
 <td align="center">-</td>
 </tr>
 <tr>
 <td align="center">Amazon</td>
-<td align="center"><a href="https://github.com/bottlerocket-os/bottlerocket" target="_blank" rel="noopener">Bottlerocket OS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/bottlerocket-os/bottlerocket">Bottlerocket OS</a></td>
 <td align="center">4.8K</td>
 <td align="center">185</td>
 </tr>
@@ -359,19 +411,19 @@
 </tr>
 <tr>
 <td align="center">Rancher</td>
-<td align="center"><a href="https://github.com/rancher/os" target="_blank" rel="noopener">Rancher OS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/rancher/os">Rancher OS</a></td>
 <td align="center">6k</td>
 <td align="center">625</td>
 </tr>
 <tr>
 <td align="center">Flatcar</td>
-<td align="center"><a href="https://github.com/flatcar-linux/Flatcar" target="_blank" rel="noopener">Flatcar Linux</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/flatcar-linux/Flatcar">Flatcar Linux</a></td>
 <td align="center">117</td>
 <td align="center">3</td>
 </tr>
 <tr>
 <td align="center">VMware</td>
-<td align="center"><a href="https://github.com/vmware/photon" target="_blank" rel="noopener">Photon OS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/vmware/photon">Photon OS</a></td>
 <td align="center">2.1k</td>
 <td align="center">591</td>
 </tr>
@@ -401,35 +453,35 @@
 <td align="center">CoreOS</td>
 <td align="center">CoreOS Container Linux</td>
 <td align="center">docker</td>
-<td align="center">AWS/GCP/OpenStack/VMware<BR>Alibaba Cloud/Azure/DigitalOcean</td>
+<td align="center">AWS&#x2F;GCP&#x2F;OpenStack&#x2F;VMware<BR>Alibaba Cloud&#x2F;Azure&#x2F;DigitalOcean</td>
 </tr>
 <tr>
 <td align="center">Red Hat</td>
 <td align="center">RHCOS</td>
 <td align="center">CRI-O</td>
-<td align="center">AWS/vSphere/Bare Metal</td>
+<td align="center">AWS&#x2F;vSphere&#x2F;Bare Metal</td>
 </tr>
 <tr>
 <td align="center">Rancher</td>
 <td align="center">Rancher OS</td>
 <td align="center">docker</td>
-<td align="center">AWS/GCP/OpenStack/VMware<BR>Alibaba Cloud/Azure/DigitalOcean</td>
+<td align="center">AWS&#x2F;GCP&#x2F;OpenStack&#x2F;VMware<BR>Alibaba Cloud&#x2F;Azure&#x2F;DigitalOcean</td>
 </tr>
 <tr>
 <td align="center">Flatcar</td>
 <td align="center">Flatcar Linux</td>
 <td align="center">docker</td>
-<td align="center">AWS/GCP/OpenStack/VMware<BR>Alibaba Cloud/Azure/DigitalOcean</td>
+<td align="center">AWS&#x2F;GCP&#x2F;OpenStack&#x2F;VMware<BR>Alibaba Cloud&#x2F;Azure&#x2F;DigitalOcean</td>
 </tr>
 <tr>
 <td align="center">VMware</td>
 <td align="center">Photon OS</td>
 <td align="center">docker</td>
-<td align="center">AWS/GCE/Azure/OpenStack<br>vSphere/bare metal/Raspberry Pi 3</td>
+<td align="center">AWS&#x2F;GCE&#x2F;Azure&#x2F;OpenStack<br>vSphere&#x2F;bare metal&#x2F;Raspberry Pi 3</td>
 </tr>
 </tbody></table>
 <p>目前来讲 Photon OS 作为 Harbor 的基础镜像，在容器方面比较突出一些，但作为容器的宿主机 OS ，还有很长的路要走。由于我是使用的 VMware 家的 ESXi 虚拟化，那么选择他家的 Photon OS 是最好的喽，而且 Photon OS 是针对 ESXi 做过优化的，内核都是针对 ESXi 虚拟化进行了定制化的开发，所以理论上选择 Photon OS 应该是最合适的。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Download-Format"><a href="#Download-Format" class="headerlink" title="Download Format"></a><a href="https://github.com/vmware/photon/wiki/Downloading-Photon-OS" target="_blank" rel="noopener">Download Format</a></h3><table>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Download-Format"><a href="#Download-Format" class="headerlink" title="Download Format"></a><a target="_blank" rel="noopener" href="https://github.com/vmware/photon/wiki/Downloading-Photon-OS">Download Format</a></h3><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -438,7 +490,7 @@
 </thead>
 <tbody><tr>
 <td>ISO Image</td>
-<td>Contains everything needed to install either the minimal or full installation of Photon OS. The bootable ISO has a manual installer or can be used with PXE/kickstart environments for automated installations.</td>
+<td>Contains everything needed to install either the minimal or full installation of Photon OS. The bootable ISO has a manual installer or can be used with PXE&#x2F;kickstart environments for automated installations.</td>
 </tr>
 <tr>
 <td>OVA</td>
@@ -461,7 +513,7 @@
 <td>Pre-packaged and tested Raspberry Pi3 Image (Version 3.0 onwards) on ARM64 architecture.</td>
 </tr>
 </tbody></table>
-<p>Photon OS 提供了多种安装方式，其中 ISO 是通用性的，就和安装其他 Linux 发行版的过程差不多，OVA 是虚拟机模板，可以导入到 VMware 虚拟化平台上使用，省区安装的步骤，比较方便。OVA 虚拟机模板的版本为 11 ，根据 <a href="https://kb.vmware.com/s/article/1003746" target="_blank" rel="noopener">Virtual machine hardware versions</a> 中的定义，需要 ESXi 6.0 Fusion 7.x Workstation 11.x Player 7.x 版本以上的虚拟化支持。</p>
+<p>Photon OS 提供了多种安装方式，其中 ISO 是通用性的，就和安装其他 Linux 发行版的过程差不多，OVA 是虚拟机模板，可以导入到 VMware 虚拟化平台上使用，省区安装的步骤，比较方便。OVA 虚拟机模板的版本为 11 ，根据 <a target="_blank" rel="noopener" href="https://kb.vmware.com/s/article/1003746">Virtual machine hardware versions</a> 中的定义，需要 ESXi 6.0 Fusion 7.x Workstation 11.x Player 7.x 版本以上的虚拟化支持。</p>
 <table>
 <thead>
 <tr>
@@ -507,7 +559,7 @@
 </tr>
 </tbody></table>
 <p>另外还支持 <code>Raspberry Pi 3</code> ，不过需要拿源码自行编译镜像，然后刷到树莓派上，你吃灰的树莓派又有用途啦 😂。</p>
-<p><a href="https://github.com/vmware/photon/wiki/Downloading-Photon-OS" target="_blank" rel="noopener">下载方式</a> 👇</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vmware/photon/wiki/Downloading-Photon-OS">下载方式</a> 👇</p>
 <h3 id="Photon-OS-3-0-Revision-2-Update3-Binaries"><a href="#Photon-OS-3-0-Revision-2-Update3-Binaries" class="headerlink" title="Photon OS 3.0 Revision 2 Update3 Binaries"></a>Photon OS 3.0 Revision 2 Update3 Binaries</h3><p>Aug 14, 2020 An update to 3.0 revision 2 Update3 binaries are now available.</p>
 <table>
 <thead>
@@ -518,27 +570,27 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="https://packages.vmware.com/photon/3.0/Rev3/iso/photon-3.0-a383732.iso" target="_blank" rel="noopener">Full ISO x86_64</a></td>
+<td><a target="_blank" rel="noopener" href="https://packages.vmware.com/photon/3.0/Rev3/iso/photon-3.0-a383732.iso">Full ISO x86_64</a></td>
 <td>5.2G</td>
 <td>2dd9f18c5162a7367f2463f4a9bb4890</td>
 </tr>
 <tr>
-<td><a href="https://packages.vmware.com/photon/3.0/Rev3/iso/photon-minimal-3.0-a383732.iso" target="_blank" rel="noopener">Minimal ISO x86_64</a></td>
+<td><a target="_blank" rel="noopener" href="https://packages.vmware.com/photon/3.0/Rev3/iso/photon-minimal-3.0-a383732.iso">Minimal ISO x86_64</a></td>
 <td>299M</td>
 <td>0119f0f275f246fd382d419ff41898a4</td>
 </tr>
 <tr>
-<td><a href="https://packages.vmware.com/photon/3.0/Rev3/iso/photon-rt-3.0-a383732.iso" target="_blank" rel="noopener">ISO x86_64 Real-Time flavour</a></td>
+<td><a target="_blank" rel="noopener" href="https://packages.vmware.com/photon/3.0/Rev3/iso/photon-rt-3.0-a383732.iso">ISO x86_64 Real-Time flavour</a></td>
 <td>489M</td>
 <td>d2bfce95b54a29174b5beaef9962dbc1</td>
 </tr>
 <tr>
-<td><a href="https://packages.vmware.com/photon/3.0/Rev3/ova/photon-hw11-3.0-a383732.ova" target="_blank" rel="noopener">OVA-hw11</a></td>
+<td><a target="_blank" rel="noopener" href="https://packages.vmware.com/photon/3.0/Rev3/ova/photon-hw11-3.0-a383732.ova">OVA-hw11</a></td>
 <td>188M</td>
 <td>ba52abd88c5b22cd4498cf0e88457f28</td>
 </tr>
 <tr>
-<td><a href="https://packages.vmware.com/photon/3.0/Rev3/ova/photon-hw13_uefi-3.0-a383732.ova" target="_blank" rel="noopener">OVA-hw13_uefi</a></td>
+<td><a target="_blank" rel="noopener" href="https://packages.vmware.com/photon/3.0/Rev3/ova/photon-hw13_uefi-3.0-a383732.ova">OVA-hw13_uefi</a></td>
 <td>214M</td>
 <td>95614f3b08c1a93306ababcc826572df</td>
 </tr>
@@ -547,66 +599,236 @@
 <ul>
 <li>创建虚拟机的时候使用 OVA 文件导入</li>
 </ul>
-<p><img src="https://p.k8s.li/20200922-esxi_ova_01.png" alt=""></p>
+<p><img data-src="https://p.k8s.li/20200922-esxi_ova_01.png"></p>
 <ul>
 <li>默认的用户名为 <code>root</code> ，密码为 <code>changeme</code>，登录之后再输入一遍 <code>changeme</code>，然后修改为新的密码。</li>
 </ul>
-<p><img src="https://p.k8s.li/20200922-esxi_photonos-01.png" alt=""></p>
+<p><img data-src="https://p.k8s.li/20200922-esxi_photonos-01.png"></p>
 <h2 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h2><ul>
 <li>内核版本为 <code>4.19.132-5.ph3-esx</code>，4.19 是个 LTS 版本的内核，结尾的 <code>esx</code> 则代表着为 <code>ESXi</code> 虚拟化定制的内核。</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux photon-machine 4.19.132-5.ph3-esx #1-photon SMP Wed Aug 12 21:02:13 UTC 2020 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Linux photon-machine <span class="token number">4.19</span>.132-5.ph3-esx <span class="token comment">#1-photon SMP Wed Aug 12 21:02:13 UTC 2020 x86_64 GNU/Linux</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>rpm 包数量仅仅为 146 个，一般的 CentOS 发行版自带的 rpm 包数量为 300 个左右。</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# rpm -qa | wc</span><br><span class="line">    146     146    4307</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># rpm -qa | wc</span>
+    <span class="token number">146</span>     <span class="token number">146</span>    <span class="token number">4307</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>系统进程信息，还是采用 systemd 来管理进程</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# systemctl status</span><br><span class="line">● photon-machine</span><br><span class="line">    State: running</span><br><span class="line">     Jobs: 0 queued</span><br><span class="line">   Failed: 0 units</span><br><span class="line">    Since: Tue 2020-09-22 08:07:29 UTC; 10min ago</span><br><span class="line">   CGroup: /</span><br><span class="line">           ├─user.slice</span><br><span class="line">           │   ├─session-c2.scope</span><br><span class="line">           │   │ ├─413 sshd: root@pts/0</span><br><span class="line">           │   │ ├─420 -bash</span><br><span class="line">           │   │ ├─443 systemctl status</span><br><span class="line">           │   │ └─444 systemctl status</span><br><span class="line">           │   └─user@0.service</span><br><span class="line">           │     └─init.scope</span><br><span class="line">           │       ├─393 /lib/systemd/systemd --user</span><br><span class="line">           │       └─394 (sd-pam)</span><br><span class="line">           ├─init.scope</span><br><span class="line">           │ └─1 /lib/systemd/systemd</span><br><span class="line">           └─system.slice</span><br><span class="line">             ├─systemd-networkd.service</span><br><span class="line">             │ └─245 /lib/systemd/systemd-networkd</span><br><span class="line">             ├─systemd-udevd.service</span><br><span class="line">             │ └─124 /lib/systemd/systemd-udevd</span><br><span class="line">             ├─vgauthd.service</span><br><span class="line">             │ └─159 /usr/bin/VGAuthService -s</span><br><span class="line">             ├─systemd-journald.service</span><br><span class="line">             │ └─97 /lib/systemd/systemd-journald</span><br><span class="line">             ├─sshd.service</span><br><span class="line">             │ └─352 /usr/sbin/sshd -D</span><br><span class="line">             ├─vmtoolsd.service</span><br><span class="line">             │ └─161 /usr/bin/vmtoolsd</span><br><span class="line">             ├─systemd-resolved.service</span><br><span class="line">             │ └─247 /lib/systemd/systemd-resolved</span><br><span class="line">             ├─dbus.service</span><br><span class="line">             │ └─157 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only</span><br><span class="line">             ├─systemd-timesyncd.service</span><br><span class="line">             │ └─151 /lib/systemd/systemd-timesyncd</span><br><span class="line">             └─systemd-logind.service</span><br><span class="line">               └─158 /lib/systemd/systemd-logind</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># systemctl status</span>
+● photon-machine
+    State: running
+     Jobs: <span class="token number">0</span> queued
+   Failed: <span class="token number">0</span> <span class="token function">units</span>
+    Since: Tue <span class="token number">2020</span>-09-22 08:07:29 UTC<span class="token punctuation">;</span> 10min ago
+   CGroup: /
+           ├─user.slice
+           │   ├─session-c2.scope
+           │   │ ├─413 sshd: root@pts/0
+           │   │ ├─420 -bash
+           │   │ ├─443 systemctl status
+           │   │ └─444 systemctl status
+           │   └─user@0.service
+           │     └─init.scope
+           │       ├─393 /lib/systemd/systemd --user
+           │       └─394 <span class="token punctuation">(</span>sd-pam<span class="token punctuation">)</span>
+           ├─init.scope
+           │ └─1 /lib/systemd/systemd
+           └─system.slice
+             ├─systemd-networkd.service
+             │ └─245 /lib/systemd/systemd-networkd
+             ├─systemd-udevd.service
+             │ └─124 /lib/systemd/systemd-udevd
+             ├─vgauthd.service
+             │ └─159 /usr/bin/VGAuthService -s
+             ├─systemd-journald.service
+             │ └─97 /lib/systemd/systemd-journald
+             ├─sshd.service
+             │ └─352 /usr/sbin/sshd -D
+             ├─vmtoolsd.service
+             │ └─161 /usr/bin/vmtoolsd
+             ├─systemd-resolved.service
+             │ └─247 /lib/systemd/systemd-resolved
+             ├─dbus.service
+             │ └─157 /usr/bin/dbus-daemon --system --address<span class="token operator">=</span>systemd: --nofork --nopidfile --systemd-activation --syslog-only
+             ├─systemd-timesyncd.service
+             │ └─151 /lib/systemd/systemd-timesyncd
+             └─systemd-logind.service
+               └─158 /lib/systemd/systemd-logind<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>磁盘根目录只使用了不到 600M</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">&#x2F;dev&#x2F;root        16G  577M   15G   4% &#x2F;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">root@photon-machine [ ~ ]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+&#x2F;dev&#x2F;root        16G  577M   15G   4% &#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>内存也只使用了 43Mi，启动 dockerd 之后内存占用 108Mi，换成 containerd 将会小一些。</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# free -h</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          2.0Gi        43Mi       1.8Gi       0.0Ki       103Mi       1.8Gi</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 dockerd 守护进程之后内存占用 108Mi</span></span><br><span class="line">root@photon-machine [ ~ ]# free -h</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          2.0Gi       108Mi       1.6Gi       0.0Ki       298Mi       1.8Gi</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># free -h</span>
+              total        used        <span class="token function">free</span>      shared  buff/cache   available
+Mem:          <span class="token number">2</span>.0Gi        43Mi       <span class="token number">1</span>.8Gi       <span class="token number">0</span>.0Ki       103Mi       <span class="token number">1</span>.8Gi
+<span class="token comment"># 启动 dockerd 守护进程之后内存占用 108Mi</span>
+root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># free -h</span>
+              total        used        <span class="token function">free</span>      shared  buff/cache   available
+Mem:          <span class="token number">2</span>.0Gi       108Mi       <span class="token number">1</span>.6Gi       <span class="token number">0</span>.0Ki       298Mi       <span class="token number">1</span>.8Gi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>内核模块的数量也比较少 30 个左右，大部分都是一些网络相关的内核模块。常规的 Linux 发行版的内核模块往往在 60 个以上。</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ ~ ]# lsmod</span><br><span class="line">Module                  Size  Used by</span><br><span class="line">xt_conntrack           16384  2</span><br><span class="line">ip6table_mangle        16384  0</span><br><span class="line">ip6table_nat           16384  0</span><br><span class="line">nf_nat_ipv6            16384  1 ip6table_nat</span><br><span class="line">iptable_mangle         16384  0</span><br><span class="line">iptable_nat            16384  0</span><br><span class="line">nf_nat_ipv4            16384  1 iptable_nat</span><br><span class="line">nf_nat                 28672  2 nf_nat_ipv6,nf_nat_ipv4</span><br><span class="line">ip6table_filter        16384  1</span><br><span class="line">ip6_tables             24576  3 ip6table_filter,ip6table_nat,ip6table_mangle</span><br><span class="line">iptable_filter         16384  1</span><br><span class="line">xt_LOG                 16384  0</span><br><span class="line">nf_conntrack           90112  4 xt_conntrack,nf_nat,nf_nat_ipv6,nf_nat_ipv4</span><br><span class="line">nf_defrag_ipv6         20480  1 nf_conntrack</span><br><span class="line">nf_defrag_ipv4         16384  1 nf_conntrack</span><br><span class="line">mousedev               20480  0</span><br><span class="line">vfat                   20480  1</span><br><span class="line">fat                    61440  1 vfat</span><br><span class="line">evdev                  20480  1</span><br><span class="line">vmwgfx                253952  1</span><br><span class="line">psmouse                90112  0</span><br><span class="line">drm_kms_helper        106496  1 vmwgfx</span><br><span class="line">ttm                    86016  1 vmwgfx</span><br><span class="line">drm                   323584  4 vmwgfx,drm_kms_helper,ttm</span><br><span class="line">sr_mod                 24576  0</span><br><span class="line">i2c_core               40960  2 drm_kms_helper,drm</span><br><span class="line">cdrom                  49152  1 sr_mod</span><br><span class="line">rdrand_rng             16384  0</span><br><span class="line">rng_core               16384  1 rdrand_rng</span><br><span class="line">ipv6                  368640  16 nf_nat_ipv6,ip6table_mangle</span><br><span class="line">root@photon-machine [ ~ ]# lsmod | wc</span><br><span class="line">     31     109    1273</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># lsmod</span>
+Module                  Size  Used by
+xt_conntrack           <span class="token number">16384</span>  <span class="token number">2</span>
+ip6table_mangle        <span class="token number">16384</span>  <span class="token number">0</span>
+ip6table_nat           <span class="token number">16384</span>  <span class="token number">0</span>
+nf_nat_ipv6            <span class="token number">16384</span>  <span class="token number">1</span> ip6table_nat
+iptable_mangle         <span class="token number">16384</span>  <span class="token number">0</span>
+iptable_nat            <span class="token number">16384</span>  <span class="token number">0</span>
+nf_nat_ipv4            <span class="token number">16384</span>  <span class="token number">1</span> iptable_nat
+nf_nat                 <span class="token number">28672</span>  <span class="token number">2</span> nf_nat_ipv6,nf_nat_ipv4
+ip6table_filter        <span class="token number">16384</span>  <span class="token number">1</span>
+ip6_tables             <span class="token number">24576</span>  <span class="token number">3</span> ip6table_filter,ip6table_nat,ip6table_mangle
+iptable_filter         <span class="token number">16384</span>  <span class="token number">1</span>
+xt_LOG                 <span class="token number">16384</span>  <span class="token number">0</span>
+nf_conntrack           <span class="token number">90112</span>  <span class="token number">4</span> xt_conntrack,nf_nat,nf_nat_ipv6,nf_nat_ipv4
+nf_defrag_ipv6         <span class="token number">20480</span>  <span class="token number">1</span> nf_conntrack
+nf_defrag_ipv4         <span class="token number">16384</span>  <span class="token number">1</span> nf_conntrack
+mousedev               <span class="token number">20480</span>  <span class="token number">0</span>
+vfat                   <span class="token number">20480</span>  <span class="token number">1</span>
+fat                    <span class="token number">61440</span>  <span class="token number">1</span> vfat
+evdev                  <span class="token number">20480</span>  <span class="token number">1</span>
+vmwgfx                <span class="token number">253952</span>  <span class="token number">1</span>
+psmouse                <span class="token number">90112</span>  <span class="token number">0</span>
+drm_kms_helper        <span class="token number">106496</span>  <span class="token number">1</span> vmwgfx
+ttm                    <span class="token number">86016</span>  <span class="token number">1</span> vmwgfx
+drm                   <span class="token number">323584</span>  <span class="token number">4</span> vmwgfx,drm_kms_helper,ttm
+sr_mod                 <span class="token number">24576</span>  <span class="token number">0</span>
+i2c_core               <span class="token number">40960</span>  <span class="token number">2</span> drm_kms_helper,drm
+cdrom                  <span class="token number">49152</span>  <span class="token number">1</span> sr_mod
+rdrand_rng             <span class="token number">16384</span>  <span class="token number">0</span>
+rng_core               <span class="token number">16384</span>  <span class="token number">1</span> rdrand_rng
+ipv6                  <span class="token number">368640</span>  <span class="token number">16</span> nf_nat_ipv6,ip6table_mangle
+root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># lsmod | wc</span>
+     <span class="token number">31</span>     <span class="token number">109</span>    <span class="token number">1273</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>系统自带的 docker 版本为 <code>19.03.10</code>，存储驱动使用的是 <code>overlay2</code></li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">Client:</span><br><span class="line"> Debug Mode: false</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Containers: 0</span><br><span class="line">  Running: 0</span><br><span class="line">  Paused: 0</span><br><span class="line">  Stopped: 0</span><br><span class="line"> Images: 0</span><br><span class="line"> Server Version: 19.03.10</span><br><span class="line"> Storage Driver: overlay2</span><br><span class="line">  Backing Filesystem: extfs</span><br><span class="line">  Supports d_type: true</span><br><span class="line">  Native Overlay Diff: true</span><br><span class="line"> Logging Driver: json-file</span><br><span class="line"> Cgroup Driver: cgroupfs</span><br><span class="line"> Plugins:</span><br><span class="line">  Volume: local</span><br><span class="line">  Network: bridge host ipvlan macvlan null overlay</span><br><span class="line">  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog</span><br><span class="line"> Swarm: inactive</span><br><span class="line"> Runtimes: runc</span><br><span class="line"> Default Runtime: runc</span><br><span class="line"> Init Binary: docker-init</span><br><span class="line"> containerd version: b34a5c8af56e510852c35414db4c1f4fa6172339</span><br><span class="line"> runc version: d736ef14f0288d6993a1845745d6756cfc9ddd5a</span><br><span class="line"> init version: fec3683</span><br><span class="line"> Security Options:</span><br><span class="line">  apparmor</span><br><span class="line">  seccomp</span><br><span class="line">   Profile: default</span><br><span class="line"> Kernel Version: 4.19.132-5.ph3-esx</span><br><span class="line"> Operating System: VMware Photon OS/Linux</span><br><span class="line"> OSType: linux</span><br><span class="line"> Architecture: x86_64</span><br><span class="line"> CPUs: 1</span><br><span class="line"> Total Memory: 1.951GiB</span><br><span class="line"> Name: photon-machine</span><br><span class="line"> ID: HXBT:Z4LZ:4HZM:3YII:U7ZA:RVOH:Z7CL:L4FA:YGA4:Y2V6:DSVR:NWPD</span><br><span class="line"> Docker Root Dir: /var/lib/docker</span><br><span class="line"> Debug Mode: false</span><br><span class="line"> Registry: https://index.docker.io/v1/</span><br><span class="line"> Labels:</span><br><span class="line"> Experimental: false</span><br><span class="line"> Insecure Registries:</span><br><span class="line">  127.0.0.0/8</span><br><span class="line"> Live Restore Enabled: false</span><br><span class="line"> Product License: Community Engine</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini">Client:
+ Debug Mode: false
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 19.03.10
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Native Overlay Diff: true
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: b34a5c8af56e510852c35414db4c1f4fa6172339
+ runc version: d736ef14f0288d6993a1845745d6756cfc9ddd5a
+ init version: fec3683
+ Security Options:
+  apparmor
+  seccomp
+   Profile: default
+ Kernel Version: 4.19.132-5.ph3-esx
+ Operating System: VMware Photon OS/Linux
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 1
+ Total Memory: 1.951GiB
+ Name: photon-machine
+ ID: HXBT:Z4LZ:4HZM:3YII:U7ZA:RVOH:Z7CL:L4FA:YGA4:Y2V6:DSVR:NWPD
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Live Restore Enabled: false
+ Product License: Community Engine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h3><ul>
 <li>查看网卡状态，可使用自带的 <code>networkctl</code> 命令行工具，像 ifconfig、ip、ss 等命令都已经默认安装。</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">root@photon-machine [ /mnt/RPMS ]# networkctl status eth0</span><br><span class="line">● 2: eth0</span><br><span class="line">       Link File: /usr/lib/systemd/network/99-default.link</span><br><span class="line">    Network File: /etc/systemd/network/99-dhcp-en.network</span><br><span class="line">            Type: ether</span><br><span class="line">           State: routable (configured)</span><br><span class="line">            Path: pci-0000:0b:00.0</span><br><span class="line">          Driver: vmxnet3</span><br><span class="line">          Vendor: VMware</span><br><span class="line">           Model: VMXNET3 Ethernet Controller</span><br><span class="line">      HW Address: 00:0c:29:74:13:16 (VMware, Inc.)</span><br><span class="line">         Address: 192.168.0.235</span><br><span class="line">                  fe80::20c:29ff:fe74:1316</span><br><span class="line">         Gateway: 192.168.0.1 (NETGEAR)</span><br><span class="line">             DNS: 119.29.29.29</span><br><span class="line">                  223.6.6.6</span><br><span class="line">        CLIENTID: ffb6220feb00020000ab113bc2c88225c0d29b</span><br><span class="line">    Connected To: n/a on port 00:e0:4c:68:54:12</span><br><span class="line">                  n/a on port 00:e0:4c:68:54:13</span><br><span class="line">                  n/a on port 00:e0:4c:68:54:15</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> /mnt/RPMS <span class="token punctuation">]</span><span class="token comment"># networkctl status eth0</span>
+● <span class="token number">2</span>: eth0
+       Link File: /usr/lib/systemd/network/99-default.link
+    Network File: /etc/systemd/network/99-dhcp-en.network
+            Type: ether
+           State: routable <span class="token punctuation">(</span>configured<span class="token punctuation">)</span>
+            Path: pci-0000:0b:00.0
+          Driver: vmxnet3
+          Vendor: VMware
+           Model: VMXNET3 Ethernet Controller
+      HW Address: 00:0c:29:74:13:16 <span class="token punctuation">(</span>VMware, Inc.<span class="token punctuation">)</span>
+         Address: <span class="token number">192.168</span>.0.235
+                  fe80::20c:29ff:fe74:1316
+         Gateway: <span class="token number">192.168</span>.0.1 <span class="token punctuation">(</span>NETGEAR<span class="token punctuation">)</span>
+             DNS: <span class="token number">119.29</span>.29.29
+                  <span class="token number">223.6</span>.6.6
+        CLIENTID: ffb6220feb00020000ab113bc2c88225c0d29b
+    Connected To: n/a on port 00:e0:4c:68:54:12
+                  n/a on port 00:e0:4c:68:54:13
+                  n/a on port 00:e0:4c:68:54:15<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>系统安装时默认使用的 DHCP 获取 IP ，可以使用 systemd 来设置静态 IP</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 首先修改 DHCP 的 systemd 文件，关闭 DHCP</span></span><br><span class="line">sed -i 's/yes/no/' /etc/systemd/network/99-dhcp-en.network</span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建静态 IP 的 systemd 文件</span></span><br><span class="line">cat &gt; /etc/systemd/network/10-static-en.network &lt;&lt; "EOF"</span><br><span class="line"></span><br><span class="line">[Match]</span><br><span class="line">Name=eth0</span><br><span class="line"></span><br><span class="line">[Network]</span><br><span class="line">Address=198.168.0.235/24</span><br><span class="line">Gateway=198.168.0.1</span><br><span class="line">DNS=192.168.0.100</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改以下文件权限为 644 ，不然启动的时候会报错提示权限问题</span></span><br><span class="line">chmod 644 /etc/systemd/network/10-static-en.network</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启一下网络</span></span><br><span class="line">systemctl restart systemd-networkd</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 首先修改 DHCP 的 systemd 文件，关闭 DHCP</span>
+<span class="token function">sed</span> -i <span class="token string">'s/yes/no/'</span> /etc/systemd/network/99-dhcp-en.network
+<span class="token comment"># 创建静态 IP 的 systemd 文件</span>
+<span class="token function">cat</span> <span class="token operator">></span> /etc/systemd/network/10-static-en.network <span class="token operator">&lt;&lt;</span> <span class="token string">"EOF"
+
+[Match]
+Name=eth0
+
+[Network]
+Address=198.168.0.235/24
+Gateway=198.168.0.1
+DNS=192.168.0.100
+EOF</span>
+
+<span class="token comment"># 修改以下文件权限为 644 ，不然启动的时候会报错提示权限问题</span>
+<span class="token function">chmod</span> <span class="token number">644</span> /etc/systemd/network/10-static-en.network
+<span class="token comment"># 重启一下网络</span>
+systemctl restart systemd-networkd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>挂载 NFS 文件系统需要安装 <code>nfs-utils</code></li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tdnf install nfs-utils -y</span><br><span class="line">mount 192.168.0.100:/nfs /mnt/nfs</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tdnf <span class="token function">install</span> nfs-utils -y
+<span class="token function">mount</span> <span class="token number">192.168</span>.0.100:/nfs /mnt/nfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h3 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h3><p>Photon OS 使用的是 yum/tdnf 作为包管理器，使用方法和 RedHat 系的发行版基本相同，repo 主要有以下几个：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls /etc/yum.repos.d/</span><br><span class="line">lightwave.repo</span><br><span class="line">photon-extras.repo</span><br><span class="line">photon-iso.repo</span><br><span class="line">photon-updates.repo</span><br><span class="line">photon.repo</span><br></pre></td></tr></table></figure>
+<h3 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h3><p>Photon OS 使用的是 yum&#x2F;tdnf 作为包管理器，使用方法和 RedHat 系的发行版基本相同，repo 主要有以下几个：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">ls</span> /etc/yum.repos.d/
+lightwave.repo
+photon-extras.repo
+photon-iso.repo
+photon-updates.repo
+photon.repo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="源码编译"><a href="#源码编译" class="headerlink" title="源码编译"></a>源码编译</h3><h2 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h2><h3 id="Pi-hole"><a href="#Pi-hole" class="headerlink" title="Pi-hole"></a>Pi-hole</h3><blockquote>
-<p>Pi-hole 是一款开源且免费的 DNS 沉洞服务器（DNS sinkhole），能够在不安装任何客户端侧软件的前提下为设备提供网络内容屏蔽服务，非常轻量易用。搭配上家中吃灰已久的树莓派，我们就能够轻松打造属于自己的广告屏蔽助手。<br>在<a href="https://pi-hole.net/" target="_blank" rel="noopener">官网</a>的介绍中，Pi-hole 主要具有以下优点：</p>
+<p>Pi-hole 是一款开源且免费的 DNS 沉洞服务器（DNS sinkhole），能够在不安装任何客户端侧软件的前提下为设备提供网络内容屏蔽服务，非常轻量易用。搭配上家中吃灰已久的树莓派，我们就能够轻松打造属于自己的广告屏蔽助手。<br>在<a target="_blank" rel="noopener" href="https://pi-hole.net/">官网</a>的介绍中，Pi-hole 主要具有以下优点：</p>
 <ul>
 <li>易于安装和配置（号称 10 分钟安装配置一条龙）。</li>
 <li>全平台，广告屏蔽服务可作用于任何设备，包括 PC、手机、平板电脑。</li>
@@ -619,26 +841,115 @@
 <ul>
 <li>首先需要关闭 systemd 自带的 DNS 服务，不然 Pi-hole 坚挺的 53 端口会被占用</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop systemd-resolved</span><br><span class="line">systemctl disable systemd-resolved</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl stop systemd-resolved
+systemctl disable systemd-resolved<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>安装 docker-compose，修改 docker-compose.yaml 文件</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"><span class="comment"># More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">pihole:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">pihole</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">pihole/pihole:latest</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"53:53/tcp"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"53:53/udp"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"67:67/udp"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"80:80/tcp"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"443:443/tcp"</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">'Asia/Shanghai'</span></span><br><span class="line">      <span class="attr">WEBPASSWORD:</span> <span class="string">'changeme'</span></span><br><span class="line">    <span class="comment"># Volumes store your data between container upgrades</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">'./etc-pihole/:/etc/pihole/'</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">'./etc-dnsmasq.d/:/etc/dnsmasq.d/'</span></span><br><span class="line">    <span class="comment"># Recommended but not required (DHCP needs NET_ADMIN)</span></span><br><span class="line">    <span class="comment">#   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span>
+<span class="token comment"># More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">pihole</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> pihole
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> pihole/pihole<span class="token punctuation">:</span>latest
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"53:53/tcp"</span>
+      <span class="token punctuation">-</span> <span class="token string">"53:53/udp"</span>
+      <span class="token punctuation">-</span> <span class="token string">"67:67/udp"</span>
+      <span class="token punctuation">-</span> <span class="token string">"80:80/tcp"</span>
+      <span class="token punctuation">-</span> <span class="token string">"443:443/tcp"</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">TZ</span><span class="token punctuation">:</span> <span class="token string">'Asia/Shanghai'</span>
+      <span class="token key atrule">WEBPASSWORD</span><span class="token punctuation">:</span> <span class="token string">'changeme'</span>
+    <span class="token comment"># Volumes store your data between container upgrades</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">'./etc-pihole/:/etc/pihole/'</span>
+      <span class="token punctuation">-</span> <span class="token string">'./etc-dnsmasq.d/:/etc/dnsmasq.d/'</span>
+    <span class="token comment"># Recommended but not required (DHCP needs NET_ADMIN)</span>
+    <span class="token comment">#   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities</span>
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>docker-compose up 走起！</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">root@PhotonOS [ /opt/docker/pihole ]# docker-compose up</span><br><span class="line">Creating network "pihole_default" with the default driver</span><br><span class="line">Creating pihole ... done</span><br><span class="line">Attaching to pihole</span><br><span class="line">pihole    | [s6-init] making user provided files available at /var/run/s6/etc...exited 0.</span><br><span class="line">pihole    | [s6-init] ensuring user provided files have correct perms...exited 0.</span><br><span class="line">pihole    | [fix-attrs.d] applying ownership &amp; permissions fixes...</span><br><span class="line">pihole    | [fix-attrs.d] 01-resolver-resolv: applying...</span><br><span class="line">pihole    | [fix-attrs.d] 01-resolver-resolv: exited 0.</span><br><span class="line">pihole    | [fix-attrs.d] done.</span><br><span class="line">pihole    | [cont-init.d] executing container initialization scripts...</span><br><span class="line">pihole    | [cont-init.d] 20-start.sh: executing...</span><br><span class="line">pihole    |  ::: Starting docker specific checks &amp; setup for docker pihole/pihole</span><br><span class="line">  [✓] Update local cache of available packages</span><br><span class="line">pihole    |   [i] Existing PHP installation detected : PHP version 7.0.33-0+deb9u8</span><br><span class="line">pihole    |</span><br><span class="line">pihole    |   [i] Installing configs from /etc/.pihole...</span><br><span class="line">pihole    |   [i] Existing dnsmasq.conf found... it is not a Pi-hole file, leaving alone!</span><br><span class="line">  [✓] Copying 01-pihole.conf to /etc/dnsmasq.d/01-pihole.conf</span><br><span class="line">pihole    | chown: cannot access '': No such file or directory</span><br><span class="line">pihole    | chmod: cannot access '': No such file or directory</span><br><span class="line">pihole    | chown: cannot access '/etc/pihole/dhcp.leases': No such file or directory</span><br><span class="line">pihole    | ::: Pre existing WEBPASSWORD found</span><br><span class="line">pihole    | Using default DNS servers: 8.8.8.8 &amp; 8.8.4.4</span><br><span class="line">pihole    | DNSMasq binding to default interface: eth0</span><br><span class="line">pihole    | Added ENV to php:</span><br><span class="line">pihole    |                     "PHP_ERROR_LOG" =&gt; "/var/log/lighttpd/error.log",</span><br><span class="line">pihole    |                     "ServerIP" =&gt; "0.0.0.0",</span><br><span class="line">pihole    |                     "VIRTUAL_HOST" =&gt; "0.0.0.0",</span><br><span class="line">pihole    | Using IPv4 and IPv6</span><br><span class="line">pihole    | ::: Preexisting ad list /etc/pihole/adlists.list detected ((exiting setup_blocklists early))</span><br><span class="line">pihole    | https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts</span><br><span class="line">pihole    | https://mirror1.malwaredomains.com/files/justdomains</span><br><span class="line">pihole    | ::: Testing pihole-FTL DNS: FTL started!</span><br><span class="line">pihole    | ::: Testing lighttpd config: Syntax OK</span><br><span class="line">pihole    | ::: All config checks passed, cleared for startup ...</span><br><span class="line">pihole    |  ::: Docker start setup complete</span><br><span class="line">pihole    |   [i] Neutrino emissions detected...</span><br><span class="line">  [✓] Pulling blocklist source list into range</span><br><span class="line">pihole    |</span><br><span class="line">  [✓] Preparing new gravity database</span><br><span class="line">pihole    |   [i] Target: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts</span><br><span class="line">pihole    |   [i] Received 55654 domains</span><br><span class="line">pihole    |   [i] Target: https://mirror1.malwaredomains.com/files/justdomains</span><br><span class="line">  [✓] Status: No changes detected</span><br><span class="line">pihole    |   [i] Received 26854 domains</span><br><span class="line">  [✓] Storing downloaded domains in new gravity database</span><br><span class="line">  [✓] Building tree</span><br><span class="line">  [✓] Swapping databases</span><br><span class="line">pihole    |   [i] Number of gravity domains: 82508 (82465 unique domains)</span><br><span class="line">pihole    |   [i] Number of exact blacklisted domains: 0</span><br><span class="line">pihole    |   [i] Number of regex blacklist filters: 0</span><br><span class="line">pihole    |   [i] Number of exact whitelisted domains: 0</span><br><span class="line">pihole    |   [i] Number of regex whitelist filters: 0</span><br><span class="line">  [✓] Cleaning up stray matter</span><br><span class="line">pihole    |</span><br><span class="line">pihole    |   [✓] DNS service is running</span><br><span class="line">pihole    |   [✓] Pi-hole blocking is Enabled</span><br><span class="line">pihole    |   Pi-hole version is v5.1.2 (Latest: v5.1.2)</span><br><span class="line">pihole    |   AdminLTE version is v5.1.1 (Latest: v5.1.1)</span><br><span class="line">pihole    |   FTL version is v5.2 (Latest: v5.2)</span><br><span class="line">pihole    | [cont-init.d] 20-start.sh: exited 0.</span><br><span class="line">pihole    | [cont-init.d] done.</span><br><span class="line">pihole    | [services.d] starting services</span><br><span class="line">pihole    | Starting pihole-FTL (no-daemon) as root</span><br><span class="line">pihole    | Starting lighttpd</span><br><span class="line">pihole    | Starting crond</span><br><span class="line">pihole    | [services.d] done.</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@PhotonOS <span class="token punctuation">[</span> /opt/docker/pihole <span class="token punctuation">]</span><span class="token comment"># docker-compose up</span>
+Creating network <span class="token string">"pihole_default"</span> with the default driver
+Creating pihole <span class="token punctuation">..</span>. <span class="token keyword">done</span>
+Attaching to pihole
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>s6-init<span class="token punctuation">]</span> making user provided files available at /var/run/s6/etc<span class="token punctuation">..</span>.exited <span class="token number">0</span>.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>s6-init<span class="token punctuation">]</span> ensuring user provided files have correct perms<span class="token punctuation">..</span>.exited <span class="token number">0</span>.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>fix-attrs.d<span class="token punctuation">]</span> applying ownership <span class="token operator">&amp;</span> permissions fixes<span class="token punctuation">..</span>.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>fix-attrs.d<span class="token punctuation">]</span> 01-resolver-resolv: applying<span class="token punctuation">..</span>.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>fix-attrs.d<span class="token punctuation">]</span> 01-resolver-resolv: exited <span class="token number">0</span>.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>fix-attrs.d<span class="token punctuation">]</span> done.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>cont-init.d<span class="token punctuation">]</span> executing container initialization scripts<span class="token punctuation">..</span>.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>cont-init.d<span class="token punctuation">]</span> <span class="token number">20</span>-start.sh: executing<span class="token punctuation">..</span>.
+pihole    <span class="token operator">|</span>  ::: Starting <span class="token function">docker</span> specific checks <span class="token operator">&amp;</span> setup <span class="token keyword">for</span> <span class="token function">docker</span> pihole/pihole
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Update <span class="token builtin class-name">local</span> cache of available packages
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Existing PHP installation detected <span class="token builtin class-name">:</span> PHP version <span class="token number">7.0</span>.33-0+deb9u8
+pihole    <span class="token operator">|</span>
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Installing configs from /etc/.pihole<span class="token punctuation">..</span>.
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Existing dnsmasq.conf found<span class="token punctuation">..</span>. it is not a Pi-hole file, leaving alone<span class="token operator">!</span>
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Copying 01-pihole.conf to /etc/dnsmasq.d/01-pihole.conf
+pihole    <span class="token operator">|</span> chown: cannot access <span class="token string">''</span><span class="token builtin class-name">:</span> No such <span class="token function">file</span> or directory
+pihole    <span class="token operator">|</span> chmod: cannot access <span class="token string">''</span><span class="token builtin class-name">:</span> No such <span class="token function">file</span> or directory
+pihole    <span class="token operator">|</span> chown: cannot access <span class="token string">'/etc/pihole/dhcp.leases'</span><span class="token builtin class-name">:</span> No such <span class="token function">file</span> or directory
+pihole    <span class="token operator">|</span> ::: Pre existing WEBPASSWORD found
+pihole    <span class="token operator">|</span> Using default DNS servers: <span class="token number">8.8</span>.8.8 <span class="token operator">&amp;</span> <span class="token number">8.8</span>.4.4
+pihole    <span class="token operator">|</span> DNSMasq binding to default interface: eth0
+pihole    <span class="token operator">|</span> Added ENV to php:
+pihole    <span class="token operator">|</span>                     <span class="token string">"PHP_ERROR_LOG"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"/var/log/lighttpd/error.log"</span>,
+pihole    <span class="token operator">|</span>                     <span class="token string">"ServerIP"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"0.0.0.0"</span>,
+pihole    <span class="token operator">|</span>                     <span class="token string">"VIRTUAL_HOST"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"0.0.0.0"</span>,
+pihole    <span class="token operator">|</span> Using IPv4 and IPv6
+pihole    <span class="token operator">|</span> ::: Preexisting ad list /etc/pihole/adlists.list detected <span class="token variable"><span class="token punctuation">((</span>exiting setup_blocklists early<span class="token punctuation">))</span></span>
+pihole    <span class="token operator">|</span> https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+pihole    <span class="token operator">|</span> https://mirror1.malwaredomains.com/files/justdomains
+pihole    <span class="token operator">|</span> ::: Testing pihole-FTL DNS: FTL started<span class="token operator">!</span>
+pihole    <span class="token operator">|</span> ::: Testing lighttpd config: Syntax OK
+pihole    <span class="token operator">|</span> ::: All config checks passed, cleared <span class="token keyword">for</span> startup <span class="token punctuation">..</span>.
+pihole    <span class="token operator">|</span>  ::: Docker start setup complete
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Neutrino emissions detected<span class="token punctuation">..</span>.
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Pulling blocklist <span class="token builtin class-name">source</span> list into range
+pihole    <span class="token operator">|</span>
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Preparing new gravity database
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Target: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Received <span class="token number">55654</span> domains
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Target: https://mirror1.malwaredomains.com/files/justdomains
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Status: No changes detected
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Received <span class="token number">26854</span> domains
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Storing downloaded domains <span class="token keyword">in</span> new gravity database
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Building tree
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Swapping databases
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Number of gravity domains: <span class="token number">82508</span> <span class="token punctuation">(</span><span class="token number">82465</span> unique domains<span class="token punctuation">)</span>
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Number of exact blacklisted domains: <span class="token number">0</span>
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Number of regex blacklist filters: <span class="token number">0</span>
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Number of exact whitelisted domains: <span class="token number">0</span>
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>i<span class="token punctuation">]</span> Number of regex whitelist filters: <span class="token number">0</span>
+  <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Cleaning up stray matter
+pihole    <span class="token operator">|</span>
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> DNS <span class="token function">service</span> is running
+pihole    <span class="token operator">|</span>   <span class="token punctuation">[</span>✓<span class="token punctuation">]</span> Pi-hole blocking is Enabled
+pihole    <span class="token operator">|</span>   Pi-hole version is v5.1.2 <span class="token punctuation">(</span>Latest: v5.1.2<span class="token punctuation">)</span>
+pihole    <span class="token operator">|</span>   AdminLTE version is v5.1.1 <span class="token punctuation">(</span>Latest: v5.1.1<span class="token punctuation">)</span>
+pihole    <span class="token operator">|</span>   FTL version is v5.2 <span class="token punctuation">(</span>Latest: v5.2<span class="token punctuation">)</span>
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>cont-init.d<span class="token punctuation">]</span> <span class="token number">20</span>-start.sh: exited <span class="token number">0</span>.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>cont-init.d<span class="token punctuation">]</span> done.
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>services.d<span class="token punctuation">]</span> starting services
+pihole    <span class="token operator">|</span> Starting pihole-FTL <span class="token punctuation">(</span>no-daemon<span class="token punctuation">)</span> as root
+pihole    <span class="token operator">|</span> Starting lighttpd
+pihole    <span class="token operator">|</span> Starting crond
+pihole    <span class="token operator">|</span> <span class="token punctuation">[</span>services.d<span class="token punctuation">]</span> done.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
-<li>打开浏览器，输入 <code>http://ip:port/admin</code> 即可进入 Pi-hole 的后台管理页面，在这里可以查看到 DNS 解析的详细记录，关于 Pi-hole 的使用可以参考一些大佬的博客，比如 <a href="https://wzyboy.im/post/1372.html" target="_blank" rel="noopener">搭建 Pi-Hole 为网上冲浪保驾护航</a>。</li>
+<li>打开浏览器，输入 <code>http://ip:port/admin</code> 即可进入 Pi-hole 的后台管理页面，在这里可以查看到 DNS 解析的详细记录，关于 Pi-hole 的使用可以参考一些大佬的博客，比如 <a target="_blank" rel="noopener" href="https://wzyboy.im/post/1372.html">搭建 Pi-Hole 为网上冲浪保驾护航</a>。</li>
 </ul>
-<p><img src="https://p.k8s.li/20200925-pihole.png" alt=""></p>
+<p><img data-src="https://p.k8s.li/20200925-pihole.png"></p>
 <p>如果想要让内网的机器都走 Pi-hole 来进行 DNS ，可以将路由器的 DHCP 的  DNS 的 IP 设置为 Pi-hole 的 IP。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://cloud.google.com/blog/products/containers-kubernetes/bringing-ebpf-and-cilium-to-google-kubernetes-engine" target="_blank" rel="noopener">New GKE Dataplane V2 increases security and visibility for containers</a></li>
-<li><a href="https://moelove.info/2020/09/02/%E8%A2%AB-Google-%E9%80%89%E6%8B%A9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9D%A2-Cilium-%E6%98%AF%E4%BB%80%E4%B9%88/" target="_blank" rel="noopener">被 Google 选择的下一代数据面 Cilium 是什么</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/blog/products/containers-kubernetes/bringing-ebpf-and-cilium-to-google-kubernetes-engine">New GKE Dataplane V2 increases security and visibility for containers</a></li>
+<li><a target="_blank" rel="noopener" href="https://moelove.info/2020/09/02/%E8%A2%AB-Google-%E9%80%89%E6%8B%A9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9D%A2-Cilium-%E6%98%AF%E4%BB%80%E4%B9%88/">被 Google 选择的下一代数据面 Cilium 是什么</a></li>
 </ul>
 
     </div>
@@ -647,217 +958,90 @@
     
     
 
-      <footer class="post-footer">
-          
+    <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 容器</a>
-              <a href="/tags/PhotonOS/" rel="tag"><i class="fa fa-tag"></i> PhotonOS</a>
-              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag"># 容器</a>
+              <a href="/tags/PhotonOS/" rel="tag"># PhotonOS</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/lsi-9211-4i-ir-to-it.html" rel="prev" title="给阵列卡刷个机，IR 模式转 IT 模式">
-      <i class="fa fa-chevron-left"></i> 给阵列卡刷个机，IR 模式转 IT 模式
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020-booklist.html" rel="next" title="2020 年读书笔记和思考">
-      2020 年读书笔记和思考 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/lsi-9211-4i-ir-to-it.html" rel="prev" title="给阵列卡刷个机，IR 模式转 IT 模式">
+                  <i class="fa fa-chevron-left"></i> 给阵列卡刷个机，IR 模式转 IT 模式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020-booklist.html" rel="next" title="2020 年读书笔记和思考">
+                  2020 年读书笔记和思考 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
-
-  </div>
+</div>
 
 
-          </div>
-          
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-Container-OS"><span class="nav-number">1.</span> <span class="nav-text">Linux Container OS ?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GKE-的-Container-Optimized-OS"><span class="nav-number">1.1.</span> <span class="nav-text">GKE 的 Container-Optimized OS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AWS-的-Bottlerocket-OS"><span class="nav-number">1.2.</span> <span class="nav-text">AWS 的 Bottlerocket OS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimized-performance-through-AWS-integrations"><span class="nav-number">1.3.</span> <span class="nav-text">Optimized performance through AWS integrations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreOS-Container-Linux"><span class="nav-number">1.4.</span> <span class="nav-text">CoreOS Container Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红帽的-RHCOS"><span class="nav-number">1.5.</span> <span class="nav-text">红帽的 RHCOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RancherOS"><span class="nav-number">1.6.</span> <span class="nav-text">RancherOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VMware-的-Photon-OS"><span class="nav-number">1.7.</span> <span class="nav-text">VMware 的 Photon OS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比"><span class="nav-number">2.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Download-Format"><span class="nav-number">3.1.</span> <span class="nav-text">Download Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Photon-OS-3-0-Revision-2-Update3-Binaries"><span class="nav-number">3.2.</span> <span class="nav-text">Photon OS 3.0 Revision 2 Update3 Binaries</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统信息"><span class="nav-number">4.</span> <span class="nav-text">系统信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">5.</span> <span class="nav-text">系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络管理"><span class="nav-number">5.1.</span> <span class="nav-text">网络管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包管理"><span class="nav-number">5.2.</span> <span class="nav-text">包管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码编译"><span class="nav-number">5.3.</span> <span class="nav-text">源码编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行容器"><span class="nav-number">6.</span> <span class="nav-text">运行容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pi-hole"><span class="nav-number">6.1.</span> <span class="nav-text">Pi-hole</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -865,51 +1049,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/Photon-OS.html",
-            identifier: "Photon-OS.html",
-            title: "轻量级容器优化型 Linux 发行版 Photon OS"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

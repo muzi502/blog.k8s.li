@@ -2,220 +2,234 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="小伙伴欢迎与咱交换友链或者 py 交易 😂，抱歉只能用简陋的表格（ 12345title: 木子的博客url: https:&#x2F;&#x2F;blog.k8s.libio: 垃圾佬、搬砖社畜、运维工程师avatar: https:&#x2F;&#x2F;blog.k8s.li&#x2F;avatar.pngrss: https:&#x2F;&#x2F;blog.k8s.li&#x2F;atom.xml  永远 の 好朋友   站点 主要内容 印象 😋    土豆不好">
-<meta property="og:type" content="website">
+    <meta name="description" content="小伙伴欢迎与咱交换友链或者 py 交易 😂，抱歉只能用简陋的表格（ title: 木子的博客 url: https:&#x2F;&#x2F;blog.k8s.li bio: 垃圾佬、搬砖社畜、运维工程师 avatar: https:&#x2F;&#x2F;blog.k8s.li&#x2F;avatar.png rss: https:&#x2F;&#x2F;blog.k8s.li&#x2F;atom.xml  永远 の 好朋友   站点 主要内容 印象 😋    土豆不好吃">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="小伙伴们">
 <meta property="og:url" content="https://blog.k8s.li/friends.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
-<meta property="og:description" content="小伙伴欢迎与咱交换友链或者 py 交易 😂，抱歉只能用简陋的表格（ 12345title: 木子的博客url: https:&#x2F;&#x2F;blog.k8s.libio: 垃圾佬、搬砖社畜、运维工程师avatar: https:&#x2F;&#x2F;blog.k8s.li&#x2F;avatar.pngrss: https:&#x2F;&#x2F;blog.k8s.li&#x2F;atom.xml  永远 の 好朋友   站点 主要内容 印象 😋    土豆不好">
+<meta property="og:description" content="小伙伴欢迎与咱交换友链或者 py 交易 😂，抱歉只能用简陋的表格（ title: 木子的博客 url: https:&#x2F;&#x2F;blog.k8s.li bio: 垃圾佬、搬砖社畜、运维工程师 avatar: https:&#x2F;&#x2F;blog.k8s.li&#x2F;avatar.png rss: https:&#x2F;&#x2F;blog.k8s.li&#x2F;atom.xml  永远 の 好朋友   站点 主要内容 印象 😋    土豆不好吃">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.k8s.li/20200101150146261.png">
 <meta property="article:published_time" content="2019-09-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-30T00:21:08.711Z">
-<meta property="article:author" content="木子">
+<meta property="article:modified_time" content="2022-05-01T12:37:56.928Z">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Registry">
 <meta property="article:tag" content="Kubernetes">
 <meta property="article:tag" content="PaaS toB">
+<meta property="article:tag" content="IaaS toB">
+<meta property="article:tag" content="超融合">
+<meta property="article:tag" content="虚拟化">
+<meta property="article:tag" content="裸金属服务器">
 <meta property="article:tag" content="运维开发">
 <meta property="article:tag" content="容器镜像">
 <meta property="article:tag" content="发布流水线">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://p.k8s.li/20200101150146261.png">
 
+
 <link rel="canonical" href="https://blog.k8s.li/friends.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: false
-  };
-</script>
 
-  <title>小伙伴们 | Reimu's blog
-  </title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/friends.html","path":"friends.html","title":"小伙伴们"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>小伙伴们 | Reimu's blog
+</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E4%BC%99%E4%BC%B4"><span class="nav-number">1.</span> <span class="nav-text">小伙伴</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B0%B8%E8%BF%9C-%E3%81%AE-%E5%A5%BD%E6%9C%8B%E5%8F%8B"><span class="nav-number">1.1.</span> <span class="nav-text">永远 の 好朋友</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E6%81%8B%E9%93%BE-%F0%9F%98%82-x2F-%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%BA"><span class="nav-number">1.2.</span> <span class="nav-text">单恋链 😂&#x2F;有趣的人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%B8%E5%85%B3"><span class="nav-number">1.3.</span> <span class="nav-text">云原生相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">未分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%8F%B8-x2F-%E7%A4%BE%E5%8C%BA-x2F-%E5%9B%A2%E9%98%9F-x2F-%E8%AE%BA%E5%9D%9B"><span class="nav-number">2.</span> <span class="nav-text">公司 &#x2F; 社区 &#x2F; 团队 &#x2F; 论坛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">3.</span> <span class="nav-text">Why</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0%E7%8E%B0%E7%8A%B6"><span class="nav-number">3.1.</span> <span class="nav-text">国内博客平台现状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E4%B8%AA%E4%BA%BA%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%88%97%E8%A1%A8"><span class="nav-number">3.2.</span> <span class="nav-text">推荐个人独立博客列表</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-  
-  
 
-          <div class="content">
-            
+    <div class="main-inner page posts-expand">
 
-  <div class="posts-expand">
+
     
     
     
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
+    <div class="post-block" lang="zh-CN"><header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">小伙伴们
-</h2>
+<h1 class="post-title" itemprop="name headline">小伙伴们
+</h1>
 
-<div class="post-meta">
-  
-
+<div class="post-meta-container">
 </div>
 
 </header>
 
       
       
-      
       <div class="post-body">
           <h2 id="小伙伴"><a href="#小伙伴" class="headerlink" title="小伙伴"></a>小伙伴</h2><p>欢迎与咱交换友链或者 py 交易 😂，抱歉只能用简陋的表格（</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">木子的博客</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://blog.k8s.li</span></span><br><span class="line"><span class="attr">bio:</span> <span class="string">垃圾佬、搬砖社畜、运维工程师</span></span><br><span class="line"><span class="attr">avatar:</span> <span class="string">https://blog.k8s.li/avatar.png</span></span><br><span class="line"><span class="attr">rss:</span> <span class="string">https://blog.k8s.li/atom.xml</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> 木子的博客
+<span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//blog.k8s.li
+<span class="token key atrule">bio</span><span class="token punctuation">:</span> 垃圾佬、搬砖社畜、运维工程师
+<span class="token key atrule">avatar</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//blog.k8s.li/avatar.png
+<span class="token key atrule">rss</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//blog.k8s.li/atom.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="永远-の-好朋友"><a href="#永远-の-好朋友" class="headerlink" title="永远 の 好朋友"></a>永远 の 好朋友</h3><table>
 <thead>
@@ -226,127 +240,127 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="https://www.bennythink.com/" target="_blank" rel="noopener">土豆不好吃</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.bennythink.com/">土豆不好吃</a></td>
 <td>Linux、VPS、Python、Golang</td>
 <td>有脾气的小土豆</td>
 </tr>
 <tr>
-<td><a href="https://chanshiyu.com/" target="_blank" rel="noopener">蝉時雨</a></td>
+<td><a target="_blank" rel="noopener" href="https://chanshiyu.com/">蝉時雨</a></td>
 <td>前端、Java、Vue、博客、东方</td>
-<td><a href="https://github.com/chanshiyucx/aurora" target="_blank" rel="noopener">Aurora</a> 作者、诗意少年</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chanshiyucx/aurora">Aurora</a> 作者、诗意少年</td>
 </tr>
 <tr>
-<td><a href="https://blog.hly0928.com/" target="_blank" rel="noopener">Steven’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.hly0928.com/">Steven’s Blog</a></td>
 <td>技术、消费电子、评测</td>
 <td>大学萌新的普通 Blog</td>
 </tr>
 <tr>
-<td><a href="https://blog.ryouissei.com/" target="_blank" rel="noopener">觉论</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.ryouissei.com/">觉论</a></td>
 <td>用户体验、交互设计</td>
 <td>多摩美术大学高材生 😂</td>
 </tr>
 <tr>
-<td><a href="https://gobomb.github.io/" target="_blank" rel="noopener">Present Day, Present Time</a></td>
+<td><a target="_blank" rel="noopener" href="https://gobomb.github.io/">Present Day, Present Time</a></td>
 <td>Go 、Shell、Docker、Kubernetes</td>
 <td>Server Reboot Engineer 😂</td>
 </tr>
 <tr>
-<td><a href="https://blog.justforlxz.com/" target="_blank" rel="noopener">小竹’s blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.justforlxz.com/">小竹’s blog</a></td>
 <td>deepin linux、C++、Web 前端</td>
 <td>正在使用 C++ 拯救世界</td>
 </tr>
 <tr>
-<td><a href="https://blog.dylanwu.space/" target="_blank" rel="noopener">瓠樽</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.dylanwu.space/">瓠樽</a></td>
 <td>前端、艺术、阅读</td>
 <td>目测是位硬核博主 😂</td>
 </tr>
 <tr>
-<td><a href="https://www.himself65.com/" target="_blank" rel="noopener">Himself65 Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.himself65.com/">Himself65 Blog</a></td>
 <td>Rust、Node、前端</td>
 <td>扩散性百万甜面包 🍞</td>
 </tr>
 <tr>
-<td><a href="https://blog.0xbbc.com/" target="_blank" rel="noopener">Cocoa</a></td>
-<td>C/C++、Rust 、算法、iOS 安全、Linux</td>
+<td><a target="_blank" rel="noopener" href="https://blog.0xbbc.com/">Cocoa</a></td>
+<td>C&#x2F;C++、Rust 、算法、iOS 安全、Linux</td>
 <td>少女心满满 😂</td>
 </tr>
 <tr>
-<td><a href="https://crowndaisy.com/" target="_blank" rel="noopener">CrownDaisy</a></td>
+<td><a target="_blank" rel="noopener" href="https://crowndaisy.com/">CrownDaisy</a></td>
 <td>Python、数据分析</td>
 <td>极简主义者</td>
 </tr>
 <tr>
-<td><a href="https://fanqxu.github.io/" target="_blank" rel="noopener">F4n9X’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://fanqxu.github.io/">F4n9X’s Blog</a></td>
 <td>InfoSec、PenTesting、CTF、Hacking</td>
 <td>社工大佬</td>
 </tr>
 <tr>
-<td><a href="https://ichr.me" target="_blank" rel="noopener">ChrAlpha</a></td>
+<td><a target="_blank" rel="noopener" href="https://ichr.me/">ChrAlpha</a></td>
 <td>hexo、Cloudflare、加密、博客、写作</td>
 <td>Keep foolish and<br> write some stupid codes</td>
 </tr>
 <tr>
-<td><a href="https://nova.moe/" target="_blank" rel="noopener">Nova Kwok’s Awesome Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://nova.moe/">Nova Kwok’s Awesome Blog</a></td>
 <td>Linux、Python、network、摄影</td>
 <td>LUNA 创始人</td>
 </tr>
 <tr>
-<td><a href="https://jpacg.me/" target="_blank" rel="noopener">纯白</a></td>
+<td><a target="_blank" rel="noopener" href="https://jpacg.me/">纯白</a></td>
 <td>NAS</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://totoro.ink/" target="_blank" rel="noopener">TOTORO625</a></td>
+<td><a target="_blank" rel="noopener" href="https://totoro.ink/">TOTORO625</a></td>
 <td>Ingress、Linux</td>
 <td>日常搬砖、画图、数钢筋（大雾</td>
 </tr>
 <tr>
-<td><a href="https://idealclover.top" target="_blank" rel="noopener">idealclover</a></td>
+<td><a target="_blank" rel="noopener" href="https://idealclover.top/">idealclover</a></td>
 <td>技术、测评、随想、生活</td>
 <td>是只可爱的男孩子 😝</td>
 </tr>
 <tr>
-<td><a href="http://dfine.tech" target="_blank" rel="noopener">阁子</a></td>
+<td><a target="_blank" rel="noopener" href="http://dfine.tech/">阁子</a></td>
 <td>Linux 、hexo、</td>
 <td>诗意少年 😂</td>
 </tr>
 <tr>
-<td><a href="https://beyondstars.xyz/" target="_blank" rel="noopener">探索子</a></td>
+<td><a target="_blank" rel="noopener" href="https://beyondstars.xyz/">探索子</a></td>
 <td>Linux、math、devops</td>
 <td>数学大佬（逃</td>
 </tr>
 <tr>
-<td><a href="https://www.yunyoujun.cn/about/site.html" target="_blank" rel="noopener">云游君的小站</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.yunyoujun.cn/about/site.html">云游君的小站</a></td>
 <td>前端、博客</td>
 <td>希望能成为一个有趣的人(o゜▽゜)o☆x</td>
 </tr>
 <tr>
-<td><a href="https://blog.hibobmaster.com/" target="_blank" rel="noopener">BobMaster’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.hibobmaster.com/">BobMaster’s Blog</a></td>
 <td>博客</td>
 <td>一个准通信工程专业学生（＞ 人 ＜；）</td>
 </tr>
 <tr>
-<td><a href="https://ryan4yin.space/" target="_blank" rel="noopener">Ryan4Yin’s Space</a></td>
+<td><a target="_blank" rel="noopener" href="https://ryan4yin.space/">Ryan4Yin’s Space</a></td>
 <td>DevOps</td>
 <td>赞美快乐~</td>
 </tr>
 <tr>
-<td><a href="https://blog.rxliuli.com/" target="_blank" rel="noopener">rxliuli</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.rxliuli.com/">rxliuli</a></td>
 <td>前端、算法</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://cyris.moe" target="_blank" rel="noopener">Cyris</a></td>
+<td><a target="_blank" rel="noopener" href="https://cyris.moe/">Cyris</a></td>
 <td>美工 &amp; 前端</td>
 <td>花如解笑还多事，石不能言最可人(o゜▽゜)o☆x</td>
 </tr>
 <tr>
-<td><a href="http://www.shuangxing.top" target="_blank" rel="noopener">雾雨霜星</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.shuangxing.top/">雾雨霜星</a></td>
 <td>Java、前端</td>
 <td>雾间觉雨，霜空望星</td>
 </tr>
 </tbody></table>
-<h3 id="单恋链-😂-有趣的人"><a href="#单恋链-😂-有趣的人" class="headerlink" title="单恋链 😂/有趣的人"></a>单<del>恋</del>链 😂/有趣的人</h3><table>
+<h3 id="单恋链-😂-x2F-有趣的人"><a href="#单恋链-😂-x2F-有趣的人" class="headerlink" title="单恋链 😂&#x2F;有趣的人"></a>单<del>恋</del>链 😂&#x2F;有趣的人</h3><table>
 <thead>
 <tr>
 <th>站点</th>
@@ -355,282 +369,282 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="https://liuyandong.com/" target="_blank" rel="noopener">软件那些事儿</a></td>
+<td><a target="_blank" rel="noopener" href="https://liuyandong.com/">软件那些事儿</a></td>
 <td>计算机历史、八卦、扯淡、电台、考古</td>
 <td>老刘、栋哥</td>
 </tr>
 <tr>
-<td><a href="https://lmzdx.com/" target="_blank" rel="noopener">绿帽子大学</a></td>
+<td><a target="_blank" rel="noopener" href="https://lmzdx.com/">绿帽子大学</a></td>
 <td>Ruby、软件那些事儿电台的官方网站</td>
 <td>油腻大叔</td>
 </tr>
 <tr>
-<td><a href="https://program-think.blogspot.com/" target="_blank" rel="noopener">编程随想</a></td>
+<td><a target="_blank" rel="noopener" href="https://program-think.blogspot.com/">编程随想</a></td>
 <td>反洗脑、社会工程学、读书思考</td>
 <td>枪毙名单榜首</td>
 </tr>
 <tr>
-<td><a href="https://coolshell.cn/" target="_blank" rel="noopener">酷 壳 – CoolShell</a></td>
+<td><a target="_blank" rel="noopener" href="https://coolshell.cn/">酷 壳 – CoolShell</a></td>
 <td>综合、Linux、开源</td>
 <td>资深开发者</td>
 </tr>
 <tr>
-<td><a href="http://lao-qian.hxwk.org/" target="_blank" rel="noopener">老钱文集</a></td>
+<td><a target="_blank" rel="noopener" href="http://lao-qian.hxwk.org/">老钱文集</a></td>
 <td>历史、美国</td>
 <td>各种 <code>考古</code></td>
 </tr>
 <tr>
-<td><a href="https://blog.laisky.com/" target="_blank" rel="noopener">Laisky</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.laisky.com/">Laisky</a></td>
 <td>Docker、后端、Python、读书笔记</td>
 <td>一只高语速大存储的复读机</td>
 </tr>
 <tr>
-<td><a href="http://www.yuxiaoba.xyz/" target="_blank" rel="noopener">yu 小 ba-CloudNative</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.yuxiaoba.xyz/">yu 小 ba-CloudNative</a></td>
 <td>智能运维 • 云计算研发</td>
 <td>论文总结、学术</td>
 </tr>
 <tr>
-<td><a href="http://lulalap.com/" target="_blank" rel="noopener">未知的世界</a></td>
+<td><a target="_blank" rel="noopener" href="http://lulalap.com/">未知的世界</a></td>
 <td>PAT、算法、读书思考</td>
 <td>奇思异想</td>
 </tr>
 <tr>
-<td><a href="http://blog.lujun9972.win/" target="_blank" rel="noopener">暗无天日</a></td>
+<td><a target="_blank" rel="noopener" href="http://blog.lujun9972.win/">暗无天日</a></td>
 <td>Linux、Emacs、开源</td>
 <td>有趣、喜欢 xjb 搞</td>
 </tr>
 <tr>
-<td><a href="https://www.hi-linux.com/" target="_blank" rel="noopener">运维之美</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.hi-linux.com/">运维之美</a></td>
 <td>Linux 、运维</td>
 <td>一年没更新了 🤔</td>
 </tr>
 <tr>
-<td><a href="https://www.sqlsec.com/" target="_blank" rel="noopener">国光</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.sqlsec.com/">国光</a></td>
 <td>信息安全、CTF、黑苹果、Linux</td>
 <td>内容很丰富</td>
 </tr>
 <tr>
-<td><a href="https://blog.yoitsu.moe/" target="_blank" rel="noopener"> 约伊兹的萌狼乡手札</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.yoitsu.moe/"> 约伊兹的萌狼乡手札</a></td>
 <td>Archlinux、安卓、开源</td>
 <td>喜欢用 😂</td>
 </tr>
 <tr>
-<td><a href="https://jhuo.ca/" target="_blank" rel="noopener">HuoJu’s BLOG</a></td>
+<td><a target="_blank" rel="noopener" href="https://jhuo.ca/">HuoJu’s BLOG</a></td>
 <td>开源、互联网历史</td>
 <td>开源是自由的，永远</td>
 </tr>
 <tr>
-<td><a href="https://blog.lilydjwg.me/" target="_blank" rel="noopener">依云’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.lilydjwg.me/">依云’s Blog</a></td>
 <td>Archinux、内核</td>
 <td>百合仙子 😂</td>
 </tr>
 <tr>
-<td><a href="http://hyuki.com/" target="_blank" rel="noopener">結城浩</a></td>
+<td><a target="_blank" rel="noopener" href="http://hyuki.com/">結城浩</a></td>
 <td>数学、《数学女孩》</td>
 <td>日本作家</td>
 </tr>
 <tr>
-<td><a href="https://jysperm.me/" target="_blank" rel="noopener">王子亭的博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://jysperm.me/">王子亭的博客</a></td>
 <td>后端、Node.js</td>
 <td>资深老博主</td>
 </tr>
 <tr>
-<td><a href="https://fs.tn/" target="_blank" rel="noopener">浮生若梦</a></td>
+<td><a target="_blank" rel="noopener" href="https://fs.tn/">浮生若梦</a></td>
 <td>测试、Linux</td>
 <td>一个测试萌新</td>
 </tr>
 <tr>
-<td><a href="https://blog.stdioa.com/" target="_blank" rel="noopener">David DaiBackend Developer</a></td>
-<td>信息安全、C / C++ / Python</td>
+<td><a target="_blank" rel="noopener" href="https://blog.stdioa.com/">David DaiBackend Developer</a></td>
+<td>信息安全、C &#x2F; C++ &#x2F; Python</td>
 <td>全栈</td>
 </tr>
 <tr>
-<td><a href="https://www.gitdig.com/" target="_blank" rel="noopener">GitDiG</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.gitdig.com/">GitDiG</a></td>
 <td>Golang、Kubernetes、Linux</td>
 <td>站点做的很棒、自己开发的</td>
 </tr>
 <tr>
-<td><a href="http://wulc.me/" target="_blank" rel="noopener">吴良超的学习笔记</a></td>
+<td><a target="_blank" rel="noopener" href="http://wulc.me/">吴良超的学习笔记</a></td>
 <td>机器学习</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://blog.felixc.at/" target="_blank" rel="noopener">Felix’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.felixc.at/">Felix’s Blog</a></td>
 <td>Linux 内核、Archlinux</td>
 <td>肥猫 😂</td>
 </tr>
 <tr>
-<td><a href="https://kiwenlau.com/" target="_blank" rel="noopener">Kiwenlau</a></td>
+<td><a target="_blank" rel="noopener" href="https://kiwenlau.com/">Kiwenlau</a></td>
 <td>后端的设计、开发运维</td>
-<td><a href="https://fundebug.com/" target="_blank" rel="noopener">Fundebug</a> 创始人</td>
+<td><a target="_blank" rel="noopener" href="https://fundebug.com/">Fundebug</a> 创始人</td>
 </tr>
 <tr>
-<td><a href="http://www.litrin.net/" target="_blank" rel="noopener">开源小站</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.litrin.net/">开源小站</a></td>
 <td>Linux、开源</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://o-my-chenjian.com/" target="_blank" rel="noopener">ChenJian Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://o-my-chenjian.com/">ChenJian Blog</a></td>
 <td>Python、Docker、Linux</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.liuchuo.net/" target="_blank" rel="noopener">柳婼 の blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.liuchuo.net/">柳婼 の blog</a></td>
 <td>PAT、LeetCode</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.ezlippi.com/" target="_blank" rel="noopener">EZLippi-浮生志</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.ezlippi.com/">EZLippi-浮生志</a></td>
 <td>Web 后台开发、Java 开发者</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.xiabingbao.com/" target="_blank" rel="noopener">Wenzi</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.xiabingbao.com/">Wenzi</a></td>
 <td>前端开发工程师</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://3nice.cc/" target="_blank" rel="noopener">3NICE</a></td>
+<td><a target="_blank" rel="noopener" href="https://3nice.cc/">3NICE</a></td>
 <td>GIS</td>
 <td>不务正业的 GISer</td>
 </tr>
 <tr>
-<td><a href="http://scateu.me/" target="_blank" rel="noopener">Scateu Blog - S.B.</a></td>
-<td>无线电、Linux 、<a href="https://tuna.moe" target="_blank" rel="noopener">TUNA</a> 创始人</td>
+<td><a target="_blank" rel="noopener" href="http://scateu.me/">Scateu Blog - S.B.</a></td>
+<td>无线电、Linux 、<a target="_blank" rel="noopener" href="https://tuna.moe/">TUNA</a> 创始人</td>
 <td>徒手摸核燃料棒 😨</td>
 </tr>
 <tr>
-<td><a href="https://birdben.github.io/" target="_blank" rel="noopener">birdben</a></td>
+<td><a target="_blank" rel="noopener" href="https://birdben.github.io/">birdben</a></td>
 <td>Docker</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://gythialy.github.io/" target="_blank" rel="noopener">iKoo’s Dirty life</a></td>
+<td><a target="_blank" rel="noopener" href="https://gythialy.github.io/">iKoo’s Dirty life</a></td>
 <td>Docker、DevOps</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://manateelazycat.github.io/index.html" target="_blank" rel="noopener">ManateeLazyCat</a></td>
+<td><a target="_blank" rel="noopener" href="https://manateelazycat.github.io/index.html">ManateeLazyCat</a></td>
 <td>Emacs、Linux、Elisp、自驾探险</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://xiaozhou.net/" target="_blank" rel="noopener">Timothy</a></td>
+<td><a target="_blank" rel="noopener" href="https://xiaozhou.net/">Timothy</a></td>
 <td>VPS、Linux、机械键盘</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.physixfan.com/" target="_blank" rel="noopener">宇宙的心弦</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.physixfan.com/">宇宙的心弦</a></td>
 <td>Phd</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://ferryyoungfan.github.io/" target="_blank" rel="noopener">帆尅恰</a></td>
+<td><a target="_blank" rel="noopener" href="https://ferryyoungfan.github.io/">帆尅恰</a></td>
 <td>前端、Android</td>
 <td>脑洞大开、各种瞎搞</td>
 </tr>
 <tr>
-<td><a href="https://blog.nanpuyue.com/" target="_blank" rel="noopener">南浦月</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.nanpuyue.com/">南浦月</a></td>
 <td>Linux、openwrt</td>
 <td>乔老师、深度菊苣</td>
 </tr>
 <tr>
-<td><a href="https://jaminzhang.github.io/" target="_blank" rel="noopener">JAMIN ZHANG</a></td>
+<td><a target="_blank" rel="noopener" href="https://jaminzhang.github.io/">JAMIN ZHANG</a></td>
 <td>Linux、运维</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://lolita.im/" target="_blank" rel="noopener">毓彦</a></td>
+<td><a target="_blank" rel="noopener" href="https://lolita.im/">毓彦</a></td>
 <td>前端、无线电</td>
 <td>首页最漂亮</td>
 </tr>
 <tr>
-<td><a href="https://salogs.com/" target="_blank" rel="noopener">SA-Logs</a></td>
+<td><a target="_blank" rel="noopener" href="https://salogs.com/">SA-Logs</a></td>
 <td>Linux</td>
 <td>专注云计算方向</td>
 </tr>
 <tr>
-<td><a href="https://thief.one/" target="_blank" rel="noopener">nmask’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://thief.one/">nmask’s Blog</a></td>
 <td>信息安全</td>
 <td>运动、摄影、文学</td>
 </tr>
 <tr>
-<td><a href="https://diygod.me/" target="_blank" rel="noopener">diygod</a></td>
+<td><a target="_blank" rel="noopener" href="https://diygod.me/">diygod</a></td>
 <td>RSSHUB、二次元</td>
 <td>B 站菊苣</td>
 </tr>
 <tr>
-<td><a href="https://a-wing.top/" target="_blank" rel="noopener">Hi! 上天不?</a></td>
+<td><a target="_blank" rel="noopener" href="https://a-wing.top/">Hi! 上天不?</a></td>
 <td>无人机、Linux、嵌入式</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://birdben.github.io/" target="_blank" rel="noopener">birdben</a></td>
+<td><a target="_blank" rel="noopener" href="https://birdben.github.io/">birdben</a></td>
 <td>Linux 、Docker</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://tinyfool.org/" target="_blank" rel="noopener">tinyfool</a></td>
+<td><a target="_blank" rel="noopener" href="http://tinyfool.org/">tinyfool</a></td>
 <td>算法</td>
 <td>资深开发者</td>
 </tr>
 <tr>
-<td><a href="https://terrywang.net/" target="_blank" rel="noopener">Terry’s Thoughts</a></td>
+<td><a target="_blank" rel="noopener" href="https://terrywang.net/">Terry’s Thoughts</a></td>
 <td>Linux 、kernel、DevOps</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://wangcong.org/" target="_blank" rel="noopener">wangcong</a></td>
+<td><a target="_blank" rel="noopener" href="http://wangcong.org/">wangcong</a></td>
 <td>Linux kernel</td>
 <td>在 Twitter 公司的 Linux 内核 maintainer</td>
 </tr>
 <tr>
-<td><a href="https://rorschachchan.github.io/" target="_blank" rel="noopener">Chris Chan’s BLOG</a></td>
+<td><a target="_blank" rel="noopener" href="https://rorschachchan.github.io/">Chris Chan’s BLOG</a></td>
 <td>Linux、运维开发</td>
 <td>啥都研究啥都不会 😂</td>
 </tr>
 <tr>
-<td><a href="http://www.ftium4.com/" target="_blank" rel="noopener">龙爪槐守望者</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.ftium4.com/">龙爪槐守望者</a></td>
 <td>IOS、网站策划、交互设计</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://blog.forecho.com/" target="_blank" rel="noopener">forecho 的独立博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.forecho.com/">forecho 的独立博客</a></td>
 <td>Linux、Web 开发</td>
 <td>资深全栈</td>
 </tr>
 <tr>
-<td><a href="https://linuxtoy.org/" target="_blank" rel="noopener">LinuxTOY</a></td>
+<td><a target="_blank" rel="noopener" href="https://linuxtoy.org/">LinuxTOY</a></td>
 <td>好用好玩的 Linux、资源</td>
 <td>资深老博客了</td>
 </tr>
 <tr>
-<td><a href="http://wrfly.kfd.me/" target="_blank" rel="noopener">WRFLY’S BLOG</a></td>
-<td>Golang、Docker 、<a href="http://10pic.kfd.me/" target="_blank" rel="noopener">内涵图的网站</a></td>
+<td><a target="_blank" rel="noopener" href="http://wrfly.kfd.me/">WRFLY’S BLOG</a></td>
+<td>Golang、Docker 、<a target="_blank" rel="noopener" href="http://10pic.kfd.me/">内涵图的网站</a></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://blog.izgq.net/" target="_blank" rel="noopener">ZGQ’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.izgq.net/">ZGQ’s Blog</a></td>
 <td>算法、Linux</td>
 <td>目前在 Tencent 搬水</td>
 </tr>
 <tr>
-<td><a href="http://chendongqi.me/" target="_blank" rel="noopener">Cheson Blog</a></td>
+<td><a target="_blank" rel="noopener" href="http://chendongqi.me/">Cheson Blog</a></td>
 <td>Android 开发内容丰富</td>
 <td>非典型程序员</td>
 </tr>
 <tr>
-<td><a href="https://void-shana.moe/" target="_blank" rel="noopener">VOID001’S WOWO</a></td>
+<td><a target="_blank" rel="noopener" href="https://void-shana.moe/">VOID001’S WOWO</a></td>
 <td>Linux kernel 、shell</td>
 <td><strong>萝莉控</strong> 😂</td>
 </tr>
 <tr>
-<td><a href="https://blog.yaodataking.com/" target="_blank" rel="noopener">Alex Wu’s blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.yaodataking.com/">Alex Wu’s blog</a></td>
 <td>机器学习、Kafka、OpenStack</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://landscape.cncf.io/" target="_blank" rel="noopener">CNCF Cloud Native Interactive Landscape</a></td>
+<td><a target="_blank" rel="noopener" href="https://landscape.cncf.io/">CNCF Cloud Native Interactive Landscape</a></td>
 <td>云原生图谱</td>
 <td></td>
 </tr>
@@ -640,77 +654,77 @@
 <td>中年大叔 😂</td>
 </tr>
 <tr>
-<td><a href="https://www.moerats.com/" target="_blank" rel="noopener">Rat’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.moerats.com/">Rat’s Blog</a></td>
 <td>VPS、建站、工具、羊毛</td>
 <td>工具箱 😂</td>
 </tr>
 <tr>
-<td><a href="https://eliyar.biz/" target="_blank" rel="noopener">Eliyar’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://eliyar.biz/">Eliyar’s Blog</a></td>
 <td>IOS、Python、机器学习</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://xiaozhou.net/" target="_blank" rel="noopener">iTimothy</a></td>
+<td><a target="_blank" rel="noopener" href="https://xiaozhou.net/">iTimothy</a></td>
 <td>VPS、Linux、机械键盘</td>
 <td>四川人也、技术控</td>
 </tr>
 <tr>
-<td><a href="https://smallpath.me/" target="_blank" rel="noopener">Smallpath 的小站</a></td>
+<td><a target="_blank" rel="noopener" href="https://smallpath.me/">Smallpath 的小站</a></td>
 <td>前端、Node.js、测试</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.haroldrandom.me/" target="_blank" rel="noopener">HAROLD’S NOTES</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.haroldrandom.me/">HAROLD’S NOTES</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.xiabingbao.com/" target="_blank" rel="noopener">Wenzi</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.xiabingbao.com/">Wenzi</a></td>
 <td>前端、算法</td>
 <td>前端开发工程师</td>
 </tr>
 <tr>
-<td><a href="http://123.kfd.me/" target="_blank" rel="noopener">有趣的网站</a></td>
+<td><a target="_blank" rel="noopener" href="http://123.kfd.me/">有趣的网站</a></td>
 <td>网站资源导航</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.duyidong.com/" target="_blank" rel="noopener">杜屹东的博客</a></td>
-<td>Java、CI/CD、Kubernetes 、微服务</td>
+<td><a target="_blank" rel="noopener" href="https://www.duyidong.com/">杜屹东的博客</a></td>
+<td>Java、CI&#x2F;CD、Kubernetes 、微服务</td>
 <td>阿里高级工程师</td>
 </tr>
 <tr>
-<td><a href="https://blog.daliansky.net/" target="_blank" rel="noopener">黑果小兵的部落阁</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.daliansky.net/">黑果小兵的部落阁</a></td>
 <td>黑苹果</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://ms2008.github.io/" target="_blank" rel="noopener">Poslua Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://ms2008.github.io/">Poslua Blog</a></td>
 <td>Golang、Lua、Nginx、Kong</td>
 <td>十余年的 Lua 咸鱼，<br>抄起 OpenResty 就是干 🤣</td>
 </tr>
 <tr>
-<td><a href="https://blog.forecho.com/" target="_blank" rel="noopener">forecho</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.forecho.com/">forecho</a></td>
 <td></td>
 <td>ಥ_ಥ</td>
 </tr>
 <tr>
-<td><a href="http://www.apgblogs.com/" target="_blank" rel="noopener">筑梦师</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.apgblogs.com/">筑梦师</a></td>
 <td>spring boot  、spring cloud</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://manateelazycat.github.io/index.html" target="_blank" rel="noopener">ManateeLazyCat</a></td>
+<td><a target="_blank" rel="noopener" href="https://manateelazycat.github.io/index.html">ManateeLazyCat</a></td>
 <td>Emacs、Business、Rails、开源</td>
 <td>自黑幽默 😂</td>
 </tr>
 <tr>
-<td><a href="https://win-man.github.io/" target="_blank" rel="noopener">win-man</a></td>
+<td><a target="_blank" rel="noopener" href="https://win-man.github.io/">win-man</a></td>
 <td>MySQL</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://crowndaisy.com/" target="_blank" rel="noopener">CrownDaisy</a></td>
+<td><a target="_blank" rel="noopener" href="https://crowndaisy.com/">CrownDaisy</a></td>
 <td>Python、数据分析</td>
 <td>INTP、极简主义者</td>
 </tr>
@@ -724,280 +738,280 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="https://jimmysong.io/" target="_blank" rel="noopener">Jimmy Song - 宋净超的博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://jimmysong.io/">Jimmy Song - 宋净超的博客</a></td>
 <td>微服务、服务网格、云原生</td>
 <td>蚂蚁金服云原生布道师</td>
 </tr>
 <tr>
-<td><a href="https://jimmysong.io/cloud-native/" target="_blank" rel="noopener">Cloud Native Wiki</a></td>
+<td><a target="_blank" rel="noopener" href="https://jimmysong.io/cloud-native/">Cloud Native Wiki</a></td>
 <td>云原生百科、图书、编年史</td>
 <td>蚂蚁金服云原生布道师</td>
 </tr>
 <tr>
-<td><a href="https://skyao.io/" target="_blank" rel="noopener">敖小剑的博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://skyao.io/">敖小剑的博客</a></td>
 <td>微服务、服务网格、云原生</td>
 <td>蚂蚁金服云原生布道师</td>
 </tr>
 <tr>
-<td><a href="https://www.yangcs.net/" target="_blank" rel="noopener">云原生实验室 - 米开朗基杨的博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.yangcs.net/">云原生实验室 - 米开朗基杨的博客</a></td>
 <td>Cloud Native</td>
 <td>云原生布道师</td>
 </tr>
 <tr>
-<td><a href="https://zhangguanzhang.github.io/" target="_blank" rel="noopener">zhangguanzhang’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://zhangguanzhang.github.io/">zhangguanzhang’s Blog</a></td>
 <td>Kubernetes、嵌入式、Linux</td>
 <td>张馆长 😂</td>
 </tr>
 <tr>
-<td><a href="https://mritd.me/" target="_blank" rel="noopener">漠然的博客 mritd Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://mritd.me/">漠然的博客 mritd Blog</a></td>
 <td>Kubernetes、Golang</td>
 <td>Java Web 开发者 1 枚</td>
 </tr>
 <tr>
-<td><a href="https://moelove.info/" target="_blank" rel="noopener">MoeLove</a></td>
+<td><a target="_blank" rel="noopener" href="https://moelove.info/">MoeLove</a></td>
 <td>Kubernetes 生态相关、开源</td>
 <td>每周坚持周报 👍</td>
 </tr>
 <tr>
-<td><a href="https://k2r2bai.com/" target="_blank" rel="noopener">KaiRen’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://k2r2bai.com/">KaiRen’s Blog</a></td>
 <td>Kubernetes、Docker 容器</td>
 <td>台湾博主</td>
 </tr>
 <tr>
-<td><a href="https://www.hwchiu.com/" target="_blank" rel="noopener">Hwchiu Learning Note</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.hwchiu.com/">Hwchiu Learning Note</a></td>
 <td>Kubernetes、SDN、DevOps</td>
 <td>台湾博主</td>
 </tr>
 <tr>
-<td><a href="https://kkc.github.io/" target="_blank" rel="noopener">Kakashi’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://kkc.github.io/">Kakashi’s Blog</a></td>
 <td>AWS、Kubernetes、Prometheus</td>
 <td>台湾博主</td>
 </tr>
 <tr>
-<td><a href="https://aleiwu.com/" target="_blank" rel="noopener">Aylei’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://aleiwu.com/">Aylei’s Blog</a></td>
 <td>Kubernetes、云原生、TiDB</td>
-<td>在 <a href="https://www.pingcap.com/" target="_blank" rel="noopener">PingCAP</a> 的阿磊</td>
+<td>在 <a target="_blank" rel="noopener" href="https://www.pingcap.com/">PingCAP</a> 的阿磊</td>
 </tr>
 <tr>
-<td><a href="https://qingmu.io/" target="_blank" rel="noopener">青木 のJava 小屋</a></td>
-<td><a href="https://qingmu.io/2019/09/03/Spring-cloud-on-Kubernetes-index/" target="_blank" rel="noopener">SpringCloud on Kubernetes</a></td>
+<td><a target="_blank" rel="noopener" href="https://qingmu.io/">青木 のJava 小屋</a></td>
+<td><a target="_blank" rel="noopener" href="https://qingmu.io/2019/09/03/Spring-cloud-on-Kubernetes-index/">SpringCloud on Kubernetes</a></td>
 <td>打杂程序猿</td>
 </tr>
 <tr>
-<td><a href="https://docs.lvrui.io/" target="_blank" rel="noopener">Polar Snow Documentation</a></td>
+<td><a target="_blank" rel="noopener" href="https://docs.lvrui.io/">Polar Snow Documentation</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://www.rhca.me/" target="_blank" rel="noopener">DevOps – 成长之路</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.rhca.me/">DevOps – 成长之路</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://blog.ihypo.net/index.html" target="_blank" rel="noopener">梦旭随想</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.ihypo.net/index.html">梦旭随想</a></td>
 <td>Kubernetes 、容器</td>
 <td>无栈工程师 😂</td>
 </tr>
 <tr>
-<td><a href="https://www.bladewan.com/" target="_blank" rel="noopener">我爱西红柿</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.bladewan.com/">我爱西红柿</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://bingohuang.com/" target="_blank" rel="noopener">Bingo Huang</a></td>
+<td><a target="_blank" rel="noopener" href="https://bingohuang.com/">Bingo Huang</a></td>
 <td>Golang、Docker</td>
 <td>一个程序员的自我修养</td>
 </tr>
 <tr>
-<td><a href="https://hansedong.github.io/" target="_blank" rel="noopener">国南之境</a></td>
+<td><a target="_blank" rel="noopener" href="https://hansedong.github.io/">国南之境</a></td>
 <td>CoreDNS 、Kubernetes、Golang</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://gaocegege.com/Blog/" target="_blank" rel="noopener">博客高策</a></td>
+<td><a target="_blank" rel="noopener" href="http://gaocegege.com/Blog/">博客高策</a></td>
 <td>机器学习、Kubernetes、kubebuilder</td>
 <td>江湖小虾米</td>
 </tr>
 <tr>
-<td><a href="https://birdben.github.io/" target="_blank" rel="noopener">birdben</a></td>
+<td><a target="_blank" rel="noopener" href="https://birdben.github.io/">birdben</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://www.yangguanjun.com/" target="_blank" rel="noopener">ictfox blog</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.yangguanjun.com/">ictfox blog</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://notes.doublemine.me/" target="_blank" rel="noopener">Doublemine</a></td>
+<td><a target="_blank" rel="noopener" href="https://notes.doublemine.me/">Doublemine</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://chunqi.li/" target="_blank" rel="noopener">Arthur Chunqi Li’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="http://chunqi.li/">Arthur Chunqi Li’s Blog</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://chunqi.li/archives/" target="_blank" rel="noopener">Archive Arthur Chunqi Li’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="http://chunqi.li/archives/">Archive Arthur Chunqi Li’s Blog</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.lijiaocn.com/" target="_blank" rel="noopener">IT 技术工作学习折腾笔记 李佶澳的博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.lijiaocn.com/">IT 技术工作学习折腾笔记 李佶澳的博客</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://moheqionglin.com/site/blogs/1/list.html" target="_blank" rel="noopener">墨荷琼林官网-编程日志</a></td>
+<td><a target="_blank" rel="noopener" href="http://moheqionglin.com/site/blogs/1/list.html">墨荷琼林官网-编程日志</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://cmgs.me/archive" target="_blank" rel="noopener">Archive - Nolla</a></td>
+<td><a target="_blank" rel="noopener" href="https://cmgs.me/archive">Archive - Nolla</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://tomoyadeng.github.io/blog/" target="_blank" rel="noopener">Tomoya’s Blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://tomoyadeng.github.io/blog/">Tomoya’s Blog</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://youendless.com/" target="_blank" rel="noopener">君无止境</a></td>
+<td><a target="_blank" rel="noopener" href="https://youendless.com/">君无止境</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://jaminzhang.github.io/" target="_blank" rel="noopener">Jamin Zhang</a></td>
+<td><a target="_blank" rel="noopener" href="https://jaminzhang.github.io/">Jamin Zhang</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://imroc.io/" target="_blank" rel="noopener">roc 的博客 - imroc.io</a></td>
-<td><a href="https://k8s.imroc.io/" target="_blank" rel="noopener">《Kubernetes 实践指南》</a>、 算法</td>
+<td><a target="_blank" rel="noopener" href="https://imroc.io/">roc 的博客 - imroc.io</a></td>
+<td><a target="_blank" rel="noopener" href="https://k8s.imroc.io/">《Kubernetes 实践指南》</a>、 算法</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://sysdig.com/blog/" target="_blank" rel="noopener">Blog - Sysdig</a></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.tauceti.blog/" target="_blank" rel="noopener">TauCeti blog · TauCeti blog</a></td>
+<td><a target="_blank" rel="noopener" href="https://sysdig.com/blog/">Blog - Sysdig</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://zhangchenchen.github.io/" target="_blank" rel="noopener">Solar</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.tauceti.blog/">TauCeti blog · TauCeti blog</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.infvie.com/" target="_blank" rel="noopener">Infvie’s Blog 运维 SRE 社区博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://zhangchenchen.github.io/">Solar</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.infvie.com/">Infvie’s Blog 运维 SRE 社区博客</a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody></table>
 <h3 id="未分类"><a href="#未分类" class="headerlink" title="未分类"></a>未分类</h3><ul>
-<li><a href="http://ghoulich.xninja.org/" target="_blank" rel="noopener">水晶命匣</a></li>
-<li><a href="https://k2r2bai.com" target="_blank" rel="noopener">KaiRen’s Blog</a></li>
-<li><a href="https://ieevee.com" target="_blank" rel="noopener">Zlatan Eevee</a></li>
-<li><a href="https://www.cn18k.com" target="_blank" rel="noopener">程序印象</a></li>
-<li><a href="https://lupeier.com" target="_blank" rel="noopener">L’s Blog-同步率 400%</a></li>
-<li><a href="https://xuxinkun.github.io" target="_blank" rel="noopener">xinkun 的博客  Xinkun Blog</a></li>
-<li><a href="http://www.wangyapu.com" target="_blank" rel="noopener">王亚普的博客  Wyp Blog</a></li>
-<li><a href="https://xuxinkun.github.io" target="_blank" rel="noopener">xinkun 的博客  Xinkun Blog</a></li>
-<li><a href="http://linuxops.xyz" target="_blank" rel="noopener">BY DevOps  今晚打老虎</a></li>
-<li><a href="http://www.mydlq.club" target="_blank" rel="noopener">小豆丁个人博客</a></li>
-<li><a href="http://ljchen.net" target="_blank" rel="noopener">ljchen’s Notes</a></li>
-<li><a href="http://likakuli.com" target="_blank" rel="noopener">Kaku Li - 李鹤的博客</a></li>
-<li><a href="https://prow.k8s.io/tide" target="_blank" rel="noopener">Tide Status</a></li>
-<li><a href="https://hansedong.github.io" target="_blank" rel="noopener">国南之境</a></li>
-<li><a href="http://gaocegege.com/Blog" target="_blank" rel="noopener">博客  高策</a></li>
-<li><a href="https://kkc.github.io" target="_blank" rel="noopener">Kakashi’s Blog</a></li>
-<li><a href="https://xuchao918.github.io" target="_blank" rel="noopener">起风了</a></li>
-<li><a href="https://maiyang.me" target="_blank" rel="noopener">茶歇驿站 - Gopher, OpenSource Fans,成长之路有我相伴。</a></li>
-<li><a href="https://jimmysong.io" target="_blank" rel="noopener">Jimmy Song - Cloud Native  Open Source Community</a></li>
-<li><a href="https://mritd.me" target="_blank" rel="noopener">漠然的博客  mritd Blog</a></li>
-<li><a href="https://fs.tn" target="_blank" rel="noopener">浮生若梦</a></li>
-<li><a href="https://www.duyidong.com" target="_blank" rel="noopener">杜屹东的博客  学无止境</a></li>
-<li><a href="https://blog.ihypo.net/index.html" target="_blank" rel="noopener">梦旭随想</a></li>
-<li><a href="http://www.yangguanjun.com" target="_blank" rel="noopener">ictfox blog</a></li>
-<li><a href="http://team.jiunile.com" target="_blank" rel="noopener">CloudNative 架构</a></li>
-<li><a href="https://www.bladewan.com" target="_blank" rel="noopener">我爱西红柿</a></li>
-<li><a href="https://bingohuang.com" target="_blank" rel="noopener">Bingo Huang</a></li>
-<li><a href="https://www.lijiaocn.com" target="_blank" rel="noopener">@ 小鸟技术笔记</a></li>
-<li><a href="http://moheqionglin.com/site/blogs/1/list.html" target="_blank" rel="noopener">墨荷琼林官网-编程日志</a></li>
-<li><a href="https://tomoyadeng.github.io/blog" target="_blank" rel="noopener">Tomoya’s Blog</a></li>
-<li><a href="https://youendless.com" target="_blank" rel="noopener">https://youendless.com</a></li>
-<li><a href="https://imroc.io" target="_blank" rel="noopener">roc - roc 的博客 Cloud NativeKubernetesGoGolangService Mesh</a></li>
-<li><a href="https://sysdig.com/blog" target="_blank" rel="noopener">Blog  Sysdig</a></li>
-<li><a href="https://www.tauceti.blog" target="_blank" rel="noopener">TauCeti blog · TauCeti blog</a></li>
-<li><a href="https://soulteary.com" target="_blank" rel="noopener">苏洋博客</a></li>
-<li><a href="https://linuxtoy.org" target="_blank" rel="noopener">LinuxTOY</a></li>
-<li><a href="https://www.hwchiu.com" target="_blank" rel="noopener">- Hwchiu Learning Notekubernetes/SDN/DevOps</a></li>
-<li><a href="https://zhangguanzhang.github.io" target="_blank" rel="noopener">zhangguanzhang’s Blog</a></li>
-<li><a href="https://ylzheng.com" target="_blank" rel="noopener">I’m Yunlong - DevOps, Agile, Learner</a></li>
-<li><a href="https://notes.doublemine.me" target="_blank" rel="noopener">Doublemine</a></li>
-<li><a href="https://blog.stdioa.com" target="_blank" rel="noopener">Stdio’s Blog</a></li>
-<li><a href="https://yucs.github.io" target="_blank" rel="noopener">yucs’s Blog</a></li>
-<li><a href="https://aleiwu.com/post" target="_blank" rel="noopener">Posts</a></li>
-<li><a href="https://www.zhang21.cn" target="_blank" rel="noopener">风继续吹</a></li>
-<li><a href="https://blog.rj-bai.com" target="_blank" rel="noopener">rj-bai ‘s Blog</a></li>
-<li><a href="https://jkzhao.github.io" target="_blank" rel="noopener">jkzhao’s blog</a></li>
-<li><a href="http://wldandan.github.io" target="_blank" rel="noopener">Happy Coding, Happy Life</a></li>
-<li><a href="https://berlinsaint.github.io/blog" target="_blank" rel="noopener">君莫笑的博客</a></li>
-<li><a href="https://xigang.github.io" target="_blank" rel="noopener">xigang’s home  Do it right or don’t do it at all</a></li>
-<li><a href="https://jeremyxu2010.github.io" target="_blank" rel="noopener">jeremy 的技术点滴</a></li>
-<li><a href="https://int32bit.me" target="_blank" rel="noopener">int32bit.me</a></li>
-<li><a href="https://cizixs.com" target="_blank" rel="noopener">Cizixs Write Here  Container, Microservice, Python, Go, Reading,Life, And Love.</a></li>
-<li><a href="https://xuanwo.io" target="_blank" rel="noopener">Xuanwo’s Blog</a></li>
-<li><a href="https://www.qikqiak.com" target="_blank" rel="noopener">阳明的博客-KubernetesDockerIstioPythonGolang 云原生</a></li>
-<li><a href="https://skyao.io" target="_blank" rel="noopener">敖小剑的博客</a></li>
-<li><a href="https://mrbird.cc" target="_blank" rel="noopener">MrBird</a></li>
-<li><a href="http://www.jiangjiang.space" target="_blank" rel="noopener">回忆书签 – a collection of my notes</a></li>
-<li><a href="https://blog.sctux.com" target="_blank" rel="noopener">老弟，死哪儿去啦~！</a></li>
-<li><a href="https://moelove.info" target="_blank" rel="noopener">MoeLove</a></li>
-<li><a href="https://tonybai.com" target="_blank" rel="noopener">Tony Bai</a></li>
-<li><a href="https://bk.poph163.com" target="_blank" rel="noopener">隐私设置错误</a></li>
-<li><a href="https://zdyxry.github.io" target="_blank" rel="noopener">Yiran’s Blog</a></li>
-<li><a href="https://yylin1.github.io" target="_blank" rel="noopener">Yi Yang’s Blog</a></li>
-<li><a href="https://cjting.me" target="_blank" rel="noopener">CJ Ting’s Blog - CJ Ting’s Blog</a></li>
-<li><a href="http://www.idcsec.com" target="_blank" rel="noopener">Wang’T 博客 - _入网络深似海,从此节操是路人.</a></li>
-<li><a href="https://blog.pichuang.com.tw" target="_blank" rel="noopener">Phil Workspace</a></li>
-<li><a href="https://my.oschina.net/jxcdwangtao/rss" target="_blank" rel="noopener">WaltonWang’s Blog - OSCHINA</a></li>
-<li><a href="https://weplay.me" target="_blank" rel="noopener">微架构师  weplay.me</a></li>
-<li><a href="https://istone.dev" target="_blank" rel="noopener">石头记  Docker、Kubernetes、CI/CD 等技术分享</a></li>
-<li><a href="http://jaychang.cn" target="_blank" rel="noopener">Jay Chang’s Blog</a></li>
-<li><a href="https://www.lxkaka.wang/archives" target="_blank" rel="noopener">Archives  lxkaka</a></li>
-<li><a href="https://aeric.io" target="_blank" rel="noopener">Aeric Blog-吕啸腾的博客</a></li>
-<li><a href="https://yeaheo.com" target="_blank" rel="noopener">Yeaheo’s Blog</a></li>
-<li><a href="https://www.bboy.app" target="_blank" rel="noopener">Bboysoul’s Blog - 向知识投资</a></li>
-<li><a href="https://www.k8stech.net" target="_blank" rel="noopener">Kubernetes 技术栈-K8sDockerIstioPythonGolang 云原生</a></li>
-<li><a href="https://www.dozer.cc" target="_blank" rel="noopener">Dozer 的技术小站</a></li>
-<li><a href="http://code2life.top" target="_blank" rel="noopener">Joey’s Tech Notes &amp; Blogs</a></li>
-<li><a href="https://nicksors.cc" target="_blank" rel="noopener">开元 DevOps 知识库 - 知识管理，时间管理，自我管理</a></li>
-<li><a href="https://blog.maoxianplay.com" target="_blank" rel="noopener">GuoXD Blog·郭旭东的博客</a></li>
-<li><a href="https://blog.k8s.fit" target="_blank" rel="noopener">Happiness”Blog</a></li>
-<li><a href="https://www.4async.com" target="_blank" rel="noopener">ipfans’s Blog</a></li>
-<li><a href="https://c.isme.pub" target="_blank" rel="noopener">Casstiel</a></li>
-<li><a href="http://wsfdl.com" target="_blank" rel="noopener">koala bear</a></li>
-<li><a href="https://www.huweihuang.com" target="_blank" rel="noopener">胡伟煌  Blog</a></li>
-<li><a href="https://wilhelmguo.cn/blog/william" target="_blank" rel="noopener">WilhelmGuo</a></li>
-<li><a href="https://linuxgeeks.github.io/archives" target="_blank" rel="noopener">归档  Just Do It</a></li>
-<li><a href="https://www.cnadn.net" target="_blank" rel="noopener">Cloud Native 应用交付 -云原生应用交付技术专业博客</a></li>
-<li><a href="https://www.evanlin.com" target="_blank" rel="noopener">Blog E</a></li>
-<li><a href="https://jishu.io" target="_blank" rel="noopener">极术 · 极术</a></li>
-<li><a href="https://aliasmee.github.io" target="_blank" rel="noopener">aliasmee blog (飞走不可)</a></li>
-<li><a href="https://blog.hlyue.com" target="_blank" rel="noopener">Richard</a></li>
-<li><a href="https://www.chenshaowen.com/blog" target="_blank" rel="noopener">陈少文的博客</a></li>
-<li><a href="https://ustack.io" target="_blank" rel="noopener">Indagate</a></li>
-<li><a href="https://lupeier.com" target="_blank" rel="noopener">L’s Blog-同步率 400%</a></li>
-<li><a href="https://zhaohuabing.com" target="_blank" rel="noopener">Huabing Blog-赵化冰的博客  ZhaohuabingBlog</a></li>
+<li><a target="_blank" rel="noopener" href="http://ghoulich.xninja.org/">水晶命匣</a></li>
+<li><a target="_blank" rel="noopener" href="https://k2r2bai.com/">KaiRen’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://ieevee.com/">Zlatan Eevee</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cn18k.com/">程序印象</a></li>
+<li><a target="_blank" rel="noopener" href="https://lupeier.com/">L’s Blog-同步率 400%</a></li>
+<li><a target="_blank" rel="noopener" href="https://xuxinkun.github.io/">xinkun 的博客  Xinkun Blog</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.wangyapu.com/">王亚普的博客  Wyp Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://xuxinkun.github.io/">xinkun 的博客  Xinkun Blog</a></li>
+<li><a target="_blank" rel="noopener" href="http://linuxops.xyz/">BY DevOps  今晚打老虎</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.mydlq.club/">小豆丁个人博客</a></li>
+<li><a target="_blank" rel="noopener" href="http://ljchen.net/">ljchen’s Notes</a></li>
+<li><a target="_blank" rel="noopener" href="http://likakuli.com/">Kaku Li - 李鹤的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://prow.k8s.io/tide">Tide Status</a></li>
+<li><a target="_blank" rel="noopener" href="https://hansedong.github.io/">国南之境</a></li>
+<li><a target="_blank" rel="noopener" href="http://gaocegege.com/Blog">博客  高策</a></li>
+<li><a target="_blank" rel="noopener" href="https://kkc.github.io/">Kakashi’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://xuchao918.github.io/">起风了</a></li>
+<li><a target="_blank" rel="noopener" href="https://maiyang.me/">茶歇驿站 - Gopher, OpenSource Fans,成长之路有我相伴。</a></li>
+<li><a target="_blank" rel="noopener" href="https://jimmysong.io/">Jimmy Song - Cloud Native  Open Source Community</a></li>
+<li><a target="_blank" rel="noopener" href="https://mritd.me/">漠然的博客  mritd Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://fs.tn/">浮生若梦</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.duyidong.com/">杜屹东的博客  学无止境</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.ihypo.net/index.html">梦旭随想</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.yangguanjun.com/">ictfox blog</a></li>
+<li><a target="_blank" rel="noopener" href="http://team.jiunile.com/">CloudNative 架构</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bladewan.com/">我爱西红柿</a></li>
+<li><a target="_blank" rel="noopener" href="https://bingohuang.com/">Bingo Huang</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.lijiaocn.com/">@ 小鸟技术笔记</a></li>
+<li><a target="_blank" rel="noopener" href="http://moheqionglin.com/site/blogs/1/list.html">墨荷琼林官网-编程日志</a></li>
+<li><a target="_blank" rel="noopener" href="https://tomoyadeng.github.io/blog">Tomoya’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://youendless.com/">https://youendless.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://imroc.io/">roc - roc 的博客 Cloud NativeKubernetesGoGolangService Mesh</a></li>
+<li><a target="_blank" rel="noopener" href="https://sysdig.com/blog">Blog  Sysdig</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.tauceti.blog/">TauCeti blog · TauCeti blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://soulteary.com/">苏洋博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://linuxtoy.org/">LinuxTOY</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hwchiu.com/">- Hwchiu Learning Notekubernetes&#x2F;SDN&#x2F;DevOps</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhangguanzhang.github.io/">zhangguanzhang’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://ylzheng.com/">I’m Yunlong - DevOps, Agile, Learner</a></li>
+<li><a target="_blank" rel="noopener" href="https://notes.doublemine.me/">Doublemine</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.stdioa.com/">Stdio’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://yucs.github.io/">yucs’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://aleiwu.com/post">Posts</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhang21.cn/">风继续吹</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.rj-bai.com/">rj-bai ‘s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://jkzhao.github.io/">jkzhao’s blog</a></li>
+<li><a target="_blank" rel="noopener" href="http://wldandan.github.io/">Happy Coding, Happy Life</a></li>
+<li><a target="_blank" rel="noopener" href="https://berlinsaint.github.io/blog">君莫笑的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://xigang.github.io/">xigang’s home  Do it right or don’t do it at all</a></li>
+<li><a target="_blank" rel="noopener" href="https://jeremyxu2010.github.io/">jeremy 的技术点滴</a></li>
+<li><a target="_blank" rel="noopener" href="https://int32bit.me/">int32bit.me</a></li>
+<li><a target="_blank" rel="noopener" href="https://cizixs.com/">Cizixs Write Here  Container, Microservice, Python, Go, Reading,Life, And Love.</a></li>
+<li><a target="_blank" rel="noopener" href="https://xuanwo.io/">Xuanwo’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.qikqiak.com/">阳明的博客-KubernetesDockerIstioPythonGolang 云原生</a></li>
+<li><a target="_blank" rel="noopener" href="https://skyao.io/">敖小剑的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://mrbird.cc/">MrBird</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jiangjiang.space/">回忆书签 – a collection of my notes</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.sctux.com/">老弟，死哪儿去啦~！</a></li>
+<li><a target="_blank" rel="noopener" href="https://moelove.info/">MoeLove</a></li>
+<li><a target="_blank" rel="noopener" href="https://tonybai.com/">Tony Bai</a></li>
+<li><a target="_blank" rel="noopener" href="https://bk.poph163.com/">隐私设置错误</a></li>
+<li><a target="_blank" rel="noopener" href="https://zdyxry.github.io/">Yiran’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://yylin1.github.io/">Yi Yang’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://cjting.me/">CJ Ting’s Blog - CJ Ting’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.idcsec.com/">Wang’T 博客 - _入网络深似海,从此节操是路人.</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.pichuang.com.tw/">Phil Workspace</a></li>
+<li><a target="_blank" rel="noopener" href="https://my.oschina.net/jxcdwangtao/rss">WaltonWang’s Blog - OSCHINA</a></li>
+<li><a target="_blank" rel="noopener" href="https://weplay.me/">微架构师  weplay.me</a></li>
+<li><a target="_blank" rel="noopener" href="https://istone.dev/">石头记  Docker、Kubernetes、CI&#x2F;CD 等技术分享</a></li>
+<li><a target="_blank" rel="noopener" href="http://jaychang.cn/">Jay Chang’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.lxkaka.wang/archives">Archives  lxkaka</a></li>
+<li><a target="_blank" rel="noopener" href="https://aeric.io/">Aeric Blog-吕啸腾的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://yeaheo.com/">Yeaheo’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bboy.app/">Bboysoul’s Blog - 向知识投资</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.k8stech.net/">Kubernetes 技术栈-K8sDockerIstioPythonGolang 云原生</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dozer.cc/">Dozer 的技术小站</a></li>
+<li><a target="_blank" rel="noopener" href="http://code2life.top/">Joey’s Tech Notes &amp; Blogs</a></li>
+<li><a target="_blank" rel="noopener" href="https://nicksors.cc/">开元 DevOps 知识库 - 知识管理，时间管理，自我管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.maoxianplay.com/">GuoXD Blog·郭旭东的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.k8s.fit/">Happiness”Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.4async.com/">ipfans’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://c.isme.pub/">Casstiel</a></li>
+<li><a target="_blank" rel="noopener" href="http://wsfdl.com/">koala bear</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.huweihuang.com/">胡伟煌  Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://wilhelmguo.cn/blog/william">WilhelmGuo</a></li>
+<li><a target="_blank" rel="noopener" href="https://linuxgeeks.github.io/archives">归档  Just Do It</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnadn.net/">Cloud Native 应用交付 -云原生应用交付技术专业博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.evanlin.com/">Blog E</a></li>
+<li><a target="_blank" rel="noopener" href="https://jishu.io/">极术 · 极术</a></li>
+<li><a target="_blank" rel="noopener" href="https://aliasmee.github.io/">aliasmee blog (飞走不可)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.hlyue.com/">Richard</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.chenshaowen.com/blog">陈少文的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://ustack.io/">Indagate</a></li>
+<li><a target="_blank" rel="noopener" href="https://lupeier.com/">L’s Blog-同步率 400%</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhaohuabing.com/">Huabing Blog-赵化冰的博客  ZhaohuabingBlog</a></li>
 </ul>
 <hr>
-<h2 id="公司-社区-团队-论坛"><a href="#公司-社区-团队-论坛" class="headerlink" title="公司 / 社区 / 团队 / 论坛"></a>公司 / 社区 / 团队 / 论坛</h2><table>
+<h2 id="公司-x2F-社区-x2F-团队-x2F-论坛"><a href="#公司-x2F-社区-x2F-团队-x2F-论坛" class="headerlink" title="公司 &#x2F; 社区 &#x2F; 团队 &#x2F; 论坛"></a>公司 &#x2F; 社区 &#x2F; 团队 &#x2F; 论坛</h2><table>
 <thead>
 <tr>
 <th>站点</th>
@@ -1006,152 +1020,152 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="https://tuna.moe/" target="_blank" rel="noopener">tuna.moe</a></td>
+<td><a target="_blank" rel="noopener" href="https://tuna.moe/">tuna.moe</a></td>
 <td>计算机科学、Linux、开源</td>
 <td>清华 tuna 社区</td>
 </tr>
 <tr>
-<td><a href="https://openingsource.org/" target="_blank" rel="noopener">开源工场</a></td>
+<td><a target="_blank" rel="noopener" href="https://openingsource.org/">开源工场</a></td>
 <td>开源、英语阅读</td>
 <td>社区</td>
 </tr>
 <tr>
-<td><a href="https://www.servicemesher.com/" target="_blank" rel="noopener">ServiceMesher.com</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.servicemesher.com/">ServiceMesher.com</a></td>
 <td>云原生 Service Mesher</td>
 <td>社区</td>
 </tr>
 <tr>
-<td><a href="http://jm.taobao.org/" target="_blank" rel="noopener">阿里中间件团队博客</a></td>
+<td><a target="_blank" rel="noopener" href="http://jm.taobao.org/">阿里中间件团队博客</a></td>
 <td>中间件</td>
 <td>阿里云</td>
 </tr>
 <tr>
-<td><a href="https://xz.aliyun.com/" target="_blank" rel="noopener">先知社区</a></td>
+<td><a target="_blank" rel="noopener" href="https://xz.aliyun.com/">先知社区</a></td>
 <td>安全技术、渗透测试</td>
 <td>阿里云</td>
 </tr>
 <tr>
-<td><a href="https://paper.seebug.org/" target="_blank" rel="noopener">Paper</a></td>
+<td><a target="_blank" rel="noopener" href="https://paper.seebug.org/">Paper</a></td>
 <td>安全、CTF</td>
 <td>知道创宇</td>
 </tr>
 <tr>
-<td><a href="https://tech.meituan.com" target="_blank" rel="noopener">美团技术团队</a></td>
+<td><a target="_blank" rel="noopener" href="https://tech.meituan.com/">美团技术团队</a></td>
 <td>综合</td>
 <td>美团</td>
 </tr>
 <tr>
-<td><a href="https://www.yuque.com/xytech" target="_blank" rel="noopener">闲鱼技术团队</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.yuque.com/xytech">闲鱼技术团队</a></td>
 <td>前端</td>
 <td>闲鱼</td>
 </tr>
 <tr>
-<td><a href="https://tencentcloudcontainerteam.github.io/" target="_blank" rel="noopener">腾讯云容器团队</a></td>
+<td><a target="_blank" rel="noopener" href="https://tencentcloudcontainerteam.github.io/">腾讯云容器团队</a></td>
 <td>容器</td>
 <td>腾讯云</td>
 </tr>
 <tr>
-<td><a href="https://www.souyunku.com/" target="_blank" rel="noopener">搜云库技术团队</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.souyunku.com/">搜云库技术团队</a></td>
 <td>前端</td>
 <td>搜云库</td>
 </tr>
 <tr>
-<td><a href="http://tengine.taobao.org/book/" target="_blank" rel="noopener">Nginx 开发从入门到精通</a></td>
+<td><a target="_blank" rel="noopener" href="http://tengine.taobao.org/book/">Nginx 开发从入门到精通</a></td>
 <td>Nginx</td>
 <td>淘宝</td>
 </tr>
 <tr>
-<td><a href="https://www.ibm.com/developerworks/cn/topics/" target="_blank" rel="noopener">IBM 开发者社区</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/topics/">IBM 开发者社区</a></td>
 <td>综合</td>
 <td>IBM</td>
 </tr>
 <tr>
-<td><a href="https://open.leancloud.cn/" target="_blank" rel="noopener">LeanCloud 开放资源</a></td>
+<td><a target="_blank" rel="noopener" href="https://open.leancloud.cn/">LeanCloud 开放资源</a></td>
 <td>开放资源</td>
 <td>LeanCloud</td>
 </tr>
 <tr>
-<td><a href="https://devopshub.cn/" target="_blank" rel="noopener">leansoftX.com</a></td>
+<td><a target="_blank" rel="noopener" href="https://devopshub.cn/">leansoftX.com</a></td>
 <td>DevOps</td>
 <td>leansofX</td>
 </tr>
 <tr>
-<td><a href="http://www.youruncloud.com/blog/0_10.html" target="_blank" rel="noopener">有容云博客</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.youruncloud.com/blog/0_10.html">有容云博客</a></td>
 <td>容器</td>
 <td>有容云</td>
 </tr>
 <tr>
-<td><a href="https://code.org/learn" target="_blank" rel="noopener">编程一小时</a></td>
+<td><a target="_blank" rel="noopener" href="https://code.org/learn">编程一小时</a></td>
 <td>编程学习</td>
 <td>微软</td>
 </tr>
 <tr>
-<td><a href="http://jsdig.com/" target="_blank" rel="noopener">前端导航</a></td>
+<td><a target="_blank" rel="noopener" href="http://jsdig.com/">前端导航</a></td>
 <td>前端</td>
 <td>-</td>
 </tr>
 <tr>
-<td><a href="https://blog.dongyueweb.com/" target="_blank" rel="noopener">东岳网络工作室团队博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.dongyueweb.com/">东岳网络工作室团队博客</a></td>
 <td>Kubernetes、机器学习</td>
 <td>-</td>
 </tr>
 <tr>
-<td><a href="http://www.polaris-lab.com/" target="_blank" rel="noopener">勾陈安全实验室</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.polaris-lab.com/">勾陈安全实验室</a></td>
 <td>安全</td>
 <td>-</td>
 </tr>
 <tr>
-<td><a href="https://bloodzer0.github.io/ossa/" target="_blank" rel="noopener">Open-Source Security Architecture</a></td>
+<td><a target="_blank" rel="noopener" href="https://bloodzer0.github.io/ossa/">Open-Source Security Architecture</a></td>
 <td>安全</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://wilon.github.io/" target="_blank" rel="noopener">运维笔记</a></td>
+<td><a target="_blank" rel="noopener" href="https://wilon.github.io/">运维笔记</a></td>
 <td>运维</td>
 <td>-</td>
 </tr>
 <tr>
-<td><a href="https://linux.cn/" target="_blank" rel="noopener">Linux.cn</a></td>
+<td><a target="_blank" rel="noopener" href="https://linux.cn/">Linux.cn</a></td>
 <td>Linux、开源、翻译</td>
 <td>Linux.cn</td>
 </tr>
 <tr>
-<td><a href="https://community.emc.com/community/support/chinese" target="_blank" rel="noopener">EMC 中文支持论坛</a></td>
+<td><a target="_blank" rel="noopener" href="https://community.emc.com/community/support/chinese">EMC 中文支持论坛</a></td>
 <td>存储</td>
 <td>EMC</td>
 </tr>
 <tr>
-<td><a href="http://blog.umcloud.com/" target="_blank" rel="noopener">UMCLOUD 技术博客</a></td>
+<td><a target="_blank" rel="noopener" href="http://blog.umcloud.com/">UMCLOUD 技术博客</a></td>
 <td>Ceph 存储</td>
 <td>UMCLOUD</td>
 </tr>
 <tr>
-<td><a href="https://www.sec-wiki.com/" target="_blank" rel="noopener">SecWiki</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.sec-wiki.com/">SecWiki</a></td>
 <td>安全</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://www.zcfy.cc/archives" target="_blank" rel="noopener">众成翻译</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.zcfy.cc/archives">众成翻译</a></td>
 <td>翻译、英文</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="http://www.myxzy.com/" target="_blank" rel="noopener">星知苑</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.myxzy.com/">星知苑</a></td>
 <td>软路由、虚拟化</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://lighti.me/" target="_blank" rel="noopener">轻时代</a></td>
+<td><a target="_blank" rel="noopener" href="https://lighti.me/">轻时代</a></td>
 <td>VPS、建站</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://bbs.letitfly.me/" target="_blank" rel="noopener">Letitfly</a></td>
+<td><a target="_blank" rel="noopener" href="https://bbs.letitfly.me/">Letitfly</a></td>
 <td>安卓、刷机、搞基</td>
 <td>-</td>
 </tr>
 <tr>
-<td><a href="https://blog.fundebug.com/" target="_blank" rel="noopener">fundebug 博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://blog.fundebug.com/">fundebug 博客</a></td>
 <td>前端、测试</td>
 <td></td>
 </tr>
@@ -1166,18 +1180,18 @@
 <p>三手批发站的优点是信息多、阅读快，可以短时间里建立起庞杂的信息体系概略，开阔眼界。但是切勿把这当成目的，这只是进一步深入探索和思索的路标，指明了真知的存在和方向，而不是真知本身。所以掌握英语看原始文档和多搜索个人独立博客文章是多么的重要。另外，这个理论不止于计算机行业，在信息来源受限的情况下，很多共识可能都只是因为单一来源的分散再聚合造成的伪共识。比如这两天推上的“我听我朋友说 XX 国家疫情已经…”的套娃游戏，一篇公众号反向解读，就有了“推上这些自干五”的共识</p>
 </blockquote>
 <h3 id="国内博客平台现状"><a href="#国内博客平台现状" class="headerlink" title="国内博客平台现状"></a>国内博客平台现状</h3><p>国内的这些博客平台啊，一个比一个烂到家，其中 CSDN 这种狗屎抄来抄去垃圾玩意儿，甚至还和百度搜索联合起来给人家喂屎，真他奶奶的恶心人。所以就精选一些自己 Chrome 收藏夹里收藏的个人独立博客，不喜欢像 CSDN 、博客园、OSCHINA 这些鱼龙混杂的抄袭博客平台。</p>
-<p><img src="https://p.k8s.li/20200101150146261.png" alt=""></p>
-<p>看到这类抄来抄去复制粘贴的博客，简直辣眼睛啊，为了保护自己的眼睛不被这种垃圾信息流污染，墙裂推荐使用开源软件 Chrome&amp;FireFox 插件 <a href="https://github.com/gorhill/uBlock" target="_blank" rel="noopener">uBlock Origin</a> 来在 Google 搜索页屏蔽掉这些国产、垃圾、抄袭、狗屎博客平台的搜索结果，顺带着建议把像 .baidu.com 、360 这种无耻坑爹公司的域名也被屏蔽掉。</p>
+<p><img data-src="https://p.k8s.li/20200101150146261.png"></p>
+<p>看到这类抄来抄去复制粘贴的博客，简直辣眼睛啊，为了保护自己的眼睛不被这种垃圾信息流污染，墙裂推荐使用开源软件 Chrome&amp;FireFox 插件 <a target="_blank" rel="noopener" href="https://github.com/gorhill/uBlock">uBlock Origin</a> 来在 Google 搜索页屏蔽掉这些国产、垃圾、抄袭、狗屎博客平台的搜索结果，顺带着建议把像 .baidu.com 、360 这种无耻坑爹公司的域名也被屏蔽掉。</p>
 <h3 id="推荐个人独立博客列表"><a href="#推荐个人独立博客列表" class="headerlink" title="推荐个人独立博客列表"></a>推荐个人独立博客列表</h3><p>放心吧，咱木子推荐的博客和文章绝对是质量相当高的，不像 CSDN 、博客园 、简书等等这些抄来抄去的 <strong>国产</strong> 博客平台。咱一向喜欢读的博客就是 <code>个人独立博客</code> 这也是咱在 <a href="https://blog.k8s.li/link/">友链</a> 中所强调的，对于国产博客平台一向屑之，对微信公众号这种删帖封号、言论审查的平台也只有一个 <code>呸</code> 字屑之 ：）。</p>
 <p>咱无论是工作还是学习技术参考的来源一般是：</p>
 <ul>
-<li>1.英文官方文档/社区翻译文档；</li>
-<li>2.StackOverflow/wiki/READDME；</li>
+<li>1.英文官方文档&#x2F;社区翻译文档；</li>
+<li>2.StackOverflow&#x2F;wiki&#x2F;READDME；</li>
 <li>3.个人独立博客。</li>
 <li>只有这三种，别无其它，远离国产博客平台这些抄来抄去的垃圾玩意儿。</li>
-<li><a href="https://tuna.moe/" target="_blank" rel="noopener">tuna</a> 收集的博客列表  <a href="https://github.com/tuna/blogroll" target="_blank" rel="noopener">tuna/blogroll</a></li>
-<li><a href="https://github.com/timqian/chinese-independent-blogs" target="_blank" rel="noopener">chinese-independent-blogs</a> 目前为止收藏最多的个人独立博客列表，GitHub 上 3.5k 的 start</li>
-<li><a href="https://ohmyrss.com/" target="_blank" rel="noopener">ohmyrss.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://tuna.moe/">tuna</a> 收集的博客列表  <a target="_blank" rel="noopener" href="https://github.com/tuna/blogroll">tuna&#x2F;blogroll</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/timqian/chinese-independent-blogs">chinese-independent-blogs</a> 目前为止收藏最多的个人独立博客列表，GitHub 上 3.5k 的 start</li>
+<li><a target="_blank" rel="noopener" href="https://ohmyrss.com/">ohmyrss.com</a></li>
 </ul>
 
       </div>
@@ -1185,193 +1199,65 @@
       
       
     </div>
-    
 
     
     
-    
-  </div>
 
 
-          </div>
-          
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小伙伴"><span class="nav-number">1.</span> <span class="nav-text">小伙伴</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#永远-の-好朋友"><span class="nav-number">1.1.</span> <span class="nav-text">永远 の 好朋友</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单恋链-😂-有趣的人"><span class="nav-number">1.2.</span> <span class="nav-text">单恋链 😂&#x2F;有趣的人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云原生相关"><span class="nav-number">1.3.</span> <span class="nav-text">云原生相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未分类"><span class="nav-number">1.4.</span> <span class="nav-text">未分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公司-社区-团队-论坛"><span class="nav-number">2.</span> <span class="nav-text">公司 &#x2F; 社区 &#x2F; 团队 &#x2F; 论坛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">3.</span> <span class="nav-text">Why</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#国内博客平台现状"><span class="nav-number">3.1.</span> <span class="nav-text">国内博客平台现状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐个人独立博客列表"><span class="nav-number">3.2.</span> <span class="nav-text">推荐个人独立博客列表</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">147</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
 
 <div class="copyright">
-  
-  &copy; 2018 – 
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -1379,51 +1265,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/friends.html",
-            identifier: "friends.html",
-            title: "小伙伴们"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

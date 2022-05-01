@@ -2,54 +2,27 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="rgba(0,0,0,0)">
+  <link rel="manifest" href="/manifest.json">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.k8s.li').hostname,
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="上次去北京出差，为了便捷地访问家里内网中的一些服务，就在腾讯云服务器上部署了一个 frps 服务，在本地内网的 Openwrt 路由器上安装 frpc 客户端，将内网中的一台 Windows 服务器穿透到腾讯云服务器上。然后通过 Windows RDP 远程连接到这台 Windows 机器上，来使用内网的一些服务。之前也尝试过 WireGuard，但是使用了一段时间体验下来感觉还是通过内网穿透的方">
-<meta property="og:type" content="article">
+    <meta name="description" content="上次去北京出差，为了便捷地访问家里内网中的一些服务，就在腾讯云服务器上部署了一个 frps 服务，在本地内网的 Openwrt 路由器上安装 frpc 客户端，将内网中的一台 Windows 服务器穿透到腾讯云服务器上。然后通过 Windows RDP 远程连接到这台 Windows 机器上，来使用内网的一些服务。之前也尝试过 WireGuard，但是使用了一段时间体验下来感觉还是通过内网穿透的方">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="Tencent Cloud lighthouse Firewall tool">
 <meta property="og:url" content="https://blog.k8s.li/cfwctl.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
@@ -57,319 +30,83 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-14T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-12-14T16:00:00.000Z">
-<meta property="article:author" content="木子">
+<meta property="article:author" content="Reimu">
 <meta property="article:tag" content="云服务器">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://blog.k8s.li/cfwctl.html">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
 
-  <title>Tencent Cloud lighthouse Firewall tool | Reimu's blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.k8s.li/cfwctl.html","path":"cfwctl.html","title":"Tencent Cloud lighthouse Firewall tool"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Tencent Cloud lighthouse Firewall tool | Reimu's blog</title>
   
-
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="Reimu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Reimu's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Reimu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
+
 
 
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-desktop"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Books</a>
-
-  </li>
-        <li class="menu-item menu-item-kindle">
-
-    <a href="https://kindle.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>Kindle</a>
-
-  </li>
-        <li class="menu-item menu-item-friends">
-
-    <a href="/friends.html" rel="section"><i class="fa fa-fw fa-link"></i>Friends</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user-circle-o"></i>About</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-books"><a href="https://reading.k8s.li/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Books</a></li><li class="menu-item menu-item-kindle"><a href="https://kindle.502.li/" rel="noopener" target="_blank"><i class="fa fa-swatchbook fa-fw"></i>Kindle</a></li><li class="menu-item menu-item-friend"><a href="/friends.html" rel="section"><i class="fa fa-link fa-fw"></i>Friend</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
   </ul>
-
 </nav>
+
+
+
+
 </div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/cfwctl.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://blog.k8s.li/avatar.png">
-      <meta itemprop="name" content="木子">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Reimu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          Tencent Cloud lighthouse Firewall tool
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-15 2021-12-15T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2021-12-15T00:00:00+08:00">2021-12-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/cfwctl.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="cfwctl.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p>上次去北京出差，为了便捷地访问家里内网中的一些服务，就在腾讯云服务器上部署了一个 frps 服务，在本地内网的 Openwrt 路由器上安装 frpc 客户端，将内网中的一台 Windows 服务器穿透到腾讯云服务器上。然后通过 Windows RDP 远程连接到这台 Windows 机器上，来使用内网的一些服务。之前也尝试过 WireGuard，但是使用了一段时间体验下来感觉还是通过内网穿透的方式比较稳定和流畅。于是最终的方式还是选用 frp 内网穿透的方案。</p>
-<p>本着方便省事儿的原则就放心大胆地开放了云服务器的安全组规则。不幸的是，由于这样的疏忽，某一天我的 Windows 虚拟机被弱口令（admin2020）给爆破了。巨大的损失就是挂载到 Windows 虚拟机上的 NAS 存储被勒索病毒进行了加密 😂。不过好在最最重要的数据全部存到了 OneDrive 上，NAS 上损失的都是一些下载的电影、书籍以及一些 ISO、虚拟机模版之类的文件。一下子损失了 8TB 的数据很心疼，毕竟是自己辛辛苦苦搜集的资源，但是仔细想一下，这些资源都不是自己的，基本上都是从下载下来的，还可以通过同样的方式找回来。或许是之前看过《断舍离》的缘故，也看的开了，难受了一小会儿之后就好过来了。毕竟这个世界上，没有无法不能失去的东西，也没有非得必须要得到的东西。</p>
-<p>有了此次教训，就开始考虑对手上的云主机资源进行安全加固，将一些与内网互通的云主机安全组/防火墙的通用去除了允许所有，只添加本地公网 IP 的允许规则。但是对于家庭宽带用户来讲，公网 IP 并不是一个固定的 IP，而是会一直不断变化，总不能每次变化之后再登录到云主机控制台手动添加一下吧。于是就想着有没有自动化的方式来自动添加和更新安全组/防火墙规则呢？</p>
-<h2 id="Terraform"><a href="#Terraform" class="headerlink" title="Terraform"></a>Terraform</h2><p>第一个想到的方案便是 terraform，主流的云厂商都有对应的 provider 支持，腾讯云应该也是能够支持的。不过看了官方的 <a href="https://github.com/tencentcloudstack/terraform-provider-tencentcloud" target="_blank" rel="noopener">terraform-provider-tencentcloud</a> repo 文档之后，并没有找到给 lighthouse 主机配置防火墙规则的支持，遂放弃。</p>
-<h2 id="cfwctl"><a href="#cfwctl" class="headerlink" title="cfwctl"></a>cfwctl</h2><p>既然 terraform 不支持，那就自己造轮子写一个吧，就叫它 Cloud Firewall Control Tool，简称 <a href="https://github.com/muzi502/cfwctl" target="_blank" rel="noopener">cfwctl</a>。腾讯云官方的 API 文档还可以，还能在线生成代码，用起来也十分方便。考虑到会将该工具运行到运行到 arm64 的路由器上，因此跨平台运行 cfwctl 使用 golang 来实现无疑是个不错的选择，正好也能来练练手。</p>
-<p>执行的操作其实很简单，先是通过某种方式获取本地机器的公网 IP，然后将该 IP 添加到对应实例的防火墙规则当中，并在规则描述中添加标识符来标记。目前自己只需要添加规则，先凑活着用一段时间，看下效果如何。目前只支持腾讯云的 lighthouse 实例，后续有机会再增加几个别的云厂商支持。</p>
-<h3 id="获取公网-IP"><a href="#获取公网-IP" class="headerlink" title="获取公网 IP"></a>获取公网 IP</h3><p>首先要获取到我们本地网路的公网 IP，由于公网 IP 可能一直是变化的，所以我们每次更新防火墙规则之前都需要获取最新的公网 IP。以下是具体实现的代码：</p>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"io/ioutil"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"regexp"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 IPv4 的正则表达式，目的是从获取公网 IP 的  API 返回结果中过滤出 IPv4 地址</span></span><br><span class="line"><span class="keyword">const</span> ipv4_regex = <span class="string">`(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))&#123;3&#125;`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义几个几个提供获取公网 IPv4 地址的 API URL</span></span><br><span class="line"><span class="keyword">var</span> urlList = []<span class="keyword">string</span>&#123;</span><br><span class="line">	<span class="string">"https://ip.me"</span></span><br><span class="line">	<span class="string">"http://ip.sb"</span>,</span><br><span class="line">	<span class="string">"http://ip.cip.cc"</span>,</span><br><span class="line">	<span class="string">"http://myip.ipip.net"</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetPublicIP</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, url := <span class="keyword">range</span> urlList &#123;</span><br><span class="line">    <span class="comment">// 创建一个 http client</span></span><br><span class="line">		client := &amp;http.Client&#123;&#125;</span><br><span class="line">    <span class="comment">// 设置 client 的请求方法为 GET 以及请求的 URL</span></span><br><span class="line">		request, err := http.NewRequest(<span class="string">"GET"</span>, url, <span class="literal">nil</span>)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">    <span class="comment">// 设置 Client 的 User-Agent 为 curl，不然一些 API 会返回 html 的结果</span></span><br><span class="line">		request.Header.Set(<span class="string">"User-Agent"</span>, <span class="string">"curl/7.54.0"</span>)</span><br><span class="line">		resp, err := client.Do(request)</span><br><span class="line">		<span class="keyword">if</span> resp.StatusCode != <span class="number">200</span> &amp;&amp; err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line">		body, err := ioutil.ReadAll(resp.Body)</span><br><span class="line">    <span class="comment">// 从 API 返回结果中用正则匹配出 IPv4 地址</span></span><br><span class="line">		reg := regexp.MustCompile(ipv4_regex)</span><br><span class="line">		ipList := reg.FindAllString(<span class="keyword">string</span>(body), <span class="number">-1</span>)</span><br><span class="line">    <span class="comment">// 如果匹配结果中有 IPv4 地址，则返回第一个元素即可</span></span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(ipList) &gt; <span class="number">0</span> &#123;</span><br><span class="line">			fmt.Printf(<span class="string">"my public ip is %s\n"</span>, ipList[<span class="number">0</span>])</span><br><span class="line">			<span class="keyword">return</span> ipList[<span class="number">0</span>]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加-Firewall-规则"><a href="#添加-Firewall-规则" class="headerlink" title="添加 Firewall 规则"></a>添加 Firewall 规则</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common"</span></span><br><span class="line">	<span class="string">"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/errors"</span></span><br><span class="line">	<span class="string">"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/profile"</span></span><br><span class="line">	lighthouse <span class="string">"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/lighthouse/v20200324"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 API 请求的 URL</span></span><br><span class="line"><span class="keyword">const</span> endpoint = <span class="string">"lighthouse.tencentcloudapi.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义请求 API 的 Client 结构体</span></span><br><span class="line"><span class="keyword">type</span> Client <span class="keyword">struct</span> &#123;</span><br><span class="line">	SecretId  <span class="keyword">string</span></span><br><span class="line">	SecretKey <span class="keyword">string</span></span><br><span class="line">	InstaceId <span class="keyword">string</span></span><br><span class="line">	Region    <span class="keyword">string</span></span><br><span class="line">	Endpoint  <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过该方法从环境变量中读取 Ck Sk 等信息，并返回一个 client 对象</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewClient</span><span class="params">()</span> <span class="title">Client</span></span> &#123;</span><br><span class="line">	client := Client&#123;</span><br><span class="line">		SecretId:  os.Getenv(<span class="string">"TENCENTCLOUD_SECRET_ID"</span>),</span><br><span class="line">		SecretKey: os.Getenv(<span class="string">"TENCENTCLOUD_SECRET_KEY"</span>),</span><br><span class="line">		InstaceId: os.Getenv(<span class="string">"TENCENTCLOUD_INSTANCE_ID"</span>),</span><br><span class="line">		Region:    os.Getenv(<span class="string">"TENCENTCLOUD_REGION"</span>),</span><br><span class="line">		Endpoint:  endpoint,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> client.SecretId == <span class="string">""</span> || client.SecretKey == <span class="string">""</span> || client.InstaceId == <span class="string">""</span> || client.Region == <span class="string">""</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(<span class="string">"Please set TENCENTCLOUD_SECRET_ID, TENCENTCLOUD_SECRET_KEY, TENCENTCLOUD_INSTANCE_ID, TENCENTCLOUD_REGION"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> client</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义添加防火墙规则的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c Client)</span> <span class="title">AddRules</span><span class="params">(firewallRules []*lighthouse.FirewallRule)</span></span> &#123;</span><br><span class="line">	credential := common.NewCredential(c.SecretId, c.SecretKey)</span><br><span class="line">	cpf := profile.NewClientProfile()</span><br><span class="line">	cpf.HttpProfile.Endpoint = endpoint</span><br><span class="line">	client, _ := lighthouse.NewClient(credential, c.Region, cpf)</span><br><span class="line"></span><br><span class="line">	request := lighthouse.NewCreateFirewallRulesRequest()</span><br><span class="line">	request.InstanceId = common.StringPtr(c.InstaceId)</span><br><span class="line">	request.FirewallRules = firewallRules</span><br><span class="line"></span><br><span class="line">	response, err := client.CreateFirewallRules(request)</span><br><span class="line">	<span class="keyword">if</span> _, ok := err.(*errors.TencentCloudSDKError); ok &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"An API error has returned: %s"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"%s"</span>, response.ToJsonString())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="获取防火墙规则"><a href="#获取防火墙规则" class="headerlink" title="获取防火墙规则"></a>获取防火墙规则</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c Client)</span> <span class="title">GetRules</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	credential := common.NewCredential(c.SecretId, c.SecretKey)</span><br><span class="line">	cpf := profile.NewClientProfile()</span><br><span class="line">	cpf.HttpProfile.Endpoint = endpoint</span><br><span class="line">	client, _ := lighthouse.NewClient(credential, c.Region, cpf)</span><br><span class="line"></span><br><span class="line">	request := lighthouse.NewDescribeFirewallRulesRequest()</span><br><span class="line"></span><br><span class="line">	request.InstanceId = common.StringPtr(c.InstaceId)</span><br><span class="line"></span><br><span class="line">	response, err := client.DescribeFirewallRules(request)</span><br><span class="line">	<span class="keyword">if</span> _, ok := err.(*errors.TencentCloudSDKError); ok &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"An API error has returned: %s"</span>, err)</span><br><span class="line">		<span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> response.ToJsonString()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
-<li>在本地的 <code>~/.bashrc</code> 或者 <code>~/.zshrc</code> 文件中设置一些 AKSK 信息、实例 ID、region 信息等参数；</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> TENCENTCLOUD_SECRET_ID=<span class="string">"AKiiiplQntjJbcMp1"</span></span><br><span class="line"><span class="built_in">export</span> TENCENTCLOUD_SECRET_KEY=<span class="string">"SKkkkiiwwlwjmmG5"</span></span><br><span class="line"><span class="built_in">export</span> TENCENTCLOUD_INSTANCE_ID=<span class="string">"lhins-qjxazjaa"</span></span><br><span class="line"><span class="built_in">export</span> TENCENTCLOUD_REGION=<span class="string">"ap-beijing"</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>设置好环境变量之后，再编译运行看下能否成功</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ go build -o cfwctl</span><br><span class="line">$ chmod +x cfwctl</span><br><span class="line">$ cfwctl add</span><br><span class="line"></span><br><span class="line">my public ip is 193.191.231.82</span><br><span class="line">&#123;<span class="string">"Response"</span>:&#123;<span class="string">"RequestId"</span>:<span class="string">"30e71243-1793-112e-9e41-b310ec599b90"</span>&#125;&#125;%</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果是 arm64 的 OpenWrt 环境，在本地开发机上进行跨平台编译，然后将编译好的 cfwctl 二进制文件 scp 到路由器上，再添加 cron job 定时任务即可，这样就能自动定时更新防火墙规则来。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ CGO_ENABLED=0  GOOS=linux  GOARCH=arm64 go build -o cfwctl</span><br></pre></td></tr></table></figure>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 云服务器</a>
-          </div>
-
         
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/python-kindle.html" rel="prev" title="Python 处理 kindle 标注文本">
-      <i class="fa fa-chevron-left"></i> Python 处理 kindle 标注文本
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021.html" rel="next" title="时光痕迹：2021 年总结">
-      时光痕迹：2021 年总结 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
   
-  
-  
-
-  </div>
-
-
-          </div>
-          
-    
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
         </li>
@@ -378,132 +115,421 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Terraform"><span class="nav-number">1.</span> <span class="nav-text">Terraform</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cfwctl"><span class="nav-number">2.</span> <span class="nav-text">cfwctl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取公网-IP"><span class="nav-number">2.1.</span> <span class="nav-text">获取公网 IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-Firewall-规则"><span class="nav-number">2.2.</span> <span class="nav-text">添加 Firewall 规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取防火墙规则"><span class="nav-number">2.3.</span> <span class="nav-text">获取防火墙规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">2.4.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Terraform"><span class="nav-number">1.</span> <span class="nav-text">Terraform</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cfwctl"><span class="nav-number">2.</span> <span class="nav-text">cfwctl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%85%AC%E7%BD%91-IP"><span class="nav-number">2.1.</span> <span class="nav-text">获取公网 IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-Firewall-%E8%A7%84%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">添加 Firewall 规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99"><span class="nav-number">2.3.</span> <span class="nav-text">获取防火墙规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="木子"
-      src="https://blog.k8s.li/avatar.png">
-  <p class="site-author-name" itemprop="name">木子</p>
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Reimu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Reimu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+        <a href="/archives/">
           <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+          <a href="/categories/">
         <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+          <a href="/tags/">
         <span class="site-state-item-count">147</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/muzi502" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;muzi502" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:muzi502.li@gmail.com" title="E-Mail → mailto:muzi502.li@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:blog@502.li" title="E-Mail → mailto:blog@502.li" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+        <a href="https://twitter.com/muzi_ii" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+        <a href="https://t.me/muzi_ii" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;muzi_ii" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://tg.k8s.li/" title="Channel → https:&#x2F;&#x2F;tg.k8s.li" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Channel</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa-solid fa-square-rss fa-fw"></i>RSS</a>
       </span>
   </div>
 
 
 
+        </div>
       </div>
-        <div class="back-to-top motion-element">
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
-
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.k8s.li/cfwctl.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Reimu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Tencent Cloud lighthouse Firewall tool | Reimu's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Tencent Cloud lighthouse Firewall tool
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-12-15 2021-12-15T00:00:00+08:00" itemprop="dateCreated datePublished" datetime="2021-12-15T00:00:00+08:00">2021-12-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/cfwctl.html#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="cfwctl.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>上次去北京出差，为了便捷地访问家里内网中的一些服务，就在腾讯云服务器上部署了一个 frps 服务，在本地内网的 Openwrt 路由器上安装 frpc 客户端，将内网中的一台 Windows 服务器穿透到腾讯云服务器上。然后通过 Windows RDP 远程连接到这台 Windows 机器上，来使用内网的一些服务。之前也尝试过 WireGuard，但是使用了一段时间体验下来感觉还是通过内网穿透的方式比较稳定和流畅。于是最终的方式还是选用 frp 内网穿透的方案。</p>
+<p>本着方便省事儿的原则就放心大胆地开放了云服务器的安全组规则。不幸的是，由于这样的疏忽，某一天我的 Windows 虚拟机被弱口令（admin2020）给爆破了。巨大的损失就是挂载到 Windows 虚拟机上的 NAS 存储被勒索病毒进行了加密 😂。不过好在最最重要的数据全部存到了 OneDrive 上，NAS 上损失的都是一些下载的电影、书籍以及一些 ISO、虚拟机模版之类的文件。一下子损失了 8TB 的数据很心疼，毕竟是自己辛辛苦苦搜集的资源，但是仔细想一下，这些资源都不是自己的，基本上都是从下载下来的，还可以通过同样的方式找回来。或许是之前看过《断舍离》的缘故，也看的开了，难受了一小会儿之后就好过来了。毕竟这个世界上，没有无法不能失去的东西，也没有非得必须要得到的东西。</p>
+<p>有了此次教训，就开始考虑对手上的云主机资源进行安全加固，将一些与内网互通的云主机安全组&#x2F;防火墙的通用去除了允许所有，只添加本地公网 IP 的允许规则。但是对于家庭宽带用户来讲，公网 IP 并不是一个固定的 IP，而是会一直不断变化，总不能每次变化之后再登录到云主机控制台手动添加一下吧。于是就想着有没有自动化的方式来自动添加和更新安全组&#x2F;防火墙规则呢？</p>
+<h2 id="Terraform"><a href="#Terraform" class="headerlink" title="Terraform"></a>Terraform</h2><p>第一个想到的方案便是 terraform，主流的云厂商都有对应的 provider 支持，腾讯云应该也是能够支持的。不过看了官方的 <a target="_blank" rel="noopener" href="https://github.com/tencentcloudstack/terraform-provider-tencentcloud">terraform-provider-tencentcloud</a> repo 文档之后，并没有找到给 lighthouse 主机配置防火墙规则的支持，遂放弃。</p>
+<h2 id="cfwctl"><a href="#cfwctl" class="headerlink" title="cfwctl"></a>cfwctl</h2><p>既然 terraform 不支持，那就自己造轮子写一个吧，就叫它 Cloud Firewall Control Tool，简称 <a target="_blank" rel="noopener" href="https://github.com/muzi502/cfwctl">cfwctl</a>。腾讯云官方的 API 文档还可以，还能在线生成代码，用起来也十分方便。考虑到会将该工具运行到运行到 arm64 的路由器上，因此跨平台运行 cfwctl 使用 golang 来实现无疑是个不错的选择，正好也能来练练手。</p>
+<p>执行的操作其实很简单，先是通过某种方式获取本地机器的公网 IP，然后将该 IP 添加到对应实例的防火墙规则当中，并在规则描述中添加标识符来标记。目前自己只需要添加规则，先凑活着用一段时间，看下效果如何。目前只支持腾讯云的 lighthouse 实例，后续有机会再增加几个别的云厂商支持。</p>
+<h3 id="获取公网-IP"><a href="#获取公网-IP" class="headerlink" title="获取公网 IP"></a>获取公网 IP</h3><p>首先要获取到我们本地网路的公网 IP，由于公网 IP 可能一直是变化的，所以我们每次更新防火墙规则之前都需要获取最新的公网 IP。以下是具体实现的代码：</p>
+<pre class="line-numbers language-golang" data-language="golang"><code class="language-golang">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;io&#x2F;ioutil&quot;
+	&quot;net&#x2F;http&quot;
+	&quot;regexp&quot;
+)
+
+&#x2F;&#x2F; 定义 IPv4 的正则表达式，目的是从获取公网 IP 的  API 返回结果中过滤出 IPv4 地址
+const ipv4_regex &#x3D; &#96;(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))&#123;3&#125;&#96;
+
+&#x2F;&#x2F; 定义几个几个提供获取公网 IPv4 地址的 API URL
+var urlList &#x3D; []string&#123;
+	&quot;https:&#x2F;&#x2F;ip.me&quot;
+	&quot;http:&#x2F;&#x2F;ip.sb&quot;,
+	&quot;http:&#x2F;&#x2F;ip.cip.cc&quot;,
+	&quot;http:&#x2F;&#x2F;myip.ipip.net&quot;,
+&#125;
+
+func GetPublicIP() string &#123;
+	for _, url :&#x3D; range urlList &#123;
+    &#x2F;&#x2F; 创建一个 http client
+		client :&#x3D; &amp;http.Client&#123;&#125;
+    &#x2F;&#x2F; 设置 client 的请求方法为 GET 以及请求的 URL
+		request, err :&#x3D; http.NewRequest(&quot;GET&quot;, url, nil)
+		if err !&#x3D; nil &#123;
+			continue
+		&#125;
+    &#x2F;&#x2F; 设置 Client 的 User-Agent 为 curl，不然一些 API 会返回 html 的结果
+		request.Header.Set(&quot;User-Agent&quot;, &quot;curl&#x2F;7.54.0&quot;)
+		resp, err :&#x3D; client.Do(request)
+		if resp.StatusCode !&#x3D; 200 &amp;&amp; err !&#x3D; nil &#123;
+			continue
+		&#125;
+		defer resp.Body.Close()
+		body, err :&#x3D; ioutil.ReadAll(resp.Body)
+    &#x2F;&#x2F; 从 API 返回结果中用正则匹配出 IPv4 地址
+		reg :&#x3D; regexp.MustCompile(ipv4_regex)
+		ipList :&#x3D; reg.FindAllString(string(body), -1)
+    &#x2F;&#x2F; 如果匹配结果中有 IPv4 地址，则返回第一个元素即可
+		if len(ipList) &gt; 0 &#123;
+			fmt.Printf(&quot;my public ip is %s\n&quot;, ipList[0])
+			return ipList[0]
+		&#125;
+	&#125;
+	return &quot;&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="添加-Firewall-规则"><a href="#添加-Firewall-规则" class="headerlink" title="添加 Firewall 规则"></a>添加 Firewall 规则</h3><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"os"</span>
+
+	<span class="token string">"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common"</span>
+	<span class="token string">"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/errors"</span>
+	<span class="token string">"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/profile"</span>
+	lighthouse <span class="token string">"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/lighthouse/v20200324"</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">// 定义 API 请求的 URL</span>
+<span class="token keyword">const</span> endpoint <span class="token operator">=</span> <span class="token string">"lighthouse.tencentcloudapi.com"</span>
+
+<span class="token comment">// 定义请求 API 的 Client 结构体</span>
+<span class="token keyword">type</span> Client <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	SecretId  <span class="token builtin">string</span>
+	SecretKey <span class="token builtin">string</span>
+	InstaceId <span class="token builtin">string</span>
+	Region    <span class="token builtin">string</span>
+	Endpoint  <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 通过该方法从环境变量中读取 Ck Sk 等信息，并返回一个 client 对象</span>
+<span class="token keyword">func</span> <span class="token function">NewClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Client <span class="token punctuation">&#123;</span>
+	client <span class="token operator">:=</span> Client<span class="token punctuation">&#123;</span>
+		SecretId<span class="token punctuation">:</span>  os<span class="token punctuation">.</span><span class="token function">Getenv</span><span class="token punctuation">(</span><span class="token string">"TENCENTCLOUD_SECRET_ID"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		SecretKey<span class="token punctuation">:</span> os<span class="token punctuation">.</span><span class="token function">Getenv</span><span class="token punctuation">(</span><span class="token string">"TENCENTCLOUD_SECRET_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		InstaceId<span class="token punctuation">:</span> os<span class="token punctuation">.</span><span class="token function">Getenv</span><span class="token punctuation">(</span><span class="token string">"TENCENTCLOUD_INSTANCE_ID"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		Region<span class="token punctuation">:</span>    os<span class="token punctuation">.</span><span class="token function">Getenv</span><span class="token punctuation">(</span><span class="token string">"TENCENTCLOUD_REGION"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		Endpoint<span class="token punctuation">:</span>  endpoint<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">if</span> client<span class="token punctuation">.</span>SecretId <span class="token operator">==</span> <span class="token string">""</span> <span class="token operator">||</span> client<span class="token punctuation">.</span>SecretKey <span class="token operator">==</span> <span class="token string">""</span> <span class="token operator">||</span> client<span class="token punctuation">.</span>InstaceId <span class="token operator">==</span> <span class="token string">""</span> <span class="token operator">||</span> client<span class="token punctuation">.</span>Region <span class="token operator">==</span> <span class="token string">""</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"Please set TENCENTCLOUD_SECRET_ID, TENCENTCLOUD_SECRET_KEY, TENCENTCLOUD_INSTANCE_ID, TENCENTCLOUD_REGION"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> client
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 定义添加防火墙规则的方法</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>c Client<span class="token punctuation">)</span> <span class="token function">AddRules</span><span class="token punctuation">(</span>firewallRules <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>lighthouse<span class="token punctuation">.</span>FirewallRule<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	credential <span class="token operator">:=</span> common<span class="token punctuation">.</span><span class="token function">NewCredential</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>SecretId<span class="token punctuation">,</span> c<span class="token punctuation">.</span>SecretKey<span class="token punctuation">)</span>
+	cpf <span class="token operator">:=</span> profile<span class="token punctuation">.</span><span class="token function">NewClientProfile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	cpf<span class="token punctuation">.</span>HttpProfile<span class="token punctuation">.</span>Endpoint <span class="token operator">=</span> endpoint
+	client<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> lighthouse<span class="token punctuation">.</span><span class="token function">NewClient</span><span class="token punctuation">(</span>credential<span class="token punctuation">,</span> c<span class="token punctuation">.</span>Region<span class="token punctuation">,</span> cpf<span class="token punctuation">)</span>
+
+	request <span class="token operator">:=</span> lighthouse<span class="token punctuation">.</span><span class="token function">NewCreateFirewallRulesRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	request<span class="token punctuation">.</span>InstanceId <span class="token operator">=</span> common<span class="token punctuation">.</span><span class="token function">StringPtr</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>InstaceId<span class="token punctuation">)</span>
+	request<span class="token punctuation">.</span>FirewallRules <span class="token operator">=</span> firewallRules
+
+	response<span class="token punctuation">,</span> err <span class="token operator">:=</span> client<span class="token punctuation">.</span><span class="token function">CreateFirewallRules</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> err<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>errors<span class="token punctuation">.</span>TencentCloudSDKError<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"An API error has returned: %s"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> response<span class="token punctuation">.</span><span class="token function">ToJsonString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="获取防火墙规则"><a href="#获取防火墙规则" class="headerlink" title="获取防火墙规则"></a>获取防火墙规则</h3><pre class="line-numbers language-golang" data-language="golang"><code class="language-golang">func (c Client) GetRules() string &#123;
+	credential :&#x3D; common.NewCredential(c.SecretId, c.SecretKey)
+	cpf :&#x3D; profile.NewClientProfile()
+	cpf.HttpProfile.Endpoint &#x3D; endpoint
+	client, _ :&#x3D; lighthouse.NewClient(credential, c.Region, cpf)
+
+	request :&#x3D; lighthouse.NewDescribeFirewallRulesRequest()
+
+	request.InstanceId &#x3D; common.StringPtr(c.InstaceId)
+
+	response, err :&#x3D; client.DescribeFirewallRules(request)
+	if _, ok :&#x3D; err.(*errors.TencentCloudSDKError); ok &#123;
+		fmt.Printf(&quot;An API error has returned: %s&quot;, err)
+		return &quot;&quot;
+	&#125;
+	if err !&#x3D; nil &#123;
+		panic(err)
+	&#125;
+	return response.ToJsonString()
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li>在本地的 <code>~/.bashrc</code> 或者 <code>~/.zshrc</code> 文件中设置一些 AKSK 信息、实例 ID、region 信息等参数；</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">TENCENTCLOUD_SECRET_ID</span><span class="token operator">=</span><span class="token string">"AKiiiplQntjJbcMp1"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TENCENTCLOUD_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"SKkkkiiwwlwjmmG5"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TENCENTCLOUD_INSTANCE_ID</span><span class="token operator">=</span><span class="token string">"lhins-qjxazjaa"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TENCENTCLOUD_REGION</span><span class="token operator">=</span><span class="token string">"ap-beijing"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>设置好环境变量之后，再编译运行看下能否成功</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ go build -o cfwctl
+$ <span class="token function">chmod</span> +x cfwctl
+$ cfwctl <span class="token function">add</span>
+
+my public <span class="token function">ip</span> is <span class="token number">193.191</span>.231.82
+<span class="token punctuation">&#123;</span><span class="token string">"Response"</span>:<span class="token punctuation">&#123;</span><span class="token string">"RequestId"</span><span class="token builtin class-name">:</span><span class="token string">"30e71243-1793-112e-9e41-b310ec599b90"</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>如果是 arm64 的 OpenWrt 环境，在本地开发机上进行跨平台编译，然后将编译好的 cfwctl 二进制文件 scp 到路由器上，再添加 cron job 定时任务即可，这样就能自动定时更新防火墙规则来。</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">CGO_ENABLED</span><span class="token operator">=</span><span class="token number">0</span>  <span class="token assign-left variable">GOOS</span><span class="token operator">=</span>linux  <span class="token assign-left variable">GOARCH</span><span class="token operator">=</span>arm64 go build -o cfwctl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"># 云服务器</a>
+          </div>
+
         
 
-<div class="copyright">
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/python-kindle.html" rel="prev" title="Python 处理 kindle 标注文本">
+                  <i class="fa fa-chevron-left"></i> Python 处理 kindle 标注文本
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021.html" rel="next" title="时光痕迹：2021 年总结">
+                  时光痕迹：2021 年总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
   
-  &copy; 2018 – 
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木子</span>
-    <span class="post-meta-divider">|</span>
+  <span class="author" itemprop="copyrightHolder">Reimu</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
+      <span>站点总字数：</span>
     <span title="站点总字数">1.7m</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47:31</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25:36</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
 
 
+
+  <script src="/js/third-party/fancybox.js"></script>
 
 
   
@@ -511,51 +537,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://muzi.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "https://blog.k8s.li/cfwctl.html",
-            identifier: "cfwctl.html",
-            title: "Tencent Cloud lighthouse Firewall tool"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://muzi.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"muzi","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>
