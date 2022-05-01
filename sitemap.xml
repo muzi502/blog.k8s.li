@@ -101,15 +101,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/telegram-tips.html</loc>
-    
-    <lastmod>2022-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
     
     <lastmod>2022-05-01</lastmod>
@@ -137,16 +128,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/make-e-book-from-html.html</loc>
-    
-    <lastmod>2022-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/container-linux-os.html</loc>
+    <loc>https://blog.k8s.li/telegram-tips.html</loc>
     
     <lastmod>2022-05-01</lastmod>
     
@@ -165,6 +147,24 @@
   
   <url>
     <loc>https://blog.k8s.li/linux-login-alarm-telegram.html</loc>
+    
+    <lastmod>2022-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/make-e-book-from-html.html</loc>
+    
+    <lastmod>2022-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/container-linux-os.html</loc>
     
     <lastmod>2022-05-01</lastmod>
     
@@ -281,15 +281,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
-    
-    <lastmod>2022-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
     
     <lastmod>2022-05-01</lastmod>
@@ -309,6 +300,15 @@
   
   <url>
     <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
+    
+    <lastmod>2022-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
     
     <lastmod>2022-05-01</lastmod>
     
@@ -389,6 +389,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/democracy-movement.html</loc>
+    
+    <lastmod>2022-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/get-someone-info.html</loc>
     
     <lastmod>2022-05-01</lastmod>
@@ -399,15 +408,6 @@
   
   <url>
     <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
-    
-    <lastmod>2022-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/democracy-movement.html</loc>
     
     <lastmod>2022-05-01</lastmod>
     
@@ -434,15 +434,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
-    
-    <lastmod>2022-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2022-05-01</lastmod>
@@ -452,7 +443,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
+    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
     
     <lastmod>2022-05-01</lastmod>
     
@@ -471,6 +462,15 @@
   
   <url>
     <loc>https://blog.k8s.li/android-taibackup.html</loc>
+    
+    <lastmod>2022-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
     
     <lastmod>2022-05-01</lastmod>
     
@@ -1010,15 +1010,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/moto-z-play-AOSIP.html</loc>
-    
-    <lastmod>2020-02-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/nonprofit-foundation-overview.html</loc>
     
     <lastmod>2020-02-29</lastmod>
@@ -1047,6 +1038,15 @@
   
   <url>
     <loc>https://blog.k8s.li/used-devices.html</loc>
+    
+    <lastmod>2020-02-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/moto-z-play-AOSIP.html</loc>
     
     <lastmod>2020-02-29</lastmod>
     
@@ -1791,6 +1791,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/%E9%98%B5%E5%88%97%E5%8D%A1/</loc>
+    <lastmod>2022-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/Linux-%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2022-05-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1799,13 +1806,6 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
-    <lastmod>2022-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E9%98%B5%E5%88%97%E5%8D%A1/</loc>
     <lastmod>2022-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1841,20 +1841,6 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/deb/</loc>
-    <lastmod>2022-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/moto/</loc>
-    <lastmod>2022-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/ROM/</loc>
     <lastmod>2022-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2107,6 +2093,20 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E7%9B%91%E6%8E%A7/</loc>
+    <lastmod>2022-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/moto/</loc>
+    <lastmod>2022-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/ROM/</loc>
     <lastmod>2022-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
