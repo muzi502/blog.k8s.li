@@ -339,7 +339,7 @@
 <ul>
 <li>harbor 的存储目录</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tree
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tree
 <span class="token variable"><span class="token variable">`</span>-- registry
     <span class="token variable">`</span></span>-- v2      <span class="token comment"># registry V2 版本</span>
         <span class="token operator">|</span>-- blobs <span class="token comment"># blobs 目录下存储镜像的 raw 数据，存储的最小单元为 layer</span>
@@ -354,7 +354,7 @@
 <ul>
 <li>镜像的 <a target="_blank" rel="noopener" href="https://github.com/opencontainers/image-spec/blob/master/manifest.md">manifest</a> 是针对 registry 服务端的配置信息</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sh-4.2<span class="token comment"># skopeo inspect docker://index.docker.io/library/alpine:latest --raw</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sh-4.2<span class="token comment"># skopeo inspect docker://index.docker.io/library/alpine:latest --raw</span>
 <span class="token punctuation">&#123;</span>
    <span class="token string">"schemaVersion"</span><span class="token builtin class-name">:</span> <span class="token number">2</span>,
    <span class="token string">"mediaType"</span><span class="token builtin class-name">:</span> <span class="token string">"application/vnd.docker.distribution.manifest.v2+json"</span>,
@@ -375,7 +375,7 @@
 <ul>
 <li>仔细看一下 <code>digest</code> 和下面文件夹的名称，他们是一一对应的，因为 manifest 信息就是镜像在 registry 中存储的信息。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tree
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tree
 <span class="token operator">|</span>-- <span class="token punctuation">[</span>  <span class="token number">20</span><span class="token punctuation">]</span>  blobs
 <span class="token operator">|</span>   <span class="token variable"><span class="token variable">`</span>-- <span class="token punctuation">[</span>  <span class="token number">36</span><span class="token punctuation">]</span>  sha256
 <span class="token operator">|</span>       <span class="token operator">|</span>-- <span class="token punctuation">[</span>  <span class="token number">78</span><span class="token punctuation">]</span>  <span class="token number">39</span>
@@ -416,7 +416,7 @@
 <ul>
 <li>我们去看一下 <code>[2.7M]  data</code>  这个文件，其他文件估计是一些 json 文本用于保存元数据信息。使用 file 命令查看 blobs&#x2F;sha256&#x2F;cb&#x2F;cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08 目录下的 <code>data</code> 文件。镜像的每一层都是存放在一个 64 位长度名称的文件夹下，文件名就是 <code>data</code> 。而且这个文件还是个 gzip 压缩后的文件。我么可以使用 tar 命令将其解压开来。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">cd</span> registry/v2/blobs/sha256/cb/cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> registry/v2/blobs/sha256/cb/cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08
 sh-4.2<span class="token comment"># file data</span>
 data: <span class="token function">gzip</span> compressed data
 sh-4.2<span class="token comment"># mkdir layer</span>
@@ -425,7 +425,7 @@ sh-4.2<span class="token comment"># tar -xvf data -C layer/</span><span aria-hid
 <ul>
 <li>将其解压到 layer 目录下，使用 tree 命令看一下文件夹下的内容就会明白，这不就是我们的 alpine 镜像真实的内容嘛 😂。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sh-4.2<span class="token comment"># tree -L 1 -d layer</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sh-4.2<span class="token comment"># tree -L 1 -d layer</span>
 layer
 <span class="token operator">|</span>-- bin
 <span class="token operator">|</span>-- dev
@@ -446,27 +446,27 @@ layer
 `-- var<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>知道了镜像在 registry 中是如何存储的，我们也就能够明白在当前仅仅为了同步两个 registry 上的镜像使用 docker pull –&gt; docker tag –&gt; docker push 操作的弊端。因为 docker pull 镜像时会对 registry 上的 layer 进行解压缩，这一点和我们的浏览器解压缩一些  gzip 压缩的资源一样道理，为了减少网络传输的流量。当我们 pull 镜像的时候，docker 会有一个单独的进程对镜像进行解压缩，在使用 docker pull 拉取镜像的时候使用 ps 查看一下进程就会找到 <code>docker-untar</code>  这个进程。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker-untar /var/lib/docker/overlay2/a076db6567c7306f3cdab6040cd7d083ef6a39d125171353eedbb8bde7f203b4/diff<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docker-untar /var/lib/docker/overlay2/a076db6567c7306f3cdab6040cd7d083ef6a39d125171353eedbb8bde7f203b4/diff<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>对于一些很大的镜像比如 2GB 以上，有时候镜像 layer 已经 download 完了，但是还在进行镜像的解压缩，性能的瓶颈也就在了解压镜像这一块。对于 docker push 来讲，也是如此。</p>
 <p>有没有一种办法可以直接将 registry 上的 blob 复制到另一个 registry，中间过程不涉及对镜像 layer 的解压缩，这岂不美哉 😂。</p>
 <h2 id="skopeo-install"><a href="#skopeo-install" class="headerlink" title="skopeo install"></a>skopeo install</h2><h3 id="yum-x2F-dnf-x2F-zypper-x2F-brew"><a href="#yum-x2F-dnf-x2F-zypper-x2F-brew" class="headerlink" title="yum&#x2F;dnf&#x2F;zypper&#x2F;brew"></a>yum&#x2F;dnf&#x2F;zypper&#x2F;brew</h3><p>安装方式很简单，对于常见的发相伴直接 install 一把梭就行，从官方文档偷来的安装方式 😂</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> dnf <span class="token function">install</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> dnf <span class="token function">install</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>on RHEL&#x2F;CentOS ≤ 7.x:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> yum <span class="token function">install</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> yum <span class="token function">install</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>for openSUSE:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> <span class="token function">zypper</span> <span class="token function">install</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">zypper</span> <span class="token function">install</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>on alpine:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> apk <span class="token function">add</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> apk <span class="token function">add</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>on macOS:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ brew <span class="token function">install</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ brew <span class="token function">install</span> skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="build"><a href="#build" class="headerlink" title="build"></a>build</h3><p>由于我的 VPS 机器是 Ubuntu 1804 的 OS ，配置 apt 源并没成功，当场翻车。为了能够快速体验一把还是本地起一个 alpine 容器，在 alpine 里通过 apk add 的方式安装 skopeo。但 alpine 里的 skopeo 版本 还是 0.14.0 😥，GitHub 上的 master 分支已经 1.0.0 了，而且并没有 sync 的选项。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">/ <span class="token comment"># skopeo --help</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/ <span class="token comment"># skopeo --help</span>
 NAME:
    skopeo - Various operations with container images and container image registries
 USAGE:
@@ -483,7 +483,7 @@ COMMANDS:
      help, h            Shows a list of commands or <span class="token builtin class-name">help</span> <span class="token keyword">for</span> one <span class="token builtin class-name">command</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>真是一波三折啊，绕了一圈最终还是亲自<del>指挥</del> build 一份吧，不过这个 build 过程也很简单。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> clone https://github.com/containers/skopeo skopeo
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/containers/skopeo skopeo
 <span class="token builtin class-name">cd</span> <span class="token operator">!</span>$
 <span class="token function">git</span> checkout v1.0.0
 <span class="token function">make</span> binary-static <span class="token assign-left variable">DISABLE_CGO</span><span class="token operator">=</span><span class="token number">1</span>
@@ -492,12 +492,12 @@ COMMANDS:
 <ul>
 <li>在这里需要注意一点，如果汝想构建一个在各 Linux 发行版通用的二进制可执行文件，一定要使用 <code>make binary-static DISABLE_CGO=1</code> ，之前我没有仔细看文档直接 make 一把梭，然后在 Ubuntu 上构建出来的二进制执行文件拿到 CentOS 上去用，当场翻车提示以下错误：</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">skopeo: error <span class="token keyword">while</span> loading shared libraries: libdevmapper.so.1.02.1: cannot <span class="token function">open</span> shared object file: No such <span class="token function">file</span> or directory<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo: error <span class="token keyword">while</span> loading shared libraries: libdevmapper.so.1.02.1: cannot <span class="token function">open</span> shared object file: No such <span class="token function">file</span> or directory<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>然后我傻乎乎地去安装 CentOS 上的这个库，但还是提示 <code>libdevmapper.so.1.02.1</code> 不存在。因为 Ubuntu 上的这个库和 CentOS 上的这个库是不一样名称的 😑。所以说要在编译的时候加上 <code>DISABLE_CGO=1</code> 这个参数进行静态链接编译，这样编译出来的二进制可执行文件就可以在 Linux 发行版之间通用了。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ldd skopeo_d <span class="token comment">#</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ldd skopeo_d <span class="token comment">#</span>
         linux-vdso.so.1 <span class="token punctuation">(</span>0x00007ffed9e66000<span class="token punctuation">)</span>
         libgpgme.so.11 <span class="token operator">=</span><span class="token operator">></span> /usr/lib/x86_64-linux-gnu/libgpgme.so.11 <span class="token punctuation">(</span>0x00007f94aed2e000<span class="token punctuation">)</span>
         libpthread.so.0 <span class="token operator">=</span><span class="token operator">></span> /lib/x86_64-linux-gnu/libpthread.so.0 <span class="token punctuation">(</span>0x00007f94aeb0f000<span class="token punctuation">)</span>
@@ -517,7 +517,7 @@ COMMANDS:
 ldd skopeo_s <span class="token comment">#</span>
         not a dynamic executable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Various operations with container images and container image registries
+<h2 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Various operations with container images and container image registries
 
 Usage:
   skopeo <span class="token punctuation">[</span>command<span class="token punctuation">]</span>
@@ -597,7 +597,7 @@ skopeo version <span class="token number">1.0</span>.0 commit: bd162028cd83ceecd
 <p>注意一下，这里的 location 就是指的上面提到的 <code>IMAGE NAMES</code> ，也就是说 <code>skopeo copy src dest</code> 可以有 6*6&#x3D;36 种组合！比如我可以将一个镜像从一个 registry 复制到另一个 registry，<code>skopeo copy docker://IMAGE_NAME docker://IMAGE_NAME</code>，再强调一遍，一定要注意 <code>IMAGE_NAME</code> 的命名的格式。</p>
 <p>skopeo 的详细使用可以参考官方的文档，在使用之前先创建一个</p>
 <p>在使用 skopeo 之前如果镜像是存放在 registry 上的话，需要先登录到 registry。使用 skopeo login 或者  docker login 都可以。成功登录之后会在本地保存一个为 config.json 的文件，里面保存了登录需要的验证信息，skopeo 拿到这个验证信息才有权限往 registry push 镜像。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /home/ubuntu/skopeo ‹master*›
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /home/ubuntu/skopeo ‹master*›
 ╰─<span class="token comment"># jq "." ~/.docker/config.json</span>
 <span class="token punctuation">&#123;</span>
   <span class="token string">"auths"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
@@ -614,7 +614,7 @@ skopeo version <span class="token number">1.0</span>.0 commit: bd162028cd83ceecd
 <ul>
 <li>从 <code>k8s.gcr.io/kube-apiserver:v1.17.5</code> 复制镜像到 <code>index.docker.io/webpsh/kube-apiserver:v1.17.5</code></li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~/skopeo ‹master›
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/skopeo ‹master›
 ╰─<span class="token comment"># skopeo copy docker://k8s.gcr.io/kube-apiserver:v1.17.5 docker://index.docker.io/webpsh/kube-apiserver:v1.17.5 --dest-authfile /root/.docker/config.json</span>
 Getting image <span class="token builtin class-name">source</span> signatures
 Copying blob 597de8ba0c30 <span class="token keyword">done</span>
@@ -626,7 +626,7 @@ Storing signatures<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <ul>
 <li>skopeo 输出的日志显示是 <code>Copying blob 597de8ba0c30 done</code> ，可以看到 skopeo 是直接 copy 镜像 layer 的 blob，而 blob 是在 registry 进行压缩存储的格式。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 然后从重新 pul 下来刚刚 push 到 docker hub 上的镜像，验证是否正确</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 然后从重新 pul 下来刚刚 push 到 docker hub 上的镜像，验证是否正确</span>
 ╭─root@sg-02 ~/skopeo ‹master›
 ╰─<span class="token comment"># docker pull webpsh/kube-apiserver:v1.17.5</span>
 v1.17.5: Pulling from webpsh/kube-apiserver
@@ -637,7 +637,7 @@ docker.io/webpsh/kube-apiserver:v1.17.5<span aria-hidden="true" class="line-numb
 <ul>
 <li>copy 镜像到本地</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /home/ubuntu
 ╰─<span class="token comment"># skopeo copy docker-daemon:alpine:latest oci:alpine</span>
 Getting image <span class="token builtin class-name">source</span> signatures
 Copying blob 3e207b409db3 <span class="token keyword">done</span>
@@ -807,7 +807,7 @@ alpine
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

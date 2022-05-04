@@ -459,15 +459,15 @@ $ <span class="token function">grep</span> -Er <span class="token string">"^Tags
 <p>Error reading manifest latest in docker.io&#x2F;library&#x2F;ubuntu: toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: <a target="_blank" rel="noopener" href="https://www.docker.com/increase-rate-limit">https://www.docker.com/increase-rate-limit</a>“</p>
 </blockquote>
 <h2 id="Dockerfile-里同步镜像？"><a href="#Dockerfile-里同步镜像？" class="headerlink" title="Dockerfile 里同步镜像？"></a>Dockerfile 里同步镜像？</h2><p>既然在本地有 pull 次数的限制，那什么地方不会有这种限制呢？首先想到的是 docker hub 上 build 镜像肯定不会限制吧。应该是的……。不如在 Dockerfile 里塞一个脚本，用它来同步镜像如何？于是一顿操作猛如虎，不一会儿就搓出来个 Dockerfile。</p>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM debian:unstable-slim
-RUN set -xue ;\
-    apt update -y ;\
-    apt install ca-certificates skopeo git curl jq -y --no-install-recommends ;\
-    rm -rf &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;* ;\
-    git clone -b sync https:&#x2F;&#x2F;github.com&#x2F;muzi502&#x2F;official-images &#x2F;build
-RUN set -xue ;\
-    skopeo login hub.k8s.li -u admin -p Harbor123456 ;\
-    bash &#x2F;build&#x2F;sync-images.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> debian:unstable-slim</span>
+<span class="token instruction"><span class="token keyword">RUN</span> set -xue ;<span class="token operator">\</span>
+    apt update -y ;<span class="token operator">\</span>
+    apt install ca-certificates skopeo git curl jq -y --no-install-recommends ;<span class="token operator">\</span>
+    rm -rf /var/lib/apt/lists/* ;<span class="token operator">\</span>
+    git clone -b sync https://github.com/muzi502/official-images /build</span>
+<span class="token instruction"><span class="token keyword">RUN</span> set -xue ;<span class="token operator">\</span>
+    skopeo login hub.k8s.li -u admin -p Harbor123456 ;<span class="token operator">\</span>
+    bash /build/sync-images.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>然……事实证明是我太天真了，在同步了不到 100 多个镜像后，同样也出现了 429 toomanyrequests 的限制。掀桌儿！在 docker hub 上构建镜像，也会被限制？自己限制自己？？这什么鸡儿玩意。</p>
 <p><del>假如有一个多阶段构建的 Dockerfile，就有可能因为拉不到镜像而导致镜像构建失败。那么这种智障的设计没想到过？</del></p>
@@ -488,7 +488,7 @@ RUN set -xue ;\
       <span class="token key atrule">uses</span><span class="token punctuation">:</span> mxschmitt/action<span class="token punctuation">-</span>tmate@v1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>使用 ssh 连接到 action runner 的机器里意外发现，在 <code>~/.docker/config.json </code> 文件里竟然已经有了个 login 的 docker hub 账户。<code>哦豁.jpg</code>。由于 docker login 的配置文件只是简单的 base64 加密，解码后拿到真实的 user 和 token。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">runner@fv-az60-303:~$ <span class="token function">cat</span> .docker/config.json
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">runner@fv-az60-303:~$ <span class="token function">cat</span> .docker/config.json
 <span class="token punctuation">&#123;</span>
         <span class="token string">"auths"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
                 <span class="token string">"https://index.docker.io/v1/"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
@@ -548,7 +548,7 @@ get_manifests<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
 
 <p>经过一番长时间的刺测试，在获取了 20058   个镜像的 manifest 文件之后依旧没有被限制，于是大胆猜测，runner 里内置的 docker hub 账户 pull library 镜像是没有限制的。估计是 GitHub 和 docker inc 达成了  py 交易，用这个账户去 pull 公共镜像没有限制。</p>
 <p><img data-src="https://p.k8s.li/image-20210216173003436.png"></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">runner@fv-az212-267:~/work/runner-test/runner-test$ <span class="token function">ls</span> manifests/ <span class="token operator">|</span> <span class="token function">wc</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">runner@fv-az212-267:~/work/runner-test/runner-test$ <span class="token function">ls</span> manifests/ <span class="token operator">|</span> <span class="token function">wc</span>
   <span class="token number">20058</span>   <span class="token number">20058</span> <span class="token number">1875861</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="定时同步镜像"><a href="#定时同步镜像" class="headerlink" title="定时同步镜像"></a>定时同步镜像</h3><p>从上述步骤一可知在 GitHub Action runner 机器里自带的 docker login 账户是没有限制，那我们最终就选定使用它来同步镜像到本地 registry 吧。参照 GitHub Action 照葫芦画瓢搓了个 action 的配置文件：</p>
@@ -585,7 +585,7 @@ get_manifests<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
 
 <p>既然 GitHub runner 的机器里有 docker login 的配置文件，不如把它<strong>偷</strong>过来，复制粘贴到自家的机器上使用 😜？不过我认为这种行为有点不厚道 😂，还是别干了。在这里只提供一个思路，实际上可行性还待验证。</p>
 <h3 id="增量同步"><a href="#增量同步" class="headerlink" title="增量同步"></a>增量同步</h3><p>默认设置的为 6 小时同步一次上游最新的代码，由于定时更新是使用的增量同步，即通过 git diff 的方式将当前分支最新的 commit 和上游 docker hub 官方的 repo 最新 commit 进行比较，找出变化的镜像。因此如果是首次同步，需要全量同步，在同步完成之后会给 repo 打上一个时间戳的 tag ，下次同步的时候就用这个 tag 和上游 repo 最新 commit 做差异比较。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token assign-left variable">IMAGES</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">git</span> <span class="token function">diff</span> --name-only --ignore-space-at-eol --ignore-space-change <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">IMAGES</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">git</span> <span class="token function">diff</span> --name-only --ignore-space-at-eol --ignore-space-change <span class="token punctuation">\</span>
     --diff-filter<span class="token operator">=</span>AM $<span class="token punctuation">&#123;</span>LAST_TAG<span class="token punctuation">&#125;</span> $<span class="token punctuation">&#123;</span>CURRENT_COMMIT<span class="token punctuation">&#125;</span> library <span class="token operator">|</span> <span class="token function">xargs</span> -L1 -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token function">sed</span> <span class="token string">"s|^|&#123;&#125;:|g"</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span>
     <span class="token operator">|</span> <span class="token function">sed</span> -n <span class="token string">"s| ||g;s|library/||g;s|:Tags:|:|p;s|:SharedTags:|:|p"</span> <span class="token operator">|</span> <span class="token function">sort</span> -u <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">"/<span class="token variable">$&#123;SKIPE_IMAGES&#125;</span>/d"</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -685,7 +685,7 @@ get_manifests<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

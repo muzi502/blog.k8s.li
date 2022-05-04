@@ -324,7 +324,7 @@
 </blockquote>
 <p>请教了一下两个大佬 <a target="_blank" rel="noopener" href="https://zdyxry.github.io/">Yiran</a> 和 <a target="_blank" rel="noopener" href="http://gaocegege.com/Blog/about/">高策</a>，他们也不太熟悉 😂，不过也找到了解决思路。在使用 GlusterFS 的时候，Node 节点也需要安装 GlusterFS 的客户端，不然 kubelet 也是无法挂载 Pod 的 volume。由此可以确认的是： kubelet 在为 Pod 挂载 volume 的时候，根据 volume 的类型（NFS、GlusterFS、Ceph 等），Pod 所在的 Node 节点宿主机也需要安装好对应的客户端程序。</p>
 <h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><p>集群信息：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@k8s-master-01 opt<span class="token punctuation">]</span><span class="token comment"># kubectl get node</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@k8s-master-01 opt<span class="token punctuation">]</span><span class="token comment"># kubectl get node</span>
 NAME            STATUS   ROLES    AGE    VERSION
 k8s-master-01   Ready    master   8d     v1.17.4
 k8s-master-02   Ready    master   8d     v1.17.4
@@ -335,7 +335,7 @@ node1           Ready    <span class="token operator">&lt;</span>none<span class
 
 <p>为了方便复现问题还是在 Rancher 上创建了 PV 和 PVC，以及包含两个 Pod 的一个 <code>Deploment</code>，在创建 Deploment 的时候，指定将 Pod 调度到新加入的节点上，即这个节点上并没有安装 NFS 客户端。</p>
 <p><strong>PV 信息如下：</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@k8s-master-01 opt<span class="token punctuation">]</span><span class="token comment"># kubectl describe pv nfs211</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@k8s-master-01 opt<span class="token punctuation">]</span><span class="token comment"># kubectl describe pv nfs211</span>
 Name:            nfs211
 Labels:          cattle.io/creator<span class="token operator">=</span>norman
 Annotations:     field.cattle.io/creatorId: user-gwgpp
@@ -477,13 +477,13 @@ Events:        <span class="token operator">&lt;</span>none<span class="token op
           <span class="token key atrule">claimName</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span><span class="token number">211</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>创建完 Deploment 之后，使用 kubectl get pod 命令查看 Pod 创建的进度，发现一直卡在 <code>ContainerCreating</code> 状态</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@k8s-master-01 opt<span class="token punctuation">]</span><span class="token comment"># kubectl get pod -n ops-test</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@k8s-master-01 opt<span class="token punctuation">]</span><span class="token comment"># kubectl get pod -n ops-test</span>
 NAME                              READY   STATUS              RESTARTS   AGE
 node1-nfs-test-547c4d7678-j6kwv   <span class="token number">0</span>/1     ContainerCreating   <span class="token number">0</span>          2m12s
 node1-nfs-test-547c4d7678-vwdqg   <span class="token number">0</span>/1     ContainerCreating   <span class="token number">0</span>          2m12s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>kubectl describe pod 的日志如下：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@k8s-master-01 opt<span class="token punctuation">]</span><span class="token comment"># kubectl describe pod node1-nfs-test-547c4d7678-j6kwv -n ops-test</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@k8s-master-01 opt<span class="token punctuation">]</span><span class="token comment"># kubectl describe pod node1-nfs-test-547c4d7678-j6kwv -n ops-test</span>
 Name:           node1-nfs-test-547c4d7678-j6kwv
 Namespace:      ops-test
 Priority:       <span class="token number">0</span>
@@ -548,7 +548,7 @@ mount: wrong fs type, bad option, bad superblock on <span class="token number">1
   Warning  FailedMount  8m48s  kubelet, node1  MountVolume.SetUp failed <span class="token keyword">for</span> volume <span class="token string">"nfs211"</span> <span class="token builtin class-name">:</span> <span class="token function">mount</span> failed: <span class="token builtin class-name">exit</span> status <span class="token number">32</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在 一台没有安装 NFS 客户端的节点尝试挂载一下 NFS 存储，发现报错的日志和 kubelet 的日志相同 🤔</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@k8s-master-03 ~<span class="token punctuation">]</span><span class="token comment"># mount -t nfs 10.20.172.211:/nfs /tmp</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@k8s-master-03 ~<span class="token punctuation">]</span><span class="token comment"># mount -t nfs 10.20.172.211:/nfs /tmp</span>
 mount: wrong fs type, bad option, bad superblock on <span class="token number">10.20</span>.172.211:/nfs,
        missing codepage or helper program, or other error
        <span class="token punctuation">(</span>for several filesystems <span class="token punctuation">(</span>e.g. nfs, cifs<span class="token punctuation">)</span> you might
@@ -558,7 +558,7 @@ mount: wrong fs type, bad option, bad superblock on <span class="token number">1
        <span class="token function">dmesg</span> <span class="token operator">|</span> <span class="token function">tail</span> or so.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>看到 kubelet 报错的日志和我们在宿主机上使用 mount 名挂载 NFS 存储时的错误一样就可以断定为是宿主机的问题。搜了一下报错日志，在 <a target="_blank" rel="noopener" href="https://askubuntu.com/questions/525243/why-do-i-get-wrong-fs-type-bad-option-bad-superblock-error">Why do I get “wrong fs type, bad option, bad superblock” error?</a> 得到提示说需要安装一下 NFS 客户端 (nfs-common、nfs-utils) 😂。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@node1 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@node1 ~
 ╰─<span class="token comment"># yum install nfs-utils</span>
 ………………
 Install  <span class="token number">1</span> Package <span class="token punctuation">(</span>+15 Dependent packages<span class="token punctuation">)</span>
@@ -569,7 +569,7 @@ Is this ok <span class="token punctuation">[</span>y/d/N<span class="token punct
 
 <p>yum 一把梭后发现 <code>nfs-utils</code> 还真没有安装 😂。</p>
 <p>安装完时候使用 kubectl 删除掉之前的 Pod，Deploment 控制器会自动帮我们将 Pod 数量调和到指定的数量。可以发现 Pod 所在宿主机安装 NFS 客户端之后 kubelet 就能正常为 Pod 挂载 volume 了 而且 Pod 也正常运行了。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@k8s-master-01 ~<span class="token punctuation">]</span><span class="token comment"># kubectl delete pod node1-nfs-test-547c4d7678-j6kwv node1-nfs-test-547c4d7678-vwdqg -n ops-test</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@k8s-master-01 ~<span class="token punctuation">]</span><span class="token comment"># kubectl delete pod node1-nfs-test-547c4d7678-j6kwv node1-nfs-test-547c4d7678-vwdqg -n ops-test</span>
 pod <span class="token string">"node1-nfs-test-547c4d7678-j6kwv"</span> deleted
 pod <span class="token string">"node1-nfs-test-547c4d7678-vwdqg"</span> deleted
 <span class="token punctuation">[</span>root@k8s-master-01 ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pod -n ops-test</span>
@@ -578,7 +578,7 @@ node1-nfs-test-7589fb4787-cknz4   <span class="token number">1</span>/1     Runn
 node1-nfs-test-7589fb4787-l9bt2   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          22s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>进入容器内查看一下容器内挂载点的信息：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@k8s-master-01 ~<span class="token punctuation">]</span><span class="token comment"># kubectl exec -it node1-nfs-test-7589fb4787-cknz4 -n ops-test sh</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@k8s-master-01 ~<span class="token punctuation">]</span><span class="token comment"># kubectl exec -it node1-nfs-test-7589fb4787-cknz4 -n ops-test sh</span>
 / <span class="token comment"># df -h</span>
 Filesystem                Size      Used Available Use% Mounted on
 overlay                  <span class="token number">28</span>.9G      <span class="token number">4</span>.1G     <span class="token number">23</span>.3G  <span class="token number">15</span>% /
@@ -663,7 +663,7 @@ rootfs on / <span class="token builtin class-name">type</span> rootfs <span clas
 <li>第三个域：可选参数，由 <code>&#39;,&#39;</code> 隔开，如 <code>ro</code></li>
 </ul>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /home/ubuntu
 ╰─<span class="token comment"># docker volume</span>
 Usage:  <span class="token function">docker</span> volume COMMAND
 Manage volumes
@@ -768,7 +768,7 @@ local               opt
 <ul>
 <li><p>tmps：</p>
 <p>用来存储一些不需要持久化的状态或敏感数据，比如 <code>kubernetes</code> 中的各种 <code>secret</code> 。比如当我们使用 <code>kubectl exec -it POD</code> ，进入到 Pod 容器内，然后使用 mount 命令查看容器内的挂载点信息就会有很多 tmpfs 类型的挂载点。其中的 <code>/run/secrets/kubernetes.io/serviceaccount/</code> 目录下就有着比较敏感的信息。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tmpfs on /run/secrets/kubernetes.io/serviceaccount <span class="token builtin class-name">type</span> tmpfs <span class="token punctuation">(</span>ro,relatime<span class="token punctuation">)</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tmpfs on /run/secrets/kubernetes.io/serviceaccount <span class="token builtin class-name">type</span> tmpfs <span class="token punctuation">(</span>ro,relatime<span class="token punctuation">)</span>
 / <span class="token comment"># tree /run/secrets/kubernetes.io/serviceaccount/</span>
 /run/secrets/kubernetes.io/serviceaccount/
 ├── ca.crt -<span class="token operator">></span> <span class="token punctuation">..</span>data/ca.crt
@@ -788,15 +788,15 @@ local               opt
 </blockquote>
 <h3 id="kubelet-挂载存储"><a href="#kubelet-挂载存储" class="headerlink" title="kubelet 挂载存储"></a>kubelet 挂载存储</h3><p>当对容器存储的类型有了大致了解之后，我们再来看一下 Pod 是如何进行 volume 挂载的。</p>
 <p>当 Pod 被调度到一个 Node 节点上后，Node 节点上的 kubelet 组件就会为这个 Pod 创建它的 Volume 目录，默认情况下 kubelet 为 Volume 创建的目录在 kubelet 的工作目录（默认在 <code>/var/lib/kubelet</code> ），在 kubelet 启动的时候可以根据 <code>–root-dir</code> 参数来指定工作目录，不过一般没啥特殊要求还是使用默认的就好 😂。Pod 的 volume 目录就在该目录下，路径格式如下：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">/var/lib/kubelet/pods/<span class="token operator">&lt;</span>Pod的ID<span class="token operator">></span>/volumes/kubernetes.io~<span class="token operator">&lt;</span>Volume类型<span class="token operator">></span>/<span class="token operator">&lt;</span>Volume名字<span class="token operator">></span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/var/lib/kubelet/pods/<span class="token operator">&lt;</span>Pod的ID<span class="token operator">></span>/volumes/kubernetes.io~<span class="token operator">&lt;</span>Volume类型<span class="token operator">></span>/<span class="token operator">&lt;</span>Volume名字<span class="token operator">></span>
 
 <span class="token comment"># 比如:</span>
 /var/lib/kubelet/pods/c4b1998b-f5c1-440a-b9bc-7fbf87f3c267/volumes/kubernetes.io~nfs/nfs211<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在 Node 节点上可以使用 mount 命令来查看 kubelet 为 Pod 挂载的挂载点信息。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token number">10.10</span>.107.216:/nfs on /var/lib/kubelet/pods/6750b756-d8e4-448a-93f9-8906f9c44788/volumes/kubernetes.io~nfs/nfs-test <span class="token builtin class-name">type</span> nfs <span class="token punctuation">(</span>rw,relatime,vers<span class="token operator">=</span><span class="token number">3</span>,rsize<span class="token operator">=</span><span class="token number">1048576</span>,wsize<span class="token operator">=</span><span class="token number">1048576</span>,namlen<span class="token operator">=</span><span class="token number">255</span>,hard,proto<span class="token operator">=</span>tcp,timeo<span class="token operator">=</span><span class="token number">600</span>,retrans<span class="token operator">=</span><span class="token number">2</span>,sec<span class="token operator">=</span>sys,mountaddr<span class="token operator">=</span><span class="token number">10.10</span>.107.216,mountvers<span class="token operator">=</span><span class="token number">3</span>,mountport<span class="token operator">=</span><span class="token number">56389</span>,mountproto<span class="token operator">=</span>udp,local_lock<span class="token operator">=</span>none,addr<span class="token operator">=</span><span class="token number">10.10</span>.107.216<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token number">10.10</span>.107.216:/nfs on /var/lib/kubelet/pods/6750b756-d8e4-448a-93f9-8906f9c44788/volumes/kubernetes.io~nfs/nfs-test <span class="token builtin class-name">type</span> nfs <span class="token punctuation">(</span>rw,relatime,vers<span class="token operator">=</span><span class="token number">3</span>,rsize<span class="token operator">=</span><span class="token number">1048576</span>,wsize<span class="token operator">=</span><span class="token number">1048576</span>,namlen<span class="token operator">=</span><span class="token number">255</span>,hard,proto<span class="token operator">=</span>tcp,timeo<span class="token operator">=</span><span class="token number">600</span>,retrans<span class="token operator">=</span><span class="token number">2</span>,sec<span class="token operator">=</span>sys,mountaddr<span class="token operator">=</span><span class="token number">10.10</span>.107.216,mountvers<span class="token operator">=</span><span class="token number">3</span>,mountport<span class="token operator">=</span><span class="token number">56389</span>,mountproto<span class="token operator">=</span>udp,local_lock<span class="token operator">=</span>none,addr<span class="token operator">=</span><span class="token number">10.10</span>.107.216<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@k8s-node-3 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@k8s-node-3 ~
 ╰─<span class="token comment"># mount | grep kubelet</span>
 tmpfs on /var/lib/kubelet/pods/45c55c5e-ce96-47fd-94b3-60a334e5a44d/volumes/kubernetes.io~secret/kube-proxy-token-h4dfb <span class="token builtin class-name">type</span> tmpfs <span class="token punctuation">(</span>rw,relatime,seclabel<span class="token punctuation">)</span>
 tmpfs on /var/lib/kubelet/pods/3fb63baa-27ec-4d76-8028-39a0a8f91749/volumes/kubernetes.io~secret/calico-node-token-4hks6 <span class="token builtin class-name">type</span> tmpfs <span class="token punctuation">(</span>rw,relatime,seclabel<span class="token punctuation">)</span>
@@ -805,7 +805,7 @@ tmpfs on /var/lib/kubelet/pods/05c75313-f932-4913-b09f-d7bccdfb6e62/volumes/kube
 tmpfs on /var/lib/kubelet/pods/73fed6f3-4cbe-46a7-af7b-6fd912e6ebd4/volumes/kubernetes.io~secret/default-token-wgfd9 <span class="token builtin class-name">type</span> tmpfs <span class="token punctuation">(</span>rw,relatime,seclabel<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>其中 kubernetes 目前支持的 Volume 的类型，可以使用 <code>kubectl explain pod.spec.volumes</code>  来查看。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@k8s-master-01 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@k8s-master-01 ~
 ╰─<span class="token comment"># kubectl explain pod.spec.volumes | grep Object | cut -d "&lt;" -f1</span>
 RESOURCE: volumes
 awsElasticBlockStore
@@ -868,7 +868,7 @@ mount<span class="token punctuation">:</span> wrong fs <span class="token keywor
 </blockquote>
 <p>正如提这个 PR 的大佬讲的，（之前）kubelet 需要在它自己的 <code>cgroup</code> 里运行宿主机上的 <code>/bin/mount</code> 来为 Pod 挂载 volumes ，而当 kubelet 进程重启或者挂掉的时候，这些在 kubelet 的  <code>cgroup</code> 里运行的进程也将会挂掉，比如（gluster，ceph）。然后大佬的这个 patch 通过 <code>systemd-run --scope /bin/mount</code> 来去启动一个临时的 systemd 单元来为 Pod 挂载 volumes，这样一来这些 <code>fuse daemons</code>  进程（gluster，ceph）就会 forked 到它自己的 systemd scope 里，这样即便 kubelet 重启或者挂掉也不会影响正在运行的容器使用 volumes。</p>
 <p>这一点像 <a target="_blank" rel="noopener" href="https://github.com/containerd/containerd">containerd</a> 之于 dockerd ，即便 dockerd 重启也不会影响到容器的运行，因为，在运行时这一块，真正运行容器的是 containerd 下的各个 containerd-shim 子进程，可以使用 pstree 命令来看一下这种层级关系。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">├─containerd─┬─5*<span class="token punctuation">[</span>containerd-shim─┬─pause<span class="token punctuation">]</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">├─containerd─┬─5*<span class="token punctuation">[</span>containerd-shim─┬─pause<span class="token punctuation">]</span>
 │            │                    └─9*<span class="token punctuation">[</span><span class="token punctuation">&#123;</span>containerd-shim<span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
 │            ├─containerd-shim─┬─pause
 │            │                 └─10*<span class="token punctuation">[</span><span class="token punctuation">&#123;</span>containerd-shim<span class="token punctuation">&#125;</span><span class="token punctuation">]</span>
@@ -954,7 +954,7 @@ mount<span class="token punctuation">:</span> wrong fs <span class="token keywor
 <li>fstype：文件系统类型，NFS、ceph、GlusterFS</li>
 <li>options []string：挂载的参数，比如 NFS 的</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">(</span>rw,relatime,vers<span class="token operator">=</span><span class="token number">3</span>,rsize<span class="token operator">=</span><span class="token number">524288</span>,wsize<span class="token operator">=</span><span class="token number">524288</span>,namlen<span class="token operator">=</span><span class="token number">255</span>,hard,proto<span class="token operator">=</span>tcp,timeo<span class="token operator">=</span><span class="token number">600</span>,retrans<span class="token operator">=</span><span class="token number">2</span>,sec<span class="token operator">=</span>sys,mountaddr<span class="token operator">=</span><span class="token number">10.20</span>.172.211,mountvers<span class="token operator">=</span><span class="token number">3</span>,mountport<span class="token operator">=</span><span class="token number">20048</span>,mountproto<span class="token operator">=</span>udp,local_lock<span class="token operator">=</span>none,addr<span class="token operator">=</span><span class="token number">10.20</span>.172.211<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span>rw,relatime,vers<span class="token operator">=</span><span class="token number">3</span>,rsize<span class="token operator">=</span><span class="token number">524288</span>,wsize<span class="token operator">=</span><span class="token number">524288</span>,namlen<span class="token operator">=</span><span class="token number">255</span>,hard,proto<span class="token operator">=</span>tcp,timeo<span class="token operator">=</span><span class="token number">600</span>,retrans<span class="token operator">=</span><span class="token number">2</span>,sec<span class="token operator">=</span>sys,mountaddr<span class="token operator">=</span><span class="token number">10.20</span>.172.211,mountvers<span class="token operator">=</span><span class="token number">3</span>,mountport<span class="token operator">=</span><span class="token number">20048</span>,mountproto<span class="token operator">=</span>udp,local_lock<span class="token operator">=</span>none,addr<span class="token operator">=</span><span class="token number">10.20</span>.172.211<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>sensitiveOptions []string，这个参数没去仔细看，就略过吧（</li>
@@ -1074,7 +1074,7 @@ mount<span class="token punctuation">:</span> wrong fs <span class="token keywor
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

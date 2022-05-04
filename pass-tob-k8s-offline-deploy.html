@@ -299,14 +299,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>55k</span>
+      <span>54k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>50 分钟</span>
+      <span>49 分钟</span>
     </span>
 </div>
 
@@ -872,24 +872,24 @@ kube/images/README.md<span aria-hidden="true" class="line-numbers-rows"><span></
 <ul>
 <li>Dockerfile</li>
 </ul>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM alpine:latest as downloader
-ARG SKOPEO_VERSION&#x3D;v1.4.0
-ARG NGINX_VERSION&#x3D;1.20-alpine
-ARG RERGISRRY_VERSION&#x3D;2.7.1
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> alpine:latest <span class="token keyword">as</span> downloader</span>
+<span class="token instruction"><span class="token keyword">ARG</span> SKOPEO_VERSION=v1.4.0</span>
+<span class="token instruction"><span class="token keyword">ARG</span> NGINX_VERSION=1.20-alpine</span>
+<span class="token instruction"><span class="token keyword">ARG</span> RERGISRRY_VERSION=2.7.1</span>
 
-WORKDIR &#x2F;tools
-RUN ARCH&#x3D;$(uname -m | sed &#39;s&#x2F;x86_64&#x2F;amd64&#x2F;;s&#x2F;aarch64&#x2F;arm64&#x2F;&#39;) \
-    &amp;&amp; apk --no-cache add wget ca-certificates \
-    &amp;&amp; wget -q -k https:&#x2F;&#x2F;github.com&#x2F;k8sli&#x2F;skopeo&#x2F;releases&#x2F;download&#x2F;v1.4.0&#x2F;skopeo-linux-$&#123;ARCH&#125; -O &#x2F;tools&#x2F;skopeo-linux-$&#123;ARCH&#125; \
-    &amp;&amp; chmod a+x &#x2F;tools&#x2F;* \
-    &amp;&amp; ln -s &#x2F;tools&#x2F;skopeo-linux-$&#123;ARCH&#125; &#x2F;usr&#x2F;bin&#x2F;skopeo
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /tools</span>
+<span class="token instruction"><span class="token keyword">RUN</span> ARCH=$(uname -m | sed <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span>) <span class="token operator">\</span>
+    &amp;&amp; apk --no-cache add wget ca-certificates <span class="token operator">\</span>
+    &amp;&amp; wget -q -k https://github.com/k8sli/skopeo/releases/download/v1.4.0/skopeo-linux-<span class="token variable">$&#123;ARCH&#125;</span> -O /tools/skopeo-linux-<span class="token variable">$&#123;ARCH&#125;</span> <span class="token operator">\</span>
+    &amp;&amp; chmod a+x /tools/* <span class="token operator">\</span>
+    &amp;&amp; ln -s /tools/skopeo-linux-<span class="token variable">$&#123;ARCH&#125;</span> /usr/bin/skopeo</span>
 
-WORKDIR &#x2F;images
-RUN ARCH&#x3D;$(uname -m | sed &#39;s&#x2F;x86_64&#x2F;amd64&#x2F;;s&#x2F;aarch64&#x2F;arm64&#x2F;&#39;) \
-    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify&#x3D;false --override-arch $&#123;ARCH&#125; --additional-tag nginx:$&#123;NGINX_VERSION&#125; \
-       docker:&#x2F;&#x2F;docker.io&#x2F;library&#x2F;nginx:$&#123;NGINX_VERSION&#125; docker-archive:nginx-$&#123;NGINX_VERSION&#125;.tar \
-    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify&#x3D;false --override-arch $&#123;ARCH&#125; --additional-tag registry:$&#123;RERGISRRY_VERSION&#125; \
-       docker:&#x2F;&#x2F;docker.io&#x2F;library&#x2F;registry:$&#123;RERGISRRY_VERSION&#125; docker-archive:registry-$&#123;RERGISRRY_VERSION&#125;.tar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /images</span>
+<span class="token instruction"><span class="token keyword">RUN</span> ARCH=$(uname -m | sed <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span>) <span class="token operator">\</span>
+    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify=false --override-arch <span class="token variable">$&#123;ARCH&#125;</span> --additional-tag nginx:<span class="token variable">$&#123;NGINX_VERSION&#125;</span> <span class="token operator">\</span>
+       docker://docker.io/library/nginx:<span class="token variable">$&#123;NGINX_VERSION&#125;</span> docker-archive:nginx-<span class="token variable">$&#123;NGINX_VERSION&#125;</span>.tar <span class="token operator">\</span>
+    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify=false --override-arch <span class="token variable">$&#123;ARCH&#125;</span> --additional-tag registry:<span class="token variable">$&#123;RERGISRRY_VERSION&#125;</span> <span class="token operator">\</span>
+       docker://docker.io/library/registry:<span class="token variable">$&#123;RERGISRRY_VERSION&#125;</span> docker-archive:registry-<span class="token variable">$&#123;RERGISRRY_VERSION&#125;</span>.tar</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在部署的时候我们使用 nerdctl compose 的方式启动即可，使用方式有点类似于 docker-compose。</p>
 <blockquote>
@@ -905,32 +905,32 @@ $ nerdctl compose -f compose.yaml up<span aria-hidden="true" class="line-numbers
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/k8sli/os-packages/blob/main/build/Dockerfile.os.centos7">Dockerfile</a></li>
 </ul>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM centos:7.9.2009 as os-centos7
-ARG OS_VERSION&#x3D;7
-ARG DOCKER_MIRROR_URL&#x3D;&quot;https:&#x2F;&#x2F;download.docker.com&quot;
-ARG BUILD_TOOLS&#x3D;&quot;yum-utils createrepo epel-release wget&quot;
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> centos:7.9.2009 <span class="token keyword">as</span> os-centos7</span>
+<span class="token instruction"><span class="token keyword">ARG</span> OS_VERSION=7</span>
+<span class="token instruction"><span class="token keyword">ARG</span> DOCKER_MIRROR_URL=<span class="token string">"https://download.docker.com"</span></span>
+<span class="token instruction"><span class="token keyword">ARG</span> BUILD_TOOLS=<span class="token string">"yum-utils createrepo epel-release wget"</span></span>
 
-# 安装构建工具，配置 docker 官方 yum 源
-RUN yum install -q -y $&#123;BUILD_TOOLS&#125; \
-    &amp;&amp; yum-config-manager --add-repo $&#123;DOCKER_MIRROR_URL&#125;&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo \
-    &amp;&amp; yum makecache
+<span class="token comment"># 安装构建工具，配置 docker 官方 yum 源</span>
+<span class="token instruction"><span class="token keyword">RUN</span> yum install -q -y <span class="token variable">$&#123;BUILD_TOOLS&#125;</span> <span class="token operator">\</span>
+    &amp;&amp; yum-config-manager --add-repo <span class="token variable">$&#123;DOCKER_MIRROR_URL&#125;</span>/linux/centos/docker-ce.repo <span class="token operator">\</span>
+    &amp;&amp; yum makecache</span>
 
-WORKDIR &#x2F;centos&#x2F;$OS_VERSION&#x2F;os
-COPY packages.yaml .
-COPY --from&#x3D;mikefarah&#x2F;yq:4.11.1 &#x2F;usr&#x2F;bin&#x2F;yq &#x2F;usr&#x2F;bin&#x2F;yq
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /centos/<span class="token variable">$OS_VERSION</span>/os</span>
+<span class="token instruction"><span class="token keyword">COPY</span> packages.yaml .</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">mikefarah/yq:4.11.1</span></span> /usr/bin/yq /usr/bin/yq</span>
 
-# 根据配置文件解析该 OS 需要构建的包，并获取这些包的下载 url
-RUN yq eval &#39;.common[],.yum[],.centos7[],.kubespray.common[],.kubespray.yum[]&#39; packages.yaml &gt; packages.list \
-    &amp;&amp; sort -u packages.list | xargs repotrack --urls | sort -u &gt; packages.urls
+<span class="token comment"># 根据配置文件解析该 OS 需要构建的包，并获取这些包的下载 url</span>
+<span class="token instruction"><span class="token keyword">RUN</span> yq eval <span class="token string">'.common[],.yum[],.centos7[],.kubespray.common[],.kubespray.yum[]'</span> packages.yaml > packages.list <span class="token operator">\</span>
+    &amp;&amp; sort -u packages.list | xargs repotrack --urls | sort -u > packages.urls</span>
 
-# 通过 wget 的方式下载 rpm 包，使用 createrepo 创建 repo 索引文件
-RUN ARCH&#x3D;$(uname -m) \
-    &amp;&amp; wget -q -x -P $&#123;ARCH&#125; -i packages.urls \
-    &amp;&amp; createrepo -d $&#123;ARCH&#125;
+<span class="token comment"># 通过 wget 的方式下载 rpm 包，使用 createrepo 创建 repo 索引文件</span>
+<span class="token instruction"><span class="token keyword">RUN</span> ARCH=$(uname -m) <span class="token operator">\</span>
+    &amp;&amp; wget -q -x -P <span class="token variable">$&#123;ARCH&#125;</span> -i packages.urls <span class="token operator">\</span>
+    &amp;&amp; createrepo -d <span class="token variable">$&#123;ARCH&#125;</span></span>
 
-# 将构建的内容 COPY 成单独的一层
-FROM scratch
-COPY --from&#x3D;os-centos7 &#x2F;centos &#x2F;centos<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 将构建的内容 COPY 成单独的一层</span>
+<span class="token instruction"><span class="token keyword">FROM</span> scratch</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">os-centos7</span></span> /centos /centos</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/k8sli/os-packages/blob/main/packages.yaml">packages.yaml</a> 配置文件</li>
@@ -1056,37 +1056,37 @@ COPY --from&#x3D;os-centos7 &#x2F;centos &#x2F;centos<span aria-hidden="true" cl
 <li>kubespray BASE 镜像</li>
 </ul>
 <p>首先构建一个 base 镜像，对于不经常变动的内容我们把它封装在一个 base 镜像里，只有当相关依赖更新了才需要重新构建这个 base 镜像，<code>Dockerfile.base</code> 如下：</p>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM python:3 as builder
-ARG KUBE_VERSION&#x3D;v1.21.3
-COPY requirements.txt requirements.txt
-COPY tests&#x2F;requirements.txt tests&#x2F;requirements.txt
-RUN echo &#39;shellcheck-py&#x3D;&#x3D;0.7.2.1&#39; &gt;&gt; requirements.txt \
-    &amp;&amp; grep -E &#39;^yamllint|^ansible-lint&#39; tests&#x2F;requirements.txt &gt;&gt; requirements.txt \
-    &amp;&amp; pip3 install --user -r requirements.txt
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> python:3 <span class="token keyword">as</span> builder</span>
+<span class="token instruction"><span class="token keyword">ARG</span> KUBE_VERSION=v1.21.3</span>
+<span class="token instruction"><span class="token keyword">COPY</span> requirements.txt requirements.txt</span>
+<span class="token instruction"><span class="token keyword">COPY</span> tests/requirements.txt tests/requirements.txt</span>
+<span class="token instruction"><span class="token keyword">RUN</span> echo <span class="token string">'shellcheck-py==0.7.2.1'</span> >> requirements.txt <span class="token operator">\</span>
+    &amp;&amp; grep -E <span class="token string">'^yamllint|^ansible-lint'</span> tests/requirements.txt >> requirements.txt <span class="token operator">\</span>
+    &amp;&amp; pip3 install --user -r requirements.txt</span>
 
-RUN ARCH&#x3D;$(uname -m | sed &#39;s&#x2F;x86_64&#x2F;amd64&#x2F;;s&#x2F;aarch64&#x2F;arm64&#x2F;&#39;) \
-    &amp;&amp; wget -O &#x2F;root&#x2F;.local&#x2F;bin&#x2F;kubectl -q https:&#x2F;&#x2F;dl.k8s.io&#x2F;$&#123;KUBE_VERSION&#125;&#x2F;bin&#x2F;linux&#x2F;$&#123;ARCH&#125;&#x2F;kubectl \
-	&amp;&amp; chmod a+x &#x2F;root&#x2F;.local&#x2F;bin&#x2F;kubectl
+<span class="token instruction"><span class="token keyword">RUN</span> ARCH=$(uname -m | sed <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span>) <span class="token operator">\</span>
+    &amp;&amp; wget -O /root/.local/bin/kubectl -q https://dl.k8s.io/<span class="token variable">$&#123;KUBE_VERSION&#125;</span>/bin/linux/<span class="token variable">$&#123;ARCH&#125;</span>/kubectl <span class="token operator">\</span>
+	&amp;&amp; chmod a+x /root/.local/bin/kubectl</span>
 
-FROM python:3-slim
-RUN DEBIAN_FRONTEND&#x3D;noninteractive apt-get update -y -qq \
-    &amp;&amp; apt-get install -y -qq --no-install-recommends \
-        ca-certificates libssl-dev openssh-client sshpass curl gnupg2 rsync \
-        jq moreutils vim iputils-ping wget tcpdump xz-utils \
-    &amp;&amp; rm -rf &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;*
+<span class="token instruction"><span class="token keyword">FROM</span> python:3-slim</span>
+<span class="token instruction"><span class="token keyword">RUN</span> DEBIAN_FRONTEND=noninteractive apt-get update -y -qq <span class="token operator">\</span>
+    &amp;&amp; apt-get install -y -qq --no-install-recommends <span class="token operator">\</span>
+        ca-certificates libssl-dev openssh-client sshpass curl gnupg2 rsync <span class="token operator">\</span>
+        jq moreutils vim iputils-ping wget tcpdump xz-utils <span class="token operator">\</span>
+    &amp;&amp; rm -rf /var/lib/apt/lists/*</span>
 
-COPY --from&#x3D;builder &#x2F;root&#x2F;.local &#x2F;usr&#x2F;local
-WORKDIR &#x2F;kubespray<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /root/.local /usr/local</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /kubespray</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li><a href="">kubespray 镜像</a></li>
 </ul>
 <p>FROM 的 base 镜像就使用我们刚刚构建好的镜像，相关依赖已经在 base 镜像中安装好了，这里构建的时候只需要把 repo 源码复制到 &#x2F;kubespray 目录下即可，内容如下：</p>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">ARG BASE_IMAGE&#x3D;ghcr.io&#x2F;k8sli&#x2F;kubespray-base
-ARG BASE_IMAGE_VERSION&#x3D;latest
-FROM $BASE_IMAGE:$BASE_IMAGE_VERSION
-WORKDIR &#x2F;kubespray
-COPY . .<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">ARG</span> BASE_IMAGE=ghcr.io/k8sli/kubespray-base</span>
+<span class="token instruction"><span class="token keyword">ARG</span> BASE_IMAGE_VERSION=latest</span>
+<span class="token instruction"><span class="token keyword">FROM</span> <span class="token variable">$BASE_IMAGE</span>:<span class="token variable">$BASE_IMAGE_VERSION</span></span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /kubespray</span>
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>kubespray 集群部署入口 <code>run.sh</code></li>
@@ -1320,16 +1320,16 @@ https://storage.googleapis.com/kubernetes-release/release/v1.21.3/bin/linux/amd6
 <ul>
 <li>Dockerfile</li>
 </ul>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM alpine:latest as files
-RUN apk --no-cache add wget ca-certificates
-WORKDIR &#x2F;build
-COPY build&#x2F;kubespray-files&#x2F;files_*.list &#x2F;build&#x2F;
-RUN ARCH&#x3D;$(uname -m | sed &#39;s&#x2F;x86_64&#x2F;amd64&#x2F;;s&#x2F;aarch64&#x2F;arm64&#x2F;&#39;) \
-    &amp;&amp; sed &#39;&#x2F;#&#x2F;d&#39; *$&#123;ARCH&#125;.list &gt; all_files.list \
-    &amp;&amp; wget -q -x -P &#x2F;files -i all_files.list
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> alpine:latest <span class="token keyword">as</span> files</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apk --no-cache add wget ca-certificates</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /build</span>
+<span class="token instruction"><span class="token keyword">COPY</span> build/kubespray-files/files_*.list /build/</span>
+<span class="token instruction"><span class="token keyword">RUN</span> ARCH=$(uname -m | sed <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span>) <span class="token operator">\</span>
+    &amp;&amp; sed <span class="token string">'/#/d'</span> *<span class="token variable">$&#123;ARCH&#125;</span>.list > all_files.list <span class="token operator">\</span>
+    &amp;&amp; wget -q -x -P /files -i all_files.list</span>
 
-FROM scratch
-COPY --from&#x3D;files &#x2F;files &#x2F;files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token instruction"><span class="token keyword">FROM</span> scratch</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">files</span></span> /files /files</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>构建后的目录结构，通过目录层级的方式保留原有的 URL 地址，维护和使用起来比较方便</li>
@@ -1493,44 +1493,44 @@ COPY --from<span class="token operator">=</span>images /build/docker /docker<spa
 <ul>
 <li>Dockerfile</li>
 </ul>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM alpine:latest as downloader
-ARG SKOPEO_VERSION&#x3D;v1.4.0
-ARG YQ_VERSION&#x3D;v4.11.2
-ARG NERDCTL_VERSION&#x3D;0.11.0
-ARG NGINX_VERSION&#x3D;1.20-alpine
-ARG RERGISRRY_VERSION&#x3D;2.7.1
-ARG KUBESPRAY_VERSION&#x3D;latest
-ARG KUBESPRAY_IMAGE&#x3D;ghcr.io&#x2F;k8sli&#x2F;kubespray
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> alpine:latest <span class="token keyword">as</span> downloader</span>
+<span class="token instruction"><span class="token keyword">ARG</span> SKOPEO_VERSION=v1.4.0</span>
+<span class="token instruction"><span class="token keyword">ARG</span> YQ_VERSION=v4.11.2</span>
+<span class="token instruction"><span class="token keyword">ARG</span> NERDCTL_VERSION=0.11.0</span>
+<span class="token instruction"><span class="token keyword">ARG</span> NGINX_VERSION=1.20-alpine</span>
+<span class="token instruction"><span class="token keyword">ARG</span> RERGISRRY_VERSION=2.7.1</span>
+<span class="token instruction"><span class="token keyword">ARG</span> KUBESPRAY_VERSION=latest</span>
+<span class="token instruction"><span class="token keyword">ARG</span> KUBESPRAY_IMAGE=ghcr.io/k8sli/kubespray</span>
 
-# 下载部署时需要的工具，如 yq、skopeo、nerdctl-fullsss
-WORKDIR &#x2F;tools
-RUN ARCH&#x3D;$(uname -m | sed &#39;s&#x2F;x86_64&#x2F;amd64&#x2F;;s&#x2F;aarch64&#x2F;arm64&#x2F;&#39;) \
-    &amp;&amp; apk --no-cache add wget ca-certificates \
-    &amp;&amp; wget -q -k https:&#x2F;&#x2F;github.com&#x2F;mikefarah&#x2F;yq&#x2F;releases&#x2F;download&#x2F;$&#123;YQ_VERSION&#125;&#x2F;yq_linux_$&#123;ARCH&#125;  -O &#x2F;tools&#x2F;yq-linux-$&#123;ARCH&#125; \
-    &amp;&amp; wget -q -k https:&#x2F;&#x2F;github.com&#x2F;k8sli&#x2F;skopeo&#x2F;releases&#x2F;download&#x2F;v1.4.0&#x2F;skopeo-linux-$&#123;ARCH&#125; -O &#x2F;tools&#x2F;skopeo-linux-$&#123;ARCH&#125; \
-    &amp;&amp; wget -q -k https:&#x2F;&#x2F;github.com&#x2F;containerd&#x2F;nerdctl&#x2F;releases&#x2F;download&#x2F;v$&#123;NERDCTL_VERSION&#125;&#x2F;nerdctl-full-$&#123;NERDCTL_VERSION&#125;-linux-$&#123;ARCH&#125;.tar.gz \
-    &amp;&amp; chmod a+x &#x2F;tools&#x2F;* \
-    &amp;&amp; ln -s &#x2F;tools&#x2F;skopeo-linux-$&#123;ARCH&#125; &#x2F;usr&#x2F;bin&#x2F;skopeo
+<span class="token comment"># 下载部署时需要的工具，如 yq、skopeo、nerdctl-fullsss</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /tools</span>
+<span class="token instruction"><span class="token keyword">RUN</span> ARCH=$(uname -m | sed <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span>) <span class="token operator">\</span>
+    &amp;&amp; apk --no-cache add wget ca-certificates <span class="token operator">\</span>
+    &amp;&amp; wget -q -k https://github.com/mikefarah/yq/releases/download/<span class="token variable">$&#123;YQ_VERSION&#125;</span>/yq_linux_<span class="token variable">$&#123;ARCH&#125;</span>  -O /tools/yq-linux-<span class="token variable">$&#123;ARCH&#125;</span> <span class="token operator">\</span>
+    &amp;&amp; wget -q -k https://github.com/k8sli/skopeo/releases/download/v1.4.0/skopeo-linux-<span class="token variable">$&#123;ARCH&#125;</span> -O /tools/skopeo-linux-<span class="token variable">$&#123;ARCH&#125;</span> <span class="token operator">\</span>
+    &amp;&amp; wget -q -k https://github.com/containerd/nerdctl/releases/download/v<span class="token variable">$&#123;NERDCTL_VERSION&#125;</span>/nerdctl-full-<span class="token variable">$&#123;NERDCTL_VERSION&#125;</span>-linux-<span class="token variable">$&#123;ARCH&#125;</span>.tar.gz <span class="token operator">\</span>
+    &amp;&amp; chmod a+x /tools/* <span class="token operator">\</span>
+    &amp;&amp; ln -s /tools/skopeo-linux-<span class="token variable">$&#123;ARCH&#125;</span> /usr/bin/skopeo</span>
 
-# 下载一些镜像，如 nginx、registry、kubespray
-WORKDIR &#x2F;images
-RUN ARCH&#x3D;$(uname -m | sed &#39;s&#x2F;x86_64&#x2F;amd64&#x2F;;s&#x2F;aarch64&#x2F;arm64&#x2F;&#39;) \
-    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify&#x3D;false --override-arch $&#123;ARCH&#125; --additional-tag nginx:$&#123;NGINX_VERSION&#125; \
-       docker:&#x2F;&#x2F;docker.io&#x2F;library&#x2F;nginx:$&#123;NGINX_VERSION&#125; docker-archive:nginx-$&#123;NGINX_VERSION&#125;.tar \
-    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify&#x3D;false --override-arch $&#123;ARCH&#125; --additional-tag registry:$&#123;RERGISRRY_VERSION&#125; \
-       docker:&#x2F;&#x2F;docker.io&#x2F;library&#x2F;registry:$&#123;RERGISRRY_VERSION&#125; docker-archive:registry-$&#123;RERGISRRY_VERSION&#125;.tar \
-    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify&#x3D;false --override-arch $&#123;ARCH&#125; --additional-tag kubespray:$&#123;KUBESPRAY_VERSION&#125; \
-       docker:&#x2F;&#x2F;$&#123;KUBESPRAY_IMAGE&#125;:$&#123;KUBESPRAY_VERSION&#125; docker-archive:kubespray-$&#123;KUBESPRAY_VERSION&#125;.tar
+<span class="token comment"># 下载一些镜像，如 nginx、registry、kubespray</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /images</span>
+<span class="token instruction"><span class="token keyword">RUN</span> ARCH=$(uname -m | sed <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span>) <span class="token operator">\</span>
+    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify=false --override-arch <span class="token variable">$&#123;ARCH&#125;</span> --additional-tag nginx:<span class="token variable">$&#123;NGINX_VERSION&#125;</span> <span class="token operator">\</span>
+       docker://docker.io/library/nginx:<span class="token variable">$&#123;NGINX_VERSION&#125;</span> docker-archive:nginx-<span class="token variable">$&#123;NGINX_VERSION&#125;</span>.tar <span class="token operator">\</span>
+    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify=false --override-arch <span class="token variable">$&#123;ARCH&#125;</span> --additional-tag registry:<span class="token variable">$&#123;RERGISRRY_VERSION&#125;</span> <span class="token operator">\</span>
+       docker://docker.io/library/registry:<span class="token variable">$&#123;RERGISRRY_VERSION&#125;</span> docker-archive:registry-<span class="token variable">$&#123;RERGISRRY_VERSION&#125;</span>.tar <span class="token operator">\</span>
+    &amp;&amp; skopeo copy --insecure-policy --src-tls-verify=false --override-arch <span class="token variable">$&#123;ARCH&#125;</span> --additional-tag kubespray:<span class="token variable">$&#123;KUBESPRAY_VERSION&#125;</span> <span class="token operator">\</span>
+       docker://<span class="token variable">$&#123;KUBESPRAY_IMAGE&#125;</span>:<span class="token variable">$&#123;KUBESPRAY_VERSION&#125;</span> docker-archive:kubespray-<span class="token variable">$&#123;KUBESPRAY_VERSION&#125;</span>.tar</span>
 
 
-FROM scratch
-COPY . .
- # 将其它模块中的内容复制到 scratch 镜像中，构建的时候导出为 local 方式
-COPY --from&#x3D;downloader &#x2F;tools &#x2F;resources&#x2F;nginx&#x2F;tools
-COPY --from&#x3D;downloader &#x2F;images &#x2F;resources&#x2F;images
-COPY --from&#x3D;$&#123;OS_PACKAGES_IMAGE&#125;:$&#123;OS_PACKAGE_REPO_TAG&#125; &#x2F; &#x2F;resources&#x2F;nginx
-COPY --from&#x3D;$&#123;KUBESPRAY_FILES_IMAGE&#125;:$&#123;KUBESPRAY_REPO_TAG&#125; &#x2F; &#x2F;resources&#x2F;nginx
-COPY --from&#x3D;$&#123;KUBESPRAY_IMAGES_IMAGE&#125;:$&#123;KUBESPRAY_REPO_TAG&#125; &#x2F; &#x2F;resources&#x2F;registry<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token instruction"><span class="token keyword">FROM</span> scratch</span>
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span>
+ <span class="token comment"># 将其它模块中的内容复制到 scratch 镜像中，构建的时候导出为 local 方式</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">downloader</span></span> /tools /resources/nginx/tools</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">downloader</span></span> /images /resources/images</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">$&#123;OS_PACKAGES_IMAGE&#125;:$&#123;OS_PACKAGE_REPO_TAG&#125;</span></span> / /resources/nginx</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">$&#123;KUBESPRAY_FILES_IMAGE&#125;:$&#123;KUBESPRAY_REPO_TAG&#125;</span></span> / /resources/nginx</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">$&#123;KUBESPRAY_IMAGES_IMAGE&#125;:$&#123;KUBESPRAY_REPO_TAG&#125;</span></span> / /resources/registry</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p>由于最终的构建涉及多个模块和 repo，其流程比较复杂，详细的代码可参考源码 <a target="_blank" rel="noopener" href="https://github.com/k8sli/kubeplay/blob/main/.github/workflows/build.yaml">build.yaml</a> ，在这里只讲几个关键的部分</p>
 <ul>
@@ -2004,7 +2004,7 @@ main <span class="token string">"<span class="token variable">$@</span>"</span><
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

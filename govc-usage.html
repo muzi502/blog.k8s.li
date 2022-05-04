@@ -317,7 +317,7 @@
         <p>最近由于工作原因需要在 ESXi 主机上完成一些参数配置、虚拟交换机&#x2F;网创建、虚拟机创建、VIB 安装、PCI 直通、虚拟机创建等工作，于是抽空整理了一下在使用 govc 时踩的一些坑。</p>
 <h2 id="govc"><a href="#govc" class="headerlink" title="govc"></a>govc</h2><p><a target="_blank" rel="noopener" href="https://github.com/vmware/govmomi/tree/master/govc">govc</a> 是 VMware 官方 <a target="_blank" rel="noopener" href="https://github.com/vmware/govmom">govmomi</a> 库的一个封装实现。使用它可以完成对 ESXi 主机或 vCenter 的一些操作。比如创建虚拟机、管理快照等。基本上能在 ESXi 或 vCenter 上的操作，在 govmomi 中都有对应的实现。目前 govc 支持的 ESXi &#x2F; vCenter 版本有 7.0, 6.7, 6.5 , 6.0 (5.x 版本太老了，干脆放弃吧)，另外也支持 VMware Workstation 的某些版本。</p>
 <p>使用 govc 连接 ESXi 主机或 vCenter 可以通过设置环境变量或者命令行参数，建议使用环境变量，如果通过命令行 flag 的话，将明文规定用户名和密码输出来有一定的安全风险。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Options:
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Options:
   -cert<span class="token operator">=</span>                           Certificate <span class="token punctuation">[</span>GOVC_CERTIFICATE<span class="token punctuation">]</span>
   -dc<span class="token operator">=</span>                             Datacenter <span class="token punctuation">[</span>GOVC_DATACENTER<span class="token punctuation">]</span>
   -debug<span class="token operator">=</span>false                     Store debug logs <span class="token punctuation">[</span>GOVC_DEBUG<span class="token punctuation">]</span>
@@ -341,7 +341,7 @@
   -xml<span class="token operator">=</span>false                       Enable XML output<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>通过 <code>GOVC_URL</code> 环境变量指定 ESXi 主机或 vCenter 的 URL，登录的用户名和密码可设置在 GOVC_URL 中或者单独设置 <code>GOVC_USERNAME</code> 和 <code>GOVC_PASSWORD</code>。如果 https 证书是自签的域名或者 IP 需要通过设置 <code>GOVC_INSECURE=true</code> 参数来允许不安全的 https 连接。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token builtin class-name">export</span> <span class="token assign-left variable">GOVC_URL</span><span class="token operator">=</span><span class="token string">"https://root:password@esxi.k8s.li"</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">export</span> <span class="token assign-left variable">GOVC_URL</span><span class="token operator">=</span><span class="token string">"https://root:password@esxi.k8s.li"</span>
 $ <span class="token builtin class-name">export</span> <span class="token assign-left variable">GOVC_INSECURE</span><span class="token operator">=</span>true
 $ govc about
 FullName:     VMware ESXi <span class="token number">7.0</span>.2 build-17867351
@@ -628,7 +628,7 @@ Config.Etc.motd:                                    The <span class="token funct
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ govc host.option.set NFS.HeartbeatTimeout <span class="token number">30</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="开启-ssh-服务"><a href="#开启-ssh-服务" class="headerlink" title="开启 ssh 服务"></a>开启 ssh 服务</h2><p>通过 <code>host.service</code> 可以对 ESXi 主机上的服务进行相关操作。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ govc host.service
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ govc host.service
 Where ACTION is one of: start, stop, restart, status, enable, disable
 
 <span class="token comment"># 启动 ssh 服务</span>
@@ -723,7 +723,7 @@ $ govc vm.power -on<span class="token operator">=</span>true <span class="token 
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

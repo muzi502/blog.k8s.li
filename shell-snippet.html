@@ -531,12 +531,12 @@ $ <span class="token function">lsof</span> -i <span class="token operator">|</sp
 <ul>
 <li>Dockerfile</li>
 </ul>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM nixos&#x2F;nix:2.3.11 as builder
-WORKDIR &#x2F;build
-COPY . .
-RUN nix build -f nix
-FROM scratch
-COPY --from&#x3D;builder &#x2F;build&#x2F;result&#x2F;bin&#x2F;skopeo &#x2F;skopeo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> nixos/nix:2.3.11 <span class="token keyword">as</span> builder</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /build</span>
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span>
+<span class="token instruction"><span class="token keyword">RUN</span> nix build -f nix</span>
+<span class="token instruction"><span class="token keyword">FROM</span> scratch</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /build/result/bin/skopeo /skopeo</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>build</li>
@@ -914,7 +914,7 @@ $ <span class="token function">git</span> tag -l <span class="token operator">|<
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

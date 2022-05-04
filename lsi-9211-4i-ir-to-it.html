@@ -334,7 +334,7 @@
 <p>安卓<del>基</del>机佬们想必对 twrp 再熟悉不过了，它是我们刷机，刷各种 ROM 包最常用的系统，相当于 Windows 中的 PE 系统，对系统分区刷上 ROM 来达到刷机的目的。刷阵列卡的固件和刷机也差不多，也是需要一个底层的系统进去对阵列卡上的存储芯片进行操作。最常见的就是 Dos 和 EFI Shell ，由于 Dos 年代久远，且我的主板对 EFI 支持比较友好，在进行刷机的时候为了稳妥起见选择 EFI shell。</p>
 <h3 id="记录-SAS-地址"><a href="#记录-SAS-地址" class="headerlink" title="记录 SAS 地址"></a>记录 SAS 地址</h3><p>在刷阵列卡之前要线记录下 SAS 的 Address ，进入到阵列卡的 BIOS 中会有这个信息。</p>
 <h3 id="找好固件和文档"><a href="#找好固件和文档" class="headerlink" title="找好固件和文档"></a>找好固件和文档</h3><p>由于我要刷入的固件不是阵列卡原厂的固件，只找到了现成的固件，直接就拿来用了，应该问题不大。而且刷入的流程也是比较简答。<a target="_blank" rel="noopener" href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a> :</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 备份原卡信息和sbr</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 备份原卡信息和sbr</span>
 MegaCli.exe -AdpAllInfo -aAll -ApplogFile bak.txt
 MegaRec.exe -readsbr <span class="token number">0</span> orig.sbr
 <span class="token comment">#擦写sbr和flash一遍能刷入LSI原厂固件</span>
@@ -520,7 +520,7 @@ ShellX64.efi</li>
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

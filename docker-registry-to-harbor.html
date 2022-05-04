@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://p.k8s.li/registry-storage.jpeg">
 <meta property="og:image" content="https://p.k8s.li/registry-storage.jpeg">
 <meta property="article:published_time" content="2021-01-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-02T00:41:22.190Z">
+<meta property="article:modified_time" content="2022-05-04T14:03:20.257Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="registry">
 <meta property="article:tag" content="harbor">
@@ -272,7 +272,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-02 2022-05-02T08:41:22+08:00" itemprop="dateModified" datetime="2022-05-02T08:41:22+08:00">2022-05-02</time>
+      <time title="修改时间：2022-05-04 2022-05-04T22:03:20+08:00" itemprop="dateModified" datetime="2022-05-04T22:03:20+08:00">2022-05-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -431,7 +431,7 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo copy docker://alpine:latest dir:./alpine<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>使用 tree 命令查看一下 alpine 文件夹的目录结构，如下：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry
 ╰─<span class="token comment"># tree -h alpine</span>
 alpine
 ├── <span class="token punctuation">[</span><span class="token number">2</span>.7M<span class="token punctuation">]</span>  4c0d98bf9879488e0407f897d9dd4bf758555a78e39675e72b5124ccf12c2580
@@ -478,7 +478,7 @@ alpine/4c0d98bf9879488e0407f897d9dd4bf758555a78e39675e72b5124ccf12c2580: <span c
 <ul>
 <li>首先要得到镜像的 manifests 文件，从 manifests 文件中可以得到该镜像的所有 blob 文件。例如对于 registry 存储目录中的 <code>library/alpine:latest</code> 镜像来讲，它在 registry 中是这样存放的：</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># tree</span>
 <span class="token builtin class-name">.</span>
 ├── blobs
@@ -521,7 +521,7 @@ alpine/4c0d98bf9879488e0407f897d9dd4bf758555a78e39675e72b5124ccf12c2580: <span c
 <ol>
 <li>通过 <code>repositories/library/alpine/_manifests/tags/latest/current/link</code> 文件得到 alpine 镜像 lasts 这个 tag 的 manifests 文件的 sha256 值，然后根据这个 sha256 值去 blobs 找到镜像的 manifests 文件;</li>
 </ol>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/alpine/_manifests/tags/latest/current/
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/alpine/_manifests/tags/latest/current/
 ╰─<span class="token comment"># cat link</span>
 sha256:39eda93d15866957feaee28f8fc5adb545276a64147445c64992ef69804dbf01<span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -558,7 +558,7 @@ cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08<span aria-hidde
 <ol start="4">
 <li>根据 manifests 文件就可以得到 blobs 目录中镜像的所有 layer 和 image config 文件，然后将这些文件拼成一个 dir 格式的镜像，在这里使用 cp 的方式将镜像从 registry 存储目录里复制出来，过程如下：</li>
 </ol>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 首先创建一个文件夹，为了保留镜像的 name 和 tag，文件夹的名称就对应的是 NAME:TAG</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 首先创建一个文件夹，为了保留镜像的 name 和 tag，文件夹的名称就对应的是 NAME:TAG</span>
 ╭─root@sg-02 /var/lib/registry/docker
 ╰─<span class="token comment"># mkdir -p skopeo/library/alpine:latest</span>
 
@@ -584,7 +584,7 @@ skopeo/library/alpine:latest
 <ol start="5">
 <li>再优化一下，将步骤 4 中的 cp 操作修改成硬链接操作，能极大减少磁盘的 IO 操作。需要注意：硬链接文件不能跨分区，所以要和 registry 存储目录在同一个分区下才行。</li>
 </ol>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker
 ╰─<span class="token comment"># ln /var/lib/registry/docker/registry/v2/blobs/sha256/39/39eda93d15866957feaee28f8fc5adb545276a64147445c64992ef69804dbf01/data skopeo/library/alpine:latest/manifest</span>
 <span class="token comment"># ln /var/lib/registry/docker/registry/v2/blobs/sha256/f7/f70734b6a266dcb5f44c383274821207885b549b75c8e119404917a61335981a/data skopeo/library/alpine:latest/f70734b6a266dcb5f44c383274821207885b549b75c8e119404917a61335981a</span>
 <span class="token comment"># ln /var/lib/registry/docker/registry/v2/blobs/sha256/cb/cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08/data skopeo/library/alpine:latest/cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08</span>
@@ -601,18 +601,18 @@ skopeo/library/alpine:latest
 <ul>
 <li>使用 skopeo copy</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">skopeo copy  --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo copy  --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false <span class="token punctuation">\</span>
 dir:skopeo/library/alpine:latest docker://harbor.k8s.li/library/alpine:latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>使用 skopeo sync</li>
 </ul>
 <p>需要注意的是，skopeo sync 的方式是同步 project 级别的，镜像的 name 和 tag 就对应的是目录的名称</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">skopeo <span class="token function">sync</span> --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo <span class="token function">sync</span> --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false <span class="token punctuation">\</span>
 --src <span class="token function">dir</span> --dest <span class="token function">docker</span> skopeo/library/ harbor.k8s.li/library/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="实现脚本"><a href="#实现脚本" class="headerlink" title="实现脚本"></a>实现脚本</h3><p>大叫一声 shell 大法好！😂</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token assign-left variable">REGISTRY_DOMAIN</span><span class="token operator">=</span><span class="token string">"harbor.k8s.li"</span>
 <span class="token assign-left variable">REGISTRY_PATH</span><span class="token operator">=</span><span class="token string">"/var/lib/registry"</span>
 
@@ -774,7 +774,7 @@ sync_image
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

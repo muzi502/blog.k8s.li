@@ -327,7 +327,7 @@
 <ul>
 <li>首先要得到镜像的 manifests 文件，从 manifests 文件中可以得到该镜像的所有 blob 文件。例如对于 registry 存储目录中的 <code>library/alpine:latest</code> 镜像来讲，它在 registry 中是这样存放的：</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># tree</span>
 <span class="token builtin class-name">.</span>
 ├── blobs
@@ -370,14 +370,14 @@
 <ul>
 <li>步骤一：通过 <code>repositories/library/alpine/_manifests/tags/latest/current/link</code> 文件得到 alpine 镜像 lasts 这个 tag 的 manifests 文件的 sha256 值，然后根据这个 sha256 值去 blobs 找到镜像的 manifests 文件;</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/alpine/_manifests/tags/latest/current/
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/alpine/_manifests/tags/latest/current/
 ╰─<span class="token comment"># cat link</span>
 sha256:39eda93d15866957feaee28f8fc5adb545276a64147445c64992ef69804dbf01<span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>步骤二：根据 <code>current/link</code> 文件中的 sha256 值在 blobs 目录下找到与之对应的文件，blobs 目录下对应的 manifests 文件为 blobs&#x2F;sha256&#x2F;39&#x2F;39eda93d15866957feaee28f8fc5adb545276a64147445c64992ef69804dbf01&#x2F;data;</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/alpine/_manifests/tags/latest/current
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/alpine/_manifests/tags/latest/current
 ╰─<span class="token comment"># cat /var/lib/registry/docker/registry/v2/blobs/sha256/39/39eda93d15866957feaee28f8fc5adb545276a64147445c64992ef69804dbf01/data</span>
 <span class="token punctuation">&#123;</span>
    <span class="token string">"schemaVersion"</span><span class="token builtin class-name">:</span> <span class="token number">2</span>,
@@ -399,7 +399,7 @@ sha256:39eda93d15866957feaee28f8fc5adb545276a64147445c64992ef69804dbf01<span cla
 <ul>
 <li>步骤三：使用正则匹配，过滤出 manifests 文件中的所有 sha256 值，这些 sha256 值就对应着 blobs 目录下的 image config 文件和 image layer 文件;</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/alpine/_manifests/tags/latest/current
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/alpine/_manifests/tags/latest/current
 ╰─<span class="token comment"># grep -Eo "\b[a-f0-9]&#123;64&#125;\b" /var/lib/registry/docker/registry/v2/blobs/sha256/39/39eda93d15866957feaee28f8fc5adb545276a64147445c64992ef69804dbf01/data</span>
 f70734b6a266dcb5f44c383274821207885b549b75c8e119404917a61335981a
 cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -407,7 +407,7 @@ cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08<span aria-hidde
 <ul>
 <li>步骤四：根据 manifests 文件就可以得到 blobs 目录中镜像的所有 layer 和 image config 文件，然后将这些文件拼成一个 dir 格式的镜像，在这里使用 cp 的方式将镜像从 registry 存储目录里复制出来，过程如下：</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 首先创建一个文件夹，为了保留镜像的 name 和 tag，文件夹的名称就对应的是 NAME:TAG</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 首先创建一个文件夹，为了保留镜像的 name 和 tag，文件夹的名称就对应的是 NAME:TAG</span>
 ╭─root@sg-02 /var/lib/registry/docker
 ╰─<span class="token comment"># mkdir -p skopeo/library/alpine:latest</span>
 
@@ -420,7 +420,7 @@ cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08<span aria-hidde
 <span class="token comment"># cp /var/lib/registry/docker/registry/v2/blobs/sha256/cb/cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08/data skopeo/library/alpine:latest/cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>最终得到的镜像格式如下：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker
 ╰─<span class="token comment"># tree skopeo/library/alpine:latest</span>
 skopeo/library/alpine:latest
 ├── cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08
@@ -431,7 +431,7 @@ skopeo/library/alpine:latest
 
 <h3 id="skopeo-dir-to-registry"><a href="#skopeo-dir-to-registry" class="headerlink" title="skopeo dir to registry"></a>skopeo dir to registry</h3><p>在 <a href="https://blog.k8s.li/skopeo-to-registry.html">如何使用 registry 存储的特性</a> 文章我提到过 skopeo dir 格式的镜像可以还原回 registry 存储的格式，大致流程如下：</p>
 <p>将 <code>images/alpine:latest</code> 这个镜像在转换成 docker registry 存储目录的形式</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@debian:/root <span class="token comment"># tree -h images/alpine:latest</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@debian:/root <span class="token comment"># tree -h images/alpine:latest</span>
 images/alpine:latest
 └── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  alpine:latest
     ├── <span class="token punctuation">[</span><span class="token number">2</span>.7M<span class="token punctuation">]</span>  4167d3e149762ea326c26fc2fd4e36fdeb7d4e639408ad30f37b8f25ac285a98
@@ -443,7 +443,7 @@ images/alpine:latest
 <ul>
 <li>步骤一：先创建该镜像在 registry 存储中的目录结构</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@debian:/root <span class="token comment"># mkdir -p docker/registry/v2/&#123;blobs/sha256,repositories/alpine&#125;</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@debian:/root <span class="token comment"># mkdir -p docker/registry/v2/&#123;blobs/sha256,repositories/alpine&#125;</span>
 root@debian:/root <span class="token comment"># tree docker</span>
 <span class="token function">docker</span>
 └── registry
@@ -456,14 +456,14 @@ root@debian:/root <span class="token comment"># tree docker</span>
 <ul>
 <li>步骤二：构建镜像 layer 的 link 文件</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">grep</span> -Eo <span class="token string">"<span class="token entity" title="\b">\b</span>[a-f0-9]&#123;64&#125;<span class="token entity" title="\b">\b</span>"</span> images/alpine:latest/manifest.json <span class="token operator">|</span> <span class="token function">sort</span> -u <span class="token operator">|</span> <span class="token function">xargs</span> -L1 -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token function">mkdir</span> -p docker/registry/v2/repositories/alpine/_layers/sha256/<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">grep</span> -Eo <span class="token string">"<span class="token entity" title="\b">\b</span>[a-f0-9]&#123;64&#125;<span class="token entity" title="\b">\b</span>"</span> images/alpine:latest/manifest.json <span class="token operator">|</span> <span class="token function">sort</span> -u <span class="token operator">|</span> <span class="token function">xargs</span> -L1 -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token function">mkdir</span> -p docker/registry/v2/repositories/alpine/_layers/sha256/<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
 <span class="token function">grep</span> -Eo <span class="token string">"<span class="token entity" title="\b">\b</span>[a-f0-9]&#123;64&#125;<span class="token entity" title="\b">\b</span>"</span> images/alpine:latest/manifest.json <span class="token operator">|</span> <span class="token function">sort</span> -u <span class="token operator">|</span> <span class="token function">xargs</span> -L1 -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token function">sh</span> -c <span class="token string">"echo -n 'sha256:&#123;&#125;' > docker/registry/v2/repositories/alpine/_layers/sha256/&#123;&#125;/link"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>步骤三：构建镜像 tag 的 link 文件</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token assign-left variable">manifests_sha256</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>sha256sum images/alpine:latest/manifest.json <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print $1&#125;'</span><span class="token variable">)</span></span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">manifests_sha256</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>sha256sum images/alpine:latest/manifest.json <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print $1&#125;'</span><span class="token variable">)</span></span>
 <span class="token function">mkdir</span> -p docker/registry/v2/repositories/alpine/_manifests/revisions/sha256/<span class="token variable">$&#123;manifests_sha256&#125;</span>
 <span class="token builtin class-name">echo</span> -n <span class="token string">"sha256:<span class="token variable">$&#123;manifests_sha256&#125;</span>"</span> <span class="token operator">></span> docker/registry/v2/repositories/alpine/_manifests/revisions/sha256/<span class="token variable">$&#123;manifests_sha256&#125;</span>/link
 
@@ -476,7 +476,7 @@ root@debian:/root <span class="token comment"># tree docker</span>
 <ul>
 <li>步骤四：构建镜像的 blobs 目录</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">mkdir</span> -p docker/registry/v2/blobs/sha256/<span class="token variable">$&#123;manifests_sha256<span class="token operator">:</span>0<span class="token operator">:</span>2&#125;</span>/<span class="token variable">$&#123;manifests_sha256&#125;</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -p docker/registry/v2/blobs/sha256/<span class="token variable">$&#123;manifests_sha256<span class="token operator">:</span>0<span class="token operator">:</span>2&#125;</span>/<span class="token variable">$&#123;manifests_sha256&#125;</span>
 <span class="token function">ln</span> -f images/alpine:latest/manifest.json docker/registry/v2/blobs/sha256/<span class="token variable">$&#123;manifests_sha256<span class="token operator">:</span>0<span class="token operator">:</span>2&#125;</span>/<span class="token variable">$&#123;manifests_sha256&#125;</span>/data
 
 <span class="token keyword">for</span> <span class="token for-or-select variable">layer</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> -Eo <span class="token string">"<span class="token entity" title="\b">\b</span>[a-f0-9]&#123;64&#125;<span class="token entity" title="\b">\b</span>"</span> images/alpine:latest/manifest.json<span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
@@ -487,7 +487,7 @@ root@debian:/root <span class="token comment"># tree docker</span>
 <ul>
 <li>最终得到的 registry 存储目录如下</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">docker</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span>
 └── registry
     └── v2
         ├── blobs
@@ -582,7 +582,7 @@ library/wordpress:4.9.1<span aria-hidden="true" class="line-numbers-rows"><span>
 <ul>
 <li>首先要得到镜像的 manifest 文件，从 manifest 文件中可以得到该镜像的所有 blob 文件。例如对于 registry 存储目录中的 <code>library/alpine:latest</code> 镜像来讲，它在 registry 中是这样存放的：</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># tree</span>
 <span class="token builtin class-name">.</span>
 ├── blobs
@@ -685,7 +685,7 @@ library/wordpress:4.9.1<span aria-hidden="true" class="line-numbers-rows"><span>
 <ul>
 <li>将上述步骤整合成一个 shell 脚本 <code>select_registry_images.sh</code> 如下：</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token builtin class-name">set</span> -eo pipefail
 
 <span class="token assign-left variable">IMAGES_LIST</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
@@ -803,7 +803,7 @@ root@debian:~$ <span class="token function">time</span> <span class="token funct
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

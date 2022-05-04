@@ -301,7 +301,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>46k</span>
+      <span>45k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -352,7 +352,7 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/opencontainers/image-spec/blob/master/descriptor.md">Descriptor</a> - a reference that describes the type, metadata and content address of referenced content</li>
 </ul>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">├── annotations.md         <span class="token comment"># 注解规范</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">├── annotations.md         <span class="token comment"># 注解规范</span>
 ├── config.md              <span class="token comment"># image config 文件规范</span>
 ├── considerations.md      <span class="token comment"># 注意事项</span>
 ├── conversion.md          <span class="token comment"># 转换为 OCI 运行时</span>
@@ -490,7 +490,7 @@
 <ul>
 <li>Image Manifest</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
   <span class="token string">"schemaVersion"</span><span class="token builtin class-name">:</span> <span class="token number">2</span>,
   <span class="token string">"mediaType"</span><span class="token builtin class-name">:</span> <span class="token string">"application/vnd.docker.distribution.manifest.v2+json"</span>,
   <span class="token string">"config"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
@@ -546,31 +546,31 @@
 
 <h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>众所周知 docker 镜像需要一个 Dockerfile 来构建而成，当我们对 OCI 镜像规范有了个大致的了解之后，我们接下来就拿着 Dockerfile 这个 ”图纸“ 去一步步构建镜像。本文不再细讲 Dockerfile 的详细书写和技巧，网上也有很多众所周知的关于写好 Dockerfile 的技巧，比如我之前水过的一篇 <a href="https://blog.k8s.li/dockerfile-tips.html">Dockerfile 搓镜像的小技巧</a> 。</p>
 <p>下面就是 <a target="_blank" rel="noopener" href="https://webp.sh/">webp server go</a> Dockerfile 的例子：</p>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM golang:alpine as builder
-ARG IMG_PATH&#x3D;&#x2F;opt&#x2F;pics
-ARG EXHAUST_PATH&#x3D;&#x2F;opt&#x2F;exhaust
-RUN apk update ;\
-    apk add alpine-sdk ;\
-    git clone https:&#x2F;&#x2F;github.com&#x2F;webp-sh&#x2F;webp_server_go &#x2F;build ;\
-    cd &#x2F;build ;\
-    sed -i &quot;s|.\&#x2F;pics|$&#123;IMG_PATH&#125;|g&quot; config.json ;\
-    sed -i &quot;s|\&quot;\&quot;|\&quot;$&#123;EXHAUST_PATH&#125;\&quot;|g&quot; config.json ;\
-    sed -i &#39;s&#x2F;127.0.0.1&#x2F;0.0.0.0&#x2F;g&#39; config.json
-WORKDIR &#x2F;build
-RUN go build -o webp-server .
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> golang:alpine <span class="token keyword">as</span> builder</span>
+<span class="token instruction"><span class="token keyword">ARG</span> IMG_PATH=/opt/pics</span>
+<span class="token instruction"><span class="token keyword">ARG</span> EXHAUST_PATH=/opt/exhaust</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apk update ;<span class="token operator">\</span>
+    apk add alpine-sdk ;<span class="token operator">\</span>
+    git clone https://github.com/webp-sh/webp_server_go /build ;<span class="token operator">\</span>
+    cd /build ;<span class="token operator">\</span>
+    sed -i <span class="token string">"s|.\/pics|$&#123;IMG_PATH&#125;|g"</span> config.json ;<span class="token operator">\</span>
+    sed -i <span class="token string">"s|\"\"|\"$&#123;EXHAUST_PATH&#125;\"|g"</span> config.json ;<span class="token operator">\</span>
+    sed -i <span class="token string">'s/127.0.0.1/0.0.0.0/g'</span> config.json</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /build</span>
+<span class="token instruction"><span class="token keyword">RUN</span> go build -o webp-server .</span>
 
-FROM alpine
-COPY --from&#x3D;builder &#x2F;build&#x2F;webp-server  &#x2F;usr&#x2F;bin&#x2F;webp-server
-COPY --from&#x3D;builder &#x2F;build&#x2F;config.json &#x2F;etc&#x2F;config.json
-WORKDIR &#x2F;opt
-VOLUME &#x2F;opt&#x2F;exhaust
-CMD [&quot;&#x2F;usr&#x2F;bin&#x2F;webp-server&quot;, &quot;--config&quot;, &quot;&#x2F;etc&#x2F;config.json&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token instruction"><span class="token keyword">FROM</span> alpine</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /build/webp-server  /usr/bin/webp-server</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /build/config.json /etc/config.json</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /opt</span>
+<span class="token instruction"><span class="token keyword">VOLUME</span> /opt/exhaust</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"/usr/bin/webp-server"</span>, <span class="token string">"--config"</span>, <span class="token string">"/etc/config.json"</span>]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>需要注意的是，在 RUN 指令的每行结尾我使用的是 <code>;\</code> 来接下一行 shell ，另一种写法是 <code>&amp;&amp;</code> 。二者有本质的区别，比如 COMMAND 1;COMMAND 2 ，当 COMMAND 1 运行失败时会继续运行 COMMAND2 ，并不会退出。而 COMMAND 1&amp;&amp; COMMAND 2，时 COMMAND 1 运行成功时才接着运行 COMMAND 2 ，COMMAND 1 运行失败会退出。如果没有十足的把握保证每一行 shell 都能每次运行成功建议用 <code>&amp;&amp;</code> ，这样失败了就退出构建镜像，不然构建出来的镜像会有问题。如果是老司机 🚗 的话建议用 <code>;</code> ，逛了一圈 docker hub 官方镜像中用 <code>;</code> 较多一些，因为 <code>;</code> 比 <code>&amp;&amp;</code> 要美观一些（大雾 😂。</p>
 <ul>
 <li>风格一：比如 <a target="_blank" rel="noopener" href="https://github.com/nginxinc/docker-nginx/blob/master/stable/buster/Dockerfile">nginx</a> 官方镜像是用的 <code>&amp;&amp;</code>，貌似也混入了 <code>;</code>🤣</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">RUN <span class="token builtin class-name">set</span> -x <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">RUN <span class="token builtin class-name">set</span> -x <span class="token punctuation">\</span>
 <span class="token comment"># create nginx user/group first, to be consistent throughout docker variants</span>
     <span class="token operator">&amp;&amp;</span> addgroup --system --gid <span class="token number">101</span> nginx <span class="token punctuation">\</span>
     <span class="token operator">&amp;&amp;</span> adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos <span class="token string">"nginx user"</span> --shell /bin/false --uid <span class="token number">101</span> nginx <span class="token punctuation">\</span>
@@ -589,7 +589,7 @@ CMD [&quot;&#x2F;usr&#x2F;bin&#x2F;webp-server&quot;, &quot;--config&quot;, &quo
 <ul>
 <li>风格二：比如 <a target="_blank" rel="noopener" href="https://github.com/docker-library/redis/blob/23af5b6adb271bcebbcebc93308884438512a4af/6.0/Dockerfile">redis</a> 官方镜像就清一色使用的 <code>;</code></li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">RUN <span class="token builtin class-name">set</span> -eux<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">RUN <span class="token builtin class-name">set</span> -eux<span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	<span class="token assign-left variable">savedAptMark</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>apt-mark showmanual<span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	<span class="token function">apt-get</span> update<span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	<span class="token function">apt-get</span> <span class="token function">install</span> -y --no-install-recommends ca-certificates dirmngr gnupg <span class="token function">wget</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
@@ -617,7 +617,7 @@ CMD [&quot;&#x2F;usr&#x2F;bin&#x2F;webp-server&quot;, &quot;--config&quot;, &quo
 <p>Docker 客户端和服务端可以在同一个宿主机，也可以在不同的宿主机，如果在同一个宿主机的话，Docker 客户端默认通过 UNIX 套接字(<code>/var/run/docker.sock</code>)和服务端通信。</p>
 </blockquote>
 <p>类比于钢铁是怎样炼成的，如果说炼制镜像也需要个工厂的话，那么我们的 dockerd 这个守护进程就是个生产镜像的工厂。能生产镜像的不止 docker 一家，红帽子家的 <a target="_blank" rel="noopener" href="https://buildah.io/">buildah</a> 也能生产镜像，不过用的人并不多。二者的最大区别在于 buildah 可以不用 root 权限来构建镜像，而使用 docker 构建镜像时需要用到 root 权限，没有 root 权限的用户构建镜像会当场翻车。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Got permission denied <span class="token keyword">while</span> trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Got permission denied <span class="token keyword">while</span> trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>不过 buildah 构建出来的镜像有一堆堆的兼容性问题，所以我们还是使用 docker 来构建镜像吧。当我们使用 docker build 命令构建一个镜像的时候第一行日志就是 <code>Sending build context to Docker daemon xx MB</code>。这一步是 docker cli 这个命令行客户端将我们当前目录（即构建上下文） <code>build context</code> 打包发送 <code>Docker daemon</code> 守护进程 （即 dockerd）的过程。</p>
 <p><img data-src="https://p.k8s.li/docker-architecture.png"></p>
@@ -633,7 +633,7 @@ CMD [&quot;&#x2F;usr&#x2F;bin&#x2F;webp-server&quot;, &quot;--config&quot;, &quo
 <li>构建完成之后为该镜像打上 tag；</li>
 </ul>
 <p>以上就是构建镜像的大致流程，我们也可以通过 <code>docker history &lt;imageName:Tag&gt;</code> 命令来逆向推算出 docker build 的过程。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~/buster/slim
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/buster/slim
 ╰─<span class="token comment"># docker history webpsh/webps</span>
 IMAGE               CREATED             CREATED BY          SIZE                COMMENT
 30d9679b0b1c        <span class="token number">2</span> weeks ago         /bin/sh -c <span class="token comment">#(nop)  CMD ["/usr/bin/webp-serve…   0B</span>
@@ -651,9 +651,9 @@ e6e782a57a51        <span class="token number">38</span> hours ago        /bin/s
 ba8f577813c7        <span class="token number">38</span> hours ago        /bin/sh -c <span class="token comment">#(nop) ADD file:a82014afc29e7b364…   69.2MB</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="base-image"><a href="#base-image" class="headerlink" title="base image"></a>base image</h4><p>当我们在写 Dockerfile 的时候都需要用 <code>FROM</code> 语句来指定一个基础镜像，这些基础镜像并不是无中生有，也需要一个 Dockerfile 来构建成镜像。下面我们拿来 <a target="_blank" rel="noopener" href="https://hub.docker.com/_/debian">debian:buster</a> 这个基础镜像的 <a target="_blank" rel="noopener" href="https://github.com/debuerreotype/docker-debian-artifacts/blob/18cb4d0418be1c80fb19141b69ac2e0600b2d601/buster/Dockerfile">Dockerfile</a> 来看一下基础镜像是如何炼成的。</p>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM scratch
-ADD rootfs.tar.xz &#x2F;
-CMD [&quot;bash&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> scratch</span>
+<span class="token instruction"><span class="token keyword">ADD</span> rootfs.tar.xz /</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"bash"</span>]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>一个基础镜像的 Dockerfile 一般仅有三行。第一行 <code>FROM scratch</code> 中的 <code>scratch</code> 这个镜像并不真实的存在。当你使用 <code>docker pull scratch</code> 命令来拉取这个镜像的时候会翻车哦，提示 <code>Error response from daemon: &#39;scratch&#39; is a reserved name</code>。这是因为自从 docker 1.5 版本开始，在 Dockerfile 中 <code>FROM scratch</code> 指令并不进行任何操作，也就是不会创建一个镜像层；接着第二行的 <code>ADD rootfs.tar.xz /</code> 会自动把 <code>rootfs.tar.xz</code>  解压到 <code>/</code> 目录下，由此产生的一层镜像就是最终构建的镜像真实的 layer 内容；第三行 <code>CMD [&quot;bash&quot;]</code> 指定这镜像在启动容器的时候执行的应用程序，一般基础镜像的 CMD 默认为 bash 或者 sh 。</p>
 <blockquote>
@@ -665,7 +665,7 @@ CMD [&quot;bash&quot;]<span aria-hidden="true" class="line-numbers-rows"><span><
 <p>PS：面试的时候经常被问 ADD 与 COPY 的区别；CMD 与 ENTRYPOINT 的区别 😂。</p>
 </blockquote>
 <p>搓这个 <code>rootfs.tar.xz</code> 不同的发行版方法可能不太一样，Debian 发行版的 <code>rootfs.tar.xz</code> 可以在 <a target="_blank" rel="noopener" href="https://github.com/debuerreotype/docker-debian-artifacts">docker-debian-artifacts</a> 这个 repo 上找到，根据不同处理器 arch 选择相应的 branch ，然后这个 branch 下的目录就对应着该发行版的不同的版本的代号。意外发现 Debian 官方是将所有 arch 和所有版本的 <code>rootfs.tar.xz</code> 都放在这个 repo 里的，以至于这个 repo 的大小接近 2.88 GiB 😨，当网盘来用的嘛 🤣（：手动滑稽</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~
 ╰─<span class="token comment"># git clone https://github.com/debuerreotype/docker-debian-artifacts</span>
 Cloning into <span class="token string">'docker-debian-artifacts'</span><span class="token punctuation">..</span>.
 remote: Enumerating objects: <span class="token number">278</span>, done.
@@ -676,7 +676,7 @@ Receiving objects: <span class="token number">100</span>% <span class="token pun
 Resolving deltas: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">267</span>/267<span class="token punctuation">)</span>, done.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>我们把这个 <code>rootfs.tar.xz</code> 解开就可以看到，这就是一个 Linux 的根文件系统，不同于我们使用 ISO 安装系统的那个根文件系统，这个根文件系统是经过一系列的裁剪，去掉了一些在容器运行中不必要的文件，使之更加轻量适用于容器运行的场景，整个根文件系统的大小为 125M，如果使用 slim 的 <code>rootfs.tar.xz</code> 会更小一些，仅仅 76M。当然相比于仅仅几 M 的 <code>alpine</code> ，这算是够大的了。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~/docker-debian-artifacts/buster ‹dist-amd64*›
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/docker-debian-artifacts/buster ‹dist-amd64*›
 ╰─<span class="token comment"># git checkout dist-amd64</span>
 ╭─root@sg-02 ~/docker-debian-artifacts/buster ‹dist-amd64*›
 ╰─<span class="token comment"># cd buster</span>
@@ -695,14 +695,14 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 76M     slim/rootfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>想要自己构建一个 <code>debian:buster</code> 基础镜像其实很简单，就像下面这样一把梭操作下来就行 😂：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> clone https://github.com/debuerreotype/docker-debian-artifacts debian
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/debuerreotype/docker-debian-artifacts debian
 <span class="token builtin class-name">cd</span> <span class="token operator">!</span>$
 <span class="token function">git</span> checkout dist-amd64
 <span class="token builtin class-name">cd</span> buster
 <span class="token function">docker</span> build -t debian:buster <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>下面就是构建 Debian 基础镜像的过程，正如 Dockerfile 中的那样，最终只产生了一层镜像。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">docker</span> build -t debian:buster <span class="token builtin class-name">.</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build -t debian:buster <span class="token builtin class-name">.</span>
 Sending build context to Docker daemon  <span class="token number">30</span>.12MB
 Step <span class="token number">1</span>/3 <span class="token builtin class-name">:</span> FROM scratch
  ---<span class="token operator">></span>
@@ -772,13 +772,13 @@ Successfully tagged debian:buster<span aria-hidden="true" class="line-numbers-ro
  <span class="token key atrule">Live Restore Enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>为了方便分析，我将其他的 docker image 全部清空掉，只保留 <code>debian:v1</code> 和 <code>debian:v2</code> 这两个镜像，这两个镜像足够帮助我们理解容器镜像是如何存放的，镜像多了多话分析下面存储目录的时候可能不太方便（＞﹏＜），这两个镜像是我们之前使用 Debian 的 <code>rootfs.tar.xz</code> 构建出来的基础镜像。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/docker
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/docker
 ╰─<span class="token comment"># docker images</span>
 REPOSITORY       TAG         IMAGE ID            CREATED             SIZE
 debian           v2          e6e782a57a51        <span class="token number">22</span> hours ago        <span class="token number">69</span>.2MB
 debian           v1          cfba37fd24f8        <span class="token number">22</span> hours ago        <span class="token number">69</span>.2MB<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="docker-x2F-var-x2F-lib-x2F-docker"><a href="#docker-x2F-var-x2F-lib-x2F-docker" class="headerlink" title="docker (&#x2F;var&#x2F;lib&#x2F;docker)"></a>docker (&#x2F;var&#x2F;lib&#x2F;docker)</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/docker
+<h3 id="docker-x2F-var-x2F-lib-x2F-docker"><a href="#docker-x2F-var-x2F-lib-x2F-docker" class="headerlink" title="docker (&#x2F;var&#x2F;lib&#x2F;docker)"></a>docker (&#x2F;var&#x2F;lib&#x2F;docker)</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/docker
 ╰─<span class="token comment"># tree -d -L 1</span>
 <span class="token builtin class-name">.</span>
 ├── builder
@@ -799,7 +799,7 @@ debian           v1          cfba37fd24f8        <span class="token number">22</
 <p>根据目录的名字我们可以大致推断出关于容器镜像的存储，我们只关心 image 和 overlay2 这两个文件夹即可，容器的元数据存放在 image 目录下，容器的 layer 数据则存放在 overlay2 目录下。</p>
 <h3 id="x2F-var-x2F-lib-x2F-docker-x2F-image"><a href="#x2F-var-x2F-lib-x2F-docker-x2F-image" class="headerlink" title="&#x2F;var&#x2F;lib&#x2F;docker&#x2F;image"></a>&#x2F;var&#x2F;lib&#x2F;docker&#x2F;image</h3><p>overlay2 代表着本地 docker 存储使用的是 overlay2 该存储驱动，目前最新版本的 docker 默认优先采用 <strong>overlay2</strong> 作为存储驱动，对于已支持该驱动的 Linux 发行版，不需要任何进行任何额外的配置，可使用 lsmod 命令查看当前系统内核是否支持 overlay2 。</p>
 <p>另外值得一提的是 <code>devicemapper</code> 存储驱动已经在 docker 18.09 版本中被废弃，docker 官方推荐使用 <code>overlay2</code> 替代 <code>devicemapper</code>。（之前我老东家用的 docker 1.13 版本，<code>devicemapper</code> 的存储驱动在生产环境翻过车 😂。所以呢，都 2020 年了，当你使用 baidu 这种垃圾搜素引擎去搜索 “CentOS 安装 docker” 时它会给你一堆垃圾的教程，叫你去安装 <code>device-mapper-persistent-data lvm2</code>，对于这种抄来抄去的博客平台，离得越远越好。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">image
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">image
 └── overlay2
     ├── distribution
     │   ├── diffid-by-digest
@@ -880,7 +880,7 @@ debian           v1          cfba37fd24f8        <span class="token number">22</
 <ul>
 <li>imagedb</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">├── imagedb
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">├── imagedb
 │   ├── content
 │   │   └── sha256
 │   │       ├── 708bc6af7e5e539bdb59707bbf1053cc2166622f5e1b17666f0ba5829ca6aaea
@@ -891,7 +891,7 @@ debian           v1          cfba37fd24f8        <span class="token number">22</
 <ul>
 <li>layerdb</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">├── layerdb
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">├── layerdb
 │   ├── mounts
 │   ├── sha256
 │   │   ├── b9835d6a62886d4e85b65abb120c0ea44ff1b3d116d7a707620785d4664d8c1a
@@ -902,7 +902,7 @@ debian           v1          cfba37fd24f8        <span class="token number">22</
 │   │   │   └── tar-split.json.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>需要注意的是：tar-split.json.gz 文件是 layer tar 包的 split 文件，记录了 layer 解压后的文件在 tar 包中的位置（偏移量），通过这个文件可以还原 layer 的 tar 包，在 docker save 导出 image 的时候会用到，由根据它可以开倒车把解压的 layer 还原回 tar 包。详情可参考 <a target="_blank" rel="noopener" href="https://github.com/vbatts/tar-split">tar-split</a></p>
-<h3 id="x2F-var-x2F-lib-x2F-docker-x2F-overlay2"><a href="#x2F-var-x2F-lib-x2F-docker-x2F-overlay2" class="headerlink" title="&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2"></a>&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">overlay2
+<h3 id="x2F-var-x2F-lib-x2F-docker-x2F-overlay2"><a href="#x2F-var-x2F-lib-x2F-docker-x2F-overlay2" class="headerlink" title="&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2"></a>&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">overlay2
 ├── 259cf6934509a674b1158f0a6c90c60c133fd11189f98945c7c3a524784509ff
 │   └── <span class="token function">diff</span>
 │       ├── bin
@@ -1023,7 +1023,7 @@ debian           v1          cfba37fd24f8        <span class="token number">22</
 <li>等所有的 layer 都下载完成后，整个 image 的 layer 就下载完成，接着开始进行解压(tar -xf) layer 的 tar 包。</li>
 <li>dockerd 起一个单独的进程 <code>docker-untar</code> 来 gzip 解压缩已经下载完成的 layer 文件；对于有些比较大的镜像（比如几十 GB 的镜像），往往镜像的 layer 已经下载完成了，但还没有解压完 😂。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker-untar /var/lib/docker/overlay2/a076db6567c7306f3cdab6040cd7d083ef6a39d125171353eedbb8bde7f203b4/diff<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docker-untar /var/lib/docker/overlay2/a076db6567c7306f3cdab6040cd7d083ef6a39d125171353eedbb8bde7f203b4/diff<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>验证 image config 中的 RootFS.DiffIDs 是否与下载（解压后）hash 相同；</li>
@@ -1096,7 +1096,7 @@ Content-Type<span class="token operator">:</span> &lt;manifest media type>
 
 <h3 id="Python-docker-drag"><a href="#Python-docker-drag" class="headerlink" title="Python docker-drag"></a>Python <a target="_blank" rel="noopener" href="https://github.com/NotGlop/docker-drag">docker-drag</a></h3><p>这是一个很简单粗暴的 Python 脚本，使用 request 库请求 registry API 来从镜像仓库中拉取镜像，并保存为一个 tar 包，拉完之后使用 docker load 加载一下就能食用啦。该 python 脚本简单到去掉空行和注释不到 200 行，如果把这个脚本源码读一遍的话就能大概知道 docker pull 和 skopeo copy 的一些原理，他们都是去调用 registry 的 API ，所以还是推荐去读一下这个它的源码。</p>
 <p>食用起来也很简单直接 <code>python3 docker_pull.py [image name]</code>，貌似只能拉取 docker.io 上的镜像。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /home/ubuntu
 ╰─<span class="token comment"># wget https://raw.githubusercontent.com/NotGlop/docker-drag/master/docker_pull.py</span>
 ╭─root@sg-02 /home/ubuntu
 ╰─<span class="token comment"># python3 docker_pull.py nginx</span>
@@ -1120,7 +1120,7 @@ Loaded image: nginx:latest<span aria-hidden="true" class="line-numbers-rows"><sp
 <p>其中的 skopeo 这个镜像搬运工具简直是个神器，尤其是在 CI&#x2F;CD 流水线中搬运两个镜像仓库里的镜像简直爽的不得了。我入职新公司后做的一个工作就是优化我们的 Jenkins 流水线中同步两个镜像仓库的过程，使用 了 skopeo 替代 docker 来同步两个镜像仓库中的镜像，将原来需要 2h 小时缩短到了 25min 😀。</p>
 <p>关于这个工具的详细使用推荐大家去读一下我之前写的一篇博客 <a href="https://blog.k8s.li/skopeo.html">镜像搬运工 skopeo 初体验</a> 。在这里只讲两个木子最常用的功能。</p>
 <h4 id="skopeo-copy"><a href="#skopeo-copy" class="headerlink" title="skopeo copy"></a>skopeo copy</h4><p>使用 skopeo copy 两个 registry 中的镜像时，skopeo 请求两个 registry API 直接 copy <code>original blob</code> 到另一个 registry ，这样免去了像 docker pull –&gt; docker tag –&gt; docker push 那样 pull 镜像对镜像进行解压缩，push 镜像进行压缩。尤其是在搬运一些较大的镜像（几 GB 或者几十 GB 的镜像，比如 <code>nvidia/cuda</code> ），使用 skopeo copy 的加速效果十分明显。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">DEBU<span class="token punctuation">[</span>0000<span class="token punctuation">]</span> Detected compression <span class="token function">format</span> <span class="token function">gzip</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">DEBU<span class="token punctuation">[</span>0000<span class="token punctuation">]</span> Detected compression <span class="token function">format</span> <span class="token function">gzip</span>
 DEBU<span class="token punctuation">[</span>0000<span class="token punctuation">]</span> Using original blob without modification
 
 Getting image <span class="token builtin class-name">source</span> signatures
@@ -1176,12 +1176,12 @@ Storing signatures<span aria-hidden="true" class="line-numbers-rows"><span></spa
 
 <h2 id="镜像是怎么存放的-二-registry-存储-🙄"><a href="#镜像是怎么存放的-二-registry-存储-🙄" class="headerlink" title="镜像是怎么存放的 (二) registry 存储 🙄"></a>镜像是怎么存放的 (二) registry 存储 🙄</h2><p>文章的开头我们提到过 OCI 规范中的镜像仓库规范 <a target="_blank" rel="noopener" href="https://github.com/opencontainers/distribution-spec">distribution-spec</a>，该规范就定义着容器镜像如何存储在远端（即 registry）上。我们可以把 registry 看作镜像的仓库，使用该规范可以帮助我们把这些镜像按照约定俗成的格式来存放，目前实现该规范的 registry 就 docker 家的 registry 使用的多一些。其他的 registry 比如 harbor ，quay.io 使用的也比较多。</p>
 <h3 id="registry-x2F-registry-x2F-docker-x2F-v2"><a href="#registry-x2F-registry-x2F-docker-x2F-v2" class="headerlink" title="registry (&#x2F;registry&#x2F;docker&#x2F;v2)"></a>registry (&#x2F;registry&#x2F;docker&#x2F;v2)</h3><p>想要分析一下镜像是如何存放在 registry 上的，我们在本地使用 docker run 来起 registry 的容器即可，我们仅仅是来分析 registry 中镜像时如何存储的，这种场景下不太适合用 harbor 这种重量级的 registry 。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /home/ubuntu
 ╰─<span class="token comment"># docker run -d --name registry -p 5000:5000 -v /var/lib/registry:/var/lib/registry registry</span>
 335ea763a2fa4508ebf3ec6f8b11f3b620a11bdcaa0ab43176b781427e0beee6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>启动完 registry 容器之后我们给之前已经构建好的镜像重新打上改 registry 的 tag 方便后续 push 到 registry 上。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~/buster/slim
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/buster/slim
 ╰─<span class="token comment"># docker tag debian:v1  localhost:5000/library/debian:v1</span>
 ╭─root@sg-02 ~/buster/slim
 ╰─<span class="token comment"># ^v1^v2</span>
@@ -1206,7 +1206,7 @@ d1b85e6186f6: Layer already exists
 v2: digest: sha256:c805f078bb47c575e9602b09af7568eb27fd1c92073199acba68c187bc5bcf11 size: <span class="token number">529</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>当我们在本地启动一个 registry 容器之后，容器内默认的存储位置为 <code>/var/lib/registry</code> ，所以我们在启动的时候加了参数 <code>-v /var/lib/registry:/var/lib/registry</code> 将本机的路径挂载到容器内。进入这里路径我们使用 tree 命令查看一下这个目录的存储结构。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># tree -h</span>
 <span class="token builtin class-name">.</span>
 ├── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  blobs
@@ -1267,7 +1267,7 @@ v2: digest: sha256:c805f078bb47c575e9602b09af7568eb27fd1c92073199acba68c187bc5bc
 <p><img data-src="https://p.k8s.li/registry-storage.jpeg"></p>
 <h3 id="blobs-目录"><a href="#blobs-目录" class="headerlink" title="blobs 目录"></a>blobs 目录</h3><p>之前我们向 registry 种推送了两个镜像，这两个镜像的 layer 相同但不是用一个镜像，在我们之前 push image 的时候也看到了 <code>d1b85e6186f6: Layer already exists</code>。也就可以证明了，虽然两个镜像不同，但它们的 layer 在 registry 中存储的时候可能是相同的。</p>
 <p>在 <code>blobs/sha256</code> 目录下一共有 5 个名为 data 的文件，我们可以推测一下最大的那个 <code>[ 26M]</code> 应该是镜像的 layer ，最小的 <code>[ 529]</code> 那个应该是 manifest，剩下的那个 <code>[1.4K]</code> 应该就是 image config 文件。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2/blobs/sha256
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2/blobs/sha256
 ╰─<span class="token comment"># tree -h</span>
 <span class="token builtin class-name">.</span>
 ├── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  aa
@@ -1287,7 +1287,7 @@ v2: digest: sha256:c805f078bb47c575e9602b09af7568eb27fd1c92073199acba68c187bc5bc
         └── <span class="token punctuation">[</span><span class="token number">1</span>.4K<span class="token punctuation">]</span>  data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在 <code>registry</code> 的存储目录下，<code>blobs</code> 目录用来存放镜像的三种文件： layer 的真实数据，镜像的 manifest 文件，镜像的 image config 文件。这些文件都是以 <code>data</code> 为名的文件存放在于该文件 <code>sha256</code> 相对应的目录下。 使用以内容寻址的 <code>sha256</code> 散列存储方便索引文件，在 <code>blob digest</code> 目录下有一个名为 <code>data</code> 的文件，对于 layer 来讲，这是个 <code>data</code> 文件的格式是 <code>vnd.docker.image.rootfs.diff.tar.gzip</code> ，我们可以使用 <code>tar -xvf</code> 命令将这个 layer 解开。当我们使用 docker pull 命令拉取镜像的时候，也是去下载这个 <code>data</code> 文件，下载完成之后会有一个 <code>docker-untar</code> 的进程将这个 <code>data</code> 文件解开存放在 <code>/var/lib/docker/overlay2/$&#123;digest&#125;/diff</code> 目录下。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">├── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  blobs
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">├── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  blobs
 │   └── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  sha256
 │       ├── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  aa
 │       │   └── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  aaae33815489895f602207ac5a583422b8a8755b3f67fc6286ca9484ba685bdb
@@ -1392,7 +1392,7 @@ v2: digest: sha256:c805f078bb47c575e9602b09af7568eb27fd1c92073199acba68c187bc5bc
 
 <h4 id="uploads-文件夹"><a href="#uploads-文件夹" class="headerlink" title="_uploads 文件夹"></a>_uploads 文件夹</h4><p>_uploads 文件夹是个临时的文件夹，主要用来存放 push 镜像过程中的文件数据，当镜像 <code>layer</code> 上传完成之后会清空该文件夹。其中的 <code>data</code> 文件上传完毕后会移动到 <code>blobs</code> 目录下，根据该文件的 <code>sha256</code> 值来进行散列存储到相应的目录下。</p>
 <p>上传过程中的目录结构：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">_uploads
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">_uploads
 ├── <span class="token punctuation">[</span>  <span class="token number">53</span><span class="token punctuation">]</span>  0d6c996e-638f-4436-b2b6-54fa7ad430d2
 │   ├── <span class="token punctuation">[</span>198M<span class="token punctuation">]</span>  data
 │   ├── <span class="token punctuation">[</span>  <span class="token number">20</span><span class="token punctuation">]</span>  hashstates
@@ -1411,12 +1411,12 @@ v2: digest: sha256:c805f078bb47c575e9602b09af7568eb27fd1c92073199acba68c187bc5bc
 <ul>
 <li>上传完镜像之后，<code>_uploads</code> 文件夹就会被清空，正常情况下这个文件夹是空的。但也有异常的时候 😂，比如网络抖动导致上传意外中断，该文件夹就可能不为空。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">_uploads
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">_uploads
 
 <span class="token number">0</span> directories, <span class="token number">0</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="manifests-文件夹"><a href="#manifests-文件夹" class="headerlink" title="_manifests 文件夹"></a>_manifests 文件夹</h4><p><code>_manifests</code> 文件夹是镜像上传完成之后由 registry 来生成的，并且该目录下的文件都是一个名为 <code>link</code> 的文本文件，它的值指向 blobs 目录下与之对应的目录。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library
 ╰─<span class="token comment"># find . -type f</span>
 ./debian/_layers/sha256/aaae33815489895f602207ac5a583422b8a8755b3f67fc6286ca9484ba685bdb/link
 ./debian/_layers/sha256/e6e782a57a51d01168907938beb5cd5af24fcb7ebed8f0b32c203137ace6d3df/link
@@ -1429,7 +1429,7 @@ v2: digest: sha256:c805f078bb47c575e9602b09af7568eb27fd1c92073199acba68c187bc5bc
 ./debian/_manifests/revisions/sha256/c805f078bb47c575e9602b09af7568eb27fd1c92073199acba68c187bc5bcf11/link<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>_manifests</code> 文件夹下包含着镜像的 <code>tags</code> 和 <code>revisions</code> 信息，每一个镜像的每一个 tag 对应着于 tag 名相同的目录。镜像的 tag 并不存储在 image config 中，而是以目录的形式来形成镜像的 tag，这一点比较奇妙，这和我们 Dockerfile 中并不包含镜像名和 tag 一个道理？</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">.</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">.</span>
 ├── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  _layers
 │   └── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  sha256
 │       ├── <span class="token punctuation">[</span><span class="token number">4</span>.0K<span class="token punctuation">]</span>  aaae33815489895f602207ac5a583422b8a8755b3f67fc6286ca9484ba685bdb
@@ -1465,7 +1465,7 @@ v2: digest: sha256:c805f078bb47c575e9602b09af7568eb27fd1c92073199acba68c187bc5bc
 <span class="token number">22</span> directories, <span class="token number">9</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="镜像的-tag"><a href="#镜像的-tag" class="headerlink" title="镜像的 tag"></a>镜像的 tag</h4><p>每个 <code>tag</code> 名目录下面有 <code>current</code> 目录和 <code>index</code> 目录， <code>current</code> 目录下的 link 文件保存了该 tag 目前的 manifest 文件的 sha256 编码，对应在 <code>blobs</code> 中的 <code>sha256</code> 目录下的 <code>data</code> 文件，而 <code>index</code> 目录则列出了该 <code>tag</code> 历史上传的所有版本的 <code>sha256</code> 编码信息。<code>_revisions</code> 目录里存放了该 <code>repository</code> 历史上上传版本的所有 sha256 编码信息。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/debian/_manifests/tags/v1
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2/repositories/library/debian/_manifests/tags/v1
 ╰─<span class="token comment"># cat current/link</span>
 sha256:b9caca385021f231e15aee34929eac332c49402372a79808d07ee66866792239
 ╭─root@sg-02 /var/lib/registry/docker/registry/v2/blobs/sha256
@@ -1518,7 +1518,7 @@ sha256:b9caca385021f231e15aee34929eac332c49402372a79808d07ee66866792239
 </blockquote>
 <p><img data-src="https://p.k8s.li/20200609_oci-04.jpg"></p>
 <h3 id="docker-run"><a href="#docker-run" class="headerlink" title="docker run"></a>docker run</h3><p>当我们启动一个容器之后我们使用 tree 命令来分析一下 overlay2 就会发现，较之前的目录，容器启动之后 overlay2 目录下多了一个 <code>merged</code> 的文件夹，该文件夹就是容器内看到的。docker 通过 overlayfs 联合挂载的技术将镜像的多层 layer 挂载为一层，这层的内容就是容器里所看到的，也就是 merged 文件夹。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/docker
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/docker
 ╰─<span class="token comment"># tree overlay2 -d -L 3</span>
 overlay2
 ├── 259cf6934509a674b1158f0a6c90c60c133fd11189f98945c7c3a524784509ff
@@ -1558,7 +1558,7 @@ overlay2
 │   └── work
 │       └── work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">overlay on / <span class="token builtin class-name">type</span> overlay <span class="token punctuation">(</span>rw,relatime,lowerdir<span class="token operator">=</span>/opt/docker/overlay2/l/4EPD2X5VF62FH5PZOZHZDKAKGL:/opt/docker/overlay2/l/MYRYBGZRI4I76MJWQHN7VLZXLW:/opt/docker/overlay2/l/5RZOXYR35NSGAWTI36CVUIRW7U:/opt/docker/overlay2/l/LBWRL4ZXGBWOTN5JDCDZVNOY7H:/opt/docker/overlay2/l/526XCHXRJMZXRIHN4YWJH2QLPY:/opt/docker/overlay2/l/XK5IA4BWQ2CIS667J3SXPXGQK5,upperdir<span class="token operator">=</span>/opt/docker/overlay2/f913d81219134e23eb0827a1c27668494dfaea2f1b5d1d0c70382366eabed629/diff,workdir<span class="token operator">=</span>/opt/docker/overlay2/f913d81219134e23eb0827a1c27668494dfaea2f1b5d1d0c70382366eabed629/work<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">overlay on / <span class="token builtin class-name">type</span> overlay <span class="token punctuation">(</span>rw,relatime,lowerdir<span class="token operator">=</span>/opt/docker/overlay2/l/4EPD2X5VF62FH5PZOZHZDKAKGL:/opt/docker/overlay2/l/MYRYBGZRI4I76MJWQHN7VLZXLW:/opt/docker/overlay2/l/5RZOXYR35NSGAWTI36CVUIRW7U:/opt/docker/overlay2/l/LBWRL4ZXGBWOTN5JDCDZVNOY7H:/opt/docker/overlay2/l/526XCHXRJMZXRIHN4YWJH2QLPY:/opt/docker/overlay2/l/XK5IA4BWQ2CIS667J3SXPXGQK5,upperdir<span class="token operator">=</span>/opt/docker/overlay2/f913d81219134e23eb0827a1c27668494dfaea2f1b5d1d0c70382366eabed629/diff,workdir<span class="token operator">=</span>/opt/docker/overlay2/f913d81219134e23eb0827a1c27668494dfaea2f1b5d1d0c70382366eabed629/work<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>从 docker 官方文档 <a target="_blank" rel="noopener" href="https://docs.docker.com/storage/storagedriver/overlayfs-driver/">Use the OverlayFS storage driver</a> 里偷来的一张图片</p>
 <p><img data-src="https://p.k8s.li/overlay_constructs.jpg"></p>
@@ -1684,7 +1684,7 @@ overlay2
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

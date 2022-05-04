@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://p.k8s.li/20200506143310955.png">
 <meta property="og:image" content="https://p.k8s.li/20200506154459952.png">
 <meta property="article:published_time" content="2020-05-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-02T00:41:22.134Z">
+<meta property="article:modified_time" content="2022-05-04T14:03:20.217Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="搬砖">
@@ -275,7 +275,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-02 2022-05-02T08:41:22+08:00" itemprop="dateModified" datetime="2022-05-02T08:41:22+08:00">2022-05-02</time>
+      <time title="修改时间：2022-05-04 2022-05-04T22:03:20+08:00" itemprop="dateModified" datetime="2022-05-04T22:03:20+08:00">2022-05-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -486,7 +486,7 @@
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHEL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHEL/CentOS</span>
 yum <span class="token function">install</span> <span class="token function">htop</span>
 
 <span class="token comment"># Debian/Ubuntu</span>
@@ -498,17 +498,17 @@ yum <span class="token function">install</span> <span class="token function">hto
 <li>install</li>
 </ul>
 <p>安装起来很简单，其实这是一个 shell 可执行文件，直接使用 curl 或者 wget 命令下载到本地并赋予 +x 权限即可。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/aristocratos/bashtop/master/bashtop -o /usr/bin/bashtop <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> +x /usr/bin/bashtop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/aristocratos/bashtop/master/bashtop -o /usr/bin/bashtop <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> +x /usr/bin/bashtop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>国内用户推荐使用 jsdelivr.net 的 CDN 来下载该脚本 😑，（fuck GFW by jsdelivr😡</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">curl</span> -fsSL https://cdn.jsdelivr.net/gh/aristocratos/bashtop/bashtop  -o /usr/bin/bashtop <span class="token punctuation">;</span><span class="token function">chmod</span> +x /usr/bin/bashtop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -fsSL https://cdn.jsdelivr.net/gh/aristocratos/bashtop/bashtop  -o /usr/bin/bashtop <span class="token punctuation">;</span><span class="token function">chmod</span> +x /usr/bin/bashtop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><img data-src="https://p.k8s.li/20200506151706148.png"></p>
 <h4 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h4><p>以树状图的方式展现进程之间的派生关系，显示效果比 ps 更直观一些，可以很清楚地分辨出子进程和父进程之间的关系。可以用来排查一些孤儿进程。</p>
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHEL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHEL/CentOS</span>
 yum <span class="token function">install</span> psmisc
 
 <span class="token comment"># Debian/Ubuntu</span>
@@ -517,7 +517,7 @@ yum <span class="token function">install</span> psmisc
 <ul>
 <li>output example</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@k8s-node-3 /proc
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@k8s-node-3 /proc
 ╰─<span class="token comment"># pstree</span>
 systemd─┬─agetty
         ├─auditd───<span class="token punctuation">&#123;</span>auditd<span class="token punctuation">&#125;</span>
@@ -582,7 +582,7 @@ systemd─┬─agetty
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHEL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHEL/CentOS</span>
 yum <span class="token function">install</span> ncdu
 
 <span class="token comment"># Debian/Ubuntu</span>
@@ -592,7 +592,7 @@ yum <span class="token function">install</span> ncdu
 <li>output example</li>
 </ul>
 <p>使用反向键和回车键进行目录奇幻，很方便的说 😂</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ncdu <span class="token number">1.13</span> ~ Use the arrow keys to navigate, press ? <span class="token keyword">for</span> <span class="token builtin class-name">help</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ncdu <span class="token number">1.13</span> ~ Use the arrow keys to navigate, press ? <span class="token keyword">for</span> <span class="token builtin class-name">help</span>
 --- / ------------
     <span class="token number">5.2</span> GiB <span class="token punctuation">[</span><span class="token comment">##########] /var</span>
     <span class="token number">2.2</span> GiB <span class="token punctuation">[</span><span class="token comment">####      ] /opt</span>
@@ -643,7 +643,7 @@ e   <span class="token number">4.0</span> KiB <span class="token punctuation">[<
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHEL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHEL/CentOS</span>
 yum <span class="token function">install</span> nload
 
 <span class="token comment"># Debian/Ubuntu</span>
@@ -757,7 +757,7 @@ power management<span class="token punctuation">:</span><span aria-hidden="true"
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHEL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHEL/CentOS</span>
 yum <span class="token function">install</span> lshw
 
 <span class="token comment"># Debian/Ubuntu</span>
@@ -766,7 +766,7 @@ yum <span class="token function">install</span> lshw
 <ul>
 <li>output example</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /home/ubuntu
 ╰─<span class="token comment"># lshw</span>
 sg-02
 	 description: Computer
@@ -1232,7 +1232,7 @@ power management<span class="token punctuation">:</span><span aria-hidden="true"
 <li>arp</li>
 </ul>
 <p>用来查看系统 arp 缓存的映射表。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@k8s-node-3 /proc/net
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@k8s-node-3 /proc/net
 ╰─<span class="token comment"># cat arp</span>
 IP address       HW <span class="token builtin class-name">type</span>     Flags       HW address            Mask     Device
 <span class="token number">169.254</span>.169.254  0x1         0x0         00:00:00:00:00:00     *        ens160
@@ -1248,7 +1248,7 @@ IP address       HW <span class="token builtin class-name">type</span>     Flags
 <li>route</li>
 </ul>
 <p>以树级结构列出系统的路由表信息</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@k8s-node-3 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@k8s-node-3 ~
 ╰─<span class="token comment"># cat /proc/net/fib_trie</span>
 Main:
   +-- <span class="token number">0.0</span>.0.0/0 <span class="token number">3</span> <span class="token number">1</span> <span class="token number">5</span>
@@ -1344,7 +1344,7 @@ Main:
 <blockquote>
 <p>nf_conntrack(在老版本的 Linux 内核中叫 ip_conntrack)是一个内核模块,用于跟踪一个连接的状态的。连接状态跟踪可以供其他模块使用,最常见的两个使用场景是 iptables 的 nat 的 state 模块。 iptables 的 nat 通过规则来修改目的&#x2F;源地址,但光修改地址不行,我们还需要能让回来的包能路由到最初的来源主机。这就需要借助 nf_conntrack 来找到原来那个连接的记录才行。而 state 模块则是直接使用 nf_conntrack 里记录的连接的状态来匹配用户定义的相关规则。例如下面这条 INPUT 规则用于放行 80 端口上的状态为 NEW 的连接上的包。</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@k8s-node-3 /proc/net
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@k8s-node-3 /proc/net
 ╰─<span class="token comment"># cat nf_conntrack | head -n 4</span>
 ipv4     <span class="token number">2</span> tcp      <span class="token number">6</span> <span class="token number">102</span> SYN_SENT <span class="token assign-left variable">src</span><span class="token operator">=</span><span class="token number">10.20</span>.172.211 <span class="token assign-left variable">dst</span><span class="token operator">=</span><span class="token number">10.10</span>.107.214 <span class="token assign-left variable">sport</span><span class="token operator">=</span><span class="token number">42562</span> <span class="token assign-left variable">dport</span><span class="token operator">=</span><span class="token number">179</span> <span class="token punctuation">[</span>UNREPLIED<span class="token punctuation">]</span> <span class="token assign-left variable">src</span><span class="token operator">=</span><span class="token number">10.10</span>.107.214 <span class="token assign-left variable">dst</span><span class="token operator">=</span><span class="token number">10.20</span>.172.211 <span class="token assign-left variable">sport</span><span class="token operator">=</span><span class="token number">179</span> <span class="token assign-left variable">dport</span><span class="token operator">=</span><span class="token number">42562</span> <span class="token assign-left variable">mark</span><span class="token operator">=</span><span class="token number">0</span> <span class="token assign-left variable">secctx</span><span class="token operator">=</span>system_u:object_r:unlabeled_t:s0 <span class="token assign-left variable">zone</span><span class="token operator">=</span><span class="token number">0</span> <span class="token assign-left variable">use</span><span class="token operator">=</span><span class="token number">2</span>
 ipv4     <span class="token number">2</span> tcp      <span class="token number">6</span> <span class="token number">79</span> SYN_SENT <span class="token assign-left variable">src</span><span class="token operator">=</span><span class="token number">10.20</span>.172.211 <span class="token assign-left variable">dst</span><span class="token operator">=</span><span class="token number">10.10</span>.107.214 <span class="token assign-left variable">sport</span><span class="token operator">=</span><span class="token number">60579</span> <span class="token assign-left variable">dport</span><span class="token operator">=</span><span class="token number">179</span> <span class="token punctuation">[</span>UNREPLIED<span class="token punctuation">]</span> <span class="token assign-left variable">src</span><span class="token operator">=</span><span class="token number">10.10</span>.107.214 <span class="token assign-left variable">dst</span><span class="token operator">=</span><span class="token number">10.20</span>.172.211 <span class="token assign-left variable">sport</span><span class="token operator">=</span><span class="token number">179</span> <span class="token assign-left variable">dport</span><span class="token operator">=</span><span class="token number">60579</span> <span class="token assign-left variable">mark</span><span class="token operator">=</span><span class="token number">0</span> <span class="token assign-left variable">secctx</span><span class="token operator">=</span>system_u:object_r:unlabeled_t:s0 <span class="token assign-left variable">zone</span><span class="token operator">=</span><span class="token number">0</span> <span class="token assign-left variable">use</span><span class="token operator">=</span><span class="token number">2</span>
@@ -1358,7 +1358,7 @@ ipv4     <span class="token number">2</span> tcp      <span class="token number"
 <li><a target="_blank" rel="noopener" href="https://clodfisher.github.io/2018/09/nf_conntrack/">Iptables 之 nf_conntrack 模块</a></li>
 </ul>
 <h4 id="kernel"><a href="#kernel" class="headerlink" title="kernel"></a>kernel</h4><p>可以用来查看一下系统内核版本信息</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@k8s-master-01 proc<span class="token punctuation">]</span><span class="token comment"># uname -a</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@k8s-master-01 proc<span class="token punctuation">]</span><span class="token comment"># uname -a</span>
 Linux k8s-master-01 <span class="token number">3.10</span>.0-862.el7.x86_64 <span class="token comment">#1 SMP Fri Apr 20 16:44:24 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span>
 <span class="token punctuation">[</span>root@k8s-master-01 proc<span class="token punctuation">]</span><span class="token comment"># cat version</span>
 Linux version <span class="token number">3.10</span>.0-862.el7.x86_64 <span class="token punctuation">(</span>builder@kbuilder.dev.centos.org<span class="token punctuation">)</span> <span class="token punctuation">(</span>gcc version <span class="token number">4.8</span>.5 <span class="token number">20150623</span> <span class="token punctuation">(</span>Red Hat <span class="token number">4.8</span>.5-28<span class="token punctuation">)</span> <span class="token punctuation">(</span>GCC<span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token comment">#1 SMP Fri Apr 20 16:44:24 UTC 2018</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1367,7 +1367,7 @@ Linux version <span class="token number">3.10</span>.0-862.el7.x86_64 <span clas
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHEL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHEL/CentOS</span>
 yum <span class="token function">install</span> netcat
 
 <span class="token comment"># Debian/Ubuntu</span>
@@ -1376,7 +1376,7 @@ yum <span class="token function">install</span> netcat
 <ul>
 <li>查看主机端口是否打开</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 查看远程主机端口是否打开</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看远程主机端口是否打开</span>
 ╭─root@blog /opt/shell
 ╰─<span class="token comment"># nc -vz bing.com 443</span>
 DNS fwd/rev mismatch: bing.com <span class="token operator">!=</span> a-0001.a-msedge.net
@@ -1391,7 +1391,7 @@ retrying <span class="token builtin class-name">local</span> <span class="token 
 <ul>
 <li>用 nc 传输文件</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 接收端】（B 主机）运行如下命令（其中的 xxx 是端口号）</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 接收端】（B 主机）运行如下命令（其中的 xxx 是端口号）</span>
 <span class="token function">nc</span> -l -p xxx <span class="token operator">></span> file2
 
 <span class="token comment"># 然后在【发送端】（A 主机）运行如下命令</span>
@@ -1404,7 +1404,7 @@ retrying <span class="token builtin class-name">local</span> <span class="token 
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHEL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHEL/CentOS</span>
 yum <span class="token function">install</span> nmap
 
 <span class="token comment"># Debian/Ubuntu</span>
@@ -1413,7 +1413,7 @@ yum <span class="token function">install</span> nmap
 <ul>
 <li>扫描类型</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">-sT    TCP connect<span class="token punctuation">(</span><span class="token punctuation">)</span> 扫描，这是最基本的 TCP 扫描方式。这种扫描很容易被检测到，在目标主机的日志中会记录大批的连接请求以及错误信息。
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-sT    TCP connect<span class="token punctuation">(</span><span class="token punctuation">)</span> 扫描，这是最基本的 TCP 扫描方式。这种扫描很容易被检测到，在目标主机的日志中会记录大批的连接请求以及错误信息。
 -sS    TCP 同步扫描 <span class="token punctuation">(</span>TCP SYN<span class="token punctuation">)</span>，因为不必全部打开一个 TCP 连接，所以这项技术通常称为半开扫描 <span class="token punctuation">(</span>half-open<span class="token punctuation">)</span>。这项技术最大的好处是，很少有系统能够把这记入系统日志。不过，你需要 root 权限来定制 SYN 数据包。
 -sF,-sX,-sN    秘密 FIN 数据包扫描、圣诞树 <span class="token punctuation">(</span>Xmas Tree<span class="token punctuation">)</span>、空 <span class="token punctuation">(</span>Null<span class="token punctuation">)</span> 扫描模式。这些扫描方式的理论依据是：关闭的端口需要对你的探测包回应 RST 包，而打开的端口必需忽略有问题的包（参考 RFC <span class="token number">793</span> 第 <span class="token number">64</span> 页）。
 -sP    <span class="token function">ping</span> 扫描，用 <span class="token function">ping</span> 方式检查网络上哪些主机正在运行。当主机阻塞 ICMP <span class="token builtin class-name">echo</span> 请求包是 <span class="token function">ping</span> 扫描是无效的。nmap 在任何情况下都会进行 <span class="token function">ping</span> 扫描，只有目标主机处于运行状态，才会进行后续的扫描。
@@ -1426,7 +1426,7 @@ yum <span class="token function">install</span> nmap
 <ul>
 <li>扫描参数</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">-P0    在扫描之前，不 <span class="token function">ping</span> 主机。
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-P0    在扫描之前，不 <span class="token function">ping</span> 主机。
 -PT    扫描之前，使用 TCP <span class="token function">ping</span> 确定哪些主机正在运行。
 -PS    对于 root 用户，这个选项让 nmap 使用 SYN 包而不是 ACK 包来对目标主机进行扫描。
 -PI    设置这个选项，让 nmap 使用真正的 ping<span class="token punctuation">(</span>ICMP <span class="token builtin class-name">echo</span> 请求）来扫描目标主机是否正在运行。
@@ -1451,13 +1451,13 @@ yum <span class="token function">install</span> nmap
 <ul>
 <li>探测内网在线主机</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sP <span class="token number">192.168</span>.0.0/24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -sP <span class="token number">192.168</span>.0.0/24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><h4 id="fio"><a href="#fio" class="headerlink" title="fio"></a><a target="_blank" rel="noopener" href="https://github.com/axboe/fio">fio</a></h4><p>用来做磁盘性能测试，十分强大的磁盘性能测试工具，可配置项和参数也很丰富。</p>
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHEL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHEL/CentOS</span>
 yum <span class="token function">install</span> fio
 
 <span class="token comment"># Debian/Ubuntu</span>
@@ -1487,7 +1487,7 @@ zero_buffers         # 用 0 初始化系统 buffer
 <ul>
 <li>output example</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@nfs ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@nfs ~
 ╰─<span class="token comment"># fio -filename=/tmp/test.file -direct=1 -iodepth 1 -thread -rw=randrw -rwmixread=70 -ioengine=psync -bs=16k -size=1G -numjobs=30 -runtime=100 -group_reporting -name=mytest1</span>
 mytest1: <span class="token punctuation">(</span>g<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>: <span class="token assign-left variable">rw</span><span class="token operator">=</span>randrw, <span class="token assign-left variable">bs</span><span class="token operator">=</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span> <span class="token number">16</span>.0KiB-16.0KiB, <span class="token punctuation">(</span>W<span class="token punctuation">)</span> <span class="token number">16</span>.0KiB-16.0KiB, <span class="token punctuation">(</span>T<span class="token punctuation">)</span> <span class="token number">16</span>.0KiB-16.0KiB, <span class="token assign-left variable">ioengine</span><span class="token operator">=</span>psync, <span class="token assign-left variable">iodepth</span><span class="token operator">=</span><span class="token number">1</span>
 <span class="token punctuation">..</span>.
@@ -1539,13 +1539,13 @@ Disk stats <span class="token punctuation">(</span>read/write<span class="token 
 <h4 id="qperf"><a href="#qperf" class="headerlink" title="qperf"></a>qperf</h4><ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yum <span class="token function">install</span> qperf
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> qperf
 <span class="token function">apt</span> <span class="token function">install</span> qperf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>usage</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@debian /opt/trojan
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@debian /opt/trojan
 ╰─<span class="token comment"># qperf --help examples</span>
 In these examples, we first run qperf on a <span class="token function">node</span> called myserver <span class="token keyword">in</span> server
 mode by invoking it with no arguments.  In all the subsequent examples, we
@@ -1567,7 +1567,7 @@ run qperf on another <span class="token function">node</span> and connect to the
 <ul>
 <li>output example</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@debian-node-02-656868cc46-72lc9:/<span class="token comment"># qperf  -t 30 100.107.127.100 -v tcp_bw udp_bw tcp_lat udp_lat conf</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@debian-node-02-656868cc46-72lc9:/<span class="token comment"># qperf  -t 30 100.107.127.100 -v tcp_bw udp_bw tcp_lat udp_lat conf</span>
 tcp_bw:
 	 bw              <span class="token operator">=</span>  <span class="token number">3.24</span> GB/sec
 	 msg_rate        <span class="token operator">=</span>  <span class="token number">49.4</span> K/sec
@@ -1615,14 +1615,14 @@ conf:
 <h4 id="wrk"><a href="#wrk" class="headerlink" title="wrk"></a><a target="_blank" rel="noopener" href="https://github.com/wg/wrk/">wrk</a></h4><ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> clone https://github.com/wg/wrk.git --depth<span class="token operator">=</span><span class="token number">1</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/wg/wrk.git --depth<span class="token operator">=</span><span class="token number">1</span>
 <span class="token builtin class-name">cd</span> wrk
 <span class="token function">make</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>usage</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">./wrk
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./wrk
 Usage: wrk <span class="token operator">&lt;</span>options<span class="token operator">></span> <span class="token operator">&lt;</span>url<span class="token operator">></span>
   Options:
 	 -c, --connections <span class="token operator">&lt;</span>N<span class="token operator">></span>  Connections to keep <span class="token function">open</span> 需要模拟的个并发请求连接数量
@@ -1637,7 +1637,7 @@ Usage: wrk <span class="token operator">&lt;</span>options<span class="token ope
 <ul>
 <li>output example</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 对 10.20.172.196 nginx 服务器进行测试</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 对 10.20.172.196 nginx 服务器进行测试</span>
 ╭─root@test ~/wrk ‹master›
 ╰─<span class="token comment"># ./wrk -t100 -c512 -d30s http://10.20.172.196</span>
 Running 30s <span class="token builtin class-name">test</span> @ http://10.20.172.196
@@ -1656,7 +1656,7 @@ Transfer/sec:     <span class="token number">27</span>.93MB
 <li>usage</li>
 <li>output example</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@ubuntu-238 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@ubuntu-238 ~
 ╰─<span class="token comment"># httperf --server 10.20.172.196 --port 80 --num-conns 100 --rate 10 --timeout 1</span>
 httperf --timeout<span class="token operator">=</span><span class="token number">1</span> --client<span class="token operator">=</span><span class="token number">0</span>/1 --server<span class="token operator">=</span><span class="token number">10.20</span>.172.196 --port<span class="token operator">=</span><span class="token number">80</span> --uri<span class="token operator">=</span>/ --rate<span class="token operator">=</span><span class="token number">10</span> --send-buffer<span class="token operator">=</span><span class="token number">4096</span> --recv-buffer<span class="token operator">=</span><span class="token number">16384</span> --num-conns<span class="token operator">=</span><span class="token number">100</span> --num-calls<span class="token operator">=</span><span class="token number">1</span>
 httperf: warning: <span class="token function">open</span> <span class="token function">file</span> limit <span class="token operator">></span> FD_SETSIZE<span class="token punctuation">;</span> limiting max. <span class="token comment"># of open files to FD_SETSIZE</span>
@@ -1689,7 +1689,7 @@ Errors: fd-unavail <span class="token number">0</span> addrunavail <span class="
 <li>usage</li>
 <li>output example</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@test ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@test ~
 ╰─<span class="token comment"># ab -n 1000 -c 1000 http://10.20.172.196/</span>
 This is ApacheBench, Version <span class="token number">2.3</span> <span class="token operator">&lt;</span><span class="token variable">$Revision</span><span class="token builtin class-name">:</span> <span class="token number">1430300</span> $<span class="token operator">></span>
 Copyright <span class="token number">1996</span> Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -1747,7 +1747,7 @@ Percentage of the requests served within a certain <span class="token function">
 <ul>
 <li>install</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># RHRL/CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># RHRL/CentOS</span>
 yum <span class="token function">install</span> epel-release
 yum <span class="token function">install</span> stress stress-ng
 
@@ -1759,7 +1759,7 @@ yum <span class="token function">install</span> stress stress-ng
 <ul>
 <li>usage</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 在两个CPU核心上跑开方运算，并且启动一个不断分配释放1G内存的线程，运行10秒后停止</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在两个CPU核心上跑开方运算，并且启动一个不断分配释放1G内存的线程，运行10秒后停止</span>
 stress --cpu <span class="token number">2</span> --vm <span class="token number">1</span> --vm-bytes 1G  -v --timeout <span class="token number">10</span>
 
 <span class="token comment"># 启动一个线程不断执行sync系统调用回写磁盘缓存，并且启动一个线程不停地写入删除512MB数据，运行10秒停止</span>
@@ -1771,7 +1771,7 @@ stress-ng --sock <span class="token number">2</span> -v --timeout <span class="t
 <ul>
 <li>output example</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@debian /bashtop  ‹master›
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@debian /bashtop  ‹master›
 ╰─<span class="token comment"># stress --cpu 4 --vm 1 --vm-bytes 1G  -v --timeout 3</span>
 stress: info: <span class="token punctuation">[</span><span class="token number">18174</span><span class="token punctuation">]</span> dispatching hogs: <span class="token number">4</span> cpu, <span class="token number">0</span> io, <span class="token number">1</span> vm, <span class="token number">0</span> hdd
 stress: dbug: <span class="token punctuation">[</span><span class="token number">18174</span><span class="token punctuation">]</span> using backoff <span class="token function">sleep</span> of 3000us
@@ -1790,7 +1790,7 @@ stress: info: <span class="token punctuation">[</span><span class="token number"
 <p><img data-src="https://p.k8s.li/20200506154459952.png"></p>
 <h3 id="小工具"><a href="#小工具" class="headerlink" title="小工具"></a>小工具</h3><h3 id="镜像源"><a href="#镜像源" class="headerlink" title="镜像源"></a>镜像源</h3><h2 id="发行版-1"><a href="#发行版-1" class="headerlink" title="发行版"></a>发行版</h2><h3 id="pxder"><a href="#pxder" class="headerlink" title="pxder"></a>pxder</h3><p>下班之后回到小窝之后就开始一天中最最愉悦的时刻，在 pixiv.net 上刷图。收藏喜欢的<del>老婆</del>插画。为了管理和下载自己收藏的插画作品，当然还是选择食用工具来下载啦 😂。</p>
 <p>在二月份的时候帮小土豆和 nova 同学测试 webp server go 的 benchmark ，这个 pxder 帮了咱很大的忙，下载了 3W 多张图片做测试样本，最终使用脚本筛选出合适的文件大小来进行 prefetc 测试。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─debian@debian /mnt/f/illustrations
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─debian@debian /mnt/f/illustrations
 ╰─$ <span class="token function">du</span> -sh
 50G     <span class="token builtin class-name">.</span>
 ╭─debian@debian /mnt/f/illustrations
@@ -1801,14 +1801,14 @@ stress: info: <span class="token punctuation">[</span><span class="token number"
 <h4 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h4><p>ffmpeg 能干的事情太多了，咱使用最多的还是合并视频转码视频，比如咱的 <a href="">mbcf</a> ，全称 Merge bilibili cilent file</p>
 <h4 id="pandoc"><a href="#pandoc" class="headerlink" title="pandoc"></a><a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc">pandoc</a></h4><h4 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h4><h4 id="resilio-sync"><a href="#resilio-sync" class="headerlink" title="resilio sync"></a>resilio sync</h4><p>resilio sync ，是咱最重要的數據備份工具，比如咱使用 pxder 下載好收藏的老婆們，為了在手機上仔細欣賞老婆們，咱就用。resilio sync 將目錄同步到手機上，並且使用它來與 PC，iPhone ，Android ，Linux 三者無縫同步。簡直好用極了。</p>
 <p>需要注意的是，如果跨公網同步，在一些網絡環境下因為 GFW 的緣故，無法建立起鏈接，這時候需要使用到預定義主機。其中有兩種比較好的方案，一是在公網 VPS 機器上安裝 resilio sync 並且加入到同步主機當中。這點缺點也明顯，需要佔用磁盤空間，如果同步大量文件以及幾十幾百 GB 級別的話，小盤機是扛不住的，需要另外添加磁盤。方法二是咱想到的，屢試不爽，就是將本機的 resilio sync 監聽端口 11354 使用 frp 內網穿透到公網服務器，然後在另一台機器上添加上預定義主機，IP 就是 frp 服務器的 IP，端口就是 frp 內網穿透的 remote port。這樣添加好預訂與主機之後，不到一分鐘就能發現主機並建立起連接。</p>
-<h4 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h4><h4 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h4><h4 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h4><h4 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h4><h4 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h4><h4 id="openwrt"><a href="#openwrt" class="headerlink" title="openwrt"></a>openwrt</h4><h4 id="Trojan"><a href="#Trojan" class="headerlink" title="Trojan"></a>Trojan</h4><h3 id="shell-常用脚本"><a href="#shell-常用脚本" class="headerlink" title="shell 常用脚本"></a>shell 常用脚本</h3><h4 id="VPS-init"><a href="#VPS-init" class="headerlink" title="VPS init"></a>VPS init</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">apt</span> update
+<h4 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h4><h4 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h4><h4 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h4><h4 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h4><h4 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h4><h4 id="openwrt"><a href="#openwrt" class="headerlink" title="openwrt"></a>openwrt</h4><h4 id="Trojan"><a href="#Trojan" class="headerlink" title="Trojan"></a>Trojan</h4><h3 id="shell-常用脚本"><a href="#shell-常用脚本" class="headerlink" title="shell 常用脚本"></a>shell 常用脚本</h3><h4 id="VPS-init"><a href="#VPS-init" class="headerlink" title="VPS init"></a>VPS init</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt</span> update
 <span class="token function">apt</span> <span class="token function">install</span> nload ncdu <span class="token function">zsh</span> <span class="token function">git</span> <span class="token function">wget</span> <span class="token function">curl</span> <span class="token function">htop</span> sysstat psmisc nginx-full fail2ban
 <span class="token function">curl</span>  https://get.acme.sh <span class="token operator">|</span> <span class="token function">sh</span>
 <span class="token function">sh</span> -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh<span class="token variable">)</span></span>"</span>
 <span class="token function">sed</span> -i <span class="token string">'s/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/g'</span> ~/.zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="rawg"><a href="#rawg" class="headerlink" title="rawg"></a>rawg</h4><p>raw wget 的缩写</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token comment"># data: 2020-03-31</span>
 <span class="token comment"># author: muzi502</span>
 <span class="token comment"># for: Fuck GFW and download some raw file form github without proxy using jsDelivr CDN</span>
@@ -1827,7 +1827,7 @@ stress: info: <span class="token punctuation">[</span><span class="token number"
 <span class="token comment">#                | sed 's/github.com/cdn.jsdelivr.net\/gh/' \</span>
 <span class="token comment">#                | sed 's/\/master//' | sed 's/\/blob//' )</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="kubeadm-pull-images"><a href="#kubeadm-pull-images" class="headerlink" title="kubeadm pull images"></a>kubeadm pull images</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<h4 id="kubeadm-pull-images"><a href="#kubeadm-pull-images" class="headerlink" title="kubeadm pull images"></a>kubeadm pull images</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token comment"># for: pull kubeamd images and get kubeadm kubectl kubelet binary</span>
 <span class="token comment"># date: 2020-04-29</span>
 <span class="token comment"># author: muzi502</span>
@@ -1855,7 +1855,7 @@ EOF</span>
     <span class="token function">tar</span> -czvf <span class="token variable">$&#123;version&#125;</span><span class="token punctuation">&#123;</span>.tar.gz,<span class="token punctuation">&#125;</span>
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="ss-obfs"><a href="#ss-obfs" class="headerlink" title="ss-obfs"></a>ss-obfs</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">
+<h4 id="ss-obfs"><a href="#ss-obfs" class="headerlink" title="ss-obfs"></a>ss-obfs</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
 <span class="token comment">#/bin/bash</span>
 <span class="token comment"># for: install shadowsocks-libev and obfs</span>
 <span class="token comment"># date: 2019-03-11</span>
@@ -1906,7 +1906,7 @@ sysctl net.ipv4.tcp_congestion_control
 sysctl --system
 lsmod <span class="token operator">|</span> <span class="token function">grep</span> bbr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="mcbf"><a href="#mcbf" class="headerlink" title="mcbf"></a>mcbf</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<h4 id="mcbf"><a href="#mcbf" class="headerlink" title="mcbf"></a>mcbf</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token comment"># for: bulk merge bilibili UWP download file *.flv</span>
 <span class="token comment"># by: blog.k8s.li</span>
 <span class="token comment"># date: 2019-01-12</span>
@@ -1951,7 +1951,7 @@ lsmod <span class="token operator">|</span> <span class="token function">grep</s
 <span class="token comment">#rm -rf $&#123;download_dir&#125;/$&#123;video_dir&#125;</span>
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="conoha-wallpaper-download"><a href="#conoha-wallpaper-download" class="headerlink" title="conoha wallpaper download"></a>conoha wallpaper download</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<h4 id="conoha-wallpaper-download"><a href="#conoha-wallpaper-download" class="headerlink" title="conoha wallpaper download"></a>conoha wallpaper download</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token comment"># for: download conoha wallpaper</span>
 <span class="token comment"># by: muzi502</span>
 <span class="token comment"># date: 2020-02-11</span>
@@ -2046,7 +2046,7 @@ lsmod <span class="token operator">|</span> <span class="token function">grep</s
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

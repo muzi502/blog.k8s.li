@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://p.k8s.li/2021-06-21-05.jpg">
 <meta property="og:image" content="https://p.k8s.li/2021-06-21-02.jpg">
 <meta property="article:published_time" content="2020-08-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-02T00:41:22.166Z">
+<meta property="article:modified_time" content="2022-05-04T14:03:20.241Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="捡垃圾">
 <meta property="article:tag" content="NAS">
@@ -282,7 +282,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-02 2022-05-02T08:41:22+08:00" itemprop="dateModified" datetime="2022-05-02T08:41:22+08:00">2022-05-02</time>
+      <time title="修改时间：2022-05-04 2022-05-04T22:03:20+08:00" itemprop="dateModified" datetime="2022-05-04T22:03:20+08:00">2022-05-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -510,7 +510,7 @@ I/O speed(3rd run)   :1.3 GB/s<span aria-hidden="true" class="line-numbers-rows"
 <ul>
 <li>系统初始化启动之后内存仅仅使用了 45Mi</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># free -h</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># free -h</span>
               total        used        <span class="token function">free</span>      shared  buff/cache   available
 Mem:          <span class="token number">2</span>.0Gi        45Mi       <span class="token number">1</span>.8Gi       <span class="token number">0</span>.0Ki        93Mi       <span class="token number">1</span>.8Gi
 Swap:            0B          0B          0B<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -518,7 +518,7 @@ Swap:            0B          0B          0B<span aria-hidden="true" class="line-
 <ul>
 <li>启动 docker 进程之后的占用情况，也仅仅 109Mi</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># free -h</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># free -h</span>
               total        used        <span class="token function">free</span>      shared  buff/cache   available
 Mem:          <span class="token number">2</span>.0Gi       109Mi       <span class="token number">1</span>.6Gi       <span class="token number">0</span>.0Ki       238Mi       <span class="token number">1</span>.8Gi
 Swap:            0B          0B          0B<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -526,7 +526,7 @@ Swap:            0B          0B          0B<span aria-hidden="true" class="line-
 <ul>
 <li>使用 OVA 虚拟机模板启动后的虚拟机，磁盘仅仅占用了 515MB ，确实是相当轻量化，这还是包含了 docker。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># df -h</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># df -h</span>
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root        16G  515M   15G   <span class="token number">4</span>% /
 devtmpfs        998M     <span class="token number">0</span>  998M   <span class="token number">0</span>% /dev
@@ -544,7 +544,7 @@ tmpfs           200M     <span class="token number">0</span>  200M   <span class
 <h2 id="额外硬件"><a href="#额外硬件" class="headerlink" title="额外硬件"></a>额外硬件</h2><p>捡垃圾的乐趣就在于越折腾越好玩，于是又开始打算折腾一些</p>
 <h3 id="UPS"><a href="#UPS" class="headerlink" title="UPS"></a>UPS</h3><p>由于最近房东家里经常断电，有时一天断电八九次，每次断电我都担心着硬盘里的老婆们会不会挂掉，索性还是买了 UPS ，在马云家看了看，带给 NAS 自动断电的 UPS 普遍在 400 块钱以上，而且我这个还是个假的 NAS ，UPS 上的 USB 口不一定支持我的主机。最后为了节省一下预算花儿 160 块钱买了个不支持 USB 的 UPS ，但是又不能没有这个功能，因为家里的 220V 市电断电之后，UPS 的电量只能给主机续命 10~20min 左右，UPS 的电量用完之后就嗝屁了，照阳还是断电。所以在 UPS 用尽电量还是没有来电之前，一定要想办法把主机通过 poweroff 的方式安全优雅滴关机。</p>
 <p>首先要考虑的是怎么知道 220V 市电断电了，起初想有没有个 220V 的传感器，我去，有点难度还是算了吧。最后一想，可以通过 ping 房东家光猫的方式。我的路由器和主机等设备连接 UPS ，房东家的光猫并没有连接 UPS ，我在路由器上设置一个定时任务，每分钟去 ping 房东家的光猫，没有 ping 通说明就是断电了，也有可能是网线被拔掉了，但概率很小。<code>! ping -c 8 A &amp;&amp; ssh B &quot;poweroff&quot;</code> 一行简单的命令就满足了我的需求，</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/sh</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
 <span class="token builtin class-name">echo</span> <span class="token string">"start"</span> <span class="token operator">>></span> /tmp/power_status
 <span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">ping</span> -c <span class="token number">32</span> <span class="token number">192.168</span>.1.1
 <span class="token keyword">then</span>
@@ -556,14 +556,14 @@ tmpfs           200M     <span class="token number">0</span>  200M   <span class
 <span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>对于 ESXi 上的虚拟机，还是采用了挂起的方式，将虚拟机的内存状态保存在数据存储的磁盘里，这样重新开启虚拟机后就能恢复到之前的状态，这一点有点像 Windows 的休眠。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/sh</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
 <span class="token keyword">for</span> <span class="token for-or-select variable">vm</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span>/sbin/vmdumper -l <span class="token operator">|</span> <span class="token function">grep</span> -v Alpine <span class="token operator">|</span>  <span class="token function">awk</span> <span class="token string">'&#123;print $1&#125;'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/wid=//g'</span><span class="token variable">)</span></span>
 <span class="token keyword">do</span>
      /sbin/vmdumper <span class="token variable">$&#123;vm&#125;</span> suspend_vm
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="网管交换机"><a href="#网管交换机" class="headerlink" title="网管交换机"></a>网管交换机</h3><p>当我从台式机向 ESXI 里的虚拟机传输文件的时候，发现网络速度最快只能达到 700Mbits&#x2F;sec ，看来应该是路由器的性能瓶颈，于是想着升级一下网络设备，把 R6300V2 路由器当作 AP 来用，将流量都汇聚到网管交换机上。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>  <span class="token number">4</span><span class="token punctuation">]</span> <span class="token builtin class-name">local</span> <span class="token number">192.168</span>.0.240 port <span class="token number">50718</span> connected to <span class="token number">192.168</span>.0.123 port <span class="token number">5201</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>  <span class="token number">4</span><span class="token punctuation">]</span> <span class="token builtin class-name">local</span> <span class="token number">192.168</span>.0.240 port <span class="token number">50718</span> connected to <span class="token number">192.168</span>.0.123 port <span class="token number">5201</span>
 <span class="token punctuation">[</span> ID<span class="token punctuation">]</span> Interval           Transfer     Bandwidth
 <span class="token punctuation">[</span>  <span class="token number">4</span><span class="token punctuation">]</span>   <span class="token number">0.00</span>-1.00   sec  <span class="token number">83.8</span> MBytes   <span class="token number">702</span> Mbits/sec
 <span class="token punctuation">[</span>  <span class="token number">4</span><span class="token punctuation">]</span>   <span class="token number">1.00</span>-2.00   sec  <span class="token number">83.4</span> MBytes   <span class="token number">700</span> Mbits/sec
@@ -743,7 +743,7 @@ conf:
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

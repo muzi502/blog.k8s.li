@@ -637,18 +637,18 @@
 <h2 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h2><ul>
 <li>内核版本为 <code>4.19.132-5.ph3-esx</code>，4.19 是个 LTS 版本的内核，结尾的 <code>esx</code> 则代表着为 <code>ESXi</code> 虚拟化定制的内核。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Linux photon-machine <span class="token number">4.19</span>.132-5.ph3-esx <span class="token comment">#1-photon SMP Wed Aug 12 21:02:13 UTC 2020 x86_64 GNU/Linux</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Linux photon-machine <span class="token number">4.19</span>.132-5.ph3-esx <span class="token comment">#1-photon SMP Wed Aug 12 21:02:13 UTC 2020 x86_64 GNU/Linux</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>rpm 包数量仅仅为 146 个，一般的 CentOS 发行版自带的 rpm 包数量为 300 个左右。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># rpm -qa | wc</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># rpm -qa | wc</span>
     <span class="token number">146</span>     <span class="token number">146</span>    <span class="token number">4307</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>系统进程信息，还是采用 systemd 来管理进程</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># systemctl status</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># systemctl status</span>
 ● photon-machine
     State: running
      Jobs: <span class="token number">0</span> queued
@@ -699,7 +699,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 <ul>
 <li>内存也只使用了 43Mi，启动 dockerd 之后内存占用 108Mi，换成 containerd 将会小一些。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># free -h</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># free -h</span>
               total        used        <span class="token function">free</span>      shared  buff/cache   available
 Mem:          <span class="token number">2</span>.0Gi        43Mi       <span class="token number">1</span>.8Gi       <span class="token number">0</span>.0Ki       103Mi       <span class="token number">1</span>.8Gi
 <span class="token comment"># 启动 dockerd 守护进程之后内存占用 108Mi</span>
@@ -710,7 +710,7 @@ Mem:          <span class="token number">2</span>.0Gi       108Mi       <span cl
 <ul>
 <li>内核模块的数量也比较少 30 个左右，大部分都是一些网络相关的内核模块。常规的 Linux 发行版的内核模块往往在 60 个以上。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># lsmod</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@photon-machine <span class="token punctuation">[</span> ~ <span class="token punctuation">]</span><span class="token comment"># lsmod</span>
 Module                  Size  Used by
 xt_conntrack           <span class="token number">16384</span>  <span class="token number">2</span>
 ip6table_mangle        <span class="token number">16384</span>  <span class="token number">0</span>
@@ -800,7 +800,7 @@ Server:
 <h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h3><ul>
 <li>查看网卡状态，可使用自带的 <code>networkctl</code> 命令行工具，像 ifconfig、ip、ss 等命令都已经默认安装。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@photon-machine <span class="token punctuation">[</span> /mnt/RPMS <span class="token punctuation">]</span><span class="token comment"># networkctl status eth0</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@photon-machine <span class="token punctuation">[</span> /mnt/RPMS <span class="token punctuation">]</span><span class="token comment"># networkctl status eth0</span>
 ● <span class="token number">2</span>: eth0
        Link File: /usr/lib/systemd/network/99-default.link
     Network File: /etc/systemd/network/99-dhcp-en.network
@@ -824,7 +824,7 @@ Server:
 <ul>
 <li>系统安装时默认使用的 DHCP 获取 IP ，可以使用 systemd 来设置静态 IP</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 首先修改 DHCP 的 systemd 文件，关闭 DHCP</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 首先修改 DHCP 的 systemd 文件，关闭 DHCP</span>
 <span class="token function">sed</span> -i <span class="token string">'s/yes/no/'</span> /etc/systemd/network/99-dhcp-en.network
 <span class="token comment"># 创建静态 IP 的 systemd 文件</span>
 <span class="token function">cat</span> <span class="token operator">></span> /etc/systemd/network/10-static-en.network <span class="token operator">&lt;&lt;</span> <span class="token string">"EOF"
@@ -846,11 +846,11 @@ systemctl restart systemd-networkd<span aria-hidden="true" class="line-numbers-r
 <ul>
 <li>挂载 NFS 文件系统需要安装 <code>nfs-utils</code></li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tdnf <span class="token function">install</span> nfs-utils -y
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tdnf <span class="token function">install</span> nfs-utils -y
 <span class="token function">mount</span> <span class="token number">192.168</span>.0.100:/nfs /mnt/nfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h3><p>Photon OS 使用的是 yum&#x2F;tdnf 作为包管理器，使用方法和 RedHat 系的发行版基本相同，repo 主要有以下几个：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">ls</span> /etc/yum.repos.d/
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /etc/yum.repos.d/
 lightwave.repo
 photon-extras.repo
 photon-iso.repo
@@ -871,7 +871,7 @@ photon.repo<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <ul>
 <li>首先需要关闭 systemd 自带的 DNS 服务，不然 Pi-hole 坚挺的 53 端口会被占用</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl stop systemd-resolved
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl stop systemd-resolved
 systemctl disable systemd-resolved<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
@@ -903,7 +903,7 @@ systemctl disable systemd-resolved<span aria-hidden="true" class="line-numbers-r
 <ul>
 <li>docker-compose up 走起！</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@PhotonOS <span class="token punctuation">[</span> /opt/docker/pihole <span class="token punctuation">]</span><span class="token comment"># docker-compose up</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@PhotonOS <span class="token punctuation">[</span> /opt/docker/pihole <span class="token punctuation">]</span><span class="token comment"># docker-compose up</span>
 Creating network <span class="token string">"pihole_default"</span> with the default driver
 Creating pihole <span class="token punctuation">..</span>. <span class="token keyword">done</span>
 Attaching to pihole
@@ -1053,7 +1053,7 @@ pihole    <span class="token operator">|</span> <span class="token punctuation">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

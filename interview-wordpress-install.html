@@ -337,7 +337,7 @@
 </blockquote>
 <p>WordPress 想必大家都很熟悉啦，毕竟收是全球内容管理系统里的老大哥，常年占据在第一的位置（占有率 35%）。官网 <a target="_blank" rel="noopener" href="https://wordpress.org/">wordpress.org</a></p>
 <h2 id="任务-2-以文件的方式创建并挂载-2G-的-swap-分区"><a href="#任务-2-以文件的方式创建并挂载-2G-的-swap-分区" class="headerlink" title="任务 2 以文件的方式创建并挂载 2G 的 swap 分区"></a>任务 2 以文件的方式创建并挂载 2G 的 swap 分区</h2><p>这个任务与 WordPress 不太相关，所以就先完成这个。拿到机器后 ssh 登录到系统，先使用常用的命令看一下服务器的信息，另外在自己的域名上添加了 A  记录 <code>wordpress.k8s.li</code> 到这台服务器  IP ，并开启 HTTPS ，防止被 DDOS 攻击，毕竟有 CloudFlare 的 Anycast CDN 给我们在前头扛一把 😂 还是不错滴。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># uname -a</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># uname -a</span>
 Linux interview <span class="token number">3.10</span>.0-1062.12.1.el7.x86_64 <span class="token comment">#1 SMP Tue Feb 4 23:02:59 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span>
 <span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># cat /proc/cpuinfo</span>
 processor       <span class="token builtin class-name">:</span> <span class="token number">0</span>
@@ -390,7 +390,7 @@ Swap:            0B          0B          0B<span aria-hidden="true" class="line-
 <blockquote>
 <p>bs&#x3D;BYTES read and write up to BYTES bytes at a time (default: 512); overrides ibs and obs</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─debian@debian ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─debian@debian ~
 ╰─$ <span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>/dev/zero <span class="token assign-left variable">of</span><span class="token operator">=</span>./test <span class="token assign-left variable">bs</span><span class="token operator">=</span>4MB <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">4</span>
 <span class="token number">4</span>+0 records <span class="token keyword">in</span>
 <span class="token number">4</span>+0 records out
@@ -404,7 +404,7 @@ Swap:            0B          0B          0B<span aria-hidden="true" class="line-
 
 
 <p>接下来使用 <code>mkswap</code> 命令将刚刚创建好的 <code>/swapfile</code> 文件格式化为交换分区所需要的格式，并修改一下文件权限为 600 ，即只能由 root 用户读，不然默认的 755 会被其他用户看到，而里面的内容是内存里的信息，所以安全起见还是修改一下权限。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># mkswap /swapfile</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># mkswap /swapfile</span>
 Setting up swapspace version <span class="token number">1</span>, size <span class="token operator">=</span> <span class="token number">2047996</span> KiB
 no label, <span class="token assign-left variable">UUID</span><span class="token operator">=</span>a4eab465-75d1-4830-b870-c222c7e2e87b
 <span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment">#</span>
@@ -422,7 +422,7 @@ Swap:          <span class="token number">2</span>.0G          0B        <span c
 <p>Additionally, you’ll need to have a LAMP (Linux, Apache, MySQL, and PHP) stack installed on your CentOS 7 server. If you don’t have these components already installed or configured, you can use this guide to learn how to install LAMP on CentOS 7.</p>
 </blockquote>
 <p>虽然 WordPress 官方没有给出详细的搭建步骤，但可以参考 DigitalOcean 官方的内容，毕竟公有云服务提供商的技术专家写的博客更可靠一些。由于要求的是 nginx 最新版本，yum 安装的 nginx 版本可能会旧一些。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@interview wordpress<span class="token punctuation">]</span><span class="token comment"># yum list nginx</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@interview wordpress<span class="token punctuation">]</span><span class="token comment"># yum list nginx</span>
 Loaded plugins: fastestmirror, langpacks
 Loading mirror speeds from cached hostfile
  * base: centos-distro.1gservers.com
@@ -442,7 +442,7 @@ nginx.x86_64       <span class="token number">1</span>:1.16.1-1.el7            e
 <p>事实证明我推断错了，第二天我在我的另一台机器上编译 nginx 花了不到 1 分钟，被大佬坑惨了啊 😂。在 GCE 小鸡上编译 nginx 根本不可能需要 3 小时吧，3 分钟才对的吧。当初看到后就感觉编译 nginx 需要 3 个小时就有点问题，但并没有亲自去验证。唉，还是自己不够细致啊，<strong>一知半解真是很危险的事儿！</strong></p>
 <h3 id="install-docker"><a href="#install-docker" class="headerlink" title="install docker"></a>install docker</h3><p>安装 docker 的方式再熟悉不过了，使用一个 curl 命令就能搞定 <code>curl -fsSL https://get.docker.com | bash -s docker</code> 如果在国内环境的话，后面加上  <code>--mirror Aliyun</code>  参数就能使用阿里云的镜像站，这样会更快一些。即 <code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code> 。</p>
 <p>不过我还是从第一次接触的角度来安装 docker ，Google 搜索 <code>centos install docker</code> 点进入第一个搜索结果即为官网 <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/">Install Docker Engine on CentOS</a> ，为了节省时间就没有按照官网的步骤来，而是使用官方的一键脚本来安装。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># curl -fsSL https://get.docker.com -o get-docker.sh</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># curl -fsSL https://get.docker.com -o get-docker.sh</span>
 <span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># ls</span>
 get-docker.sh
 <span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># chmod +x get-docker.sh</span>
@@ -497,7 +497,7 @@ get-docker.sh
  <span class="token key atrule">Live Restore Enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="install-docker-compose"><a href="#install-docker-compose" class="headerlink" title="install docker-compose"></a>install docker-compose</h3><p>安装完 docker 之后，接下来安装 docker-compose ，使用 Google 搜索 <code>centos install docker-compose</code> 点进入第一个搜索结果即为官网的 <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/">Install Docker Compose</a></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span> <span class="token function">sudo</span> <span class="token function">curl</span> -L <span class="token string">"https://github.com/docker/compose/releases/download/1.25.4/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -s<span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span>"</span> -o /usr/local/bin/docker-compose
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span> <span class="token function">sudo</span> <span class="token function">curl</span> -L <span class="token string">"https://github.com/docker/compose/releases/download/1.25.4/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -s<span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span>"</span> -o /usr/local/bin/docker-compose
 <span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># docker-compose version</span>
 bash: /usr/local/bin/docker-compose: Permission denied
 <span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># chmod +x /usr/local/bin/docker-compose</span>
@@ -566,7 +566,7 @@ OpenSSL version: OpenSSL <span class="token number">1.1</span>.0l  <span class="
 
 <p>共有 4 个容器： wordpress、mysql、nginx、adminer，默认不需要修改既可以部署起来。adminer 是个 web 端管理 MySQL 数据库的，可以删掉不需要。</p>
 <p>由于默认的系统不带 git ，所以需要安装一下 git <code>yum install git</code>，然后把 repo clone 下来。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> clone https://github.com/mjstealey/wordpress-nginx-docker
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/mjstealey/wordpress-nginx-docker
 <span class="token builtin class-name">cd</span> wordpress-nginx-docker
 <span class="token function">docker-compose</span> up<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -645,7 +645,7 @@ OpenSSL version: OpenSSL <span class="token number">1.1</span>.0l  <span class="
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>接下来我们使用 <code>docker-compose restart</code> 命令重启一下容器，之后再 WordPress 端上传一张图片测试一下。上传完成之后，拿到图片的 url ，然后使用 wget 命令测试一下，显示 <code>Length: 102288 (100K)  [image/webp]</code> 就说明我们的 webp server 已经成功运行啦 😂。完整的 repo 在我的 GitHub 上 <a target="_blank" rel="noopener" href="https://github.com/muzi502/Wwordpress">Wwordpress</a> ，欢迎来食用呀 😋</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /opt/wordpress-nginx-docker ‹master›
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /opt/wordpress-nginx-docker ‹master›
 ╰─<span class="token comment"># wget  http://dl.amd64.xyz/wp-content/uploads/2020/04/74898710_p21.jpg</span>
 --2020-04-17 01:06:29--  http://dl.amd64.xyz/wp-content/uploads/2020/04/74898710_p21.jpg
 Resolving dl.amd64.xyz <span class="token punctuation">(</span>dl.amd64.xyz<span class="token punctuation">)</span><span class="token punctuation">..</span>. <span class="token number">3.1</span>.38.108
@@ -749,7 +749,7 @@ Saving to: ‘74898710_p21.jpg’
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

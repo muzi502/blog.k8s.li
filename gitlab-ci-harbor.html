@@ -666,7 +666,7 @@ yum <span class="token function">install</span> gitlab-ce-12.3.5-ce.0.el7.x86_64
 yum <span class="token function">install</span> gitlab-ce-12.8.2-ce.0.el7.x86_64.rpm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>安装成功之后会出现 Gitlab 的 Logo</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">       *.                  *.
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">       *.                  *.
       ***                 ***
      *****               *****
     .******             *******
@@ -902,7 +902,7 @@ Runner registered successfully. Feel <span class="token function">free</span> to
 <ul>
 <li>修改完配置文件之后再运行 <code>./install.sh --with-clair --with-chartmuseum</code> 将 clair 集成到 harbor 中。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@harbor /opt/harbor
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@harbor /opt/harbor
 ╰─<span class="token comment"># ./install.sh --with-clair --with-chartmuseum</span>
 <span class="token punctuation">[</span>Step <span class="token number">0</span><span class="token punctuation">]</span>: checking installation environment <span class="token punctuation">..</span>.
 <span class="token punctuation">[</span>Step <span class="token number">1</span><span class="token punctuation">]</span>: loading Harbor images <span class="token punctuation">..</span>.
@@ -931,7 +931,7 @@ For <span class="token function">more</span> details, please visit https://githu
 <ul>
 <li>使用 <code>docker-compose ps</code> 检查 harbor 相关容器是否正常。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@harbor /opt/harbor
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@harbor /opt/harbor
 ╰─<span class="token comment"># docker-compose ps</span>
       Name                     Command                  State                 Ports
 ---------------------------------------------------------------------------------------------
@@ -958,7 +958,7 @@ registryctl         /harbor/start.sh                 Up <span class="token punct
 <ul>
 <li>使用 <code>docker login</code> 测试是否能登录成功：</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@docker-230 /opt
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@docker-230 /opt
 ╰─<span class="token comment"># docker login 10.10.107.217</span>
 Username: admin
 Password:
@@ -970,7 +970,7 @@ Login Succeeded<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <ul>
 <li>登录到 harbor 新建一个项目仓库，并按照 <code>docker tag SOURCE_IMAGE[:TAG] 10.20.172.236/ciest/IMAGE[:TAG]</code> 格式给本地 docker 镜像打上 tag 并测试推送到 harbor 是否成功。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@docker-230 /opt
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@docker-230 /opt
 ╰─<span class="token comment"># docker tag openjdk:8-jdk-alpine 10.10.107.217/ops/openjdk:8-jdk-alpine</span>
 ╭─root@docker-230 /opt
 ╰─<span class="token comment"># docker push !$</span>
@@ -1511,7 +1511,7 @@ SSH_PASSWORD: # 部署测试服务器 ssh 密码<span aria-hidden="true" class="
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

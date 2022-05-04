@@ -311,7 +311,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>9.6k</span>
+      <span>9.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -593,21 +593,21 @@ podTemplate(
 <ul>
 <li>构建 <code>debian:buster-docker</code> 镜像，使用它来在 pod 的容器内构建 docker 镜像，使用的 <code>Dockerfile</code> 如下：</li>
 </ul>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM debian:buster
-RUN apt update \
-    &amp;&amp; apt install -y --no-install-recommends \
-        vim \
-        curl \
-        git \
-        make \
-        ca-certificates \
-        gnupg \
-    &amp;&amp; rm -rf &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;*
-RUN curl -fsSL &quot;https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;debian&#x2F;gpg&quot; | apt-key add -qq - &gt;&#x2F;dev&#x2F;null \
-    &amp;&amp; echo &quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;debian buster stable&quot; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;docker.list \
-    &amp;&amp; apt update -qq \
-    &amp;&amp; apt-get install -y -qq --no-install-recommends docker-ce-cli \
-    &amp;&amp; rm -rf &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> debian:buster</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt update <span class="token operator">\</span>
+    &amp;&amp; apt install -y --no-install-recommends <span class="token operator">\</span>
+        vim <span class="token operator">\</span>
+        curl <span class="token operator">\</span>
+        git <span class="token operator">\</span>
+        make <span class="token operator">\</span>
+        ca-certificates <span class="token operator">\</span>
+        gnupg <span class="token operator">\</span>
+    &amp;&amp; rm -rf /var/lib/apt/lists/*</span>
+<span class="token instruction"><span class="token keyword">RUN</span> curl -fsSL <span class="token string">"https://download.docker.com/linux/debian/gpg"</span> | apt-key add -qq - >/dev/null <span class="token operator">\</span>
+    &amp;&amp; echo <span class="token string">"deb [arch=amd64] https://download.docker.com/linux/debian buster stable"</span> > /etc/apt/sources.list.d/docker.list <span class="token operator">\</span>
+    &amp;&amp; apt update -qq <span class="token operator">\</span>
+    &amp;&amp; apt-get install -y -qq --no-install-recommends docker-ce-cli <span class="token operator">\</span>
+    &amp;&amp; rm -rf /var/lib/apt/lists/*</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>定义好 jenkinsfile 文件并且构建好 pod 模板中的镜像后，接下来我们开始使用它来创建流水线任务。</p>
 <h2 id="流水线"><a href="#流水线" class="headerlink" title="流水线"></a>流水线</h2><ul>
@@ -747,7 +747,7 @@ Created Pod: kubernetes default/debian-35a11b49-087b-4a8c-abac-bd97d7eb5a1f-fkmz
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

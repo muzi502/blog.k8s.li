@@ -329,7 +329,7 @@
 <span class="token key attr-name">DefaultTasksAccounting</span><span class="token punctuation">=</span><span class="token value attr-value">yes</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>然后再 <code>systemctl daemon-reload</code> 一把梭就可以啦 😂</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@blog /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@blog /home/ubuntu
 ╰─<span class="token comment"># systemctl status webps</span>
 ● webps.service - WebP Server
    Loaded: loaded <span class="token punctuation">(</span>/opt/webps/webps.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span>
@@ -358,7 +358,7 @@
 <p>PS：MBR <strong>主引导记录</strong>是一个 512 字节的扇区，位于硬盘的第一扇区（0 道 0 柱 1 扇区）。对于 GPT&#x2F;EFI 来讲~~，有点头大，暂且先不谈 😂。</p>
 <p>可以使用 dd 命令读取 MBR 里的内容 <code>dd if=/dev/sda of=mbr.bin bs=512 count=1</code></p>
 <p>使用 od 命令来查看 <code>od -xa mbr.bin</code></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># od -xa mbr.bin</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># od -xa mbr.bin</span>
 0000000    63eb    0090    0000    0000    0000    0000    0000    0000
           k   c dle nul nul nul nul nul nul nul nul nul nul nul nul nul
 0000020    0000    0000    0000    0000    0000    0000    0000    0000
@@ -383,7 +383,7 @@
 <p>在内核引导过程中，初始 RAM 磁盘（initrd）是由 BootLoader 加载到内存中的，它会被复制到 RAM 中并挂载到系统上。这个 initrd 作为 RAM 中的临时根文件系统使用，并允许内核在没有挂载任何物理磁盘的情况下完整地实现引导。由于与外围设备进行交互所需要的模块可是 initrd 的一部分，因此内核可以非常小，但是仍然支持大量可能的硬件配置。在内核启动后，就可以正式装备根文件系统了（通过 pivot_root），此时会将 initrd 根文件系统卸载掉，并挂载真正的根文件系统。<br>initrd 函数让我们可以创建一个小型的 Linux 内核，其中包括作为可加载模块编译的驱动程序。这些可加载的模块为内核提供了访问磁盘和磁盘上的文件系统的方法，并为其他硬件提供了驱动程序。由于根文件系统是磁盘上的一个文件系统，因此 initrd 函数会提供一种启动方法来获得对磁盘的访问，并挂载真正的根文件系统。在没有硬盘的嵌入式目标中，initrd 可以是最终的根文件系统，或者也可以通过网络文件系统（NFS）来挂载最终的根文件系统。</p>
 </blockquote>
 <p>可以使用 dmesg 来查看从加载内核后的流程，下一篇博客会写从 dmesg 日志分析 Linux 内核启动流程（挖坑</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@blog /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@blog /home/ubuntu
 ╰─<span class="token comment"># dmesg</span>
 <span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> Linux version <span class="token number">5.0</span>.0-1031-gcp <span class="token punctuation">(</span>buildd@lcy01-amd64-020<span class="token punctuation">)</span> <span class="token punctuation">(</span>gcc version <span class="token number">7.4</span>.0 <span class="token punctuation">(</span>Ubuntu <span class="token number">7.4</span>.0-1ubuntu1~18.04.1<span class="token punctuation">))</span> <span class="token comment">#32-Ubuntu SMP Tue Feb 11 03:55:48 UTC 2020 (Ubuntu 5.0.0-1031.32-gcp 5.0.21)</span>
 <span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> Command line: <span class="token assign-left variable">BOOT_IMAGE</span><span class="token operator">=</span>/boot/vmlinuz-5.0.0-1031-gcp <span class="token assign-left variable">root</span><span class="token operator">=</span>PARTUUID<span class="token operator">=</span>9b22aacc-c8b9-497a-9583-a20c1be968c4 ro scsi_mod.use_blk_mq<span class="token operator">=</span>Y <span class="token assign-left variable">console</span><span class="token operator">=</span>ttyS0
@@ -415,7 +415,7 @@
 
 <h3 id="init-初始化阶段"><a href="#init-初始化阶段" class="headerlink" title="init 初始化阶段"></a>init 初始化阶段</h3><p>一旦内核自解压完成，启动并初始化后，内核启动第一个<strong>用户空间应用程序</strong>，即 systemd 进程（其是老式 System V 系统的 init 程序的替代品)，并转移控制权到 systemd。这是调用的第一个使用标准 C 库编译的程序，在此进程之前，还没有执行任何标准的 C 应用程序。至此整个系统引导过程的结束，kernel 和 systemd 处于运行状态，接下来就由 systemd 来启动各项程序。</p>
 <p>从 dmesg 的输出日志我们可以看到，直到 2.516258 秒才开始执行 <code>/sbin/init</code> 命令，而对于采用 systemd 的发行版来说，<code>/sbin/init</code> 是指向 <code>/sbin/init -&gt; /lib/systemd/systemd</code> ，的链接文件，实际上就是在启动 systemd 😂</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>    <span class="token number">2.516258</span><span class="token punctuation">]</span> Run /sbin/init as init process
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>    <span class="token number">2.516258</span><span class="token punctuation">]</span> Run /sbin/init as init process
 <span class="token punctuation">[</span>    <span class="token number">3.992535</span><span class="token punctuation">]</span> systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: systemd <span class="token number">237</span> running <span class="token keyword">in</span> system mode. <span class="token punctuation">(</span>+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD -IDN2 +IDN -PCRE2 default-hierarchy<span class="token operator">=</span>hybrid<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h2 id="主角-systemd"><a href="#主角-systemd" class="headerlink" title="主角 systemd"></a>主角 systemd</h2><p>为什么文章题名为 <strong>Linux 的小伙伴 systemd</strong> 呐，其实广义上来讲 Linux 是众多 Linux 系统发行版的集合，但严格来讲 Linux 仅仅是一个 OS 的 kernel 而已，仅仅有一个内核是无法组成一个系统的，所以 Linux kernel 还需要他的几个兄弟比如 GNU 、 systemd 、X Window 、GNOME 、 KDE 、Xfce 等等其他用户层面的程序来构建出一套完整的操作系统出来。</p>
@@ -570,7 +570,7 @@
 </li>
 </ul>
 <p>在使用 yum&#x2F;apt 或其他包管理器，以及 rpm&#x2F;deb 等软件包安装软件的时候，如果该软件支持 systemd 管理的话，就会自动在 <code>/usr/lib/systemd/system</code> 目录添加一个配置文件。可以用过  systemctl cat name 来查看该软件的  systemd 单元文件，比如查看一下 nginx 的 <code>nginx.service</code> 文件</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~
 ╰─<span class="token comment"># systemctl cat nginx                                                                                         1 ↵</span>
 <span class="token comment"># /lib/systemd/system/nginx.service</span>
 <span class="token comment"># Stop dance for nginx</span>
@@ -621,7 +621,7 @@
 
 <p>关于 systemd 的单元配置文件如何书写，因为根据不同的单元类型包含的配置项实在是巨多。不是三言两语就能讲清的，所以大家还是参考一下 systemd 的官方文档&#x2F;社区翻译文档。比如 <a target="_blank" rel="noopener" href="http://www.jinbuguo.com/systemd/systemd.index.html">systemd (简体中文)</a>。</p>
 <h3 id="链接文件"><a href="#链接文件" class="headerlink" title="链接文件"></a>链接文件</h3><p>当我们使用 reboot 、poweroff 、shutdown 等命令的时候，其实并不是执行该命令本身，背后是调用的 systemctl 命令。systemctl 命令会将 reboot 这些命令作为 $1 参数传递进去。所以执行 reboot 和 systemctl reboot 本质上是一样的。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@gitlab /sbin
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@gitlab /sbin
 ╰─<span class="token comment"># ls -alh /usr/bin /sbin /bin /usr/local/bin  | grep systemctl</span>
 -rwxr-xr-x  <span class="token number">1</span> root root 179K Feb  <span class="token number">5</span> 01:07 systemctl
 lrwxrwxrwx  <span class="token number">1</span> root root      <span class="token number">14</span> Feb  <span class="token number">5</span> 01:07 <span class="token function">halt</span> -<span class="token operator">></span> /bin/systemctl
@@ -746,7 +746,7 @@ lrwxrwxrwx  <span class="token number">1</span> root root      <span class="toke
 <ul>
 <li><strong>basic.target</strong> 单元用于启动普通服务特别是图形管理服务。它通过 <code>/etc/systemd/system/basic.target.wants</code> 目录来决定哪些服务会被启动，<strong>basic.target</strong> 之后将控制权交给 <strong>sysinit.target</strong>.</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@docker-230 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@docker-230 ~
 ╰─<span class="token comment"># tree /etc/systemd/system/multi-user.target.wants</span>
 /etc/systemd/system/multi-user.target.wants
 ├── auditd.service -<span class="token operator">></span> /usr/lib/systemd/system/auditd.service
@@ -795,7 +795,7 @@ lrwxrwxrwx  <span class="token number">1</span> root root      <span class="toke
 <span class="token key attr-name">After</span><span class="token punctuation">=</span><span class="token value attr-value">local-fs.target swap.target emergency.service emergency.target</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="进程树"><a href="#进程树" class="headerlink" title="进程树"></a>进程树</h3><p>我们使用 pstree 命令来看一哈进程树的状态，用户空间的进程都挂在  PID 为 1 的 systemd 下。由 systemd 来管理进程优点多多 😂</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~
 ╰─<span class="token comment"># pstree -p</span>
 systemd<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>─┬─accounts-daemon<span class="token punctuation">(</span><span class="token number">661</span><span class="token punctuation">)</span>─┬─<span class="token punctuation">&#123;</span>accounts-daemon<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token number">689</span><span class="token punctuation">)</span>
            │                      └─<span class="token punctuation">&#123;</span>accounts-daemon<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token number">729</span><span class="token punctuation">)</span>
@@ -870,7 +870,7 @@ systemd<span class="token punctuation">(</span><span class="token number">1</spa
 <ul>
 <li><code>systemctl status NAME</code></li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@blog /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@blog /home/ubuntu
 ╰─<span class="token comment"># systemctl status webps                                                                                    130 ↵</span>
 ● webps.service - WebP Server
    Loaded: loaded <span class="token punctuation">(</span>/opt/webps/webps.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span>
@@ -898,7 +898,7 @@ dev-mqueue.mount                              static<span aria-hidden="true" cla
 <h4 id="列出激活的单元"><a href="#列出激活的单元" class="headerlink" title="列出激活的单元"></a>列出激活的单元</h4><ul>
 <li><code>systemctl list-units</code> 等同于 <code>systemctl</code></li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@docker-230 ~
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@docker-230 ~
 ╰─<span class="token comment"># systemctl list-units                                                                                      127 ↵</span>
   UNIT                                         LOAD   ACTIVE SUB       DESCRIPTION
   proc-sys-fs-binfmt_misc.automount            loaded active waiting   Arbitrary Executable File Formats File System
@@ -917,7 +917,7 @@ dev-mqueue.mount                              static<span aria-hidden="true" cla
 <li><code>systemctl disable NAME</code></li>
 </ul>
 <h4 id="远程控制其他服务器的-systemd"><a href="#远程控制其他服务器的-systemd" class="headerlink" title="远程控制其他服务器的 systemd"></a>远程控制其他服务器的 systemd</h4><p><code>systemctl</code> 参数中添加 <code>-H &lt;用户名&gt;@&lt;主机名&gt;</code> 可以实现对其他机器的远程控制，该功能使用 <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/SSH_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">SSH</a> 连接。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@blog /home/ubuntu
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@blog /home/ubuntu
 ╰─<span class="token comment"># systemctl status nginx -H sg2</span>
 ● nginx.service - A high performance web server and a reverse proxy server
    Loaded: loaded <span class="token punctuation">(</span>/lib/systemd/system/nginx.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span>
@@ -1036,7 +1036,7 @@ Startup finished <span class="token keyword">in</span> 489ms <span class="token 
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

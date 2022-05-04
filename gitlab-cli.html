@@ -369,17 +369,17 @@
 $ <span class="token function">sudo</span> pip3 <span class="token function">install</span> -i https://pypi.tuna.tsinghua.edu.cn/simple requests PyYAML python-gitlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>由于使用这个工具的场景大多数是在 Jenkins 所创建的 slave pod 中执行的，所以也可以构建一个 docker 镜像， <code>Dockerfile</code> 如下</p>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM debian:buster
-RUN apt update \
-    &amp;&amp; apt install -y --no-install-recommends \
-        git \
-        python3 \
-        python3-pip \
-        jq \
-    &amp;&amp; rm -rf &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;* \
-    &amp;&amp; pip3 install -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple requests PyYAML python-gitlab
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> debian:buster</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt update <span class="token operator">\</span>
+    &amp;&amp; apt install -y --no-install-recommends <span class="token operator">\</span>
+        git <span class="token operator">\</span>
+        python3 <span class="token operator">\</span>
+        python3-pip <span class="token operator">\</span>
+        jq <span class="token operator">\</span>
+    &amp;&amp; rm -rf /var/lib/apt/lists/* <span class="token operator">\</span>
+    &amp;&amp; pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple requests PyYAML python-gitlab</span>
 
-COPY python-gitlab.cfg &#x2F;etc&#x2F;python-gitlab.cfg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token instruction"><span class="token keyword">COPY</span> python-gitlab.cfg /etc/python-gitlab.cfg</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>Gitlab CLI 工具需要使用一个 <code>python-gitlab.cfg</code> 配置文件用于连接 Gitlab 服务器以及完成一些鉴权认证，配置文件格式为 <code>ini</code> 如下：</p>
 <pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">global</span><span class="token punctuation">]</span></span>
@@ -507,7 +507,7 @@ path: kubespray<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <ul>
 <li>在流水线中可以根据 token 获取用户的用户名和邮箱，用于配置流水线中的 repo git 信息，避免因为 CLA 无法通过。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">gitlab -o json current-user get <span class="token operator">|</span> jq <span class="token string">'.id'</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitlab -o json current-user get <span class="token operator">|</span> jq <span class="token string">'.id'</span>
 <span class="token function">git</span> config --global user.email <span class="token variable"><span class="token variable">$(</span>gitlab -o json current-user get <span class="token operator">|</span> jq -r <span class="token string">'.email'</span><span class="token variable">)</span></span>
 <span class="token function">git</span> config --global user.name <span class="token variable"><span class="token variable">$(</span>gitlab -o json current-user get <span class="token operator">|</span> jq -r <span class="token string">'.username'</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -812,7 +812,7 @@ $ <span class="token function">git</span> push origin --all<span aria-hidden="tr
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

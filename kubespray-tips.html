@@ -524,7 +524,7 @@ quay.io/l23network/k8s-netchecker-server:v1.0<span aria-hidden="true" class="lin
 <ul>
 <li>config.yml</li>
 </ul>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token number">0.1</span>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token number">0.1</span>
 <span class="token key atrule">log</span><span class="token punctuation">:</span>
   <span class="token key atrule">fields</span><span class="token punctuation">:</span>
     <span class="token key atrule">service</span><span class="token punctuation">:</span> registry
@@ -552,7 +552,7 @@ quay.io/l23network/k8s-netchecker-server:v1.0<span aria-hidden="true" class="lin
 <ul>
 <li>docker-compose.yml</li>
 </ul>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
 <span class="token key atrule">services</span><span class="token punctuation">:</span>
   <span class="token key atrule">gcr-registry</span><span class="token punctuation">:</span>
     <span class="token key atrule">image</span><span class="token punctuation">:</span> registry<span class="token punctuation">:</span><span class="token number">2</span>
@@ -678,7 +678,7 @@ RUN python3 -m pip install -r requirements.txt<span aria-hidden="true" class="li
 COPY . &#x2F;kubespray<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>这样构建出来的镜像大小不到 600MB，比之前小了很多，而且每次构建镜像的时候也比较快。只不过当 <code>requirements.txt</code>  文件更新后需要重新构建 base 镜像，并修改 kubespray 的 FROM 镜像为新的 base 镜像。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">kubespray     v2.15.1                  73294562105a    <span class="token number">1</span>.41GB
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubespray     v2.15.1                  73294562105a    <span class="token number">1</span>.41GB
 kubespray     v2.16-kube-v1.20.6-1.0   80b735995e48    579MB<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
@@ -716,7 +716,7 @@ logo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这样在 push 镜像的时候会返回 403 的错误</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@debian:/root <span class="token comment"># docker pull hub.k8s.li/calico/node:v3.17.3</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@debian:/root <span class="token comment"># docker pull hub.k8s.li/calico/node:v3.17.3</span>
 v3.17.3: Pulling from calico/node
 282bf12aa8be: Pull complete
 4ac1bb9354ad: Pull complete
@@ -733,7 +733,7 @@ error parsing HTTP <span class="token number">403</span> response body: invalid 
 <p>docker registry 启动的时候 bind 在 127.0.0.1 上，而不是 0.0.0.0，通过 localhost:5000 来 push 镜像。</p>
 <h2 id="镜像仓库自签证书"><a href="#镜像仓库自签证书" class="headerlink" title="镜像仓库自签证书"></a>镜像仓库自签证书</h2><p>如果镜像仓库使用的是自签证书，可以跑下面这个 playbook 将自签证书添加到所有节点的 trusted CA dir 中，这样无需配置 <code>insecure-registries</code> 也能拉取镜像。</p>
 <p><code>add-registry-ca.yml</code></p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token punctuation">---</span>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
 <span class="token punctuation">-</span> <span class="token key atrule">hosts</span><span class="token punctuation">:</span> all
   <span class="token key atrule">gather_facts</span><span class="token punctuation">:</span> <span class="token boolean important">False</span>
   <span class="token key atrule">tasks</span><span class="token punctuation">:</span>
@@ -775,7 +775,7 @@ error parsing HTTP <span class="token number">403</span> response body: invalid 
 <ul>
 <li>将自签的 registry 证书放到本地，执行 playbook 并指定 <code>registry_cert_path</code> 为正确的路径</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@debian:/kubespray<span class="token comment"># ansible-playbook -i deploy/inventory -e registry_cert_path=/kubespray/registry_ca.pem add-registry-ca.yml</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@debian:/kubespray<span class="token comment"># ansible-playbook -i deploy/inventory -e registry_cert_path=/kubespray/registry_ca.pem add-registry-ca.yml</span>
 
 PLAY <span class="token punctuation">[</span>all<span class="token punctuation">]</span> **********************************************************************************
 Thursday <span class="token number">29</span> April <span class="token number">2021</span>  08:18:25 +0000 <span class="token punctuation">(</span><span class="token number">0</span>:00:00.077<span class="token punctuation">)</span>       <span class="token number">0</span>:00:00.077 ********
@@ -1147,7 +1147,7 @@ ok: <span class="token punctuation">[</span>kube-node-1<span class="token punctu
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

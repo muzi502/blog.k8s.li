@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://p.k8s.li/registry-gc-2.jpeg">
 <meta property="og:image" content="https://p.k8s.li/registry-gc-3.jpeg">
 <meta property="article:published_time" content="2020-07-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-02T00:41:22.162Z">
+<meta property="article:modified_time" content="2022-05-04T14:03:20.237Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="registry">
@@ -275,7 +275,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-02 2022-05-02T08:41:22+08:00" itemprop="dateModified" datetime="2022-05-02T08:41:22+08:00">2022-05-02</time>
+      <time title="修改时间：2022-05-04 2022-05-04T22:03:20+08:00" itemprop="dateModified" datetime="2022-05-04T22:03:20+08:00">2022-05-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -362,7 +362,7 @@ openssl req -days 365 -x509 -config ca.conf \
 <ul>
 <li>信任证书，根据不同的发行版选择相应的路径和命令行即可。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># CentOS</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># CentOS</span>
 update-ca-trust force-enable
 <span class="token function">cp</span> certs/domain.crt /etc/pki/ca-trust/source/anchors/localhost.crt
 update-ca-trust
@@ -377,14 +377,14 @@ $ update-ca-certificates
 update-ca-certificates<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="创建密码-auth-认证-auth-htpasswd-文件"><a href="#创建密码-auth-认证-auth-htpasswd-文件" class="headerlink" title="创建密码 auth 认证  auth.htpasswd 文件"></a>创建密码 auth 认证  auth.htpasswd 文件</h4><p>由于 PUSH 镜像和 DELETE 镜像是通过 HTTP 请求 registry 的 API 完成的，每个请求都需要一个 token 才能完成操作，这个 token 需要使用这个 AUTH 文件来进行鉴权，使用 <code>htpasswd</code> 来生成一个明文的用户&#x2F;密码即可。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">htpasswd -cB -b auth.htpasswd root <span class="token number">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">htpasswd -cB -b auth.htpasswd root <span class="token number">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="启动-registry-容器，docker-run-走起！"><a href="#启动-registry-容器，docker-run-走起！" class="headerlink" title="启动 registry 容器，docker run 走起！"></a>启动 registry 容器，docker run 走起！</h4><ul>
 <li><code>-v /var/lib/registry:/var/lib/registry</code> ，将本地的存储目录挂载到容器内的 registry 存储目录下。</li>
 <li><code>-v pwd/certs:/certs</code>，将生成的 SSL 证书挂载到容器内。</li>
 <li><code>-e REGISTRY_STORAGE_DELETE_ENABLED=true</code>，添加该参数才能进行 DELETE 镜像操作，不然的话会提示 <a target="_blank" rel="noopener" href="https://github.com/docker/distribution/issues/1573">Error in deleting repository in a private registry V2 #1573</a> 这种错误（＞﹏＜）。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">docker</span> run -d -p <span class="token number">127.0</span>.0.1:443:5000 --name registry <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run -d -p <span class="token number">127.0</span>.0.1:443:5000 --name registry <span class="token punctuation">\</span>
     -v /var/lib/registry:/var/lib/registry <span class="token punctuation">\</span>
     -v <span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">pwd</span><span class="token variable">`</span></span>/certs:/certs <span class="token punctuation">\</span>
     -v <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span>/auth.htpasswd:/etc/docker/registry/auth.htpasswd <span class="token punctuation">\</span>
@@ -396,7 +396,7 @@ update-ca-certificates<span aria-hidden="true" class="line-numbers-rows"><span><
     registry<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="docker-login"><a href="#docker-login" class="headerlink" title="docker login"></a>docker login</h4><p>这一步是为了在 <code>~/.docker/.config.json</code> ，中添加上 auth 认证，后面使用 skopeo 的时候会用到。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~/registry
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/registry
 ╰─<span class="token comment"># docker login localhost -u root -p 123456</span>
 <span class="token punctuation">]</span>WARNING<span class="token operator">!</span> Using --password via the CLI is insecure. Use --password-stdin.
 WARNING<span class="token operator">!</span> Your password will be stored unencrypted <span class="token keyword">in</span> /root/.docker/config.json.
@@ -421,7 +421,7 @@ Login Succeeded
         <span class="token string">"experimental"</span><span class="token builtin class-name">:</span> <span class="token string">"enabled"</span>
 <span class="token punctuation">&#125;</span><span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="COPY-镜像到-registry"><a href="#COPY-镜像到-registry" class="headerlink" title="COPY 镜像到 registry"></a>COPY 镜像到 registry</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~/registry
+<h3 id="COPY-镜像到-registry"><a href="#COPY-镜像到-registry" class="headerlink" title="COPY 镜像到 registry"></a>COPY 镜像到 registry</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/registry
 ╰─<span class="token comment"># skopeo copy docker://alpine:3.10 docker://localhost/library/alpine:3.10</span>
 Getting image <span class="token builtin class-name">source</span> signatures
 Copying blob 21c83c524219 <span class="token keyword">done</span>
@@ -436,7 +436,7 @@ Storing signatures<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <p>在 <code>_manifests</code> 文件夹下的 tags 和 revisions 目录下的 link 文件则指向该镜像的 manifest 文件，保存在所有历史镜像 tag 的 manifest 文件 的 link。当删除一个镜像时，只会删除该镜像最新的 tag 的 link 文件。</p>
 <p>tags 目录下的文件夹名例如 3.10 ，就是该镜像的 tag ，在它的子目录下的 current&#x2F;link 文件则记录了当前 tag 指向的 manifest 文件的位置。比如我们的 alpine:latest 镜像，每次 push 新的 latest 镜像时，current&#x2F;link 都会更新成指向最新镜像的 manifest 文件。</p>
 <p>我们后面观察一下当删除一个镜像时，这些文件是怎么变化的，就可以得知通过 registry API 进行 DELETE 操作可以转换成文件系统层面上对 link 文件的删除操作。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 ~/registry
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/registry
 ╰─<span class="token comment"># cd /var/lib/registry/docker/registry/v2</span>
 ╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># tree</span>
@@ -481,7 +481,7 @@ Storing signatures<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <ul>
 <li><code>blobs</code> 存储目录，存放了镜像的三个必须文件，<code>layer</code>，<code>manifest</code>，<code>config</code>。通过文件大小我们可以大致地推算出最大的 2.7M 是镜像的 layer 。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># find . -name "data" -exec ls -sh &#123;&#125; \;</span>
 <span class="token number">2</span>.7M ./blobs/sha256/21/21c83c5242199776c232920ddb58cfa2a46b17e42ed831ca9001c8dbc532d22d/data
 <span class="token number">4</span>.0K ./blobs/sha256/a1/a143f3ba578f79e2c7b3022c488e6e12a35836cd4a6eb9e363d7f3a07d848590/data
@@ -598,12 +598,12 @@ Storing signatures<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <ul>
 <li>我们再往 registry 中 COPY 一个镜像，方便后面的分析过程。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">skopeo copy docker://debian:buster-slim docker://localhost/library/debian:buster-slim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo copy docker://debian:buster-slim docker://localhost/library/debian:buster-slim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>这是 registry 中就只有 <code>alpine:3.10</code> 和 <code>debian:buster-slim</code> 这两个基础镜像，此时的 registry 存储目录的结构如下：</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># tree</span>
 <span class="token builtin class-name">.</span>
 ├── blobs
@@ -691,7 +691,7 @@ DEBU[0000] DELETE https://localhost/v2/library/alpine/manifests/sha256:a143f3ba5
 <ul>
 <li>再看一下删除后的 registry 存储目录下的 alpine 目录里都少了哪些东东？</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># tree</span>
 <span class="token builtin class-name">.</span>
 ├── blobs
@@ -746,14 +746,14 @@ DEBU[0000] DELETE https://localhost/v2/library/alpine/manifests/sha256:a143f3ba5
 <ul>
 <li>通过 registry API 删除镜像 B 之后，layer c 并没有删掉，只是删掉了对它的引用，所以 c 是多余的。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">A -----<span class="token operator">></span> a     B
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">A -----<span class="token operator">></span> a     B
     <span class="token punctuation">\</span>--<span class="token operator">></span> b
          c<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>GC 之后，layer c 就被删掉了，现在就没有无用的 layer 了。</li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">A -----<span class="token operator">></span> a
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">A -----<span class="token operator">></span> a
     <span class="token punctuation">\</span>--<span class="token operator">></span> b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="GC-的过程"><a href="#GC-的过程" class="headerlink" title="GC 的过程"></a>GC 的过程</h3><p>翻一下 registry  GC 的源码 <a target="_blank" rel="noopener" href="https://github.com/docker/distribution/blob/master/registry/storage/garbagecollect.go">garbagecollect.go</a>，可以看到 GC 的主要分两个阶段，marking 和 sweep。</p>
@@ -785,7 +785,7 @@ err <span class="token operator">:=</span> repositoryEnumerator<span class="toke
 	<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这一阶段用 shell 脚本来实现的话大致可以这样来搞，使用 shell 去遍历这些 manifest ，然后再 grep 出所有的 sha256 值就能得到这个镜像所有的 blobs 目录下的 data 文件。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token builtin class-name">set</span> -x
 <span class="token assign-left variable">v2</span><span class="token operator">=</span><span class="token variable">$&#123;v2<span class="token operator">:=</span>"<span class="token operator">/</span>var<span class="token operator">/</span>lib<span class="token operator">/</span>registry<span class="token operator">/</span>docker<span class="token operator">/</span>registry<span class="token operator">/</span>v2"&#125;</span>
 <span class="token builtin class-name">cd</span> <span class="token variable">$&#123;v2&#125;</span>
@@ -841,7 +841,7 @@ INFO[0000] Deleting blob: &#x2F;docker&#x2F;registry&#x2F;v2&#x2F;blobs&#x2F;sha
 blob eligible for deletion: sha256:21c83c5242199776c232920ddb58cfa2a46b17e42ed831ca9001c8dbc532d22d
 INFO[0000] Deleting blob: &#x2F;docker&#x2F;registry&#x2F;v2&#x2F;blobs&#x2F;sha256&#x2F;21&#x2F;21c83c5242199776c232920ddb58cfa2a46b17e42ed831ca9001c8dbc532d22d  go.version&#x3D;go1.11.2 instance.id&#x3D;3ad15352-7cb7-46ca-a5ae-e5e16c6485a5 service&#x3D;registry<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="GC-之后的-registry-存储目录长什么样？"><a href="#GC-之后的-registry-存储目录长什么样？" class="headerlink" title="GC 之后的 registry 存储目录长什么样？"></a>GC 之后的 registry 存储目录长什么样？</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">╭─root@sg-02 /var/lib/registry/docker/registry/v2
+<h4 id="GC-之后的-registry-存储目录长什么样？"><a href="#GC-之后的-registry-存储目录长什么样？" class="headerlink" title="GC 之后的 registry 存储目录长什么样？"></a>GC 之后的 registry 存储目录长什么样？</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 /var/lib/registry/docker/registry/v2
 ╰─<span class="token comment"># tree</span>
 <span class="token builtin class-name">.</span>
 ├── blobs
@@ -955,7 +955,7 @@ FATA[0000] Failed to delete /v2/library/alpine/manifests/sha256:a143f3ba578f79e2
 
 <h3 id="GC-不彻底，残留-link-文件"><a href="#GC-不彻底，残留-link-文件" class="headerlink" title="GC 不彻底，残留 link 文件"></a>GC 不彻底，残留 link 文件</h3><p>从上面我们可以得知，registry 无论是删除一个镜像还是进行 GC 操作，都不会删除 repositories 目录下的 <code>_layers/sha256/digest/link</code> 文件，在进行 GC 之后，一些镜像 layer 和 config 文件已经在 blobs 存储目录下删除了，但指向它的 layers&#x2F;link 文件依旧保存在 repositories 目录下 🙄。GitHub 上有个 PR <a target="_blank" rel="noopener" href="https://github.com/docker/distribution/issues/2288">Remove the layer’s link by garbage-collect #2288</a> 就是专门来清理这些无用的 layer link 文件的，最早的一个是三年前的，但是还没有合并 😂。</p>
 <p>留着已经被 GC 掉 blob 的 layer link 也没啥用，使用下面这个脚本就能删掉无用的 layer link 文件。根据 layer link 的值去 blobs 目录下看看该文件是否存在，不存在的话就 rm -rf 掉，存在的话就留着。这样就能清理干净啦 😁。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token builtin class-name">cd</span> /var/lib/registry/docker/registry/v2
 <span class="token keyword">for</span> <span class="token for-or-select variable">link</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> repositories -name <span class="token string">"link"</span> <span class="token operator">|</span> <span class="token function">grep</span> -E <span class="token string">"_layers"</span><span class="token variable">)</span></span>
 <span class="token keyword">do</span>
@@ -1042,7 +1042,7 @@ FATA[0000] Failed to delete /v2/library/alpine/manifests/sha256:a143f3ba578f79e2
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25:36</span>
+    <span title="站点阅读时长">25:30</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
