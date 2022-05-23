@@ -101,6 +101,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/telegram-tips.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -128,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/telegram-tips.html</loc>
+    <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -164,15 +173,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/2019-review.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -200,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
+    <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -209,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
+    <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -254,6 +254,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -264,15 +273,6 @@
   
   <url>
     <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -452,15 +452,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/RMS.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -471,6 +462,15 @@
   
   <url>
     <loc>https://blog.k8s.li/android-taibackup.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -506,6 +506,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/categories.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -516,15 +525,6 @@
   
   <url>
     <loc>https://blog.k8s.li/images/manifest.json</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/categories.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
