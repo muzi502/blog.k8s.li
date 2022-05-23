@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/2021.html</loc>
+    <loc>https://blog.k8s.li/kubespray-2.18.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/kubespray-2.18.html</loc>
+    <loc>https://blog.k8s.li/2021.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -101,15 +101,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/telegram-tips.html</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -137,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
+    <loc>https://blog.k8s.li/telegram-tips.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -173,6 +164,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/2019-review.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -200,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
+    <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -209,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
+    <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -263,6 +263,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -273,15 +282,6 @@
   
   <url>
     <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -344,15 +344,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/amd-yes.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -371,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/get-someone-info.html</loc>
+    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -416,6 +407,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/get-someone-info.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -434,6 +434,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -443,7 +452,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/zabbix-compose.html</loc>
+    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
@@ -462,15 +471,6 @@
   
   <url>
     <loc>https://blog.k8s.li/android-taibackup.html</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
     
     <lastmod>2022-05-23</lastmod>
     
