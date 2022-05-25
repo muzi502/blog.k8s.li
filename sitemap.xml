@@ -110,6 +110,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/kindle-note.html</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/merge-bilibili-flv-video.html</loc>
     
     <lastmod>2022-05-25</lastmod>
@@ -120,15 +129,6 @@
   
   <url>
     <loc>https://blog.k8s.li/telegram-tips.html</loc>
-    
-    <lastmod>2022-05-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/kindle-note.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -200,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
+    <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -209,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
+    <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -254,15 +254,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
-    
-    <lastmod>2022-05-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
     
     <lastmod>2022-05-25</lastmod>
@@ -281,7 +272,25 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -308,7 +317,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
+    <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -326,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
+    <loc>https://blog.k8s.li/mirrors-test.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -335,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/mirrors-test.html</loc>
+    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -362,24 +371,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
-    
-    <lastmod>2022-05-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/get-someone-info.html</loc>
-    
-    <lastmod>2022-05-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/oh-my-pink.html</loc>
     
     <lastmod>2022-05-25</lastmod>
@@ -398,6 +389,24 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/get-someone-info.html</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/democracy-movement.html</loc>
     
     <lastmod>2022-05-25</lastmod>
@@ -408,15 +417,6 @@
   
   <url>
     <loc>https://blog.k8s.li/fuch-rush-app-dir.html</loc>
-    
-    <lastmod>2022-05-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -452,6 +452,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/android-taibackup.html</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
     
     <lastmod>2022-05-25</lastmod>
@@ -462,15 +471,6 @@
   
   <url>
     <loc>https://blog.k8s.li/RMS.html</loc>
-    
-    <lastmod>2022-05-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/android-taibackup.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
@@ -506,15 +506,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/categories.html</loc>
-    
-    <lastmod>2022-05-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags.html</loc>
     
     <lastmod>2022-05-25</lastmod>
@@ -525,6 +516,15 @@
   
   <url>
     <loc>https://blog.k8s.li/images/manifest.json</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/categories.html</loc>
     
     <lastmod>2022-05-25</lastmod>
     
