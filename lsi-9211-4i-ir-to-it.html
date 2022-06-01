@@ -24,12 +24,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.k8s.li","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&#x2F;">
+    <meta name="description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱这种梦想着拥有几十 TB 存储空间来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的硬盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&amp;#x2">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="给阵列卡刷个机，IR 模式转 IT 模式">
 <meta property="og:url" content="https://blog.k8s.li/lsi-9211-4i-ir-to-it.html">
 <meta property="og:site_name" content="Reimu&#39;s blog">
-<meta property="og:description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&#x2F;">
+<meta property="og:description" content="刷机？不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱这种梦想着拥有几十 TB 存储空间来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的硬盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。  买的这块阵列卡型号是 ServeRAID H1110 SAS&amp;#x2">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.k8s.li/20200830_9211-4i-01.jpg">
 <meta property="og:image" content="https://p.k8s.li/20200830_9211-4i-02.jpg">
@@ -320,12 +320,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="刷机？"><a href="#刷机？" class="headerlink" title="刷机？"></a>刷机？</h2><p>不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱梦想着这种拥有几十 TB 存储来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的磁盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。</p>
+        <h2 id="刷机？"><a href="#刷机？" class="headerlink" title="刷机？"></a>刷机？</h2><p>不久前捡垃圾搞了一台低功耗 Homelab 主机玩玩，由于主板 SATA 口的限制，不能使用大于 2TB 的硬盘，对于咱这种梦想着拥有几十 TB 存储空间来存放老婆的死肥宅来说，2TB 怎么够了。于是想要突破限制，再给 Homelab 主机增加一块 6TB 的硬盘。于是，在洋垃圾堆里花了 50 块钱捡了这块阵列卡 👇。</p>
 <p><img data-src="https://p.k8s.li/20200830_9211-4i-01.jpg"></p>
 <p>买的这块阵列卡型号是 <a target="_blank" rel="noopener" href="https://lenovopress.com/tips0831-serveraid-h1110">ServeRAID H1110 SAS&#x2F;SATA Controller for IBM System x </a> ，卖家说是 <code>IBM H1110</code> ，其实都差不多啦。由于是第一次玩儿阵列卡，对这种型号也不是很熟悉，之后刷了新的固件又变成了 <code>LSI 9211-4i</code> 。</p>
-<h2 id="翻车？"><a href="#翻车？" class="headerlink" title="翻车？"></a>翻车？</h2><p>收到货后，迫不及待地将存满老婆的硬盘接到阵列卡上，开机的时候，一直卡在阵列卡 BIOS 初始化页面很久很久。顿时觉着，完蛋翻车了，正准备去怼一波卖家，阵列卡启动等了五六分钟后进入了久违的  ESXi 的启动页面。这尼玛，坑我啊，你一个巴掌大的阵列卡启动竟然需要五分钟？内心一万匹草泥马奔腾而过。</p>
+<h2 id="翻车？"><a href="#翻车？" class="headerlink" title="翻车？"></a>翻车？</h2><p>收到货后，迫不及待地将存满老婆的硬盘接到阵列卡上，开机的时候，一直卡在阵列卡 BIOS 初始化页面很久很久。顿时觉着，完蛋翻车了，正准备去怼一波卖家，阵列卡启动等了五六分钟后进入了久违的 ESXi 的启动页面。这尼玛，坑我啊，你一个巴掌大的阵列卡启动竟然需要五分钟？内心一万匹草泥马奔腾而过。</p>
 <p><img data-src="https://p.k8s.li/20200830_9211-4i-02.jpg"></p>
-<h2 id="IR-模式？"><a href="#IR-模式？" class="headerlink" title="IR 模式？"></a>IR 模式？</h2><p>在网上看来一下大佬们的评论，说阵列卡 IR 模式的启动速度要慢一些？然后又找到了 <a target="_blank" rel="noopener" href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a> ，里面提到的可以将 IR 模式刷为 IT 直通模式。至于 IR 模式和 IT 模式，自己太菜没找到确切的资料。大概可以理解为 IR 模式适用于使用阵列卡组 RAID 阵列，而 IT 模式就是所谓的直通模式，不适用 RAID ，只使用阵列卡的磁盘控制器？相当于主板上的 SATA 接口。何况我这个是小主机，里面也塞不下那么多的磁盘，所以阵列卡使用 IT 直通模式无疑是最好的选择。</p>
+<h2 id="IR-模式？"><a href="#IR-模式？" class="headerlink" title="IR 模式？"></a>IR 模式？</h2><p>在网上看来一下大佬们的评论，说阵列卡 IR 模式的启动速度要慢一些？然后又找到了 <a target="_blank" rel="noopener" href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a> ，里面提到的可以将 IR 模式刷为 IT 直通模式。至于 IR 模式和 IT 模式，自己太菜没找到确切的资料。大概可以理解为 IR 模式适用于使用阵列卡组 RAID 阵列，而 IT 模式就是所谓的直通模式，不适用 RAID ，只使用阵列卡的硬盘控制器？相当于主板上的 SATA 接口。何况我这个是小主机，里面也塞不下那么多的硬盘，所以阵列卡使用 IT 直通模式无疑是最好的选择。</p>
 <p><img data-src="https://p.k8s.li/20200828_9211-4i-03.jpg"></p>
 <h2 id="万物皆可刷？"><a href="#万物皆可刷？" class="headerlink" title="万物皆可刷？"></a>万物皆可刷？</h2><p>参照大佬们的博客，咱也要体验一把刷<del>机</del>卡的痛快了，毕竟折腾这些没用的玩意儿也是咱的一大乐趣。</p>
 <blockquote>
@@ -333,7 +333,7 @@
 </blockquote>
 <p>安卓<del>基</del>机佬们想必对 twrp 再熟悉不过了，它是我们刷机，刷各种 ROM 包最常用的系统，相当于 Windows 中的 PE 系统，对系统分区刷上 ROM 来达到刷机的目的。刷阵列卡的固件和刷机也差不多，也是需要一个底层的系统进去对阵列卡上的存储芯片进行操作。最常见的就是 Dos 和 EFI Shell ，由于 Dos 年代久远，且我的主板对 EFI 支持比较友好，在进行刷机的时候为了稳妥起见选择 EFI shell。</p>
 <h3 id="记录-SAS-地址"><a href="#记录-SAS-地址" class="headerlink" title="记录 SAS 地址"></a>记录 SAS 地址</h3><p>在刷阵列卡之前要线记录下 SAS 的 Address ，进入到阵列卡的 BIOS 中会有这个信息。</p>
-<h3 id="找好固件和文档"><a href="#找好固件和文档" class="headerlink" title="找好固件和文档"></a>找好固件和文档</h3><p>由于我要刷入的固件不是阵列卡原厂的固件，只找到了现成的固件，直接就拿来用了，应该问题不大。而且刷入的流程也是比较简答。<a target="_blank" rel="noopener" href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a> :</p>
+<h3 id="找好固件和文档"><a href="#找好固件和文档" class="headerlink" title="找好固件和文档"></a>找好固件和文档</h3><p>由于我要刷入的固件不是阵列卡原厂的固件，只找到了现成的固件，直接就拿来用了，应该问题不大。而且刷入的流程也是比较简滴。<a target="_blank" rel="noopener" href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a> :</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 备份原卡信息和sbr</span>
 MegaCli.exe -AdpAllInfo -aAll -ApplogFile bak.txt
 MegaRec.exe -readsbr <span class="token number">0</span> orig.sbr
@@ -433,7 +433,7 @@ ShellX64.efi</li>
 <p><img data-src="https://p.k8s.li/20200828_9211-4i-06.jpg"></p>
 <p>在 ESXi 中，阵列卡也被识别为了 <code>LSI2004</code> ，看来是没问题了，插上硬盘也都是识别出来了。</p>
 <p><img data-src="https://p.k8s.li/20200908_9211-4i-07.png"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>由于是是第一次给阵列卡刷固件，在网上找到了写资料可以做参考。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>由于是第一次给 HBA 卡刷固件，在网上找了些资料做参考：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.tfir.io/easiest-way-to-flash-lsi-sas-9211-8i-on-motherboards-without-efi-shell/">Easiest Way To Flash LSI SAS 9211-8i on Motherboards without EFI Shell</a></li>
