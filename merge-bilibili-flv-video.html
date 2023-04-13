@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -32,7 +32,7 @@
 <meta property="og:description" content="弄啥咧？  B 站收藏夹里的视频一点一点 404 了，索性就把所有收藏里还存活的视频都使用 UWP 客户端下载下来了，大概 400 多 GB。为了将 UWP 客户端下载的分段 .flv，写了个 shell 脚本来转码合并为 .mp4。目前处理了 100 多GB 的 .flv 文件没啥大碍需要的拿去https:&#x2F;&#x2F;t.co&#x2F;GX4FsswcfC pic.twitter.com&#x2F;LG37IGrMdI&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:27.247Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.598Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="技巧">
 <meta name="twitter:card" content="summary">
@@ -267,7 +267,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:27+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:27+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -537,22 +537,22 @@
 <li>Title</li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 使用 sed 和 tr 去除不能当作文件名的特殊字符</span>
-<span class="token assign-left variable">video_name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>jq <span class="token string">".Title"</span> *.info <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">"[:punct:]<span class="token entity" title="\040">\040</span><span class="token entity" title="\011">\011</span><span class="token entity" title="\012">\012</span><span class="token entity" title="\015">\015</span>"</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token assign-left variable">video_name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>jq <span class="token string">".Title"</span> *.info <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">"[:punct:]<span class="token entity" title="\040">\040</span><span class="token entity" title="\011">\011</span><span class="token entity" title="\012">\012</span><span class="token entity" title="\015">\015</span>"</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>PartName</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">part_name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>jq <span class="token string">".PartName"</span> *.info <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">"[:punct:]<span class="token entity" title="\040">\040</span><span class="token entity" title="\011">\011</span><span class="token entity" title="\012">\012</span><span class="token entity" title="\015">\015</span>"</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">part_name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>jq <span class="token string">".PartName"</span> *.info <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">"[:punct:]<span class="token entity" title="\040">\040</span><span class="token entity" title="\011">\011</span><span class="token entity" title="\012">\012</span><span class="token entity" title="\015">\015</span>"</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>CreateDate</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">upload_time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> -Eo <span class="token string">"20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"</span> *.info<span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">upload_time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> <span class="token parameter variable">-Eo</span> <span class="token string">"20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"</span> *.info<span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="flv-合并"><a href="#flv-合并" class="headerlink" title="flv 合并"></a>flv 合并</h2><p>合并 flv 视频文件使用 ffmpeg 工具很简单就能完成，debian&#x2F;ubuntu 的下直接 <code>apt update &amp;&amp; apt install ffmpeg -y</code> 一把梭就行啦，其他发行使用各自的包管理器安装即可</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 如果执行环境没有安装 jq 命令的话需要安装上哦</span>
 <span class="token function">apt</span> update
-<span class="token function">apt</span> <span class="token function">install</span> ffmpeg jq -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token function">apt</span> <span class="token function">install</span> ffmpeg jq <span class="token parameter variable">-y</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="合并多个-flv-文件"><a href="#合并多个-flv-文件" class="headerlink" title="合并多个 flv 文件"></a>合并多个 flv 文件</h3><p>使用 ffmpeg 合并文件需要准备一个文本文件，里面记录类似一下的格式：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">file</span> <span class="token string">'/path/1.flv'</span>
@@ -567,29 +567,29 @@
 <span class="token comment"># date: 2019-01-12</span>
 <span class="token comment"># 执行环境需要安装 ffmpeg、jq</span>
 
-<span class="token builtin class-name">set</span> -xu
+<span class="token builtin class-name">set</span> <span class="token parameter variable">-xu</span>
 <span class="token assign-left variable">start_time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">date</span><span class="token variable">)</span></span>
 <span class="token assign-left variable">root_dir</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span>
 <span class="token assign-left variable">mp4_dir</span><span class="token operator">=</span><span class="token variable">$&#123;root_dir&#125;</span>/mp4
-<span class="token function">mkdir</span> -p <span class="token variable">$&#123;root_dir&#125;</span>/mp4
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token variable">$&#123;root_dir&#125;</span>/mp4
 
-<span class="token keyword">for</span> <span class="token for-or-select variable">dir</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">sort</span> -n <span class="token operator">|</span> <span class="token function">grep</span> -v .sh <span class="token operator">|</span> <span class="token function">grep</span> -v mp4<span class="token variable">)</span></span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">dir</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-n</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> .sh <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> mp4<span class="token variable">)</span></span>
 <span class="token keyword">do</span>
   <span class="token builtin class-name">cd</span> <span class="token variable">$&#123;root_dir&#125;</span>/<span class="token variable">$&#123;dir&#125;</span>
-  <span class="token keyword">for</span> <span class="token for-or-select variable">p_dir</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">sort</span> -n <span class="token operator">|</span> <span class="token function">grep</span> -E -v <span class="token string">".dvi|.jpg|.ini|.mp4|.txt"</span><span class="token variable">)</span></span>
+  <span class="token keyword">for</span> <span class="token for-or-select variable">p_dir</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-n</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-E</span> <span class="token parameter variable">-v</span> <span class="token string">".dvi|.jpg|.ini|.mp4|.txt"</span><span class="token variable">)</span></span>
   <span class="token keyword">do</span>
     <span class="token builtin class-name">cd</span> <span class="token variable">$&#123;root_dir&#125;</span>/<span class="token variable">$&#123;dir&#125;</span>/<span class="token variable">$&#123;p_dir&#125;</span>
-    <span class="token assign-left variable">video_name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>jq <span class="token string">".Title"</span> *.info <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">"[:punct:]<span class="token entity" title="\040">\040</span><span class="token entity" title="\011">\011</span><span class="token entity" title="\012">\012</span><span class="token entity" title="\015">\015</span>"</span><span class="token variable">)</span></span>
-    <span class="token assign-left variable">part_name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>jq <span class="token string">".PartName"</span> *.info <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">"[:punct:]<span class="token entity" title="\040">\040</span><span class="token entity" title="\011">\011</span><span class="token entity" title="\012">\012</span><span class="token entity" title="\015">\015</span>"</span><span class="token variable">)</span></span>
-    <span class="token assign-left variable">upload_time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> -Eo <span class="token string">"20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"</span> *.info<span class="token variable">)</span></span>
+    <span class="token assign-left variable">video_name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>jq <span class="token string">".Title"</span> *.info <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">"[:punct:]<span class="token entity" title="\040">\040</span><span class="token entity" title="\011">\011</span><span class="token entity" title="\012">\012</span><span class="token entity" title="\015">\015</span>"</span><span class="token variable">)</span></span>
+    <span class="token assign-left variable">part_name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>jq <span class="token string">".PartName"</span> *.info <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">"[:punct:]<span class="token entity" title="\040">\040</span><span class="token entity" title="\011">\011</span><span class="token entity" title="\012">\012</span><span class="token entity" title="\015">\015</span>"</span><span class="token variable">)</span></span>
+    <span class="token assign-left variable">upload_time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> <span class="token parameter variable">-Eo</span> <span class="token string">"20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"</span> *.info<span class="token variable">)</span></span>
     <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"null"</span> <span class="token operator">=</span> <span class="token string">"<span class="token variable">$&#123;part_name&#125;</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
       <span class="token assign-left variable">mp4_file_name</span><span class="token operator">=</span><span class="token variable">$&#123;upload_time&#125;</span>_<span class="token variable">$&#123;video_name&#125;</span>.mp4
     <span class="token keyword">else</span>
       <span class="token assign-left variable">mp4_file_name</span><span class="token operator">=</span><span class="token variable">$&#123;upload_time&#125;</span>_<span class="token variable">$&#123;video_name&#125;</span>_<span class="token variable">$&#123;p_dir&#125;</span>_<span class="token variable">$&#123;part_name&#125;</span>.mp4
     <span class="token keyword">fi</span>
-    <span class="token function">ls</span> *.flv <span class="token operator">|</span> <span class="token function">sort</span> -n <span class="token operator">></span> ff.txt
-    <span class="token function">sed</span> -i <span class="token string">'s/^/file /g'</span> ff.txt
-    ffmpeg -f concat -i ff.txt -c copy <span class="token variable">$&#123;mp4_dir&#125;</span>/<span class="token string">"<span class="token variable">$&#123;mp4_file_name&#125;</span>"</span><span class="token punctuation">;</span><span class="token function">rm</span> -rf ff.txt
+    <span class="token function">ls</span> *.flv <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-n</span> <span class="token operator">></span> ff.txt
+    <span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/^/file /g'</span> ff.txt
+    ffmpeg <span class="token parameter variable">-f</span> concat <span class="token parameter variable">-i</span> ff.txt <span class="token parameter variable">-c</span> copy <span class="token variable">$&#123;mp4_dir&#125;</span>/<span class="token string">"<span class="token variable">$&#123;mp4_file_name&#125;</span>"</span><span class="token punctuation">;</span><span class="token function">rm</span> <span class="token parameter variable">-rf</span> ff.txt
     <span class="token builtin class-name">cd</span> <span class="token variable">$&#123;root_dir&#125;</span>/<span class="token variable">$&#123;dir&#125;</span>
   <span class="token builtin class-name">cd</span> <span class="token variable">$&#123;root_dir&#125;</span>
   <span class="token keyword">done</span>
@@ -602,12 +602,12 @@
 ╰─$ tree
 <span class="token number">364</span> directories, <span class="token number">1542</span> files
 ╭─debian@debian /mnt/d/Downloads/bilibili
-╰─$ <span class="token function">du</span> -sh
+╰─$ <span class="token function">du</span> <span class="token parameter variable">-sh</span>
 114G    <span class="token builtin class-name">.</span>
 ╭─debian@debian /mnt/d/Downloads/bilibili
 ╰─$ ./merge_bilibili_video.sh
 + <span class="token assign-left variable">end_time</span><span class="token operator">=</span><span class="token string">'Tue 14 Jan 2020 10:52:32 AM CST'</span>
-++ <span class="token function">du</span> -sh /mnt/d/Downloads/bilibili/mp4
+++ <span class="token function">du</span> <span class="token parameter variable">-sh</span> /mnt/d/Downloads/bilibili/mp4
 + <span class="token assign-left variable">mp4_size</span><span class="token operator">=</span><span class="token string">'113G        /mnt/d/Downloads/bilibili/mp4'</span>
 + <span class="token builtin class-name">echo</span> <span class="token string">'Tue 14 Jan 2020 10:42:07 AM CST'</span>
 Tue <span class="token number">14</span> Jan <span class="token number">2020</span> <span class="token number">10</span>:42:07 AM CST
@@ -697,7 +697,7 @@ all output mp4 size 113G        /mnt/d/Downloads/bilibili/mp4<span aria-hidden="
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

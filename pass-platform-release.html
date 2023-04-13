@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -584,11 +584,11 @@ platform-release
 <ul>
 <li>打包 Helm Chart</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -p charts <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> -rf charts/* <span class="token operator">||</span> <span class="token boolean">true</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> charts <span class="token operator">&amp;&amp;</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span> charts/* <span class="token operator">||</span> <span class="token boolean">true</span>
 
-<span class="token keyword">for</span> <span class="token for-or-select variable">dir</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> $<span class="token punctuation">&#123;</span>ADDONS_PATH<span class="token punctuation">&#125;</span> -type f <span class="token operator">|</span> <span class="token function">sed</span> -n <span class="token string">'s/Chart.yaml//p'</span><span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span> helm package <span class="token variable">$&#123;dir&#125;</span> -d charts<span class="token punctuation">;</span> <span class="token keyword">done</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">dir</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> $<span class="token punctuation">&#123;</span>ADDONS_PATH<span class="token punctuation">&#125;</span> <span class="token parameter variable">-type</span> f <span class="token operator">|</span> <span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">'s/Chart.yaml//p'</span><span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span> helm package <span class="token variable">$&#123;dir&#125;</span> <span class="token parameter variable">-d</span> charts<span class="token punctuation">;</span> <span class="token keyword">done</span>
 
-<span class="token function">chown</span> -R <span class="token number">10000</span>:10000 charts <span class="token operator">&amp;&amp;</span> <span class="token function">tar</span> -cpvf charts.tar.gz charts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">chown</span> <span class="token parameter variable">-R</span> <span class="token number">10000</span>:10000 charts <span class="token operator">&amp;&amp;</span> <span class="token function">tar</span> <span class="token parameter variable">-cpvf</span> charts.tar.gz charts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>打包镜像</li>
@@ -663,7 +663,7 @@ platform-release
 <li>测试人员验证补丁包的质量；</li>
 </ul>
 <p>在打包补丁包的时候我们采用 git diff 的方式，将本次补丁包发布所修改的组件 Chart 文件筛选出来，只对这些修改的组件进行打包操作。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">chart</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">git</span> <span class="token function">diff</span> --name-only --diff-filter<span class="token operator">=</span>AM --ignore-space-at-eol --ignore-space-change $<span class="token punctuation">&#123;</span>DENPENDENCY_VERSION<span class="token punctuation">&#125;</span> $<span class="token punctuation">&#123;</span>NEW_VERSION<span class="token punctuation">&#125;</span> $<span class="token punctuation">&#123;</span>ADDONS_PATH<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">sed</span> -n <span class="token string">'s/Chart.yaml//p'</span> <span class="token operator">|</span> <span class="token function">sort</span> -u <span class="token variable">)</span></span><span class="token punctuation">;</span><span class="token keyword">do</span> <span class="token function">cp</span> -rf <span class="token variable">$&#123;chart&#125;</span> <span class="token variable">$&#123;HOTFIX_YAML_DIR&#125;</span><span class="token punctuation">;</span> <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">chart</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">git</span> <span class="token function">diff</span> --name-only --diff-filter<span class="token operator">=</span>AM --ignore-space-at-eol --ignore-space-change $<span class="token punctuation">&#123;</span>DENPENDENCY_VERSION<span class="token punctuation">&#125;</span> $<span class="token punctuation">&#123;</span>NEW_VERSION<span class="token punctuation">&#125;</span> $<span class="token punctuation">&#123;</span>ADDONS_PATH<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">'s/Chart.yaml//p'</span> <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-u</span> <span class="token variable">)</span></span><span class="token punctuation">;</span><span class="token keyword">do</span> <span class="token function">cp</span> <span class="token parameter variable">-rf</span> <span class="token variable">$&#123;chart&#125;</span> <span class="token variable">$&#123;HOTFIX_YAML_DIR&#125;</span><span class="token punctuation">;</span> <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>对于一些 OEM 项目，我们会基于产品版本的分支创建一个与该 OEM 产品相对应的发布分支，如 <code>release-2.10/muzi502</code>，即代表 muzi502 这个客户使用的产品版本是基于 2.10 版本的。在这个分支上我们基于上述步骤进行 OEM 补丁包的发布。</p>
 
@@ -719,7 +719,7 @@ platform-release
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

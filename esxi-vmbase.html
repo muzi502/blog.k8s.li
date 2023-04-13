@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -32,7 +32,7 @@
 <meta property="og:description" content="0. 背景由于工作环境是 ESXi 虚拟化，需要经常用一些模板开部署一些虚拟机，由于我的机器没有连接上 vCenter，只能靠上传 OVA 等虚拟机模板来部署，因此需要搓一些虚拟机模板出来。宿主机系统有 Debian 10、Debian 9、Ubuntu1804、Ubuntu 1604、CentOS7.6、Alpine 3.10、OpenWrt&#x2F;LEDE ，还有 Windows 😂。一">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-08-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:26.923Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.382Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="ESXi">
 <meta property="article:tag" content="虚拟机">
@@ -269,7 +269,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:26+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:26+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -327,7 +327,7 @@
 <ol>
 <li>安装 ncdu 工具结合 du 用来分析系统根分区占用大小情况</li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt</span> <span class="token function">install</span> ncdu -y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt</span> <span class="token function">install</span> ncdu <span class="token parameter variable">-y</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>2.默认安装后的系统分区占用情况，虽然在安装的过程中</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@ubuntu:~<span class="token comment"># df -h</span>
@@ -420,16 +420,16 @@ tmpfs                              <span class="token number">2</span>.0G     <s
 tmpfs                              393M     <span class="token number">0</span>  393M   <span class="token number">0</span>% /run/user/1000
 root@ubuntu:~<span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="3-清理日志和缓存"><a href="#3-清理日志和缓存" class="headerlink" title="3. 清理日志和缓存"></a>3. 清理日志和缓存</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf /var/lib/apt/lists/*
-<span class="token function">rm</span> -rf /var/cache/apt/*
-<span class="token function">rm</span> -rf /var/log/journal/*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-清理日志和缓存"><a href="#3-清理日志和缓存" class="headerlink" title="3. 清理日志和缓存"></a>3. 清理日志和缓存</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/lib/apt/lists/*
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/cache/apt/*
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/log/journal/*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="4-清理不用的文件"><a href="#4-清理不用的文件" class="headerlink" title="4. 清理不用的文件"></a>4. 清理不用的文件</h4><p>剩下来能精简的只有 <code>/usr/share</code> 里面的 doc 和 locale 文件里，减小大概 40 MB</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf /usr/share/doc
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> <span class="token parameter variable">-rf</span> /usr/share/doc
 
 <span class="token builtin class-name">cd</span> /usr/share/locale
 <span class="token comment"># 下面这条命令一定要在 /usr/share/locale 目录下执行</span>
-<span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">grep</span> -v zh <span class="token operator">|</span> <span class="token function">grep</span> -v en <span class="token operator">|</span> <span class="token function">grep</span> -v us <span class="token operator">|</span> <span class="token function">grep</span> -v @ <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token builtin class-name">local</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">rm</span> -rf
+<span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> zh <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> en <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> us <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> @ <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token builtin class-name">local</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span>
 
 root@ubuntu:/usr/share/locale<span class="token comment"># du -sh</span>
 <span class="token number">1</span>.5M<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -501,22 +501,22 @@ dd: error writing <span class="token string">'/zero'</span><span class="token bu
 <p>经过置零后，导出的 ova 虚拟机模板体积 460M 左右，骤然减少了接近 2 倍的大小 😂</p>
 <h3 id="2-Debian-10"><a href="#2-Debian-10" class="headerlink" title="2. Debian 10"></a>2. Debian 10</h3><h4 id="1-安装镜像-1"><a href="#1-安装镜像-1" class="headerlink" title="1. 安装镜像"></a>1. 安装镜像</h4><p>安装镜像选用 Debian 的网络版安装镜像，<a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/debian-cd/10.0.0/amd64/iso-cd/debian-10.0.0-amd64-netinst.iso">debian-10.0.0-amd64-netinst.iso</a> 其实选择 <a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/debian-cd/10.0.0/amd64/iso-cd/debian-10.0.0-amd64-xfce-CD-1.iso">debian-10.0.0-amd64-netinst.iso  </a>版的也行，在最后不要安装桌面环境就可以。</p>
 <h4 id="2-卸载不用的软件包-1"><a href="#2-卸载不用的软件包-1" class="headerlink" title="2. 卸载不用的软件包"></a>2. 卸载不用的软件包</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 首先修改一下 apt 源</span>
-<span class="token function">sed</span> -i <span class="token string">'s/deb.debian.org/mirrors.ustc.edu.cn/g'</span> /etc/apt/sources.list
-<span class="token function">sed</span> -i <span class="token string">'s|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g'</span> /etc/apt/sources.list
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/deb.debian.org/mirrors.ustc.edu.cn/g'</span> /etc/apt/sources.list
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g'</span> /etc/apt/sources.list
 <span class="token function">apt</span> update
 <span class="token comment"># 装上一些比较实用的工具</span>
-<span class="token function">apt</span> <span class="token function">install</span> --no-install-recommends --no-install-suggests -y <span class="token function">wget</span>  ncdu
+<span class="token function">apt</span> <span class="token function">install</span> --no-install-recommends --no-install-suggests <span class="token parameter variable">-y</span> <span class="token function">wget</span>  ncdu
 
 <span class="token comment"># 这几个包卸载掉影响不大，应该。。</span>
 <span class="token function">apt</span> purge emacsen-common firmware-linux-free gcc-8-base linux-image-amd64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="3-清理日志和缓存-1"><a href="#3-清理日志和缓存-1" class="headerlink" title="3. 清理日志和缓存"></a>3. 清理日志和缓存</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf /var/lib/apt/lists/*
+<h4 id="3-清理日志和缓存-1"><a href="#3-清理日志和缓存-1" class="headerlink" title="3. 清理日志和缓存"></a>3. 清理日志和缓存</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/lib/apt/lists/*
 <span class="token function">apt</span> autoclean
 <span class="token function">apt</span> autoremove<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="4-清理不用的文件-1"><a href="#4-清理不用的文件-1" class="headerlink" title="4. 清理不用的文件"></a>4. 清理不用的文件</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/share/local
-<span class="token function">du</span> -sh * <span class="token operator">|</span> <span class="token function">grep</span> -v en <span class="token operator">|</span> <span class="token function">grep</span> -v zh <span class="token operator">|</span> <span class="token function">grep</span> -v cn <span class="token operator">|</span> <span class="token function">grep</span> -v us <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print $2&#125;'</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">rm</span> -rf
-<span class="token function">rm</span> -rf /usr/share/doc/*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token function">du</span> <span class="token parameter variable">-sh</span> * <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> en <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> zh <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> cn <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> us <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print $2&#125;'</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span>
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> /usr/share/doc/*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="5-置零剩余空间-1"><a href="#5-置零剩余空间-1" class="headerlink" title="5. 置零剩余空间"></a>5. 置零剩余空间</h4><p>直接使用 dd 暴力清零就行啦 <code>dd if=/dev/zero of=/zero bs=4M || rm -rf /zero</code></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@debian ~
@@ -536,27 +536,27 @@ tmpfs                        395M     <span class="token number">0</span>  395M 
 
 <h3 id="3-CentOS-7-6"><a href="#3-CentOS-7-6" class="headerlink" title="3. CentOS 7.6"></a>3. CentOS 7.6</h3><h4 id="1-安装镜像-2"><a href="#1-安装镜像-2" class="headerlink" title="1. 安装镜像"></a>1. 安装镜像</h4><p>安装镜像就选择使用 <a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso">CentOS-7-x86_64-Minimal-1810.iso</a> 版的 iso 就行，安装过程就不再赘述啦。磁盘分区建议为 lvm ，因为这个是虚拟机模板文件，并不清楚以后的用途和所占用的空间。使用 lvm 可以很方便地扩展根分区。</p>
 <h4 id="2-卸载不用的软件包-2"><a href="#2-卸载不用的软件包-2" class="headerlink" title="2. 卸载不用的软件包"></a>2. 卸载不用的软件包</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 修改 yum 源为阿里云</span>
-<span class="token function">wget</span> -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-yum <span class="token function">install</span> -y <span class="token function">wget</span> <span class="token function">curl</span> ncdu
+<span class="token function">wget</span> <span class="token parameter variable">-O</span> /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum <span class="token function">install</span> <span class="token parameter variable">-y</span> <span class="token function">wget</span> <span class="token function">curl</span> ncdu
 
 yum remove linux-firmware NetworkManager mariadb-libs NetworkManager  alsa-lib centos-logos.noarch
-yum list installed <span class="token operator">|</span> <span class="token function">grep</span> firmware <span class="token operator">|</span> <span class="token function">xargs</span> yum remove -y
+yum list installed <span class="token operator">|</span> <span class="token function">grep</span> firmware <span class="token operator">|</span> <span class="token function">xargs</span> yum remove <span class="token parameter variable">-y</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="3-清理日志和缓存-2"><a href="#3-清理日志和缓存-2" class="headerlink" title="3. 清理日志和缓存"></a>3. 清理日志和缓存</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum clean all
 
-<span class="token function">rm</span> -rf /var/cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="4-清理不用的文件-2"><a href="#4-清理不用的文件-2" class="headerlink" title="4. 清理不用的文件"></a>4. 清理不用的文件</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 精简一下 local-archive 文件</span>
-localedef --list-archive  <span class="token operator">|</span> <span class="token function">grep</span> -v zh  <span class="token operator">|</span> <span class="token function">grep</span> -v us <span class="token operator">|</span> <span class="token function">grep</span> -v en <span class="token operator">|</span> <span class="token function">grep</span> -v cn <span class="token operator">|</span> <span class="token function">xargs</span> localedef --delete-from-archive
+localedef --list-archive  <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> zh  <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> us <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> en <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> cn <span class="token operator">|</span> <span class="token function">xargs</span> localedef --delete-from-archive
 <span class="token function">mv</span> /usr/lib/locale/locale-archive /usr/lib/locale/locale-archive.tmpl
 build-locale-archive
 
-<span class="token function">rm</span> -rf /usr/share/doc
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> /usr/share/doc
 <span class="token builtin class-name">cd</span> /usr/share/locale
 <span class="token comment"># 下面这条命令一定要在 /usr/share/locale 目录下执行</span>
-<span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">grep</span> -v zh <span class="token operator">|</span> <span class="token function">grep</span> -v en <span class="token operator">|</span> <span class="token function">grep</span> -v us <span class="token operator">|</span> <span class="token function">grep</span> -v @ <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token builtin class-name">local</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">rm</span> -rf
-<span class="token function">rm</span> -rf /usr/share/backgrounds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> zh <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> en <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> us <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> @ <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token builtin class-name">local</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span>
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> /usr/share/backgrounds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="5-置零剩余空间-2"><a href="#5-置零剩余空间-2" class="headerlink" title="5. 置零剩余空间"></a>5. 置零剩余空间</h4><p>直接使用 dd 暴力清零就行啦 <code>dd if=/dev/zero of=/zero bs=4M || rm -rf /zero</code></p>
 <p>最后看一下磁盘空间，占用不到 700M ，还是可以的哈</p>
@@ -629,7 +629,7 @@ tmpfs                    378M     <span class="token number">0</span>  378M   <s
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

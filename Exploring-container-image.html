@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -570,12 +570,12 @@
 <ul>
 <li>风格一：比如 <a target="_blank" rel="noopener" href="https://github.com/nginxinc/docker-nginx/blob/master/stable/buster/Dockerfile">nginx</a> 官方镜像是用的 <code>&amp;&amp;</code>，貌似也混入了 <code>;</code>🤣</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">RUN <span class="token builtin class-name">set</span> -x <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">RUN <span class="token builtin class-name">set</span> <span class="token parameter variable">-x</span> <span class="token punctuation">\</span>
 <span class="token comment"># create nginx user/group first, to be consistent throughout docker variants</span>
-    <span class="token operator">&amp;&amp;</span> addgroup --system --gid <span class="token number">101</span> nginx <span class="token punctuation">\</span>
-    <span class="token operator">&amp;&amp;</span> adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos <span class="token string">"nginx user"</span> --shell /bin/false --uid <span class="token number">101</span> nginx <span class="token punctuation">\</span>
+    <span class="token operator">&amp;&amp;</span> addgroup <span class="token parameter variable">--system</span> <span class="token parameter variable">--gid</span> <span class="token number">101</span> nginx <span class="token punctuation">\</span>
+    <span class="token operator">&amp;&amp;</span> adduser <span class="token parameter variable">--system</span> --disabled-login <span class="token parameter variable">--ingroup</span> nginx --no-create-home <span class="token parameter variable">--home</span> /nonexistent <span class="token parameter variable">--gecos</span> <span class="token string">"nginx user"</span> <span class="token parameter variable">--shell</span> /bin/false <span class="token parameter variable">--uid</span> <span class="token number">101</span> nginx <span class="token punctuation">\</span>
     <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> update <span class="token punctuation">\</span>
-    <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> --no-install-recommends --no-install-suggests -y gnupg1 ca-certificates <span class="token punctuation">\</span>
+    <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> --no-install-recommends --no-install-suggests <span class="token parameter variable">-y</span> gnupg1 ca-certificates <span class="token punctuation">\</span>
     <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
     <span class="token assign-left variable">NGINX_GPGKEY</span><span class="token operator">=</span>573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62<span class="token punctuation">;</span> <span class="token punctuation">\</span>
     <span class="token assign-left variable">found</span><span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
@@ -592,19 +592,19 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">RUN <span class="token builtin class-name">set</span> -eux<span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	<span class="token assign-left variable">savedAptMark</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>apt-mark showmanual<span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	<span class="token function">apt-get</span> update<span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	<span class="token function">apt-get</span> <span class="token function">install</span> -y --no-install-recommends ca-certificates dirmngr gnupg <span class="token function">wget</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	<span class="token function">rm</span> -rf /var/lib/apt/lists/*<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	<span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> --no-install-recommends ca-certificates dirmngr gnupg <span class="token function">wget</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	<span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/lib/apt/lists/*<span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	<span class="token assign-left variable">dpkgArch</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>dpkg --print-architecture <span class="token operator">|</span> <span class="token function">awk</span> -F- <span class="token string">'&#123; print $NF &#125;'</span><span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	<span class="token function">wget</span> -O /usr/local/bin/gosu <span class="token string">"https://github.com/tianon/gosu/releases/download/<span class="token variable">$GOSU_VERSION</span>/gosu-<span class="token variable">$dpkgArch</span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	<span class="token function">wget</span> -O /usr/local/bin/gosu.asc <span class="token string">"https://github.com/tianon/gosu/releases/download/<span class="token variable">$GOSU_VERSION</span>/gosu-<span class="token variable">$dpkgArch</span>.asc"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	<span class="token builtin class-name">export</span> <span class="token assign-left variable">GNUPGHOME</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>mktemp -d<span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4<span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu<span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	gpgconf --kill all<span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	<span class="token function">rm</span> -rf <span class="token string">"<span class="token variable">$GNUPGHOME</span>"</span> /usr/local/bin/gosu.asc<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	<span class="token function">wget</span> <span class="token parameter variable">-O</span> /usr/local/bin/gosu <span class="token string">"https://github.com/tianon/gosu/releases/download/<span class="token variable">$GOSU_VERSION</span>/gosu-<span class="token variable">$dpkgArch</span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	<span class="token function">wget</span> <span class="token parameter variable">-O</span> /usr/local/bin/gosu.asc <span class="token string">"https://github.com/tianon/gosu/releases/download/<span class="token variable">$GOSU_VERSION</span>/gosu-<span class="token variable">$dpkgArch</span>.asc"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	<span class="token builtin class-name">export</span> <span class="token assign-left variable">GNUPGHOME</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>mktemp <span class="token parameter variable">-d</span><span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	gpg <span class="token parameter variable">--batch</span> <span class="token parameter variable">--keyserver</span> hkps://keys.openpgp.org --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	gpg <span class="token parameter variable">--batch</span> <span class="token parameter variable">--verify</span> /usr/local/bin/gosu.asc /usr/local/bin/gosu<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	gpgconf <span class="token parameter variable">--kill</span> all<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	<span class="token function">rm</span> <span class="token parameter variable">-rf</span> <span class="token string">"<span class="token variable">$GNUPGHOME</span>"</span> /usr/local/bin/gosu.asc<span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	apt-mark auto <span class="token string">'.*'</span> <span class="token operator">></span> /dev/null<span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	<span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$savedAptMark</span>"</span> <span class="token punctuation">]</span> <span class="token operator">||</span> apt-mark manual <span class="token variable">$savedAptMark</span> <span class="token operator">></span> /dev/null<span class="token punctuation">;</span> <span class="token punctuation">\</span>
-	<span class="token function">apt-get</span> purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant<span class="token operator">=</span>false<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	<span class="token punctuation">[</span> <span class="token parameter variable">-z</span> <span class="token string">"<span class="token variable">$savedAptMark</span>"</span> <span class="token punctuation">]</span> <span class="token operator">||</span> apt-mark manual <span class="token variable">$savedAptMark</span> <span class="token operator">></span> /dev/null<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+	<span class="token function">apt-get</span> purge <span class="token parameter variable">-y</span> --auto-remove <span class="token parameter variable">-o</span> APT::AutoRemove::RecommendsImportant<span class="token operator">=</span>false<span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	<span class="token function">chmod</span> +x /usr/local/bin/gosu<span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	gosu --version<span class="token punctuation">;</span> <span class="token punctuation">\</span>
 	gosu nobody <span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -636,19 +636,19 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/buster/slim
 ╰─<span class="token comment"># docker history webpsh/webps</span>
 IMAGE               CREATED             CREATED BY          SIZE                COMMENT
-30d9679b0b1c        <span class="token number">2</span> weeks ago         /bin/sh -c <span class="token comment">#(nop)  CMD ["/usr/bin/webp-serve…   0B</span>
-<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">2</span> weeks ago         /bin/sh -c <span class="token comment">#(nop)  VOLUME [/opt/exhaust]        0B</span>
-<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">2</span> weeks ago         /bin/sh -c <span class="token comment">#(nop) WORKDIR /opt                  0B</span>
-<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">2</span> weeks ago         /bin/sh -c <span class="token comment">#(nop) COPY file:1497d882aeef5f77…   168B</span>
-<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">2</span> weeks ago         /bin/sh -c <span class="token comment">#(nop) COPY file:327020918e4dc998…   14.9MB</span>
-<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">6</span> weeks ago         /bin/sh -c <span class="token comment">#(nop)  CMD ["/bin/sh"]              0B</span>
-<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">6</span> weeks ago         /bin/sh -c <span class="token comment">#(nop) ADD file:b91adb67b670d3a6f…   5.61MB</span>
+30d9679b0b1c        <span class="token number">2</span> weeks ago         /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop)  CMD ["/usr/bin/webp-serve…   0B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">2</span> weeks ago         /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop)  VOLUME [/opt/exhaust]        0B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">2</span> weeks ago         /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop) WORKDIR /opt                  0B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">2</span> weeks ago         /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop) COPY file:1497d882aeef5f77…   168B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">2</span> weeks ago         /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop) COPY file:327020918e4dc998…   14.9MB</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">6</span> weeks ago         /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop)  CMD ["/bin/sh"]              0B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">></span>           <span class="token number">6</span> weeks ago         /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop) ADD file:b91adb67b670d3a6f…   5.61MB</span>
 
 ╭─root@sg-02 ~/buster/slim
 ╰─<span class="token comment"># docker history debian:v2</span>
 IMAGE               CREATED             CREATED BY           SIZE                COMMENT
-e6e782a57a51        <span class="token number">38</span> hours ago        /bin/sh -c <span class="token comment">#(nop)  CMD ["bash"]                 0B</span>
-ba8f577813c7        <span class="token number">38</span> hours ago        /bin/sh -c <span class="token comment">#(nop) ADD file:a82014afc29e7b364…   69.2MB</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+e6e782a57a51        <span class="token number">38</span> hours ago        /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop)  CMD ["bash"]                 0B</span>
+ba8f577813c7        <span class="token number">38</span> hours ago        /bin/sh <span class="token parameter variable">-c</span> <span class="token comment">#(nop) ADD file:a82014afc29e7b364…   69.2MB</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="base-image"><a href="#base-image" class="headerlink" title="base image"></a>base image</h4><p>当我们在写 Dockerfile 的时候都需要用 <code>FROM</code> 语句来指定一个基础镜像，这些基础镜像并不是无中生有，也需要一个 Dockerfile 来构建成镜像。下面我们拿来 <a target="_blank" rel="noopener" href="https://hub.docker.com/_/debian">debian:buster</a> 这个基础镜像的 <a target="_blank" rel="noopener" href="https://github.com/debuerreotype/docker-debian-artifacts/blob/18cb4d0418be1c80fb19141b69ac2e0600b2d601/buster/Dockerfile">Dockerfile</a> 来看一下基础镜像是如何炼成的。</p>
 <pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> scratch</span>
@@ -699,10 +699,10 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 <span class="token builtin class-name">cd</span> <span class="token operator">!</span>$
 <span class="token function">git</span> checkout dist-amd64
 <span class="token builtin class-name">cd</span> buster
-<span class="token function">docker</span> build -t debian:buster <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">docker</span> build <span class="token parameter variable">-t</span> debian:buster <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>下面就是构建 Debian 基础镜像的过程，正如 Dockerfile 中的那样，最终只产生了一层镜像。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build -t debian:buster <span class="token builtin class-name">.</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build <span class="token parameter variable">-t</span> debian:buster <span class="token builtin class-name">.</span>
 Sending build context to Docker daemon  <span class="token number">30</span>.12MB
 Step <span class="token number">1</span>/3 <span class="token builtin class-name">:</span> FROM scratch
  ---<span class="token operator">></span>
@@ -1665,7 +1665,7 @@ overlay2
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

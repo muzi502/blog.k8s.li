@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -419,8 +419,8 @@
 <span class="token assign-left variable">StandardError</span><span class="token operator">=</span>journal
 <span class="token assign-left variable">AmbientCapabilities</span><span class="token operator">=</span>CAP_NET_BIND_SERVICE
 <span class="token assign-left variable">WorkingDirectory</span><span class="token operator">=</span>/opt/webps
-<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/opt/webps/webp-server --config /opt/webps/config.json
-<span class="token assign-left variable">ExecReload</span><span class="token operator">=</span>/bin/kill -HUP <span class="token variable">$MAINPID</span>
+<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/opt/webps/webp-server <span class="token parameter variable">--config</span> /opt/webps/config.json
+<span class="token assign-left variable">ExecReload</span><span class="token operator">=</span>/bin/kill <span class="token parameter variable">-HUP</span> <span class="token variable">$MAINPID</span>
 <span class="token assign-left variable">Restart</span><span class="token operator">=</span>always
 <span class="token assign-left variable">RestartSec</span><span class="token operator">=</span>3s
 
@@ -560,34 +560,34 @@ systemctl start webps.service<span aria-hidden="true" class="line-numbers-rows">
 </tr>
 </tbody></table>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">### 10KB-500KB</span>
-./webp-server -jobs <span class="token number">1</span> -config config.json -prefetch  <span class="token number">632</span>.77s user <span class="token number">11</span>.23s system <span class="token number">200</span>% cpu <span class="token number">5</span>:20.88 total
-./webp-server -jobs <span class="token number">2</span> -config config.json -prefetch  <span class="token number">639</span>.31s user <span class="token number">8</span>.77s system <span class="token number">299</span>% cpu <span class="token number">3</span>:36.05 total
-./webp-server -jobs <span class="token number">4</span> -config config.json -prefetch  <span class="token number">676</span>.17s user <span class="token number">8</span>.12s system <span class="token number">494</span>% cpu <span class="token number">2</span>:18.49 total
-./webp-server -jobs <span class="token number">8</span> -config config.json -prefetch  <span class="token number">905</span>.41s user <span class="token number">9</span>.55s system <span class="token number">875</span>% cpu <span class="token number">1</span>:44.49 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">1</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">632</span>.77s user <span class="token number">11</span>.23s system <span class="token number">200</span>% cpu <span class="token number">5</span>:20.88 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">2</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">639</span>.31s user <span class="token number">8</span>.77s system <span class="token number">299</span>% cpu <span class="token number">3</span>:36.05 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">4</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">676</span>.17s user <span class="token number">8</span>.12s system <span class="token number">494</span>% cpu <span class="token number">2</span>:18.49 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">8</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">905</span>.41s user <span class="token number">9</span>.55s system <span class="token number">875</span>% cpu <span class="token number">1</span>:44.49 total
 
 <span class="token comment">### 500KB-1MB</span>
 
-./webp-server -jobs <span class="token number">1</span> -config config.json -prefetch  <span class="token number">767</span>.45s user <span class="token number">10</span>.14s system <span class="token number">199</span>% cpu <span class="token number">6</span>:28.97 total
-./webp-server -jobs <span class="token number">2</span> -config config.json -prefetch  <span class="token number">778</span>.00s user <span class="token number">8</span>.62s system <span class="token number">295</span>% cpu <span class="token number">4</span>:16.41 total
-./webp-server -jobs <span class="token number">4</span> -config config.json -prefetch  <span class="token number">831</span>.38s user <span class="token number">7</span>.62s system <span class="token number">495</span>% cpu <span class="token number">2</span>:49.46 total
-./webp-server -jobs <span class="token number">8</span> -config config.json -prefetch  <span class="token number">1092</span>.50s user <span class="token number">7</span>.98s system <span class="token number">881</span>% cpu <span class="token number">2</span>:04.81 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">1</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">767</span>.45s user <span class="token number">10</span>.14s system <span class="token number">199</span>% cpu <span class="token number">6</span>:28.97 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">2</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">778</span>.00s user <span class="token number">8</span>.62s system <span class="token number">295</span>% cpu <span class="token number">4</span>:16.41 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">4</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">831</span>.38s user <span class="token number">7</span>.62s system <span class="token number">495</span>% cpu <span class="token number">2</span>:49.46 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">8</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">1092</span>.50s user <span class="token number">7</span>.98s system <span class="token number">881</span>% cpu <span class="token number">2</span>:04.81 total
 
 <span class="token comment">### 1MB-4MB</span>
 
-./webp-server -jobs <span class="token number">1</span> -config config.json -prefetch  <span class="token number">934</span>.22s user <span class="token number">12</span>.45s system <span class="token number">199</span>% cpu <span class="token number">7</span>:53.45 total
-./webp-server -jobs <span class="token number">2</span> -config config.json -prefetch  <span class="token number">958</span>.41s user <span class="token number">9</span>.41s system <span class="token number">300</span>% cpu <span class="token number">5</span>:22.15 total
-./webp-server -jobs <span class="token number">4</span> -config config.json -prefetch  <span class="token number">1010</span>.56s user <span class="token number">8</span>.05s system <span class="token number">494</span>% cpu <span class="token number">3</span>:26.18 total
-./webp-server -jobs <span class="token number">8</span> -config config.json -prefetch  <span class="token number">1345</span>.73s user <span class="token number">10</span>.84s system <span class="token number">888</span>% cpu <span class="token number">2</span>:32.64 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">1</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">934</span>.22s user <span class="token number">12</span>.45s system <span class="token number">199</span>% cpu <span class="token number">7</span>:53.45 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">2</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">958</span>.41s user <span class="token number">9</span>.41s system <span class="token number">300</span>% cpu <span class="token number">5</span>:22.15 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">4</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">1010</span>.56s user <span class="token number">8</span>.05s system <span class="token number">494</span>% cpu <span class="token number">3</span>:26.18 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">8</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">1345</span>.73s user <span class="token number">10</span>.84s system <span class="token number">888</span>% cpu <span class="token number">2</span>:32.64 total
 
 <span class="token comment">### 4MB-32MB</span>
 
-./webp-server -jobs <span class="token number">1</span> -config config.json -prefetch  <span class="token number">641</span>.78s user <span class="token number">10</span>.77s system <span class="token number">187</span>% cpu <span class="token number">5</span>:28.65 total
-./webp-server -jobs <span class="token number">2</span> -config config.json -prefetch  <span class="token number">643</span>.19s user <span class="token number">9</span>.73s system <span class="token number">297</span>% cpu <span class="token number">3</span>:39.16 total
-./webp-server -jobs <span class="token number">4</span> -config config.json -prefetch  <span class="token number">688</span>.05s user <span class="token number">9</span>.91s system <span class="token number">494</span>% cpu <span class="token number">2</span>:21.22 total
-./webp-server -jobs <span class="token number">8</span> -config config.json -prefetch  <span class="token number">916</span>.91s user <span class="token number">12</span>.03s system <span class="token number">888</span>% cpu <span class="token number">1</span>:44.53 total<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">1</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">641</span>.78s user <span class="token number">10</span>.77s system <span class="token number">187</span>% cpu <span class="token number">5</span>:28.65 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">2</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">643</span>.19s user <span class="token number">9</span>.73s system <span class="token number">297</span>% cpu <span class="token number">3</span>:39.16 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">4</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">688</span>.05s user <span class="token number">9</span>.91s system <span class="token number">494</span>% cpu <span class="token number">2</span>:21.22 total
+./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">8</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>  <span class="token number">916</span>.91s user <span class="token number">12</span>.03s system <span class="token number">888</span>% cpu <span class="token number">1</span>:44.53 total<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="转换前后大小对比"><a href="#转换前后大小对比" class="headerlink" title="转换前后大小对比"></a>转换前后大小对比</h3><p>以下咱就截取一小部分的测试结果，完整的日志放在了我的 gist 上 <strong><a target="_blank" rel="noopener" href="https://gist.github.com/muzi502/4f7c4128895ac3f438e7a183df219661">webp-server-go_test.log</a></strong> 。图片都是真是的数据，根据文件名的 ID 可以在 pixiv.net 上找到源文件，相信老司机们都懂得 😂。</p>
-<h4 id="10KB-500KB"><a href="#10KB-500KB" class="headerlink" title="(10KB,500KB)"></a>(10KB,500KB)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./webp-server -jobs <span class="token number">8</span> -config config.json -prefetch
+<h4 id="10KB-500KB"><a href="#10KB-500KB" class="headerlink" title="(10KB,500KB)"></a>(10KB,500KB)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">8</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>
 <span class="token number">905</span>.41s user <span class="token number">9</span>.55s system <span class="token number">875</span>% cpu <span class="token number">1</span>:44.49 total
 
 src		    	dist		num
@@ -618,7 +618,7 @@ src		    	dist		num
 <span class="token number">75357235</span>.jpg	493K		67K
 <span class="token number">21085426</span>.jpg	492K		55K<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="500KB-1MB"><a href="#500KB-1MB" class="headerlink" title="(500KB,1MB)"></a>(500KB,1MB)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./webp-server -jobs <span class="token number">8</span> -config config.json -prefetch
+<h4 id="500KB-1MB"><a href="#500KB-1MB" class="headerlink" title="(500KB,1MB)"></a>(500KB,1MB)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">8</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>
 <span class="token number">1092</span>.50s user <span class="token number">7</span>.98s system <span class="token number">881</span>% cpu <span class="token number">2</span>:04.81 total
 
 src				dist		num
@@ -668,7 +668,7 @@ src				dist		num
 <span class="token number">72535236</span>.jpg	966K		160K
 <span class="token number">47680545</span>.png	966K		162K<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="1MB-4MB"><a href="#1MB-4MB" class="headerlink" title="(1MB,4MB)"></a>(1MB,4MB)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./webp-server -jobs <span class="token number">8</span> -config config.json -prefetch
+<h4 id="1MB-4MB"><a href="#1MB-4MB" class="headerlink" title="(1MB,4MB)"></a>(1MB,4MB)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">8</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>
 <span class="token number">1345</span>.73s user <span class="token number">10</span>.84s system <span class="token number">888</span>% cpu <span class="token number">2</span>:32.64 total
 
 src		  		dist		num
@@ -709,7 +709,7 @@ src		  		dist		num
 <span class="token number">70159814</span>.png	<span class="token number">3</span>.9M		156K
 <span class="token number">70764048</span>.jpg	<span class="token number">3</span>.9M		437K<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="4MB-32MB"><a href="#4MB-32MB" class="headerlink" title="(4MB,32MB)"></a>(4MB,32MB)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./webp-server -jobs <span class="token number">8</span> -config config.json -prefetch
+<h4 id="4MB-32MB"><a href="#4MB-32MB" class="headerlink" title="(4MB,32MB)"></a>(4MB,32MB)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./webp-server <span class="token parameter variable">-jobs</span> <span class="token number">8</span> <span class="token parameter variable">-config</span> config.json <span class="token parameter variable">-prefetch</span>
 <span class="token number">916</span>.91s user <span class="token number">12</span>.03s system <span class="token number">888</span>% cpu <span class="token number">1</span>:44.53 total
 
 src				dist		num
@@ -831,7 +831,7 @@ src				dist		num
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

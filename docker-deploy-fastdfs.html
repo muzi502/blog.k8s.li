@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://p.k8s.li/1564384711746.png">
 <meta property="og:image" content="https://p.k8s.li/1564384906456.png">
 <meta property="article:published_time" content="2019-09-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:26.939Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.390Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="FastDFS">
@@ -287,7 +287,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:26+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:26+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
 
   
@@ -339,14 +339,14 @@ fastdfs             centos              c1488537c23c        <span class="token n
 
 <h3 id="准备配置文件"><a href="#准备配置文件" class="headerlink" title="准备配置文件"></a>准备配置文件</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将所有的配置文件一并放到 conf 目录下</span>
 <span class="token builtin class-name">cd</span> ~
-<span class="token function">mkdir</span>  -p fastdfs/conf
-<span class="token function">git</span> clone https://github.com/happyfish100/fastdfs.git --depth <span class="token number">1</span>
-<span class="token function">cp</span> -rf fastdfs/docker/dockerfile_local/conf/* conf
+<span class="token function">mkdir</span>  <span class="token parameter variable">-p</span> fastdfs/conf
+<span class="token function">git</span> clone https://github.com/happyfish100/fastdfs.git <span class="token parameter variable">--depth</span> <span class="token number">1</span>
+<span class="token function">cp</span> <span class="token parameter variable">-rf</span> fastdfs/docker/dockerfile_local/conf/* conf
 <span class="token function">cp</span> fastdfs/docker/dockerfile_local/fastdfs.sh conf
 <span class="token function">touch</span> Dockerfile.debian
 <span class="token function">touch</span> Dockerfile.alpine
 <span class="token comment"># 复制出来配置文件，把源码移除掉就可以</span>
-<span class="token function">rm</span> -rf fastdfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> fastdfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>所有的配置文件都在 conf 里，我们根据自身的需要修改一下各个配置文件即可，关于 fastdfs 配置文件的各个参数可以去参考一下下面的博客。</p>
 <ul>
@@ -402,8 +402,8 @@ fastdfs             centos              c1488537c23c        <span class="token n
 <span class="token assign-left variable">new_val</span><span class="token operator">=</span><span class="token variable">$FASTDFS_IPADDR</span>
 <span class="token assign-left variable">old</span><span class="token operator">=</span><span class="token string">"tracker_ip"</span>
 
-<span class="token function">sed</span> -i <span class="token string">"s/<span class="token variable">$old</span>/<span class="token variable">$new_val</span>/g"</span> /etc/fdfs/storage.conf
-<span class="token function">sed</span> -i <span class="token string">"s/<span class="token variable">$old</span>/<span class="token variable">$new_val</span>/g"</span> /etc/fdfs/mod_fastdfs.conf
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">"s/<span class="token variable">$old</span>/<span class="token variable">$new_val</span>/g"</span> /etc/fdfs/storage.conf
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">"s/<span class="token variable">$old</span>/<span class="token variable">$new_val</span>/g"</span> /etc/fdfs/mod_fastdfs.conf
 
 <span class="token builtin class-name">echo</span> <span class="token string">"start trackerd"</span>
 /etc/init.d/fdfs_trackerd start
@@ -414,13 +414,13 @@ fastdfs             centos              c1488537c23c        <span class="token n
 <span class="token builtin class-name">echo</span> <span class="token string">"start nginx"</span>
 /usr/local/nginx/sbin/nginx
 
-<span class="token function">tail</span> -f  /dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">tail</span> <span class="token parameter variable">-f</span>  /dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="把-bash-替换成-sh"><a href="#把-bash-替换成-sh" class="headerlink" title="把 bash 替换成 sh"></a>把 bash 替换成 sh</h4><p>其实这一步骤可以不做，使用 bash 启动的话，需要在 alpine 安装 bash ，会增加 6MB 左右的镜像大小，感觉也没必要这样做 😂</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sed</span> -i <span class="token string">'s/bash/sh/g'</span> <span class="token variable"><span class="token variable">`</span><span class="token function">grep</span> -nr <span class="token function">bash</span> <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">':'</span> <span class="token string">'&#123;print $1&#125;'</span><span class="token variable">`</span></span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/bash/sh/g'</span> <span class="token variable"><span class="token variable">`</span><span class="token function">grep</span> <span class="token parameter variable">-nr</span> <span class="token function">bash</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token parameter variable">-F</span> <span class="token string">':'</span> <span class="token string">'&#123;print $1&#125;'</span><span class="token variable">`</span></span>
 
 <span class="token comment"># 替换后</span>
-<span class="token function">grep</span> -nr <span class="token punctuation">\</span>#<span class="token punctuation">\</span><span class="token operator">!</span><span class="token punctuation">\</span>/bin<span class="token punctuation">\</span>/sh
+<span class="token function">grep</span> <span class="token parameter variable">-nr</span> <span class="token punctuation">\</span>#<span class="token punctuation">\</span><span class="token operator">!</span><span class="token punctuation">\</span>/bin<span class="token punctuation">\</span>/sh
 stop.sh:1:<span class="token comment">#!/bin/sh</span>
 init.d/fdfs_storaged:1:<span class="token comment">#!/bin/sh</span>
 init.d/fdfs_trackerd:1:<span class="token comment">#!/bin/sh</span>
@@ -546,9 +546,9 @@ fastdfs             centos              c1488537c23c        <span class="token n
         libdl.so.2 <span class="token operator">=</span><span class="token operator">></span> /lib/x86_64-linux-gnu/libdl.so.2 <span class="token punctuation">(</span>0x00007feade82f000<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="容器启动方法"><a href="#容器启动方法" class="headerlink" title="容器启动方法"></a>容器启动方法</h3><p>需要注意的是，FastDFS 的容器需要使用 host 网络，因为 fastdfs storage 服务器需要向 tracker 服务器汇报自己 IP，这个 IP 还需要通过环境变量的方式注入到相关的配置文件当中。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run -d -e <span class="token assign-left variable">FASTDFS_IPADDR</span><span class="token operator">=</span><span class="token number">10.10</span>.107.230 <span class="token punctuation">\</span>
-           -p <span class="token number">28888</span>:28888 -p <span class="token number">22122</span>:22122 -p <span class="token number">23000</span>:23000 -p <span class="token number">28088</span>:28080 <span class="token punctuation">\</span>
-           -v <span class="token environment constant">$PWD</span>/data:/var/fdfs --net<span class="token operator">=</span>host --name fastdfs fastdfs:alpine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">-e</span> <span class="token assign-left variable">FASTDFS_IPADDR</span><span class="token operator">=</span><span class="token number">10.10</span>.107.230 <span class="token punctuation">\</span>
+           <span class="token parameter variable">-p</span> <span class="token number">28888</span>:28888 <span class="token parameter variable">-p</span> <span class="token number">22122</span>:22122 <span class="token parameter variable">-p</span> <span class="token number">23000</span>:23000 <span class="token parameter variable">-p</span> <span class="token number">28088</span>:28080 <span class="token punctuation">\</span>
+           <span class="token parameter variable">-v</span> <span class="token environment constant">$PWD</span>/data:/var/fdfs <span class="token parameter variable">--net</span><span class="token operator">=</span>host <span class="token parameter variable">--name</span> fastdfs fastdfs:alpine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h3 id="测试工具"><a href="#测试工具" class="headerlink" title="测试工具"></a>测试工具</h3><ol>
 <li>上传客户端：<code>fdfs_upload_file</code></li>
@@ -557,7 +557,7 @@ fastdfs             centos              c1488537c23c        <span class="token n
 <li>上传测试命令：<code>time ls  | xargs -n 1 -I &#123;&#125; -P 256 sh -c &quot;/usr/bin/fdfs_upload_file /etc/fdfs/client.conf &#123;&#125;&quot;` </code>-p 参数指定并发执行的任务数量</li>
 <li>下载测试工具： <code>wget</code></li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">下载测试命令：<span class="token variable"><span class="token variable">`</span><span class="token function">time</span> <span class="token function">cat</span> url.log  <span class="token operator">|</span> <span class="token function">xargs</span> -n <span class="token number">1</span> -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> -P <span class="token number">256</span> <span class="token function">sh</span> -c <span class="token string">"wget  &#123;&#125;"</span><span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">下载测试命令：<span class="token variable"><span class="token variable">`</span><span class="token function">time</span> <span class="token function">cat</span> url.log  <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token parameter variable">-n</span> <span class="token number">1</span> <span class="token parameter variable">-I</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token parameter variable">-P</span> <span class="token number">256</span> <span class="token function">sh</span> <span class="token parameter variable">-c</span> <span class="token string">"wget  &#123;&#125;"</span><span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="文件上传测试"><a href="#文件上传测试" class="headerlink" title="文件上传测试"></a>文件上传测试</h3><p>测试样本为 10W 张 8KB-100 KB 大小不等的图片</p>
 <p><img data-src="https://p.k8s.li/1564128425387.png"></p>
@@ -700,7 +700,7 @@ tracker_query_storage fail, error no: <span class="token number">28</span>, erro
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

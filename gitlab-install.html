@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -316,12 +316,12 @@
     <div class="post-body" itemprop="articleBody">
         <p>目前 gitlab 官方给出的安装方式有很多种，普遍采用 Omnibus 包、Docker 安装。官方说的 😂 <strong>我们强烈建议使用 Omnibus 包安装 GitLab ，因为它安装起来更快、更容易升级版本，而且包含了其他安装方式所没有的可靠性功能。</strong></p>
 <h2 id="1-Omnibus-包安装，也就是-rpm-包、deb-包安装-😂"><a href="#1-Omnibus-包安装，也就是-rpm-包、deb-包安装-😂" class="headerlink" title="1.Omnibus 包安装，也就是 rpm 包、deb 包安装 😂"></a>1.Omnibus 包安装，也就是 rpm 包、deb 包安装 😂</h2><h3 id="CentOS7"><a href="#CentOS7" class="headerlink" title="CentOS7"></a>CentOS7</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装依赖</span>
-<span class="token function">sudo</span> yum <span class="token function">install</span> -y <span class="token function">curl</span> policycoreutils-python openssh-server
+<span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token parameter variable">-y</span> <span class="token function">curl</span> policycoreutils-python openssh-server
 <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> sshd
 <span class="token function">sudo</span> systemctl start sshd
 
 <span class="token comment"># 配置防火墙</span>
-<span class="token function">sudo</span> firewall-cmd --permanent --add-service<span class="token operator">=</span>http
+<span class="token function">sudo</span> firewall-cmd <span class="token parameter variable">--permanent</span> --add-service<span class="token operator">=</span>http
 <span class="token function">sudo</span> systemctl reload firewalld
 
 <span class="token comment"># 添加官方的软件包源</span>
@@ -338,7 +338,7 @@ Ece
 
 <span class="token function">sudo</span> yum makecache
 <span class="token comment"># 然后安装最新的版本</span>
-yum <span class="token function">install</span> -y gitlab-ce
+yum <span class="token function">install</span> <span class="token parameter variable">-y</span> gitlab-ce
 <span class="token comment"># 安装指定版本 12.3.5</span>
 yum <span class="token function">install</span> gitlab-ce-12.3.5-ce.0.el7.x86_64.rpm
 
@@ -357,7 +357,7 @@ deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu bionic main
 <span class="token comment"># 也可以考虑使用 wget 的方式把 deb 包下载下来</span>
 <span class="token function">wget</span> https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu/pool/bionic/main/g/gitlab-ce/gitlab-ce_12.3.5-ce.0_amd64.deb
 
-opkg -i gitlab-ce/gitlab-ce_12.3.5-ce.0_amd64.deb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+opkg <span class="token parameter variable">-i</span> gitlab-ce/gitlab-ce_12.3.5-ce.0_amd64.deb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <h2 id="2-打补丁，补充汉化的补丁"><a href="#2-打补丁，补充汉化的补丁" class="headerlink" title="2.打补丁，补充汉化的补丁"></a>2.打补丁，补充汉化的补丁</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://gitlab.com/xhang/gitlab.git
@@ -372,7 +372,7 @@ opkg -i gitlab-ce/gitlab-ce_12.3.5-ce.0_amd64.deb<span aria-hidden="true" class=
 gitlab-ctl stop
 
 <span class="token comment"># 打补丁的时候会提示一些补丁文件不存在，一定要跳过这些文件，不然后面reconfig的时候会报错的。</span>
-patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 <span class="token operator">&lt;</span> <span class="token variable">$&#123;gitlab_version&#125;</span>-zh.diff
+patch <span class="token parameter variable">-d</span> /opt/gitlab/embedded/service/gitlab-rails <span class="token parameter variable">-p1</span> <span class="token operator">&lt;</span> <span class="token variable">$&#123;gitlab_version&#125;</span>-zh.diff
 
 <span class="token comment"># 重启gitlab</span>
 gitlab-ctl reconfigure
@@ -403,9 +403,9 @@ gitlab_rails<span class="token punctuation">[</span>'gitlab_email_from'<span cla
 
 <p>再执行</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> yum makecache
-<span class="token function">sudo</span> yum <span class="token function">install</span> gitlab-runner -y
+<span class="token function">sudo</span> yum <span class="token function">install</span> gitlab-runner <span class="token parameter variable">-y</span>
 <span class="token comment"># 安装指定版本 其中 12.3.5 即为指定的版本号</span>
-yum <span class="token function">install</span> gitlab-runner-12.3.5-1.x86_64 -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+yum <span class="token function">install</span> gitlab-runner-12.3.5-1.x86_64 <span class="token parameter variable">-y</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="Debian-x2F-Ubuntu"><a href="#Debian-x2F-Ubuntu" class="headerlink" title="Debian&#x2F;Ubuntu"></a>Debian&#x2F;Ubuntu</h3><p>首先信任 GitLab 的 GPG 公钥:</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://packages.gitlab.com/gpg.key <span class="token operator"><span class="token file-descriptor important">2</span>></span> /dev/null <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> - <span class="token operator">&amp;></span>/dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -419,7 +419,7 @@ yum <span class="token function">install</span> gitlab-runner-12.3.5-1.x86_64 -y
 
 <p>配置好 deb 源之后再执行</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> uodate
-<span class="token function">apt</span> <span class="token function">install</span> gitlab-runner -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token function">apt</span> <span class="token function">install</span> gitlab-runner <span class="token parameter variable">-y</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h2 id="注册-gitlab-runner"><a href="#注册-gitlab-runner" class="headerlink" title="注册 gitlab-runner"></a>注册 gitlab-runner</h2><p>使用 root 用户从 web 端登录到 gitlab 管理中心。在 <code>概览</code> –&gt; <code>Runner</code> 。在右上角会有以下，稍后会用到。</p>
 <ul>
@@ -591,7 +591,7 @@ Runner registered successfully. Feel <span class="token function">free</span> to
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

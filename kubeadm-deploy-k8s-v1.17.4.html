@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -345,23 +345,23 @@
 EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="关闭-swap-和-SELinux"><a href="#关闭-swap-和-SELinux" class="headerlink" title="关闭 swap 和 SELinux"></a>关闭 swap 和 SELinux</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 临时关闭swap和SELinux</span>
-swapoff -a
+swapoff <span class="token parameter variable">-a</span>
 
 <span class="token comment"># ubuntu 默认没有安装 SELinux 因为无需关闭</span>
 setenforce <span class="token number">0</span>
-<span class="token function">sed</span> -i <span class="token string">'s/^SELINUX=enforcing$/SELINUX= disabled/'</span> /etc/selinux/config<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/^SELINUX=enforcing$/SELINUX= disabled/'</span> /etc/selinux/config<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="设置内核参数"><a href="#设置内核参数" class="headerlink" title="设置内核参数"></a>设置内核参数</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">></span> /etc/sysctl.d/99-kubernetes-cri.conf <span class="token operator">&lt;&lt;</span><span class="token string">EOF
 net.bridge.bridge-nf-call-iptables  = 1
 enet.ipv4.ip_forward                = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF</span>
-sysctl --system<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">sysctl</span> <span class="token parameter variable">--system</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="配置镜像源和安装"><a href="#配置镜像源和安装" class="headerlink" title="配置镜像源和安装"></a>配置镜像源和安装</h3><p>如果对 docker-ce 版本没有特殊要求，使用以下命令可安装 docker-ce 最新的 stable 版本。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -fsSL https://get.docker.com <span class="token operator">|</span> <span class="token function">bash</span> -s <span class="token function">docker</span> --mirror Aliyun<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://get.docker.com <span class="token operator">|</span> <span class="token function">bash</span> <span class="token parameter variable">-s</span> <span class="token function">docker</span> <span class="token parameter variable">--mirror</span> Aliyun<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h4 id="CentOS7"><a href="#CentOS7" class="headerlink" title="CentOS7"></a>CentOS7</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> -y yum-utils
+<h4 id="CentOS7"><a href="#CentOS7" class="headerlink" title="CentOS7"></a>CentOS7</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> <span class="token parameter variable">-y</span> yum-utils
 
 <span class="token comment"># 如果 docker 版本使用 18.09 + 且存储驱动使用 overlay2</span>
 <span class="token comment"># 就不用 device-mapper-persistent-data 和 lvm2</span>
@@ -380,19 +380,19 @@ EOF</span>
 yum makecache
 
 <span class="token comment"># 列出可以安装的 docker-ce 版本，安装指定的 docker 版本</span>
-yum list docker-ce --showduplicates<span class="token operator">|</span><span class="token function">sort</span> -r
-yum <span class="token function">install</span> -y docker-ce-19.03.3-3.el7
+yum list docker-ce --showduplicates<span class="token operator">|</span><span class="token function">sort</span> <span class="token parameter variable">-r</span>
+yum <span class="token function">install</span> <span class="token parameter variable">-y</span> docker-ce-19.03.3-3.el7
 
 <span class="token comment"># # 列出可以安装的 kubernetes 版本，安装指定的 kubeadm kubelet kubectl</span>
-yum list kubeadm --showduplicates<span class="token operator">|</span><span class="token function">sort</span> -r
-yum <span class="token function">install</span> kubelet-1.17.4-0 kubeadm-1.17.4-0 kubectl-1.17.4-0 --disableexcludes<span class="token operator">=</span>kubernetes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+yum list kubeadm --showduplicates<span class="token operator">|</span><span class="token function">sort</span> <span class="token parameter variable">-r</span>
+yum <span class="token function">install</span> kubelet-1.17.4-0 kubeadm-1.17.4-0 kubectl-1.17.4-0 <span class="token parameter variable">--disableexcludes</span><span class="token operator">=</span>kubernetes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="Ubuntu-1804"><a href="#Ubuntu-1804" class="headerlink" title="Ubuntu 1804"></a>Ubuntu 1804</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt</span> update
-<span class="token function">apt-get</span> <span class="token function">install</span> -y apt-transport-https ca-certificates <span class="token function">curl</span> software-properties-common
+<span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> apt-transport-https ca-certificates <span class="token function">curl</span> software-properties-common
 
 <span class="token comment"># 添加阿里云 docker-ce 镜像源</span>
-<span class="token function">curl</span> -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -
-add-apt-repository <span class="token string">"deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release -cs<span class="token variable">)</span></span> stable"</span>
+<span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -
+add-apt-repository <span class="token string">"deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release <span class="token parameter variable">-cs</span><span class="token variable">)</span></span> stable"</span>
 <span class="token comment"># 添加阿里云 kubernetes 镜像源</span>
 <span class="token function">curl</span> https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
 <span class="token function">cat</span> <span class="token operator">&lt;&lt;</span><span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">></span>/etc/apt/sources.list.d/kubernetes.list</span>
@@ -400,7 +400,7 @@ deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
 EOF</span>
 <span class="token function">apt-get</span> update
 <span class="token comment"># 安装指定版本的 docker-ce</span>
-<span class="token function">apt</span> list -a docker-ce
+<span class="token function">apt</span> list <span class="token parameter variable">-a</span> docker-ce
 <span class="token function">apt</span> <span class="token function">install</span> docker-ce<span class="token operator">=</span><span class="token number">5</span>:19.03.8~3-0~ubuntu-bionic
 <span class="token comment"># 安装指定版本的 kubernetes</span>
 <span class="token function">apt</span> <span class="token function">install</span> <span class="token assign-left variable">kubeadm</span><span class="token operator">=</span><span class="token number">1.17</span>.4-00 <span class="token assign-left variable">kubelet</span><span class="token operator">=</span><span class="token number">1.17</span>.4-00 <span class="token assign-left variable">kubectl</span><span class="token operator">=</span><span class="token number">1.17</span>.4-00<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -503,9 +503,9 @@ k8s.gcr.io/coredns:1.6.5<span aria-hidden="true" class="line-numbers-rows"><span
 <span class="token comment"># date: 2019-08-15</span>
 <span class="token comment"># author: muzi502</span>
 
-<span class="token builtin class-name">set</span> -xue
-<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y apt-transport-https <span class="token function">curl</span>
-<span class="token function">curl</span> -s https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
+<span class="token builtin class-name">set</span> <span class="token parameter variable">-xue</span>
+<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> apt-transport-https <span class="token function">curl</span>
+<span class="token function">curl</span> <span class="token parameter variable">-s</span> https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
 <span class="token function">cat</span> <span class="token operator">&lt;&lt;</span><span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">></span>/etc/apt/sources.list.d/kubernetes.list</span>
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF</span>
@@ -514,10 +514,10 @@ EOF</span>
 <span class="token keyword">for</span> <span class="token for-or-select variable">version</span> <span class="token keyword">in</span> <span class="token number">1.17</span>.4
 <span class="token keyword">do</span>
     <span class="token function">apt</span> <span class="token function">install</span> <span class="token assign-left variable">kubeadm</span><span class="token operator">=</span><span class="token variable">$&#123;version&#125;</span>-00
-    <span class="token function">mkdir</span> -p <span class="token variable">$&#123;version&#125;</span>/bin
-    <span class="token function">docker</span> rmi <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> images -q<span class="token variable">)</span></span>
+    <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token variable">$&#123;version&#125;</span>/bin
+    <span class="token function">docker</span> rmi <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> images <span class="token parameter variable">-q</span><span class="token variable">)</span></span>
     kubeadm config images pull --kubernetes-version<span class="token operator">=</span><span class="token variable">$&#123;version&#125;</span>
-    <span class="token function">docker</span> save -o <span class="token function">v</span><span class="token variable">$&#123;version&#125;</span>.tar <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> images <span class="token operator">|</span> <span class="token function">grep</span> -v TAG <span class="token operator">|</span> <span class="token function">cut</span> -d <span class="token string">' '</span> -f1<span class="token variable">)</span></span>
+    <span class="token function">docker</span> save <span class="token parameter variable">-o</span> <span class="token function">v</span><span class="token variable">$&#123;version&#125;</span>.tar <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> images <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> TAG <span class="token operator">|</span> <span class="token function">cut</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> <span class="token parameter variable">-f1</span><span class="token variable">)</span></span>
     <span class="token function">gzip</span> <span class="token function">v</span><span class="token variable">$&#123;version&#125;</span>.tar <span class="token function">v</span><span class="token variable">$&#123;version&#125;</span>.tar.gz
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -574,9 +574,9 @@ Your Kubernetes control-plane has initialized successfully<span class="token ope
 
 To start using your cluster, you need to run the following as a regular user:
 
-  <span class="token function">mkdir</span> -p <span class="token environment constant">$HOME</span>/.kube
-  <span class="token function">sudo</span> <span class="token function">cp</span> -i /etc/kubernetes/admin.conf <span class="token environment constant">$HOME</span>/.kube/config
-  <span class="token function">sudo</span> <span class="token function">chown</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -u<span class="token variable">)</span></span><span class="token builtin class-name">:</span><span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -g<span class="token variable">)</span></span> <span class="token environment constant">$HOME</span>/.kube/config
+  <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token environment constant">$HOME</span>/.kube
+  <span class="token function">sudo</span> <span class="token function">cp</span> <span class="token parameter variable">-i</span> /etc/kubernetes/admin.conf <span class="token environment constant">$HOME</span>/.kube/config
+  <span class="token function">sudo</span> <span class="token function">chown</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> <span class="token parameter variable">-u</span><span class="token variable">)</span></span><span class="token builtin class-name">:</span><span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> <span class="token parameter variable">-g</span><span class="token variable">)</span></span> <span class="token environment constant">$HOME</span>/.kube/config
 
 You should now deploy a pod network to the cluster.
 Run <span class="token string">"kubectl apply -f [podnetwork].yaml"</span> with one of the options listed at:
@@ -584,7 +584,7 @@ Run <span class="token string">"kubectl apply -f [podnetwork].yaml"</span> with 
 
 Then you can <span class="token function">join</span> any number of worker nodes by running the following on each as root:
 
-kubeadm <span class="token function">join</span> <span class="token number">10.20</span>.172.211:6443 --token hi66lb.r13y2hottst2ks6f <span class="token punctuation">\</span>
+kubeadm <span class="token function">join</span> <span class="token number">10.20</span>.172.211:6443 <span class="token parameter variable">--token</span> hi66lb.r13y2hottst2ks6f <span class="token punctuation">\</span>
     --discovery-token-ca-cert-hash sha256:9b96a436f2897a8371fccb3af4d8f2fff348fcb42763e005e9175a4e925c51d1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>刚刚安装完之后 coreDNS 的 Pod 会一直出于 pending 状态，而且 Master 的 STATUS 状态也是 <code>NotReady</code> 。遇到这种问题 <code>不要慌,问题不大.jpg</code> 这是因为集群中还没有安装好 CNI 网络插件，等下部署好 flannel 就可以。</p>
@@ -686,7 +686,7 @@ k8s-node-01     Ready    <span class="token operator">&lt;</span>none<span class
 <span class="token comment"># usage: save the .she to your local such as /usr/bin/rawg, and chmod +x /usr/bin/rawg</span>
 <span class="token comment"># use rawg https://github.com/ohmyzsh/ohmyzsh/blob/master/tools/install.sh to download</span>
 
-<span class="token builtin class-name">set</span> -xue
+<span class="token builtin class-name">set</span> <span class="token parameter variable">-xue</span>
 <span class="token comment"># GitHub rul: https://github.com/ohmyzsh/ohmyzsh/blob/master/tools/install.sh</span>
 <span class="token comment"># jsDelivr url: https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/tools/install.sh</span>
 
@@ -750,7 +750,7 @@ k8s-node-01     Ready    <span class="token operator">&lt;</span>none<span class
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

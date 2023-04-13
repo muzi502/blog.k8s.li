@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -32,7 +32,7 @@
 <meta property="og:description" content="1. WNDR3700V4 扩展分区大小刷完 OpenWrt-18.06.0 后，根分区只利用了 14 MB，大多数帖子都是通过修改源码分区表，重新编译固件而全部利用剩余空间，不过这样做可以一劳永逸。但很容易变砖，而且刷回原厂变砖的概率极大。索性还是不动分区表，直接重新新建一个分区即可。重新建立一个分区坑也比较多 😂 root@OpenWrt:~# df -h Filesystem">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:26.959Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.414Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="openwrt">
 <meta name="twitter:card" content="summary">
@@ -267,7 +267,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:26+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:26+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,12 +332,12 @@ tmpfs                   <span class="token number">512</span>.0K         <span c
 <p>So to find out the reason and try to expand usable space, I used the command “dmesg” and “cat &#x2F;proc&#x2F;mtd” to collect the information of mtd devices.</p>
 <p>Then, make the ubifs I need.</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ubiformat /dev/mtd11
-ubiattach -p /dev/mtd11
-ubimkvol /dev/ubi1 -N data -s 90MiB
-<span class="token function">mount</span> -t ubifs ubi1:data /opt
+ubiattach <span class="token parameter variable">-p</span> /dev/mtd11
+ubimkvol /dev/ubi1 <span class="token parameter variable">-N</span> data <span class="token parameter variable">-s</span> 90MiB
+<span class="token function">mount</span> <span class="token parameter variable">-t</span> ubifs ubi1:data /opt
 Finally, <span class="token function">add</span> the following lines to /etc/rc.local to <span class="token function">make</span> it <span class="token function">mount</span> when router starts.
-ubiattach -p /dev/mtd11
-<span class="token function">mount</span> -t ubifs ubi1:data /opt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ubiattach <span class="token parameter variable">-p</span> /dev/mtd11
+<span class="token function">mount</span> <span class="token parameter variable">-t</span> ubifs ubi1:data /opt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>完活后的分区信息</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@OpenWrt:~<span class="token comment"># df -h</span>
@@ -358,7 +358,7 @@ dest opt /opt
 lists_dir ext /var/opkg-lists
 option overlay_root /overlay
 
-opkg <span class="token function">install</span> <span class="token function">zsh</span> <span class="token function">git</span> -d opt
+opkg <span class="token function">install</span> <span class="token function">zsh</span> <span class="token function">git</span> <span class="token parameter variable">-d</span> opt
 
 <span class="token comment"># 添加环境变量</span>
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"/opt/lib:/opt/usr/lib"</span>
@@ -367,8 +367,8 @@ opkg <span class="token function">install</span> <span class="token function">zs
 <h2 id="3-安装-frpc-并设置开机自启"><a href="#3-安装-frpc-并设置开机自启" class="headerlink" title="3.安装 frpc 并设置开机自启"></a>3.安装 frpc 并设置开机自启</h2><p>先去现在自己路由器架构相同的编译 ipk 包，如果不清楚自己路由器芯片的架构，当你使用 opkg install 安装软件的时候软件源的 url 里有你的芯片架构。<br><a target="_blank" rel="noopener" href="https://github.com/kuoruan/openwrt-frp/releases">openwrt-frp</a></p>
 <p>我的 wndr3700v4 是 mips_24kc 的架构</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> https://github.com/kuoruan/openwrt-frp/releases/download/v0.29.0-1/frpc_0.29.0-1_mips_24kc.ipk
-opkg <span class="token function">install</span> frpc_0.29.0-1_mips_24kc.ipk -d opt
-<span class="token function">ln</span> -s /opt/usr/bin/frpc /usr/bin/frpc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+opkg <span class="token function">install</span> frpc_0.29.0-1_mips_24kc.ipk <span class="token parameter variable">-d</span> opt
+<span class="token function">ln</span> <span class="token parameter variable">-s</span> /opt/usr/bin/frpc /usr/bin/frpc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>可能会报错 😂 需要安装 <code>libustream-openssl  ca-bundle ca-certificates</code> 这三个包</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@OpenWrt:/opt<span class="token comment"># wget https://github.com/kuoruan/openwrt-frp/releases/download/v0.29.0-1/frpc_0.29.0-1_mips_24kc.ipk</span>
@@ -377,12 +377,12 @@ wget: SSL support not available, please <span class="token function">install</sp
 opkg <span class="token function">install</span> libustream-openssl  ca-bundle ca-certificates<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="4-安装-git"><a href="#4-安装-git" class="headerlink" title="4.安装 git"></a>4.安装 git</h2><p>根分区剩余空间太小了，于是就安装在单独的分区 opt 分区 下</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">opkg <span class="token function">install</span> <span class="token function">git</span> -d opt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">opkg <span class="token function">install</span> <span class="token function">git</span> <span class="token parameter variable">-d</span> opt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ln</span> -s /opt/usr/bin/git-upload-pack /usr/bin/git-upload-pack
-<span class="token function">ln</span> -s /opt/usr/bin/git-upload-archive /usr/bin/git-upload-archive
-<span class="token function">ln</span> -s /opt/usr/bin/git-receive-pack /usr/bin/git-receive-pack
-<span class="token function">ln</span> -s /opt/usr/bin/git-receive-pack /usr/bin/git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ln</span> <span class="token parameter variable">-s</span> /opt/usr/bin/git-upload-pack /usr/bin/git-upload-pack
+<span class="token function">ln</span> <span class="token parameter variable">-s</span> /opt/usr/bin/git-upload-archive /usr/bin/git-upload-archive
+<span class="token function">ln</span> <span class="token parameter variable">-s</span> /opt/usr/bin/git-receive-pack /usr/bin/git-receive-pack
+<span class="token function">ln</span> <span class="token parameter variable">-s</span> /opt/usr/bin/git-receive-pack /usr/bin/git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="5-https"><a href="#5-https" class="headerlink" title="5. https"></a>5. https</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">opkg <span class="token function">install</span> libustream-openssl  ca-bundle ca-certificates<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -436,7 +436,7 @@ opkg <span class="token function">install</span> libustream-openssl  ca-bundle c
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

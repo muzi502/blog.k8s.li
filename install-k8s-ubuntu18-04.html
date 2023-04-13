@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -32,7 +32,7 @@
 <meta property="og:description" content="注意: 这个部署在了 digital ocean 的 VPS 上，国内的机器需要代理。 1.主机要求0.硬件要求 2CPU 2GB RAM 1.临时关闭 swap swapoff -a 2.打开 bridge-nf-call-iptables cat &gt; &#x2F;etc&#x2F;sysctl.d&#x2F;99-kubernetes-cri.conf &lt;&lt;EOF net.bridge.bridge-nf-ca">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:26.891Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.354Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="kubeadm">
 <meta property="article:tag" content="kubernetes">
@@ -269,7 +269,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:26+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:26+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -329,7 +329,7 @@ net.bridge.bridge-nf-call-iptables  = 1
 enet.ipv4.ip_forward                = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF</span>
-sysctl --system<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">sysctl</span> <span class="token parameter variable">--system</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>3.加载 br_netfilter 内核模块，安装 docker 后会默认开启</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">modprobe br_netfilter
@@ -358,10 +358,10 @@ As you can see from these commands what you are doing is setting the <span class
 <span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> apt-transport-https ca-certificates <span class="token function">curl</span> software-properties-common
 
 <span class="token comment">### Add Docker’s official GPG key</span>
-<span class="token function">curl</span> -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
+<span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
 
 <span class="token comment">### Add Docker apt repository.</span>
-add-apt-repository <span class="token string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release -cs<span class="token variable">)</span></span> stable"</span>
+add-apt-repository <span class="token string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release <span class="token parameter variable">-cs</span><span class="token variable">)</span></span> stable"</span>
 
 <span class="token comment">## Install Docker CE.</span>
 <span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> docker-ce<span class="token operator">=</span><span class="token number">18.06</span>.2~ce~3-0~ubuntu<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -382,7 +382,7 @@ EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>WARNING IsDockerSystemdCheck<span class="token punctuation">]</span>: detected <span class="token string">"cgroupfs"</span> as the Docker cgroup driver. The recommended driver is <span class="token string">"systemd"</span><span class="token builtin class-name">.</span> Please follow the guide at https://kubernetes.io/docs/setup/cri/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>最后将 docker 加入开机自启，并重启一下 docker</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -p /etc/systemd/system/docker.service.d
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /etc/systemd/system/docker.service.d
 systemctl daemon-reload
 systemctl restart <span class="token function">docker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -418,27 +418,27 @@ net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF</span>
 
-sysctl --system
+<span class="token function">sysctl</span> <span class="token parameter variable">--system</span>
 
 <span class="token comment"># Install containerd</span>
 <span class="token comment">## Set up the repository</span>
 <span class="token comment">### Install packages to allow apt to use a repository over HTTPS</span>
-<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y apt-transport-https ca-certificates <span class="token function">curl</span> software-properties-common
+<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> apt-transport-https ca-certificates <span class="token function">curl</span> software-properties-common
 
 <span class="token comment">### Add Docker’s official GPG key</span>
-<span class="token function">curl</span> -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
+<span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
 
 <span class="token comment">### Add Docker apt repository.</span>
 add-apt-repository <span class="token punctuation">\</span>
     <span class="token string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    <span class="token variable"><span class="token variable">$(</span>lsb_release -cs<span class="token variable">)</span></span> \
+    <span class="token variable"><span class="token variable">$(</span>lsb_release <span class="token parameter variable">-cs</span><span class="token variable">)</span></span> \
     stable"</span>
 
 <span class="token comment">## Install containerd</span>
-<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y containerd.io
+<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> containerd.io
 
 <span class="token comment"># Configure containerd</span>
-<span class="token function">mkdir</span> -p /etc/containerd
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /etc/containerd
 containerd config default <span class="token operator">></span> /etc/containerd/config.toml
 
 <span class="token comment"># Restart containerd</span>
@@ -451,16 +451,16 @@ To use the systemd cgroup driver, <span class="token builtin class-name">set</sp
 <hr>
 <h2 id="3-安装-kubelet-kubeadm-kubectl"><a href="#3-安装-kubelet-kubeadm-kubectl" class="headerlink" title="3.安装 kubelet kubeadm kubectl"></a>3.安装 kubelet kubeadm kubectl</h2><p>官方推荐的安装方式</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Install packages to allow apt to use a repository over HTTPS</span>
-<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y apt-transport-https <span class="token function">curl</span>
+<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> apt-transport-https <span class="token function">curl</span>
 
 <span class="token comment"># Add Google’s official GPG key</span>
-<span class="token function">curl</span> -s https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
+<span class="token function">curl</span> <span class="token parameter variable">-s</span> https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
 
 <span class="token comment"># Add kubernetes apt repository.</span>
 <span class="token function">cat</span> <span class="token operator">&lt;&lt;</span><span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">></span>/etc/apt/sources.list.d/kubernetes.list</span>
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF</span>
-<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y kubelet kubeadm kubectl
+<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
 systemctl daemon-reload <span class="token operator">&amp;&amp;</span> systemctl restart kubelet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -484,9 +484,9 @@ Your Kubernetes control-plane has initialized successfully<span class="token ope
 
 To start using your cluster, you need to run the following as a regular user:
 
-  <span class="token function">mkdir</span> -p <span class="token environment constant">$HOME</span>/.kube
-  <span class="token function">sudo</span> <span class="token function">cp</span> -i /etc/kubernetes/admin.conf <span class="token environment constant">$HOME</span>/.kube/config
-  <span class="token function">sudo</span> <span class="token function">chown</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -u<span class="token variable">)</span></span><span class="token builtin class-name">:</span><span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -g<span class="token variable">)</span></span> <span class="token environment constant">$HOME</span>/.kube/config
+  <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token environment constant">$HOME</span>/.kube
+  <span class="token function">sudo</span> <span class="token function">cp</span> <span class="token parameter variable">-i</span> /etc/kubernetes/admin.conf <span class="token environment constant">$HOME</span>/.kube/config
+  <span class="token function">sudo</span> <span class="token function">chown</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> <span class="token parameter variable">-u</span><span class="token variable">)</span></span><span class="token builtin class-name">:</span><span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> <span class="token parameter variable">-g</span><span class="token variable">)</span></span> <span class="token environment constant">$HOME</span>/.kube/config
 
 You should now deploy a pod network to the cluster.
 Run <span class="token string">"kubectl apply -f [podnetwork].yaml"</span> with one of the options listed at:
@@ -494,7 +494,7 @@ Run <span class="token string">"kubectl apply -f [podnetwork].yaml"</span> with 
 
 Then you can <span class="token function">join</span> any number of worker nodes by running the following on each as root:
 
-kubeadm <span class="token function">join</span> IP:6443 --token i311md.mhwgl9rr3q26rc4n <span class="token punctuation">\</span>
+kubeadm <span class="token function">join</span> IP:6443 <span class="token parameter variable">--token</span> i311md.mhwgl9rr3q26rc4n <span class="token punctuation">\</span>
     --discovery-token-ca-cert-hash sha256:21db38130a6868b5f07be1435c5ad29c0880fea481c50005d654de06fd95db2a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>然后查看一下各个容器的运行状态</p>
@@ -556,15 +556,15 @@ error execution phase upload-config/kubelet: Error writing Crisocket information
 <span class="token punctuation">[</span>wait-control-plane<span class="token punctuation">]</span> Waiting <span class="token keyword">for</span> the kubelet to boot up the control plane as static Pods from directory <span class="token string">"/etc/kubernetes/manifests"</span><span class="token builtin class-name">.</span> This can take up to 4m0s
 <span class="token punctuation">[</span>kubelet-check<span class="token punctuation">]</span> Initial <span class="token function">timeout</span> of 40s passed.
 <span class="token punctuation">[</span>kubelet-check<span class="token punctuation">]</span> It seems like the kubelet isn<span class="token string">'t running or healthy.
-[kubelet-check] The HTTP call equal to '</span><span class="token function">curl</span> -sSL http://localhost:10248/healthz<span class="token string">' failed with error: Get http://localhost:10248/healthz: dial tcp 127.0.0.1:10248: connect: connection refused.
+[kubelet-check] The HTTP call equal to '</span><span class="token function">curl</span> <span class="token parameter variable">-sSL</span> http://localhost:10248/healthz<span class="token string">' failed with error: Get http://localhost:10248/healthz: dial tcp 127.0.0.1:10248: connect: connection refused.
 [kubelet-check] It seems like the kubelet isn'</span>t running or healthy.
 <span class="token punctuation">[</span>kubelet-check<span class="token punctuation">]</span> The HTTP call equal to <span class="token string">'curl -sSL http://localhost:10248/healthz'</span> failed with error: Get http://localhost:10248/healthz: dial tcp <span class="token number">127.0</span>.0.1:10248: connect: connection refused.
 <span class="token punctuation">[</span>kubelet-check<span class="token punctuation">]</span> It seems like the kubelet isn<span class="token string">'t running or healthy.
-[kubelet-check] The HTTP call equal to '</span><span class="token function">curl</span> -sSL http://localhost:10248/healthz<span class="token string">' failed with error: Get http://localhost:10248/healthz: dial tcp 127.0.0.1:10248: connect: connection refused.
+[kubelet-check] The HTTP call equal to '</span><span class="token function">curl</span> <span class="token parameter variable">-sSL</span> http://localhost:10248/healthz<span class="token string">' failed with error: Get http://localhost:10248/healthz: dial tcp 127.0.0.1:10248: connect: connection refused.
 [kubelet-check] It seems like the kubelet isn'</span>t running or healthy.
 <span class="token punctuation">[</span>kubelet-check<span class="token punctuation">]</span> The HTTP call equal to <span class="token string">'curl -sSL http://localhost:10248/healthz'</span> failed with error: Get http://localhost:10248/healthz: dial tcp <span class="token number">127.0</span>.0.1:10248: connect: connection refused.
 <span class="token punctuation">[</span>kubelet-check<span class="token punctuation">]</span> It seems like the kubelet isn<span class="token string">'t running or healthy.
-[kubelet-check] The HTTP call equal to '</span><span class="token function">curl</span> -sSL http://localhost:10248/healthz<span class="token string">' failed with error: Get http://localhost:10248/healthz: dial tcp 127.0.0.1:10248: connect: connection refused.
+[kubelet-check] The HTTP call equal to '</span><span class="token function">curl</span> <span class="token parameter variable">-sSL</span> http://localhost:10248/healthz<span class="token string">' failed with error: Get http://localhost:10248/healthz: dial tcp 127.0.0.1:10248: connect: connection refused.
 
 Unfortunately, an error has occurred:
         timed out waiting for the condition
@@ -575,12 +575,12 @@ This error is likely caused by:
 
 If you are on a systemd-powered system, you can try to troubleshoot the error with the following commands:
         - '</span>systemctl status kubelet<span class="token string">'
-        - '</span>journalctl -xeu kubelet<span class="token string">'
+        - '</span>journalctl <span class="token parameter variable">-xeu</span> kubelet<span class="token string">'
 
 Additionally, a control plane component may have crashed or exited when started by the container runtime.
 To troubleshoot, list all containers using your preferred container runtimes CLI, e.g. docker.
 Here is one example how you may list all Kubernetes containers running in docker:
-        - '</span><span class="token function">docker</span> <span class="token function">ps</span> -a <span class="token operator">|</span> <span class="token function">grep</span> kube <span class="token operator">|</span> <span class="token function">grep</span> -v pause<span class="token string">'
+        - '</span><span class="token function">docker</span> <span class="token function">ps</span> <span class="token parameter variable">-a</span> <span class="token operator">|</span> <span class="token function">grep</span> kube <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> pause<span class="token string">'
         Once you have found the failing container, you can inspect its logs with:
         - '</span><span class="token function">docker</span> logs CONTAINERID<span class="token string">'
 error execution phase wait-control-plane: couldn'</span>t initialize a Kubernetes cluster<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -591,8 +591,8 @@ error execution phase wait-control-plane: couldn'</span>t initialize a Kubernete
 <hr>
 <h2 id="5-将-k8s-node-节点加入到-k8s-master"><a href="#5-将-k8s-node-节点加入到-k8s-master" class="headerlink" title="5.将 k8s-node 节点加入到 k8s-master"></a>5.将 k8s-node 节点加入到 k8s-master</h2><p>node 节点也是和 master 节点一样，安装 docker，kubelet kubeadm kubectl。不过最后不需要初始化集群，不用 kubeadm init，而是直接加入到 master 当中来。如果 master 初始化后找不到 kubeadm join 所需要的 token，可以使用以下命令重新生成一个 token,注意 tty 参数为 0 则这个 token 永久不会失效。可以自定义失效期限。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubeadm token generate
-kubeadm token create ljfmu1.5kek1jy2xdb8sopv  --print-join-command --ttl<span class="token operator">=</span><span class="token number">0</span>
-kubeadm token create <span class="token variable"><span class="token variable">$(</span>kubeadm token generate<span class="token variable">)</span></span>  --print-join-command --ttl<span class="token operator">=</span><span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+kubeadm token create ljfmu1.5kek1jy2xdb8sopv  --print-join-command <span class="token parameter variable">--ttl</span><span class="token operator">=</span><span class="token number">0</span>
+kubeadm token create <span class="token variable"><span class="token variable">$(</span>kubeadm token generate<span class="token variable">)</span></span>  --print-join-command <span class="token parameter variable">--ttl</span><span class="token operator">=</span><span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>只需要一个命令就可以将 k8s-node 节点加入到 master 的管理之下</p>
 <p><code>kubeadm join IP:6443 --token ljfmu1.5kek1jy2xdb8sopv --discovery-token-ca-cert-hash sha256:3b18b4cc1debc63d57e03da52424a3b3bacf03cc290b94cbe5b6aaf9c152f0cf</code></p>
@@ -667,7 +667,7 @@ Run <span class="token string">'kubectl get nodes'</span> on the control-plane t
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

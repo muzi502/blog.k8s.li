@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -497,7 +497,7 @@ get-docker.sh
  <span class="token key atrule">Live Restore Enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="install-docker-compose"><a href="#install-docker-compose" class="headerlink" title="install docker-compose"></a>install docker-compose</h3><p>安装完 docker 之后，接下来安装 docker-compose ，使用 Google 搜索 <code>centos install docker-compose</code> 点进入第一个搜索结果即为官网的 <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/">Install Docker Compose</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span> <span class="token function">sudo</span> <span class="token function">curl</span> -L <span class="token string">"https://github.com/docker/compose/releases/download/1.25.4/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -s<span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span>"</span> -o /usr/local/bin/docker-compose
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span> <span class="token function">sudo</span> <span class="token function">curl</span> <span class="token parameter variable">-L</span> <span class="token string">"https://github.com/docker/compose/releases/download/1.25.4/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> <span class="token parameter variable">-s</span><span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> <span class="token parameter variable">-m</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-o</span> /usr/local/bin/docker-compose
 <span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># docker-compose version</span>
 bash: /usr/local/bin/docker-compose: Permission denied
 <span class="token punctuation">[</span>root@interview ~<span class="token punctuation">]</span><span class="token comment"># chmod +x /usr/local/bin/docker-compose</span>
@@ -730,7 +730,7 @@ Saving to: ‘74898710_p21.jpg’
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

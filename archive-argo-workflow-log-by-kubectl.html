@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -360,19 +360,19 @@ archive-log-test-jzt8n-2123203324                          <span class="token nu
   <span class="token key atrule">uid</span><span class="token punctuation">:</span> ce37a709<span class="token punctuation">-</span>8236<span class="token punctuation">-</span>445b<span class="token punctuation">-</span>8d00<span class="token punctuation">-</span>a7926fa18ed0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>通过 <code>-l lables</code> 过滤出一个 workflow 所创建的 pod；通过 <code>--sort-by</code> 以创建时间进行排序；通过 <code>-o name</code> 只输出 pod 的 name：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ kubectl get pods -l workflows.argoproj.io/workflow<span class="token operator">=</span>archive-log-test-jzt8n --sort-by<span class="token operator">=</span><span class="token string">'.metadata.creationTimestamp'</span> -o name
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ kubectl get pods <span class="token parameter variable">-l</span> workflows.argoproj.io/workflow<span class="token operator">=</span>archive-log-test-jzt8n --sort-by<span class="token operator">=</span><span class="token string">'.metadata.creationTimestamp'</span> <span class="token parameter variable">-o</span> name
 pod/archive-log-test-jzt8n-3498199655
 pod/archive-log-test-jzt8n-3618624526
 pod/archive-log-test-jzt8n-2123203324<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="获取日志"><a href="#获取日志" class="headerlink" title="获取日志"></a>获取日志</h3><p>通过上面的步骤我们就可以获取到一个 workflow 所创建的 pod 列表。然后再通过 kubectl logs 命令获取 pod 中 main 容器的日志，为方便区分日志的所对应的 workflow ，我们就以 workflow 的 ID 为前缀名。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ kubectl logs archive-log-test-jzt8n-3618624526 -c main<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ kubectl logs archive-log-test-jzt8n-3618624526 <span class="token parameter variable">-c</span> main<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">LOG_PATH</span><span class="token operator">=</span>/var/log
 <span class="token assign-left variable">NAME</span><span class="token operator">=</span>archive-log-test-jzt8n
-kubectl get pods -l workflows.argoproj.io/workflow<span class="token operator">=</span><span class="token variable">$&#123;NAME&#125;</span> <span class="token punctuation">\</span>
---sort-by<span class="token operator">=</span><span class="token string">'.metadata.creationTimestamp'</span> -o name <span class="token punctuation">\</span>
-<span class="token operator">|</span> <span class="token function">xargs</span> -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> -t kubectl logs <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> -c main <span class="token operator">>></span> <span class="token variable">$&#123;LOG_PATH&#125;</span>/<span class="token variable">$&#123;NAME&#125;</span>.log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+kubectl get pods <span class="token parameter variable">-l</span> workflows.argoproj.io/workflow<span class="token operator">=</span><span class="token variable">$&#123;NAME&#125;</span> <span class="token punctuation">\</span>
+--sort-by<span class="token operator">=</span><span class="token string">'.metadata.creationTimestamp'</span> <span class="token parameter variable">-o</span> name <span class="token punctuation">\</span>
+<span class="token operator">|</span> <span class="token function">xargs</span> <span class="token parameter variable">-I</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token parameter variable">-t</span> kubectl logs <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token parameter variable">-c</span> main <span class="token operator">>></span> <span class="token variable">$&#123;LOG_PATH&#125;</span>/<span class="token variable">$&#123;NAME&#125;</span>.log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h3><p>根据 argo-workflow 官方提供的 <a target="_blank" rel="noopener" href="https://github.com/argoproj/argo-workflows/blob/master/examples/exit-handlers.yaml"><strong>exit-handlers.yaml</strong></a> example，我们就照葫芦画瓢搓一个 workflow 退出后自动调用使用 kubectl 获取 workflow 日志的一个 step，定义的 exit-handler 内容如下：</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> exit<span class="token punctuation">-</span>handler
@@ -531,7 +531,7 @@ kubectl get pods -l workflows.argoproj.io/workflow<span class="token operator">=
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

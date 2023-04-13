@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -427,7 +427,7 @@
 
 <p>想要解决上面这些依赖项十分棘手，也是离线部署场景下最难的一部分，至今并没有一个成熟的方案实现这些依赖的离线部署，基本上所有的 k8s 部署工具都没有提供这些包的离线安装方式。对于这些包的依赖，目前主要有避免安装这些依赖和制作离线源这两种解决方案。</p>
 <h4 id="sealos"><a href="#sealos" class="headerlink" title="sealos"></a>sealos</h4><p>在 <a target="_blank" rel="noopener" href="https://github.com/fanux/sealos">sealos</a> 中就极力避免使用包管理器来安装依赖，比如安装 containerd 时的依赖 libseccomp 使用的是编译好的 .so 文件的方式。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> -tf kube1.20.0.tar.gz
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> <span class="token parameter variable">-tf</span> kube1.20.0.tar.gz
 kube/
 kube/lib64/
 kube/lib64/README.md
@@ -514,7 +514,7 @@ kube/lib64/libseccomp.so.2.3.1<span aria-hidden="true" class="line-numbers-rows"
 - nvidia_driver   <span class="token comment"># GPU 驱动</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="sealos-1"><a href="#sealos-1" class="headerlink" title="sealos"></a>sealos</h4><p>sealos 对二进制文件的处理比较好，全部打包在离线安装包里，部署的时候会分发到集群节点上，整个部署过程都无需访问公网。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> -tf kube1.20.0.tar.gz
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> <span class="token parameter variable">-tf</span> kube1.20.0.tar.gz
 kube/bin/kubelet
 kube/bin/kubectl
 kube/bin/conntrack
@@ -665,7 +665,7 @@ k8s.gcr.io/dns/k8s-dns-node-cache:1.17.1<span aria-hidden="true" class="line-num
 <p><a target="_blank" rel="noopener" href="https://www.sealyun.com/">sealyun.com</a></p>
 </blockquote>
 <p>如果动手能力强的话，可以根据 selaos 离线安装包的目录结构使用 GitHub Actions 来构建，实现起来也不是很难。只不过砸别人饭碗的事儿还是不做为好，因此我们应该选择另一种方案来实现，这样也能避免一些商业纠纷问题。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> -tf kube1.20.0.tar.gz
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> <span class="token parameter variable">-tf</span> kube1.20.0.tar.gz
 kube/
 kube/lib64/
 kube/lib64/README.md
@@ -897,9 +897,9 @@ kube/images/README.md<span aria-hidden="true" class="line-numbers-rows"><span></
 <p>A：K8s 去 docker 是大势所趋，选择 containerd 更符合主流发展方向</p>
 </blockquote>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将镜像 load 进 containerd 存储</span>
-$ <span class="token function">find</span> <span class="token variable">$&#123;IMAGES_DIR&#125;</span> -type f -name <span class="token string">'*.tar'</span> <span class="token operator">|</span> <span class="token function">xargs</span> -L1 nerdctl load -i
+$ <span class="token function">find</span> <span class="token variable">$&#123;IMAGES_DIR&#125;</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">'*.tar'</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token parameter variable">-L1</span> nerdctl load <span class="token parameter variable">-i</span>
 <span class="token comment"># nerdctl compose 启动 nginx 和 registry</span>
-$ nerdctl compose -f compose.yaml up<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+$ nerdctl compose <span class="token parameter variable">-f</span> compose.yaml up<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="os-packages"><a href="#os-packages" class="headerlink" title="os-packages"></a>os-packages</h3><p>这部分是 rpm&#x2F;deb 离线源的构建，其详细的过程和原理可以参考我之前写的博客 《<a href="https://blog.k8s.li/make-offline-mirrors.html">使用 docker build 制作 yum&#x2F;apt 离线源</a>》，下面只列举一下 CentOS7 离线源的构建配置：</p>
 <ul>
@@ -1107,7 +1107,7 @@ $ nerdctl compose -f compose.yaml up<span aria-hidden="true" class="line-numbers
 : <span class="token variable">$&#123;INSTALL_STEPS_FILE<span class="token operator">:=</span>$&#123;KUBE_ROOT&#125;</span>/config/.install_steps&#125;
 
 export ANSIBLE_STDOUT_CALLBACK=<span class="token variable">$&#123;ANSIBLE_LOG_FORMAT&#125;</span>
-export ANSIBLE_ARGS="</span>-f <span class="token variable">$&#123;ANSIBLE_FORKS&#125;</span> --become --become-user<span class="token operator">=</span><span class="token variable">$&#123;BECOME_USER&#125;</span> -i <span class="token variable">$&#123;INVENTORY&#125;</span> -e @<span class="token variable">$&#123;ENV_FILE&#125;</span><span class="token string">"
+export ANSIBLE_ARGS="</span><span class="token parameter variable">-f</span> <span class="token variable">$&#123;ANSIBLE_FORKS&#125;</span> <span class="token parameter variable">--become</span> --become-user<span class="token operator">=</span><span class="token variable">$&#123;BECOME_USER&#125;</span> <span class="token parameter variable">-i</span> <span class="token variable">$&#123;INVENTORY&#125;</span> <span class="token parameter variable">-e</span> @<span class="token variable">$&#123;ENV_FILE&#125;</span><span class="token string">"
 
 #
 # Set logging colors
@@ -1145,19 +1145,19 @@ main()&#123;
     remove-cluster<span class="token punctuation">)</span>
       infolog <span class="token string">"######  start remove kubernetes cluster  ######"</span>
       <span class="token keyword">if</span> ansible-playbook <span class="token variable">$&#123;ANSIBLE_ARGS&#125;</span> <span class="token variable">$&#123;KUBE_ROOT&#125;</span>/reset.yml <span class="token operator">></span>/dev/stdout <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/stderr<span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token function">rm</span> -f <span class="token variable">$&#123;INSTALL_STEP_FILE&#125;</span>
+        <span class="token function">rm</span> <span class="token parameter variable">-f</span> <span class="token variable">$&#123;INSTALL_STEP_FILE&#125;</span>
         infolog <span class="token string">"######  kubernetes cluster successfully removed ######"</span>
       <span class="token keyword">fi</span>
       <span class="token punctuation">;</span><span class="token punctuation">;</span>
     add-node<span class="token punctuation">)</span>
       check_nodename
       infolog <span class="token string">"######  start add worker to kubernetes cluster  ######"</span>
-      ansible-playbook <span class="token variable">$&#123;ANSIBLE_ARGS&#125;</span> --limit<span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;NODES&#125;</span>"</span> <span class="token variable">$&#123;KUBE_ROOT&#125;</span>/playbooks/10-scale-nodes.yml <span class="token operator">></span>/dev/stdout <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/stderr
+      ansible-playbook <span class="token variable">$&#123;ANSIBLE_ARGS&#125;</span> <span class="token parameter variable">--limit</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;NODES&#125;</span>"</span> <span class="token variable">$&#123;KUBE_ROOT&#125;</span>/playbooks/10-scale-nodes.yml <span class="token operator">></span>/dev/stdout <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/stderr
       <span class="token punctuation">;</span><span class="token punctuation">;</span>
     remove-node<span class="token punctuation">)</span>
       check_nodename
       infolog <span class="token string">"######  start remove worker from kubernetes cluster  ######"</span>
-      ansible-playbook <span class="token variable">$&#123;ANSIBLE_ARGS&#125;</span> -e <span class="token assign-left variable">node</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;NODES&#125;</span>"</span> -e <span class="token assign-left variable">reset_nodes</span><span class="token operator">=</span>true <span class="token variable">$&#123;KUBE_ROOT&#125;</span>/remove-node.yml <span class="token operator">></span>/dev/stdout <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/stderr
+      ansible-playbook <span class="token variable">$&#123;ANSIBLE_ARGS&#125;</span> <span class="token parameter variable">-e</span> <span class="token assign-left variable">node</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;NODES&#125;</span>"</span> <span class="token parameter variable">-e</span> <span class="token assign-left variable">reset_nodes</span><span class="token operator">=</span>true <span class="token variable">$&#123;KUBE_ROOT&#125;</span>/remove-node.yml <span class="token operator">></span>/dev/stdout <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/stderr
       <span class="token punctuation">;</span><span class="token punctuation">;</span>
     *<span class="token punctuation">)</span>
       errorlog <span class="token string">"unknow [TYPE] parameter: <span class="token variable">$&#123;TYPE&#125;</span>"</span>
@@ -1185,7 +1185,7 @@ main <span class="token string">"<span class="token variable">$@</span>"</span><
   <span class="token function">touch</span> <span class="token variable">$&#123;INSTALL_STEPS_FILE&#125;</span>
   <span class="token assign-left variable">STEPS</span><span class="token operator">=</span><span class="token string">"00-default-ssh-config 01-cluster-bootstrap-os 02-cluster-etcd 03-cluster-kubernetes 04-cluster-network 05-cluster-apps"</span>
   <span class="token keyword">for</span> <span class="token for-or-select variable">step</span> <span class="token keyword">in</span> <span class="token variable">$&#123;STEPS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-    <span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">grep</span> -q <span class="token string">"<span class="token variable">$&#123;step&#125;</span>"</span> <span class="token variable">$&#123;INSTALL_STEPS_FILE&#125;</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">grep</span> <span class="token parameter variable">-q</span> <span class="token string">"<span class="token variable">$&#123;step&#125;</span>"</span> <span class="token variable">$&#123;INSTALL_STEPS_FILE&#125;</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
       infolog <span class="token string">"start deploy <span class="token variable">$&#123;step&#125;</span>"</span>
       <span class="token keyword">if</span> ansible-playbook <span class="token variable">$&#123;ANSIBLE_ARGS&#125;</span> <span class="token variable">$&#123;KUBE_ROOT&#125;</span>/playbooks/<span class="token variable">$&#123;step&#125;</span>.yml<span class="token punctuation">;</span> <span class="token keyword">then</span>
         <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;step&#125;</span> <span class="token operator">>></span> <span class="token variable">$&#123;INSTALL_STEPS_FILE&#125;</span>
@@ -1254,7 +1254,7 @@ main <span class="token string">"<span class="token variable">$@</span>"</span><
 </ul>
 <p>我们根据上面 group_vars 中定义的版本号和一些参数，使用脚本的方式自动生成一个文件列表和镜像列表，构建的时候根据这些列表来下载所需要的文件和镜像。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-<span class="token builtin class-name">set</span> -eo pipefail
+<span class="token builtin class-name">set</span> <span class="token parameter variable">-eo</span> pipefail
 
 <span class="token assign-left variable">SCRIPT_PATH</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">cd</span> <span class="token punctuation">$(</span>dirname $0<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token builtin class-name">pwd</span><span class="token variable">)</span></span>
 <span class="token assign-left variable">REPO_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;SCRIPT_PATH<span class="token operator">%</span><span class="token operator">/</span>build&#125;</span>"</span>
@@ -1278,19 +1278,19 @@ EOF</span>
 
 <span class="token comment"># generate all component version by $DOWNLOAD_YML</span>
 <span class="token function">grep</span> <span class="token string">'_version:'</span> <span class="token variable">$&#123;REPO_PATH&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
-<span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">' '</span> <span class="token operator">>></span> /tmp/generate.sh
+<span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> <span class="token operator">>></span> /tmp/generate.sh
 
 <span class="token comment"># generate download files url list</span>
 <span class="token function">grep</span> <span class="token string">'_download_url:'</span> <span class="token variable">$&#123;REPO_PATH&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
 <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/ //g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g;s/|lower//g;s/^.*_url=/echo /g'</span> <span class="token operator">>></span> /tmp/generate.sh
 
 <span class="token comment"># generate download images list</span>
-<span class="token function">grep</span> -E <span class="token string">'_image_tag:|_image_repo:|_image_name:'</span> <span class="token variable">$&#123;REPO_PATH&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
+<span class="token function">grep</span> <span class="token parameter variable">-E</span> <span class="token string">'_image_tag:|_image_repo:|_image_name:'</span> <span class="token variable">$&#123;REPO_PATH&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
 <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">"s#&#123;%- if image_arch != 'amd64' -%&#125;-&#123;&#123; image_arch &#125;&#125;&#123;%- endif -%&#125;#&#123;&#123;arch&#125;&#125;#g"</span> <span class="token punctuation">\</span>
-<span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">' '</span> <span class="token operator">>></span> /tmp/generate.sh
+<span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> <span class="token operator">>></span> /tmp/generate.sh
 
 <span class="token function">grep</span> <span class="token string">'_image_name:'</span> <span class="token variable">$&#123;REPO_PATH&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
-<span class="token operator">|</span> <span class="token function">cut</span> -d <span class="token string">':'</span> -f1 <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/^/echo $/g'</span> <span class="token operator">>></span> /tmp/generate.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token operator">|</span> <span class="token function">cut</span> <span class="token parameter variable">-d</span> <span class="token string">':'</span> <span class="token parameter variable">-f1</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/^/echo $/g'</span> <span class="token operator">>></span> /tmp/generate.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>为了同时支持 amd64 和 arm64 的 CPU 架构，需要为两种架构各自生成列表，需要特殊处理一下。在这里踩的一个坑就是不同的组件镜像的命名方法千差万别，大致可以分为如下四种情况：</p>
 <ul>
@@ -1413,19 +1413,19 @@ library/pause:3.3<span aria-hidden="true" class="line-numbers-rows"><span></span
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">FROM alpine:3.12 as images
 ARG <span class="token assign-left variable">SKOPEO_VERSION</span><span class="token operator">=</span>v1.4.0
 ARG <span class="token assign-left variable">YQ_VERSION</span><span class="token operator">=</span>v4.11.2
-RUN <span class="token assign-left variable">ARCH</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span><span class="token variable">)</span></span> <span class="token punctuation">\</span>
+RUN <span class="token assign-left variable">ARCH</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> <span class="token parameter variable">-m</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span><span class="token variable">)</span></span> <span class="token punctuation">\</span>
     <span class="token operator">&amp;&amp;</span> apk --no-cache <span class="token function">add</span> <span class="token function">bash</span> <span class="token function">wget</span> ca-certificates <span class="token punctuation">\</span>
-    <span class="token operator">&amp;&amp;</span> <span class="token function">wget</span> -q -k https://github.com/mikefarah/yq/releases/download/<span class="token variable">$&#123;YQ_VERSION&#125;</span>/yq_linux_<span class="token variable">$&#123;ARCH&#125;</span> -O /usr/local/bin/yq <span class="token punctuation">\</span>
-    <span class="token operator">&amp;&amp;</span> <span class="token function">wget</span> -q -k https://github.com/k8sli/skopeo/releases/download/<span class="token variable">$&#123;SKOPEO_VERSION&#125;</span>/skopeo-linux-<span class="token variable">$&#123;ARCH&#125;</span> -O /usr/local/bin/skopeo <span class="token punctuation">\</span>
+    <span class="token operator">&amp;&amp;</span> <span class="token function">wget</span> <span class="token parameter variable">-q</span> <span class="token parameter variable">-k</span> https://github.com/mikefarah/yq/releases/download/<span class="token variable">$&#123;YQ_VERSION&#125;</span>/yq_linux_<span class="token variable">$&#123;ARCH&#125;</span> <span class="token parameter variable">-O</span> /usr/local/bin/yq <span class="token punctuation">\</span>
+    <span class="token operator">&amp;&amp;</span> <span class="token function">wget</span> <span class="token parameter variable">-q</span> <span class="token parameter variable">-k</span> https://github.com/k8sli/skopeo/releases/download/<span class="token variable">$&#123;SKOPEO_VERSION&#125;</span>/skopeo-linux-<span class="token variable">$&#123;ARCH&#125;</span> <span class="token parameter variable">-O</span> /usr/local/bin/skopeo <span class="token punctuation">\</span>
     <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> a+x /usr/local/bin/*
 
 WORKDIR /build
 COPY build/kubespray-images/*  /build/
-RUN <span class="token assign-left variable">ARCH</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span><span class="token variable">)</span></span> <span class="token punctuation">\</span>
+RUN <span class="token assign-left variable">ARCH</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> <span class="token parameter variable">-m</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/x86_64/amd64/;s/aarch64/arm64/'</span><span class="token variable">)</span></span> <span class="token punctuation">\</span>
     <span class="token operator">&amp;&amp;</span> <span class="token assign-left variable">IMAGE_ARCH</span><span class="token operator">=</span><span class="token variable">$&#123;ARCH&#125;</span> <span class="token function">bash</span> build.sh
 
 FROM scratch
-COPY --from<span class="token operator">=</span>images /build/docker /docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+COPY <span class="token parameter variable">--from</span><span class="token operator">=</span>images /build/docker /docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>images_origin.yaml 镜像配置文件</li>
@@ -1827,7 +1827,7 @@ main <span class="token string">"<span class="token variable">$@</span>"</span><
   <span class="token function">touch</span> <span class="token variable">$&#123;INSTALL_STEPS_FILE&#125;</span>
   <span class="token assign-left variable">STEPS</span><span class="token operator">=</span><span class="token string">"00-default-ssh-config 01-cluster-bootstrap-os 02-cluster-etcd 03-cluster-kubernetes 04-cluster-network 05-cluster-apps"</span>
   <span class="token keyword">for</span> <span class="token for-or-select variable">step</span> <span class="token keyword">in</span> <span class="token variable">$&#123;STEPS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-    <span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">grep</span> -q <span class="token string">"<span class="token variable">$&#123;step&#125;</span>"</span> <span class="token variable">$&#123;INSTALL_STEPS_FILE&#125;</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">grep</span> <span class="token parameter variable">-q</span> <span class="token string">"<span class="token variable">$&#123;step&#125;</span>"</span> <span class="token variable">$&#123;INSTALL_STEPS_FILE&#125;</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
       infolog <span class="token string">"start deploy <span class="token variable">$&#123;step&#125;</span>"</span>
       <span class="token keyword">if</span> ansible-playbook <span class="token variable">$&#123;ANSIBLE_ARGS&#125;</span> <span class="token variable">$&#123;KUBE_ROOT&#125;</span>/playbooks/<span class="token variable">$&#123;step&#125;</span>.yml<span class="token punctuation">;</span> <span class="token keyword">then</span>
         <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;step&#125;</span> <span class="token operator">>></span> <span class="token variable">$&#123;INSTALL_STEPS_FILE&#125;</span>
@@ -1985,7 +1985,7 @@ main <span class="token string">"<span class="token variable">$@</span>"</span><
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

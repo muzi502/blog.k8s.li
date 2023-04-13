@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -341,7 +341,7 @@ https://storage.googleapis.com/kubernetes-release/release/v1.20.6/bin/linux/amd6
 https://storage.googleapis.com/kubernetes-release/release/v1.20.6/bin/linux/amd64/kubelet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>然后通过 wget 进行下载</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">wget</span> -x -P temp/files -i temp/files.list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">wget</span> <span class="token parameter variable">-x</span> <span class="token parameter variable">-P</span> temp/files <span class="token parameter variable">-i</span> temp/files.list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>下载后的文件如下</li>
@@ -495,9 +495,9 @@ quay.io/l23network/k8s-netchecker-server:v1.0<span aria-hidden="true" class="lin
 <span class="token key atrule">coredns_image_tag</span><span class="token punctuation">:</span> <span class="token string">"&#123;&#123; coredns_version if (coredns_image_is_namespaced | bool) else (coredns_version | regex_replace('^v', '')) &#125;&#125;"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># special handling for https://github.com/kubernetes-sigs/kubespray/pull/7570</span>
-<span class="token function">sed</span> -i <span class="token string">'s#^coredns_image_repo=.*#coredns_image_repo=$&#123;kube_image_repo&#125;$(if printf "%s\\n%s\\n" v1.21 $&#123;kube_version%.*&#125; | sort --check=quiet --version-sort; then echo -n /coredns/coredns;else echo -n /coredns; fi)#'</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/generate.sh
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s#^coredns_image_repo=.*#coredns_image_repo=$&#123;kube_image_repo&#125;$(if printf "%s\\n%s\\n" v1.21 $&#123;kube_version%.*&#125; | sort --check=quiet --version-sort; then echo -n /coredns/coredns;else echo -n /coredns; fi)#'</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/generate.sh
 
-<span class="token function">sed</span> -i <span class="token string">'s#^coredns_image_tag=.*#coredns_image_tag=$(if printf "%s\\n%s\\n" v1.21 $&#123;kube_version%.*&#125; | sort --check=quiet --version-sort; then echo -n $&#123;coredns_version&#125;;else echo -n $&#123;coredns_version/v/&#125;; fi)#'</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/generate.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s#^coredns_image_tag=.*#coredns_image_tag=$(if printf "%s\\n%s\\n" v1.21 $&#123;kube_version%.*&#125; | sort --check=quiet --version-sort; then echo -n $&#123;coredns_version&#125;;else echo -n $&#123;coredns_version/v/&#125;; fi)#'</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/generate.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>当时还学会了一手，在 shell 中使用 <code>printf &quot;%s\\n%s\\n&quot; $v1 $v2 | sort --check=quiet --version-sort</code> 这种方式可以判断两个版本号的大小，而且是最简单便捷的。</p>
 <h2 id="镜像仓库"><a href="#镜像仓库" class="headerlink" title="镜像仓库"></a>镜像仓库</h2><p>之前提到的是根据镜像列表将需要的镜像同步到自己的 registry 中，但对于本地开发测试来讲，这种手动导入比较费事费力。在看了大佬写的 <a target="_blank" rel="noopener" href="https://fuckcloudnative.io/posts/docker-registry-proxy/">Docker 镜像加速教程</a> 和 <a target="_blank" rel="noopener" href="https://www.chenshaowen.com/blog/how-to-run-a-private-registry-mirror.html">如何搭建一个私有的镜像仓库 mirror</a>  就想到了可以使用 docker registry 的 proxy 特性来部署几个 kubespray 需要的镜像仓库。如下</p>
@@ -1128,7 +1128,7 @@ ok: <span class="token punctuation">[</span>kube-node-1<span class="token punctu
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

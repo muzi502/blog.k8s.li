@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -745,23 +745,23 @@ Routing decision                                                  |
 <h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">### 命令用法 (man 文档)</span>
 iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-A<span class="token operator">|</span>-C<span class="token operator">|</span>-D<span class="token punctuation">&#125;</span> chain rule-specification         <span class="token comment"># (ipv4) 追加|检查|删除 规则</span>
 ip6tables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-A<span class="token operator">|</span>-C<span class="token operator">|</span>-D<span class="token punctuation">&#125;</span> chain rule-specification        <span class="token comment"># (ipv6) 追加|检查|删除 规则</span>
-iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -I chain <span class="token punctuation">[</span>rulenum<span class="token punctuation">]</span> rule-specification       <span class="token comment"># 在 rulenum 处插入规则 (默认为 1)</span>
-iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -R chain rulenum rule-specification         <span class="token comment"># 替换第 rulenum 条规则</span>
-iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -D chain rulenum                            <span class="token comment"># 删除第 rulenum 条规则</span>
-iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -S <span class="token punctuation">[</span>chain <span class="token punctuation">[</span>rulenum<span class="token punctuation">]</span><span class="token punctuation">]</span>                        <span class="token comment"># 打印指定 table 的规则</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token parameter variable">-I</span> chain <span class="token punctuation">[</span>rulenum<span class="token punctuation">]</span> rule-specification       <span class="token comment"># 在 rulenum 处插入规则 (默认为 1)</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token parameter variable">-R</span> chain rulenum rule-specification         <span class="token comment"># 替换第 rulenum 条规则</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token parameter variable">-D</span> chain rulenum                            <span class="token comment"># 删除第 rulenum 条规则</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token parameter variable">-S</span> <span class="token punctuation">[</span>chain <span class="token punctuation">[</span>rulenum<span class="token punctuation">]</span><span class="token punctuation">]</span>                        <span class="token comment"># 打印指定 table 的规则</span>
 iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-F<span class="token operator">|</span>-L<span class="token operator">|</span>-Z<span class="token punctuation">&#125;</span> <span class="token punctuation">[</span>chain <span class="token punctuation">[</span>rulenum<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token punctuation">[</span>options<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 清空|列出|置零 链/规则</span>
-iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -P chain target                             <span class="token comment"># 设置默认策略</span>
-iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -N chain                                    <span class="token comment"># 新建自定义链</span>
-iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -X <span class="token punctuation">[</span>chain<span class="token punctuation">]</span>                                  <span class="token comment"># 删除自定义链</span>
-iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> -E old-chain-name new-chain-name            <span class="token comment"># 重命名自定义链</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token parameter variable">-P</span> chain target                             <span class="token comment"># 设置默认策略</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token parameter variable">-N</span> chain                                    <span class="token comment"># 新建自定义链</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token parameter variable">-X</span> <span class="token punctuation">[</span>chain<span class="token punctuation">]</span>                                  <span class="token comment"># 删除自定义链</span>
+iptables <span class="token punctuation">[</span>-t table<span class="token punctuation">]</span> <span class="token parameter variable">-E</span> old-chain-name new-chain-name            <span class="token comment"># 重命名自定义链</span>
 
 <span class="token comment">### 一般形式</span>
-iptables <span class="token punctuation">[</span>-t 表名<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-A<span class="token operator">|</span>I<span class="token operator">|</span>D<span class="token operator">|</span>R<span class="token punctuation">&#125;</span> 链名 <span class="token punctuation">[</span>规则号<span class="token punctuation">]</span> 匹配规则 -j 动作
+iptables <span class="token punctuation">[</span>-t 表名<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>-A<span class="token operator">|</span>I<span class="token operator">|</span>D<span class="token operator">|</span>R<span class="token punctuation">&#125;</span> 链名 <span class="token punctuation">[</span>规则号<span class="token punctuation">]</span> 匹配规则 <span class="token parameter variable">-j</span> 动作
 
 <span class="token comment">### 查看帮助</span>
-iptables --help             <span class="token comment"># 查看 iptables 的帮助</span>
-iptables -m 模块名 --help   <span class="token comment"># 查看指定模块的可用参数</span>
-iptables -j 动作名 --help   <span class="token comment"># 查看指定动作的可用参数</span>
+iptables <span class="token parameter variable">--help</span>             <span class="token comment"># 查看 iptables 的帮助</span>
+iptables <span class="token parameter variable">-m</span> 模块名 <span class="token parameter variable">--help</span>   <span class="token comment"># 查看指定模块的可用参数</span>
+iptables <span class="token parameter variable">-j</span> 动作名 <span class="token parameter variable">--help</span>   <span class="token comment"># 查看指定动作的可用参数</span>
 
 <span class="token comment">### 持久化规则</span>
 <span class="token comment"># 在 RHEL/CentOS 中，默认规则文件为 /etc/sysconfig/iptables</span>
@@ -776,55 +776,55 @@ iptables-restore <span class="token operator">&lt;</span>/etc/sysconfig/iptables
 iptables-restore <span class="token operator">&lt;</span>/etc/sysconfig/iptables.20171125
 
 <span class="token comment">### 命令和选项</span>
--t              <span class="token comment"># 指定要操作的表，如果省略则默认为 filter 表</span>
--A              <span class="token comment"># "追加" 一条规则，只能追加到末尾</span>
--I              <span class="token comment"># "插入" 一条规则，如果省略序号则默认为 1</span>
--R              <span class="token comment"># "替换" 一条规则，必须指定序号</span>
--D              <span class="token comment"># "删除" 一条规则，必须指定序号</span>
--C              <span class="token comment"># "检查" 规则是否存在，如果存在则返回 0</span>
--P              <span class="token comment"># 设置链的 "默认策略"，nat 表不允许修改默认策略</span>
--S              <span class="token comment"># "查看" 规则（原始格式）</span>
--L              <span class="token comment"># "打印" 规则（友好格式）</span>
--F              <span class="token comment"># 清空表中的规则并将包计数器、字节计数器置零</span>
--Z              <span class="token comment"># 将某个链或某条规则的包计数器、字节计数器置零</span>
--N              <span class="token comment"># 新建自定义链</span>
--X              <span class="token comment"># 删除自定义链</span>
--E              <span class="token comment"># 重命名自定义链</span>
--n              <span class="token comment"># 以数字形式显示地址和端口</span>
--v              <span class="token comment"># 在打印规则时显示详细信息</span>
+<span class="token parameter variable">-t</span>              <span class="token comment"># 指定要操作的表，如果省略则默认为 filter 表</span>
+<span class="token parameter variable">-A</span>              <span class="token comment"># "追加" 一条规则，只能追加到末尾</span>
+<span class="token parameter variable">-I</span>              <span class="token comment"># "插入" 一条规则，如果省略序号则默认为 1</span>
+<span class="token parameter variable">-R</span>              <span class="token comment"># "替换" 一条规则，必须指定序号</span>
+<span class="token parameter variable">-D</span>              <span class="token comment"># "删除" 一条规则，必须指定序号</span>
+<span class="token parameter variable">-C</span>              <span class="token comment"># "检查" 规则是否存在，如果存在则返回 0</span>
+<span class="token parameter variable">-P</span>              <span class="token comment"># 设置链的 "默认策略"，nat 表不允许修改默认策略</span>
+<span class="token parameter variable">-S</span>              <span class="token comment"># "查看" 规则（原始格式）</span>
+<span class="token parameter variable">-L</span>              <span class="token comment"># "打印" 规则（友好格式）</span>
+<span class="token parameter variable">-F</span>              <span class="token comment"># 清空表中的规则并将包计数器、字节计数器置零</span>
+<span class="token parameter variable">-Z</span>              <span class="token comment"># 将某个链或某条规则的包计数器、字节计数器置零</span>
+<span class="token parameter variable">-N</span>              <span class="token comment"># 新建自定义链</span>
+<span class="token parameter variable">-X</span>              <span class="token comment"># 删除自定义链</span>
+<span class="token parameter variable">-E</span>              <span class="token comment"># 重命名自定义链</span>
+<span class="token parameter variable">-n</span>              <span class="token comment"># 以数字形式显示地址和端口</span>
+<span class="token parameter variable">-v</span>              <span class="token comment"># 在打印规则时显示详细信息</span>
 --line-numbers  <span class="token comment"># 在打印规则时显示规则序号</span>
 
 <span class="token comment">### 反向匹配</span>
 <span class="token comment"># 只需在选项前面使用 ! 即可，如: ! -s 192.168.0.0/16 表示除 192.168/16 外的源 IP</span>
 
 <span class="token comment">### 通用匹配</span>
--s addr<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span> <span class="token comment"># 源 IP，可以有多个，使用逗号隔开，有多少个地址就有多少条规则</span>
--d addr<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span> <span class="token comment"># 目的 IP，可以有多个，使用逗号隔开，有多少个地址就有多少条规则</span>
--i input-nic<span class="token punctuation">[</span>+<span class="token punctuation">]</span>     <span class="token comment"># 数据包来自哪个网卡，+ 表示通配符</span>
--o output-nic<span class="token punctuation">[</span>+<span class="token punctuation">]</span>    <span class="token comment"># 数据包送往哪个网卡，+ 表示通配符</span>
--p <span class="token punctuation">&#123;</span>tcp<span class="token operator">|</span>udp<span class="token operator">|</span>udplite<span class="token operator">|</span>icmp<span class="token operator">|</span>icmpv6<span class="token operator">|</span>esp<span class="token operator">|</span>ah<span class="token operator">|</span>sctp<span class="token operator">|</span>mh<span class="token operator">|</span>all<span class="token punctuation">&#125;</span>
+<span class="token parameter variable">-s</span> addr<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span> <span class="token comment"># 源 IP，可以有多个，使用逗号隔开，有多少个地址就有多少条规则</span>
+<span class="token parameter variable">-d</span> addr<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span> <span class="token comment"># 目的 IP，可以有多个，使用逗号隔开，有多少个地址就有多少条规则</span>
+<span class="token parameter variable">-i</span> input-nic<span class="token punctuation">[</span>+<span class="token punctuation">]</span>     <span class="token comment"># 数据包来自哪个网卡，+ 表示通配符</span>
+<span class="token parameter variable">-o</span> output-nic<span class="token punctuation">[</span>+<span class="token punctuation">]</span>    <span class="token comment"># 数据包送往哪个网卡，+ 表示通配符</span>
+<span class="token parameter variable">-p</span> <span class="token punctuation">&#123;</span>tcp<span class="token operator">|</span>udp<span class="token operator">|</span>udplite<span class="token operator">|</span>icmp<span class="token operator">|</span>icmpv6<span class="token operator">|</span>esp<span class="token operator">|</span>ah<span class="token operator">|</span>sctp<span class="token operator">|</span>mh<span class="token operator">|</span>all<span class="token punctuation">&#125;</span>
                     <span class="token comment"># 指定匹配的协议，all 表示所有</span>
 
 <span class="token comment">### 隐式扩展匹配 (tcp/udp/icmp)</span>
 <span class="token comment">## tcp 扩展</span>
---sport port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 源端口号，100:200 表示端口范围</span>
---dport port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 目的端口号，100:200 表示端口范围</span>
+<span class="token parameter variable">--sport</span> port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 源端口号，100:200 表示端口范围</span>
+<span class="token parameter variable">--dport</span> port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 目的端口号，100:200 表示端口范围</span>
 --tcp-flags mask comp   <span class="token comment"># TCP 标志位，flags=&#123;SYN|ACK|FIN|RST|URG|PSH|ALL|NONE&#125;</span>
---syn                   <span class="token comment"># SYN 标志位，等同于 --tcp-flags SYN,RST,ACK,FIN SYN</span>
+<span class="token parameter variable">--syn</span>                   <span class="token comment"># SYN 标志位，等同于 --tcp-flags SYN,RST,ACK,FIN SYN</span>
 --tcp-option number     <span class="token comment"># TCP 选项</span>
 
 <span class="token comment">## udp 扩展</span>
---sport port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 源端口号</span>
---dport port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 目的端口号</span>
+<span class="token parameter variable">--sport</span> port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 源端口号</span>
+<span class="token parameter variable">--dport</span> port<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>     <span class="token comment"># 目的端口号</span>
 
 <span class="token comment">## icmp 扩展</span>
 --icmp-type name<span class="token punctuation">[</span>/code<span class="token punctuation">]</span> <span class="token comment"># icmp 类型，常用的两个: ping、pong，请求和应答</span>
 
 <span class="token comment">### 显式扩展匹配 (-m module-name)</span>
 <span class="token comment">## multiport 多端口</span>
---sports port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 匹配多个源端口[范围]</span>
---dports port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 匹配多个目的端口[范围]</span>
---ports port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>    <span class="token comment"># 匹配多个源和目的端口[范围]</span>
+<span class="token parameter variable">--sports</span> port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 匹配多个源端口[范围]</span>
+<span class="token parameter variable">--dports</span> port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>   <span class="token comment"># 匹配多个目的端口[范围]</span>
+<span class="token parameter variable">--ports</span> port<span class="token punctuation">[</span>,port:port,port<span class="token punctuation">..</span>.<span class="token punctuation">]</span>    <span class="token comment"># 匹配多个源和目的端口[范围]</span>
 
 <span class="token comment">## owner 所属用户(组)</span>
 --uid-owner userid<span class="token punctuation">[</span>-userid<span class="token punctuation">]</span>     <span class="token comment"># 匹配 UID[范围]/username</span>
@@ -832,7 +832,7 @@ iptables-restore <span class="token operator">&lt;</span>/etc/sysconfig/iptables
 --socket-exists                 <span class="token comment"># 匹配与套接字相关联的数据包</span>
 
 <span class="token comment">## state 连接状态(基本)</span>
---state <span class="token punctuation">[</span>INVALID<span class="token operator">|</span>ESTABLISHED<span class="token operator">|</span>NEW<span class="token operator">|</span>RELATED<span class="token operator">|</span>UNTRACKED<span class="token punctuation">]</span><span class="token punctuation">[</span>,<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+<span class="token parameter variable">--state</span> <span class="token punctuation">[</span>INVALID<span class="token operator">|</span>ESTABLISHED<span class="token operator">|</span>NEW<span class="token operator">|</span>RELATED<span class="token operator">|</span>UNTRACKED<span class="token punctuation">]</span><span class="token punctuation">[</span>,<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
 <span class="token comment"># NEW           新连接</span>
 <span class="token comment"># ESTABLISHED   已建立的连接</span>
 <span class="token comment"># RELATED       关联的连接，如 ftp</span>
@@ -840,7 +840,7 @@ iptables-restore <span class="token operator">&lt;</span>/etc/sysconfig/iptables
 <span class="token comment"># UNTRACKED     未启用连接跟踪的连接</span>
 
 <span class="token comment">## conntrack 连接状态</span>
---ctstate <span class="token punctuation">&#123;</span>INVALID<span class="token operator">|</span>ESTABLISHED<span class="token operator">|</span>NEW<span class="token operator">|</span>RELATED<span class="token operator">|</span>UNTRACKED<span class="token operator">|</span>SNAT<span class="token operator">|</span>DNAT<span class="token punctuation">&#125;</span><span class="token punctuation">[</span>,<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+<span class="token parameter variable">--ctstate</span> <span class="token punctuation">&#123;</span>INVALID<span class="token operator">|</span>ESTABLISHED<span class="token operator">|</span>NEW<span class="token operator">|</span>RELATED<span class="token operator">|</span>UNTRACKED<span class="token operator">|</span>SNAT<span class="token operator">|</span>DNAT<span class="token punctuation">&#125;</span><span class="token punctuation">[</span>,<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
 
 <span class="token comment">## iprange IP范围</span>
 --src-range ip<span class="token punctuation">[</span>-ip<span class="token punctuation">]</span>     <span class="token comment"># 匹配指定的源 IP 范围</span>
@@ -863,33 +863,33 @@ iptables-restore <span class="token operator">&lt;</span>/etc/sysconfig/iptables
 <span class="token comment"># PROHIBIT     禁止访问的地址</span>
 
 <span class="token comment">## time 时间</span>
---datestart <span class="token function">time</span>     <span class="token comment"># 起始日期 YYYY[-MM[-DD[Thh[:mm[:ss]]]]]</span>
---datestop <span class="token function">time</span>      <span class="token comment"># 结束日期 YYYY[-MM[-DD[Thh[:mm[:ss]]]]]</span>
---timestart <span class="token function">time</span>     <span class="token comment"># 起始时间 hh:mm[:ss]</span>
---timestop <span class="token function">time</span>      <span class="token comment"># 结束时间 hh:mm[:ss]</span>
---monthdays value    <span class="token comment"># 几号，1 至 31，默认为 all</span>
---weekdays value     <span class="token comment"># 星期几，1 至 7，默认为 all</span>
---kerneltz           <span class="token comment"># 使用内核时区而非 UTC</span>
+<span class="token parameter variable">--datestart</span> <span class="token function">time</span>     <span class="token comment"># 起始日期 YYYY[-MM[-DD[Thh[:mm[:ss]]]]]</span>
+<span class="token parameter variable">--datestop</span> <span class="token function">time</span>      <span class="token comment"># 结束日期 YYYY[-MM[-DD[Thh[:mm[:ss]]]]]</span>
+<span class="token parameter variable">--timestart</span> <span class="token function">time</span>     <span class="token comment"># 起始时间 hh:mm[:ss]</span>
+<span class="token parameter variable">--timestop</span> <span class="token function">time</span>      <span class="token comment"># 结束时间 hh:mm[:ss]</span>
+<span class="token parameter variable">--monthdays</span> value    <span class="token comment"># 几号，1 至 31，默认为 all</span>
+<span class="token parameter variable">--weekdays</span> value     <span class="token comment"># 星期几，1 至 7，默认为 all</span>
+<span class="token parameter variable">--kerneltz</span>           <span class="token comment"># 使用内核时区而非 UTC</span>
 
 <span class="token comment">## string 关键字匹配</span>
---from offset       <span class="token comment"># 设置起始偏移量</span>
---to offset         <span class="token comment"># 设置结束偏移量</span>
---algo <span class="token punctuation">&#123;</span>bm<span class="token operator">|</span>kmp<span class="token punctuation">&#125;</span>     <span class="token comment"># 指定使用的算法</span>
---icase             <span class="token comment"># 忽略大小写匹配</span>
---string string     <span class="token comment"># 要匹配的字符串</span>
+<span class="token parameter variable">--from</span> offset       <span class="token comment"># 设置起始偏移量</span>
+<span class="token parameter variable">--to</span> offset         <span class="token comment"># 设置结束偏移量</span>
+<span class="token parameter variable">--algo</span> <span class="token punctuation">&#123;</span>bm<span class="token operator">|</span>kmp<span class="token punctuation">&#125;</span>     <span class="token comment"># 指定使用的算法</span>
+<span class="token parameter variable">--icase</span>             <span class="token comment"># 忽略大小写匹配</span>
+<span class="token parameter variable">--string</span> string     <span class="token comment"># 要匹配的字符串</span>
 --hex-string string <span class="token comment"># 要匹配的字符串，十六进制</span>
 
 <span class="token comment">## length 数据包大小</span>
---length length<span class="token punctuation">[</span>:length<span class="token punctuation">]</span>    <span class="token comment"># 匹配数据包大小[范围]</span>
+<span class="token parameter variable">--length</span> length<span class="token punctuation">[</span>:length<span class="token punctuation">]</span>    <span class="token comment"># 匹配数据包大小[范围]</span>
 
 <span class="token comment">## mark 防火墙标记</span>
---mark value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>     <span class="token comment"># 匹配有指定防火墙标记的数据包</span>
+<span class="token parameter variable">--mark</span> value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>     <span class="token comment"># 匹配有指定防火墙标记的数据包</span>
 
 <span class="token comment">## connmark "连接"标记</span>
---mark value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>     <span class="token comment"># 如果当前数据包所属的"连接"打了给定的标记，则匹配成功</span>
+<span class="token parameter variable">--mark</span> value<span class="token punctuation">[</span>/mask<span class="token punctuation">]</span>     <span class="token comment"># 如果当前数据包所属的"连接"打了给定的标记，则匹配成功</span>
 
 <span class="token comment">## limit 速率限制</span>
---limit avg             <span class="token comment"># 平均速率限制，如 3/hour，单位: sec|minute|hour|day</span>
+<span class="token parameter variable">--limit</span> avg             <span class="token comment"># 平均速率限制，如 3/hour，单位: sec|minute|hour|day</span>
 --limit-burst number    <span class="token comment"># 封顶速率限制，默认为 5</span>
 
 <span class="token comment">## connlimit 并发连接数</span>
@@ -960,119 +960,119 @@ RETURN      <span class="token comment"># 退出当前链，分两种情况：</
 
 <span class="token comment"># SNAT 源地址转换，用在 POSTROUTING、INPUT 链</span>
 --to-source <span class="token punctuation">[</span><span class="token operator">&lt;</span>ipaddr<span class="token operator">></span><span class="token punctuation">[</span>-<span class="token operator">&lt;</span>ipaddr<span class="token operator">></span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>:port<span class="token punctuation">[</span>-port<span class="token punctuation">]</span><span class="token punctuation">]</span>
---random        <span class="token comment"># 映射到随机端口号</span>
+<span class="token parameter variable">--random</span>        <span class="token comment"># 映射到随机端口号</span>
 --random-fully  <span class="token comment"># 映射到随机端口号（PRNG 完全随机化）</span>
---persistent    <span class="token comment"># 映射到固定地址</span>
+<span class="token parameter variable">--persistent</span>    <span class="token comment"># 映射到固定地址</span>
 
 <span class="token comment"># DNAT 目的地址转换，用在 PREROUTING、OUTPUT 链</span>
 --to-destination <span class="token punctuation">[</span><span class="token operator">&lt;</span>ipaddr<span class="token operator">></span><span class="token punctuation">[</span>-<span class="token operator">&lt;</span>ipaddr<span class="token operator">></span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>:port<span class="token punctuation">[</span>-port<span class="token punctuation">]</span><span class="token punctuation">]</span>
---random        <span class="token comment"># 映射到随机端口号</span>
---persistent    <span class="token comment"># 映射到固定地址</span>
+<span class="token parameter variable">--random</span>        <span class="token comment"># 映射到随机端口号</span>
+<span class="token parameter variable">--persistent</span>    <span class="token comment"># 映射到固定地址</span>
 
 <span class="token comment"># MASQUERADE 源地址转换（适用于 DHCP 动态 IP），用在 POSTROUTING 链</span>
 --to-ports <span class="token operator">&lt;</span>port<span class="token operator">></span><span class="token punctuation">[</span>-<span class="token operator">&lt;</span>port<span class="token operator">></span><span class="token punctuation">]</span>  <span class="token comment"># 映射到指定端口号[范围]</span>
---random                    <span class="token comment"># 映射到随机端口号</span>
+<span class="token parameter variable">--random</span>                    <span class="token comment"># 映射到随机端口号</span>
 
 <span class="token comment"># REDIRECT 目的地址转换（重定向至 localhost:端口号），用在 PREROUTING、OUTPUT 链</span>
 --to-ports <span class="token operator">&lt;</span>port<span class="token operator">></span><span class="token punctuation">[</span>-<span class="token operator">&lt;</span>port<span class="token operator">></span><span class="token punctuation">]</span>  <span class="token comment"># 重定向到指定端口号[范围]</span>
---random                    <span class="token comment"># 重定向到随机端口号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token parameter variable">--random</span>                    <span class="token comment"># 重定向到随机端口号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables --help             <span class="token comment"># 查看 iptables 的帮助</span>
-iptables -m 模块名 --help    <span class="token comment"># 查看指定模块的可用参数</span>
-iptables -j 动作名 --help    <span class="token comment"># 查看指定动作的可用参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">--help</span>             <span class="token comment"># 查看 iptables 的帮助</span>
+iptables <span class="token parameter variable">-m</span> 模块名 <span class="token parameter variable">--help</span>    <span class="token comment"># 查看指定模块的可用参数</span>
+iptables <span class="token parameter variable">-j</span> 动作名 <span class="token parameter variable">--help</span>    <span class="token comment"># 查看指定动作的可用参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="查看规则"><a href="#查看规则" class="headerlink" title="查看规则"></a>查看规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -nvL
-iptables -t nat -nvL
+<h4 id="查看规则"><a href="#查看规则" class="headerlink" title="查看规则"></a>查看规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-nvL</span>
+iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-nvL</span>
 
 <span class="token comment"># 显示规则序号</span>
-iptables -nvL INPUT --line-numbers
-iptables -t nat -nvL --line-numbers
-iptables -t nat -nvL PREROUTING --line-numbers
+iptables <span class="token parameter variable">-nvL</span> INPUT --line-numbers
+iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-nvL</span> --line-numbers
+iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-nvL</span> PREROUTING --line-numbers
 
 <span class="token comment"># 查看规则的原始格式</span>
-iptables -t filter -S
-iptables -t nat -S
-iptables -t mangle -S
-iptables -t raw -S<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+iptables <span class="token parameter variable">-t</span> filter <span class="token parameter variable">-S</span>
+iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-S</span>
+iptables <span class="token parameter variable">-t</span> mangle <span class="token parameter variable">-S</span>
+iptables <span class="token parameter variable">-t</span> raw <span class="token parameter variable">-S</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="设置默认规则"><a href="#设置默认规则" class="headerlink" title="设置默认规则"></a>设置默认规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -P INPUT DROP     <span class="token comment"># 配置默认丢弃访问的数据表</span>
-iptables -P FORWARD DROP   <span class="token comment"># 配置默认禁止转发</span>
-iptables -P OUTPUT ACCEPT  <span class="token comment"># 配置默认允许向外的请求</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="设置默认规则"><a href="#设置默认规则" class="headerlink" title="设置默认规则"></a>设置默认规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-P</span> INPUT DROP     <span class="token comment"># 配置默认丢弃访问的数据表</span>
+iptables <span class="token parameter variable">-P</span> FORWARD DROP   <span class="token comment"># 配置默认禁止转发</span>
+iptables <span class="token parameter variable">-P</span> OUTPUT ACCEPT  <span class="token comment"># 配置默认允许向外的请求</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="清除所有规则"><a href="#清除所有规则" class="headerlink" title="清除所有规则"></a>清除所有规则</h4><p>注意，在使用的时候</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -F  <span class="token comment"># 清空表中所有的规则</span>
-iptables -X  <span class="token comment"># 删除表中用户自定义的链</span>
-iptables -Z  <span class="token comment"># 清空计数</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-F</span>  <span class="token comment"># 清空表中所有的规则</span>
+iptables <span class="token parameter variable">-X</span>  <span class="token comment"># 删除表中用户自定义的链</span>
+iptables <span class="token parameter variable">-Z</span>  <span class="token comment"># 清空计数</span>
 
-iptables -t nat -F
-iptables -t nat -X
-iptables -t mangle -F
-iptables -t mangle -X
-iptables -t raw -F
-iptables -t raw -X
-iptables -t security -F
-iptables -t security -X<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-F</span>
+iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-X</span>
+iptables <span class="token parameter variable">-t</span> mangle <span class="token parameter variable">-F</span>
+iptables <span class="token parameter variable">-t</span> mangle <span class="token parameter variable">-X</span>
+iptables <span class="token parameter variable">-t</span> raw <span class="token parameter variable">-F</span>
+iptables <span class="token parameter variable">-t</span> raw <span class="token parameter variable">-X</span>
+iptables <span class="token parameter variable">-t</span> security <span class="token parameter variable">-F</span>
+iptables <span class="token parameter variable">-t</span> security <span class="token parameter variable">-X</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="增加规则"><a href="#增加规则" class="headerlink" title="增加规则"></a>增加规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 增加一条规则到最后</span>
-iptables -A INPUT -i eth0 -p tcp --dport <span class="token number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-i</span> eth0 <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">80</span> <span class="token parameter variable">-m</span> state <span class="token parameter variable">--state</span> NEW,ESTABLISHED <span class="token parameter variable">-j</span> ACCEPT
 
 <span class="token comment"># 注：以下几条操作都需要使用规则的序号，需要使用 -L --line-numbers 参数先查看规则的顺序号</span>
 
 <span class="token comment"># 添加一条规则到指定位置</span>
-iptables -I INPUT <span class="token number">2</span> -i eth0 -p tcp --dport <span class="token number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+iptables <span class="token parameter variable">-I</span> INPUT <span class="token number">2</span> <span class="token parameter variable">-i</span> eth0 <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">80</span> <span class="token parameter variable">-m</span> state <span class="token parameter variable">--state</span> NEW,ESTABLISHED <span class="token parameter variable">-j</span> ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="删除规则"><a href="#删除规则" class="headerlink" title="删除规则"></a>删除规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将所有 iptables 以序号标记显示</span>
-iptables -L -n --line-numbers
+iptables <span class="token parameter variable">-L</span> <span class="token parameter variable">-n</span> --line-numbers
 
 <span class="token comment"># 根据规则的序号来删除</span>
-iptabels -D INPUT <span class="token variable">$&#123;line-numbers&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+iptabels <span class="token parameter variable">-D</span> INPUT <span class="token variable">$&#123;line-numbers&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="修改规则"><a href="#修改规则" class="headerlink" title="修改规则"></a>修改规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -R INPUT <span class="token number">3</span> -i eth0 -p tcp --dport <span class="token number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="修改规则"><a href="#修改规则" class="headerlink" title="修改规则"></a>修改规则</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-R</span> INPUT <span class="token number">3</span> <span class="token parameter variable">-i</span> eth0 <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">80</span> <span class="token parameter variable">-m</span> state <span class="token parameter variable">--state</span> NEW,ESTABLISHED <span class="token parameter variable">-j</span> ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="开放指定端口"><a href="#开放指定端口" class="headerlink" title="开放指定端口"></a>开放指定端口</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 允许本地回环接口(即运行本机访问本机)</span>
-iptables -A INPUT -i lo -j ACCEPT
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-i</span> lo <span class="token parameter variable">-j</span> ACCEPT
 
 <span class="token comment"># 允许已建立的或相关连接的通行</span>
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-m</span> state <span class="token parameter variable">--state</span> ESTABLISHED,RELATED <span class="token parameter variable">-j</span> ACCEPT
 
 <span class="token comment"># 允许所有本机向外的访问</span>
-iptables -A OUTPUT -j ACCEPT
+iptables <span class="token parameter variable">-A</span> OUTPUT <span class="token parameter variable">-j</span> ACCEPT
 
 <span class="token comment"># 允许 22,80,443 端口的访问</span>
-iptables -A INPUT -p tcp --dport <span class="token number">22</span> -j ACCEPT
-iptables -A INPUT -p tcp --dports <span class="token number">80,443</span> -j ACCEPT
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">22</span> <span class="token parameter variable">-j</span> ACCEPT
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dports</span> <span class="token number">80,443</span> <span class="token parameter variable">-j</span> ACCEPT
 
 <span class="token comment"># 允许 ping</span>
-iptables -A INPUT -p icmp -m icmp --icmp-type <span class="token number">8</span> -j ACCEPT
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> icmp <span class="token parameter variable">-m</span> icmp --icmp-type <span class="token number">8</span> <span class="token parameter variable">-j</span> ACCEPT
 
 <span class="token comment"># 禁止 ping</span>
-iptables -A INPUT -p icmp -m icmp --icmp-type <span class="token number">8</span> -j DROP
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> icmp <span class="token parameter variable">-m</span> icmp --icmp-type <span class="token number">8</span> <span class="token parameter variable">-j</span> DROP
 
 <span class="token comment"># 禁止其他未允许的规则访问</span>
-iptables -A INPUT -j REJECT
-iptables -A FORWARD -j REJECT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-j</span> REJECT
+iptables <span class="token parameter variable">-A</span> FORWARD <span class="token parameter variable">-j</span> REJECT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="设置白名单"><a href="#设置白名单" class="headerlink" title="设置白名单"></a>设置白名单</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 允许机房内网机器可以访问</span>
-iptables -A INPUT -p all -s <span class="token number">10.10</span>.10.0/24 -j ACCEPT
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> all <span class="token parameter variable">-s</span> <span class="token number">10.10</span>.10.0/24 <span class="token parameter variable">-j</span> ACCEPT
 <span class="token comment"># 允许 10.10.10.22 访问本机的 22 端口</span>
-iptables -A INPUT -p tcp -s <span class="token number">10.10</span>.10.22 --dport <span class="token number">22</span> -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">-s</span> <span class="token number">10.10</span>.10.22 <span class="token parameter variable">--dport</span> <span class="token number">22</span> <span class="token parameter variable">-j</span> ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="屏蔽某-IP"><a href="#屏蔽某-IP" class="headerlink" title="屏蔽某 IP"></a>屏蔽某 IP</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"> <span class="token comment"># 屏蔽恶意主机（比如，114.114.114.114)</span>
-iptables -A INPUT -p tcp -m tcp -s <span class="token number">114.114</span>.114.114 -j DROP
+iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">-m</span> tcp <span class="token parameter variable">-s</span> <span class="token number">114.114</span>.114.114 <span class="token parameter variable">-j</span> DROP
 
 <span class="token comment"># 屏蔽单个IP的命令</span>
-iptables -I INPUT -s <span class="token number">123.45</span>.6.7 -j DROP
+iptables <span class="token parameter variable">-I</span> INPUT <span class="token parameter variable">-s</span> <span class="token number">123.45</span>.6.7 <span class="token parameter variable">-j</span> DROP
 
 <span class="token comment">#封整个段即从 10.10.10.1 到 10.10.10.254的命令</span>
-iptables -I INPUT -s <span class="token number">10.10</span>.10.0/24 -j DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+iptables <span class="token parameter variable">-I</span> INPUT <span class="token parameter variable">-s</span> <span class="token number">10.10</span>.10.0/24 <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="指定数据包出去的网络接口"><a href="#指定数据包出去的网络接口" class="headerlink" title="指定数据包出去的网络接口"></a>指定数据包出去的网络接口</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 只对 OUTPUT，FORWARD，POSTROUTING 三个链起作用</span>
-iptables -A FORWARD -o eth0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+iptables <span class="token parameter variable">-A</span> FORWARD <span class="token parameter variable">-o</span> eth0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h4 id="防止-SYN-洪水攻击"><a href="#防止-SYN-洪水攻击" class="headerlink" title="防止 SYN 洪水攻击"></a>防止 SYN 洪水攻击</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables -A INPUT -p tcp --syn -m limit --limit <span class="token number">5</span>/second -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="防止-SYN-洪水攻击"><a href="#防止-SYN-洪水攻击" class="headerlink" title="防止 SYN 洪水攻击"></a>防止 SYN 洪水攻击</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--syn</span> <span class="token parameter variable">-m</span> limit <span class="token parameter variable">--limit</span> <span class="token number">5</span>/second <span class="token parameter variable">-j</span> ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 本机的 2222 端口映射到内网虚拟机的22 端口</span>
-iptables -t nat -A PREROUTING -d <span class="token number">223.6</span>.6.6 -p tcp --dport <span class="token number">2222</span>  -j DNAT --to-dest <span class="token number">10.10</span>.10.22:22<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-A</span> PREROUTING <span class="token parameter variable">-d</span> <span class="token number">223.6</span>.6.6 <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">2222</span>  <span class="token parameter variable">-j</span> DNAT --to-dest <span class="token number">10.10</span>.10.22:22<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="持久化规则："><a href="#持久化规则：" class="headerlink" title="持久化规则："></a>持久化规则：</h4><p><strong>RHEL&#x2F;CentOS</strong></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 运维千万条，备份第一条，操作不规范，数据全完蛋(大雾</span>
@@ -1159,7 +1159,7 @@ iptables-save <span class="token operator">></span> /etc/iptables/rules.v4<span 
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

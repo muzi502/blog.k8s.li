@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -335,19 +335,19 @@
 <h3 id="记录-SAS-地址"><a href="#记录-SAS-地址" class="headerlink" title="记录 SAS 地址"></a>记录 SAS 地址</h3><p>在刷阵列卡之前要线记录下 SAS 的 Address ，进入到阵列卡的 BIOS 中会有这个信息。</p>
 <h3 id="找好固件和文档"><a href="#找好固件和文档" class="headerlink" title="找好固件和文档"></a>找好固件和文档</h3><p>由于我要刷入的固件不是阵列卡原厂的固件，只找到了现成的固件，直接就拿来用了，应该问题不大。而且刷入的流程也是比较简滴。<a target="_blank" rel="noopener" href="https://wiki2.xbits.net:4430/hardware:lsi:h1110-it-firmware">IBM H1110 卡刷为 LSI 9211-4i IT 固件</a> :</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 备份原卡信息和sbr</span>
-MegaCli.exe -AdpAllInfo -aAll -ApplogFile bak.txt
-MegaRec.exe -readsbr <span class="token number">0</span> orig.sbr
+MegaCli.exe <span class="token parameter variable">-AdpAllInfo</span> <span class="token parameter variable">-aAll</span> <span class="token parameter variable">-ApplogFile</span> bak.txt
+MegaRec.exe <span class="token parameter variable">-readsbr</span> <span class="token number">0</span> orig.sbr
 <span class="token comment">#擦写sbr和flash一遍能刷入LSI原厂固件</span>
-MegaRec -writesbr <span class="token number">0</span> sbrempty.bin
-MegaRec -cleanflash <span class="token number">0</span>
+MegaRec <span class="token parameter variable">-writesbr</span> <span class="token number">0</span> sbrempty.bin
+MegaRec <span class="token parameter variable">-cleanflash</span> <span class="token number">0</span>
 <span class="token comment">#重启再次进入DOS</span>
 <span class="token function">reboot</span>
 <span class="token comment">#刷入对应IT固件和ROM</span>
-sas2flsh -o -f 2114it.bin -b mptsas2.rom
+sas2flsh <span class="token parameter variable">-o</span> <span class="token parameter variable">-f</span> 2114it.bin <span class="token parameter variable">-b</span> mptsas2.rom
 <span class="token comment">#恢复原来的SAS地址</span>
-sas2flsh -o -sasadd xxxxxxxx
+sas2flsh <span class="token parameter variable">-o</span> <span class="token parameter variable">-sasadd</span> xxxxxxxx
 <span class="token comment">#查看最新状态</span>
-sas2flsh -list
+sas2flsh <span class="token parameter variable">-list</span>
 <span class="token comment">#重启，完成</span>
 <span class="token function">reboot</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -501,7 +501,7 @@ ShellX64.efi</li>
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

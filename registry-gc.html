@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://p.k8s.li/registry-gc-2.jpeg">
 <meta property="og:image" content="https://p.k8s.li/registry-gc-3.jpeg">
 <meta property="article:published_time" content="2020-07-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:27.383Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.706Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="registry">
@@ -275,7 +275,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:27+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:27+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -377,28 +377,28 @@ $ update-ca-certificates
 update-ca-certificates<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="创建密码-auth-认证-auth-htpasswd-文件"><a href="#创建密码-auth-认证-auth-htpasswd-文件" class="headerlink" title="创建密码 auth 认证  auth.htpasswd 文件"></a>创建密码 auth 认证  auth.htpasswd 文件</h4><p>由于 PUSH 镜像和 DELETE 镜像是通过 HTTP 请求 registry 的 API 完成的，每个请求都需要一个 token 才能完成操作，这个 token 需要使用这个 AUTH 文件来进行鉴权，使用 <code>htpasswd</code> 来生成一个明文的用户&#x2F;密码即可。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">htpasswd -cB -b auth.htpasswd root <span class="token number">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">htpasswd <span class="token parameter variable">-cB</span> <span class="token parameter variable">-b</span> auth.htpasswd root <span class="token number">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="启动-registry-容器，docker-run-走起！"><a href="#启动-registry-容器，docker-run-走起！" class="headerlink" title="启动 registry 容器，docker run 走起！"></a>启动 registry 容器，docker run 走起！</h4><ul>
 <li><code>-v /var/lib/registry:/var/lib/registry</code> ，将本地的存储目录挂载到容器内的 registry 存储目录下。</li>
 <li><code>-v pwd/certs:/certs</code>，将生成的 SSL 证书挂载到容器内。</li>
 <li><code>-e REGISTRY_STORAGE_DELETE_ENABLED=true</code>，添加该参数才能进行 DELETE 镜像操作，不然的话会提示 <a target="_blank" rel="noopener" href="https://github.com/docker/distribution/issues/1573">Error in deleting repository in a private registry V2 #1573</a> 这种错误（＞﹏＜）。</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run -d -p <span class="token number">127.0</span>.0.1:443:5000 --name registry <span class="token punctuation">\</span>
-    -v /var/lib/registry:/var/lib/registry <span class="token punctuation">\</span>
-    -v <span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">pwd</span><span class="token variable">`</span></span>/certs:/certs <span class="token punctuation">\</span>
-    -v <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span>/auth.htpasswd:/etc/docker/registry/auth.htpasswd <span class="token punctuation">\</span>
-    -e <span class="token assign-left variable">REGISTRY_AUTH</span><span class="token operator">=</span><span class="token string">"&#123;htpasswd: &#123;realm: localhost, path: /etc/docker/registry/auth.htpasswd&#125;&#125;"</span> <span class="token punctuation">\</span>
-    -e <span class="token assign-left variable">REGISTRY_HTTP_ADDR</span><span class="token operator">=</span><span class="token number">0.0</span>.0.0:5000 <span class="token punctuation">\</span>
-    -e <span class="token assign-left variable">REGISTRY_HTTP_TLS_CERTIFICATE</span><span class="token operator">=</span>/certs/domain.crt <span class="token punctuation">\</span>
-    -e <span class="token assign-left variable">REGISTRY_HTTP_TLS_KEY</span><span class="token operator">=</span>/certs/domain.key <span class="token punctuation">\</span>
-    -e <span class="token assign-left variable">REGISTRY_STORAGE_DELETE_ENABLED</span><span class="token operator">=</span>true <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">-p</span> <span class="token number">127.0</span>.0.1:443:5000 <span class="token parameter variable">--name</span> registry <span class="token punctuation">\</span>
+    <span class="token parameter variable">-v</span> /var/lib/registry:/var/lib/registry <span class="token punctuation">\</span>
+    <span class="token parameter variable">-v</span> <span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">pwd</span><span class="token variable">`</span></span>/certs:/certs <span class="token punctuation">\</span>
+    <span class="token parameter variable">-v</span> <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span>/auth.htpasswd:/etc/docker/registry/auth.htpasswd <span class="token punctuation">\</span>
+    <span class="token parameter variable">-e</span> <span class="token assign-left variable">REGISTRY_AUTH</span><span class="token operator">=</span><span class="token string">"&#123;htpasswd: &#123;realm: localhost, path: /etc/docker/registry/auth.htpasswd&#125;&#125;"</span> <span class="token punctuation">\</span>
+    <span class="token parameter variable">-e</span> <span class="token assign-left variable">REGISTRY_HTTP_ADDR</span><span class="token operator">=</span><span class="token number">0.0</span>.0.0:5000 <span class="token punctuation">\</span>
+    <span class="token parameter variable">-e</span> <span class="token assign-left variable">REGISTRY_HTTP_TLS_CERTIFICATE</span><span class="token operator">=</span>/certs/domain.crt <span class="token punctuation">\</span>
+    <span class="token parameter variable">-e</span> <span class="token assign-left variable">REGISTRY_HTTP_TLS_KEY</span><span class="token operator">=</span>/certs/domain.key <span class="token punctuation">\</span>
+    <span class="token parameter variable">-e</span> <span class="token assign-left variable">REGISTRY_STORAGE_DELETE_ENABLED</span><span class="token operator">=</span>true <span class="token punctuation">\</span>
     registry<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="docker-login"><a href="#docker-login" class="headerlink" title="docker login"></a>docker login</h4><p>这一步是为了在 <code>~/.docker/.config.json</code> ，中添加上 auth 认证，后面使用 skopeo 的时候会用到。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/registry
 ╰─<span class="token comment"># docker login localhost -u root -p 123456</span>
-<span class="token punctuation">]</span>WARNING<span class="token operator">!</span> Using --password via the CLI is insecure. Use --password-stdin.
+<span class="token punctuation">]</span>WARNING<span class="token operator">!</span> Using <span class="token parameter variable">--password</span> via the CLI is insecure. Use --password-stdin.
 WARNING<span class="token operator">!</span> Your password will be stored unencrypted <span class="token keyword">in</span> /root/.docker/config.json.
 Configure a credential helper to remove this warning. See
 https://docs.docker.com/engine/reference/commandline/login/<span class="token comment">#credentials-store</span>
@@ -786,18 +786,18 @@ err <span class="token operator">:=</span> repositoryEnumerator<span class="toke
 
 <p>这一阶段用 shell 脚本来实现的话大致可以这样来搞，使用 shell 去遍历这些 manifest ，然后再 grep 出所有的 sha256 值就能得到这个镜像所有的 blobs 目录下的 data 文件。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-<span class="token builtin class-name">set</span> -x
+<span class="token builtin class-name">set</span> <span class="token parameter variable">-x</span>
 <span class="token assign-left variable">v2</span><span class="token operator">=</span><span class="token variable">$&#123;v2<span class="token operator">:=</span>"<span class="token operator">/</span>var<span class="token operator">/</span>lib<span class="token operator">/</span>registry<span class="token operator">/</span>docker<span class="token operator">/</span>registry<span class="token operator">/</span>v2"&#125;</span>
 <span class="token builtin class-name">cd</span> <span class="token variable">$&#123;v2&#125;</span>
 <span class="token assign-left variable">all_blobs</span><span class="token operator">=</span>/tmp/all_blobs.list
 <span class="token builtin class-name">echo</span> <span class="token string">""</span> <span class="token operator">></span> <span class="token variable">$&#123;all_blobs&#125;</span>
 <span class="token comment"># marking all the blob by all images manifest</span>
-<span class="token keyword">for</span> <span class="token for-or-select variable">tag</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> repositories -name <span class="token string">"link"</span> <span class="token operator">|</span> <span class="token function">grep</span> current<span class="token variable">)</span></span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">tag</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> repositories <span class="token parameter variable">-name</span> <span class="token string">"link"</span> <span class="token operator">|</span> <span class="token function">grep</span> current<span class="token variable">)</span></span>
 <span class="token keyword">do</span>
     <span class="token assign-left variable">link</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cat</span> $<span class="token punctuation">&#123;</span>tag<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">cut</span> -c8-71<span class="token variable">)</span></span>
     <span class="token assign-left variable">mfs</span><span class="token operator">=</span>blobs/sha256/<span class="token variable">$&#123;link<span class="token operator">:</span>0<span class="token operator">:</span>2&#125;</span>/<span class="token variable">$&#123;link&#125;</span>/data
     <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;link&#125;</span> <span class="token operator">>></span> <span class="token variable">$&#123;all_blobs&#125;</span>
-    <span class="token function">grep</span> sha256 <span class="token variable">$&#123;mfs&#125;</span> <span class="token operator">|</span><span class="token function">cut</span> -d <span class="token string">"<span class="token entity" title="\&quot;">\"</span>"</span> -f4 <span class="token operator">|</span> <span class="token function">cut</span> -c8-71 <span class="token operator">>></span> <span class="token variable">$&#123;all_blobs&#125;</span>
+    <span class="token function">grep</span> sha256 <span class="token variable">$&#123;mfs&#125;</span> <span class="token operator">|</span><span class="token function">cut</span> <span class="token parameter variable">-d</span> <span class="token string">"<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token parameter variable">-f4</span> <span class="token operator">|</span> <span class="token function">cut</span> -c8-71 <span class="token operator">>></span> <span class="token variable">$&#123;all_blobs&#125;</span>
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="sweep"><a href="#sweep" class="headerlink" title="sweep"></a>sweep</h4><p>第二阶段就是删除操作啦，marking 完之后，没有标记 blob（ layer 和 config 文件）就会被清除掉。</p>
@@ -957,14 +957,14 @@ FATA[0000] Failed to delete /v2/library/alpine/manifests/sha256:a143f3ba578f79e2
 <p>留着已经被 GC 掉 blob 的 layer link 也没啥用，使用下面这个脚本就能删掉无用的 layer link 文件。根据 layer link 的值去 blobs 目录下看看该文件是否存在，不存在的话就 rm -rf 掉，存在的话就留着。这样就能清理干净啦 😁。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 <span class="token builtin class-name">cd</span> /var/lib/registry/docker/registry/v2
-<span class="token keyword">for</span> <span class="token for-or-select variable">link</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> repositories -name <span class="token string">"link"</span> <span class="token operator">|</span> <span class="token function">grep</span> -E <span class="token string">"_layers"</span><span class="token variable">)</span></span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">link</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> repositories <span class="token parameter variable">-name</span> <span class="token string">"link"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-E</span> <span class="token string">"_layers"</span><span class="token variable">)</span></span>
 <span class="token keyword">do</span>
-    <span class="token assign-left variable">link_sha256</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> $<span class="token punctuation">&#123;</span>link<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">"/"</span> <span class="token string">'&#123;print $6&#125;'</span><span class="token variable">)</span></span>
-    <span class="token assign-left variable">link_short</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> $<span class="token punctuation">&#123;</span>link<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">"/"</span> <span class="token string">'&#123;print $6&#125;'</span> <span class="token operator">|</span> <span class="token function">cut</span> -c1-2<span class="token variable">)</span></span>
+    <span class="token assign-left variable">link_sha256</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> $<span class="token punctuation">&#123;</span>link<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token parameter variable">-F</span> <span class="token string">"/"</span> <span class="token string">'&#123;print $6&#125;'</span><span class="token variable">)</span></span>
+    <span class="token assign-left variable">link_short</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> $<span class="token punctuation">&#123;</span>link<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token parameter variable">-F</span> <span class="token string">"/"</span> <span class="token string">'&#123;print $6&#125;'</span> <span class="token operator">|</span> <span class="token function">cut</span> -c1-2<span class="token variable">)</span></span>
     <span class="token assign-left variable">data_file</span><span class="token operator">=</span>blobs/sha256/<span class="token variable">$&#123;link_short&#125;</span>/<span class="token variable">$&#123;link_sha256&#125;</span>
     <span class="token assign-left variable">dir_link</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> $<span class="token punctuation">&#123;</span>link<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">sed</span> s<span class="token string">'/link//g'</span><span class="token variable">)</span></span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> -d <span class="token string">"<span class="token variable">$&#123;data_file&#125;</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token function">rm</span> -rf <span class="token variable">$&#123;dir_link&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-d</span> <span class="token string">"<span class="token variable">$&#123;data_file&#125;</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">rm</span> <span class="token parameter variable">-rf</span> <span class="token variable">$&#123;dir_link&#125;</span>
     <span class="token keyword">fi</span>
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -1023,7 +1023,7 @@ FATA[0000] Failed to delete /v2/library/alpine/manifests/sha256:a143f3ba578f79e2
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

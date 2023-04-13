@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -318,27 +318,27 @@
 <h2 id="govc"><a href="#govc" class="headerlink" title="govc"></a>govc</h2><p><a target="_blank" rel="noopener" href="https://github.com/vmware/govmomi/tree/master/govc">govc</a> 是 VMware 官方 <a target="_blank" rel="noopener" href="https://github.com/vmware/govmom">govmomi</a> 库的一个封装实现。使用它可以完成对 ESXi 主机或 vCenter 的一些操作。比如创建虚拟机、管理快照等。基本上能在 ESXi 或 vCenter 上的操作，在 govmomi 中都有对应的实现。目前 govc 支持的 ESXi &#x2F; vCenter 版本有 7.0, 6.7, 6.5 , 6.0 (5.x 版本太老了，干脆放弃吧)，另外也支持 VMware Workstation 的某些版本。</p>
 <p>使用 govc 连接 ESXi 主机或 vCenter 可以通过设置环境变量或者命令行参数，建议使用环境变量，如果通过命令行 flag 的话，将明文规定用户名和密码输出来有一定的安全风险。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Options:
-  -cert<span class="token operator">=</span>                           Certificate <span class="token punctuation">[</span>GOVC_CERTIFICATE<span class="token punctuation">]</span>
-  -dc<span class="token operator">=</span>                             Datacenter <span class="token punctuation">[</span>GOVC_DATACENTER<span class="token punctuation">]</span>
-  -debug<span class="token operator">=</span>false                     Store debug logs <span class="token punctuation">[</span>GOVC_DEBUG<span class="token punctuation">]</span>
-  -dump<span class="token operator">=</span>false                      Enable Go output
-  -host<span class="token operator">=</span>                           Host system <span class="token punctuation">[</span>GOVC_HOST<span class="token punctuation">]</span>
-  -host.dns<span class="token operator">=</span>                       Find <span class="token function">host</span> by FQDN
-  -host.ip<span class="token operator">=</span>                        Find <span class="token function">host</span> by IP address
-  -host.ipath<span class="token operator">=</span>                     Find <span class="token function">host</span> by inventory path
-  -host.uuid<span class="token operator">=</span>                      Find <span class="token function">host</span> by UUID
-  -json<span class="token operator">=</span>false                      Enable JSON output
-  -k<span class="token operator">=</span>false                         Skip verification of server certificate <span class="token punctuation">[</span>GOVC_INSECURE<span class="token punctuation">]</span>
-  -key<span class="token operator">=</span>                            Private key <span class="token punctuation">[</span>GOVC_PRIVATE_KEY<span class="token punctuation">]</span>
+  <span class="token parameter variable">-cert</span><span class="token operator">=</span>                           Certificate <span class="token punctuation">[</span>GOVC_CERTIFICATE<span class="token punctuation">]</span>
+  <span class="token parameter variable">-dc</span><span class="token operator">=</span>                             Datacenter <span class="token punctuation">[</span>GOVC_DATACENTER<span class="token punctuation">]</span>
+  <span class="token parameter variable">-debug</span><span class="token operator">=</span>false                     Store debug logs <span class="token punctuation">[</span>GOVC_DEBUG<span class="token punctuation">]</span>
+  <span class="token parameter variable">-dump</span><span class="token operator">=</span>false                      Enable Go output
+  <span class="token parameter variable">-host</span><span class="token operator">=</span>                           Host system <span class="token punctuation">[</span>GOVC_HOST<span class="token punctuation">]</span>
+  <span class="token parameter variable">-host.dns</span><span class="token operator">=</span>                       Find <span class="token function">host</span> by FQDN
+  <span class="token parameter variable">-host.ip</span><span class="token operator">=</span>                        Find <span class="token function">host</span> by IP address
+  <span class="token parameter variable">-host.ipath</span><span class="token operator">=</span>                     Find <span class="token function">host</span> by inventory path
+  <span class="token parameter variable">-host.uuid</span><span class="token operator">=</span>                      Find <span class="token function">host</span> by UUID
+  <span class="token parameter variable">-json</span><span class="token operator">=</span>false                      Enable JSON output
+  <span class="token parameter variable">-k</span><span class="token operator">=</span>false                         Skip verification of server certificate <span class="token punctuation">[</span>GOVC_INSECURE<span class="token punctuation">]</span>
+  <span class="token parameter variable">-key</span><span class="token operator">=</span>                            Private key <span class="token punctuation">[</span>GOVC_PRIVATE_KEY<span class="token punctuation">]</span>
   -persist-session<span class="token operator">=</span>true            Persist session to disk <span class="token punctuation">[</span>GOVC_PERSIST_SESSION<span class="token punctuation">]</span>
   -tls-ca-certs<span class="token operator">=</span>                   TLS CA certificates <span class="token function">file</span> <span class="token punctuation">[</span>GOVC_TLS_CA_CERTS<span class="token punctuation">]</span>
   -tls-known-hosts<span class="token operator">=</span>                TLS known hosts <span class="token function">file</span> <span class="token punctuation">[</span>GOVC_TLS_KNOWN_HOSTS<span class="token punctuation">]</span>
-  -trace<span class="token operator">=</span>false                     Write SOAP/REST traffic to stderr
-  -u<span class="token operator">=</span>https://root@esxi.yoi.li/sdk  ESX or vCenter URL <span class="token punctuation">[</span>GOVC_URL<span class="token punctuation">]</span>
-  -verbose<span class="token operator">=</span>false                   Write request/response data to stderr
+  <span class="token parameter variable">-trace</span><span class="token operator">=</span>false                     Write SOAP/REST traffic to stderr
+  <span class="token parameter variable">-u</span><span class="token operator">=</span>https://root@esxi.yoi.li/sdk  ESX or vCenter URL <span class="token punctuation">[</span>GOVC_URL<span class="token punctuation">]</span>
+  <span class="token parameter variable">-verbose</span><span class="token operator">=</span>false                   Write request/response data to stderr
   -vim-namespace<span class="token operator">=</span>vim25             Vim namespace <span class="token punctuation">[</span>GOVC_VIM_NAMESPACE<span class="token punctuation">]</span>
   -vim-version<span class="token operator">=</span><span class="token number">7.0</span>                 Vim version <span class="token punctuation">[</span>GOVC_VIM_VERSION<span class="token punctuation">]</span>
-  -xml<span class="token operator">=</span>false                       Enable XML output<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token parameter variable">-xml</span><span class="token operator">=</span>false                       Enable XML output<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>通过 <code>GOVC_URL</code> 环境变量指定 ESXi 主机或 vCenter 的 URL，登录的用户名和密码可设置在 GOVC_URL 中或者单独设置 <code>GOVC_USERNAME</code> 和 <code>GOVC_PASSWORD</code>。如果 https 证书是自签的域名或者 IP 需要通过设置 <code>GOVC_INSECURE=true</code> 参数来允许不安全的 https 连接。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">export</span> <span class="token assign-left variable">GOVC_URL</span><span class="token operator">=</span><span class="token string">"https://root:password@esxi.k8s.li"</span>
@@ -639,13 +639,13 @@ $ govc host.service <span class="token builtin class-name">enable</span> TSM-SSH
 $ govc host.service status TSM-SSH<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">VM_NAME</span><span class="token operator">=</span><span class="token string">"centos-test"</span>
-$ govc vm.create -ds<span class="token operator">=</span><span class="token string">'datastore*'</span> -net<span class="token operator">=</span><span class="token string">'VM Network'</span> -net.adapter<span class="token operator">=</span>vmxnet3 -disk 1G -on<span class="token operator">=</span>false <span class="token variable">$&#123;VM_NAME&#125;</span>
-$ govc vm.change -cpu.reservation<span class="token operator">=</span>%d -memory-pin<span class="token operator">=</span>true -vm <span class="token variable">$&#123;VM_NAME&#125;</span>
-$ govc vm.change -g centos7_64Guest -c %d -m <span class="token number">16384</span> -latency high -vm <span class="token variable">$&#123;VM_NAME&#125;</span>
-$ govc device.cdrom.add -vm <span class="token variable">$&#123;VM_NAME&#125;</span>
-$ govc device.cdrom.insert -vm <span class="token variable">$&#123;VM_NAME&#125;</span> -device cdrom-3000
-$ govc device.connect -vm <span class="token variable">$&#123;VM_NAME&#125;</span> cdrom-3000
-$ govc vm.power -on<span class="token operator">=</span>true <span class="token variable">$&#123;VM_NAME&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+$ govc vm.create <span class="token parameter variable">-ds</span><span class="token operator">=</span><span class="token string">'datastore*'</span> <span class="token parameter variable">-net</span><span class="token operator">=</span><span class="token string">'VM Network'</span> <span class="token parameter variable">-net.adapter</span><span class="token operator">=</span>vmxnet3 <span class="token parameter variable">-disk</span> 1G <span class="token parameter variable">-on</span><span class="token operator">=</span>false <span class="token variable">$&#123;VM_NAME&#125;</span>
+$ govc vm.change <span class="token parameter variable">-cpu.reservation</span><span class="token operator">=</span>%d -memory-pin<span class="token operator">=</span>true <span class="token parameter variable">-vm</span> <span class="token variable">$&#123;VM_NAME&#125;</span>
+$ govc vm.change <span class="token parameter variable">-g</span> centos7_64Guest <span class="token parameter variable">-c</span> %d <span class="token parameter variable">-m</span> <span class="token number">16384</span> <span class="token parameter variable">-latency</span> high <span class="token parameter variable">-vm</span> <span class="token variable">$&#123;VM_NAME&#125;</span>
+$ govc device.cdrom.add <span class="token parameter variable">-vm</span> <span class="token variable">$&#123;VM_NAME&#125;</span>
+$ govc device.cdrom.insert <span class="token parameter variable">-vm</span> <span class="token variable">$&#123;VM_NAME&#125;</span> <span class="token parameter variable">-device</span> cdrom-3000
+$ govc device.connect <span class="token parameter variable">-vm</span> <span class="token variable">$&#123;VM_NAME&#125;</span> cdrom-3000
+$ govc vm.power <span class="token parameter variable">-on</span><span class="token operator">=</span>true <span class="token variable">$&#123;VM_NAME&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://gitbook.curiouser.top/origin/vsphere-govc.html">vSphere go 命令行管理工具 govc</a></li>
@@ -704,7 +704,7 @@ $ govc vm.power -on<span class="token operator">=</span>true <span class="token 
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://p.k8s.li/1562110273463.png">
 <meta property="og:image" content="https://p.k8s.li/1562110333067.png">
 <meta property="article:published_time" content="2019-06-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:26.903Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.362Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="life">
 <meta property="article:tag" content="安卓">
@@ -284,7 +284,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:26+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:26+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -384,40 +384,40 @@ addison:/<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rsync</span> <span class="token punctuation">[</span>OPTION<span class="token punctuation">]</span><span class="token punctuation">..</span>. SRC DEST<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>可能会用到的选项</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-v, --verbose 详细模式输出。
--a, --archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于 -rlptgoD。
--r, --recursive 对子目录以递归模式处理。
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-v, <span class="token parameter variable">--verbose</span> 详细模式输出。
+-a, <span class="token parameter variable">--archive</span> 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于 -rlptgoD。
+-r, <span class="token parameter variable">--recursive</span> 对子目录以递归模式处理。
 --backup-dir 将备份文件<span class="token punctuation">(</span>如~filename<span class="token punctuation">)</span>存放在在目录下。
--u, --update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件，不覆盖更新的文件。
--l, --links 保留软链结。
+-u, <span class="token parameter variable">--update</span> 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件，不覆盖更新的文件。
+-l, <span class="token parameter variable">--links</span> 保留软链结。
 -H, --hard-links 保留硬链结。
--p, --perms 保持文件权限。
--o, --owner 保持文件属主信息。
--g, --group 保持文件属组信息。
--D, --devices 保持设备文件信息。
--t, --times 保持文件时间信息。
+-p, <span class="token parameter variable">--perms</span> 保持文件权限。
+-o, <span class="token parameter variable">--owner</span> 保持文件属主信息。
+-g, <span class="token parameter variable">--group</span> 保持文件属组信息。
+-D, <span class="token parameter variable">--devices</span> 保持设备文件信息。
+-t, <span class="token parameter variable">--times</span> 保持文件时间信息。
 -w, --whole-file 拷贝文件，不进行增量检测。
 -C, --cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件。
---existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件。
---delete 删除那些DST中SRC没有的文件。
+<span class="token parameter variable">--existing</span> 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件。
+<span class="token parameter variable">--delete</span> 删除那些DST中SRC没有的文件。
 --delete-excluded 同样删除接收端那些被该选项指定排除的文件。
 --delete-after 传输结束以后再删除。
 --ignore-errors 即使出现IO错误也进行删除。
 --max-delete<span class="token operator">=</span>NUM 最多删除NUM个文件。
---force 强制删除目录，即使不为空。
+<span class="token parameter variable">--force</span> 强制删除目录，即使不为空。
 --numeric-ids 不将数字的用户和组id匹配为用户名和组名。
 --size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间。
 --modify-window<span class="token operator">=</span>NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0。
 --compare-dest<span class="token operator">=</span>DIR 同样比较DIR中的文件来决定是否需要备份。
--P 等同于 --partial。
---progress 显示备份过程。
---exclude<span class="token operator">=</span>PATTERN 指定排除不需要传输的文件模式。
+<span class="token parameter variable">-P</span> 等同于 --partial。
+<span class="token parameter variable">--progress</span> 显示备份过程。
+<span class="token parameter variable">--exclude</span><span class="token operator">=</span>PATTERN 指定排除不需要传输的文件模式。
 --exclude-from<span class="token operator">=</span>FILE 排除FILE中指定模式的文件。
--stats 给出某些文件的传输状态。
---progress 在传输时现实传输过程。
+<span class="token parameter variable">-stats</span> 给出某些文件的传输状态。
+<span class="token parameter variable">--progress</span> 在传输时现实传输过程。
 --log-format<span class="token operator">=</span>formAT 指定日志文件格式。
--h, --help 显示帮助信息。
-<span class="token function">mkdir</span> -p /data/pink<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+-h, <span class="token parameter variable">--help</span> 显示帮助信息。
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /data/pink<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="4-实现过程"><a href="#4-实现过程" class="headerlink" title="4.实现过程"></a>4.实现过程</h2><p>测试用的手机信息：</p>
 <p>![1561802376515<a target="_blank" rel="noopener" href="https://p.k8s.li/1561802376515.png">https://p.k8s.li/1561802376515.png</a>)</p>
@@ -435,10 +435,10 @@ adb shell
 
 <p>备份数据的工具很多啦，我最常用的就是钛备份。但今天要对 &#x2F;data&#x2F;data 和 &#x2F;data&#x2F;app 整个目录进行备份，还是用 tar 进行暴力备份吧。其实用 TWRP 备份最好啦。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看系统分区情况</span>
-<span class="token function">df</span> -h
-<span class="token function">mkdir</span> -p /data/pink
+<span class="token function">df</span> <span class="token parameter variable">-h</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /data/pink
 <span class="token comment"># 使用 rsync 备份整个 /data 目录</span>
-<span class="token function">time</span> <span class="token function">rsync</span> -avlHt  --progress --exclude<span class="token operator">=</span>/data/media /data /sdcard/data
+<span class="token function">time</span> <span class="token function">rsync</span> <span class="token parameter variable">-avlHt</span>  <span class="token parameter variable">--progress</span> <span class="token parameter variable">--exclude</span><span class="token operator">=</span>/data/media /data /sdcard/data
 sent <span class="token number">2,546</span>,814,512 bytes  received <span class="token number">439,395</span> bytes  <span class="token number">26,396</span>,413.54 bytes/sec
 total size is <span class="token number">2,547</span>,073,319  speedup is <span class="token number">1.00</span>
 <span class="token function">rsync</span> error: some files/attrs were not transferred <span class="token punctuation">(</span>see previous errors<span class="token punctuation">)</span> <span class="token punctuation">(</span>code <span class="token number">23</span><span class="token punctuation">)</span> at external/rsync/main.c<span class="token punctuation">(</span><span class="token number">1178</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>sen
@@ -486,7 +486,7 @@ total size is <span class="token number">0</span>  speedup is <span class="token
 <h3 id="4-3-安装爱国软件"><a href="#4-3-安装爱国软件" class="headerlink" title="4.3. 安装爱国软件"></a>4.3. 安装爱国软件</h3><p>第一肯定是老大哥的红宝书学习强国啦，其他的像人民日报、两学一做、智慧团建等等，也都下载下来安装上。</p>
 <h3 id="4-4-备份粉红版-x2F-data-目录"><a href="#4-4-备份粉红版-x2F-data-目录" class="headerlink" title="4.4.备份粉红版 &#x2F;data 目录"></a>4.4.备份粉红版 &#x2F;data 目录</h3><p>以上步骤完成后，我们就动手制作一个 粉红版的 &#x2F;data 目录，主要备份 &#x2F;data&#x2F;data 和 &#x2F;data&#x2F;app 目录，即卸载掉帝国软件，装有爱国软件的目录</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 备份 /data/data目录</span>
-<span class="token function">time</span> <span class="token function">rsync</span> -avlHt  --progress /data/data /sdcard/data/data
+<span class="token function">time</span> <span class="token function">rsync</span> <span class="token parameter variable">-avlHt</span>  <span class="token parameter variable">--progress</span> /data/data /sdcard/data/data
 
 sent <span class="token number">189,072</span>,151 bytes  received <span class="token number">50,969</span> bytes  <span class="token number">16,445</span>,488.70 bytes/sec
 total size is <span class="token number">413,158</span>,141  speedup is <span class="token number">2.18</span>
@@ -495,7 +495,7 @@ total size is <span class="token number">413,158</span>,141  speedup is <span cl
     0m10.71s real     0m02.84s user     0m05.04s system
 
 <span class="token comment"># 备份 /data/app 目录</span>
-<span class="token function">time</span> <span class="token function">rsync</span> -avlHt  --progress /data/app /sdcard/data/app
+<span class="token function">time</span> <span class="token function">rsync</span> <span class="token parameter variable">-avlHt</span>  <span class="token parameter variable">--progress</span> /data/app /sdcard/data/app
 
 sent <span class="token number">1,099</span>,653,619 bytes  received <span class="token number">6,928</span> bytes  <span class="token number">41,496</span>,624.42 bytes/sec
 total size is <span class="token number">1,099</span>,358,469  speedup is <span class="token number">1.00</span>
@@ -503,10 +503,10 @@ total size is <span class="token number">1,099</span>,358,469  speedup is <span 
 <span class="token comment">## 看来备份数据的速度还是相当快的</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="4-5-拉清单？"><a href="#4-5-拉清单？" class="headerlink" title="4.5 拉清单？"></a>4.5 拉清单？</h4><p><del>别看你今天闹得欢，小心我日后拉清单</del> 😂<br>我们这个清单就老大哥不待见的东西，比如膜蛤、乳包等等你懂 😜。无论时图片还是音频，我们统统把他们放在外置 SD 卡里，到时候在一件粉红的时候自动把  外置 SD 卡卸载掉，从而让取证软件识别不到外置 SD 卡。当然内部存储里的一些文件也需要删除，比如 telegram 的 &#x2F;sdcard&#x2F;Android&#x2F;data&#x2F;**telegram&#x2F; 目录，这里面有很多东西，都很危险。到时候我们使用 rsync 直接删除 &#x2F;sdcard&#x2F;Android 和 &#x2F;mnt&#x2F;media_rw&#x2F;A10F-22E&#x2F;Android 。因为每个 app 都可能会自己创建一些目录和文件，所以这一步主要是用来排查这些文件，把他们拉到清单里。如果文件和目录比较少的话，可以直接将这些目录修改到想要的变量。</p>
-<h3 id="4-关键脚本代码"><a href="#4-关键脚本代码" class="headerlink" title="4. 关键脚本代码"></a>4. 关键脚本代码</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">time</span> <span class="token function">rsync</span> -avlHt  --delete --progress /data/data /data/pink/data
-<span class="token function">time</span> <span class="token function">rsync</span> -avlHt  --delete --progress /data/app /data/pink/app
-<span class="token function">mkdir</span> -p /mnt/media_rw/A410-12F6/sdcard
-<span class="token function">time</span> <span class="token function">rsync</span> -avlHt --progress /data/media/0 /mnt/media_rw/A410-12F6/sdcard<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-关键脚本代码"><a href="#4-关键脚本代码" class="headerlink" title="4. 关键脚本代码"></a>4. 关键脚本代码</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">time</span> <span class="token function">rsync</span> <span class="token parameter variable">-avlHt</span>  <span class="token parameter variable">--delete</span> <span class="token parameter variable">--progress</span> /data/data /data/pink/data
+<span class="token function">time</span> <span class="token function">rsync</span> <span class="token parameter variable">-avlHt</span>  <span class="token parameter variable">--delete</span> <span class="token parameter variable">--progress</span> /data/app /data/pink/app
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /mnt/media_rw/A410-12F6/sdcard
+<span class="token function">time</span> <span class="token function">rsync</span> <span class="token parameter variable">-avlHt</span> <span class="token parameter variable">--progress</span> /data/media/0 /mnt/media_rw/A410-12F6/sdcard<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="5-设定-tasker-任务"><a href="#5-设定-tasker-任务" class="headerlink" title="5.设定 tasker 任务"></a>5.设定 tasker 任务</h3><p>tasker 介绍和使用 | <a target="_blank" rel="noopener" href="https://sspai.com/post/45759">Tasker：Android 上的自动化标杆 </a> | 下面剽窃一段介绍</p>
 <p>我们今天要介绍的自动化工具 Tasker 比 Workflow 更强大，自由。得益于 Android 系统的开放性与对系统 API 调用的宽松要求，Tasker 可以实现更多样，更复杂的自动化操作。特别是在获得 ROOT 权限之后 Tasker 能访问几乎所有数据（手机内外的皆可），甚至实现<strong>手机硬件支持的任何操作（即使系统没有）</strong>。</p>
@@ -525,27 +525,27 @@ total size is <span class="token number">1,099</span>,358,469  speedup is <span 
 svc data disable
 svc usb disable
 <span class="token comment"># 开启飞行模式</span>
-settings put global airplane_mode_on <span class="token number">1</span><span class="token punctuation">;</span> am broadcast -a android.intent.action.AIRPLANE_MODE --ez state <span class="token boolean">true</span>
+settings put global airplane_mode_on <span class="token number">1</span><span class="token punctuation">;</span> am broadcast <span class="token parameter variable">-a</span> android.intent.action.AIRPLANE_MODE <span class="token parameter variable">--ez</span> state <span class="token boolean">true</span>
 
 <span class="token comment"># 禁用APN</span>
-adb shell settings put global airplane_mode_on <span class="token number">0</span> adb shell am broadcast -a android.intent.action.AIRPLANE_MODE
+adb shell settings put global airplane_mode_on <span class="token number">0</span> adb shell am broadcast <span class="token parameter variable">-a</span> android.intent.action.AIRPLANE_MODE
 
 <span class="token comment"># 将 usb 连接设置为 midi ，能禁用 adb ？</span>
 svc usb setFunction midi
 
 <span class="token comment"># down 掉所有网卡，优点暴力😂</span>
- <span class="token function">ifconfig</span> <span class="token operator">|</span> <span class="token function">grep</span> Link <span class="token operator">|</span> <span class="token function">grep</span> -v inet6 <span class="token operator">|</span> <span class="token function">cut</span> -d <span class="token string">' '</span> -f1
-<span class="token keyword">for</span> <span class="token for-or-select variable">dev</span> <span class="token keyword">in</span> <span class="token punctuation">\</span><span class="token variable"><span class="token variable">`</span><span class="token function">ifconfig</span> <span class="token operator">|</span> <span class="token function">grep</span> Link <span class="token operator">|</span> <span class="token function">grep</span> -v inet6 <span class="token operator">|</span> <span class="token function">cut</span> -d <span class="token string">' '</span> -f1<span class="token punctuation">\</span><span class="token variable">`</span></span> <span class="token punctuation">;</span><span class="token keyword">do</span> <span class="token function">ifconfig</span> <span class="token variable">$dev</span> down <span class="token punctuation">;</span><span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <span class="token function">ifconfig</span> <span class="token operator">|</span> <span class="token function">grep</span> Link <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> inet6 <span class="token operator">|</span> <span class="token function">cut</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> <span class="token parameter variable">-f1</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">dev</span> <span class="token keyword">in</span> <span class="token punctuation">\</span><span class="token variable"><span class="token variable">`</span><span class="token function">ifconfig</span> <span class="token operator">|</span> <span class="token function">grep</span> Link <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> inet6 <span class="token operator">|</span> <span class="token function">cut</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> -f1<span class="token punctuation">\</span><span class="token variable">`</span></span> <span class="token punctuation">;</span><span class="token keyword">do</span> <span class="token function">ifconfig</span> <span class="token variable">$dev</span> down <span class="token punctuation">;</span><span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="5-3-禁用开发者模式，禁用-adb-连接"><a href="#5-3-禁用开发者模式，禁用-adb-连接" class="headerlink" title="5.3 禁用开发者模式，禁用 adb 连接"></a>5.3 禁用开发者模式，禁用 adb 连接</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">addison:/ <span class="token comment"># busybox ps -T | grep adb</span>
- <span class="token number">5501</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 /system/bin/adbd --root_seclabel<span class="token operator">=</span>u:r:su:s0
- <span class="token number">5502</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>usb ffs open<span class="token punctuation">&#125;</span> /system/bin/adbd --root_seclabel<span class="token operator">=</span>u:r:su:s0
- <span class="token number">5503</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>server socket<span class="token punctuation">&#125;</span> /system/bin/adbd --root_seclabel<span class="token operator">=</span>u:r:su:s0
- <span class="token number">5505</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>-<span class="token operator">></span>transport<span class="token punctuation">&#125;</span> /system/bin/adbd --root_seclabel<span class="token operator">=</span>u:r:su:s0
- <span class="token number">5506</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span><span class="token operator">&lt;</span>-transport<span class="token punctuation">&#125;</span> /system/bin/adbd --root_seclabel<span class="token operator">=</span>u:r:su:s0
- <span class="token number">5507</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>-<span class="token operator">></span>host-14<span class="token punctuation">&#125;</span> /system/bin/adbd --root_seclabel<span class="token operator">=</span>u:r:su:s0
- <span class="token number">5508</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span><span class="token operator">&lt;</span>-host-14<span class="token punctuation">&#125;</span> /system/bin/adbd --root_seclabel<span class="token operator">=</span>u:r:su:s0
- <span class="token number">6088</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>shell svc <span class="token number">6087</span><span class="token punctuation">&#125;</span> /system/bin/adbd --root_seclabel<span class="token operator">=</span>u:r:su:s0
+ <span class="token number">5501</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 /system/bin/adbd <span class="token parameter variable">--root_seclabel</span><span class="token operator">=</span>u:r:su:s0
+ <span class="token number">5502</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>usb ffs open<span class="token punctuation">&#125;</span> /system/bin/adbd <span class="token parameter variable">--root_seclabel</span><span class="token operator">=</span>u:r:su:s0
+ <span class="token number">5503</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>server socket<span class="token punctuation">&#125;</span> /system/bin/adbd <span class="token parameter variable">--root_seclabel</span><span class="token operator">=</span>u:r:su:s0
+ <span class="token number">5505</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>-<span class="token operator">></span>transport<span class="token punctuation">&#125;</span> /system/bin/adbd <span class="token parameter variable">--root_seclabel</span><span class="token operator">=</span>u:r:su:s0
+ <span class="token number">5506</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span><span class="token operator">&lt;</span>-transport<span class="token punctuation">&#125;</span> /system/bin/adbd <span class="token parameter variable">--root_seclabel</span><span class="token operator">=</span>u:r:su:s0
+ <span class="token number">5507</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>-<span class="token operator">></span>host-14<span class="token punctuation">&#125;</span> /system/bin/adbd <span class="token parameter variable">--root_seclabel</span><span class="token operator">=</span>u:r:su:s0
+ <span class="token number">5508</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span><span class="token operator">&lt;</span>-host-14<span class="token punctuation">&#125;</span> /system/bin/adbd <span class="token parameter variable">--root_seclabel</span><span class="token operator">=</span>u:r:su:s0
+ <span class="token number">6088</span> <span class="token number">2000</span>      <span class="token number">0</span>:00 <span class="token punctuation">&#123;</span>shell svc <span class="token number">6087</span><span class="token punctuation">&#125;</span> /system/bin/adbd <span class="token parameter variable">--root_seclabel</span><span class="token operator">=</span>u:r:su:s0
  <span class="token number">6738</span> <span class="token number">0</span>         <span class="token number">0</span>:00 <span class="token function">grep</span> adb
 settings list system
 settings list global
@@ -578,7 +578,7 @@ umount: /dev/pts: Device or resource busy
 umount: /dev: Device or resource busy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="5-6-修改壁纸为战狼？😂"><a href="#5-6-修改壁纸为战狼？😂" class="headerlink" title="5.6 修改壁纸为战狼？😂"></a>5.6 修改壁纸为战狼？😂</h4><p>通过 shell 命令将壁纸修改为一张爱国壁纸、战狼壁纸、粉红壁纸？</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">am start -d file:////data/local/tmp/black_white.png -a <span class="token punctuation">\</span> android.service.wallpaper.CROP_AND_SET_WALLPAPER -f 0x1 <span class="token punctuation">\</span> ch.deletescape.lawnchair.qa/ch.deletescape.wallpaperpicker.WallpaperCropActivity<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">am start <span class="token parameter variable">-d</span> file:////data/local/tmp/black_white.png <span class="token parameter variable">-a</span> <span class="token punctuation">\</span> android.service.wallpaper.CROP_AND_SET_WALLPAPER <span class="token parameter variable">-f</span> 0x1 <span class="token punctuation">\</span> ch.deletescape.lawnchair.qa/ch.deletescape.wallpaperpicker.WallpaperCropActivity<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>需要注意的是这条命令的最后一个参数是根据自己使用的 Lancher 不同而不同的。要获取这个参数的话需要使用一些工具，我这里使用的是 My Android tools。还是需要 root 权限来使用这个工具。</p>
 <p><img data-src="https://p.k8s.li/1562110188032.png"></p>
@@ -645,7 +645,7 @@ umount: /dev: Device or resource busy<span aria-hidden="true" class="line-number
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

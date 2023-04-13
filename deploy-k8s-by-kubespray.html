@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -327,7 +327,7 @@
 <li>安装  acme.sh</li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://get.acme.sh <span class="token operator">|</span> <span class="token function">sh</span>
-~/.acme.sh/acme.sh --help<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+~/.acme.sh/acme.sh <span class="token parameter variable">--help</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>签发证书</li>
@@ -335,7 +335,7 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">CF_Email</span><span class="token operator">=</span><span class="token string">"muzi502.li@gmail.com"</span> <span class="token comment"># cloudflare 账户的邮箱</span>
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">CF_Key</span><span class="token operator">=</span><span class="token string">"xxxxxx"</span> <span class="token comment"># "cloudflare中查看你的key"</span>
 
-~/.acme.sh/acme.sh --issue --dns dns_cf -d k8s.li -d *.k8s.li
+~/.acme.sh/acme.sh <span class="token parameter variable">--issue</span> <span class="token parameter variable">--dns</span> dns_cf <span class="token parameter variable">-d</span> k8s.li <span class="token parameter variable">-d</span> *.k8s.li
 
 <span class="token punctuation">[</span>Tue Apr <span class="token number">27</span> 07:32:52 UTC <span class="token number">2021</span><span class="token punctuation">]</span> Cert success.
 <span class="token punctuation">[</span>Tue Apr <span class="token number">27</span> 07:32:52 UTC <span class="token number">2021</span><span class="token punctuation">]</span> Your cert is <span class="token keyword">in</span>  /root/.acme.sh/k8s.li/k8s.li.cer
@@ -351,7 +351,7 @@
 <ul>
 <li>安装证书</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh --install-cert -d k8s.li <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh --install-cert <span class="token parameter variable">-d</span> k8s.li <span class="token punctuation">\</span>
 --cert-file      /etc/nginx/ssl/k8s.li.cer  <span class="token punctuation">\</span>
 --key-file       /etc/nginx/ssl/k8s.li.key  <span class="token punctuation">\</span>
 --fullchain-file /etc/nginx/ssl/fullchain.cer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -467,7 +467,7 @@ not a dynamic executable<span aria-hidden="true" class="line-numbers-rows"><span
 <p>ps: 用 shell 脚本去处理 Jinja2 的 yaml， 写 sed 写得我想吐 🤮</p>
 </blockquote>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-<span class="token builtin class-name">set</span> -eo pipefail
+<span class="token builtin class-name">set</span> <span class="token parameter variable">-eo</span> pipefail
 
 <span class="token assign-left variable">CURRENT_DIR</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">cd</span> <span class="token punctuation">$(</span>dirname $0<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token builtin class-name">pwd</span><span class="token variable">)</span></span>
 <span class="token assign-left variable">TEMP_DIR</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;CURRENT_DIR&#125;</span>/temp"</span>
@@ -479,7 +479,7 @@ not a dynamic executable<span aria-hidden="true" class="line-numbers-rows"><span
 <span class="token builtin class-name">:</span> <span class="token variable">$&#123;DOWNLOAD_YML<span class="token operator">:=</span>"roles<span class="token operator">/</span>download<span class="token operator">/</span>defaults<span class="token operator">/</span>main.yml"&#125;</span>
 <span class="token builtin class-name">:</span> <span class="token variable">$&#123;KUBE_VERSION_YAML<span class="token operator">:=</span>"roles<span class="token operator">/</span>kubespray-defaults<span class="token operator">/</span>defaults<span class="token operator">/</span>main.yaml"&#125;</span>
 
-<span class="token function">mkdir</span> -p <span class="token variable">$&#123;TEMP_DIR&#125;</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>
 <span class="token function-name function">generate_versions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token comment"># ARCH used in convert &#123;%- if image_arch != 'amd64' -%&#125;-&#123;&#123; image_arch &#125;&#125;&#123;%- endif -%&#125; to &#123;&#123;arch&#125;&#125;</span>
     <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$&#123;IMAGE_ARCH&#125;</span>"</span> <span class="token operator">!=</span> <span class="token string">"amd64"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token assign-left variable">ARCH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;IMAGE_ARCH&#125;</span>"</span><span class="token punctuation">;</span> <span class="token keyword">fi</span>
@@ -493,9 +493,9 @@ EOF</span>
     <span class="token function">grep</span> <span class="token string">'kube_version:'</span> <span class="token variable">$&#123;REPO_ROOT_DIR&#125;</span>/<span class="token variable">$&#123;KUBE_VERSION_YAML&#125;</span> <span class="token punctuation">\</span>
     <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g'</span> <span class="token operator">>></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/version.sh
     <span class="token function">grep</span> <span class="token string">'_version:'</span> <span class="token variable">$&#123;REPO_ROOT_DIR&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
-    <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">' '</span> <span class="token operator">>></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/version.sh
-    <span class="token function">sed</span> -i <span class="token string">'s/kube_major_version=.*/kube_major_version=$&#123;kube_version%.*&#125;/g'</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/version.sh
-    <span class="token function">sed</span> -i <span class="token string">'s/crictl_version=.*/crictl_version=$&#123;kube_version%.*&#125;.0/g'</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/version.sh
+    <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> <span class="token operator">>></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/version.sh
+    <span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/kube_major_version=.*/kube_major_version=$&#123;kube_version%.*&#125;/g'</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/version.sh
+    <span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/crictl_version=.*/crictl_version=$&#123;kube_version%.*&#125;.0/g'</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/version.sh
 <span class="token punctuation">&#125;</span>
 
 <span class="token function-name function">generate_files_list</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -508,13 +508,13 @@ EOF</span>
 <span class="token function-name function">generate_images_list</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token assign-left variable">KUBE_IMAGES</span><span class="token operator">=</span><span class="token string">"kube-apiserver kube-controller-manager kube-scheduler kube-proxy"</span>
     <span class="token builtin class-name">echo</span> <span class="token string">"source <span class="token variable">$&#123;TEMP_DIR&#125;</span>/version.sh"</span> <span class="token operator">></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/images.sh
-    <span class="token function">grep</span> -E <span class="token string">'_repo:|_tag:'</span> <span class="token variable">$&#123;REPO_ROOT_DIR&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
+    <span class="token function">grep</span> <span class="token parameter variable">-E</span> <span class="token string">'_repo:|_tag:'</span> <span class="token variable">$&#123;REPO_ROOT_DIR&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
     <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">"s#&#123;%- if image_arch != 'amd64' -%&#125;-&#123;&#123; image_arch &#125;&#125;&#123;%- endif -%&#125;#&#123;&#123;arch&#125;&#125;#g"</span> <span class="token punctuation">\</span>
-    <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">' '</span> <span class="token operator">>></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/images.sh
-    <span class="token function">sed</span> -n <span class="token string">'/^downloads:/,/download_defaults:/p'</span> <span class="token variable">$&#123;REPO_ROOT_DIR&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
-    <span class="token operator">|</span> <span class="token function">sed</span> -n <span class="token string">"s/repo: //p;s/tag: //p"</span> <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">' '</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token punctuation">\</span>
+    <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/: /=/g;s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> <span class="token operator">>></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/images.sh
+    <span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">'/^downloads:/,/download_defaults:/p'</span> <span class="token variable">$&#123;REPO_ROOT_DIR&#125;</span>/<span class="token variable">$&#123;DOWNLOAD_YML&#125;</span> <span class="token punctuation">\</span>
+    <span class="token operator">|</span> <span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">"s/repo: //p;s/tag: //p"</span> <span class="token operator">|</span> <span class="token function">tr</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/&#123;&#123;/$&#123;/g;s/&#125;&#125;/&#125;/g'</span> <span class="token punctuation">\</span>
     <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'N;s#\n# #g'</span> <span class="token operator">|</span> <span class="token function">tr</span> <span class="token string">' '</span> <span class="token string">':'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/^/echo /g'</span> <span class="token operator">>></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/images.sh
-    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$&#123;KUBE_IMAGES&#125;</span>"</span> <span class="token operator">|</span> <span class="token function">tr</span> <span class="token string">' '</span> <span class="token string">'\n'</span> <span class="token operator">|</span> <span class="token function">xargs</span> -L1 -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$&#123;KUBE_IMAGES&#125;</span>"</span> <span class="token operator">|</span> <span class="token function">tr</span> <span class="token string">' '</span> <span class="token string">'\n'</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token parameter variable">-L1</span> <span class="token parameter variable">-I</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span>
     <span class="token builtin class-name">echo</span> <span class="token string">'echo $&#123;kube_image_repo&#125;/&#123;&#125;:$&#123;kube_version&#125;'</span> <span class="token operator">>></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/images.sh
     <span class="token function">bash</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/images.sh <span class="token operator">|</span> <span class="token function">sort</span> <span class="token operator">></span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/images.list
 <span class="token punctuation">&#125;</span>
@@ -522,7 +522,7 @@ EOF</span>
 generate_versions
 generate_files_list
 generate_images_list
-<span class="token function">wget</span> -x -P <span class="token variable">$&#123;TEMP_DIR&#125;</span>/files -i <span class="token variable">$&#123;TEMP_DIR&#125;</span>/files.list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">wget</span> <span class="token parameter variable">-x</span> <span class="token parameter variable">-P</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/files <span class="token parameter variable">-i</span> <span class="token variable">$&#123;TEMP_DIR&#125;</span>/files.list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>最终下载的结果如下，基本上保持了原有的 URL 路径，也方便后续的更新和版本迭代。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">temp/files
@@ -983,7 +983,7 @@ replicaset.apps/dns-autoscaler-6b675c8995            <span class="token number">
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

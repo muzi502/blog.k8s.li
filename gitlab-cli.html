@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -366,7 +366,7 @@
 <h2 id="python-gitlab-CLI"><a href="#python-gitlab-CLI" class="headerlink" title="python-gitlab CLI"></a><a target="_blank" rel="noopener" href="https://python-gitlab.readthedocs.io/">python-gitlab</a> CLI</h2><p>这是一个使用 <a target="_blank" rel="noopener" href="https://python-gitlab.readthedocs.io/en/stable/api-objects.html">python-gitlab</a> API client 封装好的 gitlab 命令行工具，可以使用它来完成绝大多数 Gitlab API 所支持的操作。因为之前的流水线中有很多操作是访问的 GitHub，比如提交 PR、获取 repo tag、查看 PR labels 等，都是写在 Jenkinsfile 调用各种脚本和工具来完成的。 切换到了 Gitlab，自然也需要一个工具来完成上述操作了。那么 python-gitlab CLI 这个工具无疑是不二之选，甚至比之前的工具更方便。因为迄今为止还没有见到过 GitHub 能有像 python-gitlab 这样的工具。总之，对于使用 Gitlab 的人来讲，要对 repo 完成一些自动化处理的工作，强烈推荐使用这个 CLI 工具，它可以很方便地集成在流水线中。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>python-gitlab CLI 依赖 Python 2.7 或者 3.4+，2021 年啦，就不要使用 Python2.7 啦 😊。本地安装好 python3 和 pip3 后使用如下命令安装即可。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在这里使用清华的 pypi 源来加速安装，毕竟是墙🧱国</span>
-$ <span class="token function">sudo</span> pip3 <span class="token function">install</span> -i https://pypi.tuna.tsinghua.edu.cn/simple requests PyYAML python-gitlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+$ <span class="token function">sudo</span> pip3 <span class="token function">install</span> <span class="token parameter variable">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple requests PyYAML python-gitlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>由于使用这个工具的场景大多数是在 Jenkins 所创建的 slave pod 中执行的，所以也可以构建一个 docker 镜像， <code>Dockerfile</code> 如下</p>
 <pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> debian:buster</span>
@@ -500,24 +500,24 @@ gitlab project-tag list: error: the following arguments are required: --project-
 </li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 也可以使用gitlab 命令获取 repo 的 id</span>
-$ gitlab project get --id muzi502%2Fkubespray
+$ gitlab project get <span class="token parameter variable">--id</span> muzi502%2Fkubespray
 id: <span class="token number">25099880</span>
 path: kubespray<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>在流水线中可以根据 token 获取用户的用户名和邮箱，用于配置流水线中的 repo git 信息，避免因为 CLA 无法通过。</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitlab -o json current-user get <span class="token operator">|</span> jq <span class="token string">'.id'</span>
-<span class="token function">git</span> config --global user.email <span class="token variable"><span class="token variable">$(</span>gitlab -o json current-user get <span class="token operator">|</span> jq -r <span class="token string">'.email'</span><span class="token variable">)</span></span>
-<span class="token function">git</span> config --global user.name <span class="token variable"><span class="token variable">$(</span>gitlab -o json current-user get <span class="token operator">|</span> jq -r <span class="token string">'.username'</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitlab <span class="token parameter variable">-o</span> json current-user get <span class="token operator">|</span> jq <span class="token string">'.id'</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token variable"><span class="token variable">$(</span>gitlab <span class="token parameter variable">-o</span> json current-user get <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">'.email'</span><span class="token variable">)</span></span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token variable"><span class="token variable">$(</span>gitlab <span class="token parameter variable">-o</span> json current-user get <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">'.username'</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="project"><a href="#project" class="headerlink" title="project"></a>project</h3><ul>
 <li>获取 repo ssh url  地址</li>
 </ul>
 <p>由于 Jenkins 流水线中 clone 的 repo url 是使用 token+ https 的方式，在流水线中如果要 push 代码到 repo 需要修改为 ssh 的方式，可使用如下方式根据 project id 来获取该 repo 的 ssh url。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json  project get --id <span class="token variable">$&#123;PROJECT_ID&#125;</span> <span class="token operator">|</span> jq -r <span class="token string">'.ssh_url_to_repo'</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab <span class="token parameter variable">-o</span> json  project get <span class="token parameter variable">--id</span> <span class="token variable">$&#123;PROJECT_ID&#125;</span> <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">'.ssh_url_to_repo'</span>
 $ <span class="token function">git</span> remote remove origin
-$ <span class="token function">git</span> remote <span class="token function">add</span> origin <span class="token variable"><span class="token variable">$(</span>gitlab -o json  project get --id $<span class="token punctuation">&#123;</span>PROJECT_ID<span class="token punctuation">&#125;</span> <span class="token operator">|</span> jq -r <span class="token string">'.ssh_url_to_repo'</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+$ <span class="token function">git</span> remote <span class="token function">add</span> origin <span class="token variable"><span class="token variable">$(</span>gitlab <span class="token parameter variable">-o</span> json  project get <span class="token parameter variable">--id</span> $<span class="token punctuation">&#123;</span>PROJECT_ID<span class="token punctuation">&#125;</span> <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">'.ssh_url_to_repo'</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="file"><a href="#file" class="headerlink" title="file"></a>file</h3><p>对于 repo 中文件的操作使用 project-file</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-file
@@ -526,7 +526,7 @@ usage: gitlab project-file <span class="token punctuation">[</span>-h<span class
 <ul>
 <li>获取文件，通过 <code>project-file</code> 对象的 get 操作</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json project-file get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master  <span class="token operator">|</span> jq <span class="token string">'.'</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab <span class="token parameter variable">-o</span> json project-file get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore <span class="token parameter variable">--ref</span> master  <span class="token operator">|</span> jq <span class="token string">'.'</span>
 <span class="token punctuation">&#123;</span>
   <span class="token string">"file_name"</span><span class="token builtin class-name">:</span> <span class="token string">".gitignore"</span>,
   <span class="token string">"file_path"</span><span class="token builtin class-name">:</span> <span class="token string">".gitignore"</span>,
@@ -541,7 +541,7 @@ usage: gitlab project-file <span class="token punctuation">[</span>-h<span class
 <span class="token punctuation">&#125;</span>
 
 <span class="token comment"># 文件内容是 base64 编码的，需要使用 base64 解码才能获取原始的内容。</span>
-$ gitlab -g gitlab -o json project-file get --project-id <span class="token number">25099880</span> --file-path .gitignore --ref master  <span class="token operator">|</span> jq -r <span class="token string">'.content'</span> <span class="token operator">|</span> base64 -d
+$ gitlab <span class="token parameter variable">-g</span> gitlab <span class="token parameter variable">-o</span> json project-file get --project-id <span class="token number">25099880</span> --file-path .gitignore <span class="token parameter variable">--ref</span> master  <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">'.content'</span> <span class="token operator">|</span> base64 <span class="token parameter variable">-d</span>
 .vagrant
 *.retry
 **/vagrant_ansible_inventory
@@ -554,7 +554,7 @@ temp
 <ul>
 <li>通过 project-file 的 raw 方法可以获取文件的原始内容，无须 base64 解码</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-file get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-file get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore <span class="token parameter variable">--ref</span> master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li><p>创建文件，对文件的增删改都是通过提交 commit 来完成的，因此需要指定所要操作的分支以及 commit-message 的信息。另外如果操作的文件是 master 分支获取其他保护分支，要确保当前用户有写入的权限，不然会提示如下错误：</p>
@@ -563,9 +563,9 @@ Impossible to update object <span class="token punctuation">(</span><span class=
 </ul>
 <p>之前在 GitHub 上有一套 CI 并不能适用于 Gitlab，因此需要为所有的分支创建 CI 流水线，用于检查代码是否符合规范，可以通过如下方法批量量地向所有分支创建文件。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">ID</span><span class="token operator">=</span><span class="token number">123456</span>
-<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab -o json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> --all <span class="token operator">|</span> jq -r <span class="token string">".[].name"</span><span class="token variable">)</span></span>
+<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab <span class="token parameter variable">-o</span> json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> <span class="token parameter variable">--all</span> <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">".[].name"</span><span class="token variable">)</span></span>
 <span class="token keyword">for</span> <span class="token for-or-select variable">branch</span> <span class="token keyword">in</span> <span class="token variable">$&#123;BRANCHS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-	gitlab project-file create --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path .gitlab-ci.yml --branch <span class="token variable">$&#123;branch&#125;</span> --content @.gitlab-ci.yml --commit-message <span class="token string">"feat(gitlab-ci): add gitlab-ci.yml for ci"</span>
+	gitlab project-file create --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path .gitlab-ci.yml <span class="token parameter variable">--branch</span> <span class="token variable">$&#123;branch&#125;</span> <span class="token parameter variable">--content</span> @.gitlab-ci.yml --commit-message <span class="token string">"feat(gitlab-ci): add gitlab-ci.yml for ci"</span>
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
@@ -573,25 +573,25 @@ Impossible to update object <span class="token punctuation">(</span><span class=
 </ul>
 <p>比如批量更新所有分支的 <code>Makefile</code> 中 <code>github.com</code> 为 <code>gitlab.com</code></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">ID</span><span class="token operator">=</span><span class="token number">123456</span>
-<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab -o json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> --all <span class="token operator">|</span> jq -r <span class="token string">".[].name"</span><span class="token variable">)</span></span>
+<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab <span class="token parameter variable">-o</span> json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> <span class="token parameter variable">--all</span> <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">".[].name"</span><span class="token variable">)</span></span>
 <span class="token keyword">for</span> <span class="token for-or-select variable">branch</span> <span class="token keyword">in</span> <span class="token variable">$&#123;BRANCHS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-    <span class="token function">rm</span> -f Makefile Makefile-
-    gitlab project-file raw --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path Makefile --ref <span class="token variable">$&#123;branch&#125;</span> <span class="token operator">></span> Makefile
+    <span class="token function">rm</span> <span class="token parameter variable">-f</span> Makefile Makefile-
+    gitlab project-file raw --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path Makefile <span class="token parameter variable">--ref</span> <span class="token variable">$&#123;branch&#125;</span> <span class="token operator">></span> Makefile
     <span class="token function">sed</span> -i- <span class="token string">"s|github.com/muzi502|gitlab.com/muzi502"</span> Makefile
-    gitlab project-file update --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path Makefile --branch <span class="token variable">$&#123;branch&#125;</span> --content @Makefile <span class="token punctuation">\</span>
+    gitlab project-file update --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path Makefile <span class="token parameter variable">--branch</span> <span class="token variable">$&#123;branch&#125;</span> <span class="token parameter variable">--content</span> @Makefile <span class="token punctuation">\</span>
     --commit-message <span class="token string">"chore(Makefile): update repo url in Makefile for migrate gitlab"</span>
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>删除文件</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-file delete --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore --ref master <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-file delete --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --file-path .gitignore <span class="token parameter variable">--ref</span> master <span class="token punctuation">\</span>
 --commit-message <span class="token string">"test delete file"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="MR-1"><a href="#MR-1" class="headerlink" title="MR"></a>MR</h3><ul>
 <li>创建 MR，指定 source branch 和 target branch 以及 mr 的 title 这三个参数。前面最好加上 -o json 参数用户获取 mr 的 iid，可通过此 iid 来对这个 mr 进行增删改查。</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json project-merge-request create --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --source-branch --target-branch <span class="token variable">$&#123;BASE_BRANCH&#125;</span> --title <span class="token string">"<span class="token variable">$&#123;MR_TITLE&#125;</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab <span class="token parameter variable">-o</span> json project-merge-request create --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --source-branch --target-branch <span class="token variable">$&#123;BASE_BRANCH&#125;</span> <span class="token parameter variable">--title</span> <span class="token string">"<span class="token variable">$&#123;MR_TITLE&#125;</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>通过 -o json 参数会返回此 mr 的信息，其中 <code>iid</code> 就是该 mr 在此 repo 中的唯一标示</p>
 <pre class="line-numbers language-json" data-language="json"><code class="language-json">$ gitlab -g gitlab -o json project-merge-request create --project-id <span class="token number">25099880</span> --source-branch release<span class="token number">-2.14</span> --target-branch  master --title <span class="token string">"mr create test"</span>
@@ -625,12 +625,12 @@ Impossible to update object <span class="token punctuation">(</span><span class=
 <ul>
 <li>合并 MR</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-merge-request merge --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-merge-request merge --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> <span class="token parameter variable">--iid</span> @mr_iid<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>查看 MR 状态</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid <span class="token operator">|</span> jq -r <span class="token string">".state"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab <span class="token parameter variable">-o</span> json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> <span class="token parameter variable">--iid</span> @mr_iid <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">".state"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>集成在 Jenkinsfile  中完成创建 MR、合并 MR、检查 MR</li>
@@ -639,11 +639,11 @@ Impossible to update object <span class="token punctuation">(</span><span class=
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">def makeMR<span class="token punctuation">(</span>SOURCE_BRANCH, TARGET_BRANCH, MR_TITLE<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     container<span class="token punctuation">(</span><span class="token string">"debian"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token function">sh</span> <span class="token string">""</span>"
-        gitlab -o json project-merge-request create --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span>  --title <span class="token punctuation">\</span>"<span class="token variable">$&#123;MR_TITLE&#125;</span><span class="token punctuation">\</span>" <span class="token punctuation">\</span>
+        gitlab <span class="token parameter variable">-o</span> json project-merge-request create --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span>  <span class="token parameter variable">--title</span> <span class="token punctuation">\</span>"<span class="token variable">$&#123;MR_TITLE&#125;</span><span class="token punctuation">\</span>" <span class="token punctuation">\</span>
         --source-branch <span class="token variable">$&#123;SOURCE_BRANCH&#125;</span> --target-branch <span class="token variable">$&#123;TARGET_BRANCH&#125;</span> <span class="token operator">></span> mr_info.json
 
-        jq -r <span class="token string">'.iid'</span> mr_info.json <span class="token operator">></span> mr_iid
-        jq -r <span class="token string">'.web_url'</span> mr_info.json <span class="token operator">></span> mr_url
+        jq <span class="token parameter variable">-r</span> <span class="token string">'.iid'</span> mr_info.json <span class="token operator">></span> mr_iid
+        jq <span class="token parameter variable">-r</span> <span class="token string">'.web_url'</span> mr_info.json <span class="token operator">></span> mr_url
         <span class="token string">""</span>"
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
@@ -652,8 +652,8 @@ def <span class="token function-name function">checkMR</span><span class="token 
     container<span class="token punctuation">(</span><span class="token string">"debian"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         retry<span class="token punctuation">(</span><span class="token number">120</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token function">sh</span> <span class="token string">""</span>"
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -s mr_iid <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">exit</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token function">sleep</span> 60s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
-        gitlab -o json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid <span class="token operator">|</span> jq -r <span class="token string">".labels[]"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'approve'</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-s</span> mr_iid <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">exit</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token function">sleep</span> 60s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
+        gitlab <span class="token parameter variable">-o</span> json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> <span class="token parameter variable">--iid</span> @mr_iid <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">".labels[]"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'approve'</span>
         <span class="token string">""</span>"
         <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span>
@@ -663,9 +663,9 @@ def <span class="token function-name function">mergeMR</span><span class="token 
     container<span class="token punctuation">(</span><span class="token string">"debian"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         retry<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token function">sh</span> <span class="token string">""</span>"
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -s mr_iid <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">exit</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token function">sleep</span> 60s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
-        <span class="token keyword">if</span> gitlab project-merge-request merge --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid<span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token function">sleep</span> 10s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
-        gitlab -o json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> --iid @mr_iid <span class="token operator">|</span> jq -r <span class="token string">".state"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'merged'</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-s</span> mr_iid <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">exit</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token function">sleep</span> 60s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
+        <span class="token keyword">if</span> gitlab project-merge-request merge --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> <span class="token parameter variable">--iid</span> @mr_iid<span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token function">sleep</span> 10s<span class="token punctuation">;</span> <span class="token keyword">fi</span>
+        gitlab <span class="token parameter variable">-o</span> json project-merge-request get --project-id <span class="token variable">$&#123;PROJECT_ID&#125;</span> <span class="token parameter variable">--iid</span> @mr_iid <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">".state"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'merged'</span>
         <span class="token string">""</span>"
         <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span>
@@ -675,13 +675,13 @@ def <span class="token function-name function">mergeMR</span><span class="token 
 <li>列出 repo tag</li>
 </ul>
 <p>在这里还是推荐使用 git tag 的方式获取 repo tag ，因为 Gitlab API 的限制，每次请求最多只能返回 100 个值，可以加上 <code>--all</code> 参数来返回所有的值。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab -o json project-tag list --project-id <span class="token variable">$&#123;ID&#125;</span> <span class="token operator">|</span> jq -r <span class="token string">'.[].name'</span>
-$ gitlab -o json project-tag list --project-id <span class="token variable">$&#123;ID&#125;</span> --all <span class="token operator">|</span> jq -r <span class="token string">'.[].name'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab <span class="token parameter variable">-o</span> json project-tag list --project-id <span class="token variable">$&#123;ID&#125;</span> <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">'.[].name'</span>
+$ gitlab <span class="token parameter variable">-o</span> json project-tag list --project-id <span class="token variable">$&#123;ID&#125;</span> <span class="token parameter variable">--all</span> <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">'.[].name'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>创建 tag</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-tag create --project-id <span class="token variable">$&#123;ID&#125;</span> --tag-name v1.0.0-rc.2 --ref master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ gitlab project-tag create --project-id <span class="token variable">$&#123;ID&#125;</span> --tag-name v1.0.0-rc.2 <span class="token parameter variable">--ref</span> master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>删除 tag</li>
@@ -693,7 +693,7 @@ $ gitlab -o json project-tag list --project-id <span class="token variable">$&#1
 <li>创建受保护的 repo tag</li>
 </ul>
 <p>由于我们流水线任务依赖于 repo tag 来做版本的对于，因此需要保护每一个 repo tag，但有特殊情况下又要覆盖 repo tag，所以受保护的 repo tag 目前还没有找到合适的方法，只能先手动创建了，等到需要删除的时候再删除它。可以使用如下命令批量创建受保护的 repo tag。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> tag <span class="token operator">|</span> <span class="token function">xargs</span> -L1 -I <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> gitlab project-protected-tag create --project-id <span class="token variable">$&#123;ID&#125;</span> --name <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> tag <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token parameter variable">-L1</span> <span class="token parameter variable">-I</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> gitlab project-protected-tag create --project-id <span class="token variable">$&#123;ID&#125;</span> <span class="token parameter variable">--name</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="Lint-流水线"><a href="#Lint-流水线" class="headerlink" title="Lint 流水线"></a>Lint 流水线</h2><p>迁移到了 Gitlab 之后原有的流水线在内网的 Gitlab 上也就无法使用了，为了减少维护成本就使用了 Gitlab 自带的 CI 。我所维护的 repo 使用 Gitlab CI 只是做一些 lint 的检查内容，因此 CI 配置起来也特别简单。如 kubespray 的 CI 配置：</p>
 <ul>
@@ -712,9 +712,9 @@ $ gitlab -o json project-tag list --project-id <span class="token variable">$&#1
 <li>使用 gitlab CLI 工具给所有分支添加 <code>.gitlab-ci.yml</code> 文件</li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">ID</span><span class="token operator">=</span><span class="token number">123456</span>
-<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab -o json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> --all <span class="token operator">|</span> jq -r <span class="token string">".[].name"</span><span class="token variable">)</span></span>
+<span class="token assign-left variable">BRANCHS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>gitlab <span class="token parameter variable">-o</span> json project-branch list --project-id $<span class="token punctuation">&#123;</span>ID<span class="token punctuation">&#125;</span> <span class="token parameter variable">--all</span> <span class="token operator">|</span> jq <span class="token parameter variable">-r</span> <span class="token string">".[].name"</span><span class="token variable">)</span></span>
 <span class="token keyword">for</span> <span class="token for-or-select variable">branch</span> <span class="token keyword">in</span> <span class="token variable">$&#123;BRANCHS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-	gitlab project-file create --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path .gitlab-ci.yml --branch <span class="token variable">$&#123;branch&#125;</span> --content @.gitlab-ci.yml --commit-message <span class="token string">"feat(gitlab-ci): add gitlab-ci.yml for ci"</span>
+	gitlab project-file create --project-id <span class="token variable">$&#123;ID&#125;</span> --file-path .gitlab-ci.yml <span class="token parameter variable">--branch</span> <span class="token variable">$&#123;branch&#125;</span> <span class="token parameter variable">--content</span> @.gitlab-ci.yml --commit-message <span class="token string">"feat(gitlab-ci): add gitlab-ci.yml for ci"</span>
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
@@ -724,12 +724,12 @@ $ gitlab -o json project-tag list --project-id <span class="token variable">$&#1
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 使用 git clone 下来的 repo 默认为 master 分支</span>
 $ <span class="token function">git</span> clone git@gitlab.com/muzi502/kubespray.git
 <span class="token comment"># track 出 origin 上的所有分支</span>
-$ <span class="token function">git</span> branch -r <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token string">'\->'</span> <span class="token operator">|</span> <span class="token keyword">while</span> <span class="token builtin class-name">read</span> remote<span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">git</span> branch --track <span class="token string">"<span class="token variable">$&#123;remote<span class="token operator">#</span>origin<span class="token operator">/</span>&#125;</span>"</span> <span class="token string">"<span class="token variable">$remote</span>"</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
-$ <span class="token function">git</span> fetch --all
-$ <span class="token function">git</span> pull --all
+$ <span class="token function">git</span> branch <span class="token parameter variable">-r</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token string">'\->'</span> <span class="token operator">|</span> <span class="token keyword">while</span> <span class="token builtin class-name">read</span> remote<span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">git</span> branch <span class="token parameter variable">--track</span> <span class="token string">"<span class="token variable">$&#123;remote<span class="token operator">#</span>origin<span class="token operator">/</span>&#125;</span>"</span> <span class="token string">"<span class="token variable">$remote</span>"</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
+$ <span class="token function">git</span> fetch <span class="token parameter variable">--all</span>
+$ <span class="token function">git</span> pull <span class="token parameter variable">--all</span>
 $ <span class="token function">git</span> remote remove origin
 $ <span class="token function">git</span> remote <span class="token function">add</span> origin git@gitlab/gitlab502/kubespray.git
-$ <span class="token function">git</span> push origin --all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+$ <span class="token function">git</span> push origin <span class="token parameter variable">--all</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches">How to fetch all Git branches</a></li>
@@ -793,7 +793,7 @@ $ <span class="token function">git</span> push origin --all<span aria-hidden="tr
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

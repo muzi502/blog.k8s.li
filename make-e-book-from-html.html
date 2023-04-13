@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://p.k8s.li/20200103105034243.png">
 <meta property="og:image" content="https://p.k8s.li/20200103104618047.png">
 <meta property="article:published_time" content="2020-01-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:27.239Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.590Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="kindle">
 <meta property="article:tag" content="电子书">
@@ -278,7 +278,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:27+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:27+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -390,7 +390,7 @@
 <li>使用 <code>awk</code> 截取去掉 <code>html</code> 标签，只保留 <code>URL</code></li>
 <li>其实应该用正则表达式来截取这些 URL ，哎咱太菜了，书到用时方恨少啊 😥，正则不会 <code>awk</code> 来凑 😂</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">grep</span> alt pass.html <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">"href=<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token string">'&#123;print $2&#125;'</span><span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">"<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token string">'&#123;print $1&#125;'</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">grep</span> alt pass.html <span class="token operator">|</span> <span class="token function">awk</span> <span class="token parameter variable">-F</span> <span class="token string">"href=<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token string">'&#123;print $2&#125;'</span><span class="token operator">|</span> <span class="token function">awk</span> <span class="token parameter variable">-F</span> <span class="token string">"<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token string">'&#123;print $1&#125;'</span>
 http://www.qinxiaoshuo.com/read/0/1716/5d77d35056fec85e5b101448.html
 http://www.qinxiaoshuo.com/read/0/1716/5d77d35156fec85e5b101449.html
 http://www.qinxiaoshuo.com/read/0/1716/5d77d35156fec85e5b10144a.html
@@ -429,13 +429,13 @@ http://www.qinxiaoshuo.com/read/0/1716/5d77d35456fec85e5b101462.html<span aria-h
 
 <p><img data-src="https://p.k8s.li/20200103100302697.png"></p>
 <h3 id="遍历各个章节"><a href="#遍历各个章节" class="headerlink" title="遍历各个章节"></a>遍历各个章节</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@debian ~/book
-╰─$ <span class="token function">grep</span> alt pass.html <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">"href=<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token string">'&#123;print $2&#125;'</span><span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">"<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token string">'&#123;print $1&#125;'</span><span class="token operator">></span> url.log
+╰─$ <span class="token function">grep</span> alt pass.html <span class="token operator">|</span> <span class="token function">awk</span> <span class="token parameter variable">-F</span> <span class="token string">"href=<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token string">'&#123;print $2&#125;'</span><span class="token operator">|</span> <span class="token function">awk</span> <span class="token parameter variable">-F</span> <span class="token string">"<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token string">'&#123;print $1&#125;'</span><span class="token operator">></span> url.log
 ╭─root@debian ~/book
 ╰─$ <span class="token keyword">for</span> <span class="token for-or-select variable">url</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">cat</span> url.log<span class="token variable">)</span></span><span class="token punctuation">;</span><span class="token keyword">do</span> <span class="token function">curl</span> <span class="token variable">$&#123;url&#125;</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"&lt;br/>&lt;br/>"</span> <span class="token operator">>></span> pass_book.html<span class="token punctuation">;</span><span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="添加-lt-h2-gt-二级标题"><a href="#添加-lt-h2-gt-二级标题" class="headerlink" title="添加 &lt;h2&gt; 二级标题"></a>添加 <code>&lt;h2&gt;</code> 二级标题</h3><p>在每一行的行首添加一个 <code>&lt;h2&gt;</code> 标签，接着使用 sed 替换每一行第一个 <code>&lt;br/&gt;&lt;br/&gt;</code> 匹配项为 <code>&lt;h2/&gt;</code> 一定要添加闭合标签，不然的话在转换成 markdown 或者 .docx 时候会把这一整行当作二级标题。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sed</span> -i <span class="token string">'s/^/&lt;h2>/g'</span> pass_book.html
-<span class="token function">sed</span> -i <span class="token string">'s/&lt;br\/>&lt;br\/>/&lt;h2\/>/'</span> pass_book.html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/^/&lt;h2>/g'</span> pass_book.html
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/&lt;br\/>&lt;br\/>/&lt;h2\/>/'</span> pass_book.html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="转换为-markdown-格式"><a href="#转换为-markdown-格式" class="headerlink" title="转换为 markdown 格式"></a>转换为 markdown 格式</h3><p>使用 <code>pandoc</code> 转 <code>markdown</code> 的效果很不理想，其中有大量的 <code>\</code> 需要删除掉，还是转 .docx 的格式合适一些，而且 <code>Calibre</code> 也支持 <code>.docx</code> 格式</p>
 <p><img data-src="https://p.k8s.li/20200103103719653.png"></p>
@@ -501,7 +501,7 @@ http://www.qinxiaoshuo.com/read/0/1716/5d77d35456fec85e5b101462.html<span aria-h
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://p.k8s.li/registry-storage.jpeg">
 <meta property="og:image" content="https://p.k8s.li/registry-storage.jpeg">
 <meta property="article:published_time" content="2021-01-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:27.411Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.734Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="registry">
 <meta property="article:tag" content="harbor">
@@ -272,7 +272,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:27+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:27+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,7 +332,7 @@
 <p>可通过如下命令在 registry 存储目录下获取镜像列表：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 首先进入到 registry 存储的主目录下</span>
 <span class="token builtin class-name">cd</span>  /var/lib/registry
-<span class="token function">find</span> <span class="token function">docker</span> -type d -name <span class="token string">"current"</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s|docker/registry/v2/repositories/||g;s|/_manifests/tags/|:|g;s|/current||g'</span> <span class="token operator">></span> images.list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token function">find</span> <span class="token function">docker</span> <span class="token parameter variable">-type</span> d <span class="token parameter variable">-name</span> <span class="token string">"current"</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s|docker/registry/v2/repositories/||g;s|/_manifests/tags/|:|g;s|/current||g'</span> <span class="token operator">></span> images.list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="harbor-创建-project"><a href="#harbor-创建-project" class="headerlink" title="harbor 创建 project"></a>harbor 创建 project</h2><p>对于新部署的 harbor 来说，上面只会有一个默认的 library 的 project，需要手动在 harbor 上创建 docker registry 中对应的 project。docker registry 中镜像的 project 就是 registry 存储目录中 <code>repositories</code> 下的目录名。</p>
 <p>得到了镜像列表，以及在 harbor 上完成了对应 project 的创建，我们就可以做正式的迁移工作啦。根据不同的场景，可使用如下几种方案：</p>
@@ -351,12 +351,12 @@
 <ul>
 <li>使用 skopeo copy</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo copy --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false --src docker://registry.k8s.li/library/alpine:latest docker://harbor.k8s.li/library/alpine:latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo copy --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false <span class="token parameter variable">--src</span> docker://registry.k8s.li/library/alpine:latest docker://harbor.k8s.li/library/alpine:latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>使用 skopeo sync</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo <span class="token function">sync</span> --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false --src <span class="token function">docker</span> --dest <span class="token function">docker</span> registry.k8s.li/library/alpine:latest harbor.k8s.li/library/alpine:latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo <span class="token function">sync</span> --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false <span class="token parameter variable">--src</span> <span class="token function">docker</span> <span class="token parameter variable">--dest</span> <span class="token function">docker</span> registry.k8s.li/library/alpine:latest harbor.k8s.li/library/alpine:latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>但还有没有更好的办法？要知道无论是 docker 和 skopeo 本质上都是通过 registry 的 HTTP API 下载和上传镜像的，在这过程中还是多了不少 HTTP 请求的，如果走的是 HTTPS 的话，还涉及了 HTTPS 加密和解密的过程，这期间也是做了很多<del>无用功</del>的。那么还有没有更好的办法？</p>
 <h2 id="方案三：迁移存储目录"><a href="#方案三：迁移存储目录" class="headerlink" title="方案三：迁移存储目录"></a>方案三：迁移存储目录</h2><p>文章开篇提到 harbor 的后端镜像存储也是使用的  docker registry，对于一个 registry 来说，只要是使用的是 Docker Distribution V2 ，它后端的存储目录结构都是长得一摸一样的。那为何不直接将 registry 的存储目录打包复制并解压到 harbor 的 registry 存储目录呢？这样又能保证所有的镜像都迁移过去，不会落下任何一个。</p>
@@ -366,17 +366,17 @@
 <span class="token builtin class-name">cd</span>  /var/lib/registry
 
 <span class="token comment"># 注意，进行备份时无需进行压缩，因为 registry 中镜像的 layer 都是压缩过的</span>
-<span class="token function">tar</span> -cpf docker.tar <span class="token function">docker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">tar</span> <span class="token parameter variable">-cpf</span> docker.tar <span class="token function">docker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>备份完成之后将 docker.tar scp 到 harbor 机器上，然后在 harbor 机器上恢复 registry 存储目录</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 切换到 harbor 的存储目录</span>
 <span class="token builtin class-name">cd</span> /data/harbor
 
 <span class="token comment"># 将备份的 docker 目录解压到 harbor 的 registry 目录下，目录层级一定要对应好</span>
-<span class="token function">tar</span> -xpf docker.tar -C ./registry
+<span class="token function">tar</span> <span class="token parameter variable">-xpf</span> docker.tar <span class="token parameter variable">-C</span> ./registry
 
 <span class="token comment"># 删除 harbor 的 regis 数据，重启 harbor 后会重建 redis 数据。</span>
-<span class="token function">rm</span> -f redis/dump.rdb
+<span class="token function">rm</span> <span class="token parameter variable">-f</span> redis/dump.rdb
 
 <span class="token comment"># 切换到 harbor 的安装目录重启 harbor</span>
 <span class="token builtin class-name">cd</span> /opt/harbor
@@ -387,7 +387,7 @@
 <span class="token builtin class-name">cd</span> /data/harbor
 
 <span class="token comment"># 修改 registry 存储目录的所属和所属组为 10000</span>
-<span class="token function">chown</span> -R <span class="token number">10000</span>:10000 ./registry<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">chown</span> <span class="token parameter variable">-R</span> <span class="token number">10000</span>:10000 ./registry<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="方案四："><a href="#方案四：" class="headerlink" title="方案四："></a>方案四：</h2><p>对于 harbor 2.x 来讲，由于 harbor 强化了 Artifact 的元数据管理能力，即元数据要在 push 或者 sync 到 harbor 时写入到 harbor 自身的数据库中。在 harbor 看来只要数据库中没有这个 Artifact 的 manifest 信息或者没有这一层 layer 的信息，harbor 都会认为该 Artifact 或者 layer 不存在，返回 404 的错误。按照方案三直接而将 docker registry 存储目录解压到 harbor 的 registry 存储目录的方法行不通的。因为是将镜像解压到 registry 存储中的，虽然在 harbor 的 registry 容器看来是有镜像的，但因为 harbor 的数据库中没有镜像，harbor 就会认为没有镜像。那么现在看来只能通过方案二使用 skopeo 将镜像一个一个地 push 到 harbor 中了。</p>
 <p>但对于某些特定的场景下，不能像方案二那样拥有一个 docker registry 的 HTTP 服务，只有一个 docker registry 的压缩包，这如何将 docker registry 的存储目录中的镜像迁移到 harbor 2.0 中呢？</p>
@@ -609,7 +609,7 @@ dir:skopeo/library/alpine:latest docker://harbor.k8s.li/library/alpine:latest<sp
 </ul>
 <p>需要注意的是，skopeo sync 的方式是同步 project 级别的，镜像的 name 和 tag 就对应的是目录的名称</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">skopeo <span class="token function">sync</span> --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false <span class="token punctuation">\</span>
---src <span class="token function">dir</span> --dest <span class="token function">docker</span> skopeo/library/ harbor.k8s.li/library/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token parameter variable">--src</span> <span class="token function">dir</span> <span class="token parameter variable">--dest</span> <span class="token function">docker</span> skopeo/library/ harbor.k8s.li/library/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="实现脚本"><a href="#实现脚本" class="headerlink" title="实现脚本"></a>实现脚本</h3><p>大叫一声 shell 大法好！😂</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
@@ -626,17 +626,17 @@ dir:skopeo/library/alpine:latest docker://harbor.k8s.li/library/alpine:latest<sp
     <span class="token comment"># 定义生成 skopeo 目录</span>
     <span class="token assign-left variable">SKOPEO_DIR</span><span class="token operator">=</span><span class="token string">"docker/skopeo"</span>
     <span class="token comment"># 通过 find 出 current 文件夹可以得到所有带 tag 的镜像，因为一个 tag 对应一个 current 目录</span>
-    <span class="token keyword">for</span> <span class="token for-or-select variable">image</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> $<span class="token punctuation">&#123;</span>REPO_DIR<span class="token punctuation">&#125;</span> -type d -name <span class="token string">"current"</span><span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token keyword">for</span> <span class="token for-or-select variable">image</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> $<span class="token punctuation">&#123;</span>REPO_DIR<span class="token punctuation">&#125;</span> <span class="token parameter variable">-type</span> d <span class="token parameter variable">-name</span> <span class="token string">"current"</span><span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
         <span class="token comment"># 根据镜像的 tag 提取镜像的名字</span>
-        <span class="token assign-left variable">name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> $<span class="token punctuation">&#123;</span>image<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">'/'</span> <span class="token string">'&#123;print $5"/"$6":"$9&#125;'</span><span class="token variable">)</span></span>
+        <span class="token assign-left variable">name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> $<span class="token punctuation">&#123;</span>image<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token parameter variable">-F</span> <span class="token string">'/'</span> <span class="token string">'&#123;print $5"/"$6":"$9&#125;'</span><span class="token variable">)</span></span>
         <span class="token assign-left variable">link</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">cat</span> $<span class="token punctuation">&#123;</span>image<span class="token punctuation">&#125;</span>/link <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/sha256://'</span><span class="token variable">)</span></span>
         <span class="token assign-left variable">mfs</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;BLOB_DIR&#125;</span>/<span class="token variable">$&#123;link<span class="token operator">:</span>0<span class="token operator">:</span>2&#125;</span>/<span class="token variable">$&#123;link&#125;</span>/data"</span>
         <span class="token comment"># 创建镜像的硬链接需要的目录</span>
-        <span class="token function">mkdir</span> -p <span class="token string">"<span class="token variable">$&#123;SKOPEO_DIR&#125;</span>/<span class="token variable">$&#123;name&#125;</span>"</span>
+        <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token string">"<span class="token variable">$&#123;SKOPEO_DIR&#125;</span>/<span class="token variable">$&#123;name&#125;</span>"</span>
         <span class="token comment"># 硬链接镜像的 manifests 文件到目录的 manifest 文件</span>
         <span class="token function">ln</span> <span class="token variable">$&#123;mfs&#125;</span> <span class="token variable">$&#123;SKOPEO_DIR&#125;</span>/<span class="token variable">$&#123;name&#125;</span>/manifest.json
         <span class="token comment"># 使用正则匹配出所有的 sha256 值，然后排序去重</span>
-        <span class="token assign-left variable">layers</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> -Eo <span class="token string">"<span class="token entity" title="\b">\b</span>[a-f0-9]&#123;64&#125;<span class="token entity" title="\b">\b</span>"</span> $<span class="token punctuation">&#123;</span>mfs<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">sort</span> -n <span class="token operator">|</span> <span class="token function">uniq</span><span class="token variable">)</span></span>
+        <span class="token assign-left variable">layers</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> <span class="token parameter variable">-Eo</span> <span class="token string">"<span class="token entity" title="\b">\b</span>[a-f0-9]&#123;64&#125;<span class="token entity" title="\b">\b</span>"</span> $<span class="token punctuation">&#123;</span>mfs<span class="token punctuation">&#125;</span> <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-n</span> <span class="token operator">|</span> <span class="token function">uniq</span><span class="token variable">)</span></span>
         <span class="token keyword">for</span> <span class="token for-or-select variable">layer</span> <span class="token keyword">in</span> <span class="token variable">$&#123;layers&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
           <span class="token comment"># 硬链接 registry 存储目录里的镜像 layer 和 images config 到镜像的 dir 目录</span>
             <span class="token function">ln</span> <span class="token variable">$&#123;BLOB_DIR&#125;</span>/<span class="token variable">$&#123;layer<span class="token operator">:</span>0<span class="token operator">:</span>2&#125;</span>/<span class="token variable">$&#123;layer&#125;</span>/data <span class="token variable">$&#123;SKOPEO_DIR&#125;</span>/<span class="token variable">$&#123;name&#125;</span>/<span class="token variable">$&#123;layer&#125;</span>
@@ -648,7 +648,7 @@ dir:skopeo/library/alpine:latest docker://harbor.k8s.li/library/alpine:latest<sp
     <span class="token comment"># 使用 skopeo sync 将 dir 格式的镜像同步到 harbor</span>
     <span class="token keyword">for</span> <span class="token for-or-select variable">project</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span> $<span class="token punctuation">&#123;</span>SKOPEO_DIR<span class="token punctuation">&#125;</span><span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
         skopeo <span class="token function">sync</span> --insecure-policy --src-tls-verify<span class="token operator">=</span>false --dest-tls-verify<span class="token operator">=</span>false <span class="token punctuation">\</span>
-        --src <span class="token function">dir</span> --dest <span class="token function">docker</span> <span class="token variable">$&#123;SKOPEO_DIR&#125;</span>/<span class="token variable">$&#123;project&#125;</span> <span class="token variable">$&#123;REGISTRY_DOMAIN&#125;</span>/<span class="token variable">$&#123;project&#125;</span>
+        <span class="token parameter variable">--src</span> <span class="token function">dir</span> <span class="token parameter variable">--dest</span> <span class="token function">docker</span> <span class="token variable">$&#123;SKOPEO_DIR&#125;</span>/<span class="token variable">$&#123;project&#125;</span> <span class="token variable">$&#123;REGISTRY_DOMAIN&#125;</span>/<span class="token variable">$&#123;project&#125;</span>
     <span class="token keyword">done</span>
 <span class="token punctuation">&#125;</span>
 
@@ -755,7 +755,7 @@ sync_image
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

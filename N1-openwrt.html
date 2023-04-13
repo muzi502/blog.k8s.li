@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -656,10 +656,10 @@ login: can<span class="token string">'t execute '</span>/bin/zsh': No such <span
 
 <p>在 Debian 和 Ubuntu 发行版中 zsh 会默认安装在 <code>/bin/zsh</code> 下，并创建一个 <code>/usr/bin/zsh</code> 的一个软链接。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─debian@debian /mnt/d/Desktop
-╰─$ <span class="token function">ls</span> -alh /bin/zsh
+╰─$ <span class="token function">ls</span> <span class="token parameter variable">-alh</span> /bin/zsh
 -rwxr-xr-x <span class="token number">1</span> root root 842K Feb  <span class="token number">5</span>  <span class="token number">2019</span> /bin/zsh
 ╭─debian@debian /mnt/d/Desktop
-╰─$ <span class="token function">ls</span> -alh /usr/bin/zsh
+╰─$ <span class="token function">ls</span> <span class="token parameter variable">-alh</span> /usr/bin/zsh
 lrwxrwxrwx <span class="token number">1</span> root root <span class="token number">8</span> Aug <span class="token number">31</span>  <span class="token number">2019</span> /usr/bin/zsh -<span class="token operator">></span> /bin/zsh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>而在 OpenWrt 中却默认安装在了 <code>/usr/bin/zsh</code> 下，也没有为 <code>/bin/zsh</code> 创建一个软链接，也尝试过使用 scp 的方式将 <code>/usr/bin/zsh</code> 复制到 <code>/bin/zsh</code> ，没想到 scp 也需要用户的 shell 程序来执行 😐</p>
@@ -706,9 +706,9 @@ COMMANDS:
    help, h       Shows a list of commands or <span class="token builtin class-name">help</span> <span class="token keyword">for</span> one <span class="token builtin class-name">command</span>
 
 GLOBAL OPTIONS:
-   --debug        Turn on debug logs <span class="token punctuation">[</span><span class="token variable">$K3S_DEBUG</span><span class="token punctuation">]</span>
-   --help, -h     show <span class="token builtin class-name">help</span>
-   --version, -v  print the version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   <span class="token parameter variable">--debug</span>        Turn on debug logs <span class="token punctuation">[</span><span class="token variable">$K3S_DEBUG</span><span class="token punctuation">]</span>
+   --help, <span class="token parameter variable">-h</span>     show <span class="token builtin class-name">help</span>
+   --version, <span class="token parameter variable">-v</span>  print the version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="check-config"><a href="#check-config" class="headerlink" title="check-config"></a>check-config</h4><p>启动一个 K3s 集群之前线 check config 一下下 😋</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">╭─root@OpenWrt ~
@@ -872,8 +872,8 @@ I0308 <span class="token number">20</span>:17:18.939225    <span class="token nu
 I0308 <span class="token number">20</span>:17:19.103599    <span class="token number">9319</span> controller.go:606<span class="token punctuation">]</span> <span class="token function">quota</span> admission added evaluator for: rolebindings.rbac.authorization.k8s.io
 W0308 <span class="token number">20</span>:17:19.434785    <span class="token number">9319</span> lease.go:224<span class="token punctuation">]</span> Resetting endpoints <span class="token keyword">for</span> master <span class="token function">service</span> <span class="token string">"kubernetes"</span> to <span class="token punctuation">[</span><span class="token number">192.168</span>.0.212<span class="token punctuation">]</span>
 I0308 <span class="token number">20</span>:17:19.438264    <span class="token number">9319</span> controller.go:606<span class="token punctuation">]</span> <span class="token function">quota</span> admission added evaluator for: endpoints
-INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:19.626006745+08:00<span class="token punctuation">]</span> Running kube-scheduler --bind-address<span class="token operator">=</span><span class="token number">127.0</span>.0.1 --kubeconfig<span class="token operator">=</span>/var/lib/rancher/k3s/server/cred/scheduler.kubeconfig --leader-elect<span class="token operator">=</span>false --port<span class="token operator">=</span><span class="token number">10251</span> --secure-port<span class="token operator">=</span><span class="token number">0</span>
-INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:19.629360634+08:00<span class="token punctuation">]</span> Running kube-controller-manager --allocate-node-cidrs<span class="token operator">=</span>true --bind-address<span class="token operator">=</span><span class="token number">127.0</span>.0.1 --cluster-cidr<span class="token operator">=</span><span class="token number">10.42</span>.0.0/16 --cluster-signing-cert-file<span class="token operator">=</span>/var/lib/rancher/k3s/server/tls/server-ca.crt --cluster-signing-key-file<span class="token operator">=</span>/var/lib/rancher/k3s/server/tls/server-ca.key --kubeconfig<span class="token operator">=</span>/var/lib/rancher/k3s/server/cred/controller.kubeconfig --leader-elect<span class="token operator">=</span>false --port<span class="token operator">=</span><span class="token number">10252</span> --root-ca-file<span class="token operator">=</span>/var/lib/rancher/k3s/server/tls/server-ca.crt --secure-port<span class="token operator">=</span><span class="token number">0</span> --service-account-private-key-file<span class="token operator">=</span>/var/lib/rancher/k3s/server/tls/service.key --use-service-account-credentials<span class="token operator">=</span>true
+INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:19.626006745+08:00<span class="token punctuation">]</span> Running kube-scheduler --bind-address<span class="token operator">=</span><span class="token number">127.0</span>.0.1 <span class="token parameter variable">--kubeconfig</span><span class="token operator">=</span>/var/lib/rancher/k3s/server/cred/scheduler.kubeconfig --leader-elect<span class="token operator">=</span>false <span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token number">10251</span> --secure-port<span class="token operator">=</span><span class="token number">0</span>
+INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:19.629360634+08:00<span class="token punctuation">]</span> Running kube-controller-manager --allocate-node-cidrs<span class="token operator">=</span>true --bind-address<span class="token operator">=</span><span class="token number">127.0</span>.0.1 --cluster-cidr<span class="token operator">=</span><span class="token number">10.42</span>.0.0/16 --cluster-signing-cert-file<span class="token operator">=</span>/var/lib/rancher/k3s/server/tls/server-ca.crt --cluster-signing-key-file<span class="token operator">=</span>/var/lib/rancher/k3s/server/tls/server-ca.key <span class="token parameter variable">--kubeconfig</span><span class="token operator">=</span>/var/lib/rancher/k3s/server/cred/controller.kubeconfig --leader-elect<span class="token operator">=</span>false <span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token number">10252</span> --root-ca-file<span class="token operator">=</span>/var/lib/rancher/k3s/server/tls/server-ca.crt --secure-port<span class="token operator">=</span><span class="token number">0</span> --service-account-private-key-file<span class="token operator">=</span>/var/lib/rancher/k3s/server/tls/service.key --use-service-account-credentials<span class="token operator">=</span>true
 I0308 <span class="token number">20</span>:17:19.655674    <span class="token number">9319</span> controllermanager.go:161<span class="token punctuation">]</span> Version: v1.17.3+k3s1
 I0308 <span class="token number">20</span>:17:19.657868    <span class="token number">9319</span> deprecated_insecure_serving.go:53<span class="token punctuation">]</span> Serving insecurely on <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:10252
 INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:19.658915754+08:00<span class="token punctuation">]</span> Waiting <span class="token keyword">for</span> cloudcontroller rbac role to be created
@@ -899,7 +899,7 @@ INFO<span class="token punctuation">[</span><span class="token number">2020</spa
 INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:20.325996113+08:00<span class="token punctuation">]</span> Writing manifest: /var/lib/rancher/k3s/server/manifests/rolebindings.yaml
 INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:20.527152139+08:00<span class="token punctuation">]</span> Starting k3s.cattle.io/v1, <span class="token assign-left variable">Kind</span><span class="token operator">=</span>Addon controller
 INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:20.529057920+08:00<span class="token punctuation">]</span> Node token is available at /var/lib/rancher/k3s/server/token
-INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:20.529286008+08:00<span class="token punctuation">]</span> To <span class="token function">join</span> <span class="token function">node</span> to cluster: k3s agent -s https://192.168.0.212:6443 -t <span class="token variable">$&#123;NODE_TOKEN&#125;</span>
+INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:20.529286008+08:00<span class="token punctuation">]</span> To <span class="token function">join</span> <span class="token function">node</span> to cluster: k3s agent <span class="token parameter variable">-s</span> https://192.168.0.212:6443 <span class="token parameter variable">-t</span> <span class="token variable">$&#123;NODE_TOKEN&#125;</span>
 INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:20.527299933+08:00<span class="token punctuation">]</span> Waiting <span class="token keyword">for</span> master <span class="token function">node</span>  startup: resource name may not be empty
 INFO<span class="token punctuation">[</span><span class="token number">2020</span>-03-08T20:17:20.725057527+08:00<span class="token punctuation">]</span> Waiting <span class="token keyword">for</span> cloudcontroller rbac role to be created
 I0308 <span class="token number">20</span>:17:20.810135    <span class="token number">9319</span> controller.go:606<span class="token punctuation">]</span> <span class="token function">quota</span> admission added evaluator for: addons.k3s.cattle.io
@@ -1107,7 +1107,7 @@ Events:
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

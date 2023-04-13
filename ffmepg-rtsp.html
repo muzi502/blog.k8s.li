@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://p.k8s.li/1570705646007.png">
 <meta property="og:image" content="https://p.k8s.li/1570705720287.png">
 <meta property="article:published_time" content="2019-09-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:26.963Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.414Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="ffmpeg">
 <meta property="article:tag" content="rtsp">
@@ -287,7 +287,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:26+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:26+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -396,18 +396,18 @@
 <p><img data-src="https://p.k8s.li/1570705646007.png"></p>
 <p><img data-src="https://p.k8s.li/1570705720287.png"></p>
 <p>然后服务器端安装好 FFmpeg ，使用 FFmpeg 读取 rtsp 视频流即可</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt</span> <span class="token function">install</span> FFmpeg -y
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt</span> <span class="token function">install</span> FFmpeg <span class="token parameter variable">-y</span>
 
 <span class="token assign-left variable">RTSP</span><span class="token operator">=</span><span class="token string">"rtsp://127.0.0.1:554/user=user&amp;password=password&amp;channel=Channel&amp;stream=Stream.sdp?real_stream"</span>
 
-ffmpeg  -rtsp_transport tcp  -i <span class="token variable">$RTSP</span> -vcodec  copy -r <span class="token number">1</span> -t <span class="token number">60</span>  -y <span class="token variable"><span class="token variable">$(</span><span class="token assign-left variable">TZ</span><span class="token operator">=</span>UTC-8 <span class="token function">date</span> +<span class="token punctuation">\</span>%m<span class="token punctuation">\</span>%d<span class="token punctuation">\</span>%H<span class="token punctuation">\</span>%M<span class="token variable">)</span></span>.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ffmpeg  <span class="token parameter variable">-rtsp_transport</span> tcp  <span class="token parameter variable">-i</span> <span class="token variable">$RTSP</span> <span class="token parameter variable">-vcodec</span>  copy <span class="token parameter variable">-r</span> <span class="token number">1</span> <span class="token parameter variable">-t</span> <span class="token number">60</span>  <span class="token parameter variable">-y</span> <span class="token variable"><span class="token variable">$(</span><span class="token assign-left variable">TZ</span><span class="token operator">=</span>UTC-8 <span class="token function">date</span> +<span class="token punctuation">\</span>%m<span class="token punctuation">\</span>%d<span class="token punctuation">\</span>%H<span class="token punctuation">\</span>%M<span class="token variable">)</span></span>.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>其中 -r 参数是指定帧率，-t 参数是指定时间。关于 FFmpeg 的详细使用参数可以去参考一下官方手册，在此就不赘述了 😂</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@sg-02 ~/log
 ╰─<span class="token comment"># ffmpeg  -rtsp_transport tcp  -i $RTSP -vcodec  copy -r 1 -t 60  -y $(TZ=UTC-8 date +\%m\%d\%H\%M).mp4     130 ↵</span>
 FFmpeg version <span class="token number">3.4</span>.6-0ubuntu0.18.04.1 Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2000</span>-2019 the FFmpeg developers
   built with gcc <span class="token number">7</span> <span class="token punctuation">(</span>Ubuntu <span class="token number">7.3</span>.0-16ubuntu3<span class="token punctuation">)</span>
-  configuration: --prefix<span class="token operator">=</span>/usr --extra-version<span class="token operator">=</span>0ubuntu0.18.04.1 --toolchain<span class="token operator">=</span>hardened --libdir<span class="token operator">=</span>/usr/lib/x86_64-linux-gnu --incdir<span class="token operator">=</span>/usr/include/x86_64-linux-gnu --enable-gpl --disable-stripping --enable-avresample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librubberband --enable-librsvg --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-omx --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libopencv --enable-libx264 --enable-shared
+  configuration: <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/usr --extra-version<span class="token operator">=</span>0ubuntu0.18.04.1 <span class="token parameter variable">--toolchain</span><span class="token operator">=</span>hardened <span class="token parameter variable">--libdir</span><span class="token operator">=</span>/usr/lib/x86_64-linux-gnu <span class="token parameter variable">--incdir</span><span class="token operator">=</span>/usr/include/x86_64-linux-gnu --enable-gpl --disable-stripping --enable-avresample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librubberband --enable-librsvg --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-omx --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libopencv --enable-libx264 --enable-shared
   libavutil      <span class="token number">55</span>. <span class="token number">78.100</span> / <span class="token number">55</span>. <span class="token number">78.100</span>
   libavcodec     <span class="token number">57.107</span>.100 / <span class="token number">57.107</span>.100
   libavformat    <span class="token number">57</span>. <span class="token number">83.100</span> / <span class="token number">57</span>. <span class="token number">83.100</span>
@@ -509,7 +509,7 @@ video:6838kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing 
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -340,7 +340,7 @@
    Memory: <span class="token number">9</span>.1M
       CPU: <span class="token number">20</span>.421s
    CGroup: /system.slice/webps.service
-           └─20691 /opt/webps/webp-server --config /opt/webps/config.json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+           └─20691 /opt/webps/webp-server <span class="token parameter variable">--config</span> /opt/webps/config.json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><img data-src="https://p.k8s.li/20200318211715509.png"></p>
 <p>不过，咱还是要深入地学习一下 <code>systemd</code> ，于是就水了这篇博客 😂</p>
@@ -386,7 +386,7 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─root@blog /home/ubuntu
 ╰─<span class="token comment"># dmesg</span>
 <span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> Linux version <span class="token number">5.0</span>.0-1031-gcp <span class="token punctuation">(</span>buildd@lcy01-amd64-020<span class="token punctuation">)</span> <span class="token punctuation">(</span>gcc version <span class="token number">7.4</span>.0 <span class="token punctuation">(</span>Ubuntu <span class="token number">7.4</span>.0-1ubuntu1~18.04.1<span class="token punctuation">))</span> <span class="token comment">#32-Ubuntu SMP Tue Feb 11 03:55:48 UTC 2020 (Ubuntu 5.0.0-1031.32-gcp 5.0.21)</span>
-<span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> Command line: <span class="token assign-left variable">BOOT_IMAGE</span><span class="token operator">=</span>/boot/vmlinuz-5.0.0-1031-gcp <span class="token assign-left variable">root</span><span class="token operator">=</span>PARTUUID<span class="token operator">=</span>9b22aacc-c8b9-497a-9583-a20c1be968c4 ro scsi_mod.use_blk_mq<span class="token operator">=</span>Y <span class="token assign-left variable">console</span><span class="token operator">=</span>ttyS0
+<span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> Command line: <span class="token assign-left variable">BOOT_IMAGE</span><span class="token operator">=</span>/boot/vmlinuz-5.0.0-1031-gcp <span class="token assign-left variable">root</span><span class="token operator">=</span>PARTUUID<span class="token operator">=</span>9b22aacc-c8b9-497a-9583-a20c1be968c4 ro <span class="token assign-left variable">scsi_mod.use_blk_mq</span><span class="token operator">=</span>Y <span class="token assign-left variable">console</span><span class="token operator">=</span>ttyS0
 <span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> KERNEL supported cpus:
 <span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span>   Intel GenuineIntel
 <span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span>   AMD AuthenticAMD
@@ -400,7 +400,7 @@
 <span class="token punctuation">[</span>    <span class="token number">2.503126</span><span class="token punctuation">]</span> x86/mm: Checking user space page tables
 <span class="token punctuation">[</span>    <span class="token number">2.513767</span><span class="token punctuation">]</span> x86/mm: Checked W+X mappings: passed, no W+X pages found.
 <span class="token punctuation">[</span>    <span class="token number">2.516258</span><span class="token punctuation">]</span> Run /sbin/init as init process
-<span class="token punctuation">[</span>    <span class="token number">3.992535</span><span class="token punctuation">]</span> systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: systemd <span class="token number">237</span> running <span class="token keyword">in</span> system mode. <span class="token punctuation">(</span>+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD -IDN2 +IDN -PCRE2 default-hierarchy<span class="token operator">=</span>hybrid<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>    <span class="token number">3.992535</span><span class="token punctuation">]</span> systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: systemd <span class="token number">237</span> running <span class="token keyword">in</span> system mode. <span class="token punctuation">(</span>+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD <span class="token parameter variable">-IDN2</span> +IDN <span class="token parameter variable">-PCRE2</span> default-hierarchy<span class="token operator">=</span>hybrid<span class="token punctuation">)</span>
 <span class="token punctuation">[</span>    <span class="token number">4.002297</span><span class="token punctuation">]</span> systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: Detected virtualization kvm.
 <span class="token punctuation">[</span>    <span class="token number">4.004593</span><span class="token punctuation">]</span> systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: Detected architecture x86-64.
 <span class="token punctuation">[</span>    <span class="token number">4.031531</span><span class="token punctuation">]</span> systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: Set <span class="token function">hostname</span> to <span class="token operator">&lt;</span>blog<span class="token operator">></span>.
@@ -416,7 +416,7 @@
 <h3 id="init-初始化阶段"><a href="#init-初始化阶段" class="headerlink" title="init 初始化阶段"></a>init 初始化阶段</h3><p>一旦内核自解压完成，启动并初始化后，内核启动第一个<strong>用户空间应用程序</strong>，即 systemd 进程（其是老式 System V 系统的 init 程序的替代品)，并转移控制权到 systemd。这是调用的第一个使用标准 C 库编译的程序，在此进程之前，还没有执行任何标准的 C 应用程序。至此整个系统引导过程的结束，kernel 和 systemd 处于运行状态，接下来就由 systemd 来启动各项程序。</p>
 <p>从 dmesg 的输出日志我们可以看到，直到 2.516258 秒才开始执行 <code>/sbin/init</code> 命令，而对于采用 systemd 的发行版来说，<code>/sbin/init</code> 是指向 <code>/sbin/init -&gt; /lib/systemd/systemd</code> ，的链接文件，实际上就是在启动 systemd 😂</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>    <span class="token number">2.516258</span><span class="token punctuation">]</span> Run /sbin/init as init process
-<span class="token punctuation">[</span>    <span class="token number">3.992535</span><span class="token punctuation">]</span> systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: systemd <span class="token number">237</span> running <span class="token keyword">in</span> system mode. <span class="token punctuation">(</span>+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD -IDN2 +IDN -PCRE2 default-hierarchy<span class="token operator">=</span>hybrid<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>    <span class="token number">3.992535</span><span class="token punctuation">]</span> systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: systemd <span class="token number">237</span> running <span class="token keyword">in</span> system mode. <span class="token punctuation">(</span>+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD <span class="token parameter variable">-IDN2</span> +IDN <span class="token parameter variable">-PCRE2</span> default-hierarchy<span class="token operator">=</span>hybrid<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h2 id="主角-systemd"><a href="#主角-systemd" class="headerlink" title="主角 systemd"></a>主角 systemd</h2><p>为什么文章题名为 <strong>Linux 的小伙伴 systemd</strong> 呐，其实广义上来讲 Linux 是众多 Linux 系统发行版的集合，但严格来讲 Linux 仅仅是一个 OS 的 kernel 而已，仅仅有一个内核是无法组成一个系统的，所以 Linux kernel 还需要他的几个兄弟比如 GNU 、 systemd 、X Window 、GNOME 、 KDE 、Xfce 等等其他用户层面的程序来构建出一套完整的操作系统出来。</p>
 <p>还有如果你要是当着自由软件基金会主席 RMS <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC">理查德·斯托曼</a> 说 Linux 的话，他会给你发火哦，你要说 GNU&#x2F;Linux 才行 😂。</p>
@@ -593,10 +593,10 @@
 <span class="token punctuation">[</span>Service<span class="token punctuation">]</span>
 <span class="token assign-left variable">Type</span><span class="token operator">=</span>forking
 <span class="token assign-left variable">PIDFile</span><span class="token operator">=</span>/run/nginx.pid
-<span class="token assign-left variable">ExecStartPre</span><span class="token operator">=</span>/usr/sbin/nginx -t -q -g <span class="token string">'daemon on; master_process on;'</span>
-<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/sbin/nginx -g <span class="token string">'daemon on; master_process on;'</span>
-<span class="token assign-left variable">ExecReload</span><span class="token operator">=</span>/usr/sbin/nginx -g <span class="token string">'daemon on; master_process on;'</span> -s reload
-<span class="token assign-left variable">ExecStop</span><span class="token operator">=</span>-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/nginx.pid
+<span class="token assign-left variable">ExecStartPre</span><span class="token operator">=</span>/usr/sbin/nginx <span class="token parameter variable">-t</span> <span class="token parameter variable">-q</span> <span class="token parameter variable">-g</span> <span class="token string">'daemon on; master_process on;'</span>
+<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/sbin/nginx <span class="token parameter variable">-g</span> <span class="token string">'daemon on; master_process on;'</span>
+<span class="token assign-left variable">ExecReload</span><span class="token operator">=</span>/usr/sbin/nginx <span class="token parameter variable">-g</span> <span class="token string">'daemon on; master_process on;'</span> <span class="token parameter variable">-s</span> reload
+<span class="token assign-left variable">ExecStop</span><span class="token operator">=</span>-/sbin/start-stop-daemon <span class="token parameter variable">--quiet</span> <span class="token parameter variable">--stop</span> <span class="token parameter variable">--retry</span> QUIT/5 <span class="token parameter variable">--pidfile</span> /run/nginx.pid
 <span class="token assign-left variable">TimeoutStopSec</span><span class="token operator">=</span><span class="token number">5</span>
 <span class="token assign-left variable">KillMode</span><span class="token operator">=</span>mixed
 
@@ -881,7 +881,7 @@ systemd<span class="token punctuation">(</span><span class="token number">1</spa
    Memory: <span class="token number">185</span>.2M
       CPU: 1min <span class="token number">30</span>.092s
    CGroup: /system.slice/webps.service
-           └─5732 /opt/webps/webp-server --config /opt/webps/config.json
+           └─5732 /opt/webps/webp-server <span class="token parameter variable">--config</span> /opt/webps/config.json
 
 Mar <span class="token number">19</span> 05:23:20 blog webp-server<span class="token punctuation">[</span><span class="token number">5732</span><span class="token punctuation">]</span>: Save to exhaushttps://p.k8s.li/20200109192923891.png.1584538399.webp ok<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -926,7 +926,7 @@ dev-mqueue.mount                              static<span aria-hidden="true" cla
  Main PID: <span class="token number">3305</span>
     Tasks: <span class="token number">2</span> <span class="token punctuation">(</span>limit: <span class="token number">1152</span><span class="token punctuation">)</span>
    CGroup: /system.slice/nginx.service
-           ├─ <span class="token number">3305</span> nginx: master process /usr/sbin/nginx -g daemon on<span class="token punctuation">;</span> master_process on<span class="token punctuation">;</span>
+           ├─ <span class="token number">3305</span> nginx: master process /usr/sbin/nginx <span class="token parameter variable">-g</span> daemon on<span class="token punctuation">;</span> master_process on<span class="token punctuation">;</span>
            └─17700 nginx: worker process<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="使用-systemctl-命令杀死服务"><a href="#使用-systemctl-命令杀死服务" class="headerlink" title="使用 systemctl 命令杀死服务"></a>使用 systemctl 命令杀死服务</h4><ul>
@@ -1017,7 +1017,7 @@ Startup finished <span class="token keyword">in</span> 489ms <span class="token 
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

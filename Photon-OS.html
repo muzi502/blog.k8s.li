@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -658,12 +658,12 @@
            ├─user.slice
            │   ├─session-c2.scope
            │   │ ├─413 sshd: root@pts/0
-           │   │ ├─420 -bash
+           │   │ ├─420 <span class="token parameter variable">-bash</span>
            │   │ ├─443 systemctl status
            │   │ └─444 systemctl status
            │   └─user@0.service
            │     └─init.scope
-           │       ├─393 /lib/systemd/systemd --user
+           │       ├─393 /lib/systemd/systemd <span class="token parameter variable">--user</span>
            │       └─394 <span class="token punctuation">(</span>sd-pam<span class="token punctuation">)</span>
            ├─init.scope
            │ └─1 /lib/systemd/systemd
@@ -673,17 +673,17 @@
              ├─systemd-udevd.service
              │ └─124 /lib/systemd/systemd-udevd
              ├─vgauthd.service
-             │ └─159 /usr/bin/VGAuthService -s
+             │ └─159 /usr/bin/VGAuthService <span class="token parameter variable">-s</span>
              ├─systemd-journald.service
              │ └─97 /lib/systemd/systemd-journald
              ├─sshd.service
-             │ └─352 /usr/sbin/sshd -D
+             │ └─352 /usr/sbin/sshd <span class="token parameter variable">-D</span>
              ├─vmtoolsd.service
              │ └─161 /usr/bin/vmtoolsd
              ├─systemd-resolved.service
              │ └─247 /lib/systemd/systemd-resolved
              ├─dbus.service
-             │ └─157 /usr/bin/dbus-daemon --system --address<span class="token operator">=</span>systemd: --nofork --nopidfile --systemd-activation --syslog-only
+             │ └─157 /usr/bin/dbus-daemon <span class="token parameter variable">--system</span> <span class="token parameter variable">--address</span><span class="token operator">=</span>systemd: <span class="token parameter variable">--nofork</span> <span class="token parameter variable">--nopidfile</span> --systemd-activation --syslog-only
              ├─systemd-timesyncd.service
              │ └─151 /lib/systemd/systemd-timesyncd
              └─systemd-logind.service
@@ -825,7 +825,7 @@ Server:
 <li>系统安装时默认使用的 DHCP 获取 IP ，可以使用 systemd 来设置静态 IP</li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 首先修改 DHCP 的 systemd 文件，关闭 DHCP</span>
-<span class="token function">sed</span> -i <span class="token string">'s/yes/no/'</span> /etc/systemd/network/99-dhcp-en.network
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/yes/no/'</span> /etc/systemd/network/99-dhcp-en.network
 <span class="token comment"># 创建静态 IP 的 systemd 文件</span>
 <span class="token function">cat</span> <span class="token operator">></span> /etc/systemd/network/10-static-en.network <span class="token operator">&lt;&lt;</span> <span class="token string">"EOF"
 
@@ -846,7 +846,7 @@ systemctl restart systemd-networkd<span aria-hidden="true" class="line-numbers-r
 <ul>
 <li>挂载 NFS 文件系统需要安装 <code>nfs-utils</code></li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tdnf <span class="token function">install</span> nfs-utils -y
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tdnf <span class="token function">install</span> nfs-utils <span class="token parameter variable">-y</span>
 <span class="token function">mount</span> <span class="token number">192.168</span>.0.100:/nfs /mnt/nfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h3><p>Photon OS 使用的是 yum&#x2F;tdnf 作为包管理器，使用方法和 RedHat 系的发行版基本相同，repo 主要有以下几个：</p>
@@ -1034,7 +1034,7 @@ pihole    <span class="token operator">|</span> <span class="token punctuation">
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -322,9 +322,9 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> clone https://github.com/k8sli/kubernetes.git
 $ <span class="token builtin class-name">cd</span> kubernetes
 $ <span class="token function">git</span> remote <span class="token function">add</span> upstream https://github.com/kubernetes/kubernetes.git
-$ <span class="token function">git</span> fetch --all
+$ <span class="token function">git</span> fetch <span class="token parameter variable">--all</span>
 $ <span class="token function">git</span> checkout upstream/release-1.21
-$ <span class="token function">git</span> checkout -B kubeadm-1.21<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+$ <span class="token function">git</span> checkout <span class="token parameter variable">-B</span> kubeadm-1.21<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h3><ul>
 <li><code>.github/workflows/kubeadm.yaml</code></li>
@@ -400,7 +400,7 @@ $ <span class="token function">git</span> checkout -B kubeadm-1.21<span aria-hid
 <ul>
 <li><code>git diff</code></li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">diff</span> --git a/.github/workflows/kubeadm.yaml b/.github/workflows/kubeadm.yaml
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">diff</span> <span class="token parameter variable">--git</span> a/.github/workflows/kubeadm.yaml b/.github/workflows/kubeadm.yaml
 new <span class="token function">file</span> mode <span class="token number">100644</span>
 index 00000000000<span class="token punctuation">..</span>376f37c0edf
 --- /dev/null
@@ -443,7 +443,7 @@ index 00000000000<span class="token punctuation">..</span>376f37c0edf
 +            sha256sum.txt
 +            kubeadm-linux-amd64
 +            kubeadm-linux-arm64
-<span class="token function">diff</span> --git a/cmd/kubeadm/app/constants/constants.go b/cmd/kubeadm/app/constants/constants.go
+<span class="token function">diff</span> <span class="token parameter variable">--git</span> a/cmd/kubeadm/app/constants/constants.go b/cmd/kubeadm/app/constants/constants.go
 index aed3a713020<span class="token punctuation">..</span>08a24d237f8 <span class="token number">100644</span>
 --- a/cmd/kubeadm/app/constants/constants.go
 +++ b/cmd/kubeadm/app/constants/constants.go
@@ -474,7 +474,7 @@ changes and commit them, and you can discard any commits you <span class="token 
 state without impacting any branches by performing another checkout.
 
 If you want to create a new branch to retain commits you create, you may
-<span class="token keyword">do</span> so <span class="token punctuation">(</span>now or later<span class="token punctuation">)</span> by using -b with the checkout <span class="token builtin class-name">command</span> again. Example:
+<span class="token keyword">do</span> so <span class="token punctuation">(</span>now or later<span class="token punctuation">)</span> by using <span class="token parameter variable">-b</span> with the checkout <span class="token builtin class-name">command</span> again. Example:
 
 HEAD is now at 3cce4a82b44 Release commit <span class="token keyword">for</span> Kubernetes v1.21.4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -490,14 +490,14 @@ HEAD is now at 3cce4a82b44 Release commit <span class="token keyword">for</span>
 <ul>
 <li>重新打上新的 tag，如 <code>v1.21.4-patch-1.0 </code></li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> tag v1.21.4-patch-1.0 -f
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> tag v1.21.4-patch-1.0 <span class="token parameter variable">-f</span>
 Updated tag <span class="token string">'v1.21.4-patch-1.0'</span> <span class="token punctuation">(</span>was 70bcbd6de6c<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><img data-src="https://p.k8s.li/2021-08-25-build-k8s-binary-by-github-actions-1.png" alt="image-20210826020226785"></p>
 <ul>
 <li>将 tag push 到 repo 中触发 workflow</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> push origin --tags -f
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> push origin <span class="token parameter variable">--tags</span> <span class="token parameter variable">-f</span>
 Enumerating objects: <span class="token number">17</span>, done.
 Counting objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">17</span>/17<span class="token punctuation">)</span>, done.
 Delta compression using up to <span class="token number">4</span> threads
@@ -516,8 +516,8 @@ To github.com:k8sli/kubernetes.git
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面只展示了以一个 tag 为单位进行构建的流程，想要构建其他版本的 kubeadm ，可以按照同样的流程和方法来完成。其实写一个 shell 脚本来处理也是十分简单，如下：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 
-<span class="token builtin class-name">set</span> -o errexit
-<span class="token builtin class-name">set</span> -o nounset
+<span class="token builtin class-name">set</span> <span class="token parameter variable">-o</span> errexit
+<span class="token builtin class-name">set</span> <span class="token parameter variable">-o</span> nounset
 
 <span class="token comment"># 定义 commit ID</span>
 <span class="token builtin class-name">:</span> <span class="token variable">$&#123;COMMIT<span class="token operator">:=</span>"48e4b4c7c62a84ab4ec363588721011b73ee77e6"&#125;</span>
@@ -526,7 +526,7 @@ To github.com:k8sli/kubernetes.git
 <span class="token builtin class-name">:</span> <span class="token variable">$&#123;TAGS<span class="token operator">:=</span>"v1.22.1 v1.22.0 v1.21.4 v1.21.3 v1.20.10 v1.19.14 v1.18.10"&#125;</span>
 
 <span class="token keyword">for</span> <span class="token for-or-select variable">tag</span> <span class="token keyword">in</span> <span class="token variable">$&#123;TAGS&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-    <span class="token function">git</span> reset --hard <span class="token variable">$&#123;tag&#125;</span>
+    <span class="token function">git</span> reset <span class="token parameter variable">--hard</span> <span class="token variable">$&#123;tag&#125;</span>
     <span class="token function">git</span> cherry-pick <span class="token variable">$&#123;COMMIT&#125;</span>
     <span class="token function">git</span> tag <span class="token variable">$&#123;tag&#125;</span>-patch-1.0
     <span class="token function">git</span> push origin <span class="token variable">$&#123;tag&#125;</span>-patch-1.0
@@ -586,7 +586,7 @@ To github.com:k8sli/kubernetes.git
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

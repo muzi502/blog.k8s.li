@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -32,7 +32,7 @@
 <meta property="og:description" content="Play With Docker 是一个运行在浏览器中的 Docker Playground，只需要服务端部署好 pwd 服务，客户端无需安装任何环境，使用浏览器就可以在线体验 Docker。类似的还有近期上线的 instantbox 在线体验 Linux 发行版。按照官方 readme 或 wiki 部署起来，会有不少坑，接下来就开始填坑。  1.安装 Docker 以及 docker-comp">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:48:47.915Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:05.258Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -266,7 +266,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:48:47+08:00" itemprop="dateModified" datetime="2022-06-19T10:48:47+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:05+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:05+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,10 +323,10 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> apt-transport-https ca-certificates <span class="token function">curl</span>
 
 <span class="token comment">### Add Docker’s official GPG key</span>
-<span class="token function">curl</span> -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
+<span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> apt-key <span class="token function">add</span> -
 
 <span class="token comment">### Add Docker apt repository.</span>
-add-apt-repository <span class="token string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release -cs<span class="token variable">)</span></span> stable"</span>
+add-apt-repository <span class="token string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release <span class="token parameter variable">-cs</span><span class="token variable">)</span></span> stable"</span>
 
 <span class="token comment">## Install Docker CE.</span>
 <span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> docker-ce<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -337,13 +337,13 @@ add-apt-repository <span class="token string">"deb [arch=amd64] https://download
 <p>3.安装 golang、dep、项目依赖:</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt-get</span> <span class="token function">install</span> golang go-dep
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">GOPATH</span><span class="token operator">=</span>/root/go
-<span class="token function">mkdir</span> -p <span class="token variable">$GOPATH</span>/src/github.com/play-with-docker/
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token variable">$GOPATH</span>/src/github.com/play-with-docker/
 <span class="token builtin class-name">cd</span> <span class="token operator">!</span>$
 <span class="token function">git</span> clone https://github.com/play-with-docker/play-with-docker.git
 <span class="token builtin class-name">cd</span> play-with-docker
 
 <span class="token comment"># 安装项目依赖</span>
-dep ensure -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+dep ensure <span class="token parameter variable">-v</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>4.拉取 dind 镜像，也即是工作台运行实例的模板镜像</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> pull franela/dind<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -354,7 +354,7 @@ dep ensure -v<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
     config.PlaygroundDomain &#x3D; &quot;YOU-IP or DOMAIN&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>另外附上 shell 脚本中获取本机公网 ip 的方法</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">ips</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">ifconfig</span> <span class="token operator">|</span> <span class="token function">grep</span> inet <span class="token operator">|</span> <span class="token function">grep</span> -v inet6 <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token number">127</span> <span class="token operator">|</span> <span class="token function">grep</span> -v <span class="token number">172</span> <span class="token operator">|</span>  <span class="token function">sed</span> <span class="token string">'s/^[ \t]*//g'</span> <span class="token operator">|</span> <span class="token function">cut</span> -d <span class="token string">' '</span> -f2<span class="token variable">`</span></span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">ips</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">ifconfig</span> <span class="token operator">|</span> <span class="token function">grep</span> inet <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> inet6 <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token number">127</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token number">172</span> <span class="token operator">|</span>  <span class="token function">sed</span> <span class="token string">'s/^[ \t]*//g'</span> <span class="token operator">|</span> <span class="token function">cut</span> <span class="token parameter variable">-d</span> <span class="token string">' '</span> <span class="token parameter variable">-f2</span><span class="token variable">`</span></span>
 <span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token variable">$ips</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>5.最后一步 <code>docker-compose up</code> 走起！😋</p>
@@ -416,7 +416,7 @@ dep ensure -v<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

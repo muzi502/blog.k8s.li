@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -634,13 +634,13 @@ deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu bionic main
 <span class="token comment"># 也可以考虑使用 wget 的方式把 deb 包下载下来</span>
 <span class="token function">wget</span> https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu/pool/bionic/main/g/gitlab-ce/gitlab-ce_12.3.5-ce.0_amd64.deb
 
-opkg -i gitlab-ce/gitlab-ce_12.3.5-ce.0_amd64.deb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+opkg <span class="token parameter variable">-i</span> gitlab-ce/gitlab-ce_12.3.5-ce.0_amd64.deb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="CentOS7"><a href="#CentOS7" class="headerlink" title="CentOS7"></a>CentOS7</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装依赖</span>
-<span class="token function">sudo</span> yum <span class="token function">install</span> -y <span class="token function">curl</span> policycoreutils-python openssh-server
+<span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token parameter variable">-y</span> <span class="token function">curl</span> policycoreutils-python openssh-server
 
 <span class="token comment"># 配置防火墙</span>
-<span class="token function">sudo</span> firewall-cmd --permanent --add-service<span class="token operator">=</span>http
+<span class="token function">sudo</span> firewall-cmd <span class="token parameter variable">--permanent</span> --add-service<span class="token operator">=</span>http
 <span class="token function">sudo</span> systemctl reload firewalld
 
 <span class="token comment"># 使用清华大学镜像站的源，下载速度会快些。</span>
@@ -655,9 +655,9 @@ Ece
 <span class="token function">sudo</span> yum makecache
 
 <span class="token comment"># 查看可用的版本neng'b</span>
-yum list gitlab-ce --showduplicates
+yum list gitlab-ce <span class="token parameter variable">--showduplicates</span>
 <span class="token comment"># 然后安装最新的版本</span>
-yum <span class="token function">install</span> -y gitlab-ce
+yum <span class="token function">install</span> <span class="token parameter variable">-y</span> gitlab-ce
 <span class="token comment"># 安装指定版本 12.3.5</span>
 yum <span class="token function">install</span> gitlab-ce-12.3.5-ce.0.el7.x86_64.rpm
 
@@ -704,7 +704,7 @@ Then, you can start your GitLab instance by running the following command:
 gitlab-ctl stop
 
 <span class="token comment"># 打补丁的时候会提示一些补丁文件不存在，一定要跳过这些文件，不然后面reconfig的时候会报错的。</span>
-patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 <span class="token operator">&lt;</span> <span class="token variable">$&#123;gitlab_version&#125;</span>-zh.diff<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+patch <span class="token parameter variable">-d</span> /opt/gitlab/embedded/service/gitlab-rails <span class="token parameter variable">-p1</span> <span class="token operator">&lt;</span> <span class="token variable">$&#123;gitlab_version&#125;</span>-zh.diff<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="3-修改默认配置"><a href="#3-修改默认配置" class="headerlink" title="3. 修改默认配置"></a>3. 修改默认配置</h3><p>修改 gitlab 的配置文件 <code>/etc/gitlab/gitlab.rb</code></p>
 <pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token comment"># 修改为你自己的域名或者 IP，是单引号，而且前面的 http 不要改</span>
@@ -735,7 +735,7 @@ external_url  'http://gitlab.domain'
 
 <p>配置好 deb 源之后再执行</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> uodate
-<span class="token function">apt</span> <span class="token function">install</span> gitlab-runner -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token function">apt</span> <span class="token function">install</span> gitlab-runner <span class="token parameter variable">-y</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="CentOS7-1"><a href="#CentOS7-1" class="headerlink" title="CentOS7"></a>CentOS7</h3><p>新建 <code>/etc/yum.repos.d/gitlab-runner.repo</code>，内容为</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>gitlab-runner<span class="token punctuation">]</span>
@@ -748,9 +748,9 @@ external_url  'http://gitlab.domain'
 
 <p>再执行</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> yum makecache
-<span class="token function">sudo</span> yum <span class="token function">install</span> gitlab-runner -y
+<span class="token function">sudo</span> yum <span class="token function">install</span> gitlab-runner <span class="token parameter variable">-y</span>
 <span class="token comment"># 安装指定版本 其中 12.3.5 即为指定的版本号</span>
-yum <span class="token function">install</span> gitlab-runner-12.3.5-1.x86_64 -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+yum <span class="token function">install</span> gitlab-runner-12.3.5-1.x86_64 <span class="token parameter variable">-y</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="注册-gitlab-runner"><a href="#注册-gitlab-runner" class="headerlink" title="注册 gitlab-runner"></a>注册 gitlab-runner</h3><p>使用 root 用户从 web 端登录到 gitlab 管理中心。在 <code>概览</code> –&gt; <code>Runner</code> 。在右上角会有以下，稍后会用到。</p>
 <ul>
@@ -940,9 +940,9 @@ clair               /docker-entrypoint.sh            Up <span class="token punct
 harbor-core         /harbor/harbor_core              Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>
 harbor-db           /docker-entrypoint.sh            Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">5432</span>/tcp
 harbor-jobservice   /harbor/harbor_jobservice  <span class="token punctuation">..</span>.   Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>
-harbor-log          /bin/sh -c /usr/local/bin/ <span class="token punctuation">..</span>.   Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">127.0</span>.0.1:1514-<span class="token operator">></span><span class="token number">10514</span>/tcp
-harbor-portal       nginx -g daemon off<span class="token punctuation">;</span>             Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">8080</span>/tcp
-nginx               nginx -g daemon off<span class="token punctuation">;</span>             Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">0.0</span>.0.0:80-<span class="token operator">></span><span class="token number">8080</span>/tcp
+harbor-log          /bin/sh <span class="token parameter variable">-c</span> /usr/local/bin/ <span class="token punctuation">..</span>.   Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">127.0</span>.0.1:1514-<span class="token operator">></span><span class="token number">10514</span>/tcp
+harbor-portal       nginx <span class="token parameter variable">-g</span> daemon off<span class="token punctuation">;</span>             Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">8080</span>/tcp
+nginx               nginx <span class="token parameter variable">-g</span> daemon off<span class="token punctuation">;</span>             Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">0.0</span>.0.0:80-<span class="token operator">></span><span class="token number">8080</span>/tcp
 redis               redis-server /etc/redis.conf     Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">6379</span>/tcp
 registry            /entrypoint.sh /etc/regist <span class="token punctuation">..</span>.   Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">5000</span>/tcp
 registryctl         /harbor/start.sh                 Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1492,7 +1492,7 @@ SSH_PASSWORD: # 部署测试服务器 ssh 密码<span aria-hidden="true" class="
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

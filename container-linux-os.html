@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://p.k8s.li/20191231142454934.png">
 <meta property="og:image" content="https://p.k8s.li/20191231143958024.png">
 <meta property="article:published_time" content="2019-12-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:27.231Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.586Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="Linux">
@@ -287,7 +287,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:27+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:27+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -496,15 +496,15 @@ tmpfs           200M     <span class="token number">0</span>  200M   <span class
            ├─user.slice
            │ └─user-0.slice
            │   ├─session-c1.scope
-           │   │ ├─363 /bin/login -p --
-           │   │ └─396 -bash
+           │   │ ├─363 /bin/login <span class="token parameter variable">-p</span> --
+           │   │ └─396 <span class="token parameter variable">-bash</span>
            │   ├─session-c2.scope
            │   │ ├─408 sshd: root@pts/0
-           │   │ ├─415 -bash
+           │   │ ├─415 <span class="token parameter variable">-bash</span>
            │   │ └─560 systemctl status
            │   └─user@0.service
            │     └─init.scope
-           │       ├─388 /lib/systemd/systemd --user
+           │       ├─388 /lib/systemd/systemd <span class="token parameter variable">--user</span>
            │       └─389 <span class="token punctuation">(</span>sd-pam<span class="token punctuation">)</span>
            ├─init.scope
            │ └─1 /lib/systemd/systemd
@@ -514,20 +514,20 @@ tmpfs           200M     <span class="token number">0</span>  200M   <span class
              ├─systemd-udevd.service
              │ └─125 /lib/systemd/systemd-udevd
              ├─vgauthd.service
-             │ └─197 /usr/bin/VGAuthService -s
+             │ └─197 /usr/bin/VGAuthService <span class="token parameter variable">-s</span>
              ├─docker.service
              │ ├─430 /usr/bin/dockerd
-             │ └─437 docker-containerd --config /var/run/docker/containerd/containerd.toml
+             │ └─437 docker-containerd <span class="token parameter variable">--config</span> /var/run/docker/containerd/containerd.toml
              ├─systemd-journald.service
              │ └─100 /lib/systemd/systemd-journald
              ├─sshd.service
-             │ └─361 /usr/sbin/sshd -D
+             │ └─361 /usr/sbin/sshd <span class="token parameter variable">-D</span>
              ├─vmtoolsd.service
              │ └─94 /usr/bin/vmtoolsd
              ├─systemd-resolved.service
              │ └─257 /lib/systemd/systemd-resolved
              ├─dbus.service
-             │ └─198 /usr/bin/dbus-daemon --system --address<span class="token operator">=</span>systemd: --nofork --nopidfile --systemd-activation --syslog-only
+             │ └─198 /usr/bin/dbus-daemon <span class="token parameter variable">--system</span> <span class="token parameter variable">--address</span><span class="token operator">=</span>systemd: <span class="token parameter variable">--nofork</span> <span class="token parameter variable">--nopidfile</span> --systemd-activation --syslog-only
              ├─systemd-timesyncd.service
              │ └─167 /lib/systemd/systemd-timesyncd
              └─systemd-logind.service
@@ -627,7 +627,7 @@ Live Restore Enabled: false<span aria-hidden="true" class="line-numbers-rows"><s
 
 <h3 id="使用体验"><a href="#使用体验" class="headerlink" title="使用体验"></a>使用体验</h3><p>总体来讲，除了安装软件速度极慢之外，使用起来和普通的 Linux 发行版无多大差别，系统资源占用比传统的 Linux 发行版要低的多。即便是运行了 docker 进程后系统内存也仅仅占用 100 Mb 左右，而磁盘占用才 500MB 算是比较轻量化的。至于性能方面，目前我还是找不到可以测试对比的方案。</p>
 <p>较传统的 Linux 发行版，精简了大量不必要的服务和软件，甚至连 tar 命令都没有……。如果把它当作 kubenetes 工作负载 Node 节点来使用，需要注意的是，kube-proxy 依赖的一些工具并没有安装上。我使用 kubeadm 将该节点加入到集群当中的时候就提示缺少以下几个工具： <code>ipset socat ethtool ebtables</code> ，这些对于 IPVS 都是需要的。最好使用 tdnf 一并安装上，并且开启相应的 IPVS 内核模块。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tdnf <span class="token function">install</span> ipset socat <span class="token function">ethtool</span> ebtables <span class="token function">tar</span> -y
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tdnf <span class="token function">install</span> ipset socat <span class="token function">ethtool</span> ebtables <span class="token function">tar</span> <span class="token parameter variable">-y</span>
 modprobe -- ip_vs
 modprobe -- ip_vs_rr
 modprobe -- ip_vs_wrr
@@ -699,7 +699,7 @@ modprobe -- nf_conntrack<span aria-hidden="true" class="line-numbers-rows"><span
 <li><code>password_hash</code> 可以通过 openssl 命令来生成，把生成的一整串内容填写到上面，包括后面那个点 <code>.</code></li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">╭─@debian ~
-╰─$ openssl <span class="token function">passwd</span> -1
+╰─$ openssl <span class="token function">passwd</span> <span class="token parameter variable">-1</span>
 Password:
 Verifying - Password:
 <span class="token variable">$1</span><span class="token variable">$nCzW8953</span><span class="token variable">$un</span>/JUMJDE2588l7Y6KkP.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -717,14 +717,14 @@ Verifying - Password:
 <li><img data-src="https://p.k8s.li/20191231133509428.png"></li>
 <li>启动进入系统之后输入 <code>sudo passwd</code> 来修改 root 密码。然后切换到 root 用户下 <code>passwd core</code> 修改 core 这个用户的密码。修改之后就可以通过 ssh 登录啦 😂，比 Photon OS 要折腾一番呀。不过啊，使用 OVA 部署最好结合 could-init 来设置虚拟机的 ssh 密钥，网络，主机名等参数。</li>
 </ul>
-<h3 id="资源占用情况-1"><a href="#资源占用情况-1" class="headerlink" title="资源占用情况"></a>资源占用情况</h3><h5 id="内存-1"><a href="#内存-1" class="headerlink" title="内存"></a>内存</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">core@localhost ~ $ <span class="token function">free</span> -h
+<h3 id="资源占用情况-1"><a href="#资源占用情况-1" class="headerlink" title="资源占用情况"></a>资源占用情况</h3><h5 id="内存-1"><a href="#内存-1" class="headerlink" title="内存"></a>内存</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">core@localhost ~ $ <span class="token function">free</span> <span class="token parameter variable">-h</span>
               total        used        <span class="token function">free</span>      shared  buff/cache   available
 Mem:          961Mi       177Mi       398Mi       199Mi       385Mi       445Mi
 Swap:            0B          0B          0B
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="磁盘-1"><a href="#磁盘-1" class="headerlink" title="磁盘"></a>磁盘</h4><p>CoreOS 的磁盘分区和 Photon OS 略有不同</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">core@localhost ~ $ <span class="token function">df</span> -h
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">core@localhost ~ $ <span class="token function">df</span> <span class="token parameter variable">-h</span>
 Filesystem       Size  Used Avail Use% Mounted on
 devtmpfs         460M     <span class="token number">0</span>  460M   <span class="token number">0</span>% /dev
 tmpfs            481M     <span class="token number">0</span>  481M   <span class="token number">0</span>% /dev/shm
@@ -810,16 +810,16 @@ Live Restore Enabled: false<span aria-hidden="true" class="line-numbers-rows"><s
            │ └─user-500.slice
            │   ├─user@500.service
            │   │ └─init.scope
-           │   │   ├─725 /usr/lib/systemd/systemd --user
+           │   │   ├─725 /usr/lib/systemd/systemd <span class="token parameter variable">--user</span>
            │   │   └─726 <span class="token punctuation">(</span>sd-pam<span class="token punctuation">)</span>
            │   ├─session-2.scope
            │   │ ├─768 sshd: core <span class="token punctuation">[</span>priv<span class="token punctuation">]</span>
            │   │ ├─781 sshd: core@pts/0
-           │   │ ├─782 -bash
+           │   │ ├─782 <span class="token parameter variable">-bash</span>
            │   │ └─978 systemctl status
            │   └─session-1.scope
-           │     ├─713 /bin/login -f
-           │     ├─731 -bash
+           │     ├─713 /bin/login <span class="token parameter variable">-f</span>
+           │     ├─731 <span class="token parameter variable">-bash</span>
            │     ├─762 <span class="token function">su</span>
            │     ├─763 <span class="token function">bash</span>
            │     ├─770 <span class="token function">su</span> core
@@ -827,26 +827,26 @@ Live Restore Enabled: false<span aria-hidden="true" class="line-numbers-rows"><s
            │     ├─775 <span class="token function">su</span>
            │     └─776 <span class="token function">bash</span>
            ├─init.scope
-           │ └─1 /usr/lib/systemd/systemd --switched-root --system --deserialize <span class="token number">16</span>
+           │ └─1 /usr/lib/systemd/systemd --switched-root <span class="token parameter variable">--system</span> <span class="token parameter variable">--deserialize</span> <span class="token number">16</span>
            └─system.slice
              ├─locksmithd.service
              │ └─718 /usr/lib/locksmith/locksmithd
              ├─containerd.service
-             │ └─800 /run/torcx/bin/containerd --config /run/torcx/unpack/docker/usr/share/containerd/config.toml
+             │ └─800 /run/torcx/bin/containerd <span class="token parameter variable">--config</span> /run/torcx/unpack/docker/usr/share/containerd/config.toml
              ├─systemd-networkd.service
              │ └─584 /usr/lib/systemd/systemd-networkd
              ├─systemd-udevd.service
              │ └─583 /usr/lib/systemd/systemd-udevd
              ├─docker.service
-             │ └─802 /run/torcx/bin/dockerd --host<span class="token operator">=</span>fd:// --containerd<span class="token operator">=</span>/var/run/docker/libcontainerd/docker-containerd.sock --selinux-enabled<span class="token operator">=</span>true
+             │ └─802 /run/torcx/bin/dockerd <span class="token parameter variable">--host</span><span class="token operator">=</span>fd:// <span class="token parameter variable">--containerd</span><span class="token operator">=</span>/var/run/docker/libcontainerd/docker-containerd.sock --selinux-enabled<span class="token operator">=</span>true
              ├─update-engine.service
-             │ └─663 /usr/sbin/update_engine -foreground -logtostderr
+             │ └─663 /usr/sbin/update_engine <span class="token parameter variable">-foreground</span> <span class="token parameter variable">-logtostderr</span>
              ├─systemd-journald.service
              │ └─553 /usr/lib/systemd/systemd-journald
              ├─systemd-resolved.service
              │ └─635 /usr/lib/systemd/systemd-resolved
              ├─dbus.service
-             │ └─674 /usr/bin/dbus-daemon --system --address<span class="token operator">=</span>systemd: --nofork --nopidfile --systemd-activation
+             │ └─674 /usr/bin/dbus-daemon <span class="token parameter variable">--system</span> <span class="token parameter variable">--address</span><span class="token operator">=</span>systemd: <span class="token parameter variable">--nofork</span> <span class="token parameter variable">--nopidfile</span> --systemd-activation
              ├─systemd-timesyncd.service
              │ └─634 /usr/lib/systemd/systemd-timesyncd
              └─systemd-logind.service
@@ -909,7 +909,7 @@ INFO<span class="token punctuation">[</span>0002<span class="token punctuation">
 INFO<span class="token punctuation">[</span>0002<span class="token punctuation">]</span> starting installer container <span class="token keyword">for</span> rancher/os-installer:latest <span class="token punctuation">(</span>new<span class="token punctuation">)</span>
 Installing from rancher/os-installer:latest
 <span class="token function">mke2fs</span> <span class="token number">1.45</span>.2 <span class="token punctuation">(</span><span class="token number">27</span>-May-2019<span class="token punctuation">)</span>
-<span class="token number">64</span>-bit filesystem support is not enabled.  The larger fields afforded by this feature <span class="token builtin class-name">enable</span> full-strength checksumming.  Pass -O 64bit to rectify.
+<span class="token number">64</span>-bit filesystem support is not enabled.  The larger fields afforded by this feature <span class="token builtin class-name">enable</span> full-strength checksumming.  Pass <span class="token parameter variable">-O</span> 64bit to rectify.
 Creating filesystem with <span class="token number">7863808</span> 4k blocks and <span class="token number">7864320</span> inodes
 Filesystem UUID: fe29cb27-b4ac-4c75-a12d-895ea7e52af9
 Superblock backups stored on blocks:
@@ -1020,7 +1020,7 @@ Server:
 <h4 id="内存-2"><a href="#内存-2" class="headerlink" title="内存"></a>内存</h4><ul>
 <li>初始化启动后内存使用了 1224MB😂，要比 CoreOS 和 Photon OS 加起来还多 😂</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>rancher@rancher ~<span class="token punctuation">]</span>$ <span class="token function">free</span> -m
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>rancher@rancher ~<span class="token punctuation">]</span>$ <span class="token function">free</span> <span class="token parameter variable">-m</span>
              total       used       <span class="token function">free</span>     shared    buffers     cached
 Mem:          <span class="token number">3947</span>       <span class="token number">1224</span>       <span class="token number">2722</span>        <span class="token number">993</span>          <span class="token number">0</span>        <span class="token number">993</span>
 -/+ buffers/cache:        <span class="token number">231</span>       <span class="token number">3715</span>
@@ -1134,12 +1134,12 @@ none on /sys/fs/selinux <span class="token builtin class-name">type</span> selin
 
 <h3 id="系统服务容器化"><a href="#系统服务容器化" class="headerlink" title="系统服务容器化"></a>系统服务容器化</h3><p>通过 top 命令和 ps 命令查看系统运行的进程可以发现以下几个重要的进程</p>
 <h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PID  <span class="token environment constant">PPID</span> <span class="token environment constant">USER</span>     STAT   VSZ %VSZ %CPU COMMAND
-<span class="token number">1695</span>  <span class="token number">1620</span> root     S     558m  <span class="token number">14</span>%   <span class="token number">0</span>% containerd --config /var/run/docker/containerd/containerd.toml --log-level info
+<span class="token number">1695</span>  <span class="token number">1620</span> root     S     558m  <span class="token number">14</span>%   <span class="token number">0</span>% containerd <span class="token parameter variable">--config</span> /var/run/docker/containerd/containerd.toml --log-level info
 <span class="token number">1988</span>  <span class="token number">1922</span> root     S    <span class="token number">11420</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token function">top</span>
-   <span class="token number">1</span>     <span class="token number">0</span> root     S    1287m  <span class="token number">32</span>%   <span class="token number">0</span>% system-dockerd --storage-driver overlay2 --graph /var/lib/system-docker --config-file /etc/docker/system-docker.json --restart<span class="token operator">=</span>false --group root --userland-proxy<span class="token operator">=</span>false --bip <span class="token number">172.18</span>.42.1/16 --log-opt max-file<span class="token operator">=</span><span class="token number">2</span> --log-opt max-size
- <span class="token number">489</span>     <span class="token number">1</span> root     S     833m  <span class="token number">21</span>%   <span class="token number">0</span>% system-docker-containerd -l unix:///var/run/system-docker/libcontainerd/system-docker-containerd.sock --metrics-interval<span class="token operator">=</span><span class="token number">0</span> --start-timeout 2m --state-dir /var/run/system-docker/libcontainerd/containerd --shim system-docker-contai
-<span class="token number">1370</span>  <span class="token number">1353</span> root     S     808m  <span class="token number">20</span>%   <span class="token number">0</span>% respawn -f /etc/respawn.conf
-<span class="token number">1620</span>  <span class="token number">1415</span> root     S     658m  <span class="token number">16</span>%   <span class="token number">0</span>% dockerd --group <span class="token function">docker</span> --host unix:///var/run/docker.sock --log-opt max-file<span class="token operator">=</span><span class="token number">2</span> --log-opt max-size<span class="token operator">=</span>25m
+   <span class="token number">1</span>     <span class="token number">0</span> root     S    1287m  <span class="token number">32</span>%   <span class="token number">0</span>% system-dockerd --storage-driver overlay2 <span class="token parameter variable">--graph</span> /var/lib/system-docker --config-file /etc/docker/system-docker.json <span class="token parameter variable">--restart</span><span class="token operator">=</span>false <span class="token parameter variable">--group</span> root --userland-proxy<span class="token operator">=</span>false <span class="token parameter variable">--bip</span> <span class="token number">172.18</span>.42.1/16 --log-opt max-file<span class="token operator">=</span><span class="token number">2</span> --log-opt max-size
+ <span class="token number">489</span>     <span class="token number">1</span> root     S     833m  <span class="token number">21</span>%   <span class="token number">0</span>% system-docker-containerd <span class="token parameter variable">-l</span> unix:///var/run/system-docker/libcontainerd/system-docker-containerd.sock --metrics-interval<span class="token operator">=</span><span class="token number">0</span> --start-timeout 2m --state-dir /var/run/system-docker/libcontainerd/containerd <span class="token parameter variable">--shim</span> system-docker-contai
+<span class="token number">1370</span>  <span class="token number">1353</span> root     S     808m  <span class="token number">20</span>%   <span class="token number">0</span>% respawn <span class="token parameter variable">-f</span> /etc/respawn.conf
+<span class="token number">1620</span>  <span class="token number">1415</span> root     S     658m  <span class="token number">16</span>%   <span class="token number">0</span>% dockerd <span class="token parameter variable">--group</span> <span class="token function">docker</span> <span class="token parameter variable">--host</span> unix:///var/run/docker.sock --log-opt max-file<span class="token operator">=</span><span class="token number">2</span> --log-opt max-size<span class="token operator">=</span>25m
 <span class="token number">1398</span>   <span class="token number">489</span> root     S     472m  <span class="token number">12</span>%   <span class="token number">0</span>% system-docker-containerd-shim 3d39a73e4089dcbdd144277adb398d3e0d8ba62812a699be7cfeac9598539f6e /var/run/system-docker/libcontainerd/3d39a73e4089dcbdd144277adb398d3e0d8ba62812a699be7cfeac9598539f6e system-docker-runc
 <span class="token number">1285</span>   <span class="token number">489</span> root     S     470m  <span class="token number">12</span>%   <span class="token number">0</span>% system-docker-containerd-shim 254137c5e66a7075c2104cca82fa2e6584509170688064fac1147fbfcda2f5c0 /var/run/system-docker/libcontainerd/254137c5e66a7075c2104cca82fa2e6584509170688064fac1147fbfcda2f5c0 system-docker-runc
 <span class="token number">1588</span>  <span class="token number">1370</span> root     S     452m  <span class="token number">11</span>%   <span class="token number">0</span>% /usr/bin/autologin rancher:tty1
@@ -1151,30 +1151,30 @@ none on /sys/fs/selinux <span class="token builtin class-name">type</span> selin
 <span class="token number">1076</span>   <span class="token number">489</span> root     S     334m   <span class="token number">8</span>%   <span class="token number">0</span>% system-docker-containerd-shim acf47c78a71194f1ef094302846855c777ef84fe613eb1ac1cc5f7ac868d618c /var/run/system-docker/libcontainerd/acf47c78a71194f1ef094302846855c777ef84fe613eb1ac1cc5f7ac868d618c system-docker-runc
  <span class="token number">956</span>   <span class="token number">489</span> root     S     280m   <span class="token number">7</span>%   <span class="token number">0</span>% system-docker-containerd-shim 4986cd58a227547af8e4867da067cf9f066062536268bf025466f88b4b38d9c3 /var/run/system-docker/libcontainerd/4986cd58a227547af8e4867da067cf9f066062536268bf025466f88b4b38d9c3 system-docker-runc
 <span class="token number">1353</span>   <span class="token number">489</span> root     S     270m   <span class="token number">7</span>%   <span class="token number">0</span>% system-docker-containerd-shim 6fc9ef66b43c9902e23cea7cfdd78b8b5842df2b981d8d7899eacb3b063294fd /var/run/system-docker/libcontainerd/6fc9ef66b43c9902e23cea7cfdd78b8b5842df2b981d8d7899eacb3b063294fd system-docker-runc
-<span class="token number">1311</span>  <span class="token number">1285</span> root     S     238m   <span class="token number">6</span>%   <span class="token number">0</span>% rsyslogd -n
+<span class="token number">1311</span>  <span class="token number">1285</span> root     S     238m   <span class="token number">6</span>%   <span class="token number">0</span>% rsyslogd <span class="token parameter variable">-n</span>
 <span class="token number">1168</span>  <span class="token number">1151</span> root     S     146m   <span class="token number">4</span>%   <span class="token number">0</span>% /usr/bin/vmtoolsd
-<span class="token number">1415</span>  <span class="token number">1398</span> root     S     122m   <span class="token number">3</span>%   <span class="token number">0</span>% system-docker-runc <span class="token builtin class-name">exec</span> -- 6fc9ef66b43c9902e23cea7cfdd78b8b5842df2b981d8d7899eacb3b063294fd <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin <span class="token assign-left variable"><span class="token environment constant">HOSTNAME</span></span><span class="token operator">=</span>rancher <span class="token assign-left variable"><span class="token environment constant">HOME</span></span><span class="token operator">=</span>/ ros docker-init --group <span class="token function">docker</span> --host unix:
+<span class="token number">1415</span>  <span class="token number">1398</span> root     S     122m   <span class="token number">3</span>%   <span class="token number">0</span>% system-docker-runc <span class="token builtin class-name">exec</span> -- 6fc9ef66b43c9902e23cea7cfdd78b8b5842df2b981d8d7899eacb3b063294fd <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin <span class="token assign-left variable"><span class="token environment constant">HOSTNAME</span></span><span class="token operator">=</span>rancher <span class="token assign-left variable"><span class="token environment constant">HOME</span></span><span class="token operator">=</span>/ ros docker-init <span class="token parameter variable">--group</span> <span class="token function">docker</span> <span class="token parameter variable">--host</span> unix:
  <span class="token number">907</span>   <span class="token number">784</span> root     S     109m   <span class="token number">3</span>%   <span class="token number">0</span>% container-crontab
-<span class="token number">1105</span>  <span class="token number">1076</span> root     S    <span class="token number">94084</span>   <span class="token number">2</span>%   <span class="token number">0</span>% ntpd --nofork -g
+<span class="token number">1105</span>  <span class="token number">1076</span> root     S    <span class="token number">94084</span>   <span class="token number">2</span>%   <span class="token number">0</span>% ntpd <span class="token parameter variable">--nofork</span> <span class="token parameter variable">-g</span>
  <span class="token number">973</span>   <span class="token number">956</span> root     S    <span class="token number">22544</span>   <span class="token number">1</span>%   <span class="token number">0</span>% udevd
 <span class="token number">1890</span>  <span class="token number">1888</span> rancher  S    <span class="token number">22448</span>   <span class="token number">1</span>%   <span class="token number">0</span>% sshd: rancher@pts/0
-<span class="token number">1586</span>  <span class="token number">1370</span> root     S    <span class="token number">22096</span>   <span class="token number">1</span>%   <span class="token number">0</span>% /usr/sbin/sshd -D
+<span class="token number">1586</span>  <span class="token number">1370</span> root     S    <span class="token number">22096</span>   <span class="token number">1</span>%   <span class="token number">0</span>% /usr/sbin/sshd <span class="token parameter variable">-D</span>
 <span class="token number">1888</span>  <span class="token number">1586</span> root     S    <span class="token number">22096</span>   <span class="token number">1</span>%   <span class="token number">0</span>% sshd: rancher <span class="token punctuation">[</span>priv<span class="token punctuation">]</span>
 <span class="token number">1989</span>  <span class="token number">1586</span> root     S    <span class="token number">22096</span>   <span class="token number">1</span>%   <span class="token number">0</span>% sshd: rancher <span class="token punctuation">[</span>priv<span class="token punctuation">]</span>
 <span class="token number">1991</span>  <span class="token number">1989</span> rancher  S    <span class="token number">22096</span>   <span class="token number">1</span>%   <span class="token number">0</span>% sshd: rancher@pts/1
 <span class="token number">1922</span>  <span class="token number">1891</span> root     S    <span class="token number">16244</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token function">bash</span>
-<span class="token number">1641</span>  <span class="token number">1588</span> rancher  S    <span class="token number">16116</span>   <span class="token number">0</span>%   <span class="token number">0</span>% -bash
+<span class="token number">1641</span>  <span class="token number">1588</span> rancher  S    <span class="token number">16116</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token parameter variable">-bash</span>
 <span class="token number">1885</span>  <span class="token number">1641</span> root     S    <span class="token number">16116</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token function">bash</span>
-<span class="token number">1891</span>  <span class="token number">1890</span> rancher  S    <span class="token number">16116</span>   <span class="token number">0</span>%   <span class="token number">0</span>% -bash
-<span class="token number">1992</span>  <span class="token number">1991</span> rancher  S    <span class="token number">16116</span>   <span class="token number">0</span>%   <span class="token number">0</span>% -bash
+<span class="token number">1891</span>  <span class="token number">1890</span> rancher  S    <span class="token number">16116</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token parameter variable">-bash</span>
+<span class="token number">1992</span>  <span class="token number">1991</span> rancher  S    <span class="token number">16116</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token parameter variable">-bash</span>
 <span class="token number">1997</span>  <span class="token number">1992</span> rancher  R    <span class="token number">11420</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token function">top</span>
-<span class="token number">1589</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty --noclear tty2 linux
-<span class="token number">1591</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty --noclear tty3 linux
-<span class="token number">1592</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty --noclear tty4 linux
-<span class="token number">1594</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty --noclear tty5 linux
-<span class="token number">1595</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty --noclear tty6 linux
-<span class="token number">1112</span>   <span class="token number">995</span> root     S     <span class="token number">4660</span>   <span class="token number">0</span>%   <span class="token number">0</span>% dhcpcd -MA4 -e <span class="token assign-left variable">force_hostname</span><span class="token operator">=</span>true --timeout <span class="token number">10</span> -w --debug eth0
- <span class="token number">850</span>   <span class="token number">803</span> root     S     <span class="token number">4276</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /usr/sbin/acpid -f
+<span class="token number">1589</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty <span class="token parameter variable">--noclear</span> tty2 linux
+<span class="token number">1591</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty <span class="token parameter variable">--noclear</span> tty3 linux
+<span class="token number">1592</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty <span class="token parameter variable">--noclear</span> tty4 linux
+<span class="token number">1594</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty <span class="token parameter variable">--noclear</span> tty5 linux
+<span class="token number">1595</span>  <span class="token number">1370</span> root     S     <span class="token number">6404</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /sbin/agetty <span class="token parameter variable">--noclear</span> tty6 linux
+<span class="token number">1112</span>   <span class="token number">995</span> root     S     <span class="token number">4660</span>   <span class="token number">0</span>%   <span class="token number">0</span>% dhcpcd <span class="token parameter variable">-MA4</span> <span class="token parameter variable">-e</span> <span class="token assign-left variable">force_hostname</span><span class="token operator">=</span>true <span class="token parameter variable">--timeout</span> <span class="token number">10</span> <span class="token parameter variable">-w</span> <span class="token parameter variable">--debug</span> eth0
+ <span class="token number">850</span>   <span class="token number">803</span> root     S     <span class="token number">4276</span>   <span class="token number">0</span>%   <span class="token number">0</span>% /usr/sbin/acpid <span class="token parameter variable">-f</span>
  <span class="token number">477</span>     <span class="token number">1</span> root     Z        <span class="token number">0</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token punctuation">[</span>ros<span class="token punctuation">]</span>
   <span class="token number">49</span>     <span class="token number">2</span> root     IW       <span class="token number">0</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token punctuation">[</span>kworker/1:1<span class="token punctuation">]</span>
    <span class="token number">8</span>     <span class="token number">2</span> root     IW       <span class="token number">0</span>   <span class="token number">0</span>%   <span class="token number">0</span>% <span class="token punctuation">[</span>rcu_sched<span class="token punctuation">]</span>
@@ -1227,8 +1227,8 @@ COMMANDS:
      help, h     Shows a list of commands or <span class="token builtin class-name">help</span> <span class="token keyword">for</span> one <span class="token builtin class-name">command</span>
 
 GLOBAL OPTIONS:
-   --help, -h     show <span class="token builtin class-name">help</span>
-   --version, -v  print the version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   --help, <span class="token parameter variable">-h</span>     show <span class="token builtin class-name">help</span>
+   --version, <span class="token parameter variable">-v</span>  print the version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="系统进程"><a href="#系统进程" class="headerlink" title="系统进程"></a>系统进程</h3><ul>
 <li>可以看到，使用 <code>ros service ps</code> 命令来查看正在运行的系统服务，这些服务都是以容器的方式来运行的。比如用户空间里的 <code>user-docker</code> 、<code>syslog</code> 、<code>udevd</code>   等等都是以容器的方式来运行的，而不是以传统进程服务来运行的。包括我们安装 RancherOS 到磁盘的时候  <code>starting installer container for rancher/os-installer:latest (new)</code> 这个安装程序也是由容器的方式来运行的，把磁盘设备和 <code>cloud-init</code> 配置文件一并挂载到容器中。</li>
@@ -1236,21 +1236,21 @@ GLOBAL OPTIONS:
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@rancher rancher<span class="token punctuation">]</span><span class="token comment"># ros service ps</span>
 Name                    Command                                                            State                     Ports
 <span class="token function">docker</span>                  ros user-docker                                                    Up <span class="token number">9</span> minutes
-<span class="token function">logrotate</span>               /usr/bin/entrypoint.sh /usr/sbin/logrotate -v /etc/logrotate.conf  Created
+<span class="token function">logrotate</span>               /usr/bin/entrypoint.sh /usr/sbin/logrotate <span class="token parameter variable">-v</span> /etc/logrotate.conf  Created
 system-cron             container-crontab                                                  Up <span class="token number">9</span> minutes
 container-data-volumes  /usr/bin/ros entrypoint <span class="token builtin class-name">echo</span>                                       Created
 console                 /usr/bin/ros entrypoint ros console-init                           Up <span class="token number">9</span> minutes
 system-volumes          /usr/bin/ros entrypoint <span class="token builtin class-name">echo</span>                                       Created
 ntp                     /usr/bin/ros entrypoint /bin/start_ntp.sh                          Up <span class="token number">9</span> minutes
 subscriber              /usr/bin/ros entrypoint os-subscriber                              Exited <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token number">2</span> minutes ago
-syslog                  /usr/bin/entrypoint.sh rsyslogd -n                                 Up <span class="token number">9</span> minutes
+syslog                  /usr/bin/entrypoint.sh rsyslogd <span class="token parameter variable">-n</span>                                 Up <span class="token number">9</span> minutes
 media-volumes           /usr/bin/ros entrypoint <span class="token builtin class-name">echo</span>                                       Created
 preload-user-images     /usr/bin/ros entrypoint ros preload-images                         Exited <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token number">9</span> minutes ago
 udev                    /usr/bin/ros entrypoint udevd                                      Up <span class="token number">9</span> minutes
 udev-cold               /usr/bin/ros entrypoint ros udev-settle                            Exited <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token number">9</span> minutes ago
 network                 /usr/bin/ros entrypoint netconf                                    Up <span class="token number">9</span> minutes
 open-vm-tools           /usr/bin/ros entrypoint /usr/bin/vmtoolsd                          Up <span class="token number">9</span> minutes
-acpid                   /usr/bin/ros entrypoint /usr/sbin/acpid -f                         Up <span class="token number">9</span> minutes
+acpid                   /usr/bin/ros entrypoint /usr/sbin/acpid <span class="token parameter variable">-f</span>                         Up <span class="token number">9</span> minutes
 command-volumes         /usr/bin/ros entrypoint <span class="token builtin class-name">echo</span>                                       Created
 cloud-init-execute      /usr/bin/ros entrypoint cloud-init-execute -pre-console            Exited <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token number">9</span> minutes ago
 user-volumes            /usr/bin/ros entrypoint <span class="token builtin class-name">echo</span>                                       Created
@@ -1312,7 +1312,7 @@ all-volumes             /usr/bin/ros entrypoint <span class="token builtin class
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -32,7 +32,7 @@
 <meta property="og:description" content="前言国内的这些毒瘤 app，不遵守 Android 开发的规范，把数据不写到自己的 data 目录下，在私自 sdcard 文件目录下拉屎。每次打开文件管理器的时候就会看到这些毒瘤 app 拉的一堆屎，真的恶心到家。打开无线调试模式通过一系列排除操作，总算清理出来了一堆一堆的屎。 #!&#x2F;bin&#x2F;bash # date: 2019-05-25 # rm rush app dir  # touch c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T02:49:26.895Z">
+<meta property="article:modified_time" content="2023-04-13T16:19:36.354Z">
 <meta property="article:author" content="Reimu">
 <meta property="article:tag" content="android">
 <meta property="article:tag" content="安卓刷机">
@@ -268,7 +268,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 2022-06-19T10:49:26+08:00" itemprop="dateModified" datetime="2022-06-19T10:49:26+08:00">2022-06-19</time>
+      <time title="修改时间：2023-04-14 2023-04-14T00:19:36+08:00" itemprop="dateModified" datetime="2023-04-14T00:19:36+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,18 +332,18 @@
 
 <span class="token comment"># rm</span>
 <span class="token builtin class-name">cd</span> /sdcard
-<span class="token function">rm</span> -rfbackup .backups Documents .lmsdk obb QQBrowser Tasker .tbs amap backups
-<span class="token function">rm</span> -rfbaidu Bmap .com.taobao.dp com.tencent.mobileqq .DataStorage ICBC media
-<span class="token function">rm</span> -rfmsc ICBCWAPLog obj taobao Tasker tbs .UTSystemConfig .vivo alipay
+<span class="token function">rm</span> <span class="token parameter variable">-rfbackup</span> .backups Documents .lmsdk obb QQBrowser Tasker .tbs amap backups
+<span class="token function">rm</span> <span class="token parameter variable">-rfbaidu</span> Bmap .com.taobao.dp com.tencent.mobileqq .DataStorage ICBC media
+<span class="token function">rm</span> <span class="token parameter variable">-rfmsc</span> ICBCWAPLog obj taobao Tasker tbs .UTSystemConfig .vivo alipay
 
 <span class="token comment"># MobileQQ</span>
 <span class="token builtin class-name">cd</span> /sdcard/tencent/MobileQQ
 <span class="token function">touch</span> ArkApp WebViewCheck font_info log ptv_template thumb .apollo
 <span class="token function">touch</span> shortvideo thumb2 QWallet artfilter early funcall data
 <span class="token function">touch</span> qav theme_pkg webso RedPacket emoji portrait qbiz .gift .signatureTemplate
-<span class="token function">rm</span> -rf ArkApp WebViewCheck font_info log ptv_template thumb .apollo
-<span class="token function">rm</span> -rf shortvideo thumb2 QWallet artfilter early funcall data
-<span class="token function">rm</span> -rf qav theme_pkg webso RedPacket emoji portrait qbiz .gift .signatureTemplate
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> ArkApp WebViewCheck font_info log ptv_template thumb .apollo
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> shortvideo thumb2 QWallet artfilter early funcall data
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> qav theme_pkg webso RedPacket emoji portrait qbiz .gift .signatureTemplate
 <span class="token function">touch</span> ArkApp WebViewCheck font_info log ptv_template thumb .apollo
 <span class="token function">touch</span> shortvideo thumb2 QWallet artfilter early funcall data
 <span class="token function">touch</span> qav theme_pkg webso RedPacket emoji portrait qbiz .gift .signatureTemplate
@@ -352,15 +352,15 @@
 <span class="token builtin class-name">cd</span> /sdcard/tencent/MicroMsg
 <span class="token function">touch</span> Game card wallet CDNTemp Handler wxacache CheckResUpdate SQLTrace fts
 <span class="token function">touch</span> newyear wxanewfiles FailMsgFileCache WeiXin  vusericon xlog wxafiles
-<span class="token function">rm</span> -rf Game card wallet CDNTemp Handler wxacache CheckResUpdate SQLTrace fts
-<span class="token function">rm</span> -rf newyear wxanewfiles FailMsgFileCache WeiXin  vusericon xlog wxafiles
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> Game card wallet CDNTemp Handler wxacache CheckResUpdate SQLTrace fts
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> newyear wxanewfiles FailMsgFileCache WeiXin  vusericon xlog wxafiles
 <span class="token function">touch</span> Game card wallet CDNTemp Handler wxacache CheckResUpdate SQLTrace fts
 <span class="token function">touch</span> newyear wxanewfiles FailMsgFileCache WeiXin  vusericon xlog wxafiles
 
 <span class="token comment"># tencent</span>
 <span class="token builtin class-name">cd</span> /sdcard/tencent/
 <span class="token function">touch</span> msflogs wtlogin mta
-<span class="token function">rm</span> -rf msflogs wtlogin mta
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> msflogs wtlogin mta
 <span class="token function">touch</span> msflogs wtlogin mta<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>可以保存脚本执行，建议拆分成 tasker 任务，在添加触发规则。当你打开文件管理器的时候自动触发清理操作，这样再用文件管理器的时候，这些屎已经自动清理完了，看着也舒服了。</p>
@@ -489,7 +489,7 @@ touch qav theme_pkg webso RedPacket emoji portrait qbiz .gift .signatureTemplate
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

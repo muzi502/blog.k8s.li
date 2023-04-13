@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="rgba(0,0,0,0)"><meta name="generator" content="Hexo 6.3.0">
 
 <link rel="preconnect" href="//fonts.loli.net" crossorigin>
 <link rel="preconnect" href="null//null" crossorigin>
@@ -460,7 +460,7 @@ func GetPublicIP() string &#123;
 <ul>
 <li>设置好环境变量之后，再编译运行看下能否成功</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ go build -o cfwctl
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ go build <span class="token parameter variable">-o</span> cfwctl
 $ <span class="token function">chmod</span> +x cfwctl
 $ cfwctl <span class="token function">add</span>
 
@@ -470,7 +470,7 @@ my public <span class="token function">ip</span> is <span class="token number">1
 <ul>
 <li>如果是 arm64 的 OpenWrt 环境，在本地开发机上进行跨平台编译，然后将编译好的 cfwctl 二进制文件 scp 到路由器上，再添加 cron job 定时任务即可，这样就能自动定时更新防火墙规则来。</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">CGO_ENABLED</span><span class="token operator">=</span><span class="token number">0</span>  <span class="token assign-left variable">GOOS</span><span class="token operator">=</span>linux  <span class="token assign-left variable">GOARCH</span><span class="token operator">=</span>arm64 go build -o cfwctl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">CGO_ENABLED</span><span class="token operator">=</span><span class="token number">0</span>  <span class="token assign-left variable">GOOS</span><span class="token operator">=</span>linux  <span class="token assign-left variable">GOARCH</span><span class="token operator">=</span>arm64 go build <span class="token parameter variable">-o</span> cfwctl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
     </div>
 
@@ -522,7 +522,7 @@ my public <span class="token function">ip</span> is <span class="token number">1
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
