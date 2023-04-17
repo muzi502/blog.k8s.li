@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/friends.html</loc>
-    
-    <lastmod>2023-04-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/kubespray-2.18.html</loc>
     
     <lastmod>2023-04-17</lastmod>
@@ -128,6 +119,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
+    
+    <lastmod>2023-04-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/linux-login-alarm-telegram.html</loc>
     
     <lastmod>2023-04-17</lastmod>
@@ -155,25 +155,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
-    
-    <lastmod>2023-04-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/2019-review.html</loc>
-    
-    <lastmod>2023-04-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
     
     <lastmod>2023-04-17</lastmod>
     
@@ -191,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
+    <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
     
     <lastmod>2023-04-17</lastmod>
     
@@ -201,6 +183,15 @@
   
   <url>
     <loc>https://blog.k8s.li/blog-typecho-to-hexo.html</loc>
+    
+    <lastmod>2023-04-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Internet-related-foundations-and-organizations.html</loc>
     
     <lastmod>2023-04-17</lastmod>
     
@@ -281,6 +272,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
+    
+    <lastmod>2023-04-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2023-04-17</lastmod>
@@ -299,7 +299,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
+    <loc>https://blog.k8s.li/debian-gateway.html</loc>
     
     <lastmod>2023-04-17</lastmod>
     
@@ -309,15 +309,6 @@
   
   <url>
     <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
-    
-    <lastmod>2023-04-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/debian-gateway.html</loc>
     
     <lastmod>2023-04-17</lastmod>
     
@@ -371,6 +362,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/dashboard.html</loc>
+    
+    <lastmod>2023-04-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/get-someone-info.html</loc>
     
     <lastmod>2023-04-17</lastmod>
@@ -381,15 +381,6 @@
   
   <url>
     <loc>https://blog.k8s.li/CentOS7-install-k8s.html</loc>
-    
-    <lastmod>2023-04-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/dashboard.html</loc>
     
     <lastmod>2023-04-17</lastmod>
     
@@ -497,6 +488,24 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags.html</loc>
+    
+    <lastmod>2023-04-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/images/manifest.json</loc>
+    
+    <lastmod>2023-04-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/about.html</loc>
     
     <lastmod>2023-04-17</lastmod>
@@ -515,16 +524,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags.html</loc>
-    
-    <lastmod>2023-04-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/images/manifest.json</loc>
+    <loc>https://blog.k8s.li/friends.html</loc>
     
     <lastmod>2023-04-17</lastmod>
     
