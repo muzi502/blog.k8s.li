@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/2021.html</loc>
+    <loc>https://blog.k8s.li/kubespray-2.18.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/kubespray-2.18.html</loc>
+    <loc>https://blog.k8s.li/2021.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/from-chongqing-to-hangzhou.html</loc>
+    <loc>https://blog.k8s.li/mount-bind.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/mount-bind.html</loc>
+    <loc>https://blog.k8s.li/from-chongqing-to-hangzhou.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -119,15 +119,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/linux-login-alarm-telegram.html</loc>
-    
-    <lastmod>2023-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/make-e-book-from-html.html</loc>
     
     <lastmod>2023-04-20</lastmod>
@@ -138,6 +129,15 @@
   
   <url>
     <loc>https://blog.k8s.li/dockerfile-tips.html</loc>
+    
+    <lastmod>2023-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/linux-login-alarm-telegram.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -236,15 +236,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
-    
-    <lastmod>2023-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
     
     <lastmod>2023-04-20</lastmod>
@@ -255,6 +246,15 @@
   
   <url>
     <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
+    
+    <lastmod>2023-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/docker-deploy-fastdfs.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -299,15 +299,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/debian-gateway.html</loc>
-    
-    <lastmod>2023-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
     
     <lastmod>2023-04-20</lastmod>
@@ -317,7 +308,25 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/debian-gateway.html</loc>
+    
+    <lastmod>2023-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/mirrors-test.html</loc>
+    
+    <lastmod>2023-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -336,15 +345,6 @@
   
   <url>
     <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
-    
-    <lastmod>2023-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -434,15 +434,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/RMS.html</loc>
-    
-    <lastmod>2023-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/android-taibackup.html</loc>
     
     <lastmod>2023-04-20</lastmod>
@@ -453,6 +444,15 @@
   
   <url>
     <loc>https://blog.k8s.li/Code-It-s-Trivial.html</loc>
+    
+    <lastmod>2023-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/RMS.html</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -497,15 +497,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/images/manifest.json</loc>
-    
-    <lastmod>2023-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/about.html</loc>
     
     <lastmod>2023-04-20</lastmod>
@@ -525,6 +516,15 @@
   
   <url>
     <loc>https://blog.k8s.li/friends.html</loc>
+    
+    <lastmod>2023-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/images/manifest.json</loc>
     
     <lastmod>2023-04-20</lastmod>
     
