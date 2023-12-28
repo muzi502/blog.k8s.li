@@ -56,15 +56,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/from-chongqing-to-hangzhou.html</loc>
-    
-    <lastmod>2023-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/mount-bind.html</loc>
     
     <lastmod>2023-12-28</lastmod>
@@ -74,7 +65,25 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/from-chongqing-to-hangzhou.html</loc>
+    
+    <lastmod>2023-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/My-brick-lifting-tools.html</loc>
+    
+    <lastmod>2023-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/merge-bilibili-flv-video.html</loc>
     
     <lastmod>2023-12-28</lastmod>
     
@@ -102,15 +111,6 @@
   
   <url>
     <loc>https://blog.k8s.li/kindle-note.html</loc>
-    
-    <lastmod>2023-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/merge-bilibili-flv-video.html</loc>
     
     <lastmod>2023-12-28</lastmod>
     
@@ -245,6 +245,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
+    
+    <lastmod>2023-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
     
     <lastmod>2023-12-28</lastmod>
@@ -263,6 +272,15 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
+    
+    <lastmod>2023-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/The-Dictator%E2%80%99s-Handbook.html</loc>
     
     <lastmod>2023-12-28</lastmod>
@@ -272,25 +290,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/esp8266-pc-switch.html</loc>
-    
-    <lastmod>2023-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
-    
-    <lastmod>2023-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/ovf-to-ova.html</loc>
     
     <lastmod>2023-12-28</lastmod>
     
@@ -326,15 +326,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
-    
-    <lastmod>2023-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/Asking-the-right-questions.html</loc>
     
     <lastmod>2023-12-28</lastmod>
@@ -345,6 +336,15 @@
   
   <url>
     <loc>https://blog.k8s.li/amd-yes.html</loc>
+    
+    <lastmod>2023-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/centos7-offline-install-docker.html</loc>
     
     <lastmod>2023-12-28</lastmod>
     
@@ -416,15 +416,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
-    
-    <lastmod>2023-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/zabbix-compose.html</loc>
     
     <lastmod>2023-12-28</lastmod>
@@ -434,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/android-taibackup.html</loc>
+    <loc>https://blog.k8s.li/oracle-rips-redhat.html</loc>
     
     <lastmod>2023-12-28</lastmod>
     
@@ -453,6 +444,15 @@
   
   <url>
     <loc>https://blog.k8s.li/RMS.html</loc>
+    
+    <lastmod>2023-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/android-taibackup.html</loc>
     
     <lastmod>2023-12-28</lastmod>
     
@@ -488,6 +488,24 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags.html</loc>
+    
+    <lastmod>2023-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/images/manifest.json</loc>
+    
+    <lastmod>2023-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/about.html</loc>
     
     <lastmod>2023-12-28</lastmod>
@@ -507,24 +525,6 @@
   
   <url>
     <loc>https://blog.k8s.li/friends.html</loc>
-    
-    <lastmod>2023-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags.html</loc>
-    
-    <lastmod>2023-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/images/manifest.json</loc>
     
     <lastmod>2023-12-28</lastmod>
     
@@ -1132,27 +1132,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E6%80%9D%E8%80%83/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1161,6 +1140,20 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E7%94%B5%E5%AD%90%E5%89%8D%E5%93%A8%E5%9F%BA%E9%87%91%E4%BC%9A/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E9%98%85%E8%AF%BB/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1188,20 +1181,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/internet/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E5%BC%80%E6%BA%90/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/docker/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1223,28 +1202,28 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/internet/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E5%BC%80%E6%BA%90/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/Kindle/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/OpenWrt/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/K3s/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1273,6 +1252,27 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/OpenWrt/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/K3s/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1503,6 +1503,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/FastDFS/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/ESXi/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1525,13 +1532,6 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/Cluster-api/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/FastDFS/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1615,20 +1615,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/ffmpeg/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/rtsp/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/nginx/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1644,6 +1630,20 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/redis/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/ffmpeg/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/rtsp/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1699,13 +1699,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/ci/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/gitlab/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1714,6 +1707,13 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/CI-CD/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/ci/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2105,6 +2105,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2023-12-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/%E9%AA%91%E8%A1%8C/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2112,7 +2119,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2161,13 +2168,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E8%AF%BB%E4%B9%A6/</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/zabbix/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2198,14 +2198,14 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/categories/%E6%80%9D%E8%80%83/</loc>
+    <loc>https://blog.k8s.li/categories/%E4%BA%92%E8%81%94%E7%BD%91/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/categories/%E4%BA%92%E8%81%94%E7%BD%91/</loc>
+    <loc>https://blog.k8s.li/categories/%E6%80%9D%E8%80%83/</loc>
     <lastmod>2023-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
