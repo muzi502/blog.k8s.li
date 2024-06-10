@@ -18,10 +18,10 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #f8f8f8;
-  --highlight-foreground: #333;
-  --highlight-gutter-background: #e4e4e4;
-  --highlight-gutter-foreground: #464646;
+  --highlight-background: #fff;
+  --highlight-foreground: #24292e;
+  --highlight-gutter-background: #e9e9ea;
+  --highlight-gutter-foreground: #393e42;
   color-scheme: light;
 }
 html {
