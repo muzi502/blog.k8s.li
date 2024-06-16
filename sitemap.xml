@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.k8s.li/kubespray-2.18.html</loc>
+    <loc>https://blog.k8s.li/friends.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -12,6 +12,15 @@
   
   <url>
     <loc>https://blog.k8s.li/2021.html</loc>
+    
+    <lastmod>2024-06-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/kubespray-2.18.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -56,15 +65,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/from-chongqing-to-hangzhou.html</loc>
-    
-    <lastmod>2024-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/mount-bind.html</loc>
     
     <lastmod>2024-06-16</lastmod>
@@ -74,7 +74,25 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/from-chongqing-to-hangzhou.html</loc>
+    
+    <lastmod>2024-06-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/My-brick-lifting-tools.html</loc>
+    
+    <lastmod>2024-06-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -110,7 +128,16 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/wd-hc310-dc-hdd.html</loc>
+    <loc>https://blog.k8s.li/linux-login-alarm-telegram.html</loc>
+    
+    <lastmod>2024-06-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/make-e-book-from-html.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -137,24 +164,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/linux-login-alarm-telegram.html</loc>
-    
-    <lastmod>2024-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/make-e-book-from-html.html</loc>
-    
-    <lastmod>2024-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/2019-review.html</loc>
     
     <lastmod>2024-06-16</lastmod>
@@ -164,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
+    <loc>https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -173,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/pc-e5v3-e3v3-amd2600.html</loc>
+    <loc>https://blog.k8s.li/Kubernetes-Introduction-for-VMware-Users-zh.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -209,15 +218,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/life-sciences.html</loc>
-    
-    <lastmod>2024-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/ffmepg-rtsp.html</loc>
     
     <lastmod>2024-06-16</lastmod>
@@ -227,7 +227,25 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/life-sciences.html</loc>
+    
+    <lastmod>2024-06-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/wndr3700v4-openwrt.html</loc>
+    
+    <lastmod>2024-06-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -254,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
+    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -263,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/frps-prot-monitor.html</loc>
+    <loc>https://blog.k8s.li/fastdfs-lua-redis.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -290,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/esxi-openwrt.html</loc>
+    <loc>https://blog.k8s.li/debian-gateway.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -300,15 +318,6 @@
   
   <url>
     <loc>https://blog.k8s.li/esxi-vmbase.html</loc>
-    
-    <lastmod>2024-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/debian-gateway.html</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -488,24 +497,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags.html</loc>
-    
-    <lastmod>2024-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/images/manifest.json</loc>
-    
-    <lastmod>2024-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/about.html</loc>
     
     <lastmod>2024-06-16</lastmod>
@@ -524,7 +515,16 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/friends.html</loc>
+    <loc>https://blog.k8s.li/tags.html</loc>
+    
+    <lastmod>2024-06-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/images/manifest.json</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -1178,6 +1178,13 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/kubeadm/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -1241,7 +1248,28 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/%E6%80%9D%E8%80%83/</loc>
+    <loc>https://blog.k8s.li/tags/Linux/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E6%90%AC%E7%A0%96/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1270,34 +1298,6 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/%E9%98%B2%E7%96%AB%E9%97%B9%E5%89%A7/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/Linux/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E6%90%AC%E7%A0%96/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1444,14 +1444,14 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/Docker/</loc>
+    <loc>https://blog.k8s.li/tags/BuildKit/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/BuildKit/</loc>
+    <loc>https://blog.k8s.li/tags/Docker/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1619,6 +1619,20 @@
   </url>
   
   <url>
+    <loc>https://blog.k8s.li/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/VMware/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.k8s.li/tags/nginx/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -1634,20 +1648,6 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/redis/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/VMware/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1990,20 +1990,6 @@
   </url>
   
   <url>
-    <loc>https://blog.k8s.li/tags/PaaS/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.k8s.li/tags/toB/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.k8s.li/tags/packer/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -2026,6 +2012,20 @@
   
   <url>
     <loc>https://blog.k8s.li/tags/redfish/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/PaaS/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.k8s.li/tags/toB/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
